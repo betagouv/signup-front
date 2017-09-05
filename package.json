@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "postinstall": "ng build --target ${NODE_ENV:=development}",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port ${PORT:=4200} --target ${NODE_ENV:=development} --host 0.0.0.0 --disable-host-check",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -12,6 +13,8 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/compiler-cli": "^4.2.4",
+    "@angular/cli": "^1.3.2",
     "@angular/animations": "^4.2.4",
     "@angular/common": "^4.2.4",
     "@angular/compiler": "^4.2.4",
