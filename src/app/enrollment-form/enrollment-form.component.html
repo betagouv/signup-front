@@ -1,0 +1,122 @@
+<div class="well service-provider-selection">
+  <label>Sélectionnez le Fournisseur de Service France Connect pour lequel vous souhaitez un raccordement à l'API Impôts Particulier</label>
+  <select class="form-control" [(ngModel)]="enrollment.serviceProvider">
+    <option *ngFor="let serviceProvider of serviceProviders" [ngValue]="serviceProvider">
+    {{ serviceProvider.name }}
+    </option>
+  </select>
+</div>
+<div class="enrollment-form" *ngIf="enrollment.serviceProvider">
+  <div class="well scope-selection">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well scope-selection-form">
+          <h4>Quelles sont les données que vous souhaitez exploiter ?</h4>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.numberOfTaxShares">
+              RFR et nombre de parts fiscales
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.taxAddress">
+              Adresse fiscale de taxation à l'IR
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.nonWadgeIncome">
+              Revenus non salariaux
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.familySituation">
+              Situation de la famille et détail du nombre de personnes à charge
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.supportPayments">
+              Montant des pensions alimentaires reçues
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.deficit">
+              Existance de déficit sur l'année de revenus
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.housingTax">
+              Données de taxe d'habitation principale
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.totalGrossIncome">
+              Revenu Brut Global / Déficit Brut Global
+            </label>
+          </div>
+          <div class="checkbox" [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+            <label>
+              <input type="checkbox" [(ngModel)]="enrollment.scopes.worldIncome">
+              Montant des revenus mondiaux
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="well">
+          <p>
+          Cras imperdiet quam iaculis efficitur ornare. Etiam in arcu tempor, dapibus lorem dictum, fringilla eros. Suspendisse potenti. Etiam tempor velit eget odio consectetur fringilla. Mauris ut vehicula massa, nec tristique leo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam tempus tempus mi non efficitur. Integer eros ipsum, gravida in tortor iaculis, feugiat interdum sem. Nam viverra lorem ultricies, maximus libero in, auctor lacus. Vivamus faucibus, elit vulputate porta ultrices, libero odio cursus ipsum, vel sagittis sapien dui eget magna. Nulla et leo vitae lectus placerat faucibus ac ut nibh. Suspendisse interdum, neque tincidunt euismod sodales, metus nulla placerat quam, in pellentesque libero tortor eu arcu. Quisque ex ipsum, congue sit amet erat bibendum, sodales finibus risus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="legal-basis well">
+    <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
+    <div class="legal-basis-form">
+      <div class="form-group">
+        <textarea class="form-control" [(ngModel)]="enrollment.legalBasis.comment" placeholder="Rédigez un commentaire">
+        </textarea>
+      </div>
+      <div class="form-group">
+        <input type="file" [(ngModel)]="enrollment.legalBasis.attachment">
+      </div>
+    </div>
+  </div>
+  <div class="well service-description">
+    <h4>Description de votre service</h4>
+    <div class="form-group">
+      <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
+      <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.main">
+    </div>
+    <div class="form-group">
+      <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
+      <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.deploymentDate">
+    </div>
+    <div class="form-group">
+      <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
+      <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.seasonality">
+    </div>
+    <div class="form-group">
+      <label>Quels serait le nombre maximal d’appel en une heure (en cas de pic) ?</label>
+      <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.maxCharge">
+    </div>
+  </div>
+  <div class="well agreement">
+    <div class="chackbox">
+      <label>
+        <input type="checkbox" [(ngModel)]="enrollment.agreement">
+        En cochant cette case, je certifie que les informations saisies, notamment le fondement juridique indiqué, sont correctes. Je m’engage à exploiter les données DGFIP dans le cadre réglementaire adapté. Je m’engage à fournir les résultats de l’homologation de mon service selon le référentiel RGS dans un délai de ---.
+      </label>
+    </div>
+  </div>
+  <div class="well submit">
+    <button class="btn btn-block btn-primary" (click)="submit()">Envoyer le dossier</button>
+  </div>
+</div>
