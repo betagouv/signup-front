@@ -25,6 +25,22 @@ export class EnrollmentService {
     maxCharge: null
   }
   agreement: boolean;
+  newRecord: boolean;
 
   constructor () {}
+
+  save () {
+    let valid = true
+    const errors = {}
+    if (!this.agreement) {
+      errors['agreement'] = "Vous devez accepter les conditions d'utilisation"
+      valid = false
+    }
+    if (valid) {
+      this.newRecord = true
+      return Promise.resolve()
+    } else {
+      return Promise.reject(errors)
+    }
+  }
 }

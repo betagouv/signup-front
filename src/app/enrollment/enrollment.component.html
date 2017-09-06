@@ -1,0 +1,132 @@
+<div class="success-message" *ngIf="enrollment.newRecord">
+  <div class="alert alert-success">
+    <p><strong>Votre dossier a été transmis et est cours d’étude par l’équipe DINSIC – FranceConnect.</strong> Vous trouverez ci-dessous le récapitulatif de votre demande, que vous pouvez modifier tant que votre dossier n’a pas été validé.</p>
+    <p><strong>Après étude du dossier, votre accès à l’API sera validé lorsque vous aurez transmis les éléments suivants (en bas de page)</strong> : récépissé CNIL et résultats d’homologation de votre Fournisseur de Services. Vous recevrez alors une convention d’adhésion établie par la DGFIP à retourner signée sur cette plateforme.</p>
+    <p><strong>Vous pouvez d’ores et déjà procéder au développement en intégration</strong> pour vous raccorder à l’API Impôt Particulier. Pour cela, vous pouvez : </p>
+    <ul>
+      <li>Vous référer à la documentation technique pour vous raccorder à un Fournisseur de Données (FD) sur le Portail Partenaires FranceConnect,</li>
+      <li>Utiliser les bouchons Impôt Particulier et créer vos propres jeux de données afin de simuler de comptes utilisateurs.</li>
+    </ul>
+  </div>
+</div>
+<div class="well service-provider">
+  <h4>Fournisseur de service</h4>
+  <p><strong>{{ enrollment.serviceProvider.name }}</strong></p>
+</div>
+<div class="enrollment" *ngIf="enrollment.serviceProvider">
+  <div class="well scopes">
+    <h4>Données exploitées</h4>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.numberOfTaxShares">
+          RFR et nombre de parts fiscales
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.taxAddress">
+          Adresse fiscale de taxation à l'IR
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.nonWadgeIncome">
+          Revenus non salariaux
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.familySituation">
+          Situation de la famille et détail du nombre de personnes à charge
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.supportPayments">
+          Montant des pensions alimentaires reçues
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.deficit">
+          Existance de déficit sur l'année de revenus
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.housingTax">
+          Données de taxe d'habitation principale
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.totalGrossIncome">
+          Revenu Brut Global / Déficit Brut Global
+        </label>
+      </div>
+    </div>
+    <div class="checkbox">
+      <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+        <label>
+          <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.worldIncome">
+          Montant des revenus mondiaux
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="legal-basis well">
+  <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
+  <p>{{ enrollment.legalBasis.comment }}</p>
+</div>
+<div class="well service-description">
+  <h4>Description de votre service</h4>
+  <div class="form-group">
+    <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
+    <p>{{ enrollment.serviceDescription.main }}</p>
+  </div>
+  <div class="form-group">
+    <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
+    <p>{{ enrollment.serviceDescription.deploymentDate }}</p>
+  </div>
+  <div class="form-group">
+    <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
+    <p>{{ enrollment.serviceDescription.seasonality }}</p>
+  </div>
+  <div class="form-group">
+    <label>Quels serait le nombre maximal d’appel en une heure (en cas de pic) ?</label>
+    <p>{{ enrollment.serviceDescription.maxCharge }}</p>
+  </div>
+</div>
+<div class="well documents">
+  <h4>Documents officiels</h4>
+  <div class="row">
+    <div class="col-md-4">
+      <label>Télécharger le récipicé CNIL</label>
+      <input type="file">
+    </div>
+    <div class="col-md-4">
+      <label>Télécharger les résultats d'homologation</label>
+      <input type="file">
+    </div>
+    <div class="col-md-4">
+      <label>Déclaration CNIL de conformité France Connect</label>
+      <input type="file">
+    </div>
+  </div>
+</div>

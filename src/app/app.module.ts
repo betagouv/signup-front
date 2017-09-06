@@ -17,13 +17,15 @@ import { EnrollmentService } from './enrollment/enrollment.service'
 
 import { FranceConnectedFormComponent } from './france-connected-form/france-connected-form.component';
 import { FranceConnectLoginFormComponent } from './france-connect-login-form/france-connect-login-form.component';
-import { EnrollmentFormComponent } from './enrollment-form/enrollment-form.component'
+import { EnrollmentFormComponent } from './enrollment-form/enrollment-form.component';
+import { EnrollmentComponent } from './enrollment/enrollment.component'
 
 const routes = [
   {path: '', redirectTo: '/accueil', pathMatch: 'full'},
   { path: 'accueil', component: HomeComponent },
   { path: 'souscription', component: SubscriptionComponent },
-  { path: 'enrollement', component: EnrollmentFormComponent, canActivate: [AuthGuard] }
+  { path: 'enrollement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
+  { path: 'enrollement', component: EnrollmentComponent, canActivate: [AuthGuard] }
 ]
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ const routes = [
     PublicMissionFormComponent,
     FranceConnectedFormComponent,
     FranceConnectLoginFormComponent,
-    EnrollmentFormComponent
+    EnrollmentFormComponent,
+    EnrollmentComponent
   ],
   imports: [
     BrowserModule,
