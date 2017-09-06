@@ -5,7 +5,7 @@
   "scripts": {
     "postinstall": "ng build --target ${NODE_ENV:=development}",
     "ng": "ng",
-    "start": "ng serve --port ${PORT:=4200} --target ${NODE_ENV:=development} --host 0.0.0.0 --disable-host-check",
+    "start": "http-server ./dist -p ${PORT:=4200}",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -25,6 +25,7 @@
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
     "core-js": "^2.4.1",
+    "http-server": "^0.10.0",
     "ngx-popover": "0.0.16",
     "rxjs": "^5.4.2",
     "zone.js": "^0.8.14"

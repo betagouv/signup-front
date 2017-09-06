@@ -44,7 +44,10 @@ const routes = [
     PopoverModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true }
+      {
+        enableTracing: true,
+        useHash: true
+      }
     )
   ],
   providers: [
