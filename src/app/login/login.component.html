@@ -1,0 +1,22 @@
+<div class="container login">
+  <div class="well">
+    <form onSubmit="return false">
+      <div class="form-group">
+        <input name="user" class="form-control" [(ngModel)]="user.user">
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" class="form-control" [(ngModel)]="user.password">
+      </div>
+      <div class="form-group">
+        <button type="submit" (click)="login()" class="btn btn-primary btn-block">Connection</button>
+      </div>
+    </form>
+    <div class="alert alert-danger" *ngIf="errors">
+      <ul>
+        <li *ngFor="let error of errors">
+          {{ error.detail }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

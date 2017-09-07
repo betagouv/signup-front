@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-popover';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DataTableModule } from 'angular2-datatable';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -19,14 +20,18 @@ import { EnrollmentService } from './enrollment/enrollment.service'
 import { FranceConnectedFormComponent } from './france-connected-form/france-connected-form.component';
 import { FranceConnectLoginFormComponent } from './france-connect-login-form/france-connect-login-form.component';
 import { EnrollmentFormComponent } from './enrollment-form/enrollment-form.component';
-import { EnrollmentComponent } from './enrollment/enrollment.component'
+import { EnrollmentComponent } from './enrollment/enrollment.component';
+import { LoginComponent } from './login/login.component';
+import { EnrollmentsComponent } from './enrollments/enrollments.component'
 
 const routes = [
   {path: '', redirectTo: '/accueil', pathMatch: 'full'},
   { path: 'accueil', component: HomeComponent },
   { path: 'souscription', component: SubscriptionComponent },
+  { path: 'connection', component: LoginComponent },
   { path: 'enrolement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
-  { path: 'enrolement', component: EnrollmentComponent, canActivate: [AuthGuard] }
+  { path: 'enrolement', component: EnrollmentComponent, canActivate: [AuthGuard] },
+  { path: 'enrolements', component: EnrollmentsComponent, canActivate: [AuthGuard] }
 ]
 @NgModule({
   declarations: [
@@ -37,13 +42,16 @@ const routes = [
     FranceConnectedFormComponent,
     FranceConnectLoginFormComponent,
     EnrollmentFormComponent,
-    EnrollmentComponent
+    EnrollmentComponent,
+    LoginComponent,
+    EnrollmentsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     PopoverModule,
     BrowserAnimationsModule,
+    DataTableModule,
     RouterModule.forRoot(
       routes,
       {

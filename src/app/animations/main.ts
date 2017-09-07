@@ -5,13 +5,29 @@ export const slideInOutAnimation =
 
     transition(':enter', [
       style({
-        transform: 'translateX(-100%)',
+        opacity: 0
       }),
       animate('.5s ease-in-out', style({
-        transform: 'translateX(0)',
+        opacity: 1
       }))
     ]),
 
+    transition(':leave', [
+      style({
+        position: 'absolute',
+        opacity: 1,
+        top: 0,
+        transform: 'translateX(0)',
+      }),
+      animate('.5s ease-in-out', style({
+        transform: 'translateX(400%)',
+        opacity: 0
+      }))
+    ])
+  ]);
+
+export const slideOutAnimation =
+  trigger('slideInOutAnimation', [
     transition(':leave', [
       style({
         position: 'absolute',

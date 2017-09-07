@@ -10,16 +10,20 @@
         <img alt="Brand" src="/assets/logo.svg" class="logo">
       </a>
     </div>
-    <div class="collapse navbar-collapse" *ngIf="user.isLoggedIn()">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#">Enrolements</a></li>
+        <li><a routerLink="/enrolements">Enrolements</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#">Documentation technique</a></li>
         <li><a href="#">Contact</a></li>
-        <li *ngIf="user.isLoggedIn()"><p class="navbar-text">
-        Bienvenue {{ user.user }} <a href='#' (click)="user.logout()">déconnexion</a>
-          </p></li>
+        <li>
+          <p class="navbar-text" *ngIf="user.isLoggedIn()">
+          Bienvenue {{ user.user }} <a href='#' (click)="user.logout()">déconnexion</a>
+          </p>
+          <p class="navbar-text" *ngIf="!user.isLoggedIn()">
+          <a routerLink="/souscription">Souscription</a> | <a routerLink="/connection">Connection</a>
+        </li>
       </ul>
     </div>
   </div>

@@ -27,6 +27,15 @@ export class Enrollment {
     maxCharge: null
   }
   agreement: boolean;
+  states: string[] = [
+    'completedApplication',
+    'voucher',
+    'approval',
+    'signedAgreement',
+    'applicationApproval',
+    'deployed'
+  ]
+  state: string;
   newRecord: boolean;
 
   constructor (params) {
@@ -36,6 +45,10 @@ export class Enrollment {
     for (let field in params) {
       this[field] = params[field]
     }
+  }
+
+  isStateCompleted(state) {
+    return this.states.indexOf(state) <= this.states.indexOf(this.state)
   }
 
   save () {

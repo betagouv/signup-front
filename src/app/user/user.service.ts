@@ -33,6 +33,7 @@ export class UserService {
   isLoggedIn() {
     return this.loggedIn
   }
+
   logout () {
     return !(this.loggedIn = false)
   }
@@ -77,6 +78,7 @@ export class UserService {
             seasonality: 'test',
             maxCharge: 'test'
           },
+          state: 'approval',
           agreement: true
         }, {
           serviceProvider: {
@@ -102,6 +104,7 @@ export class UserService {
             seasonality: 'test',
             maxCharge: 'test'
           },
+          state: 'applicationApproval',
           agreement: true
         }
       ]
