@@ -21,4 +21,36 @@ export class EnrollmentService {
       return Promise.reject(errors)
     }
   }
+
+  get (id) {
+    return Promise.resolve({
+      serviceProvider: {
+        name: 'service 1 from enrollment.get'
+      },
+      scopes: {
+        numberOfTaxShares: true,
+        taxAddress: true,
+        nonWadgeIncome: false,
+        familySituation: true,
+        supportPayments: false,
+        deficit: true,
+        housingTax: false,
+        totalGrossIncome: false,
+        worldIncome: false
+      },
+      legalBasis: {
+        comment: 'test'
+      },
+      serviceDescription: {
+        main: 'test',
+        deploymentDate: 'test',
+        seasonality: 'test',
+        maxCharge: 'test'
+      },
+      state: 'approval',
+      agreement: true
+    }).then((data) => {
+      return new Enrollment(data)
+    })
+  }
 }

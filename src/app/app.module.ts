@@ -28,9 +28,10 @@ const routes = [
   {path: '', redirectTo: '/accueil', pathMatch: 'full'},
   { path: 'accueil', component: HomeComponent },
   { path: 'souscription', component: SubscriptionComponent },
-  { path: 'connection', component: LoginComponent },
+  { path: 'connexion', component: LoginComponent },
   { path: 'enrolement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
   { path: 'enrolement', component: EnrollmentComponent, canActivate: [AuthGuard] },
+  { path: 'enrolement/:id', component: EnrollmentComponent, canActivate: [AuthGuard] },
   { path: 'enrolements', component: EnrollmentsComponent, canActivate: [AuthGuard] }
 ]
 @NgModule({

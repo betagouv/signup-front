@@ -30,7 +30,7 @@
       <tbody>
         <tr *ngFor="let item of mf.data">
           <td>
-            <a href="#">{{item.serviceProvider.name}}</a>
+            <a routerLink="/enrolement/test">{{item.serviceProvider.name}}</a>
           </td>
           <td *ngFor="let state of item.states" class="state">
             <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted(state)"></span>
@@ -46,5 +46,6 @@
         </tr>
       </tfoot>
     </table>
+    <a routerLink="/enrolement/form">Nouvel enrolement</a>
   </div>
 </div>

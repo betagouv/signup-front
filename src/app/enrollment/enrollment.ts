@@ -29,7 +29,7 @@ export class Enrollment {
   agreement: boolean;
   states: string[] = [
     'completedApplication',
-    'voucher',
+    'CNILVoucher',
     'approval',
     'signedAgreement',
     'applicationApproval',

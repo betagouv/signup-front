@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../enrollment/enrollment.service';
-import { Enrollment } from '../enrollment/enrollment'
-import { slideInOutAnimation } from '../animations/main'
+import { Enrollment } from '../enrollment/enrollment';
+import { slideInOutAnimation } from '../animations/main';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-enrollment',
@@ -14,9 +15,18 @@ export class EnrollmentComponent implements OnInit {
   enrollment: Enrollment;
 
   constructor(
-    public enrollmentService: EnrollmentService
+    public enrollmentService: EnrollmentService,
+    private route: ActivatedRoute
   ) {
-    this.enrollment = enrollmentService.enrollment
+    this.route.params.subscribe((params) => {
+      if (params['id']) {
+        this.enrollmentService.get(params['id']).then((enrollment) => {
+          this.enrollment = enrollment
+        })
+      } else {
+        this.enrollment = enrollmentService.enrollment
+      }
+    })
   }
 
   ngOnInit() {
