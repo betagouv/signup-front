@@ -10,8 +10,7 @@ export class AuthGuard implements CanActivate {
   ) {}
 
   canActivate () {
-    const token = this.user.getToken()
-    if (token) {
+    if (this.user.isLoggedIn()) {
       return true
     } else {
       this.router.navigate(['/accueil'])

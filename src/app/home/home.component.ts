@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { slideInOutAnimation } from '../animations/main'
 
 @Component({
   selector: 'app-home',

@@ -21,7 +21,7 @@ export class FranceConnectLoginFormComponent implements OnInit {
   login() {
     this.user.login().then((response) => {
       this.error = null
-      this.router.navigate(['/enrollement/form'])
+      this.router.navigate(['/enrolement/form'])
     }).catch((response) => {
       this.error = response.errors[0].detail
     })

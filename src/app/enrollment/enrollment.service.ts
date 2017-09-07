@@ -1,43 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Enrollment } from '../enrollment/enrollment'
 
 @Injectable()
 export class EnrollmentService {
-  serviceProvider: any;
-  scopes: any = {
-    numberOfTaxShares: false,
-    taxAddress: false,
-    nonWadgeIncome: false,
-    familySituation: false,
-    supportPayments: false,
-    deficit: false,
-    housingTax: false,
-    totalGrossIncome: false,
-    worldIncome: false
-  }
-  legalBasis: any = {
-    comment: null,
-    attachment: null
-  }
-  serviceDescription: any = {
-    main: null,
-    deploymentDate: null,
-    seasonality: null,
-    maxCharge: null
-  }
-  agreement: boolean;
-  newRecord: boolean;
+  enrollment: Enrollment;
 
-  constructor () {}
+  constructor () { }
 
-  save () {
+  save (enrollment) {
     let valid = true
     const errors = {}
-    if (!this.agreement) {
+    if (!enrollment.agreement) {
       errors['agreement'] = "Vous devez accepter les conditions d'utilisation"
       valid = false
     }
     if (valid) {
-      this.newRecord = true
+      enrollment.newRecord = true
       return Promise.resolve()
     } else {
       return Promise.reject(errors)

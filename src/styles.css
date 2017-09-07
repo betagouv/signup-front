@@ -5,4 +5,8 @@ body {
   min-height: 100%;
   position: relative;
   padding-bottom: 250px;
+  overflow-x: hidden;
+}
+app-home, app-subscription, app-enrollment-form, app-enrollment {
+  display: block;
 }

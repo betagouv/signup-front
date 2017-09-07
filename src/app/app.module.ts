@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-popover';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AuthGuard } from './guards/auth.guard'
 
@@ -24,8 +25,8 @@ const routes = [
   {path: '', redirectTo: '/accueil', pathMatch: 'full'},
   { path: 'accueil', component: HomeComponent },
   { path: 'souscription', component: SubscriptionComponent },
-  { path: 'enrollement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
-  { path: 'enrollement', component: EnrollmentComponent, canActivate: [AuthGuard] }
+  { path: 'enrolement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
+  { path: 'enrolement', component: EnrollmentComponent, canActivate: [AuthGuard] }
 ]
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ const routes = [
     BrowserModule,
     FormsModule,
     PopoverModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
       {

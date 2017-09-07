@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SubscriptionService } from '../subscription/subscription.service'
+import { slideInOutAnimation } from '../animations/main'
 
 @Component({
   selector: 'app-subscription',
   templateUrl: './subscription.component.html',
+  animations: [slideInOutAnimation],
+  host: { '[@slideInOutAnimation]': '' },
   styleUrls: ['./subscription.component.css']
 })
 export class SubscriptionComponent implements OnInit {
