@@ -7,6 +7,11 @@ body {
   padding-bottom: 250px;
   overflow-x: hidden;
 }
+@media (max-width: 970px) {
+  body {
+    padding-bottom: 500px
+  }
+}
 app-home, app-subscription, app-enrollment-form, app-enrollment {
   display: block;
 }

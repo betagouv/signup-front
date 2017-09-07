@@ -7,12 +7,14 @@ export class UserService {
   password: string;
   token: string;
   loggedIn: boolean;
+  errors: any;
 
   constructor () {}
 
   login () {
     if (this.user == 'octo' && this.password == 'octo') {
       this.loggedIn = true
+      this.errors = null
       return Promise.resolve({
         access_token: '12345'
       }).then((response) => {
@@ -20,13 +22,14 @@ export class UserService {
         return response
       })
     } else {
-      return Promise.reject({
+      this.errors = {
         errors: [
           {
             detail: 'utilisateur et/ou mot de passe incorrect'
           }
         ]
-      })
+      }
+      return Promise.reject(this.errors)
     }
   }
 

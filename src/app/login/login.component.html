@@ -1,22 +1,26 @@
 <div class="container login">
   <div class="well">
-    <form onSubmit="return false">
-      <div class="form-group">
-        <input name="user" class="form-control" [(ngModel)]="user.user" placeholder="login">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <form onSubmit="return false">
+          <div class="form-group">
+            <input name="user" class="form-control" [(ngModel)]="user.user" placeholder="login">
+          </div>
+          <div class="form-group">
+            <input type="password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="mot de passe">
+          </div>
+          <div class="form-group">
+            <button type="submit" (click)="login()" class="btn btn-primary btn-block">Connection</button>
+          </div>
+        </form>
+        <a routerLink="/souscription">Souscrire</a>
+        <div class="alert alert-danger" *ngIf="user.errors">
+          <ul>
+            <li *ngFor="let error of user.errors.errors">
+              {{ error.detail }}
+            </li>
+          </ul>
+        </div>
       </div>
-      <div class="form-group">
-        <input type="password" name="password" class="form-control" [(ngModel)]="user.password" placeholder="mot de passe">
-      </div>
-      <div class="form-group">
-        <button type="submit" (click)="login()" class="btn btn-primary btn-block">Connection</button>
-      </div>
-    </form>
-    <div class="alert alert-danger" *ngIf="errors">
-      <ul>
-        <li *ngFor="let error of errors">
-          {{ error.detail }}
-        </li>
-      </ul>
     </div>
   </div>
-</div>

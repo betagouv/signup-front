@@ -13,6 +13,13 @@ export class AuthGuard implements CanActivate {
     if (this.user.isLoggedIn()) {
       return true
     } else {
+      this.user.errors = {
+        errors: [
+          {
+            detail: 'vous devez vous authentifier pour accèder à cette page'
+          }
+        ]
+      }
       this.router.navigate(['/connexion'])
       return false
     }

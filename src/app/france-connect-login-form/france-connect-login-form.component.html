@@ -1,14 +1,18 @@
 <div class="well">
-  <div class="alert alert-danger" *ngIf="error">
-    {{ error }}
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="alert alert-danger" *ngIf="error">
+        {{ error }}
+      </div>
+      <div class="form-group">
+        octo
+        <input class="form-control" placeholder="France Connect Login" [(ngModel)]="user.user">
+      </div>
+      <div class="form-group">
+        octo
+        <input type="password" class="form-control" placeholder="France Connect password" [(ngModel)]="user.password">
+      </div>
+      <button class="btn btn-primary btn-block" (click)="login()">Connect</button>
+    </div>
   </div>
-  <div class="form-group">
-    octo
-    <input class="form-control" placeholder="France Connect Login" [(ngModel)]="user.user">
-  </div>
-  <div class="form-group">
-    octo
-    <input type="password" class="form-control" placeholder="France Connect password" [(ngModel)]="user.password">
-  </div>
-  <button class="btn btn-primary btn-block" (click)="login()">Connect</button>
 </div>
