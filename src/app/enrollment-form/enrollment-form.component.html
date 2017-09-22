@@ -7,7 +7,7 @@
       </option>
     </select>
   </div>
-  <div class="enrollment-form" *ngIf="enrollment.serviceProvider">
+  <div class="enrollment-form" *ngIf="enrollment.serviceProvider.name">
     <div class="well scope-selection">
       <div class="row">
         <div class="col-md-6">
@@ -106,7 +106,7 @@
           </textarea>
         </div>
         <div class="form-group">
-          <input type="file" [(ngModel)]="enrollment.legalBasis.attachment">
+          <input type="file">
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Injector } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PopoverModule } from 'ngx-popover';
@@ -15,25 +15,31 @@ import { PublicMissionFormComponent } from './public-mission-form/public-mission
 
 import { SubscriptionService } from './subscription/subscription.service';
 import { UserService } from './user/user.service'
+import { AuthService } from './auth/auth.service'
 import { EnrollmentService } from './enrollment/enrollment.service'
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor'
 
 import { FranceConnectedFormComponent } from './france-connected-form/france-connected-form.component';
-import { FranceConnectLoginFormComponent } from './france-connect-login-form/france-connect-login-form.component';
 import { EnrollmentFormComponent } from './enrollment-form/enrollment-form.component';
 import { EnrollmentComponent } from './enrollment/enrollment.component';
 import { LoginComponent } from './login/login.component';
-import { EnrollmentsComponent } from './enrollments/enrollments.component'
+import { EnrollmentsComponent } from './enrollments/enrollments.component';
+import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
+import { EnrollmentsTableComponent } from './enrollments-table/enrollments-table.component'
 
 const routes = [
-  {path: '', redirectTo: '/accueil', pathMatch: 'full'},
+  { path: '', redirectTo: '/accueil', pathMatch: 'full' },
   { path: 'accueil', component: HomeComponent },
   { path: 'souscription', component: SubscriptionComponent },
   { path: 'connexion', component: LoginComponent },
-  { path: 'enrolement/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
-  { path: 'enrolement', component: EnrollmentComponent, canActivate: [AuthGuard] },
-  { path: 'enrolement/:id', component: EnrollmentComponent, canActivate: [AuthGuard] },
+  { path: 'oauth-callback/:token', component: OauthCallbackComponent },
+  { path: 'enrolements/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
+  { path: 'enrolements/new', component: EnrollmentComponent, canActivate: [AuthGuard] },
+  { path: 'enrolements/:id', component: EnrollmentComponent, canActivate: [AuthGuard] },
   { path: 'enrolements', component: EnrollmentsComponent, canActivate: [AuthGuard] }
 ]
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,11 +47,12 @@ const routes = [
     SubscriptionComponent,
     PublicMissionFormComponent,
     FranceConnectedFormComponent,
-    FranceConnectLoginFormComponent,
     EnrollmentFormComponent,
     EnrollmentComponent,
     LoginComponent,
-    EnrollmentsComponent
+    EnrollmentsComponent,
+    OauthCallbackComponent,
+    EnrollmentsTableComponent
   ],
   imports: [
     BrowserModule,
@@ -56,16 +63,23 @@ const routes = [
     RouterModule.forRoot(
       routes,
       {
-        enableTracing: true,
         useHash: true
       }
-    )
+    ),
+    HttpClientModule
   ],
   providers: [
+    HttpClient,
     SubscriptionService,
     UserService,
+    AuthService,
     EnrollmentService,
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

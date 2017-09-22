@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit } from '@angular/core';
 import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Enrollment } from '../enrollment/enrollment';
 import { slideInOutAnimation } from '../animations/main';
@@ -16,20 +16,24 @@ export class EnrollmentComponent implements OnInit {
 
   constructor(
     public enrollmentService: EnrollmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private application: ApplicationRef
   ) {
+    this.enrollment = new Enrollment({})
     this.route.params.subscribe((params) => {
-      if (params['id']) {
-        this.enrollmentService.get(params['id']).then((enrollment) => {
-          this.enrollment = enrollment
-        })
-      } else {
-        this.enrollment = enrollmentService.enrollment
-      }
+      this.enrollmentService.get(params['id']).then((enrollment) => {
+        this.enrollment = enrollment
+      })
     })
   }
 
   ngOnInit() {
   }
 
+  upload (event) {
+    return this.enrollmentService.uploadDocument(this.enrollment, event.target).then((res) => {
+      this.application.tick()
+      return res
+    })
+  }
 }

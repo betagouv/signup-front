@@ -1,51 +1,8 @@
 <div class="container enrollments">
   <div class="well">
     <h2>Enrolements</h2>
-    <table class="table table-bordered table-hover" [mfData]="enrollments" #mf="mfDataTable" [mfRowsOnPage]="5">
-      <thead>
-        <tr>
-          <th>
-            <mfDefaultSorter by="serviceProvider.name">Fournisseur de service</mfDefaultSorter>
-          </th>
-          <th>
-            Demande complétée
-          </th>
-          <th>
-            Récipissé CNIL
-          </th>
-          <th>
-            Homologation
-          </th>
-          <th>
-            Convention signée
-          </th>
-          <th>
-            Approbation de la demande
-          </th>
-          <th>
-            Mis en production
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of mf.data">
-          <td>
-            <a routerLink="/enrolement/test">{{item.serviceProvider.name}}</a>
-          </td>
-          <td *ngFor="let state of item.states" class="state">
-            <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted(state)"></span>
-            <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted(state)"></span>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="7">
-            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-    <a routerLink="/enrolement/form">Nouvel enrolement</a>
+    <app-enrollments-table [enrollments]="enrollments">
+    </app-enrollments-table>
+    <a routerLink="/enrolements/form">Nouvel enrolement</a>
   </div>
 </div>

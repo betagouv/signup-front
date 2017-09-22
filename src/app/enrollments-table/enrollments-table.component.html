@@ -1,0 +1,48 @@
+<table class="table table-bordered table-hover" [mfData]="enrollments" #mf="mfDataTable" [mfRowsOnPage]="5">
+  <thead>
+    <tr>
+      <th>
+        <mfDefaultSorter by="serviceProvider.name">Fournisseur de service</mfDefaultSorter>
+      </th>
+      <th> Demande complétée </th>
+      <th> Récipissé CNIL </th>
+      <th> Homologation </th>
+      <th> Convention signée </th>
+      <th> Approbation de la demande </th>
+      <th> Mis en production </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of mf.data">
+      <td>
+        <a [routerLink]="['/enrolements', item.id]">{{item.serviceProvider.name}}</a>
+      </td>
+      <td class="state">
+        <span class="glyphicon glyphicon-ok"></span>
+      </td>
+      <td class="state">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.cnilVoucher()"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.cnilVoucher()"></span>
+      </td>
+      <td class="state">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.certificationResults()"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.certificationResults()"></span>
+      </td>
+      <td class="state">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.franceConnectCompliance()"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.franceConnectCompliance()"></span>
+      </td>
+      <td *ngFor="let state of item.states" class="state">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted(state)"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted(state)"></span>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="7">
+        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+    </tr>
+  </tfoot>
+</table>

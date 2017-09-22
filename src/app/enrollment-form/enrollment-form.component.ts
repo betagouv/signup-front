@@ -34,12 +34,13 @@ export class EnrollmentFormComponent implements OnInit {
   }
 
   submit () {
-    this.enrollment.save().then(() => {
+    this.enrollmentService.save(this.enrollment).then((response) => {
+      console.log('success', response)
       this.errors = null
-      console.log(this.enrollment)
-      this.router.navigate(['/enrolement'])
-    }).catch((errors) => {
-      this.errors = errors
+      this.router.navigate(['/enrolements/' + this.enrollment.id])
+      this.enrollmentService.enrollment = new Enrollment({})
+    }).catch((error) => {
+      this.errors = error.error
     })
   }
 }

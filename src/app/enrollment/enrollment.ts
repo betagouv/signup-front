@@ -1,10 +1,11 @@
 import { ReflectiveInjector } from '@angular/core';
-import { EnrollmentService } from '../enrollment/enrollment.service'
+import { AuthInterceptor } from '../interceptors/auth.interceptor';
 
 export class Enrollment {
-  enrollmentService: EnrollmentService;
-
-  serviceProvider: any;
+  id: string;
+  serviceProvider: any = {
+    name: ''
+  };
   scopes: any = {
     numberOfTaxShares: false,
     taxAddress: false,
@@ -28,19 +29,22 @@ export class Enrollment {
   }
   agreement: boolean;
   states: string[] = [
-    'completedApplication',
-    'CNILVoucher',
-    'approval',
-    'signedAgreement',
-    'applicationApproval',
+    'application_approval',
     'deployed'
   ]
   state: string;
   newRecord: boolean;
+  documents: any[] = [];
+  document_types: string[] = [
+    'Document::CNILVoucher',
+    'Document::CertificationResults',
+    'Document::FranceConnectCompliance'
+  ]
+  applicant: any = {
+    email: null
+  }
 
   constructor (params) {
-    let injector = ReflectiveInjector.resolveAndCreate([EnrollmentService]);
-    this.enrollmentService = injector.get(EnrollmentService);
     if (!params) return
     for (let field in params) {
       this[field] = params[field]
@@ -51,7 +55,27 @@ export class Enrollment {
     return this.states.indexOf(state) <= this.states.indexOf(this.state)
   }
 
-  save () {
-    return this.enrollmentService.save(this)
+  serialized () {
+    return snakeCaseKeys(this)
+    function snakeCaseKeys (o) {
+      if (!(typeof o === 'object')) return o
+      const res = {}
+      for (let k in o) {
+        res[k.replace(/([A-Z])/g, (letter) => '_' + letter.toLowerCase())] = snakeCaseKeys(o[k])
+      }
+      return res
+    }
+  }
+
+  cnilVoucher () {
+    console.log(this)
+    const res = this.documents.filter((e) => e.type == 'Document::CNILVoucher')[0]
+    return res
+  }
+  certificationResults () {
+    return this.documents.filter((e) => e.type == 'Document::CertificationResults')[0]
+  }
+  franceConnectCompliance () {
+    return this.documents.filter((e) => e.type == 'Document::FranceConnectCompliance')[0]
   }
 }
