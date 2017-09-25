@@ -15,8 +15,9 @@ export class OauthCallbackComponent implements OnInit {
     private user: UserService
   ) {
     route.params.subscribe((params) => {
-      this.user.login(params['token'])
-      router.navigate(['/enrolements'])
+      return this.user.login(params['token']).then(() => {
+        return router.navigate(['/enrolements'])
+      })
     })
   }
 

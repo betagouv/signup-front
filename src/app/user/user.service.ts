@@ -22,7 +22,7 @@ export class UserService {
   password: string;
   token: string;
   loggedIn: boolean;
-  errors: any;
+  error: any;
 
   constructor (
     private http: HttpClient,
@@ -32,25 +32,24 @@ export class UserService {
   login (token) {
     localStorage.setItem('token', token)
     return this.http.get(config.oauth_me_url).toPromise().then((response) => {
-      console.log(response)
       this.user = response['email']
       this.loggedIn = true
-      this.errors = null
+      this.error = null
       return response
     })
   }
 
   isLoggedIn() {
-    return localStorage.getItem('token')
+    return this.loggedIn
   }
 
   logout () {
-    return this.http.post(config.oauth_revoke_url).toPromise().then((response) => {
+    return this.http.post(config.oauth_revoke_url, null).map((response) => {
       localStorage.removeItem('token')
       this.loggedIn = false
       this.application.tick()
       return !(this.loggedIn)
-    })
+    }).toPromise()
   }
 
   getServiceProviders () {

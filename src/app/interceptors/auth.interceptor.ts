@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token')
     const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)})
-    return next.handle(authReq).catch((response) => {
+    return next.handle(authReq).map((response) => {
       if (
         (response instanceof HttpErrorResponse) &&
         response.status == 401
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
         localStorage.removeItem('token')
         this.router.navigate(['/connexion'])
       }
-      return Observable.of(response)
+      return response
     })
   }
 }

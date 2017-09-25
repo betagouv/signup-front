@@ -35,7 +35,6 @@ export class EnrollmentFormComponent implements OnInit {
 
   submit () {
     this.enrollmentService.save(this.enrollment).then((response) => {
-      console.log('success', response)
       this.errors = null
       this.router.navigate(['/enrolements/' + this.enrollment.id])
       this.enrollmentService.enrollment = new Enrollment({})

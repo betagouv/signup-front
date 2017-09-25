@@ -137,6 +137,13 @@
     </div>
     <button class="btn btn-primary btn-block" (click)="enrollmentService.save(enrollment)">Envoyer la demande</button>
   </div>
+  <div class="error-message" *ngIf="enrollment.errors">
+    <div class="alert alert-danger">
+      <ul>
+        <li>{{ enrollment.errors.message }}</li>
+      </ul>
+    </div>
+  </div>
   <div class="success-message" *ngIf="enrollment.state == 'waiting_for_approval'">
     <div class="alert alert-success">
       <p><strong>Votre dossier a été transmis et est cours d’étude par l’équipe DINSIC – FranceConnect.</strong> Vous trouverez ci-dessous le récapitulatif de votre demande, que vous pouvez modifier tant que votre dossier n’a pas été validé.</p>

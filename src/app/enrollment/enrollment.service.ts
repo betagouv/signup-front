@@ -36,17 +36,22 @@ export class EnrollmentService {
     if (enrollment.id) {
       res = this.http.put(config.api_url + '/enrollments/' + enrollment.id, { enrollment: enrollment.serialized() })
         .map((response) => {
+          enrollment.errors = null
           Object.assign(enrollment, camelCaseKeys(response))
           return Observable.of(enrollment)
         })
     } else {
       res = this.http.post(config.api_url + '/enrollments', { enrollment: enrollment.serialized() })
         .map((response) => {
+          enrollment.errors = null
           Object.assign(enrollment, camelCaseKeys(response))
           return Observable.of(enrollment)
         })
     }
-    return res.toPromise()
+    return res.catch((error) => {
+      enrollment.errors = error
+      return Observable.of(error)
+    }).toPromise()
 
   }
 
@@ -68,8 +73,13 @@ export class EnrollmentService {
       formData.append('enrollment[documents_attributes][][type]', documentType);
       return this.http.put(config.api_url + '/enrollments/' + enrollment.id, formData)
         .map((response) => {
+          enrollment.errors = null
           Object.assign(enrollment, camelCaseKeys(response))
           return Observable.of(enrollment)
+        }).catch((error) => {
+          enrollment.errors = error.error
+          console.log(enrollment)
+          return Observable.of(error)
         }).toPromise()
     } else {
       return Promise.reject({ message: 'Choisissez un document' })

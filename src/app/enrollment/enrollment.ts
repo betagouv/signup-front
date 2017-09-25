@@ -43,6 +43,7 @@ export class Enrollment {
   applicant: any = {
     email: null
   }
+  errors: any;
 
   constructor (params) {
     if (!params) return
@@ -68,7 +69,6 @@ export class Enrollment {
   }
 
   cnilVoucher () {
-    console.log(this)
     const res = this.documents.filter((e) => e.type == 'Document::CNILVoucher')[0]
     return res
   }
