@@ -12,6 +12,10 @@ function camelCaseKeys (o) {
   let res;
   for (let k in o) {
     res = res || {}
+    if (!o[k]) {
+      res[k.replace(/(_\w)/g, (letter) => letter[1].toUpperCase())] = o[k]
+      continue
+    }
     let value = null;
     if (Object.keys(o[k]).length === 0 && o[k].constructor === Object) {
       value = {}
@@ -57,7 +61,9 @@ export class EnrollmentService {
 
   get (id) {
     return this.http.get(config.api_url + '/enrollments/' + id).map((response) => {
-      return new Enrollment(camelCaseKeys(response))
+      let enrollment = new Enrollment(camelCaseKeys(response))
+      console.log(enrollment)
+      return enrollment
     }).toPromise()
   }
 

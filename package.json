@@ -6,7 +6,7 @@
     "postinstall": "ng build --target ${NODE_ENV:=development}",
     "ng": "ng",
     "start": "http-server ./dist -p ${PORT:=4200}",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"

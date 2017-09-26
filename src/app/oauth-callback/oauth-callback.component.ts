@@ -16,7 +16,7 @@ export class OauthCallbackComponent implements OnInit {
   ) {
     route.params.subscribe((params) => {
       return this.user.login(params['token']).then(() => {
-        return router.navigate(['/enrolements'])
+        return router.navigate(['/enrolements/form'])
       })
     })
   }

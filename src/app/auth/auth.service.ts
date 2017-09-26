@@ -14,7 +14,8 @@ export class AuthService {
     //   '?client_id=' + config.clientId +
     //   '&response_type=token' +
     //   '&redirect_uri=' + config.oauthRedirectURI
-    const res = 'http://localhost:3000/users/auth/dgfip'
+    // const res = 'http://localhost:3000/users/auth/dgfip'
+    const res = 'https://84.39.49.146/users/auth/dgfip'
     return encodeURI(res)
   }
 }
