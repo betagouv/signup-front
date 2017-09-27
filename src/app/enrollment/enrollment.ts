@@ -41,7 +41,9 @@ export class Enrollment {
     'Document::FranceConnectCompliance'
   ]
   applicant: any = {
-    email: null
+    email: null,
+    position: null,
+    agreement: null
   }
   errors: any;
 

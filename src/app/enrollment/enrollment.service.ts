@@ -53,7 +53,7 @@ export class EnrollmentService {
         })
     }
     return res.catch((error) => {
-      enrollment.errors = error
+      enrollment.errors = error.error
       return Observable.of(error)
     }).toPromise()
 

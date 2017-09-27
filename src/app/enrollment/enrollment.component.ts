@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./enrollment.component.css']
 })
 export class EnrollmentComponent implements OnInit {
+  keys: any = Object.keys;
   enrollment: Enrollment;
 
   constructor(
