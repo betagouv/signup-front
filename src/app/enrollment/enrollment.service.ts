@@ -54,7 +54,7 @@ export class EnrollmentService {
     }
     return res.catch((error) => {
       enrollment.errors = error.error
-      return Observable.of(error)
+      return Observable.throw(error)
     }).toPromise()
 
   }
@@ -65,6 +65,13 @@ export class EnrollmentService {
       console.log(enrollment)
       return enrollment
     }).toPromise()
+  }
+
+  reload (enrollment) {
+    return this.http.get(config.api_url + '/enrollments/' + enrollment.id).map((response) => {
+      Object.assign(enrollment, camelCaseKeys(response))
+      return enrollment
+    }).subscribe()
   }
 
   uploadDocument (enrollment, target) {

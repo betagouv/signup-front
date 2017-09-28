@@ -1,5 +1,6 @@
 import { ReflectiveInjector } from '@angular/core';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
+import { Message } from '../message/message'
 
 export class Enrollment {
   id: string;
@@ -46,6 +47,7 @@ export class Enrollment {
     agreement: null
   }
   errors: any;
+  messages: Message[] = [];
 
   constructor (params) {
     if (!params) return

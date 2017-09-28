@@ -16,6 +16,7 @@ import { PublicMissionFormComponent } from './public-mission-form/public-mission
 import { SubscriptionService } from './subscription/subscription.service';
 import { UserService } from './user/user.service'
 import { AuthService } from './auth/auth.service'
+import { MessageService } from './message/message.service'
 import { EnrollmentService } from './enrollment/enrollment.service'
 import { HTTP_INTERCEPTORS, HttpClientModule, HttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor'
@@ -26,7 +27,10 @@ import { EnrollmentComponent } from './enrollment/enrollment.component';
 import { LoginComponent } from './login/login.component';
 import { EnrollmentsComponent } from './enrollments/enrollments.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
-import { EnrollmentsTableComponent } from './enrollments-table/enrollments-table.component'
+import { EnrollmentsTableComponent } from './enrollments-table/enrollments-table.component';
+import { MessageComponent } from './message/message.component';
+import { MessageFormComponent } from './message-form/message-form.component';
+import { MessagesComponent } from './messages/messages.component'
 
 const routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -52,7 +56,10 @@ const routes = [
     LoginComponent,
     EnrollmentsComponent,
     OauthCallbackComponent,
-    EnrollmentsTableComponent
+    EnrollmentsTableComponent,
+    MessageComponent,
+    MessageFormComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +80,7 @@ const routes = [
     SubscriptionService,
     UserService,
     AuthService,
+    MessageService,
     EnrollmentService,
     AuthGuard,
     {

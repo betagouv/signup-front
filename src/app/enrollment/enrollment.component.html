@@ -3,6 +3,8 @@
     <app-enrollments-table [enrollments]="[enrollment]">
     </app-enrollments-table>
   </div>
+  <app-messages [enrollment]="enrollment">
+  </app-messages>
   <div class="enrollment" *ngIf="enrollment.serviceProvider">
     <div class="well scopes">
       <h4>Données exploitées</h4>
