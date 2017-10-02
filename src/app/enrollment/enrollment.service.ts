@@ -74,6 +74,15 @@ export class EnrollmentService {
     }).subscribe()
   }
 
+  trigger (enrollment, event) {
+    this.http.patch(
+      config.api_url + '/enrollments/' + enrollment.id + '/trigger', { event: event }
+    ).map((response) => {
+      Object.assign(enrollment, camelCaseKeys(response))
+      return Observable.of(enrollment)
+    }).toPromise()
+  }
+
   uploadDocument (enrollment, target) {
     const files = target.files
     const documentType = target.name

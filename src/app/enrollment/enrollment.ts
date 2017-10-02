@@ -30,7 +30,9 @@ export class Enrollment {
   }
   agreement: boolean;
   states: string[] = [
-    'application_approval',
+    'waiting_for_approval',
+    'application_approved',
+    'application_ready',
     'deployed'
   ]
   state: string;
@@ -48,6 +50,7 @@ export class Enrollment {
   }
   errors: any;
   messages: Message[] = [];
+  acl: any = { }
 
   constructor (params) {
     if (!params) return

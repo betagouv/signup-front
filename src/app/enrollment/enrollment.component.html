@@ -131,7 +131,7 @@
       </div>
     </div>
   </div>
-  <div class="applicant well" *ngIf="enrollment.state == 'completed_application'">
+  <div class="applicant well" *ngIf="enrollment.acl.signConvention">
     <h4>Personne à contacter pour cette demande</h4>
     <div class="form-group">
       <label>Email</label>
@@ -162,7 +162,7 @@
       </ul>
     </div>
   </div>
-  <div class="success-message" *ngIf="enrollment.state == 'waiting_for_approval'">
+  <div class="success-message" *ngIf="enrollment.acl.completeApplication">
     <div class="alert alert-success">
       <p><strong>Votre dossier a été transmis et est cours d’étude par l’équipe DINSIC – FranceConnect.</strong> Vous trouverez ci-dessous le récapitulatif de votre demande, que vous pouvez modifier tant que votre dossier n’a pas été validé.</p>
       <p><strong>Après étude du dossier, votre accès à l’API sera validé lorsque vous aurez transmis les éléments suivants (en bas de page)</strong> : récépissé CNIL et résultats d’homologation de votre Fournisseur de Services. Vous recevrez alors une convention d’adhésion établie par la DGFIP à retourner signée sur cette plateforme.</p>

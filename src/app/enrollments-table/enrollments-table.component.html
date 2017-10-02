@@ -4,11 +4,9 @@
       <th>
         <mfDefaultSorter by="serviceProvider.name">Fournisseur de service</mfDefaultSorter>
       </th>
-      <th> Demande complétée </th>
-      <th> Récipissé CNIL </th>
-      <th> Homologation </th>
+      <th> Demande complète </th>
+      <th> Demande approuvée </th>
       <th> Convention signée </th>
-      <th> Approbation de la demande </th>
       <th> Mis en production </th>
     </tr>
   </thead>
@@ -17,24 +15,32 @@
       <td>
         <a [routerLink]="['/enrolements', item.id]">{{item.serviceProvider.name}}</a>
       </td>
-      <td class="state">
-        <span class="glyphicon glyphicon-ok"></span>
+      <td class="state text-center">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('waiting_for_approval')"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('waiting_for_approval')"></span>
       </td>
-      <td class="state">
-        <span class="glyphicon glyphicon-ok" *ngIf="item.cnilVoucher()"></span>
-        <span class="glyphicon glyphicon-remove" *ngIf="!item.cnilVoucher()"></span>
+      <td class="state text-center">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('application_approved')"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('application_approved')"></span>
+        <div>
+          <div class="btn-group">
+            <button class="btn btn-success" *ngIf="item.acl.approveApplication" (click)="enrollmentService.trigger(item, 'approve_application')">Approuver</button>
+            <button class="btn btn-danger" *ngIf="item.acl.refuseApplication" (click)="enrollmentService.trigger(item, 'refuse_application')">Refuser</button>
+          </div>
+        </div>
       </td>
-      <td class="state">
-        <span class="glyphicon glyphicon-ok" *ngIf="item.certificationResults()"></span>
-        <span class="glyphicon glyphicon-remove" *ngIf="!item.certificationResults()"></span>
+      <td class="state text-center">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('application_ready')"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('application_ready')"></span>
       </td>
-      <td class="state">
-        <span class="glyphicon glyphicon-ok" *ngIf="item.franceConnectCompliance()"></span>
-        <span class="glyphicon glyphicon-remove" *ngIf="!item.franceConnectCompliance()"></span>
-      </td>
-      <td *ngFor="let state of item.states" class="state">
-        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted(state)"></span>
-        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted(state)"></span>
+      <td class="state text-center">
+        <div>
+          <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('deployed')"></span>
+          <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('deployed')"></span>
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-success" *ngIf="item.acl.deploy" (click)="enrollmentService.trigger(item, 'deploy')">Application déployée</button>
+        </div>
       </td>
     </tr>
   </tbody>

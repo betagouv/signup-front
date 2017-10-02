@@ -9,7 +9,17 @@ export class AuthService {
   ) {
   }
 
-  authorizationUrl () {
+  franceConnectAuthorizationUrl () {
+    // const res = config.oauth_url +
+    //   '?client_id=' + config.clientId +
+    //   '&response_type=token' +
+    //   '&redirect_uri=' + config.oauthRedirectURI
+    // const res = 'http://localhost:3000/users/auth/dgfip'
+    const res = 'http://localhost:3000/users/auth/france_connect'
+    return encodeURI(res)
+  }
+
+  dgfipAuthorizationUrl () {
     // const res = config.oauth_url +
     //   '?client_id=' + config.clientId +
     //   '&response_type=token' +

@@ -3,7 +3,10 @@
     <div class="row">
       <div class="col-md-6 col-md-offset-3">
         <p class="text-center">
-        <a href="{{ auth.authorizationUrl() }}">Se connecter à France Connect</a>
+        <a href="{{ auth.franceConnectAuthorizationUrl() }}">Se connecter à France Connect</a>
+        </p>
+        <p class="text-center">
+        <a href="{{ auth.dgfipAuthorizationUrl() }}">Se connecter à DGFIP</a>
         </p>
         <div class="alert alert-danger text-center" *ngIf="user.error">
           {{ user.error.message }}
@@ -11,3 +14,4 @@
       </div>
     </div>
   </div>
+</div>

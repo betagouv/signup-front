@@ -31,7 +31,8 @@ export class UserService {
 
   login (token) {
     localStorage.setItem('token', token)
-    return this.http.get(config.oauth_me_url).toPromise().then((response) => {
+    // return this.http.get(config.oauth_me_url).toPromise().then((response) => {
+    return Promise.resolve({email: token}).then((response) => {
     this.user = response['email']
       this.loggedIn = true
       this.error = null
