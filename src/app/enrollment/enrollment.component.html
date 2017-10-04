@@ -3,6 +3,7 @@
     <app-enrollments-table [enrollments]="[enrollment]">
     </app-enrollments-table>
   </div>
+  <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" [routerLink]="'edit'">Modifier</button>
   <app-messages [enrollment]="enrollment">
   </app-messages>
   <div class="enrollment" *ngIf="enrollment.serviceProvider">

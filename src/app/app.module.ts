@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DataTableModule } from 'angular2-datatable';
 
 import { AuthGuard } from './guards/auth.guard'
+import { EnrollmentResolver } from './resolvers/enrollment.resolver'
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -41,6 +42,9 @@ const routes = [
   { path: 'enrolements/form', component: EnrollmentFormComponent, canActivate: [AuthGuard] },
   { path: 'enrolements/new', component: EnrollmentComponent, canActivate: [AuthGuard] },
   { path: 'enrolements/:id', component: EnrollmentComponent, canActivate: [AuthGuard] },
+  { path: 'enrolements/:id/edit', component: EnrollmentFormComponent, canActivate: [AuthGuard], resolve: {
+    enrollment: EnrollmentResolver
+  } },
   { path: 'enrolements', component: EnrollmentsComponent, canActivate: [AuthGuard] }
 ]
 
@@ -83,6 +87,7 @@ const routes = [
     MessageService,
     EnrollmentService,
     AuthGuard,
+    EnrollmentResolver,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

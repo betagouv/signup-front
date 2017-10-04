@@ -25,6 +25,7 @@ export class EnrollmentFormComponent implements OnInit {
   ) {
     enrollmentService.enrollment = enrollmentService.enrollment || new Enrollment({})
     this.enrollment = enrollmentService.enrollment
+    enrollmentService.enrollment = null
   }
 
   ngOnInit() {

@@ -2,6 +2,9 @@
   <div class="well service-provider-selection">
     <label>Sélectionnez le Fournisseur de Service France Connect pour lequel vous souhaitez un raccordement à l'API Impôts Particulier</label>
     <select class="form-control" [(ngModel)]="enrollment.serviceProvider">
+      <option *ngIf="enrollment.serviceProvider.name" [ngValue]="enrollment.serviceProvider" selected>
+      {{ enrollment.serviceProvider.name }}
+      </option>
       <option *ngFor="let serviceProvider of serviceProviders" [ngValue]="serviceProvider">
       {{ serviceProvider.name }}
       </option>
