@@ -1,4 +1,4 @@
-import { ApplicationRef, Component, OnInit } from '@angular/core';
+import { ApplicationRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Enrollment } from '../enrollment/enrollment';
 import { slideInOutAnimation } from '../animations/main';
@@ -11,9 +11,10 @@ import { ActivatedRoute } from '@angular/router';
   host: { '[@slideInOutAnimation]': '' },
   styleUrls: ['./enrollment.component.css']
 })
-export class EnrollmentComponent implements OnInit {
+export class EnrollmentComponent implements OnInit, OnDestroy {
   keys: any = Object.keys;
   enrollment: Enrollment;
+  interval: any;
 
   constructor(
     public enrollmentService: EnrollmentService,
@@ -29,6 +30,11 @@ export class EnrollmentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.interval = setInterval(() => this.enrollmentService.reload(this.enrollment), 5000)
+  }
+
+  ngOnDestroy () {
+    clearInterval(this.interval)
   }
 
   upload (event) {

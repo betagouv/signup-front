@@ -16,12 +16,13 @@ export class OauthCallbackComponent implements OnInit {
   ) {
     route.params.subscribe((params) => {
       return this.user.login(params['token']).then(() => {
-        return router.navigate(['/enrolements/form'])
+        const destination = localStorage.getItem('afterLoginDestination') || ''
+        localStorage.removeItem('afterLoginDestination')
+        return router.navigate([destination])
       })
     })
   }
 
   ngOnInit() {
   }
-
 }
