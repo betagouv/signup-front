@@ -74,6 +74,14 @@ export class EnrollmentService {
     }).subscribe()
   }
 
+  reloadMessages (enrollment) {
+    return this.http.get(config.api_url + '/enrollments/' + enrollment.id + '/messages').map((response) => {
+      console.log(response)
+      Object.assign(enrollment.messages, camelCaseKeys(response))
+      return enrollment
+    }).subscribe()
+  }
+
   trigger (enrollment, event) {
     this.http.patch(
       config.api_url + '/enrollments/' + enrollment.id + '/trigger', { event: event }
