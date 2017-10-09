@@ -45,6 +45,8 @@ export class Enrollment {
   ]
   applicant: any = {
     email: null,
+    firstname: null,
+    lastname: null,
     position: null,
     agreement: null
   }
@@ -84,5 +86,10 @@ export class Enrollment {
   }
   franceConnectCompliance () {
     return this.documents.filter((e) => e.type == 'Document::FranceConnectCompliance')[0]
+  }
+  conventionUrl () {
+    return 'http://localhost:3000/api/enrollments/' +
+      this.id +
+      '/convention.pdf'
   }
 }

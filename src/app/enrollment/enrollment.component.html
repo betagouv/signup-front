@@ -132,8 +132,22 @@
       </div>
     </div>
   </div>
+  <div class="well convention" *ngIf="enrollment.acl.convention">
+    <h4>Convention</h4>
+    <div class="text-center">
+      <a target="_blank" href="{{enrollment.conventionUrl()}}"><i class="glyphicon glyphicon-file"></i></a>
+    </div>
+  </div>
   <div class="applicant well" *ngIf="enrollment.acl.signConvention">
-    <h4>Personne à contacter pour cette demande</h4>
+    <h4>Signataire de la convention</h4>
+    <div class="form-group">
+      <label>Nom</label>
+      <input type="text" [(ngModel)]="enrollment.applicant.lastname" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Prénom</label>
+      <input type="text" [(ngModel)]="enrollment.applicant.firstname" class="form-control">
+    </div>
     <div class="form-group">
       <label>Email</label>
       <input type="email" [(ngModel)]="enrollment.applicant.email" class="form-control">
@@ -151,6 +165,25 @@
       </div>
     </div>
     <button class="btn btn-primary btn-block" (click)="enrollmentService.save(enrollment)">Envoyer la demande</button>
+  </div>
+  <div class="applicant well" *ngIf="enrollment.acl.convention && !enrollment.acl.signConvention">
+    <h4>Signataire de la convention</h4>
+    <div class="form-group">
+      <label>Nom</label>
+      {{ enrollment.applicant.lastname }}
+    </div>
+    <div class="form-group">
+      <label>Prénom</label>
+      {{ enrollment.applicant.firstname }}
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      {{ enrollment.applicant.email }}
+    </div>
+    <div class="form-group">
+      <label>Fonction</label>
+      {{ enrollment.applicant.position }}
+    </div>
   </div>
   <div class="error-message" *ngIf="enrollment.errors">
     <div class="alert alert-danger">
