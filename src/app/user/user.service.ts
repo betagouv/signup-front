@@ -56,8 +56,9 @@ export class UserService {
   getServiceProviders () {
     return Promise.resolve({
       data: [
-        { name: 'service 1' },
-        { name: 'service 2' }
+        { name: 'démarche 1' },
+        { name: 'démarche 2' },
+        { name: 'démarche 3' }
       ]
     })
   }
