@@ -2,6 +2,29 @@ import { ReflectiveInjector } from '@angular/core';
 import { AuthInterceptor } from '../interceptors/auth.interceptor';
 import { Message } from '../message/message'
 
+function snakeCaseKeys (o) {
+  if (!((typeof o) === 'object')) return o
+  if (Array.isArray(o)) {
+    return o.map((e) => snakeCaseKeys(e))
+  }
+  let res;
+  for (let k in o) {
+    res = res || {}
+    if (!o[k]) {
+      res[k.replace(/([A-Z])/g, (letter) => '_' + letter.toLowerCase())] = o[k]
+      continue
+    }
+    let value = null;
+    if (Object.keys(o[k]).length === 0 && o[k].constructor === Object) {
+      value = {}
+    } else {
+      value = snakeCaseKeys(o[k])
+    }
+    res[k.replace(/([A-Z])/g, (letter) => '_' + letter.toLowerCase())] = value
+  }
+  return res
+}
+
 export class Enrollment {
   id: string;
   serviceProvider: any = {
@@ -25,7 +48,7 @@ export class Enrollment {
   serviceDescription: any = {
     main: null,
     deploymentDate: null,
-    seasonality: null,
+    seasonality: [],
     maxCharge: null
   }
   agreement: boolean;
@@ -67,14 +90,11 @@ export class Enrollment {
 
   serialized () {
     return snakeCaseKeys(this)
-    function snakeCaseKeys (o) {
-      if (!(typeof o === 'object')) return o
-      const res = {}
-      for (let k in o) {
-        res[k.replace(/([A-Z])/g, (letter) => '_' + letter.toLowerCase())] = snakeCaseKeys(o[k])
-      }
-      return res
-    }
+  }
+
+  addSeasonalitySlot () {
+    this.serviceDescription.seasonality = this.serviceDescription.seasonality || []
+    this.serviceDescription.seasonality.push({})
   }
 
   cnilVoucher () {

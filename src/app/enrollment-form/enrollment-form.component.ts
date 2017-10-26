@@ -43,4 +43,8 @@ export class EnrollmentFormComponent implements OnInit {
       this.errors = error.error
     })
   }
+
+  addSeasonalitySlot () {
+    this.enrollment.addSeasonalitySlot()
+  }
 }

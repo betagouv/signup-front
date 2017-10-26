@@ -31,7 +31,8 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
 import { EnrollmentsTableComponent } from './enrollments-table/enrollments-table.component';
 import { MessageComponent } from './message/message.component';
 import { MessageFormComponent } from './message-form/message-form.component';
-import { MessagesComponent } from './messages/messages.component'
+import { MessagesComponent } from './messages/messages.component';
+import { SeasonalitySlotComponent } from './seasonality-slot/seasonality-slot.component'
 
 const routes = [
   { path: '', redirectTo: '/accueil', pathMatch: 'full' },
@@ -63,7 +64,8 @@ const routes = [
     EnrollmentsTableComponent,
     MessageComponent,
     MessageFormComponent,
-    MessagesComponent
+    MessagesComponent,
+    SeasonalitySlotComponent
   ],
   imports: [
     BrowserModule,

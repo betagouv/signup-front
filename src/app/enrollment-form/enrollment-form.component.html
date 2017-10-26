@@ -122,15 +122,13 @@
       </div>
       <div class="form-group">
         <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
-        <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.seasonality">
-      </div>
-      <div class="form-group">
-        <label>Quels serait le nombre maximal d’appel en une heure (en cas de pic) ?</label>
-        <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.maxCharge">
+        <app-seasonality-slot *ngFor="let slot of enrollment.serviceDescription.seasonality" [slot]="slot">
+        </app-seasonality-slot>
+        <button class="btn btn-default btn-block" (click)="addSeasonalitySlot()">Ajouter une période</button>
       </div>
     </div>
     <div class="well agreement">
-      <div class="chackbox">
+      <div class="checkbox">
         <label>
           <input type="checkbox" [(ngModel)]="enrollment.agreement">
           En cochant cette case, je certifie que les informations saisies, notamment le fondement juridique indiqué, sont correctes. Je m’engage à exploiter les données DGFIP dans le cadre réglementaire adapté. Je m’engage à fournir les résultats de l’homologation de mon service selon le référentiel RGS dans un délai de ---.
