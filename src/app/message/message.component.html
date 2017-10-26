@@ -1,4 +1,7 @@
-<i>{{ message.user.email }}</i>
+<div class="clearfix">
+  <i class="badge badge-primary pull-right">{{ moment(message.createdAt).format('DD-MM-YY HH:mm') }}</i>
+  <i *ngIf="message.user">{{ message.user.email }}</i>
+</div>
 <div class="alert alert-info">
 <p>
 {{ message.content }}
