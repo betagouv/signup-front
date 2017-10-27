@@ -3,6 +3,7 @@ import { EnrollmentService } from '../enrollment/enrollment.service';
 import { Enrollment } from '../enrollment/enrollment';
 import { slideInOutAnimation } from '../animations/main';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-enrollment',
@@ -15,6 +16,7 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
   keys: any = Object.keys;
   enrollment: Enrollment;
   interval: any;
+  moment: any = moment;
 
   constructor(
     public enrollmentService: EnrollmentService,

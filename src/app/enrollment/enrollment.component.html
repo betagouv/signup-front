@@ -108,7 +108,21 @@
     </div>
     <div class="form-group">
       <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
-      <p>{{ enrollment.serviceDescription.seasonality }}</p>
+      <div class="slot" *ngFor="let slot of enrollment.serviceDescription.seasonality">
+        <div class="period" *ngIf="slot.type == 'period'">
+          <label>L'application sera active du</label>
+          {{ moment(slot.start).format('DD-MM-YYYY') }}
+          <label>au</label>
+          {{ moment(slot.end).format('DD-MM-YYYY') }}
+          <label>avec un pic d'activité de :</label>
+          {{ slot.maxCharge }}
+        </div>
+        <div class="year" *ngIf="slot.type == 'year'">
+          <label>L'application est active toute l'année</label>
+          <label>Pic d'activité :</label>
+          {{ slot.maxCharge }}
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <label>Quels serait le nombre maximal d’appel en une heure (en cas de pic) ?</label>

@@ -8,7 +8,7 @@
 <div *ngIf="slot.type == 'year'">
   <div class="form-group">
     <label>Pic de requêtes</label>
-    <input class="form-control" type="number" [(ngModel)]="slot.naxCharge">
+    <input class="form-control" type="number" [(ngModel)]="slot.maxCharge">
   </div>
 </div>
 <div class="row" *ngIf="slot.type == 'period'">
@@ -27,7 +27,7 @@
   <div class="col-md-3">
     <div class="form-group">
       <label>Pic de requêtes</label>
-      <input class="form-control" type="number" [(ngModel)]="slot.naxCharge">
+      <input class="form-control" type="number" [(ngModel)]="slot.maxCharge">
     </div>
   </div>
 </div>
