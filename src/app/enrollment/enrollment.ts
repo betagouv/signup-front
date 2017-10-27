@@ -76,6 +76,7 @@ export class Enrollment {
   errors: any;
   messages: Message[] = [];
   acl: any = { }
+  createdAt: any;
 
   constructor (params) {
     if (!params) return
@@ -99,6 +100,10 @@ export class Enrollment {
 
   cnilVoucher () {
     const res = this.documents.filter((e) => e.type == 'Document::CNILVoucher')[0]
+    return res
+  }
+  legalDocument () {
+    const res = this.documents.filter((e) => e.type == 'Document::LegalBasis')[0]
     return res
   }
   certificationResults () {

@@ -78,14 +78,23 @@
           <label>
             <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.worldIncome">
             Montant des revenus mondiaux
-          </label>
+        </label>
         </div>
       </div>
     </div>
   </div>
   <div class="legal-basis well">
     <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
-    <p>{{ enrollment.legalBasis.comment }}</p>
+    <div class="legal-basis-form">
+      <div class="form-group">
+        {{ enrollment.legalBasis.comment }}
+      </div>
+      <h4 *ngIf="enrollment.legalDocument()">
+        <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+      </h4>
+      <label>Télécharger la base l'égale</label>
+      <input type="file" name="Document::LegalBasis" (change)="upload($event)">
+    </div>
   </div>
   <div class="well service-description">
     <h4>Description de votre service</h4>
@@ -188,6 +197,7 @@
       {{ enrollment.applicant.position }}
     </div>
   </div>
+  <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" (click)="enrollmentService.trigger(enrollment, 'complete_application')">Envoyer la demande</button>
   <div class="error-message" *ngIf="enrollment.errors">
     <div class="alert alert-danger">
       <ul>
