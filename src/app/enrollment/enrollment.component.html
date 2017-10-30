@@ -104,7 +104,7 @@
     </div>
     <div class="form-group">
       <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
-      <p>{{ enrollment.serviceDescription.deploymentDate }}</p>
+      <p>{{ moment(enrollment.serviceDescription.deploymentDate).format('DD-MM-YYYY') }}</p>
     </div>
     <div class="form-group">
       <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
