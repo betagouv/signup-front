@@ -92,7 +92,7 @@
       <h4 *ngIf="enrollment.legalDocument()">
         <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
       </h4>
-      <label>Télécharger la base l'égale</label>
+      <label>Télécharger la base légale</label>
       <input type="file" name="Document::LegalBasis" (change)="upload($event)">
     </div>
   </div>
