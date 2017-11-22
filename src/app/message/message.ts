@@ -1,7 +1,7 @@
 import { Enrollment } from '../enrollment/enrollment'
 
 export class Message {
-  user: any;
+  sender: any;
   content: string;
   enrollment: Enrollment;
   createdAt: any;
