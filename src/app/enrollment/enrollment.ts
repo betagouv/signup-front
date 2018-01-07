@@ -48,8 +48,9 @@ export class Enrollment {
   serviceDescription: any = {
     main: null,
     deploymentDate: null,
-    seasonality: [],
-    maxCharge: null
+    seasonality: [{
+      type: 'year'
+    }]
   }
   agreement: boolean;
   states: string[] = [
