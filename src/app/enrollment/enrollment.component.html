@@ -109,7 +109,8 @@
       <div class="form-group">
         {{ enrollment.legalBasis.comment }}
       </div>
-      <h4 *ngIf="enrollment.legalDocument()">
+      <img src="/assets/spinner.gif" *ngIf="enrollment.legalDocument().uploading" class="spinner">
+      <h4 *ngIf="enrollment.legalDocument().attachment">
         <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
       </h4>
       <label>Télécharger la base légale</label>
@@ -155,21 +156,24 @@
     </p>
     <div class="row">
       <div class="col-md-4">
-        <h4 *ngIf="enrollment.cnilVoucher()">
+      <img src="/assets/spinner.gif" *ngIf="enrollment.cnilVoucher().uploading" class="spinner">
+        <h4 *ngIf="enrollment.cnilVoucher().attachment">
           <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
         </h4>
         <label>Télécharger le récipicé CNIL</label>
         <input type="file" name="Document::CNILVoucher" (change)="upload($event)">
       </div>
       <div class="col-md-4">
-        <h4 *ngIf="enrollment.certificationResults()">
+      <img src="/assets/spinner.gif" *ngIf="enrollment.certificationResults().uploading" class="spinner">
+        <h4 *ngIf="enrollment.certificationResults().attachment">
           <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
         </h4>
         <label>Télécharger les résultats d'homologation</label>
         <input type="file" name="Document::CertificationResults" (change)="upload($event)">
       </div>
       <div class="col-md-4">
-        <h4 *ngIf="enrollment.franceConnectCompliance()">
+      <img src="/assets/spinner.gif" *ngIf="enrollment.franceConnectCompliance().uploading" class="spinner">
+        <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
           <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
         </h4>
         <label>Déclaration CNIL de conformité France Connect</label>

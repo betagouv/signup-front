@@ -104,6 +104,7 @@ export class EnrollmentService {
         formData.append('enrollment[documents_attributes][][attachment]', file, file.name);
       }
       formData.append('enrollment[documents_attributes][][type]', documentType);
+      enrollment.documents.push({type: documentType, uploading: true})
       return this.http.put(config.api_url + '/enrollments/' + enrollment.id, formData)
         .map((response) => {
           enrollment.errors = null

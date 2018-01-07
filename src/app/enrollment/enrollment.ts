@@ -101,17 +101,17 @@ export class Enrollment {
 
   cnilVoucher () {
     const res = this.documents.filter((e) => e.type == 'Document::CNILVoucher')[0]
-    return res
+    return res || {}
   }
   legalDocument () {
     const res = this.documents.filter((e) => e.type == 'Document::LegalBasis')[0]
-    return res
+    return res || {}
   }
   certificationResults () {
-    return this.documents.filter((e) => e.type == 'Document::CertificationResults')[0]
+    return this.documents.filter((e) => e.type == 'Document::CertificationResults')[0] || {}
   }
   franceConnectCompliance () {
-    return this.documents.filter((e) => e.type == 'Document::FranceConnectCompliance')[0]
+    return this.documents.filter((e) => e.type == 'Document::FranceConnectCompliance')[0] || {}
   }
   conventionUrl () {
     return 'http://localhost:3000/api/enrollments/' +
