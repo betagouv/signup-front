@@ -3,6 +3,6 @@
     <h2>Enrolements</h2>
     <app-enrollments-table [enrollments]="enrollments">
     </app-enrollments-table>
-    <a routerLink="/enrolements/form">Nouvel enrolement</a>
+    <a routerLink="/enrolements/form" *ngIf="user.authType() == 'franceConnect'">Nouvel enrolement</a>
   </div>
 </div>

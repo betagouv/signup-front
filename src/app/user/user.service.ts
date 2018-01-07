@@ -19,7 +19,6 @@ function camelCaseKeys (o) {
 @Injectable()
 export class UserService {
   user: string;
-  password: string;
   token: string;
   loggedIn: boolean;
   error: any;
@@ -71,5 +70,9 @@ export class UserService {
     return this.http.get(config.api_url + '/enrollments').map((response) => {
       return response['map']((data) => new Enrollment(camelCaseKeys(data)))
     }).toPromise()
+  }
+
+  authType () {
+    return localStorage.getItem('authType')
   }
 }
