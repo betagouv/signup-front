@@ -11,6 +11,32 @@
     </select>
   </div>
   <div class="enrollment-form" *ngIf="enrollment.serviceProvider.name">
+    <div class="well service-description">
+      <h4>Description de votre service</h4>
+      <div class="form-group">
+        <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
+        <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.main">
+      </div>
+      <div class="form-group">
+        <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
+        <input type="date" class="form-control" [(ngModel)]="enrollment.serviceDescription.deploymentDate">
+      </div>
+      <div class="form-group">
+        <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
+        <app-seasonality-slot *ngFor="let slot of enrollment.serviceDescription.seasonality" [slot]="slot">
+        </app-seasonality-slot>
+        <button class="btn btn-default btn-block" (click)="addSeasonalitySlot()">Ajouter une période</button>
+      </div>
+    </div>
+    <div class="legal-basis well">
+      <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
+      <div class="legal-basis-form">
+        <div class="form-group">
+          <textarea class="form-control" [(ngModel)]="enrollment.legalBasis.comment" placeholder="Rédigez un commentaire">
+          </textarea>
+        </div>
+      </div>
+    </div>
     <div class="well scope-selection">
       <div class="row">
         <div class="col-md-6">
@@ -101,32 +127,6 @@
         </div>
       </div>
     </div>
-    <div class="legal-basis well">
-      <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
-      <div class="legal-basis-form">
-        <div class="form-group">
-          <textarea class="form-control" [(ngModel)]="enrollment.legalBasis.comment" placeholder="Rédigez un commentaire">
-          </textarea>
-        </div>
-      </div>
-    </div>
-    <div class="well service-description">
-      <h4>Description de votre service</h4>
-      <div class="form-group">
-        <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
-        <input type="text" class="form-control" [(ngModel)]="enrollment.serviceDescription.main">
-      </div>
-      <div class="form-group">
-        <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
-        <input type="date" class="form-control" [(ngModel)]="enrollment.serviceDescription.deploymentDate">
-      </div>
-      <div class="form-group">
-        <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
-        <app-seasonality-slot *ngFor="let slot of enrollment.serviceDescription.seasonality" [slot]="slot">
-        </app-seasonality-slot>
-        <button class="btn btn-default btn-block" (click)="addSeasonalitySlot()">Ajouter une période</button>
-      </div>
-    </div>
     <div class="well agreement">
       <div class="checkbox">
         <label>
@@ -144,3 +144,4 @@
       </div>
     </div>
   </div>
+</div>

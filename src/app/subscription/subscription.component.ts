@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../auth/auth.service';
 import { SubscriptionService } from '../subscription/subscription.service'
 import { slideInOutAnimation } from '../animations/main'
 
@@ -13,7 +14,8 @@ import { slideInOutAnimation } from '../animations/main'
 export class SubscriptionComponent implements OnInit {
 
   constructor(
-    public subscription: SubscriptionService
+    public subscription: SubscriptionService,
+    public auth: AuthService
   ) { }
 
   ngOnInit() {
