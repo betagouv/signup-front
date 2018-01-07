@@ -1,11 +1,31 @@
 <div class="enrollment container">
+  <div class="success-message" *ngIf="enrollment.acl.completeApplication">
+    <div class="alert alert-success">
+      <p>Votre demande a été enregistrée, votre accès à l’API sera validé lorsque vous aurez transmis les éléments demandés en bas de page : récépissé CNIL et résultats d’homologation de votre Fournisseur de Services. Une fois ces éléments complétés, votre demande sera communiquée aux équipes de la DGFIP, vous recevrez alors une convention d’adhésion établie par la DGFIP à déposer signée sur cette plateforme.</p>
+      <p>Vous pouvez d’ores et déjà procéder au développement en intégration pour vous raccorder à l’API Impôt Particulier. Pour cela, vous pouvez :</p>
+      <ul>
+        <li>Vous référer à la documentation technique pour vous raccorder à un Fournisseur de Données (FD) sur le Portail Partenaires FranceConnect,</li>
+        <li>Utiliser les bouchons Impôt Particulier et créer vos propres jeux de données afin de simuler de comptes utilisateurs.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="success-message" *ngIf="enrollment.state == 'waiting_for_approval'">
+    <div class="alert alert-success">
+      <p>Votre demande a été communiquée aux équipes de la DGFIP, vous recevrez prochainement une convention d’adhésion établie par la DGFIP à déposer signée sur cette plateforme. Vous trouverez ci-dessous le récapitulatif de votre demande, que vous pouvez modifier tant qu’elle n’a pas été approuvée.</p>
+      <p>Vous pouvez d’ores et déjà procéder au développement en intégration pour vous raccorder à l’API Impôt Particulier. Pour cela, vous pouvez :</p>
+      <ul>
+        <li>Vous référer à la documentation technique pour vous raccorder à un Fournisseur de Données (FD) sur le Portail Partenaires FranceConnect,</li>
+        <li>Utiliser les bouchons Impôt Particulier et créer vos propres jeux de données afin de simuler de comptes utilisateurs.</li>
+      </ul>
+    </div>
+  </div>
   <div class="well">
     <app-enrollments-table [enrollments]="[enrollment]">
     </app-enrollments-table>
   </div>
-  <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" [routerLink]="'edit'">Modifier</button>
   <app-messages [enrollment]="enrollment">
   </app-messages>
+  <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" [routerLink]="'edit'">Modifier</button>
   <div class="enrollment" *ngIf="enrollment.serviceProvider">
     <div class="well scopes">
       <h4>Données exploitées</h4>
@@ -85,9 +105,6 @@
   </div>
   <div class="legal-basis well">
     <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
-    <p>
-    <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
-    </p>
     <div class="legal-basis-form">
       <div class="form-group">
         {{ enrollment.legalBasis.comment }}
@@ -96,6 +113,9 @@
         <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
       </h4>
       <label>Télécharger la base légale</label>
+      <p>
+      <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
+      </p>
       <input type="file" name="Document::LegalBasis" (change)="upload($event)">
     </div>
   </div>
@@ -219,17 +239,6 @@
             <li *ngFor="let error of enrollment.errors[field]">{{ error }}</li>
           </ul>
         </li>
-      </ul>
-    </div>
-  </div>
-  <div class="success-message" *ngIf="enrollment.acl.completeApplication">
-    <div class="alert alert-success">
-      <p><strong>Votre dossier a été transmis et est cours d’étude par l’équipe DINSIC – FranceConnect.</strong> Vous trouverez ci-dessous le récapitulatif de votre demande, que vous pouvez modifier tant que votre dossier n’a pas été validé.</p>
-      <p><strong>Après étude du dossier, votre accès à l’API sera validé lorsque vous aurez transmis les éléments suivants (en bas de page)</strong> : récépissé CNIL et résultats d’homologation de votre Fournisseur de Services. Vous recevrez alors une convention d’adhésion établie par la DGFIP à retourner signée sur cette plateforme.</p>
-      <p><strong>Vous pouvez d’ores et déjà procéder au développement en intégration</strong> pour vous raccorder à l’API Impôt Particulier. Pour cela, vous pouvez : </p>
-      <ul>
-        <li>Vous référer à la documentation technique pour vous raccorder à un Fournisseur de Données (FD) sur le Portail Partenaires FranceConnect,</li>
-        <li>Utiliser les bouchons Impôt Particulier et créer vos propres jeux de données afin de simuler de comptes utilisateurs.</li>
       </ul>
     </div>
   </div>
