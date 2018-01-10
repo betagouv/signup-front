@@ -84,7 +84,7 @@ export class EnrollmentService {
 
   trigger (enrollment, event) {
     return this.http.patch(
-      config.api_url + '/enrollments/' + enrollment.id + '/trigger', { event: event }
+      config.api_url + '/enrollments/' + enrollment.id + '/trigger', { event: event, enrollment: enrollment.serialized() }
     ).map((response) => {
       Object.assign(enrollment, camelCaseKeys(response))
       return Observable.of(enrollment)

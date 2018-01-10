@@ -56,6 +56,7 @@ export class Enrollment {
   states: string[] = [
     'waiting_for_approval',
     'application_approved',
+    'technical_validation',
     'application_ready',
     'deployed'
   ]

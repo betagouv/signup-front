@@ -7,6 +7,7 @@
       <th> Demande complète </th>
       <th> Demande approuvée </th>
       <th> Convention signée </th>
+      <th> Entrants techniques </th>
       <th> Mis en production </th>
     </tr>
   </thead>
@@ -30,6 +31,10 @@
         </div>
       </td>
       <td class="state text-center">
+        <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('technical_validation')"></span>
+        <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('technical_validation')"></span>
+      </td>
+      <td class="state text-center">
         <span class="glyphicon glyphicon-ok" *ngIf="item.isStateCompleted('application_ready')"></span>
         <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('application_ready')"></span>
       </td>
@@ -39,7 +44,7 @@
           <span class="glyphicon glyphicon-remove" *ngIf="!item.isStateCompleted('deployed')"></span>
         </div>
         <div class="btn-group">
-          <button class="btn btn-success" *ngIf="item.acl.deploy" (click)="enrollmentService.trigger(item, 'deploy')">Application déployée</button>
+          <button class="btn btn-success" *ngIf="item.acl.deployApplication" (click)="enrollmentService.trigger(item, 'deploy_application')">Application déployée</button>
         </div>
       </td>
     </tr>
