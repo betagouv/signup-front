@@ -36,226 +36,228 @@
   <app-messages [enrollment]="enrollment">
   </app-messages>
   <div class="enrollment">
-    <div id="form">
-      <hr>
-      <h3>Formulaire</h3>
-      <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" [routerLink]="'edit'">Modifier</button>
-      <div class="enrollment" *ngIf="enrollment.serviceProvider">
-        <div class="well scopes">
-          <h4>Données exploitées</h4>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.numberOfTaxShares">
-                RFR et nombre de parts fiscales
-              </label>
+    <div class="domain" *ngIf="enrollment.acl.showDomain">
+      <div id="form">
+        <hr>
+        <h3>Formulaire</h3>
+        <button *ngIf="enrollment.acl.completeApplication" class="btn btn-block btn-primary" [routerLink]="'edit'">Modifier</button>
+        <div class="enrollment" *ngIf="enrollment.serviceProvider">
+          <div class="well scopes">
+            <h4>Données exploitées</h4>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.numberOfTaxShares">
+                  RFR et nombre de parts fiscales
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.taxAddress">
-                Adresse fiscale de taxation à l'IR
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.taxAddress">
+                  Adresse fiscale de taxation à l'IR
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.nonWadgeIncome">
-                Revenus non salariaux
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.nonWadgeIncome">
+                  Revenus non salariaux
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.familySituation">
-                Situation de la famille et détail du nombre de personnes à charge
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.familySituation">
+                  Situation de la famille et détail du nombre de personnes à charge
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.supportPayments">
-                Montant des pensions alimentaires reçues
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.supportPayments">
+                  Montant des pensions alimentaires reçues
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.deficit">
-                Existance de déficit sur l'année de revenus
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.deficit">
+                  Existance de déficit sur l'année de revenus
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.housingTax">
-                Données de taxe d'habitation principale
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.housingTax">
+                  Données de taxe d'habitation principale
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.totalGrossIncome">
-                Revenu Brut Global / Déficit Brut Global
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.totalGrossIncome">
+                  Revenu Brut Global / Déficit Brut Global
+                </label>
+              </div>
             </div>
-          </div>
-          <div class="checkbox">
-            <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
-              <label>
-                <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.worldIncome">
-                Montant des revenus mondiaux
-              </label>
+            <div class="checkbox">
+              <div [popoverOnHover]="true" popoverPlacement="right" popover="some text">
+                <label>
+                  <input disabled type="checkbox" [(ngModel)]="enrollment.scopes.worldIncome">
+                  Montant des revenus mondiaux
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="legal-basis well">
-        <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
-        <div class="legal-basis-form">
+        <div class="legal-basis well">
+          <h4>Veuillez transmettre le fondement juridique sur lequel s'appuie votre demande d'utilisation des données DGFIP</h4>
+          <div class="legal-basis-form">
+            <div class="form-group">
+              {{ enrollment.legalBasis.comment }}
+            </div>
+          </div>
+        </div>
+        <div class="well service-description">
+          <h4>Description de votre service</h4>
           <div class="form-group">
-            {{ enrollment.legalBasis.comment }}
+            <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
+            <p>{{ enrollment.serviceDescription.main }}</p>
           </div>
-        </div>
-      </div>
-      <div class="well service-description">
-        <h4>Description de votre service</h4>
-        <div class="form-group">
-          <label>Décrivez brièvement votre service ainsi que l’utilisation prévue des données transmises par l’API Impôt Particulier :</label>
-          <p>{{ enrollment.serviceDescription.main }}</p>
-        </div>
-        <div class="form-group">
-          <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
-          <p>{{ moment(enrollment.serviceDescription.deploymentDate).format('DD-MM-YYYY') }}</p>
-        </div>
-        <div class="form-group">
-          <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
-          <div class="slot" *ngFor="let slot of enrollment.serviceDescription.seasonality">
-            <div class="period" *ngIf="slot.type == 'period'">
-              <label>L'application sera active du</label>
-              {{ moment(slot.start).format('DD-MM-YYYY') }}
-              <label>au</label>
-              {{ moment(slot.end).format('DD-MM-YYYY') }}
-              <label>avec un pic d'activité de :</label>
-              {{ slot.maxCharge }}
-            </div>
-            <div class="year" *ngIf="slot.type == 'year'">
-              <label>L'application est active toute l'année</label>
-              <label>Pic d'activité :</label>
-              {{ slot.maxCharge }}
+          <div class="form-group">
+            <label>Quelle est la date estimée de mise en production de votre branchement à l’API ?</label>
+            <p>{{ moment(enrollment.serviceDescription.deploymentDate).format('DD-MM-YYYY') }}</p>
+          </div>
+          <div class="form-group">
+            <label>Quelle serait la saisonnalité de vos appels à l’API ?</label>
+            <div class="slot" *ngFor="let slot of enrollment.serviceDescription.seasonality">
+              <div class="period" *ngIf="slot.type == 'period'">
+                <label>L'application sera active du</label>
+                {{ moment(slot.start).format('DD-MM-YYYY') }}
+                <label>au</label>
+                {{ moment(slot.end).format('DD-MM-YYYY') }}
+                <label>avec un pic d'activité de :</label>
+                {{ slot.maxCharge }}
+              </div>
+              <div class="year" *ngIf="slot.type == 'year'">
+                <label>L'application est active toute l'année</label>
+                <label>Pic d'activité :</label>
+                {{ slot.maxCharge }}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="documents">
-      <hr>
-      <h3>Documents</h3>
-      <div class="well documents">
-        <h4>Documents officiels</h4>
-        <p>
-        <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
-        </p>
-        <div class="legal-basis-form">
-          <img src="/assets/spinner.gif" *ngIf="enrollment.legalDocument().uploading" class="spinner">
-          <h4 *ngIf="enrollment.legalDocument().attachment">
-            <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-          </h4>
-          <label>Télécharger la base légale</label>
+      <div id="documents">
+        <hr>
+        <h3>Documents</h3>
+        <div class="well documents">
+          <h4>Documents officiels</h4>
           <p>
           <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
           </p>
-          <input type="file" name="Document::LegalBasis" (change)="upload($event)">
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <img src="/assets/spinner.gif" *ngIf="enrollment.cnilVoucher().uploading" class="spinner">
-            <h4 *ngIf="enrollment.cnilVoucher().attachment">
-              <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+          <div class="legal-basis-form">
+            <img src="/assets/spinner.gif" *ngIf="enrollment.legalDocument().uploading" class="spinner">
+            <h4 *ngIf="enrollment.legalDocument().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
             </h4>
-            <label>Télécharger le récipicé CNIL</label>
-            <input type="file" name="Document::CNILVoucher" (change)="upload($event)">
+            <label>Télécharger la base légale</label>
+            <p>
+            <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
+            </p>
+            <input type="file" name="Document::LegalBasis" (change)="upload($event)">
           </div>
-          <div class="col-md-4">
-            <img src="/assets/spinner.gif" *ngIf="enrollment.certificationResults().uploading" class="spinner">
-            <h4 *ngIf="enrollment.certificationResults().attachment">
-              <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-            </h4>
-            <label>Télécharger les résultats d'homologation</label>
-            <input type="file" name="Document::CertificationResults" (change)="upload($event)">
-          </div>
-          <div class="col-md-4">
-            <img src="/assets/spinner.gif" *ngIf="enrollment.franceConnectCompliance().uploading" class="spinner">
-            <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
-              <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-            </h4>
-            <label>Déclaration CNIL de conformité France Connect</label>
-            <input type="file" name="Document::FranceConnectCompliance" (change)="upload($event)">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="/assets/spinner.gif" *ngIf="enrollment.cnilVoucher().uploading" class="spinner">
+              <h4 *ngIf="enrollment.cnilVoucher().attachment">
+                <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+              </h4>
+              <label>Télécharger le récipicé CNIL</label>
+              <input type="file" name="Document::CNILVoucher" (change)="upload($event)">
+            </div>
+            <div class="col-md-4">
+              <img src="/assets/spinner.gif" *ngIf="enrollment.certificationResults().uploading" class="spinner">
+              <h4 *ngIf="enrollment.certificationResults().attachment">
+                <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+              </h4>
+              <label>Télécharger les résultats d'homologation</label>
+              <input type="file" name="Document::CertificationResults" (change)="upload($event)">
+            </div>
+            <div class="col-md-4">
+              <img src="/assets/spinner.gif" *ngIf="enrollment.franceConnectCompliance().uploading" class="spinner">
+              <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
+                <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+              </h4>
+              <label>Déclaration CNIL de conformité France Connect</label>
+              <input type="file" name="Document::FranceConnectCompliance" (change)="upload($event)">
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div id="convention" *ngIf="enrollment.acl.convention">
-      <hr>
-      <h3>Convention</h3>
-      <div class="well convention">
-        <h4>Convention</h4>
-        <div class="text-center">
-          <a target="_blank" href="{{enrollment.conventionUrl()}}"><i class="glyphicon glyphicon-file"></i></a>
-        </div>
-      </div>
-      <div class="applicant well" *ngIf="enrollment.acl.signConvention">
-        <h4>Signataire de la convention</h4>
-        <div class="form-group">
-          <label>Nom</label>
-          <input type="text" [(ngModel)]="enrollment.applicant.lastname" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Prénom</label>
-          <input type="text" [(ngModel)]="enrollment.applicant.firstname" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" [(ngModel)]="enrollment.applicant.email" class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Fonction</label>
-          <input type="text" [(ngModel)]="enrollment.applicant.position" class="form-control">
-        </div>
-        <div class="form-group">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" [(ngModel)]="enrollment.applicant.agreement">
-              J’accepte la convention d’adhésion ci-contre. J’ai mené des tests unitaires avant de passer en production.
-            </label>
+      <div id="convention" *ngIf="enrollment.acl.convention">
+        <hr>
+        <h3>Convention</h3>
+        <div class="well convention">
+          <h4>Convention</h4>
+          <div class="text-center">
+            <a target="_blank" href="{{enrollment.conventionUrl()}}"><i class="glyphicon glyphicon-file"></i></a>
           </div>
         </div>
-        <button class="btn btn-block btn-primary" (click)="enrollmentService.save(enrollment)">Signer la convention</button>
-      </div>
-      <div class="applicant well" *ngIf="enrollment.acl.convention && !enrollment.acl.signConvention">
-        <h4>Signataire de la convention</h4>
-        <div class="form-group">
-          <label>Nom</label>
-          {{ enrollment.applicant.lastname }}
+        <div class="applicant well" *ngIf="enrollment.acl.signConvention">
+          <h4>Signataire de la convention</h4>
+          <div class="form-group">
+            <label>Nom</label>
+            <input type="text" [(ngModel)]="enrollment.applicant.lastname" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Prénom</label>
+            <input type="text" [(ngModel)]="enrollment.applicant.firstname" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" [(ngModel)]="enrollment.applicant.email" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Fonction</label>
+            <input type="text" [(ngModel)]="enrollment.applicant.position" class="form-control">
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" [(ngModel)]="enrollment.applicant.agreement">
+                J’accepte la convention d’adhésion ci-contre. J’ai mené des tests unitaires avant de passer en production.
+              </label>
+            </div>
+          </div>
+          <button class="btn btn-block btn-primary" (click)="enrollmentService.save(enrollment)">Signer la convention</button>
         </div>
-        <div class="form-group">
-          <label>Prénom</label>
-          {{ enrollment.applicant.firstname }}
-        </div>
-        <div class="form-group">
-          <label>Email</label>
-          {{ enrollment.applicant.email }}
-        </div>
-        <div class="form-group">
-          <label>Fonction</label>
-          {{ enrollment.applicant.position }}
+        <div class="applicant well" *ngIf="enrollment.acl.convention && !enrollment.acl.signConvention">
+          <h4>Signataire de la convention</h4>
+          <div class="form-group">
+            <label>Nom</label>
+            {{ enrollment.applicant.lastname }}
+          </div>
+          <div class="form-group">
+            <label>Prénom</label>
+            {{ enrollment.applicant.firstname }}
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            {{ enrollment.applicant.email }}
+          </div>
+          <div class="form-group">
+            <label>Fonction</label>
+            {{ enrollment.applicant.position }}
+          </div>
         </div>
       </div>
     </div>

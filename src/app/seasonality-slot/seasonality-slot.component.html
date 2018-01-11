@@ -1,33 +1,43 @@
-<div class="form-group">
-  <label>Type de saisonalité</label>
-  <select class="form-control" [(ngModel)]="slot.type">
-    <option value="year">Toute l'année</option>
-    <option value="period">Période</option>
-  </select>
-</div>
-<div *ngIf="slot.type == 'year'">
+<div class="well">
   <div class="form-group">
-    <label>Pic de requêtes</label>
-    <input class="form-control" type="number" [(ngModel)]="slot.maxCharge">
+    <label>Type de saisonalité</label>
+    <select class="form-control" [(ngModel)]="slot.type">
+      <option value="year">Toute l'année</option>
+      <option value="period">Période</option>
+    </select>
   </div>
-</div>
-<div class="row" *ngIf="slot.type == 'period'">
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Début</label>
-      <input class="form-control" type="date" [(ngModel)]="slot.start">
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="form-group">
-      <label>Fin</label>
-      <input class="form-control" type="date" [(ngModel)]="slot.end">
-    </div>
-  </div>
-  <div class="col-md-3">
+  <div *ngIf="slot.type == 'year'">
     <div class="form-group">
       <label>Pic de requêtes</label>
       <input class="form-control" type="number" [(ngModel)]="slot.maxCharge">
+    </div>
+    <div class="form-group">
+      <label>Commentaire</label>
+      <input class="form-control" type="number" [(ngModel)]="slot.comment">
+    </div>
+  </div>
+  <div class="row" *ngIf="slot.type == 'period'">
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Début</label>
+        <input class="form-control" type="date" [(ngModel)]="slot.start">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Fin</label>
+        <input class="form-control" type="date" [(ngModel)]="slot.end">
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label>Pic de requêtes</label>
+        <input class="form-control" type="number" [(ngModel)]="slot.maxCharge">
+      </div>
+      <div class="form-group">
+        <label>Commentaire</label>
+        <input class="form-control" type="number" [(ngModel)]="slot.comment">
+      </div>
     </div>
   </div>
 </div>
