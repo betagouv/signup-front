@@ -19,6 +19,7 @@ export class SubscriptionComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.setItem('afterLoginDestination', '/enrolements/form')
   }
 
   showPublicMissionFail() {
