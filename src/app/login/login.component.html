@@ -6,7 +6,7 @@
         <a (click)="auth.franceConnectLogin()">Se connecter à France Connect</a>
         </p>
         <p class="text-center">
-        <a (click)="auth.serviceProviderLogin()">Se connecter à DGFIP</a>
+        <a (click)="auth.resourceProviderLogin()">Se connecter à DGFIP</a>
         </p>
         <div class="alert alert-danger text-center" *ngIf="user.error">
           {{ user.error.message }}

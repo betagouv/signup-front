@@ -14,9 +14,9 @@ export class AuthService {
     window.location.href = this.franceConnectAuthorizationUrl()
   }
 
-  serviceProviderLogin () {
-    localStorage.setItem('authType', 'serviceProvider')
-    window.location.href = this.serviceProviderAuthorizationUrl()
+  resourceProviderLogin () {
+    localStorage.setItem('authType', 'resourceProvider')
+    window.location.href = this.resourceProviderAuthorizationUrl()
   }
 
   franceConnectAuthorizationUrl () {
@@ -29,22 +29,13 @@ export class AuthService {
     return encodeURI(res)
   }
 
-  dgfipAuthorizationUrl () {
+  resourceProviderAuthorizationUrl () {
     // const res = config.oauth_url +
     //   '?client_id=' + config.clientId +
     //   '&response_type=token' +
     //   '&redirect_uri=' + config.oauthRedirectURI
     // const res = 'http://localhost:3000/users/auth/dgfip'
-    const res = 'http://localhost:3000/users/auth/dgfip'
-    return encodeURI(res)
-  }
-  serviceProviderAuthorizationUrl () {
-    // const res = config.oauth_url +
-    //   '?client_id=' + config.clientId +
-    //   '&response_type=token' +
-    //   '&redirect_uri=' + config.oauthRedirectURI
-    // const res = 'http://localhost:3000/users/auth/dgfip'
-    const res = 'http://localhost:3000/users/auth/service_provider'
+    const res = 'http://localhost:3000/users/auth/resource_provider'
     return encodeURI(res)
   }
 }

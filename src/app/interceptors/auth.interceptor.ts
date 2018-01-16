@@ -13,7 +13,14 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token')
-    const authReq = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)})
+    const headers = req.headers
+      .set('X-Oauth-Provider', localStorage.getItem('authType'))
+      .set('Authorization', 'Bearer ' + token)
+    const authReq = req.clone(
+      {
+        headers: headers
+      }
+    )
     return next.handle(authReq).map((response) => {
       if (
         (response instanceof HttpErrorResponse) &&

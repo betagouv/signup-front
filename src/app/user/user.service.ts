@@ -30,13 +30,22 @@ export class UserService {
 
   login (token) {
     localStorage.setItem('token', token)
-    // return this.http.get(config.oauth_me_url).toPromise().then((response) => {
-    return Promise.resolve({email: token}).then((response) => {
-    this.user = response['email']
-      this.loggedIn = true
-      this.error = null
-      return response
-    })
+    if (localStorage.getItem('authType') == 'franceConnect') {
+      return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+        this.user = response['user']['email']
+        this.loggedIn = true
+        this.error = null
+        return response
+      })
+    }
+    if (localStorage.getItem('authType') == 'resourceProvider') {
+      return this.http.get(config.oauth_me_url).toPromise().then((response) => {
+        this.user = response['email']
+        this.loggedIn = true
+        this.error = null
+        return response
+      })
+    }
   }
 
   isLoggedIn() {
@@ -53,13 +62,19 @@ export class UserService {
   }
 
   getServiceProviders () {
-    return Promise.resolve({
-      data: [
-        { name: 'démarche 1' },
-        { name: 'démarche 2' },
-        { name: 'démarche 3' }
-      ]
+    return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+      console.log(response)
+      return {
+        data: response['service-providers']
+      }
     })
+    // return Promise.resolve({
+    //   data: [
+    //     { name: 'démarche 1' },
+    //     { name: 'démarche 2' },
+    //     { name: 'démarche 3' }
+    //   ]
+    // })
   }
 
   getToken () {
