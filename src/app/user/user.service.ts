@@ -31,7 +31,8 @@ export class UserService {
   login (token) {
     localStorage.setItem('token', token)
     if (localStorage.getItem('authType') == 'franceConnect') {
-      return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+      // return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+      return Promise.resolve({user: { email: 'fc@france_connect.user'}}).then((response) => {
         this.user = response['user']['email']
         this.loggedIn = true
         this.error = null
@@ -62,7 +63,8 @@ export class UserService {
   }
 
   getServiceProviders () {
-    return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+    // return this.http.get(config.franceConnectUrl + '/oauth/v1/userinfo').toPromise().then((response) => {
+    return Promise.resolve({'service-providers': [{name: 'démarche 1'},  {name: 'démarche 2'}]}).then((response) => {
       console.log(response)
       return {
         data: response['service-providers']

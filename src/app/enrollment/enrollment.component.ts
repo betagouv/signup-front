@@ -32,11 +32,11 @@ export class EnrollmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.interval = setInterval(() => this.enrollmentService.reloadMessages(this.enrollment), 5000)
+    // this.interval = setInterval(() => this.enrollmentService.reloadMessages(this.enrollment), 5000)
   }
 
   ngOnDestroy () {
-    clearInterval(this.interval)
+    // clearInterval(this.interval)
   }
 
   upload (event) {
