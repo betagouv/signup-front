@@ -159,12 +159,38 @@
       <div id="documents">
         <hr>
         <h3>Documents</h3>
-        <div class="well documents">
+        <div class="well documents-show" *ngIf="enrollment.isStateCompleted('filled_application')">
+          <div class="legal-basis-form well">
+            <h4>Base Légale</h4>
+            <h4 *ngIf="enrollment.legalDocument().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+          </div>
+          <div class="cnil-voucher well">
+            <h4>Récipissé CNIL</h4>
+            <h4 *ngIf="enrollment.cnilVoucher().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+          </div>
+          <div class="cnil-voucher well">
+            <h4>Déclaration CNIL de conformité France Connect</h4>
+            <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+          </div>
+          <div class="certification-results well">
+            <h4>Résultats d'homologation</h4>
+            <h4 *ngIf="enrollment.certificationResults().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+          </div>
+        </div>
+        <div class="well documents-form" *ngIf="enrollment.state == 'filled_application'">
           <h4>Documents officiels</h4>
           <p>
           <i>Seuls les fichiers de type png, jpg et pdf sont acceptés</i>
           </p>
-          <div class="legal-basis-form">
+          <div class="legal-basis-form well">
             <img src="/assets/spinner.gif" *ngIf="enrollment.legalDocument().uploading" class="spinner">
             <h4 *ngIf="enrollment.legalDocument().attachment">
               <a target="_blank" href="http://localhost:3000{{enrollment.legalDocument().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
@@ -175,30 +201,56 @@
             </p>
             <input type="file" name="Document::LegalBasis" (change)="upload($event)">
           </div>
-          <div class="row">
-            <div class="col-md-4">
-              <img src="/assets/spinner.gif" *ngIf="enrollment.cnilVoucher().uploading" class="spinner">
-              <h4 *ngIf="enrollment.cnilVoucher().attachment">
-                <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-              </h4>
-              <label>Télécharger le récipicé CNIL</label>
-              <input type="file" name="Document::CNILVoucher" (change)="upload($event)">
+          <div class="cnil-voucher well">
+            <h5>CNIL</h5>
+            <img src="/assets/spinner.gif" *ngIf="enrollment.cnilVoucher().uploading" class="spinner">
+            <h4 *ngIf="enrollment.cnilVoucher().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.cnilVoucher().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+            <label>Télécharger le récipicé CNIL</label>
+            <input type="file" name="Document::CNILVoucher" (change)="upload($event)">
+            <img src="/assets/spinner.gif" *ngIf="enrollment.franceConnectCompliance().uploading" class="spinner">
+            <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+            <label>Déclaration CNIL de conformité France Connect</label>
+            <input type="file" name="Document::FranceConnectCompliance" (change)="upload($event)">
+            <div class="form-group">
+              <label>Référence de l'avis</label>
+              <input type="text" [(ngModel)]="enrollment.cnilVoucherDetail.reference" class="form-control">
             </div>
-            <div class="col-md-4">
-              <img src="/assets/spinner.gif" *ngIf="enrollment.certificationResults().uploading" class="spinner">
-              <h4 *ngIf="enrollment.certificationResults().attachment">
-                <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-              </h4>
-              <label>Télécharger les résultats d'homologation</label>
-              <input type="file" name="Document::CertificationResults" (change)="upload($event)">
+            <div class="form-group">
+              <label>Formalité CNIL</label>
+              <select [(ngModel)]="enrollment.cnilVoucherDetail.formality" class="form-control">
+                <option value="cil">CIL</option>
+                <option value="cnil">CNIL</option>
+              </select>
             </div>
-            <div class="col-md-4">
-              <img src="/assets/spinner.gif" *ngIf="enrollment.franceConnectCompliance().uploading" class="spinner">
-              <h4 *ngIf="enrollment.franceConnectCompliance().attachment">
-                <a target="_blank" href="http://localhost:3000{{enrollment.franceConnectCompliance().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
-              </h4>
-              <label>Déclaration CNIL de conformité France Connect</label>
-              <input type="file" name="Document::FranceConnectCompliance" (change)="upload($event)">
+          </div>
+          <div class="certification-results well">
+            <h5>Homologation</h5>
+            <img src="/assets/spinner.gif" *ngIf="enrollment.certificationResults().uploading" class="spinner">
+            <h4 *ngIf="enrollment.certificationResults().attachment">
+              <a target="_blank" href="http://localhost:3000{{enrollment.certificationResults().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+            </h4>
+            <label>Télécharger les résultats d'homologation</label>
+            <input type="file" name="Document::CertificationResults" (change)="upload($event)">
+            <h4>Autorité de certification</h4>
+            <div class="form-group">
+              <label>Nom</label>
+              <input type="text" [(ngModel)]="enrollment.certificationResultsDetail.name" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Fonction</label>
+              <input type="text" [(ngModel)]="enrollment.certificationResultsDetail.position" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Date d'homologation</label>
+              <input type="date" [(ngModel)]="enrollment.certificationResultsDetail.start" class="form-control">
+            </div>
+            <div class="form-group">
+              <label>Durée d'homologation <i>(en mois)</i></label>
+              <input type="number" [(ngModel)]="enrollment.certificationResultsDetail.duration" class="form-control">
             </div>
           </div>
         </div>

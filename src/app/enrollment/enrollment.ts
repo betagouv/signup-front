@@ -52,6 +52,16 @@ export class Enrollment {
       type: 'year'
     }]
   }
+  cnilVoucherDetail: any = {
+    reference: null,
+    formality: null
+  }
+  certificationResultsDetail: any = {
+    name: null,
+    position: null,
+    start: null,
+    duration: null
+  }
   agreement: boolean;
   states: string[] = [
     'waiting_for_approval',
