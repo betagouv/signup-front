@@ -318,12 +318,19 @@
       <h3>Technique</h3>
       <div class="well">
         <div class="form-group">
+          <h4 *ngIf="enrollment.productionCertificatePublicKey().attachment">
+            <a target="_blank" href="http://impots.particulier.api.gouv.fr{{enrollment.productionCertificatePublicKey().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+          </h4>
           <label>Clé publique de certificat de production</label>
-          <textarea class="form-control" [(ngModel)]="enrollment.productionCertificate"></textarea>
+          <input type="file" name="Document::ProductionCertificatePublicKey" (change)="upload($event)">
         </div>
         <div class="form-group">
           <label>autorité de certification</label>
-          <textarea class="form-control" [(ngModel)]="enrollment.certificationAuthority"></textarea>
+          <h4 *ngIf="enrollment.certificationAuthorityPublicKey().attachment">
+            <a target="_blank" href="http://impots.particulier.api.gouv.fr{{enrollment.certificationAuthorityPublicKey().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+          </h4>
+          <label>Clé publique de certificat de production</label>
+          <input type="file" name="Document::CertificationAuthorityPublicKey" (change)="upload($event)">
         </div>
         <div class="form-group">
           <label>IPs de production <i>(séparés par une virgule)</i></label>
