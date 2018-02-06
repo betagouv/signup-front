@@ -345,15 +345,15 @@
       <div class="well">
         <div class="form-group">
           <label>Clé publique de certificat de production</label>
-          <div class="well">
-            <p>{{ enrollment.productionCertificate }}</p>
-          </div>
+          <h4 *ngIf="enrollment.productionCertificatePublicKey().attachment">
+            <a target="_blank" href="http://impots.particulier.api.gouv.fr{{enrollment.productionCertificatePublicKey().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+          </h4>
         </div>
         <div class="form-group">
           <label>autorité de certification</label>
-          <div class="well">
-            <p>{{ enrollment.certificationAuthority }}</p>
-          </div>
+          <h4 *ngIf="enrollment.certificationAuthorityPublicKey().attachment">
+            <a target="_blank" href="http://impots.particulier.api.gouv.fr{{enrollment.certificationAuthorityPublicKey().attachment.url}}"><i class="glyphicon glyphicon-file"></i></a>
+          </h4>
         </div>
         <div class="form-group">
           <label>IPs de production <i>(séparés par une virgule)</i></label>
