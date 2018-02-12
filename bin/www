@@ -1,4 +1,0 @@
-#!/bin/sh
-
-cd /opt/apps/dgfip-contractualization-front/dgfip-contractualization-front
-npm start
