@@ -4,16 +4,14 @@ import Layout from '../Layout';
 
 
 describe('components | Layout', () => {
-	describe('render', () => {
-		const renderer = ReactTestRenderer.create(
-			<Layout />
-		);
+  describe('render', () => {
+    const renderer = ReactTestRenderer.create(<Layout />);
 
-		it('should be defined', () => {
-			expect(renderer).toBeDefined();
-		});
-		it('should match snapshot', () => {
-			expect(renderer).toMatchSnapshot();
-		});
-	});
+    it('should be defined', () => {
+      expect(renderer).toBeDefined();
+    });
+    it('should match snapshot', () => {
+      expect(renderer).toMatchSnapshot();
+    });
+  });
 });

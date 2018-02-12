@@ -40,7 +40,6 @@ module.exports = {
     'import/no-extraneous-dependencies': 0,
     'import/no-named-as-default': 0,
     'import/no-unresolved': 2,
-    'import/no-webpack-loader-syntax': 0,
     'import/prefer-default-export': 0,
     'jsx-a11y/aria-props': 2,
     'jsx-a11y/heading-has-content': 0,
@@ -63,12 +62,5 @@ module.exports = {
     'react/require-extension': 0,
     'react/self-closing-comp': 0,
     'require-yield': 0,
-  },
-  settings: {
-    'import/resolver': {
-      webpack: {
-        config: './internals/webpack/webpack.prod.babel.js',
-      },
-    },
   },
 };

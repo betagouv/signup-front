@@ -4,17 +4,13 @@ import Header from '../Header';
 
 
 describe('components | Header', () => {
-	describe('render', () => {
-		const renderer = ReactTestRenderer.create(
-			<Header />
-		);
-
-		console.log(renderer.toJSON());
-		it('should be defined', () => {
-			expect(renderer).toBeDefined();
-		});
-		it('should match snapshot', () => {
-			expect(renderer).toMatchSnapshot();
-		});
-	});
+  describe('render', () => {
+    const renderer = ReactTestRenderer.create(<Header />);
+    it('should be defined', () => {
+      expect(renderer).toBeDefined();
+    });
+    it('should match snapshot', () => {
+      expect(renderer).toMatchSnapshot();
+    });
+  });
 });

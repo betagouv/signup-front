@@ -8,7 +8,9 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll",
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint:eslint": "eslint --ignore-pattern '!.eslintrc.js'",
+    "lint:js": "yarn lint:eslint -- . "
   },
   "keywords": [],
   "author": "",
@@ -32,6 +34,7 @@
     "eslint-plugin-react": "^7.6.1",
     "jest": "^22.2.1",
     "jest-cli": "^22.2.1",
+    "prop-types": "^15.6.0",
     "react-test-renderer": "^16.2.0"
   }
 }
