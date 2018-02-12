@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | Header render should match snapshot 1`] = `
+<div>
+  <a
+    href="/"
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": 15,
+      }
+    }
+  >
+    Home
+  </a>
+  <a
+    href="/about"
+    onClick={[Function]}
+    style={
+      Object {
+        "marginRight": 15,
+      }
+    }
+  >
+    About
+  </a>
+</div>
+`;
