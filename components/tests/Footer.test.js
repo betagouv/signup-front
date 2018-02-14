@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
-import Layout from '../Layout';
+import Footer from '../Footer';
 
 
-describe('components | Layout', () => {
+describe('components | Footer', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<Layout />);
-
+    const renderer = ReactTestRenderer.create(<Footer />);
     it('should be defined', () => {
       expect(renderer).toBeDefined();
     });

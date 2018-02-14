@@ -1,8 +1,13 @@
 import React from 'react';
-import Layout from '../components/Layout';
+import Page from '../components/Page';
 
-export default () => (
-    <Layout>
-       <p>This is the about page</p>
-    </Layout>
+const About = () => (
+  <Page>
+    <div className="hero__container">
+      <h1 className="hero__white-background">API Particulier</h1>
+      <h3 className="hero__white-background">Simplifiez les démarches de vos usagers, ne demandez plus de justificatifs</h3>
+    </div>
+  </Page>
 );
+
+export default About;
