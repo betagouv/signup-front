@@ -1,5 +1,8 @@
-import React from 'react';
-import Page from '../components/Page';
+import React from 'react'
+import Page from '../components/page'
 
-export default () => (
-  <Page />);
+const Index = () => (
+  <Page />
+)
+
+export default Index

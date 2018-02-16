@@ -1,15 +1,13 @@
-import React from 'react';
-import ReactTestRenderer from 'react-test-renderer';
-import index from '../index';
+import ReactTestRenderer from 'react-test-renderer'
 
 describe('pages | index', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<index />);
+    const renderer = ReactTestRenderer.create(<index />)
     it('should be defined', () => {
-      expect(renderer).toBeDefined();
-    });
+      expect(renderer).toBeDefined()
+    })
     it('should match snapshot', () => {
-      expect(renderer).toMatchSnapshot();
-    });
-  });
-});
+      expect(renderer).toMatchSnapshot()
+    })
+  })
+})

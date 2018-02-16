@@ -9,8 +9,8 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "lint:eslint": "eslint --ignore-pattern '!.eslintrc.js'",
-    "lint:js": "yarn lint:eslint -- . "
+    "lint": "npm run lint:scripts",
+    "lint:scripts": "xo"
   },
   "keywords": [],
   "author": "",
@@ -24,20 +24,45 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
-    "babel-jest": "^22.2.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
-    "eslint": "^4.17.0",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-config-xo-nextjs": "^1.2.0",
     "eslint-plugin-react": "^7.6.1",
     "jest": "^22.2.1",
-    "jest-cli": "^22.2.1",
-    "jest-worker": "^22.2.2",
     "prop-types": "^15.6.0",
-    "react-test-renderer": "^16.2.0"
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.2.0",
+    "xo": "^0.20.2"
+  },
+  "xo": {
+    "extends": "xo-nextjs",
+    "semicolon": false,
+    "space": 2,
+    "env": "browser",
+    "rules": {
+      "camelcase": "warn",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "@env"
+          ]
+        }
+      ]
+    },
+    "overrides": [
+    	{
+    		"files": "**/tests/**/*.test.js",
+    		"extends": [
+    			"plugin:jest/recommended"
+    		],
+    		"plugins": [
+    			"jest"
+    		],
+    		"env": {
+    			"est/globals": true
+    		}
+    	}
+    ]
   }
 }
