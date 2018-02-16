@@ -86,7 +86,7 @@ exports[`components | Footer render should match snapshot 1`] = `
         <a
           href="https://www.data.gouv.fr/terms"
         >
-          Conditions générales d'utilisation
+          Conditions générales d‘utilisation
         </a>
       </li>
       <li>
@@ -97,9 +97,6 @@ exports[`components | Footer render should match snapshot 1`] = `
         </a>
       </li>
     </ul>
-    <ul
-      className="footer__links"
-    />
   </div>
 </footer>
 `;

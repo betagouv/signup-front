@@ -1,4 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
+import Page from '../page'
 
 describe('components | Page', () => {
   describe('render', () => {

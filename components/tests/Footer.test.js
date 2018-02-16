@@ -1,4 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
+import Footer from '../footer'
 
 describe('components | Footer', () => {
   describe('render', () => {
