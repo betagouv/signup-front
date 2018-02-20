@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | Search render should match snapshot 1`] = `
+<div
+  className="form__group"
+>
+  <label
+    htmlFor="search"
+  >
+    Tapez un mot-clef :
+  </label>
+  <div
+    className="search__group"
+  >
+    <input
+      className=" value="
+      id="search"
+      name="search"
+      type="text"
+    />
+    <button
+      aria-label="Recherche"
+      className="overlay-button"
+    >
+      <svg
+        className="icon icon-search"
+      >
+        <use
+          xlinkHref="#icon-search"
+        />
+      </svg>
+    </button>
+  </div>
+</div>
+`;
