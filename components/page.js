@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Header from './header'
 import Footer from './footer'
-import Section from './section'
 
 const Page = ({title, children}) => [
   <Head key='first'>
@@ -13,7 +12,7 @@ const Page = ({title, children}) => [
     <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
   </Head>,
   <Header key='second' />,
-  <Section key='three' title={title}> {children} </Section>,
+  <div key='three'>{title}{children}</div>,
   <Footer key='four' />
 ]
 

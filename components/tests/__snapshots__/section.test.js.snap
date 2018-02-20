@@ -9,6 +9,19 @@ exports[`components | Section render should match snapshot 1`] = `
         "maxWidth": 1200,
       }
     }
-  />
+  >
+    <div>
+      <h2>
+        The title
+      </h2>
+      &lt;p&gt;Some html&lt;/p&gt;
+    </div>
+    <div>
+      <img
+        alt="some alternative text"
+        src="/somepath/image.png"
+      />
+    </div>
+  </div>
 </section>
 `;
