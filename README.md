@@ -1,28 +1,64 @@
-# DgfipContractualization
+# France Connect + Api Particulier + Jeux de données disponibles et contractualisation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.2.
+# Présentation
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Contribuer au code
 
-## Code scaffolding
+Ce projet _front_ est basé sur [Next.js](https://github.com/zeit/next.js), il utilise [React](https://reactjs.org).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Pré-requis
 
-## Build
+* [Node.js](https://nodejs.org) version 6 ou supérieure
+* [yarn](https://yarnpkg.com)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Comment l'utiliser ?
 
-## Running unit tests
+[Cloner le repertoire](git@github.com:betagouv/api-particulier-courtier-front.git):
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Installation des dépendances
 
-## Running end-to-end tests
+```bash
+yarn
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+### Développement
 
-## Further help
+Afin de configurer le projet correctement, il est conseillé de créer un fichier `.env` avec les variables d’environnement nécessaires à l’application.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+`.env` permet de persister les variables d’environnement de développement dans un fichier plutôt que de les définir dans le shell, mais les deux fonctionnent. Cela fonctionne avec [dotenv](https://github.com/motdotla/dotenv) et [babel-plugin-dotenv-import](https://github.com/tusbar/babel-plugin-dotenv-import).
+
+Un fichier d’example existe : `.env.example`. Pour obtenir une configuration de base :
+
+```bash
+cp .env.example .env
+```
+
+Enfin, lancer le serveur de développement avec :
+
+```bash
+yarn dev
+```
+
+### Lancer les tests
+
+```bash
+yarn test
+```
+
+### Génération des bundles de production
+
+```bash
+yarn build
+```
+
+### Déployer sur gh-pages:
+
+```bash
+yarn deploy
+```
+-> WIP, deploy.sh
+
+## License
+
+MIT

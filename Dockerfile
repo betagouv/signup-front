@@ -7,4 +7,3 @@ RUN npm install -g @angular/cli
 WORKDIR /app
 ADD . /app
 CMD ng serve
-

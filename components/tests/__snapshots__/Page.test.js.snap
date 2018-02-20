@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | Page render should match snapshot 1`] = `
+Array [
+  <header>
+    <nav
+      className="nav"
+    >
+      <div
+        className="nav__container"
+      >
+        <a
+          className="nav__link"
+          href="index.html"
+        >
+          <img
+            alt="Accueil de particulier.api.data.gouv.fr"
+            className="nav__logo"
+            src="static/images/logo-api-particulier.png"
+          />
+        </a>
+        <ul
+          className="nav__links"
+        >
+          <li>
+            <a
+              href="/"
+              onClick={[Function]}
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/about"
+              onClick={[Function]}
+            >
+              About
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>,
+  <section>
+    <div
+      className="jsx-1157840685"
+      style={
+        Object {
+          "maxWidth": 1200,
+        }
+      }
+    >
+       
+       
+    </div>
+  </section>,
+  <footer
+    className="footer"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="footer__logo"
+      >
+        <img
+          alt="Logo Etalab"
+          src="/static/images/etalab.svg"
+        />
+        <ul
+          className="footer__social"
+        >
+          <li>
+            <a
+              href="https://twitter.com/etalab"
+              title="Twitter"
+            >
+              <img
+                alt="Twitter"
+                className="icon icon-twitter"
+                src="/static/images/social/twitter.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/etalab"
+              title="Github"
+            >
+              <img
+                alt="Github"
+                className="icon icon-github"
+                src="/static/images/social/github.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.facebook.com/etalab"
+              title="Facebook"
+            >
+              <img
+                alt="Facebook"
+                className="icon icon-facebook"
+                src="/static/images/social/facebook.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="mailto:contact@particulier.api.gouv.fr"
+              title="Nous écrire un mail"
+            >
+              <img
+                alt="Email"
+                className="icon icon-mail"
+                src="/static/images/social/email.svg"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
+      <ul
+        className="footer__links"
+      >
+        <li>
+          <h2>
+            template.data.gouv.fr
+          </h2>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/reference"
+          >
+            Données de référence
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/terms"
+          >
+            Conditions générales d‘utilisation
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/api"
+          >
+            API
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>,
+]
+`;
