@@ -72,7 +72,7 @@ exports[`components | Footer render should match snapshot 1`] = `
     >
       <li>
         <h2>
-          template.data.gouv.fr
+          particulier.api.gouv.fr
         </h2>
       </li>
       <li>

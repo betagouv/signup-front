@@ -24,21 +24,31 @@ Array [
         >
           <li>
             <a
-              href="/"
+              href="/about"
               onClick={[Function]}
             >
-              Home
+              A propos
             </a>
           </li>
           <li>
             <a
-              href="/about"
+              href="/contact"
               onClick={[Function]}
             >
-              About
+              Contactez-nous
             </a>
           </li>
         </ul>
+        <a
+          className="nav__link"
+          href="/"
+        >
+          <img
+            alt="Ma selection de jeux de données"
+            className="nav__logo"
+            src="../static/images/file-icon.svg"
+          />
+        </a>
       </div>
     </nav>
   </header>,

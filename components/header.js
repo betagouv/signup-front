@@ -12,6 +12,9 @@ const Header = () => (
           <li><Link href='/about'><a>A propos</a></Link></li>
           <li><Link href='/contact'><a>Contactez-nous</a></Link></li>
         </ul>
+        <a className='nav__link' href='/'>
+          <img className='nav__logo' src='../static/images/file-icon.svg' alt='Ma selection de jeux de données' />
+        </a>
       </div>
     </nav>
   </header>

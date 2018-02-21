@@ -38,6 +38,16 @@ exports[`components | Header render should match snapshot 1`] = `
           </a>
         </li>
       </ul>
+      <a
+        className="nav__link"
+        href="/"
+      >
+        <img
+          alt="Ma selection de jeux de données"
+          className="nav__logo"
+          src="../static/images/file-icon.svg"
+        />
+      </a>
     </div>
   </nav>
 </header>
