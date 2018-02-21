@@ -11,7 +11,7 @@ Array [
       >
         <a
           className="nav__link"
-          href="index.html"
+          href="/"
         >
           <img
             alt="Accueil de particulier.api.data.gouv.fr"
@@ -42,19 +42,9 @@ Array [
       </div>
     </nav>
   </header>,
-  <section>
-    <div
-      className="jsx-1157840685"
-      style={
-        Object {
-          "maxWidth": 1200,
-        }
-      }
-    >
-       
-       
-    </div>
-  </section>,
+  <div>
+    &lt;p&gt;Some html&lt;/p&gt;
+  </div>,
   <footer
     className="footer"
   >
@@ -126,7 +116,7 @@ Array [
       >
         <li>
           <h2>
-            template.data.gouv.fr
+            particulier.api.gouv.fr
           </h2>
         </li>
         <li>

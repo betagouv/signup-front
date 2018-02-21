@@ -1,12 +1,9 @@
-import ReactTestRenderer from 'react-test-renderer'
-import Page from '../page'
 
-describe('components | Page', () => {
+import ReactTestRenderer from 'react-test-renderer'
+
+describe('pages | about', () => {
   describe('render', () => {
-    const props = {
-      children: '<p>Some html</p>'
-    }
-    const renderer = ReactTestRenderer.create(<Page {...props} />)
+    const renderer = ReactTestRenderer.create(<about />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })
