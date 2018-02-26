@@ -6,14 +6,15 @@ const Header = () => (
     <nav className='nav'>
       <div className='nav__container'>
         <a className='nav__link' href='/'>
-          <img className='nav__logo' src='static/images/logo-api-particulier.png' alt='Accueil de particulier.api.data.gouv.fr' />
+          <img className='nav__logo' src='/static/images/logo-api-particulier.png' alt='Accueil de particulier.api.data.gouv.fr' />
         </a>
         <ul className='nav__links'>
           <li><Link href='/about'><a>A propos</a></Link></li>
+          <li><Link href='/documentation'><a>Documentation technique</a></Link></li>
           <li><Link href='/contact'><a>Contactez-nous</a></Link></li>
         </ul>
         <a className='nav__link' href='/'>
-          <img className='nav__logo' src='../static/images/file-icon.svg' alt='Ma selection de jeux de données' />
+          <img className='nav__logo' src='../static/images/file-icon.svg' alt='Ma sélection de jeux de données' />
         </a>
       </div>
     </nav>
