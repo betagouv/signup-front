@@ -24,4 +24,4 @@ exports[`components | Section render should match snapshot 1`] = `
     </div>
   </div>
 </section>
-`;
+`

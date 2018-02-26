@@ -16,7 +16,7 @@ Array [
           <img
             alt="Accueil de particulier.api.data.gouv.fr"
             className="nav__logo"
-            src="static/images/logo-api-particulier.png"
+            src="/static/images/logo-api-particulier.png"
           />
         </a>
         <ul
@@ -24,21 +24,39 @@ Array [
         >
           <li>
             <a
-              href="/"
+              href="/about"
               onClick={[Function]}
             >
-              Home
+              A propos
             </a>
           </li>
           <li>
             <a
-              href="/about"
+              href="/documentation"
               onClick={[Function]}
             >
-              About
+              Documentation technique
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              onClick={[Function]}
+            >
+              Contactez-nous
             </a>
           </li>
         </ul>
+        <a
+          className="nav__link"
+          href="/"
+        >
+          <img
+            alt="Ma sélection de jeux de données"
+            className="nav__logo"
+            src="../static/images/file-icon.svg"
+          />
+        </a>
       </div>
     </nav>
   </header>,

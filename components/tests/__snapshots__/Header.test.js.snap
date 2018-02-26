@@ -15,7 +15,7 @@ exports[`components | Header render should match snapshot 1`] = `
         <img
           alt="Accueil de particulier.api.data.gouv.fr"
           className="nav__logo"
-          src="static/images/logo-api-particulier.png"
+          src="/static/images/logo-api-particulier.png"
         />
       </a>
       <ul
@@ -31,6 +31,14 @@ exports[`components | Header render should match snapshot 1`] = `
         </li>
         <li>
           <a
+            href="/documentation"
+            onClick={[Function]}
+          >
+            Documentation technique
+          </a>
+        </li>
+        <li>
+          <a
             href="/contact"
             onClick={[Function]}
           >
@@ -38,6 +46,16 @@ exports[`components | Header render should match snapshot 1`] = `
           </a>
         </li>
       </ul>
+      <a
+        className="nav__link"
+        href="/"
+      >
+        <img
+          alt="Ma sélection de jeux de données"
+          className="nav__logo"
+          src="../static/images/file-icon.svg"
+        />
+      </a>
     </div>
   </nav>
 </header>

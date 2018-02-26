@@ -13,7 +13,7 @@ const Footer = () => (
         </ul>
       </div>
       <ul className='footer__links'>
-        <li><h2>template.data.gouv.fr</h2></li>
+        <li><h2>particulier.api.gouv.fr</h2></li>
         <li><a href='https://www.data.gouv.fr/reference'>Données de référence</a></li>
         <li><a href='https://www.data.gouv.fr/terms'>Conditions générales d&lsquo;utilisation</a></li>
         <li><a href='https://www.data.gouv.fr/api'>API</a></li>
