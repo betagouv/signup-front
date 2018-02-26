@@ -1,0 +1,18 @@
+{
+	"fournisseur_short_name": "DGFIP",
+	"fournisseur_long_name": "Direction Générale des Finances Publiques",
+	"fournisseur_description": "Lorem Ipsum",
+
+  "availables_data_sets": [
+    {
+      "name": "Avis d‘imposition",
+      "description": "Contient le revenu fiscal de référence, le nombre de part et les déclarants",
+      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
+    },
+    {
+      "name": "Adresse fiscale",
+      "description": "Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS",
+      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale"
+    }
+  ]
+}

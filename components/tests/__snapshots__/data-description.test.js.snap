@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | DataDescription render should match snapshot 1`] = `
+<ul>
+  <li>
+    <h3 />
+    <p />
+    <a
+      href={undefined}
+      onClick={[Function]}
+    >
+      Essayez-moi !
+    </a>
+    <a
+      href="/contractualisation"
+      onClick={[Function]}
+    >
+      Ajouter à ma sélection de jeux de données !
+    </a>
+  </li>
+</ul>
+`;
