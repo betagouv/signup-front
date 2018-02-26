@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => (
   <footer className='footer'>
     <div className='container'>
-      <div className='footer__logo' width='200px'>
+      <div className='footer__logo'>
         <a href='https://api.gouv.fr/'>
           <img src='/static/images/logo-api.gouv.fr-white.png' alt='Logo Beta Gouv' />
         </a>
