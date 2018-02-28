@@ -6,17 +6,20 @@ exports[`components | DataDescription render should match snapshot 1`] = `
     <h3 />
     <p />
     <a
+      className="button"
       href={undefined}
       onClick={[Function]}
     >
       Essayez-moi !
     </a>
-    <a
-      href="/contractualisation"
-      onClick={[Function]}
+    <button
+      className="button"
+      id="submit"
+      name="add-to-AddToSelectionButton"
+      type="submit"
     >
-      Ajouter à ma sélection de jeux de données !
-    </a>
+      Ajouter à ma sélection
+    </button>
   </li>
 </ul>
 `;

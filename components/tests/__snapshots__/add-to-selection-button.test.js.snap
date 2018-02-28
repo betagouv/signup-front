@@ -1,10 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | AddToSelectionButton render should match snapshot 1`] = `
-<a
-  href="/contractualisation"
-  onClick={[Function]}
+<button
+  className="button"
+  id="submit"
+  name="add-to-AddToSelectionButton"
+  type="submit"
 >
-  Ajouter à ma sélection de jeux de données !
-</a>
+  Ajouter à ma sélection
+</button>
 `;

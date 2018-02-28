@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 
 const TryMeButton = ({url}) => (
-  <Link href={url}><a>Essayez-moi !</a></Link>
+  <Link href={url}><a className='button'>Essayez-moi !</a></Link>
 )
 
 TryMeButton.propTypes = {
