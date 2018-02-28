@@ -71,17 +71,22 @@ Array [
     >
       <div
         className="footer__logo"
+        width="200px"
       >
-        <img
-          alt="Logo Etalab"
-          src="/static/images/etalab.svg"
-        />
+        <a
+          href="https://api.gouv.fr/"
+        >
+          <img
+            alt="Logo Beta Gouv"
+            src="/static/images/logo-api.gouv.fr-white.png"
+          />
+        </a>
         <ul
           className="footer__social"
         >
           <li>
             <a
-              href="https://twitter.com/etalab"
+              href="https://twitter.com/BetaGouv"
               title="Twitter"
             >
               <img
@@ -93,25 +98,13 @@ Array [
           </li>
           <li>
             <a
-              href="https://github.com/etalab"
+              href="https://github.com/betagouv"
               title="Github"
             >
               <img
                 alt="Github"
                 className="icon icon-github"
                 src="/static/images/social/github.svg"
-              />
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.facebook.com/etalab"
-              title="Facebook"
-            >
-              <img
-                alt="Facebook"
-                className="icon icon-facebook"
-                src="/static/images/social/facebook.svg"
               />
             </a>
           </li>
