@@ -1,13 +1,10 @@
 import ReactTestRenderer from 'react-test-renderer'
-import DataDescription from '../data-description'
+import DataSet from '../data-set'
 import DGFIP_DATA_SET from '../../mock/data/dgfip'
 
-describe('components | DataDescription', () => {
+describe('components | DataSet', () => {
   describe('render', () => {
-    const props = {
-      dataset: DGFIP_DATA_SET
-    }
-    const renderer = ReactTestRenderer.create(<DataDescription {...props} />)
+    const renderer = ReactTestRenderer.create(<DataSet props={DGFIP_DATA_SET} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

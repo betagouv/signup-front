@@ -5,14 +5,26 @@
 
   "availables_data_sets": [
     {
+      "key": "avis_impos",
       "name": "Avis d‘imposition",
       "description": "Contient le revenu fiscal de référence, le nombre de part et les déclarants",
-      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
+      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen",
+      "services": [
+        {"name": "Mes aides",
+        "logo_url": "./static/images/services-providers/mes-aides-logo.png"},
+        {"name": "Anah",
+        "logo_url": "./static/images/services-providers/anah-logo.png"}
+      ]
     },
     {
+      "key": "adresse_fiscale",
       "name": "Adresse fiscale",
       "description": "Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS",
-      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale"
+      "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale",
+      "services": [
+        {"name": "Mes aides",
+        "logo_url": "./static/images/services-providers/mes-aides-logo.png"}
+      ]
     }
   ]
 }

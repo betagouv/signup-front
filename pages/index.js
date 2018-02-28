@@ -2,7 +2,7 @@ import React from 'react'
 import Page from '../components/page'
 import Section from '../components/section'
 import Search from '../components/search'
-import DataDescription from '../components/data-description'
+import DataSet from '../components/data-set'
 import DGFIP_DATA_SET from '../mock/data/dgfip'
 import CAF_DATA_SET from '../mock/data/caf'
 
@@ -18,14 +18,11 @@ const Index = () => (
       <div className='row'>
         <div className='col-md-6'>
           <h2>{DGFIP_DATA_SET.fournisseur_long_name}</h2>
-          <DataDescription dataset={DGFIP_DATA_SET.availables_data_sets[0]} />
-          <DataDescription dataset={DGFIP_DATA_SET.availables_data_sets[1]} />
+          <DataSet props={DGFIP_DATA_SET} />
         </div>
         <div className='col-md-6'>
           <h2>{CAF_DATA_SET.fournisseur_long_name}</h2>
-          <DataDescription dataset={CAF_DATA_SET.availables_data_sets[0]} />
-          <DataDescription dataset={CAF_DATA_SET.availables_data_sets[1]} />
-          <DataDescription dataset={CAF_DATA_SET.availables_data_sets[2]} />
+          <DataSet props={CAF_DATA_SET} />
         </div>
       </div>
     </Section>

@@ -9,7 +9,6 @@ exports[`components | Footer render should match snapshot 1`] = `
   >
     <div
       className="footer__logo"
-      width="200px"
     >
       <a
         href="https://api.gouv.fr/"

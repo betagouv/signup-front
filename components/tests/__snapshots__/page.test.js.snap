@@ -71,7 +71,6 @@ Array [
     >
       <div
         className="footer__logo"
-        width="200px"
       >
         <a
           href="https://api.gouv.fr/"
