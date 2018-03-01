@@ -10,9 +10,10 @@ const Page = ({title, children}) => [
     <meta charSet='utf-8' />
     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
+    <link href='/static/styles/custom.css' rel='stylesheet' />
   </Head>,
   <Header key='second' />,
-  <div key='three'>{title}{children}</div>,
+  <div key='three' className='container'>{title}{children}</div>,
   <Footer key='four' />
 ]
 

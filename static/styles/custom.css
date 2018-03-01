@@ -1,0 +1,55 @@
+.container {
+	padding-left: 16px;
+	padding-right: 16px;
+	max-width: 1072px;
+	margin: 0 auto;
+}
+
+.dataset-description {
+	background-color: rgb(255, 255, 255);
+	box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 5px;
+	margin-bottom: 20px;
+	border-radius: 2px;
+	overflow: hidden;
+}
+
+$services-breakpoint: 950px;
+
+.services {
+	@extend %horizontal-list;
+	justify-content: space-between;
+	width: 100%;
+
+	&:first-of-type {
+		margin-bottom: 45px;
+	}
+
+	@media (max-width: $services-breakpoint) {
+		justify-content: space-around;
+
+		&:first-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.service {
+	@extend %horizontal-list-item;
+	width: 170px;
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	@media (max-width: $services-breakpoint) {
+		margin: 0 15px 15px;
+	}
+}
+
+.service-image {
+	width: 170px;
+}
+
+.grey {
+	background-color: rgb(238, 238, 238);
+}

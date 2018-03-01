@@ -5,8 +5,8 @@ import AddToSelectionButton from './add-to-selection-button'
 import Services from './services'
 
 const DataSetDescription = ({dataset}) => (
-  <div>
-    <h3>{dataset.name}</h3>
+  <div className='dataset-description'>
+    <h3 className='grey'>{dataset.name}</h3>
     <p>{dataset.description}</p>
     <h4>Qui utilise ces données ?</h4>
     <Services lists={dataset.services} />
