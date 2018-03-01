@@ -9,7 +9,7 @@ const DataSetDescription = ({dataset}) => (
     <li>
       <h3>{dataset.name}</h3>
       <p>{dataset.description}</p>
-      <h3>Qui utilise ces données ?</h3>
+      <h4>Qui utilise ces données ?</h4>
       <Services lists={dataset.services} />
       <TryMeButton url={dataset.url} />
       <AddToSelectionButton />

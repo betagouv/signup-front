@@ -10,9 +10,9 @@ Array [
       <p>
         Contient le revenu fiscal de référence, le nombre de part et les déclarants
       </p>
-      <h3>
+      <h4>
         Qui utilise ces données ?
-      </h3>
+      </h4>
       <div>
         <p>
           Mes aides
@@ -56,9 +56,9 @@ Array [
       <p>
         Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
       </p>
-      <h3>
+      <h4>
         Qui utilise ces données ?
-      </h3>
+      </h4>
       <div>
         <p>
           Mes aides

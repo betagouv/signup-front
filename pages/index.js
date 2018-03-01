@@ -13,18 +13,12 @@ const Index = () => (
       <h3 className='hero__white-background'>Simplifiez les démarches de vos usagers, ne demandez plus de justificatifs</h3>
     </div>
     <Search />
-    <Section>
-      <h1>Catalogue des données fournies par API Particulier</h1>
-      <div className='row'>
-        <div className='col-md-6'>
-          <h2>{DGFIP_DATA_SET.fournisseur_long_name}</h2>
-          <DataSet data={DGFIP_DATA_SET} />
-        </div>
-        <div className='col-md-6'>
-          <h2>{CAF_DATA_SET.fournisseur_long_name}</h2>
-          <DataSet data={CAF_DATA_SET} />
-        </div>
-      </div>
+    <h1 className='hero__container'>Catalogue des données fournies par API Particulier</h1>
+    <Section title={DGFIP_DATA_SET.provider_long_name}>
+      <DataSet data={DGFIP_DATA_SET} />
+    </Section>
+    <Section title={CAF_DATA_SET.provider_long_name}>
+      <DataSet data={CAF_DATA_SET} />
     </Section>
   </Page>
 )

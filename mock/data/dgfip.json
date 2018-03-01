@@ -1,7 +1,7 @@
 {
-	"fournisseur_short_name": "DGFIP",
-	"fournisseur_long_name": "Direction Générale des Finances Publiques",
-	"fournisseur_description": "Lorem Ipsum",
+	"provider_short_name": "DGFIP",
+	"provider_long_name": "Direction Générale des Finances Publiques",
+	"provider_description": "Lorem Ipsum",
 
   "availables_data_sets": [
     {

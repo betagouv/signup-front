@@ -1,7 +1,7 @@
 {
-	"fournisseur_short_name": "CAF",
-	"fournisseur_long_name": "Caisse d‘Allocation Familiales",
-	"fournisseur_description": "Lorem Ipsum",
+	"provider_short_name": "CAF",
+	"provider_long_name": "Caisse d‘Allocation Familiales",
+	"provider_description": "Lorem Ipsum",
 
   "availables_data_sets": [
     {

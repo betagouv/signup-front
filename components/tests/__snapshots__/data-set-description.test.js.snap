@@ -9,9 +9,9 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
     <p>
       Contient le revenu fiscal de référence, le nombre de part et les déclarants
     </p>
-    <h3>
+    <h4>
       Qui utilise ces données ?
-    </h3>
+    </h4>
     <div>
       <p>
         Mes aides
