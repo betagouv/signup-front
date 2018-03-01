@@ -3,7 +3,7 @@ import AddToSelectionButton from '../add-to-selection-button'
 
 describe('components | AddToSelectionButton', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<AddToSelectionButton />)
+    const renderer = ReactTestRenderer.create(<AddToSelectionButton buttonKey="buttonKey" />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

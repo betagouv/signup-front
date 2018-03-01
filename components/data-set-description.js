@@ -5,16 +5,14 @@ import AddToSelectionButton from './add-to-selection-button'
 import Services from './services'
 
 const DataSetDescription = ({dataset}) => (
-  <ul>
-    <li>
-      <h3>{dataset.name}</h3>
-      <p>{dataset.description}</p>
-      <h4>Qui utilise ces données ?</h4>
-      <Services lists={dataset.services} />
-      <TryMeButton url={dataset.url} />
-      <AddToSelectionButton />
-    </li>
-  </ul>
+  <div>
+    <h3>{dataset.name}</h3>
+    <p>{dataset.description}</p>
+    <h4>Qui utilise ces données ?</h4>
+    <Services lists={dataset.services} />
+    <TryMeButton url={dataset.url} />
+    <AddToSelectionButton buttonKey={dataset.key} />
+  </div>
 )
 
 DataSetDescription.propTypes = {
