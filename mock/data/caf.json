@@ -1,0 +1,38 @@
+{
+	"provider_short_name": "CAF",
+	"provider_long_name": "Caisse d‘Allocation Familiales",
+	"provider_description": "Lorem Ipsum",
+
+  "availables_data_sets": [
+    {
+      "key": "quotient_familial",
+      "name": "Quotient familial",
+      "description": "Contient le quotient familial du mois précédent",
+      "url": "https://particulier.api.gouv.fr/tech/#caisse-allocations-familiales",
+      "services": [
+        {"name": "Mes aides",
+        "logo_url": "./static/images/services-providers/mes-aides-logo.png"}
+      ]
+    },
+    {
+      "key": "composition_familiale",
+      "name": "Composition familiale",
+      "description": "Contient les parents et les enfants de la familles déclaré à la CAF",
+      "url": "https://particulier.api.gouv.fr/tech/#caisse-allocations-familiales",
+      "services": [
+        {"name": "Mes aides",
+        "logo_url": "./static/images/services-providers/mes-aides-logo.png"}
+      ]
+    },
+    {
+      "key": "adresse",
+      "name": "Adresse",
+      "description": "Contient l‘adresse déclarée à la CAF",
+      "url": "https://particulier.api.gouv.fr/tech/#caisse-allocations-familiales",
+      "services": [
+        {"name": "Mes aides",
+        "logo_url": "./static/images/services-providers/mes-aides-logo.png"}
+      ]
+    }
+  ]
+}

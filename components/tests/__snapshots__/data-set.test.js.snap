@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | DataSet render should match snapshot 1`] = `
+Array [
+  <div>
+    <h3>
+      Avis d‘imposition
+    </h3>
+    <p>
+      Contient le revenu fiscal de référence, le nombre de part et les déclarants
+    </p>
+    <h4>
+      Qui utilise ces données ?
+    </h4>
+    <div>
+      <p>
+        Mes aides
+      </p>
+      <img
+        alt="Mes aides logo"
+        src="./static/images/services-providers/mes-aides-logo.png"
+      />
+    </div>
+    <div>
+      <p>
+        Anah
+      </p>
+      <img
+        alt="Anah logo"
+        src="./static/images/services-providers/anah-logo.png"
+      />
+    </div>
+    <a
+      className="button"
+      href="https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
+      onClick={[Function]}
+    >
+      Essayez-moi !
+    </a>
+    <button
+      className="button"
+      id="avis_impos_submit_button"
+      name="avis_impos_button"
+      type="submit"
+    >
+      Ajouter à ma sélection
+    </button>
+  </div>,
+  <div>
+    <h3>
+      Adresse fiscale
+    </h3>
+    <p>
+      Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
+    </p>
+    <h4>
+      Qui utilise ces données ?
+    </h4>
+    <div>
+      <p>
+        Mes aides
+      </p>
+      <img
+        alt="Mes aides logo"
+        src="./static/images/services-providers/mes-aides-logo.png"
+      />
+    </div>
+    <a
+      className="button"
+      href="https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale"
+      onClick={[Function]}
+    >
+      Essayez-moi !
+    </a>
+    <button
+      className="button"
+      id="adresse_fiscale_submit_button"
+      name="adresse_fiscale_button"
+      type="submit"
+    >
+      Ajouter à ma sélection
+    </button>
+  </div>,
+]
+`;
