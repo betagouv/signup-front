@@ -4,10 +4,7 @@ import DataSetDescription from '../data-set-description'
 
 describe('components | DataSetDescription', () => {
   describe('render', () => {
-    const props = {
-      dataset: DGFIP_DATA_SET
-    }
-    const renderer = ReactTestRenderer.create(<DataSetDescription {...props} />)
+    const renderer = ReactTestRenderer.create(<DataSetDescription dataset={DGFIP_DATA_SET.availables_data_sets[0]} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })
