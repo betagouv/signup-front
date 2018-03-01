@@ -18,11 +18,11 @@ const Index = () => (
       <div className='row'>
         <div className='col-md-6'>
           <h2>{DGFIP_DATA_SET.fournisseur_long_name}</h2>
-          <DataSet props={DGFIP_DATA_SET} />
+          <DataSet data={DGFIP_DATA_SET} />
         </div>
         <div className='col-md-6'>
           <h2>{CAF_DATA_SET.fournisseur_long_name}</h2>
-          <DataSet props={CAF_DATA_SET} />
+          <DataSet data={CAF_DATA_SET} />
         </div>
       </div>
     </Section>
