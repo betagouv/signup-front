@@ -8,21 +8,23 @@ import CAF_DATA_SET from '../mock/data/caf'
 
 const Index = () => (
   <Page>
-    <div className='hero__container'>
-      <h1 className='hero__white-background'>API Particulier</h1>
-      <h3 className='hero__white-background'>Simplifiez les démarches de vos usagers, ne demandez plus de justificatifs</h3>
-      <Search />
-    </div>
+    <Section className='hero'>
+      <div className='hero__container'>
+        <h1 className='hero__white-background'>API Particulier</h1>
+        <p className='hero__white-background'>Simplifiez les démarches de vos usagers, ne demandez plus de justificatifs</p>
+        <Search />
+      </div>
+    </Section>
     <div>
       <h1 className='hero__white-background'>Catalogue des données fournies par API Particulier</h1>
       <div className='column'>
-        <h2>{DGFIP_DATA_SET.provider_long_name}</h2>
+        <h2 className='hero__white-background'>{DGFIP_DATA_SET.provider_long_name}</h2>
         <div className='row'>
           <DataSet data={DGFIP_DATA_SET} />
         </div>
       </div>
       <div className='column'>
-        <h2>{CAF_DATA_SET.provider_long_name}</h2>
+        <h2 className='hero__white-background'>{CAF_DATA_SET.provider_long_name}</h2>
         <div className='row'>
           <DataSet data={CAF_DATA_SET} />
         </div>

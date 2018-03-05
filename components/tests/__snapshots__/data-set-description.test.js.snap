@@ -9,6 +9,9 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
   >
     Avis d‘imposition
   </h3>
+  <p
+    className="tag-darker-grey"
+  />
   <p>
     Contient le revenu fiscal de référence, le nombre de part et les déclarants
   </p>

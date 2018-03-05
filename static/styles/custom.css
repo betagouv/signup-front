@@ -54,3 +54,12 @@ $services-breakpoint: 950px;
 .grey {
 	background-color: rgb(238, 238, 238);
 }
+
+.tag-darker-grey {
+  background: #53657d;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  margin-right: 0.5em;
+  color: #fff;
+}

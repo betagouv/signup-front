@@ -10,6 +10,11 @@ Array [
     >
       Avis d‘imposition
     </h3>
+    <p
+      className="tag-darker-grey"
+    >
+      DGFIP
+    </p>
     <p>
       Contient le revenu fiscal de référence, le nombre de part et les déclarants
     </p>
@@ -78,6 +83,11 @@ Array [
     >
       Adresse fiscale
     </h3>
+    <p
+      className="tag-darker-grey"
+    >
+      DGFIP
+    </p>
     <p>
       Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
     </p>
