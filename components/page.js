@@ -13,7 +13,7 @@ const Page = ({title, children}) => [
     <link href='/static/styles/custom.css' rel='stylesheet' />
   </Head>,
   <Header key='second' />,
-  <div key='three' className='container'>{title}{children}</div>,
+  <div key='three'>{title}{children}</div>,
   <Footer key='four' />
 ]
 

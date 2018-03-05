@@ -1,27 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | Section render should match snapshot 1`] = `
-<section>
-  <div
-    className="jsx-1157840685"
-    style={
-      Object {
-        "maxWidth": 1200,
-      }
-    }
-  >
-    <div>
-      <h2>
-        The title
-      </h2>
-      &lt;p&gt;Some html&lt;/p&gt;
-    </div>
-    <div>
-      <img
-        alt="some alternative text"
-        src="/somepath/image.png"
-      />
-    </div>
+<section
+  className="className"
+>
+  <div>
+    <h2>
+      The title
+    </h2>
+    &lt;p&gt;Some html&lt;/p&gt;
+  </div>
+  <div>
+    <img
+      alt="some alternative text"
+      src="/somepath/image.png"
+    />
   </div>
 </section>
-`
+`;
