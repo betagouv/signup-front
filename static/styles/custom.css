@@ -63,3 +63,13 @@ $services-breakpoint: 950px;
   margin-right: 0.5em;
   color: #fff;
 }
+
+.table-fc th {
+  border-bottom: 0.5px solid #53657d;
+  padding: 10px 13px;
+}
+
+.table-fc td {
+  border-bottom: 0.5px solid #53657d;
+  padding: 10px 13px;
+}

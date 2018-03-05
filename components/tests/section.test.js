@@ -24,6 +24,7 @@ describe('components | Section', () => {
 
   describe('Container', () => {
     const props = {
+      className: 'A className',
       title: 'The title',
       imageSrc: '/somepath/image.png',
       altText: 'some alternative text',
@@ -36,7 +37,7 @@ describe('components | Section', () => {
           .find('div')
           .at(0)
           .props().children,
-      ).toEqual([<h2>The title</h2>, '<p>Some html</p>'])
+      ).toEqual([<h2 className="section__title">The title</h2>, '<p>Some html</p>'])
     })
     it('should have proper image with alternative texte', () => {
       const wrapper = shallow(<Section {...props} />)

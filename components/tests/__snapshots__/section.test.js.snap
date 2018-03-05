@@ -5,7 +5,9 @@ exports[`components | Section render should match snapshot 1`] = `
   className="className"
 >
   <div>
-    <h2>
+    <h2
+      className="section__title"
+    >
       The title
     </h2>
     &lt;p&gt;Some html&lt;/p&gt;
