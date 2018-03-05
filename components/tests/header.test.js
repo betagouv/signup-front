@@ -1,4 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
+require('../../lib/tests/utils')
 import Header from '../header'
 
 describe('components | Header', () => {
