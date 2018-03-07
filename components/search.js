@@ -12,7 +12,6 @@ const Search = () => (
       </div>
     </div>
 
-
     <style jsx>{`
       label {
         color: #fff;

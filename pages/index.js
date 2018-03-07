@@ -25,18 +25,18 @@ const Index = () => (
       `}</style>
     </div>
 
-    <Section className="section-dark">
+    <Section className='section-dark'>
       <Search />
     </Section>
 
-    <Section className="section-grey">
+    <Section className='section-grey'>
       <div className='container'>
         <h2 className='section__title'>Données issues de la <abbr title={DGFIP_DATA_SET.provider_long_name}>{DGFIP_DATA_SET.provider_short_name}</abbr></h2>
         <DataSet data={DGFIP_DATA_SET} />
       </div>
     </Section>
 
-    <Section className="section-grey">
+    <Section className='section-grey'>
       <div className='container'>
         <h2 className='section__title'>Données issues de la <abbr title={CAF_DATA_SET.provider_long_name}>{CAF_DATA_SET.provider_short_name}</abbr></h2>
         <DataSet data={CAF_DATA_SET} />

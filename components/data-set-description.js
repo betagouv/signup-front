@@ -8,7 +8,7 @@ const DataSetDescription = ({dataset, provider}) => (
   <div className='panel'>
     <div className='panel__header'>
       <h3>{dataset.name}</h3>
-      <small className="panel__header-extra">{provider}</small>
+      <small className='panel__header-extra'>{provider}</small>
     </div>
     <div>
       <p>{dataset.description}</p>
