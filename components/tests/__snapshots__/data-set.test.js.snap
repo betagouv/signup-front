@@ -2,33 +2,62 @@
 
 exports[`components | DataSet render should match snapshot 1`] = `
 Array [
-  <div>
-    <h3>
+  <div
+    className="dataset-description"
+  >
+    <h3
+      className="grey"
+    >
       Avis d‘imposition
     </h3>
+    <p
+      className="tag-darker-grey"
+    >
+      DGFIP
+    </p>
     <p>
       Contient le revenu fiscal de référence, le nombre de part et les déclarants
     </p>
     <h4>
       Qui utilise ces données ?
     </h4>
-    <div>
-      <p>
-        Mes aides
-      </p>
-      <img
-        alt="Mes aides logo"
-        src="./static/images/services-providers/mes-aides-logo.png"
-      />
+    <div
+      className="container"
+    >
+      <div>
+        <ul
+          className="services"
+        >
+          <li
+            className="service"
+          >
+            <img
+              alt="Mes aides logo"
+              className="service-image"
+              src="./static/images/services-providers/mes-aides-logo.png"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
-    <div>
-      <p>
-        Anah
-      </p>
-      <img
-        alt="Anah logo"
-        src="./static/images/services-providers/anah-logo.png"
-      />
+    <div
+      className="container"
+    >
+      <div>
+        <ul
+          className="services"
+        >
+          <li
+            className="service"
+          >
+            <img
+              alt="Anah logo"
+              className="service-image"
+              src="./static/images/services-providers/anah-logo.png"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
     <a
       className="button"
@@ -46,24 +75,43 @@ Array [
       Ajouter à ma sélection
     </button>
   </div>,
-  <div>
-    <h3>
+  <div
+    className="dataset-description"
+  >
+    <h3
+      className="grey"
+    >
       Adresse fiscale
     </h3>
+    <p
+      className="tag-darker-grey"
+    >
+      DGFIP
+    </p>
     <p>
       Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
     </p>
     <h4>
       Qui utilise ces données ?
     </h4>
-    <div>
-      <p>
-        Mes aides
-      </p>
-      <img
-        alt="Mes aides logo"
-        src="./static/images/services-providers/mes-aides-logo.png"
-      />
+    <div
+      className="container"
+    >
+      <div>
+        <ul
+          className="services"
+        >
+          <li
+            className="service"
+          >
+            <img
+              alt="Mes aides logo"
+              className="service-image"
+              src="./static/images/services-providers/mes-aides-logo.png"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
     <a
       className="button"

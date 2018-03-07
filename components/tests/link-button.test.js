@@ -1,12 +1,13 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Container from '../container'
+import LinkButton from '../try-me-button'
 
-describe('components | Container', () => {
+describe('components | LinkButton', () => {
   describe('render', () => {
     const props = {
-      children: '<p>Some html</p>'
+      url: 'http://fakeurl.com',
+      text: 'fake text'
     }
-    const renderer = ReactTestRenderer.create(<Container {...props} />)
+    const renderer = ReactTestRenderer.create(<LinkButton {...props} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

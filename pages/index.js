@@ -9,16 +9,38 @@ import CAF_DATA_SET from '../mock/data/caf'
 const Index = () => (
   <Page>
     <div className='hero__container'>
-      <h1 className='hero__white-background'>API Particulier</h1>
-      <h3 className='hero__white-background'>Simplifiez les démarches de vos usagers, ne demandez plus de justificatifs</h3>
+      <h1 className='hero__white-background'>Accélérer l’ouverture des données personnelles et leur réutilisation </h1>
+      <p className='hero__white-background'>Automatisez vos demandes de pièces justificatives pour simplifier vos démarches</p>
+
+      <style jsx>{`
+        div {
+          background: #45adc5;
+          background: linear-gradient(90deg,#a4cfcd 0%,#45adc5 25%,#265c9f);
+        }
+
+        .hero__container {
+          padding-top: 5em;
+          padding-bottom: 5em;
+        }
+      `}</style>
     </div>
-    <Search />
-    <h1 className='hero__container'>Catalogue des données fournies par API Particulier</h1>
-    <Section title={DGFIP_DATA_SET.provider_long_name}>
-      <DataSet data={DGFIP_DATA_SET} />
+
+    <Section className='section-dark'>
+      <Search />
     </Section>
-    <Section title={CAF_DATA_SET.provider_long_name}>
-      <DataSet data={CAF_DATA_SET} />
+
+    <Section className='section-grey'>
+      <div className='container'>
+        <h2 className='section__title'>Données issues de la <abbr title={DGFIP_DATA_SET.provider_long_name}>{DGFIP_DATA_SET.provider_short_name}</abbr></h2>
+        <DataSet data={DGFIP_DATA_SET} />
+      </div>
+    </Section>
+
+    <Section className='section-grey'>
+      <div className='container'>
+        <h2 className='section__title'>Données issues de la <abbr title={CAF_DATA_SET.provider_long_name}>{CAF_DATA_SET.provider_short_name}</abbr></h2>
+        <DataSet data={CAF_DATA_SET} />
+      </div>
     </Section>
   </Page>
 )

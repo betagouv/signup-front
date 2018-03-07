@@ -4,19 +4,27 @@ import TryMeButton from './try-me-button'
 import AddToSelectionButton from './add-to-selection-button'
 import Services from './services'
 
-const DataSetDescription = ({dataset}) => (
-  <div>
-    <h3>{dataset.name}</h3>
-    <p>{dataset.description}</p>
-    <h4>Qui utilise ces données ?</h4>
-    <Services lists={dataset.services} />
-    <TryMeButton url={dataset.url} />
-    <AddToSelectionButton buttonKey={dataset.key} />
+const DataSetDescription = ({dataset, provider}) => (
+  <div className='panel'>
+    <div className='panel__header'>
+      <h3>{dataset.name}</h3>
+      <small className='panel__header-extra'>{provider}</small>
+    </div>
+    <div>
+      <p>{dataset.description}</p>
+      <Services lists={dataset.services} />
+    </div>
+
+    <div className='panel__actions'>
+      <TryMeButton url={dataset.url} />
+      <AddToSelectionButton buttonKey={dataset.key} />
+    </div>
   </div>
 )
 
 DataSetDescription.propTypes = {
-  dataset: PropTypes.object.isRequired
+  dataset: PropTypes.object.isRequired,
+  provider: PropTypes.string.isRequired
 }
 
 export default DataSetDescription

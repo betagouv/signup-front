@@ -1,0 +1,89 @@
+.container {
+	padding-left: 16px;
+	padding-right: 16px;
+	max-width: 1072px;
+	margin: 0 auto;
+}
+
+$services-breakpoint: 950px;
+
+.services {
+	@extend %horizontal-list;
+	justify-content: space-between;
+	width: 100%;
+
+	&:first-of-type {
+		margin-bottom: 45px;
+	}
+
+	@media (max-width: $services-breakpoint) {
+		justify-content: space-around;
+
+		&:first-of-type {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.service {
+	@extend %horizontal-list-item;
+	width: 170px;
+
+	&:hover {
+		opacity: 0.6;
+	}
+
+	@media (max-width: $services-breakpoint) {
+		margin: 0 15px 15px;
+	}
+}
+
+.service-image {
+	width: 170px;
+}
+
+.tag-darker-grey {
+  background: #53657d;
+  border-radius: 3px;
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  margin-right: 0.5em;
+  color: #fff;
+}
+
+.table-fc th {
+  border-bottom: 0.5px solid #53657d;
+  padding: 10px 13px;
+}
+
+.table-fc td {
+  border-bottom: 0.5px solid #53657d;
+  padding: 10px 13px;
+}
+
+.panel__actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.panel__actions a.button,
+.panel__actions .button {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.button.button-secondary,
+a.button.button-secondary {
+  background: #e8e8e8;
+  color: #3f454a;
+  border-bottom-color: #bdbdbd;
+}
+
+.button.button-secondary:hover,
+a.button.button-secondary:hover {
+  background-color: #bdbdbd;
+}
+
+.panel+.panel {
+  margin-top: 2em;
+}

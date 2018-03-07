@@ -2,12 +2,16 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Services = ({lists}) => (
-  lists.map(service => (
-    <div key={service.name}>
-      <p>{service.name}</p>
-      <img src={service.logo_url} alt={service.name + ' logo'} />
-    </div>
-  ))
+  <div className='form__group'>
+    <label>Qui utilise ces données ?</label>
+    <ul className='tag-list'>
+      {
+        lists.map(service => (
+          <li key={service.name} className='tag'><a href={service.logo_url}>{service.name}</a></li>
+        ))
+      }
+    </ul>
+  </div>
 )
 
 Services.propTypes = {

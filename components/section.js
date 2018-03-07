@@ -1,23 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Container from './container'
-
-const Section = ({title, imageSrc, altText, children}) => (
-  <section>
-    <Container>
-      <div>
-        {title && <h2>{title}</h2>}
-        {children}
-      </div>
-      <div>
-        <img src={imageSrc} alt={altText} />
-      </div>
-    </Container>
+const Section = ({className, title, imageSrc, altText, children}) => (
+  <section className={className}>
+    <div>
+      {title && <h2 className='section__title'>{title}</h2>}
+      {children}
+    </div>
+    <div>
+      <img src={imageSrc} alt={altText} />
+    </div>
   </section>
 )
 
 Section.propTypes = {
+  className: PropTypes.string,
   title: PropTypes.string,
   imageSrc: PropTypes.string,
   altText: PropTypes.string,
@@ -25,6 +22,7 @@ Section.propTypes = {
 }
 
 Section.defaultProps = {
+  className: null,
   title: null,
   imageSrc: null,
   altText: null
