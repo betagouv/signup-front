@@ -5,7 +5,7 @@ import Header from './header'
 import Footer from './footer'
 
 const Page = ({title, children}) => [
-  <Head key='first'>
+  <Head key='first' >
     <title>particulier.api.gouv.fr</title>
     <meta charSet='utf-8' />
     <meta name='viewport' content='initial-scale=1.0, width=device-width' />

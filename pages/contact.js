@@ -1,9 +1,13 @@
 import React from 'react'
+import Head from 'next/head'
 import Page from '../components/page'
 import Section from '../components/section'
 
 const Contact = () => (
   <Page>
+    <Head>
+      <title>Contact - particulier.api.gouv.fr</title>
+    </Head>
     <Section title='Contactez-nous'>
       <div className='container'>
         <p>Merci de nous envoyer un mail avec les informations suivantes :</p>

@@ -1,10 +1,14 @@
 import React from 'react'
+import Head from 'next/head'
 import Page from '../components/page'
 import Section from '../components/section'
 import LinkButton from '../components/link-button'
 
 const About = () => (
   <Page>
+    <Head>
+      <title>À propos - particulier.api.gouv.fr</title>
+    </Head>
     <Section>
       <div className='container'>
         <div className='row'>
