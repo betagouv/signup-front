@@ -6,7 +6,7 @@ import Footer from './footer'
 
 const Page = ({title, children}) => [
   <Head key='first'>
-    <title>Api Particulier</title>
+    <title>particulier.api.gouv.fr</title>
     <meta charSet='utf-8' />
     <meta name='viewport' content='initial-scale=1.0, width=device-width' />
     <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
