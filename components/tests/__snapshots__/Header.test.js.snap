@@ -47,7 +47,7 @@ exports[`components | Header render should match snapshot 1`] = `
         </li>
         <li>
           <a
-            href="http://localhost:3002/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
+            href="http://localhost:3001/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=&response_type=token&state="
           >
             Se connecter
           </a>

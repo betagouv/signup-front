@@ -1,6 +1,7 @@
 import ReactTestRenderer from 'react-test-renderer'
-require('../../lib/tests/utils')
 import Header from '../header'
+
+require('../../lib/tests/utils') // eslint-disable-line import/no-unassigned-import
 
 describe('components | Header', () => {
   describe('render', () => {

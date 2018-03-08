@@ -1,44 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | Services render should match snapshot 1`] = `
-Array [
-  <div
-    className="container"
+<div
+  className="form__group"
+>
+  <label>
+    Qui utilise ces données ?
+  </label>
+  <ul
+    className="tag-list"
   >
-    <div>
-      <ul
-        className="services"
+    <li
+      className="tag"
+    >
+      <a
+        href="./static/images/services-providers/mes-aides-logo.png"
       >
-        <li
-          className="service"
-        >
-          <img
-            alt="Mes aides logo"
-            className="service-image"
-            src="./static/images/services-providers/mes-aides-logo.png"
-          />
-        </li>
-      </ul>
-    </div>
-  </div>,
-  <div
-    className="container"
-  >
-    <div>
-      <ul
-        className="services"
+        Mes aides
+      </a>
+    </li>
+    <li
+      className="tag"
+    >
+      <a
+        href="./static/images/services-providers/anah-logo.png"
       >
-        <li
-          className="service"
-        >
-          <img
-            alt="Anah logo"
-            className="service-image"
-            src="./static/images/services-providers/anah-logo.png"
-          />
-        </li>
-      </ul>
-    </div>
-  </div>,
-]
+        Anah
+      </a>
+    </li>
+  </ul>
+</div>
 `;
