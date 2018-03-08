@@ -9,6 +9,7 @@
       "name": "Avis d‘imposition",
       "description": "Contient le revenu fiscal de référence, le nombre de part et les déclarants",
       "url": "https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen",
+      "node_example": "const fetch = require('node-fetch')\nconst queryString = require('query-string')\n\nconst params = queryString.stringify({\n    numeroFiscal: '1562456789521',\n    referenceAvis: '1512456789521'\n})\n\nawait fetch('http://particulier-sandbox.api.gouv.fr/api/impots/svair?' + params, {\n    headers: {'X-API-Key': 'test-token'}\n}).then(res => res.json())",
       "services": [
         {"name": "Mes aides",
         "logo_url": "./static/images/services-providers/mes-aides-logo.png"},
