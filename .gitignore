@@ -8,6 +8,7 @@ out
 # misc
 .DS_Store
 *.swp
+*.orig
 .env
 npm-debug.log*
 yarn-debug.log*
