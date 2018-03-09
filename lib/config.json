@@ -1,8 +1,0 @@
-{
-  "apiParticulierOAuth": {
-    "authorizeUri": "https://oauth.particulier.api.gouv.fr/oauth/authorize",
-    "clientId": "82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b",
-    "meUri": "https://oauth.particulier.api.gouv.fr/api/v1/me",
-    "redirectUri": "https://next.particulier.api.gouv.fr"
-  }
-}
