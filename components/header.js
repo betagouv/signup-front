@@ -2,45 +2,39 @@ import Link from 'next/link'
 import React from 'react'
 import OAuth from '../lib/oauth'
 import User from '../lib/user'
+import Utils from '../lib/utils'
 
 class Header extends React.Component {
   constructor() {
     super()
     this.oauth = new OAuth()
+    this.logout = this.logout.bind(this)
 
     this.state = {
       user: new User()
     }
   }
 
-  login() {
+  componentDidMount() {
+    const {user} = this.state
+
     if (typeof window !== 'undefined') {
-      this.oauth.authorize(window.location.url)
+      const token = Utils.extractTokenFromUrl(window.location.toString())
+      user.login(token).then(user => {
+        this.setState({user})
+      })
     }
   }
 
-  componentDidMount() {
+  logout() {
     const {user} = this.state
-    const hash = window.location.hash.split('&').map(e => e.split('='))
-    const token = hash.filter(e => e[0].match(/access_token/))[0]
-    if (token && token[1]) {
-      localStorage.setItem('token', token)
-    }
 
-    user.login(token).then(user => {
-      this.setState({user, email: user.email})
-    })
+    user.logout().then(user => this.setState({user}))
   }
 
   render() {
-    const self = this
-    const {email} = this.state
-    function logout() {
-      if (typeof window !== 'undefined') {
-        window.localStorage.removeItem('token')
-      }
-      self.setState({email: null})
-    }
+    const {user} = this.state
+
     return (
       <header>
         <nav className='nav'>
@@ -53,17 +47,17 @@ class Header extends React.Component {
               <li><Link href='/documentation'><a>Documentation technique</a></Link></li>
               <li><Link href='/contact'><a>Contactez-nous</a></Link></li>
               <li>
-                {email && (
+                {user.email && (
                   <div className='dropdown'>
-                    { email }
+                    { user.email }
                     <div className='dropdown-content'>
-                      <a onClick={logout}>Se déconnecter</a>
+                      <a onClick={this.logout}>Se déconnecter</a>
                     </div>
                   </div>
                 )
                 }
                 {
-                  !email && (
+                  !user.email && (
                     <a href={this.oauth.client.token.getUri()}>Se connecter</a>
                   )
                 }
