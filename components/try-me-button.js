@@ -2,12 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 
-const TryMeButton = ({url}) => (
-  <Link href={url}><a className='button button-secondary'>Essayez-moi !</a></Link>
+const TryMeButton = ({handleClick}) => (
+  <button className='button button-secondary' onClick={handleClick}>Essayez-moi !</button>
 )
 
 TryMeButton.propTypes = {
-  url: PropTypes.string.isRequired
+  handleClick: PropTypes.func.isRequired
 }
 
 export default TryMeButton
