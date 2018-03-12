@@ -28,12 +28,13 @@ Afin de configurer le projet correctement, il est conseillé de créer un fichie
 
 `.env` permet de persister les variables d’environnement de développement dans un fichier plutôt que de les définir dans le shell, mais les deux fonctionnent. Cela fonctionne avec [dotenv](https://github.com/motdotla/dotenv) et [babel-plugin-dotenv-import](https://github.com/tusbar/babel-plugin-dotenv-import).
 
-Un fichier d’example existe : `.env.test`.
+Un fichier  existe : `.env.test`.
+Le mettre à jour avec les ports utilisés en test
 
 Pour obtenir une configuration de base :
 
 ```bash
-cp .env.sample .env.test
+cp .env.test .env
 ```
 
 Enfin, lancer le serveur de développement avec :
