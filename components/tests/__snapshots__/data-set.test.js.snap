@@ -3,131 +3,133 @@
 exports[`components | DataSet render should match snapshot 1`] = `
 Array [
   <div
-    className="dataset-description"
+    className="panel"
   >
-    <h3
-      className="grey"
-    >
-      Avis d‘imposition
-    </h3>
-    <p
-      className="tag-darker-grey"
-    >
-      DGFIP
-    </p>
-    <p>
-      Contient le revenu fiscal de référence, le nombre de part et les déclarants
-    </p>
-    <h4>
-      Qui utilise ces données ?
-    </h4>
     <div
-      className="container"
+      className="panel__header"
     >
-      <div>
+      <h3>
+        Avis d‘imposition
+      </h3>
+      <small
+        className="panel__header-extra"
+      >
+        DGFIP
+      </small>
+    </div>
+    <div>
+      <p>
+        Contient le revenu fiscal de référence, le nombre de part et les déclarants
+      </p>
+      <div
+        className="form__group"
+      >
+        <label>
+          Qui utilise ces données ?
+        </label>
         <ul
-          className="services"
+          className="tag-list"
         >
           <li
-            className="service"
+            className="tag"
           >
-            <img
-              alt="Mes aides logo"
-              className="service-image"
-              src="./static/images/services-providers/mes-aides-logo.png"
-            />
+            <a
+              href="./static/images/services-providers/mes-aides-logo.png"
+            >
+              Mes aides
+            </a>
+          </li>
+          <li
+            className="tag"
+          >
+            <a
+              href="./static/images/services-providers/anah-logo.png"
+            >
+              Anah
+            </a>
           </li>
         </ul>
       </div>
     </div>
     <div
-      className="container"
+      className="panel__actions"
     >
-      <div>
-        <ul
-          className="services"
-        >
-          <li
-            className="service"
-          >
-            <img
-              alt="Anah logo"
-              className="service-image"
-              src="./static/images/services-providers/anah-logo.png"
-            />
-          </li>
-        </ul>
-      </div>
+      <a
+        className="button button-secondary"
+        href="https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
+        onClick={[Function]}
+      >
+        Essayez-moi !
+      </a>
+      <button
+        className="button"
+        id="avis_impos_submit_button"
+        name="avis_impos_button"
+        type="submit"
+      >
+        Ajouter à ma sélection
+      </button>
     </div>
-    <a
-      className="button"
-      href="https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
-      onClick={[Function]}
-    >
-      Essayez-moi !
-    </a>
-    <button
-      className="button"
-      id="avis_impos_submit_button"
-      name="avis_impos_button"
-      type="submit"
-    >
-      Ajouter à ma sélection
-    </button>
   </div>,
   <div
-    className="dataset-description"
+    className="panel"
   >
-    <h3
-      className="grey"
-    >
-      Adresse fiscale
-    </h3>
-    <p
-      className="tag-darker-grey"
-    >
-      DGFIP
-    </p>
-    <p>
-      Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
-    </p>
-    <h4>
-      Qui utilise ces données ?
-    </h4>
     <div
-      className="container"
+      className="panel__header"
     >
-      <div>
+      <h3>
+        Adresse fiscale
+      </h3>
+      <small
+        className="panel__header-extra"
+      >
+        DGFIP
+      </small>
+    </div>
+    <div>
+      <p>
+        Contient l‘adresse fiscale ainsi que l‘adresse structurée et styles coordonnée GPS
+      </p>
+      <div
+        className="form__group"
+      >
+        <label>
+          Qui utilise ces données ?
+        </label>
         <ul
-          className="services"
+          className="tag-list"
         >
           <li
-            className="service"
+            className="tag"
           >
-            <img
-              alt="Mes aides logo"
-              className="service-image"
-              src="./static/images/services-providers/mes-aides-logo.png"
-            />
+            <a
+              href="./static/images/services-providers/mes-aides-logo.png"
+            >
+              Mes aides
+            </a>
           </li>
         </ul>
       </div>
     </div>
-    <a
-      className="button"
-      href="https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale"
-      onClick={[Function]}
+    <div
+      className="panel__actions"
     >
-      Essayez-moi !
-    </a>
-    <button
-      className="button"
-      id="adresse_fiscale_submit_button"
-      name="adresse_fiscale_button"
-      type="submit"
-    >
-      Ajouter à ma sélection
-    </button>
+      <a
+        className="button button-secondary"
+        href="https://particulier.api.gouv.fr/tech/#r-cup-rer-l-39-adresse-fiscale"
+        onClick={[Function]}
+      >
+        Essayez-moi !
+      </a>
+      <button
+        className="button"
+        id="adresse_fiscale_submit_button"
+        name="adresse_fiscale_button"
+        type="submit"
+      >
+        Ajouter à ma sélection
+      </button>
+    </div>
   </div>,
 ]
 `;

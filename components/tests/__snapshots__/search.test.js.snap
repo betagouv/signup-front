@@ -2,33 +2,35 @@
 
 exports[`components | Search render should match snapshot 1`] = `
 <div
-  className="form__container"
+  className="jsx-2078901220 form__container"
 >
   <div
-    className="form__group"
+    className="jsx-2078901220 form__group"
   >
     <label
+      className="jsx-2078901220"
       htmlFor="search"
     >
-      Tapez un mot-clef :
+      Rechercher une donnée :
     </label>
     <div
-      className="search__group"
+      className="jsx-2078901220 search__group"
     >
       <input
-        className=" value="
+        className="jsx-2078901220  value="
         id="search"
         name="search"
         type="text"
       />
       <button
         aria-label="Recherche"
-        className="overlay-button"
+        className="jsx-2078901220 overlay-button"
       >
         <svg
-          className="icon icon-search"
+          className="jsx-2078901220 icon icon-search"
         >
           <use
+            className="jsx-2078901220"
             xlinkHref="#icon-search"
           />
         </svg>

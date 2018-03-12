@@ -1,13 +1,43 @@
 {
   "env": {
     "development": {
-      "presets": ["next/babel"]
+      "presets": ["next/babel"],
+      "plugins": [
+        ["dotenv-import", {
+          "moduleName": "@env",
+          "path": ".env.test",
+          "blacklist": null,
+          "whitelist": null,
+          "safe": false,
+          "allowUndefined": false
+        }]
+      ]
     },
     "production": {
-      "presets": ["next/babel"]
+      "presets": ["next/babel"],
+      "plugins": [
+        ["dotenv-import", {
+          "moduleName": "@env",
+          "path": ".env",
+          "blacklist": null,
+          "whitelist": null,
+          "safe": false,
+          "allowUndefined": false
+        }]
+      ]
     },
     "test": {
-      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]]
+      "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+      "plugins": [
+        ["dotenv-import", {
+          "moduleName": "@env",
+          "path": ".env.test",
+          "blacklist": null,
+          "whitelist": null,
+          "safe": false,
+          "allowUndefined": false
+        }]
+      ]
     }
   }
 }
