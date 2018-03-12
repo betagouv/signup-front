@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | ContractualisationForm render should match snapshot 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <h1
+    className="hero__white-background"
+  >
+    CONTRACTUALISATION
+  </h1>
+  <div>
+    <div
+      className="information-text"
+    >
+      <h2
+        id="legal"
+      >
+        Fondement légal
+      </h2>
+      <p>
+        Pour pouvoir bénéficier du raccordement à l‘API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.
+      </p>
+      <p>
+        Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
+      </p>
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="text"
+      >
+        Décrivez brièvement votre service ainsi que l‘utilisation prévue des données transmises: 
+      </label>
+      <textarea
+        name="legal1"
+        onChange={[Function]}
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="text"
+      >
+        Veuillez transmettre le fondement juridique sur lequel s‘appuie votre demande: 
+      </label>
+      <textarea
+        name="legal2"
+        onChange={[Function]}
+        value={undefined}
+      />
+    </div>
+  </div>
+  <div>
+    <h2
+      id="donnees"
+    >
+      Choix des données
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="volumetrie"
+    >
+      Volumétrie
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="securite"
+    >
+      Engagement de sécurité
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="homologation"
+    >
+      Homologation
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="contrat"
+    >
+      Documents contractuels
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="cnil"
+    >
+      Obligation CNIL
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="recette"
+    >
+      Recette fonctionnelle
+    </h2>
+  </div>
+  <div>
+    <h2
+      id="production"
+    >
+      Entrants techniques de production
+    </h2>
+  </div>
+  <button
+    className="button"
+  >
+    Sauvegarder
+  </button>
+  <button
+    className="button"
+    id="submit"
+    name="subscribe"
+    type="submit"
+  >
+    Soumettre la demande
+  </button>
+</form>
+`;
