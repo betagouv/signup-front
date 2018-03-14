@@ -29,7 +29,8 @@
     "nock": "^9.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-runkit": "^0.9.0"
+    "react-runkit": "^0.9.0",
+    "react-table": "^6.8.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",

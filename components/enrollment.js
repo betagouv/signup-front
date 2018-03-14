@@ -91,7 +91,7 @@ class Enrollment extends React.Component {
           {
             /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
           }
-          <Link href={{pathname: '/' + enrollment.fournisseur_de_donnees, query: {id: enrollment.id}}}>
+          <Link href={{pathname: '/dgfip', query: {id: enrollment.id}}}>
             <button className='button' type='submit' name='subscribe' id='submit'>
             Voir
             </button>
