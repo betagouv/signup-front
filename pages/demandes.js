@@ -1,12 +1,12 @@
 import React from 'react'
-import RestrictedPage from '../components/restricted-page'
+import Page from '../components/page'
 
 const Demandes = () => (
-  <RestrictedPage>
+  <Page requireUser={true}>
     <div className='hero__container'>
       <h1 className='hero__white-background'>Demandes d{'\''}accès</h1>
     </div>
-  </RestrictedPage>
+  </Page>
 )
 
 export default Demandes

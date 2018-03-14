@@ -4,10 +4,14 @@ import Head from 'next/head'
 import attachUser from '../components/hoc/attach-user'
 import Header from './header'
 import Footer from './footer'
+import Section from './section'
 
 class Page extends React.Component {
   render() {
-    const {title, children} = this.props
+    const {title, children, requireUser} = this.props
+    const {user} = this.context
+
+    const checkUser = () => requireUser && (!user || !user.loggedIn)
 
     return (
       <div className='page'>
@@ -19,7 +23,18 @@ class Page extends React.Component {
           <link href='/static/styles/custom.css' rel='stylesheet' />
         </Head>
         <Header key='second' />
-        <div key='three'>{title}{children}</div>
+
+        {
+          checkUser() ?
+              <Section className='section-grey'>
+                <div className='container'>
+                  <h2 className='section__title'>Vous devez vous connecter avant de continuer</h2>
+                </div>
+              </Section>
+            :
+              <div key='three'>{title}{children}</div>
+        }
+
         <Footer key='four' />
       </div>
     )
