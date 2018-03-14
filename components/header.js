@@ -14,7 +14,6 @@ class Header extends React.Component {
     this.state = {
       user: props.user
     }
-    console.log(this.state)
   }
 
   logout() {

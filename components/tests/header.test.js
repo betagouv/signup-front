@@ -1,9 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import {JSDOM} from 'jsdom'
-import {mount} from 'enzyme'
-import Utils from '../../lib/utils'
 import Header from '../header'
-import User from '../../lib/user'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 

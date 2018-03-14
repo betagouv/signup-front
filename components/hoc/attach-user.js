@@ -23,6 +23,7 @@ export default Component => class extends React.PureComponent {
 
     if (typeof window !== 'undefined') {
       if (!user.loggedIn) {
+        console.log(user)
         const token = Utils.extractTokenFromUrl(window.location.toString())
         user.login(token).then(user => {
           this.setState({user})

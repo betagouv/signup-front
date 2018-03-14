@@ -10,7 +10,6 @@ class Page extends React.Component {
   render() {
     const {title, children, requireUser} = this.props
     const {user} = this.context
-
     const checkUser = () => requireUser && (!user || !user.loggedIn)
 
     return (
@@ -26,13 +25,12 @@ class Page extends React.Component {
 
         {
           checkUser() ?
-              <Section className='section-grey'>
-                <div className='container'>
-                  <h2 className='section__title'>Vous devez vous connecter avant de continuer</h2>
-                </div>
-              </Section>
-            :
-              <div key='three'>{title}{children}</div>
+            <Section className='section-grey'>
+              <div className='container'>
+                <h2 className='section__title'>Vous devez vous connecter avant de continuer</h2>
+              </div>
+            </Section> :
+            <div key='three'>{title}{children}</div>
         }
 
         <Footer key='four' />
@@ -43,11 +41,13 @@ class Page extends React.Component {
 
 Page.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
+  requireUser: PropTypes.bool
 }
 
 Page.defaultProps = {
-  title: ''
+  title: '',
+  requireUser: false
 }
 
 export default attachUser(Page)
