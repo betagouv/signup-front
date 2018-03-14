@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages | contact render should match snapshot 1`] = `
+exports[`components | RestrictedPage render while loggedIn should match snapshot 1`] = `
 <div
   className="page"
 >
@@ -61,48 +61,163 @@ exports[`pages | contact render should match snapshot 1`] = `
   </header>
   <div>
     
-    <section
-      className={null}
+    &lt;p&gt;Some html&lt;/p&gt;
+  </div>
+  <footer
+    className="footer"
+  >
+    <div
+      className="container"
     >
-      <div>
-        <h2
-          className="section__title"
+      <div
+        className="footer__logo"
+      >
+        <a
+          href="https://api.gouv.fr/"
         >
-          Contactez-nous
-        </h2>
-        <div
-          className="container"
+          <img
+            alt="Logo Beta Gouv"
+            src="/static/images/logo-api.gouv.fr-white.png"
+          />
+        </a>
+        <ul
+          className="footer__social"
         >
-          <p>
-            Merci de nous envoyer un mail avec les informations suivantes :
-          </p>
-          <ul>
-            <li>
-              votre collectivité
-            </li>
-            <li>
-              votre numéro de téléphone
-            </li>
-            <li>
-              une description succincte de votre projet
-            </li>
-          </ul>
-          <p>
+          <li>
+            <a
+              href="https://twitter.com/BetaGouv"
+              title="Twitter"
+            >
+              <img
+                alt="Twitter"
+                className="icon icon-twitter"
+                src="/static/images/social/twitter.svg"
+              />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/betagouv"
+              title="Github"
+            >
+              <img
+                alt="Github"
+                className="icon icon-github"
+                src="/static/images/social/github.svg"
+              />
+            </a>
+          </li>
+          <li>
             <a
               href="mailto:contact@particulier.api.gouv.fr"
+              title="Nous écrire un mail"
             >
-              contact@particulier.api.gouv.fr
+              <img
+                alt="Email"
+                className="icon icon-mail"
+                src="/static/images/social/email.svg"
+              />
             </a>
-          </p>
-        </div>
+          </li>
+        </ul>
       </div>
-      <div>
-        <img
-          alt={null}
-          src={null}
-        />
+      <ul
+        className="footer__links"
+      >
+        <li>
+          <h2>
+            particulier.api.gouv.fr
+          </h2>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/reference"
+          >
+            Données de référence
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/terms"
+          >
+            Conditions générales d‘utilisation
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.data.gouv.fr/api"
+          >
+            API
+          </a>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`components | RestrictedPage render while not loggedIn should match snapshot 1`] = `
+<div
+  className="page"
+>
+  <header>
+    <nav
+      className="nav"
+    >
+      <div
+        className="nav__container"
+      >
+        <a
+          className="nav__link"
+          href="/"
+        >
+          <img
+            alt="Accueil de particulier.api.data.gouv.fr"
+            className="nav__logo"
+            src="/static/images/logo-api-particulier.png"
+          />
+        </a>
+        <ul
+          className="nav__links"
+        >
+          <li>
+            <a
+              href="/about"
+              onClick={[Function]}
+            >
+              A propos
+            </a>
+          </li>
+          <li>
+            <a
+              href="/documentation"
+              onClick={[Function]}
+            >
+              Documentation technique
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              onClick={[Function]}
+            >
+              Contactez-nous
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
+            >
+              Se connecter
+            </a>
+          </li>
+        </ul>
       </div>
-    </section>
+    </nav>
+  </header>
+  <div>
+    
+    &lt;p&gt;Some html&lt;/p&gt;
   </div>
   <footer
     className="footer"
