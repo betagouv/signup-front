@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | Page render should match snapshot 1`] = `
-Array [
+<div
+  className="page"
+>
   <header>
     <nav
       className="nav"
@@ -48,7 +50,7 @@ Array [
           </li>
           <li>
             <a
-              href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&scope=&response_type=token&state="
+              href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
             >
               Se connecter
             </a>
@@ -56,10 +58,11 @@ Array [
         </ul>
       </div>
     </nav>
-  </header>,
+  </header>
   <div>
+    
     &lt;p&gt;Some html&lt;/p&gt;
-  </div>,
+  </div>
   <footer
     className="footer"
   >
@@ -149,6 +152,6 @@ Array [
         </li>
       </ul>
     </div>
-  </footer>,
-]
+  </footer>
+</div>
 `;

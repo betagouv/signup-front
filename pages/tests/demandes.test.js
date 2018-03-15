@@ -1,9 +1,9 @@
 import ReactTestRenderer from 'react-test-renderer'
-import About from '../../pages/about'
+import Demandes from '../../pages/demandes'
 
-describe('pages | about', () => {
+describe('pages | demandes', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<About />)
+    const renderer = ReactTestRenderer.create(<Demandes />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

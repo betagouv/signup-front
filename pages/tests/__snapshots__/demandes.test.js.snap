@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages | documentation render should match snapshot 1`] = `
+exports[`pages | demandes render should match snapshot 1`] = `
 <div
   className="page"
 >
@@ -59,39 +59,27 @@ exports[`pages | documentation render should match snapshot 1`] = `
       </div>
     </nav>
   </header>
-  <div>
-    
-    <section
-      className={null}
-    >
-      <div>
+  <section
+    className="section-grey"
+  >
+    <div>
+      <div
+        className="container"
+      >
         <h2
           className="section__title"
         >
-          Documentation technique
+          Vous devez vous connecter avant de continuer
         </h2>
-        <div
-          className="container"
-        >
-          <p>
-            Vous pouvez, dès maintenant, commencer à intégrer API Particulier :
-          </p>
-          <a
-            href="https://particulier.api.gouv.fr/tech/"
-            onClick={[Function]}
-          >
-            espace développeur
-          </a>
-        </div>
       </div>
-      <div>
-        <img
-          alt={null}
-          src={null}
-        />
-      </div>
-    </section>
-  </div>
+    </div>
+    <div>
+      <img
+        alt={null}
+        src={null}
+      />
+    </div>
+  </section>
   <footer
     className="footer"
   >

@@ -1,8 +1,9 @@
 import ReactTestRenderer from 'react-test-renderer'
+import Documentation from '../../pages/documentation'
 
 describe('pages | documentation', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<documentation />)
+    const renderer = ReactTestRenderer.create(<Documentation />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

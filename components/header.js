@@ -1,35 +1,29 @@
 import Link from 'next/link'
 import React from 'react'
+import Router from 'next/router'
+import PropTypes from 'prop-types'
 import OAuth from '../lib/oauth'
 import User from '../lib/user'
-import Utils from '../lib/utils'
+import withUser from '../components/hoc/with-user'
 
 class Header extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.oauth = new OAuth()
     this.logout = this.logout.bind(this)
 
     this.state = {
-      user: new User()
-    }
-  }
-
-  componentDidMount() {
-    const {user} = this.state
-
-    if (typeof window !== 'undefined') {
-      const token = Utils.extractTokenFromUrl(window.location.toString())
-      user.login(token).then(user => {
-        this.setState({user})
-      })
+      user: props.user
     }
   }
 
   logout() {
     const {user} = this.state
 
-    user.logout().then(user => this.setState({user}))
+    user.logout().then(loggedOutUser => {
+      Router.push('/')
+      this.setState({user: loggedOutUser})
+    })
   }
 
   render() {
@@ -43,11 +37,14 @@ class Header extends React.Component {
               <img className='nav__logo' src='/static/images/logo-api-particulier.png' alt='Accueil de particulier.api.data.gouv.fr' />
             </a>
             <ul className='nav__links'>
+              {user.loggedIn &&
+                <li><Link href='/demandes'><a>Demandes</a></Link></li>
+              }
               <li><Link href='/about'><a>A propos</a></Link></li>
               <li><Link href='/documentation'><a>Documentation technique</a></Link></li>
               <li><Link href='/contact'><a>Contactez-nous</a></Link></li>
               <li>
-                {user.email && (
+                {user.loggedIn && (
                   <div className='dropdown'>
                     { user.email }
                     <div className='dropdown-content'>
@@ -57,7 +54,7 @@ class Header extends React.Component {
                 )
                 }
                 {
-                  !user.email && (
+                  !user.loggedIn && (
                     <a href={this.oauth.client.token.getUri()}>Se connecter</a>
                   )
                 }
@@ -70,4 +67,12 @@ class Header extends React.Component {
   }
 }
 
-export default Header
+Header.propTypes = {
+  user: PropTypes.object
+}
+
+Header.defaultProps = {
+  user: new User()
+}
+
+export default withUser(Header)
