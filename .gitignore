@@ -4,6 +4,7 @@
 # next.js
 .next
 out
+.env.test
 
 # misc
 .DS_Store
