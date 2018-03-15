@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import Router from 'next/router'
 import PropTypes from 'prop-types'
 import OAuth from '../lib/oauth'
 import User from '../lib/user'
@@ -20,6 +21,7 @@ class Header extends React.Component {
     const {user} = this.state
 
     user.logout().then(loggedOutUser => {
+      Router.push('/')
       this.setState({user: loggedOutUser})
     })
   }
