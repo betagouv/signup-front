@@ -1,9 +1,9 @@
 import React from 'react'
-import Utils from '../../../lib/utils'
 import {mount} from 'enzyme'
 import {JSDOM} from 'jsdom'
+import Utils from '../../../lib/utils'
 import attachUser from '../../../components/hoc/attach-user'
-import localStorage from '../../../lib/tests/local-storage'
+import localStorage from '../../../lib/tests/local-storage' // eslint-disable-line no-unused-vars
 import User from '../../../lib/user'
 
 class Component extends React.Component {

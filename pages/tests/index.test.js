@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Index from '../../pages/index'
+import Index from '../../pages'
 
 describe('pages | index', () => {
   describe('render', () => {

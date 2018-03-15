@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Demandes from '../../pages/demandes.js'
+import Demandes from '../../pages/demandes'
 
 describe('pages | demandes', () => {
   describe('render', () => {
