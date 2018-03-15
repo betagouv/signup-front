@@ -9,8 +9,8 @@ import Section from './section'
 class Page extends React.Component {
   render() {
     const {title, children, requireUser} = this.props
-    const {user} = this.context
-    const checkUser = () => requireUser && (!user || !user.loggedIn)
+    const {user} = this.props
+    const checkUser = () => requireUser && !(user && user.loggedIn)
 
     return (
       <div className='page'>

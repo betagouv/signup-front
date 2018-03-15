@@ -40,8 +40,10 @@ export default Component => class extends React.PureComponent {
   }
 
   render() {
+    const {user} = this.state
+
     return (
-      <Component {...this.props} />
+      <Component user={user} {...this.props} />
     )
   }
 }
