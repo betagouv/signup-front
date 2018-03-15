@@ -34,7 +34,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         Décrivez brièvement votre service ainsi que l‘utilisation prévue des données transmises: 
       </label>
       <textarea
-        name="legal1"
+        name="legal.legal1"
         onChange={[Function]}
         value={undefined}
       />
@@ -48,7 +48,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         Veuillez transmettre le fondement juridique sur lequel s‘appuie votre demande: 
       </label>
       <textarea
-        name="legal2"
+        name="legal34"
         onChange={[Function]}
         value={undefined}
       />

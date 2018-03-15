@@ -1,14 +1,14 @@
 import React from 'react'
+import {deepSetInState} from '../lib/utils'
 
-// Utils
-// https://reactjs.org/docs/forms.html
-// test : https://codereview.stackexchange.com/questions/152918/unit-tests-for-react-component-to-submit-an-input-form-with-validation
 class ContractualisationForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      legal1: '',
-      legal2: ''
+      legal: {
+        legal1: 'example 1',
+        legal2: 'example 2'
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -18,17 +18,19 @@ class ContractualisationForm extends React.Component {
   handleChange(event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
-    console.log('value', value)
     const name = target.name
     console.log('name', name)
+    console.log('value', value)
 
-    this.setState({
-      [name]: value
-    })
+    const stateCopy = Object.assign({}, this.state)
+
+    deepSetInState(name, value, stateCopy)
+
+    this.setState(stateCopy)
   }
 
   handleSubmit(event) {
-    // alert('A name was submitted: ' + this.state) // eslint-disable-line no-alert
+    // Alert('A name was submitted: ' + this.state) // eslint-disable-line no-alert
     event.preventDefault()
   }
 
@@ -44,11 +46,11 @@ class ContractualisationForm extends React.Component {
           </div>
           <div className='form__group'>
             <label htmlFor='text'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises: </label>
-            <textarea onChange={this.handleChange} name='legal1' value={this.state.value} />
+            <textarea onChange={this.handleChange} name='legal.legal1' value={this.state.value} />
           </div>
           <div className='form__group'>
             <label htmlFor='text'>Veuillez transmettre le fondement juridique sur lequel s&lsquo;appuie votre demande: </label>
-            <textarea onChange={this.handleChange} name='legal2' value={this.state.value} />
+            <textarea onChange={this.handleChange} name='legal34' value={this.state.value} />
           </div>
         </div>
         <div>
