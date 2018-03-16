@@ -1,5 +1,5 @@
 import React from 'react'
-import {deepSetInState} from '../lib/utils'
+import Utils from '../lib/utils'
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class ContractualisationForm extends React.Component {
 
     const stateCopy = Object.assign({}, this.state)
 
-    deepSetInState(name, value, stateCopy)
+    Utils.deepSetInState(name, value, stateCopy)
 
     this.setState(stateCopy)
   }

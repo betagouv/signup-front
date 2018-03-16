@@ -43,6 +43,7 @@ describe('components | ContractualisationForm', () => {
       })
     })
     describe('handleSubmit', () => {
+      // EX https://codereview.stackexchange.com/questions/152918/unit-tests-for-react-component-to-submit-an-input-form-with-validation
       const wrapper = mount(<ContractualisationForm />)
       wrapper.find('form').simulate('submit', {preventDefault: jest.fn()})
     })
