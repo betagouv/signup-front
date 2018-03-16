@@ -1,5 +1,6 @@
 import React from 'react'
 import Utils from '../lib/utils'
+import Services from '../lib/services'
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -19,9 +20,6 @@ class ContractualisationForm extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    console.log('name', name)
-    console.log('value', value)
-
     const stateCopy = Object.assign({}, this.state)
 
     Utils.deepSetInState(name, value, stateCopy)
@@ -30,7 +28,7 @@ class ContractualisationForm extends React.Component {
   }
 
   handleSubmit(event) {
-    // Alert('A name was submitted: ' + this.state) // eslint-disable-line no-alert
+    Services.postFormToBack(this.state)
     event.preventDefault()
   }
 
