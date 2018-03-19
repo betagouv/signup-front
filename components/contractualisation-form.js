@@ -28,7 +28,9 @@ class ContractualisationForm extends React.Component {
   }
 
   handleSubmit(event) {
-    Services.postFormToBack(this.state)
+    const token = localStorage.getItem('token')
+    const componentState = this.state
+    Services.postFormToBack(componentState, token)
     event.preventDefault()
   }
 

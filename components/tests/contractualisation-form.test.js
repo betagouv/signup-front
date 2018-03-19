@@ -1,6 +1,10 @@
 import {mount, shallow} from 'enzyme'
 import ReactTestRenderer from 'react-test-renderer'
 import ContractualisationForm from '../contractualisation-form'
+import Services from '../../lib/services'
+import localStorage from '../../lib/tests/local-storage' // eslint-disable-line no-unused-vars
+
+require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
 describe('components | ContractualisationForm', () => {
   describe('render', () => {
@@ -43,9 +47,14 @@ describe('components | ContractualisationForm', () => {
       })
     })
     describe('handleSubmit', () => {
-      // EX https://codereview.stackexchange.com/questions/152918/unit-tests-for-react-component-to-submit-an-input-form-with-validation
-      const wrapper = mount(<ContractualisationForm />)
-      wrapper.find('form').simulate('submit', {preventDefault: jest.fn()})
+      it('should call the services with the good parameters', () => {
+        const spy = jest.spyOn(Services, 'postFormToBack')
+        localStorage.setItem('token', 'fakeToken')
+        const wrapper = mount(<ContractualisationForm />)
+        const componentInitialState = wrapper.state()
+        wrapper.find('form').simulate('submit', {preventDefault: jest.fn()})
+        expect(spy).toHaveBeenCalledWith(componentInitialState, 'fakeToken')
+      })
     })
   })
 })
