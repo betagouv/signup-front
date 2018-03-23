@@ -5,14 +5,9 @@ import ContractualisationNav from '../components/contractualisation-nav'
 
 const Index = () => (
   <Page>
-    <div>
-      <div className='documentation'>
-        <ContractualisationNav />
-        <div className='main-pane'>
-          <ContractualisationForm />
-        </div>
-      </div>
-
+    <div className='documentation'>
+      <ContractualisationNav />
+      <ContractualisationForm />
     </div>
   </Page>
 )

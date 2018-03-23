@@ -84,6 +84,6 @@ a.button.button-secondary:hover {
   background-color: #bdbdbd;
 }
 
-.panel+.panel {
-  margin-top: 2em;
+.main-pane form {
+  max-width: 100%;
 }
