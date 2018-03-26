@@ -1,10 +1,11 @@
 import ReactTestRenderer from 'react-test-renderer'
-import DataSet from '../data-set'
-import DGFIP_DATA_SET from '../../mock/data/dgfip'
+import ResourceProvider from '../resource-provider'
+import RESOURCE_PROVIDERS from '../../mock/data/resource-providers'
+const RESOURCE_PROVIDER = RESOURCE_PROVIDERS[0]
 
 describe('components | DataSet', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<DataSet data={DGFIP_DATA_SET} />)
+    const renderer = ReactTestRenderer.create(<ResourceProvider resourceProvider={RESOURCE_PROVIDER} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

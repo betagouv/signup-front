@@ -8,7 +8,7 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
     className="panel__header"
   >
     <h3>
-      Avis d‘imposition
+      Avis d'imposition
     </h3>
     <small
       className="panel__header-extra"
@@ -18,7 +18,7 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
   </div>
   <div>
     <p>
-      Contient le revenu fiscal de référence, le nombre de part et les déclarants
+      Données issues du service svair de la DGFIP
     </p>
     <div
       className="form__group"
@@ -33,18 +33,18 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
           className="tag"
         >
           <a
-            href="./static/images/services-providers/mes-aides-logo.png"
+            href={undefined}
           >
-            Mes aides
+            BourseSCO
           </a>
         </li>
         <li
           className="tag"
         >
           <a
-            href="./static/images/services-providers/anah-logo.png"
+            href={undefined}
           >
-            Anah
+            Lyon : Mon compte
           </a>
         </li>
       </ul>
@@ -55,15 +55,15 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
   >
     <a
       className="button button-secondary"
-      href="https://particulier.api.gouv.fr/tech/#r-cup-rer-les-donn-es-fiscales-d-39-un-citoyen"
+      href=""
       onClick={[Function]}
     >
       Essayez-moi !
     </a>
     <button
       className="button"
-      id="avis_impos_submit_button"
-      name="avis_impos_button"
+      id="dgfip_avis_imposition_submit_button"
+      name="dgfip_avis_imposition_button"
       type="submit"
     >
       Ajouter à ma sélection

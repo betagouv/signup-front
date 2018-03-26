@@ -14,18 +14,18 @@ exports[`components | Services render should match snapshot 1`] = `
       className="tag"
     >
       <a
-        href="./static/images/services-providers/mes-aides-logo.png"
+        href={undefined}
       >
-        Mes aides
+        BourseSCO
       </a>
     </li>
     <li
       className="tag"
     >
       <a
-        href="./static/images/services-providers/anah-logo.png"
+        href={undefined}
       >
-        Anah
+        Lyon : Mon compte
       </a>
     </li>
   </ul>
