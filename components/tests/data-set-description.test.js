@@ -1,6 +1,7 @@
 import ReactTestRenderer from 'react-test-renderer'
 import DataSetDescription from '../data-set-description'
 import RESOURCE_PROVIDERS from '../../mock/data/resource-providers'
+
 const RESOURCE_PROVIDER = RESOURCE_PROVIDERS[0]
 
 describe('components | DataSetDescription', () => {
