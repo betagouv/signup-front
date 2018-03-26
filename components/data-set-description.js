@@ -7,7 +7,7 @@ import Services from './services'
 const DataSetDescription = ({dataset, provider}) => (
   <div className='panel'>
     <div className='panel__header'>
-      <h3>{dataset.name}</h3>
+      <h3>{dataset.human_name}</h3>
       <small className='panel__header-extra'>{provider}</small>
     </div>
     <div>
@@ -16,8 +16,8 @@ const DataSetDescription = ({dataset, provider}) => (
     </div>
 
     <div className='panel__actions'>
-      <TryMeButton url={dataset.url} />
-      <AddToSelectionButton buttonKey={dataset.key} />
+      <TryMeButton url='' />
+      <AddToSelectionButton buttonKey={dataset.name} />
     </div>
   </div>
 )

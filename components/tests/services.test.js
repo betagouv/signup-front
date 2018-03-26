@@ -1,11 +1,14 @@
 import ReactTestRenderer from 'react-test-renderer'
-import DGFIP_DATA_SET from '../../mock/data/dgfip'
 import Services from '../services'
+import RESOURCE_PROVIDERS from '../../mock/data/resource-providers'
+
+const RESOURCE_PROVIDER = RESOURCE_PROVIDERS[0]
+const SERVICES = RESOURCE_PROVIDER.scopes[0].services
 
 describe('components | Services', () => {
   describe('render', () => {
     const props = {
-      lists: DGFIP_DATA_SET.availables_data_sets[0].services
+      lists: SERVICES
     }
     const renderer = ReactTestRenderer.create(<Services {...props} />)
     it('should be defined', () => {
