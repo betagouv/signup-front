@@ -19,6 +19,11 @@ class Page extends React.Component {
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
           <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
           <link href='/static/styles/custom.css' rel='stylesheet' />
+          <link rel='apple-touch-icon' sizes='180x180' href='/static/favicons/apple-icon-180x180.png' />
+          <link rel='icon' type='image/png' sizes='16x16' href='/static/favicons/favicon-16x16.png' />
+          <link rel='icon' type='image/png' sizes='32x32' href='/static/favicons/favicon-32x32.png' />
+          <link rel='manifest' href='/static/favicons/manifest.json' />
+          <link rel='mask-icon' href='/static/favicons/safari-pinned-tab.svg' color='#5bbad5' />
         </Head>
         <Header key='second' />
 

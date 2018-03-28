@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import User from '../../lib/user'
-import Utils from '../../lib/utils'
 
 const attachUser = Component => {
   class InnerComponent extends React.PureComponent {
@@ -14,20 +13,6 @@ const attachUser = Component => {
       const props = Component.getInitialProps ? await Component.getInitialProps(context) : {}
 
       return props
-    }
-
-    componentDidMount() {
-      const {user} = this.state
-
-      if (typeof window !== 'undefined') {
-        if (!user.loggedIn) {
-          console.log(user)
-          const token = Utils.extractTokenFromUrl(window.location.toString())
-          user.login(token).then(user => {
-            this.setState({user})
-          })
-        }
-      }
     }
 
     getChildContext() {
