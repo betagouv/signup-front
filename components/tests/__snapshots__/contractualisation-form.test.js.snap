@@ -26,6 +26,22 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="form__group"
     >
       <label
+        htmlFor="fournisseur_de_service"
+      >
+        Nom du fournisseur de service
+      </label>
+      <input
+        id="fournisseur_de_service"
+        name="fournisseur_de_service"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
         htmlFor="description_service"
       >
         Décrivez brièvement votre service ainsi que l‘utilisation prévue des données transmises
@@ -82,49 +98,55 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="form__group"
     >
       <fieldset
-        class="vertical"
+        className="vertical"
       >
         <legend>
           Sélectionnez vos jeux de données souhaités
         </legend>
         <div>
           <input
+            checked={undefined}
             id="checkbox-scope_dgfip_avis_imposition"
-            name="checkbox-scope"
+            name="scope_dgfip_avis_imposition"
+            onChange={[Function]}
             type="checkbox"
             value="true"
           />
           <label
-            class="label-inline"
-            for="checkbox-scope_dgfip_avis_imposition"
+            className="label-inline"
+            htmlFor="checkbox-scope_dgfip_avis_imposition"
           >
             DGFIP - Avis Imposition
           </label>
         </div>
         <div>
           <input
+            checked={undefined}
             id="checkbox-scope_cnaf_attestation_droits"
-            name="checkbox-scope"
+            name="scope_cnaf_attestation_droits"
+            onChange={[Function]}
             type="checkbox"
             value="scope_cnaf_attestation_droits"
           />
           <label
-            class="label-inline"
-            for="checkbox-scope_cnaf_attestation_droits"
+            className="label-inline"
+            htmlFor="checkbox-scope_cnaf_attestation_droits"
           >
             CNAF - Attestation de droits
           </label>
         </div>
         <div>
           <input
+            checked={undefined}
             id="checkbox-scope_cnaf_quotient_familial"
-            name="checkbox-scope"
+            name="scope_cnaf_quotient_familial"
+            onChange={[Function]}
             type="checkbox"
             value="true"
           />
           <label
-            class="label-inline"
-            for="checkbox-scope_cnaf_quotient_familial"
+            className="label-inline"
+            htmlFor="checkbox-scope_cnaf_quotient_familial"
           >
             CNAF - Quotient Familial
           </label>
@@ -318,8 +340,8 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         value="fraise"
       />
       <label
-        class="label-inline"
-        for="checkbox-cnil"
+        className="label-inline"
+        htmlFor="checkbox-cnil"
       >
         Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données
       </label>
@@ -341,6 +363,23 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       src="static/docs/charte.pdf"
       width="100%"
     />
+    <div
+      className="form__group"
+    >
+      <input
+        checked={undefined}
+        id="validation_de_convention"
+        name="validation_de_convention"
+        onChange={[Function]}
+        type="checkbox"
+      />
+      <label
+        className="label-inline"
+        htmlFor="validation_de_convention"
+      >
+        Je valide la présente convention
+      </label>
+    </div>
     <div
       className="button-list"
     >
