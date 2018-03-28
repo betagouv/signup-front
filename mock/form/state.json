@@ -1,4 +1,5 @@
 {
+  "enrollment": {
     "fournisseur_de_service": "test",
     "description_service": "test",
     "fondement_juridique": "test",
@@ -28,3 +29,4 @@
     "certificat_pub_production": "test",
     "autorite_certification": "test"
   }
+}

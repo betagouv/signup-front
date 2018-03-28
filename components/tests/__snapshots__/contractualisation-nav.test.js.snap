@@ -11,7 +11,7 @@ exports[`components | ContractualisationNav render should match snapshot 1`] = `
       className="side-pane__title"
     >
       <h3>
-        Lorem Ipsum
+        Contractualisation
       </h3>
     </li>
     <li>
@@ -43,23 +43,7 @@ exports[`components | ContractualisationNav render should match snapshot 1`] = `
         className="side-pane__link"
         href="#securite"
       >
-        Engagement de sécurité
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#homologation"
-      >
-        Homologation
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#contrat"
-      >
-        Documents contractuels
+        Homologation de sécurité
       </a>
     </li>
     <li>
@@ -73,17 +57,9 @@ exports[`components | ContractualisationNav render should match snapshot 1`] = `
     <li>
       <a
         className="side-pane__link"
-        href="#recette"
+        href="#convention"
       >
-        Recette fonctionnelle
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#production"
-      >
-        Entrants techniques de production
+        Convention
       </a>
     </li>
   </ul>
