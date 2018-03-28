@@ -1,0 +1,363 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | ContractualisationForm render should match snapshot 1`] = `
+<div
+  className="main-pane"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <h1
+      id="legal"
+    >
+      Fondement légal
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        Pour pouvoir bénéficier du raccordement à l‘API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.
+      </p>
+      <p>
+        Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
+      </p>
+    </section>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="description_service"
+      >
+        Décrivez brièvement votre service ainsi que l‘utilisation prévue des données transmises
+      </label>
+      <textarea
+        id="description_service"
+        name="description_service"
+        onChange={[Function]}
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="fondement_juridique"
+      >
+        Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande
+      </label>
+      <textarea
+        id="fondement_juridique"
+        name="fondement_juridique"
+        onChange={[Function]}
+        value={undefined}
+      />
+    </div>
+    <h1
+      id="donnees"
+    >
+      Choix des données
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        La loi informatique et libertés définit les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles.
+      </p>
+      <p>
+        L’article 6 précise :
+      </p>
+      <ul>
+        <li>
+          3° [les données] sont adéquates, pertinentes et non excessives au regard des finalités pour lesquelles elles sont collectées et de leurs traitements ultérieurs ;
+        </li>
+        <li>
+          4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les mesures appropriées doivent être prises pour que les données inexactes ou incomplètes au regard des finalités pour lesquelles elles sont collectées ou traitées soient effacées ou rectifiées ;
+        </li>
+      </ul>
+      <p>
+        Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice. Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.
+      </p>
+    </section>
+    <div
+      className="form__group"
+    >
+      <fieldset
+        class="vertical"
+      >
+        <legend>
+          Sélectionnez vos jeux de données souhaités
+        </legend>
+        <div>
+          <input
+            id="checkbox-scope_dgfip_avis_imposition"
+            name="checkbox-scope"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="label-inline"
+            for="checkbox-scope_dgfip_avis_imposition"
+          >
+            DGFIP - Avis Imposition
+          </label>
+        </div>
+        <div>
+          <input
+            id="checkbox-scope_cnaf_attestation_droits"
+            name="checkbox-scope"
+            type="checkbox"
+            value="scope_cnaf_attestation_droits"
+          />
+          <label
+            class="label-inline"
+            for="checkbox-scope_cnaf_attestation_droits"
+          >
+            CNAF - Attestation de droits
+          </label>
+        </div>
+        <div>
+          <input
+            id="checkbox-scope_cnaf_quotient_familial"
+            name="checkbox-scope"
+            type="checkbox"
+            value="true"
+          />
+          <label
+            class="label-inline"
+            for="checkbox-scope_cnaf_quotient_familial"
+          >
+            CNAF - Quotient Familial
+          </label>
+        </div>
+      </fieldset>
+    </div>
+    <h1
+      id="volumetrie"
+    >
+      Volumétrie
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        Connaitre les données relatives à la volumétrie et à la saisonnalité de votre téléservice nous permettra de vous offrir la meilleure qualité de service possible. En effet, cela permettra de prévenir les pics de charges et de transmettre ces informations aux fournisseurs de vos données.
+      </p>
+      <p>
+        Conformément à notre charte, nous nous réservons le droit de réduire ou couper les appels autorisés au fournisseur de service.
+      </p>
+    </section>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="nombre_demandes_annuelle"
+      >
+        Connaissez-vous le volume global annuel des demandes de votre téléservice ?
+      </label>
+      <input
+        id="nombre_demandes_annuelle"
+        name="nombre_demandes_annuelle"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="pic_demandes_par_heure"
+      >
+        Connaissez-vous le pic de charge (en nombre de demandes horaires) ?
+      </label>
+      <input
+        id="pic_demandes_par_heure"
+        name="pic_demandes_par_heure"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="pic_demandes_par_heure"
+      >
+        Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé) ?
+      </label>
+      <pre>
+        <code>
+          'nombre_demandes_mensuelles_jan': 45, 'nombre_demandes_mensuelles_fev': 45, 'nombre_demandes_mensuelles_mar': 45, 'nombre_demandes_mensuelles_avr': 45, 'nombre_demandes_mensuelles_mai': 45, 'nombre_demandes_mensuelles_jui': 45, 'nombre_demandes_mensuelles_jul': 45, 'nombre_demandes_mensuelles_aou': 45, 'nombre_demandes_mensuelles_sep': 45, 'nombre_demandes_mensuelles_oct': 45, 'nombre_demandes_mensuelles_nov': 45, 'nombre_demandes_mensuelles_dec': 45,
+        </code>
+      </pre>
+    </div>
+    <h1
+      id="securite"
+    >
+      Homologation de sécurité
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche d’homologation obligatoire pour les SI relatifs aux échanges entre une autorité administrative et les usagers ou entre autorités administratives.
+      </p>
+      <p>
+        Si vous l’avez déjà fait, complétez les informations relatives à l’homologation et déposez la décision formelle d’homologation (également appelée attestation formelle).
+      </p>
+      <p>
+        Si vous ne l’avez pas encore fait, envoyez-nous tout de même votre demande et nous vous aiderons à entamer cette démarche.
+      </p>
+    </section>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="autorite_certification_nom"
+      >
+        Nom de l’autorité de certification
+      </label>
+      <input
+        id="autorite_certification_nom"
+        name="autorite_certification_nom"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="autorite_certification_fonction"
+      >
+        Fonction de l’autorité de certification
+      </label>
+      <input
+        id="autorite_certification_fonction"
+        name="autorite_certification_fonction"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="date_homologation"
+      >
+        Date de début l’homologation
+      </label>
+      <input
+        id="date_homologation"
+        name="date_homologation"
+        onChange={[Function]}
+        type="date"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="date_fin_homologation"
+      >
+        Date de fin de l’homologation
+      </label>
+      <input
+        id="date_fin_homologation"
+        name="date_fin_homologation"
+        onChange={[Function]}
+        type="date"
+        value={undefined}
+      />
+    </div>
+    <h1
+      id="cnil"
+    >
+      Obligation CNIL
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        L’entrée en vigueur le 25 mai 2018 du règlement européen sur la protection des données supprime totalement le régime déclaratif.
+      </p>
+      <p>
+        Les fournisseurs de services ont en particulier l’obligation de tenir un registre de leurs activités de traitement, d’encadrer les opérations sous-traitées dans les contrats de prestation de services, de formaliser des politiques de confidentialité des données et des procédures relatives à la gestion des demandes d’exercice des droits.
+      </p>
+      <p>
+        La désignation d’un délégué à la protection des données - successeur du correspondant informatique et libertés (CIL) dont la désignation est aujourd’hui facultative - devient obligatoire pour les organismes et autorités publics, et donc pour les fournisseurs de services.
+      </p>
+    </section>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="delegue_protection_donnees"
+      >
+        Délégué·e à la protection des données
+      </label>
+      <input
+        id="delegue_protection_donnees"
+        name="delegue_protection_donnees"
+        onChange={[Function]}
+        type="text"
+        value={undefined}
+      />
+    </div>
+    <div
+      className="form__group"
+    >
+      <input
+        id="checkbox-cnil"
+        name="checkbox-cnil"
+        type="checkbox"
+        value="fraise"
+      />
+      <label
+        class="label-inline"
+        for="checkbox-cnil"
+      >
+        Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données
+      </label>
+    </div>
+    <h1
+      id="convention"
+    >
+      Convention
+    </h1>
+    <section
+      className="information-text"
+    >
+      <p>
+        Merci de prendre connaissance de la convention d'adhésion d'API Particulier afin de demander un jeton d’accès en décrivant votre projet.
+      </p>
+    </section>
+    <iframe
+      height="800px"
+      src="static/docs/charte.pdf"
+      width="100%"
+    />
+    <div
+      className="button-list"
+    >
+      <button
+        className="button button-secondary"
+      >
+        Sauvegarder
+      </button>
+      <button
+        className="button"
+        id="submit"
+        name="subscribe"
+        type="submit"
+      >
+        Soumettre la demande
+      </button>
+    </div>
+  </form>
+</div>
+`;

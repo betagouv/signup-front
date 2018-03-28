@@ -84,6 +84,29 @@ a.button.button-secondary:hover {
   background-color: #bdbdbd;
 }
 
-.panel+.panel {
-  margin-top: 2em;
+.main-pane form {
+  max-width: 100%;
+}
+
+.information-text {
+  background-color: #ebeff3;
+  border-left: 8px solid #c9d3df;
+  padding: 4px 0 4px 25px;
+  margin-bottom: 2em;
+}
+
+fieldset div {
+  margin: 0.5em 0 0.5em 1em;
+}
+
+form label {
+  font-weight: bold;
+}
+
+.button-list {
+  margin: 3em 0;
+  text-align: right;
+}
+.button + .button {
+  margin-left: 1em;
 }

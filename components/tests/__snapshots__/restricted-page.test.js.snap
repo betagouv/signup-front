@@ -42,6 +42,14 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
           </li>
           <li>
             <a
+              href="/contractualisation"
+              onClick={[Function]}
+            >
+              contractualisation
+            </a>
+          </li>
+          <li>
+            <a
               href="/contact"
               onClick={[Function]}
             >
@@ -194,6 +202,14 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
               onClick={[Function]}
             >
               Documentation technique
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contractualisation"
+              onClick={[Function]}
+            >
+              contractualisation
             </a>
           </li>
           <li>
