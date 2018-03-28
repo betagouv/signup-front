@@ -4,14 +4,12 @@ import hoist from 'hoist-non-react-statics'
 
 export default Component => hoist(class OuterComponent extends React.Component {
   static contextTypes = {
-    user: PropTypes.shape({
-      email: PropTypes.string
-    })
+    user: PropTypes.func
   }
 
   render() {
     const {user} = this.context
 
-    return <Component user={user} {...this.props} />
+    return <Component user={user()} {...this.props} />
   }
 }, Component)
