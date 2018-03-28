@@ -1,67 +1,69 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | Header render should match snapshot 1`] = `
-<header>
-  <nav
-    className="nav"
-  >
-    <div
-      className="nav__container"
+<div>
+  <header>
+    <nav
+      className="nav"
     >
-      <a
-        className="nav__link"
-        href="/"
+      <div
+        className="nav__container"
       >
-        <img
-          alt="Accueil de particulier.api.data.gouv.fr"
-          className="nav__logo"
-          src="/static/images/logo-api-particulier.png"
-        />
-      </a>
-      <ul
-        className="nav__links"
-      >
-        <li>
-          <a
-            href="/about"
-            onClick={[Function]}
-          >
-            A propos
-          </a>
-        </li>
-        <li>
-          <a
-            href="/documentation"
-            onClick={[Function]}
-          >
-            Documentation technique
-          </a>
-        </li>
-        <li>
-          <a
-            href="/contractualisation"
-            onClick={[Function]}
-          >
-            contractualisation
-          </a>
-        </li>
-        <li>
-          <a
-            href="/contact"
-            onClick={[Function]}
-          >
-            Contactez-nous
-          </a>
-        </li>
-        <li>
-          <a
-            href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
-          >
-            Se connecter
-          </a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+        <a
+          className="nav__link"
+          href="/"
+        >
+          <img
+            alt="Accueil de particulier.api.data.gouv.fr"
+            className="nav__logo"
+            src="/static/images/logo-api-particulier.png"
+          />
+        </a>
+        <ul
+          className="nav__links"
+        >
+          <li>
+            <a
+              href="/about"
+              onClick={[Function]}
+            >
+              A propos
+            </a>
+          </li>
+          <li>
+            <a
+              href="/documentation"
+              onClick={[Function]}
+            >
+              Documentation technique
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contractualisation"
+              onClick={[Function]}
+            >
+              contractualisation
+            </a>
+          </li>
+          <li>
+            <a
+              href="/contact"
+              onClick={[Function]}
+            >
+              Contactez-nous
+            </a>
+          </li>
+          <li>
+            <a
+              href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
+            >
+              Se connecter
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+</div>
 `;

@@ -18,7 +18,7 @@ const attachUser = Component => {
     getChildContext() {
       const {user} = this.state
 
-      return {user}
+      return {user: () => user}
     }
 
     render() {
@@ -31,9 +31,7 @@ const attachUser = Component => {
   }
 
   InnerComponent.childContextTypes = {
-    user: PropTypes.shape({
-      email: PropTypes.string
-    })
+    user: PropTypes.func
   }
 
   return InnerComponent

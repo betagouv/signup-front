@@ -6,36 +6,7 @@ class ContractualisationForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      enrollment: {
-        fournisseur_de_service: '',
-        description_service: '',
-        fondement_juridique: '',
-        scope_dgfip_avis_imposition: '',
-        scope_cnaf_aation_droits: '',
-        scope_cnaf_quotient_familial: '',
-        nombre_demandes_annuelle: '',
-        pic_demandes_par_heure: '',
-        nombre_demandes_mensuelles_jan: '',
-        nombre_demandes_mensuelles_fev: '',
-        nombre_demandes_mensuelles_mar: '',
-        nombre_demandes_mensuelles_avr: '',
-        nombre_demandes_mensuelles_mai: '',
-        nombre_demandes_mensuelles_jui: '',
-        nombre_demandes_mensuelles_jul: '',
-        nombre_demandes_mensuelles_aou: '',
-        nombre_demandes_mensuelles_sep: '',
-        nombre_demandes_mensuelles_oct: '',
-        nombre_demandes_mensuelles_nov: '',
-        nombre_demandes_mensuelles_dec: '',
-        autorite_certification_nom: '',
-        autorite_certification_fonction: '',
-        date_homologation: '',
-        date_fin_homologation: '',
-        delegue_protection_donnees: '',
-        validation_de_convention: '',
-        certificat_pub_production: '',
-        autorite_certification: ''
-      }
+      enrollment: { }
     }
 
     this.handleChange = this.handleChange.bind(this)
