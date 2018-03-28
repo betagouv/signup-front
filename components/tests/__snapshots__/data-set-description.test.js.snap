@@ -8,7 +8,7 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
     className="panel__header"
   >
     <h3>
-      Avis d'imposition
+      dgfip_avis_imposition
     </h3>
     <small
       className="panel__header-extra"
@@ -53,17 +53,16 @@ exports[`components | DataSetDescription render should match snapshot 1`] = `
   <div
     className="panel__actions"
   >
-    <a
+    <button
       className="button button-secondary"
-      href=""
       onClick={[Function]}
     >
       Essayez-moi !
-    </a>
+    </button>
     <button
       className="button"
-      id="dgfip_avis_imposition_submit_button"
-      name="dgfip_avis_imposition_button"
+      id="undefined_submit_button"
+      name="undefined_button"
       type="submit"
     >
       Ajouter à ma sélection

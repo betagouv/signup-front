@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`components | LinkButton render should match snapshot 1`] = `
-<a
+<button
   className="button button-secondary"
-  href="http://fakeurl.com"
-  onClick={[Function]}
+  onClick={undefined}
 >
   Essayez-moi !
-</a>
+</button>
 `;
