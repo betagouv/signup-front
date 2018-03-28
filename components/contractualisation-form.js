@@ -27,7 +27,7 @@ class ContractualisationForm extends React.Component {
   handleSubmit(event) {
     const token = localStorage.getItem('token')
     const componentState = this.state
-    Services.postFormToBack(componentState, token)
+    Services.postFormToBack(componentState, token).then(response => console.log('formulaire soumit !!', response))
     event.preventDefault()
   }
 
@@ -40,6 +40,10 @@ class ContractualisationForm extends React.Component {
             <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.</p>
             <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
+          <div className='form__group'>
+            <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
+            <input type='text' onChange={this.handleChange} name='fournisseur_de_service' id='fournisseur_de_service' value={this.state.value} />
+          </div>
           <div className='form__group'>
             <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
             <textarea onChange={this.handleChange} name='description_service' id='description_service' value={this.state.value} />
@@ -64,19 +68,19 @@ class ContractualisationForm extends React.Component {
               Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
           </section>
           <div className='form__group'>
-            <fieldset class='vertical'>
+            <fieldset className='vertical'>
               <legend>Sélectionnez vos jeux de données souhaités</legend>
               <div>
                 <input type='checkbox' name='checkbox-scope' id='checkbox-scope_dgfip_avis_imposition' value='true' />
-                <label for='checkbox-scope_dgfip_avis_imposition' class='label-inline'>DGFIP - Avis Imposition</label>
+                <label for='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFIP - Avis Imposition</label>
               </div>
               <div>
                 <input type='checkbox' name='checkbox-scope' id='checkbox-scope_cnaf_attestation_droits' value='scope_cnaf_attestation_droits' />
-                <label for='checkbox-scope_cnaf_attestation_droits' class='label-inline'>CNAF - Attestation de droits</label>
+                <label for='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
               </div>
               <div>
                 <input type='checkbox' name='checkbox-scope' id='checkbox-scope_cnaf_quotient_familial' value='true' />
-                <label for='checkbox-scope_cnaf_quotient_familial' class='label-inline'>CNAF - Quotient Familial</label>
+                <label for='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quotient Familial</label>
               </div>
             </fieldset>
           </div>
@@ -159,7 +163,7 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <input type='checkbox' name='checkbox-cnil' id='checkbox-cnil' value='fraise' />
-            <label for='checkbox-cnil' class='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
+            <label for='checkbox-cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
           </div>
 
           <h1 id='convention'>Convention</h1>
