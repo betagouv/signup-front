@@ -337,7 +337,6 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         id="checkbox-cnil"
         name="enrollment.checkbox-cnil"
         type="checkbox"
-        value="fraise"
       />
       <label
         className="label-inline"

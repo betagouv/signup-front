@@ -204,7 +204,7 @@ class ContractualisationForm extends React.Component {
           </div>
 
           <div className='form__group'>
-            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil' value='fraise' />
+            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil'/>
             <label htmlFor='checkbox-cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
           </div>
 
