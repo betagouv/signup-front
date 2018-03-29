@@ -210,7 +210,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       </label>
       <pre>
         <code>
-          'nombre_demandes_mensuelles_jan': 45, 'nombre_demandes_mensuelles_fev': 45, 'nombre_demandes_mensuelles_mar': 45, 'nombre_demandes_mensuelles_avr': 45, 'nombre_demandes_mensuelles_mai': 45, 'nombre_demandes_mensuelles_jui': 45, 'nombre_demandes_mensuelles_jul': 45, 'nombre_demandes_mensuelles_aou': 45, 'nombre_demandes_mensuelles_sep': 45, 'nombre_demandes_mensuelles_oct': 45, 'nombre_demandes_mensuelles_nov': 45, 'nombre_demandes_mensuelles_dec': 45,
+          ‘nombre_demandes_mensuelles_jan‘: 45, ‘nombre_demandes_mensuelles_fev‘: 45, ‘nombre_demandes_mensuelles_mar‘: 45, ‘nombre_demandes_mensuelles_avr‘: 45, ‘nombre_demandes_mensuelles_mai‘: 45, ‘nombre_demandes_mensuelles_jui‘: 45, ‘nombre_demandes_mensuelles_jul‘: 45, ‘nombre_demandes_mensuelles_aou‘: 45, ‘nombre_demandes_mensuelles_sep‘: 45, ‘nombre_demandes_mensuelles_oct‘: 45, ‘nombre_demandes_mensuelles_nov‘: 45, ‘nombre_demandes_mensuelles_dec‘: 45,
         </code>
       </pre>
     </div>
@@ -383,11 +383,6 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     <div
       className="button-list"
     >
-      <button
-        className="button button-secondary"
-      >
-        Sauvegarder
-      </button>
       <button
         className="button"
         id="submit"
