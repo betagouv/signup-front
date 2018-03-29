@@ -1,4 +1,5 @@
 import React from 'react'
+import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
 
@@ -6,7 +7,36 @@ class ContractualisationForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      enrollment: { }
+      enrollment: {
+        fournisseur_de_service: '',
+        description_service: '',
+        fondement_juridique: '',
+        scope_dgfip_avis_imposition: true,
+        scope_cnaf_attestation_droits: false,
+        scope_cnaf_quotient_familial: true,
+        nombre_demandes_annuelle: '',
+        pic_demandes_par_heure: '',
+        nombre_demandes_mensuelles_jan: '',
+        nombre_demandes_mensuelles_fev: '',
+        nombre_demandes_mensuelles_mar: '',
+        nombre_demandes_mensuelles_avr: '',
+        nombre_demandes_mensuelles_mai: '',
+        nombre_demandes_mensuelles_jui: '',
+        nombre_demandes_mensuelles_jul: '',
+        nombre_demandes_mensuelles_aou: '',
+        nombre_demandes_mensuelles_sep: '',
+        nombre_demandes_mensuelles_oct: '',
+        nombre_demandes_mensuelles_nov: '',
+        nombre_demandes_mensuelles_dec: '',
+        autorite_certification_nom: '',
+        autorite_certification_fonction: '',
+        date_homologation: '',
+        date_fin_homologation: '',
+        delegue_protection_donnees: '',
+        validation_de_convention: false,
+        certificat_pub_production: '',
+        autorite_certification: ''
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -27,11 +57,22 @@ class ContractualisationForm extends React.Component {
   handleSubmit(event) {
     const token = localStorage.getItem('token')
     const componentState = this.state
-    Services.postFormToBack(componentState, token)
+    Services.postFormToBack(componentState, token).then(response => {
+      if (response.status === 201) {
+        Router.push('/demandes')
+      } else if (response.status === 422) {
+        alert('Formulaire incomplet' + response.request.response)
+      } else if (response.status === 401) {
+        alert("Vous n'êtes pas autorisé" + response)
+      } else {
+        alert("Erreur inconnue" + response)
+      }
+    })
     event.preventDefault()
   }
 
   render() {
+    const currentValue = this.state.value
     return (
       <div className='main-pane'>
         <form onSubmit={this.handleSubmit}>
@@ -41,12 +82,16 @@ class ContractualisationForm extends React.Component {
             <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
           <div className='form__group'>
+            <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
+            <input type='text' onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service' value={currentValue} />
+          </div>
+          <div className='form__group'>
             <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-            <textarea onChange={this.handleChange} name='description_service' id='description_service' value={this.state.value} />
+            <textarea onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={currentValue} />
           </div>
           <div className='form__group'>
             <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande</label>
-            <textarea onChange={this.handleChange} name='fondement_juridique' id='fondement_juridique' value={this.state.value} />
+            <textarea onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={currentValue} />
           </div>
 
           <h1 id='donnees'>Choix des données</h1>
@@ -64,19 +109,19 @@ class ContractualisationForm extends React.Component {
               Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
           </section>
           <div className='form__group'>
-            <fieldset class='vertical'>
+            <fieldset className='vertical'>
               <legend>Sélectionnez vos jeux de données souhaités</legend>
               <div>
-                <input type='checkbox' name='checkbox-scope' id='checkbox-scope_dgfip_avis_imposition' value='true' />
-                <label for='checkbox-scope_dgfip_avis_imposition' class='label-inline'>DGFIP - Avis Imposition</label>
+                <input onChange={this.handleChange} checked={this.state.scope_dgfip_avis_imposition} type='checkbox' name='enrollment.scope_dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' value='true' />
+                <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFIP - Avis Imposition</label>
               </div>
               <div>
-                <input type='checkbox' name='checkbox-scope' id='checkbox-scope_cnaf_attestation_droits' value='scope_cnaf_attestation_droits' />
-                <label for='checkbox-scope_cnaf_attestation_droits' class='label-inline'>CNAF - Attestation de droits</label>
+                <input onChange={this.handleChange} checked={this.state.scope_cnaf_attestation_droits} type='checkbox' name='enrollment.scope_cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' value='scope_cnaf_attestation_droits' />
+                <label htmlFor='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
               </div>
               <div>
-                <input type='checkbox' name='checkbox-scope' id='checkbox-scope_cnaf_quotient_familial' value='true' />
-                <label for='checkbox-scope_cnaf_quotient_familial' class='label-inline'>CNAF - Quotient Familial</label>
+                <input onChange={this.handleChange} checked={this.state.scope_cnaf_quotient_familial} type='checkbox' name='enrollment.scope_cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' value='true' />
+                <label htmlFor='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quotient Familial</label>
               </div>
             </fieldset>
           </div>
@@ -90,30 +135,30 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='nombre_demandes_annuelle'>Connaissez-vous le volume global annuel des demandes de votre téléservice&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='nombre_demandes_annuelle' id='nombre_demandes_annuelle' value={this.state.value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_annuelle' id='nombre_demandes_annuelle' value={currentValue} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='pic_demandes_par_heure'>Connaissez-vous le pic de charge (en nombre de demandes horaires)&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='pic_demandes_par_heure' id='pic_demandes_par_heure' value={this.state.value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.pic_demandes_par_heure' id='pic_demandes_par_heure' value={currentValue} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='pic_demandes_par_heure'>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
             <pre>
               <code>
-                'nombre_demandes_mensuelles_jan': 45,
-                'nombre_demandes_mensuelles_fev': 45,
-                'nombre_demandes_mensuelles_mar': 45,
-                'nombre_demandes_mensuelles_avr': 45,
-                'nombre_demandes_mensuelles_mai': 45,
-                'nombre_demandes_mensuelles_jui': 45,
-                'nombre_demandes_mensuelles_jul': 45,
-                'nombre_demandes_mensuelles_aou': 45,
-                'nombre_demandes_mensuelles_sep': 45,
-                'nombre_demandes_mensuelles_oct': 45,
-                'nombre_demandes_mensuelles_nov': 45,
-                'nombre_demandes_mensuelles_dec': 45,
+                &lsquo;nombre_demandes_mensuelles_jan&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_fev&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_mar&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_avr&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_mai&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_jui&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_jul&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_aou&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_sep&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_oct&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_nov&lsquo;: 45,
+                &lsquo;nombre_demandes_mensuelles_dec&lsquo;: 45,
               </code>
             </pre>
           </div>
@@ -127,22 +172,22 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='autorite_certification_nom'>Nom de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='autorite_certification_nom' id='autorite_certification_nom' value={this.state.value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={currentValue} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='autorite_certification_fonction'>Fonction de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='autorite_certification_fonction' id='autorite_certification_fonction' value={this.state.value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={currentValue} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='date_homologation'>Date de début l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='date_homologation' id='date_homologation' value={this.state.value} />
+            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={currentValue} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='date_fin_homologation' id='date_fin_homologation' value={this.state.value} />
+            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={currentValue} />
           </div>
 
           <h1 id='cnil'>Obligation CNIL</h1>
@@ -154,12 +199,12 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='delegue_protection_donnees'>Délégué·e à la protection des données</label>
-            <input type='text' onChange={this.handleChange} name='delegue_protection_donnees' id='delegue_protection_donnees' value={this.state.value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.delegue_protection_donnees' id='delegue_protection_donnees' value={currentValue} />
           </div>
 
           <div className='form__group'>
-            <input type='checkbox' name='checkbox-cnil' id='checkbox-cnil' value='fraise' />
-            <label for='checkbox-cnil' class='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
+            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil' value='fraise' />
+            <label htmlFor='checkbox-cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
           </div>
 
           <h1 id='convention'>Convention</h1>
@@ -167,10 +212,14 @@ class ContractualisationForm extends React.Component {
             <p>Merci de prendre connaissance de la convention d'adhésion d'API Particulier afin de demander un jeton d’accès en décrivant votre projet.</p>
           </section>
 
-          <iframe src='static/docs/charte.pdf' width='100%' height='800px'></iframe>
+          <iframe src='static/docs/charte.pdf' width='100%' height='800px' />
+
+          <div className='form__group'>
+            <input onChange={this.handleChange} checked={this.state.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
+            <label htmlFor='validation_de_convention' className='label-inline'>Je valide la présente convention</label>
+          </div>
 
           <div className='button-list'>
-            <button className='button button-secondary'>Sauvegarder</button>
             <button className='button' type='submit' name='subscribe' id='submit'>Soumettre la demande</button>
           </div>
         </form>
