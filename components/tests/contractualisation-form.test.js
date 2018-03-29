@@ -58,7 +58,7 @@ describe('components | ContractualisationForm', () => {
 
       describe('handleSubmit', () => {
         it('should call the services with the good parameters', () => {
-          const spy = jest.spyOn(Services, 'postFormToBack')
+          const spy = jest.spyOn(Services, 'createUserEnrollment')
           localStorage.setItem('token', 'fakeToken')
           const wrapper = mount(<ContractualisationForm />)
           const componentInitialState = wrapper.state()

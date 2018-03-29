@@ -57,7 +57,7 @@ class ContractualisationForm extends React.Component {
   handleSubmit(event) {
     const token = localStorage.getItem('token')
     const componentState = this.state
-    Services.postFormToBack(componentState, token).then(response => {
+    Services.createUserEnrollment(componentState, token).then(response => {
       if (response.status === 201) {
         Router.push('/demandes')
       } else if (response.status === 422) {

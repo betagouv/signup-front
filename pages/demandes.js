@@ -14,6 +14,7 @@ class Demandes extends React.Component {
 
   componentDidMount() {
     const token = localStorage.getItem('token')
+    console.log('token :', token)
     Services.getUserEnrollments(token).then(enrollments => {
       this.setState({enrollments})
     })
@@ -26,13 +27,11 @@ class Demandes extends React.Component {
       <Page requireUser enrollments>
         <section>
           <h2 className='hero__white-background'>Demandes d{'\''}accès</h2>
-          <table>
-            {enrollments &&
-              enrollments.map(enrollment => {
-                return <Enrollment key={'enrollment' + i++} enrollment={enrollment} />
-              })
-            }
-          </table>
+          {enrollments &&
+            enrollments.map(enrollment => {
+              return <Enrollment key={'enrollment' + i++} enrollment={enrollment} />
+            })
+          }
         </section>
       </Page>
     )
