@@ -123,3 +123,7 @@ form label {
   margin-top: 2em;
   background-color: #e8e8e8;
 }
+
+iframe {
+	margin-bottom: 2em;
+}

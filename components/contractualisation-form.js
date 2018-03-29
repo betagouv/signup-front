@@ -78,8 +78,8 @@ class ContractualisationForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1 id='legal'>Fondement légal</h1>
           <section className='information-text'>
-            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.</p>
-            <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFiP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
+            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.</p>
+            <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
           <div className='form__group'>
             <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
