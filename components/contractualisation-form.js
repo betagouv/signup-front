@@ -63,16 +63,17 @@ class ContractualisationForm extends React.Component {
       } else if (response.status === 422) {
         alert('Formulaire incomplet' + response.request.response)
       } else if (response.status === 401) {
-        alert("Vous n'êtes pas autorisé" + response)
+        alert('Vous n\'êtes pas autorisé' + response)
       } else {
-        alert("Erreur inconnue" + response)
+        alert('Erreur inconnue' + response)
       }
     })
     event.preventDefault()
   }
 
   render() {
-    const currentValue = this.state.value
+    const {value} = this.state
+
     return (
       <div className='main-pane'>
         <form onSubmit={this.handleSubmit}>
@@ -83,15 +84,15 @@ class ContractualisationForm extends React.Component {
           </section>
           <div className='form__group'>
             <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service' value={value} />
           </div>
           <div className='form__group'>
             <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-            <textarea onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={currentValue} />
+            <textarea onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={value} />
           </div>
           <div className='form__group'>
             <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande</label>
-            <textarea onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={currentValue} />
+            <textarea onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={value} />
           </div>
 
           <h1 id='donnees'>Choix des données</h1>
@@ -135,12 +136,12 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='nombre_demandes_annuelle'>Connaissez-vous le volume global annuel des demandes de votre téléservice&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_annuelle' id='nombre_demandes_annuelle' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_annuelle' id='nombre_demandes_annuelle' value={value} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='pic_demandes_par_heure'>Connaissez-vous le pic de charge (en nombre de demandes horaires)&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.pic_demandes_par_heure' id='pic_demandes_par_heure' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.pic_demandes_par_heure' id='pic_demandes_par_heure' value={value} />
           </div>
 
           <div className='form__group'>
@@ -172,22 +173,22 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='autorite_certification_nom'>Nom de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={value} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='autorite_certification_fonction'>Fonction de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={value} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='date_homologation'>Date de début l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={currentValue} />
+            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={value} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={currentValue} />
+            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={value} />
           </div>
 
           <h1 id='cnil'>Obligation CNIL</h1>
@@ -199,7 +200,7 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='delegue_protection_donnees'>Délégué·e à la protection des données</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.delegue_protection_donnees' id='delegue_protection_donnees' value={currentValue} />
+            <input type='text' onChange={this.handleChange} name='enrollment.delegue_protection_donnees' id='delegue_protection_donnees' value={value} />
           </div>
 
           <div className='form__group'>
@@ -209,7 +210,7 @@ class ContractualisationForm extends React.Component {
 
           <h1 id='convention'>Convention</h1>
           <section className='information-text'>
-            <p>Merci de prendre connaissance de la convention d'adhésion d'API Particulier afin de demander un jeton d’accès en décrivant votre projet.</p>
+            <p>Merci de prendre connaissance de la convention d’adhésion d’API Particulier afin de demander un jeton d’accès en décrivant votre projet.</p>
           </section>
 
           <iframe src='static/docs/charte.pdf' width='100%' height='800px' />

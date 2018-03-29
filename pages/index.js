@@ -1,10 +1,8 @@
 import React from 'react'
 import Page from '../components/page'
 import Section from '../components/section'
-import Search from '../components/search'
 import resourceProviderMocks from '../mock/data/resource-providers'
 import ResourceProvider from '../components/resource-provider'
-// import ResourceProviderService from '../lib/resource-provider.service'
 
 class Index extends React.Component {
   constructor(props) {
@@ -13,14 +11,7 @@ class Index extends React.Component {
     this.state = {
       resourceProviders: resourceProviderMocks
     }
-    // this.resourceProviderService = new ResourceProviderService()
   }
-
-  // componentDidMount() {
-    // this.resourceProviderService.getAll().then(resourceProviders => {
-    //   this.setState({resourceProviders})
-    // })
-  // }
 
   render() {
     const {resourceProviders} = this.state
@@ -47,26 +38,26 @@ class Index extends React.Component {
 
         <Section className='section-dark'>
           <div className='container'>
-              <div className='row'>
-                <div className='column'>
-                  <h2 className="text-center">Données à jour</h2>
-                  <p>Les données servies sont fournies directement par les organismes de référence.</p>
-                </div>
-                <div className='column'>
-                  <h2 className="text-center">FranceConnect</h2>
-                  <p>Les échanges de données et le receuil de consentement de l'usager s’appuient sur la technologie FranceConnect.</p>
-                  <a href="#france-connect">En savoir plus</a>
-                </div>
-                <div className='column'>
-                  <h2 className="text-center">API Particulier</h2>
-                  <p>Votre organisme n'a pas encore implémenté FranceConnect ? Vous pouvez commencer à sécuriser vos échanges  en utilisant les données issues de API particulier.</p>
-                  <a href="#api-particulier">En savoir plus</a>
-                </div>
+            <div className='row'>
+              <div className='column'>
+                <h2 className='text-center'>Données à jour</h2>
+                <p>Les données servies sont fournies directement par les organismes de référence.</p>
+              </div>
+              <div className='column'>
+                <h2 className='text-center'>FranceConnect</h2>
+                <p>Les échanges de données et le receuil de consentement de l’usager s’appuient sur la technologie FranceConnect.</p>
+                <a href='#france-connect'>En savoir plus</a>
+              </div>
+              <div className='column'>
+                <h2 className='text-center'>API Particulier</h2>
+                <p>Votre organisme n’a pas encore implémenté FranceConnect ? Vous pouvez commencer à sécuriser vos échanges  en utilisant les données issues de API particulier.</p>
+                <a href='#api-particulier'>En savoir plus</a>
               </div>
             </div>
+          </div>
         </Section>
 
-        <Section title="1. Données disponibles par FranceConnect" id="france-connect">
+        <Section title='1. Données disponibles par FranceConnect' id='france-connect'>
           {
             resourceProviders.franceConnect.map(resourceProvider => {
               return <ResourceProvider key={'resourceProvider-fc' + i++} resourceProvider={resourceProvider} />
@@ -74,7 +65,7 @@ class Index extends React.Component {
           }
         </Section>
 
-        <Section title="2. Données disponibles sans FranceConnect" id="api-particulier">
+        <Section title='2. Données disponibles sans FranceConnect' id='api-particulier'>
           {
             resourceProviders.apiParticulier.map(resourceProvider => {
               return <ResourceProvider key={'resourceProvider-apipart' + i++} resourceProvider={resourceProvider} />

@@ -11,16 +11,14 @@ const Section = ({id, className, title, children}) => (
 Section.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  imageSrc: PropTypes.string,
-  altText: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  id: PropTypes.string
 }
 
 Section.defaultProps = {
   className: null,
   title: null,
-  imageSrc: null,
-  altText: null
+  id: null
 }
 
 export default Section
