@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Section = ({className, title, imageSrc, altText, children}) => (
+const Section = ({id, className, title, imageSrc, altText, children}) => (
   <section className={className}>
     <div>
-      {title && <h2 className='section__title'>{title}</h2>}
+      {title && <h2 id={id} className='section__title'>{title}</h2>}
       {children}
     </div>
     <div>
