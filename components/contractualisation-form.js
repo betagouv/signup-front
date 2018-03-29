@@ -79,7 +79,7 @@ class ContractualisationForm extends React.Component {
           <h1 id='legal'>Fondement légal</h1>
           <section className='information-text'>
             <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.</p>
-            <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
+            <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFiP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
           <div className='form__group'>
             <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
@@ -113,7 +113,7 @@ class ContractualisationForm extends React.Component {
               <legend>Sélectionnez vos jeux de données souhaités</legend>
               <div>
                 <input onChange={this.handleChange} checked={this.state.scope_dgfip_avis_imposition} type='checkbox' name='enrollment.scope_dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' value='true' />
-                <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFIP - Avis Imposition</label>
+                <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Avis Imposition</label>
               </div>
               <div>
                 <input onChange={this.handleChange} checked={this.state.scope_cnaf_attestation_droits} type='checkbox' name='enrollment.scope_cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' value='scope_cnaf_attestation_droits' />

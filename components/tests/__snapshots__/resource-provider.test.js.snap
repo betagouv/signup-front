@@ -15,7 +15,7 @@ exports[`components | DataSet render should match snapshot 1`] = `
         <abbr
           title="Direction Générale des Finances Publiques"
         >
-          DGFIP
+          DGFiP
         </abbr>
       </h2>
       <p>
@@ -33,12 +33,12 @@ exports[`components | DataSet render should match snapshot 1`] = `
           <small
             className="panel__header-extra"
           >
-            DGFIP
+            DGFiP
           </small>
         </div>
         <div>
           <p>
-            Données issues du service svair de la DGFIP
+            Données issues du service svair de la DGFiP
           </p>
           <div
             className="form__group"

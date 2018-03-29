@@ -12,11 +12,11 @@ class ResourceProvider extends React.Component {
       <Section className='section-grey'>
         <div className='container'>
           <h2 className='section__title'>Données issues de la <abbr title={resourceProvider.long_name}>{resourceProvider.short_name}</abbr></h2>
-          <p>{resourceProvider.description}</p>
+          <p className='section__subtitle'>{resourceProvider.description}</p>
           {
             resourceProvider.scopes.map(dataSet => {
               return (
-                <DataSetDescription key={'dataSet' + i++} dataset={dataSet} provider={resourceProvider.short_name} />
+                <DataSetDescription key={'dataSet' + i++} dataset={dataSet} provider={resourceProvider} />
               )
             })
           }
