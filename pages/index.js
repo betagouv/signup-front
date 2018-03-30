@@ -36,41 +36,33 @@ class Index extends React.Component {
           `}</style>
         </div>
 
-        <Section className='section-dark'>
-          <div className='container'>
-            <div className='row'>
-              <div className='column'>
-                <h2 className='text-center'>Données à jour</h2>
-                <p>Les données servies sont fournies directement par les organismes de référence.</p>
-              </div>
-              <div className='column'>
-                <h2 className='text-center'>FranceConnect</h2>
-                <p>Les échanges de données et le receuil de consentement de l’usager s’appuient sur la technologie FranceConnect.</p>
-                <a href='#france-connect'>En savoir plus</a>
-              </div>
-              <div className='column'>
-                <h2 className='text-center'>API Particulier</h2>
-                <p>Votre organisme n’a pas encore implémenté FranceConnect ? Vous pouvez commencer à sécuriser vos échanges  en utilisant les données issues de API particulier.</p>
-                <a href='#api-particulier'>En savoir plus</a>
-              </div>
-            </div>
-          </div>
-        </Section>
-
         <Section title='1. Données disponibles par FranceConnect' id='france-connect'>
-          {
-            resourceProviders.franceConnect.map(resourceProvider => {
-              return <ResourceProvider key={'resourceProvider-fc' + i++} resourceProvider={resourceProvider} />
-            })
-          }
+          <p className='section__subtitle'>
+            L’échange de données se fait en mode « ad hoc » entre Fournisseur de Services et Fournisseur de Données. Dans cet échange, FranceConnect tient un rôle de <em>tiers de confiance</em>.<br />
+            Il va fournir des jetons d’accès au Fournisseur de Services pour les jeux de données convenus avec les Fournisseurs de Données avec lesquels il échange. Le jeton contenant les jeux de données est transmis au Fournisseur de Services suite au consentement de l’usager.
+            <a href='#api-particulier'>Vous n’avez pas encore FranceConnect ?</a>
+          </p>
+
+          <div className='container'>
+            {
+              resourceProviders.franceConnect.map(resourceProvider => {
+                return <ResourceProvider key={'resourceProvider-fc' + i++} resourceProvider={resourceProvider} />
+              })
+            }
+          </div>
+
         </Section>
 
         <Section title='2. Données disponibles sans FranceConnect' id='api-particulier'>
-          {
-            resourceProviders.apiParticulier.map(resourceProvider => {
-              return <ResourceProvider key={'resourceProvider-apipart' + i++} resourceProvider={resourceProvider} />
-            })
-          }
+          <p className='section__subtitle'>L’accès aux données est réalisé au travers de protocoles de communications sécurisés et <em>seuls les opérateurs agréés peuvent se connecter à l’API</em>. <br />
+          Pour obtenir un agrément, vous devez justifier d’une simplification pour les citoyens, et vous engager à n’accéder aux données personnelles qu’avec <em>l’accord explicite de l’usager</em>.</p>
+          <div className='container'>
+            {
+              resourceProviders.apiParticulier.map(resourceProvider => {
+                return <ResourceProvider key={'resourceProvider-apipart' + i++} resourceProvider={resourceProvider} />
+              })
+            }
+          </div>
         </Section>
       </Page>
     )

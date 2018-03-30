@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Section = ({id, className, title, children}) => (
-  <section className={className}>
-    {title && <h2 id={id} className='section__title'>{title}</h2>}
+  <section className={className} id={id} >
+    {title && <h2 className='section__title'>{title}</h2>}
     {children}
   </section>
 )

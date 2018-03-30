@@ -127,3 +127,31 @@ form label {
 iframe {
 	margin-bottom: 2em;
 }
+
+.section__subtitle {
+  text-align: justify;
+}
+
+.section__title + .section__subtitle {
+  margin-top: -2em;
+}
+
+.section__subsection .section__title {
+  text-align: center;
+}
+
+.section__subtitle em {
+  font-weight: bold;
+}
+
+.section__subtitle a {
+  color: darkgrey;
+  text-decoration: underline;
+  text-align: right;
+  margin-top: 1em;
+  display: block;
+}
+
+section + section {
+  padding-top: 0;
+}

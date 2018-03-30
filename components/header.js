@@ -40,7 +40,7 @@ class Header extends React.Component {
               {user.loggedIn &&
                 <li><Link href='/demandes'><a>Liste des demandes</a></Link></li>
               }
-
+              <li><Link href='/#france-connect'><a>Données disponibles</a></Link></li>
               <li>
                 {user.loggedIn && (
                   <div className='dropdown'>
