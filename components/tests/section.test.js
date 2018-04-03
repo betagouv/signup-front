@@ -9,8 +9,6 @@ describe('components | Section', () => {
     const props = {
       className: 'className',
       title: 'The title',
-      imageSrc: '/somepath/image.png',
-      altText: 'some alternative text',
       children: '<p>Some html</p>'
     }
     const renderer = ReactTestRenderer.create(<Section {...props} />)
@@ -26,8 +24,6 @@ describe('components | Section', () => {
     const props = {
       className: 'A className',
       title: 'The title',
-      imageSrc: '/somepath/image.png',
-      altText: 'some alternative text',
       children: '<p>Some html</p>'
     }
     it('should have proper title and content', () => {
@@ -38,15 +34,6 @@ describe('components | Section', () => {
           .at(0)
           .props().children,
       ).toEqual([<h2 className="section__title">The title</h2>, '<p>Some html</p>'])
-    })
-    it('should have proper image with alternative texte', () => {
-      const wrapper = shallow(<Section {...props} />)
-      expect(
-        wrapper
-          .find('div')
-          .at(1)
-          .props().children,
-      ).toEqual(<img alt={props.altText} src={props.imageSrc} />)
     })
   })
 })

@@ -3,20 +3,13 @@
 exports[`components | Section render should match snapshot 1`] = `
 <section
   className="className"
+  id={null}
 >
-  <div>
-    <h2
-      className="section__title"
-    >
-      The title
-    </h2>
-    &lt;p&gt;Some html&lt;/p&gt;
-  </div>
-  <div>
-    <img
-      alt="some alternative text"
-      src="/somepath/image.png"
-    />
-  </div>
+  <h2
+    className="section__title"
+  >
+    The title
+  </h2>
+  &lt;p&gt;Some html&lt;/p&gt;
 </section>
 `;

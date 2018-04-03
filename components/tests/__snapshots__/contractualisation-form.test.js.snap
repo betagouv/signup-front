@@ -16,10 +16,10 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="information-text"
     >
       <p>
-        Pour pouvoir bénéficier du raccordement à l‘API « impôt particulier », le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFiP de transmettre des données fiscales  à votre entité administrative.
+        Pour pouvoir bénéficier du raccordement à l‘API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.
       </p>
       <p>
-        Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander des informations fiscales auprès de la DGFIP (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
+        Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
       </p>
     </section>
     <div
@@ -116,7 +116,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
             className="label-inline"
             htmlFor="checkbox-scope_dgfip_avis_imposition"
           >
-            DGFIP - Avis Imposition
+            DGFiP - Avis Imposition
           </label>
         </div>
         <div>
@@ -355,7 +355,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="information-text"
     >
       <p>
-        Merci de prendre connaissance de la convention d'adhésion d'API Particulier afin de demander un jeton d’accès en décrivant votre projet.
+        Merci de prendre connaissance de la convention d’adhésion d’API Particulier afin de demander un jeton d’accès en décrivant votre projet.
       </p>
     </section>
     <iframe

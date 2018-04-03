@@ -1,57 +1,96 @@
-[
-	{
-		"id": 1,
-		"short_name": "DGFIP",
-		"long_name": "Direction Générale des Finances Publiques",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nulla lorem, maximus vel nisl in, finibus aliquam nunc. Quisque malesuada nisi nec mi interdum rutrum. Maecenas vel magna sit amet nulla volutpat finibus non nec ex. Pellentesque eu lectus tortor. Donec semper malesuada nisl eu elementum. Nulla placerat nisl ut massa luctus consectetur. Praesent varius sit amet sapien at suscipit. Pellentesque bibendum iaculis turpis, at lobortis sem sodales id. Nulla vitae auctor turpis, id tristique elit. Vestibulum euismod dolor dictum nulla maximus, vitae maximus nunc efficitur.",
-		"created_at": "2018-03-23T12:23:01.825Z",
-		"updated_at": "2018-03-23T12:23:01.825Z",
-		"scopes": [{
-			"id": 1,
-			"name": "dgfip_avis_imposition",
-			"human_name": "Avis d'imposition",
-			"description": "Données issues du service svair de la DGFIP",
-			"resource_provider_id": 1,
-			"created_at": "2018-03-23T12:23:01.850Z",
-			"updated_at": "2018-03-23T12:23:01.850Z",
-			"services": [{
-					"name": "BourseSCO",
-					"url": "https://api.gouv.fr/service/bourse.html"
-				},
-				{
-					"name": "Lyon : Mon compte",
-					"url": "https://api.gouv.fr/service/calcul-quotient-familial.html"
-				}
-			]
-		}]
-	},
-	{
-		"id": 2,
-		"short_name": "CNAF",
-		"long_name": "Caisse Nationale des Allocation Familliales",
-		"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nulla lorem, maximus vel nisl in, finibus aliquam nunc. Quisque malesuada nisi nec mi interdum rutrum. Maecenas vel magna sit amet nulla volutpat finibus non nec ex. Pellentesque eu lectus tortor. Donec semper malesuada nisl eu elementum. Nulla placerat nisl ut massa luctus consectetur. Praesent varius sit amet sapien at suscipit. Pellentesque bibendum iaculis turpis, at lobortis sem sodales id. Nulla vitae auctor turpis, id tristique elit. Vestibulum euismod dolor dictum nulla maximus, vitae maximus nunc efficitur.",
-		"created_at": "2018-03-23T12:23:01.858Z",
-		"updated_at": "2018-03-23T12:23:01.858Z",
-		"scopes": [{
-				"id": 2,
-				"name": "cnaf_attestation_droits",
-				"human_name": "Attestation de droits",
-				"description": "Contient le revenu fiscal de référence, le nombre de part et les déclarants",
-				"resource_provider_id": 2,
-				"created_at": "2018-03-23T12:23:01.861Z",
-				"updated_at": "2018-03-23T12:23:01.861Z",
-				"services": []
-			},
-			{
-				"id": 3,
-				"name": "cnaf_quotient_familial",
-				"human_name": "Quotient familial",
-				"description": "Contient le quotient familial du mois précédent",
-				"resource_provider_id": 2,
-				"created_at": "2018-03-23T12:23:01.863Z",
-				"updated_at": "2018-03-23T12:23:01.863Z",
-				"services": []
-			}
-		]
-	}
-]
+{
+  "franceConnect": [
+    {
+      "id": 3,
+      "type": "franceConnect",
+      "short_name": "DGFiP",
+      "long_name": "Direction Générale des Finances Publiques",
+  		"description": "La Direction générale des Finances publiques (DGFiP) est une direction de l'administration publique centrale française qui dépend du ministère de l'Économie et des Finances.",
+      "created_at": "2018-03-23T12:23:01.825Z",
+      "updated_at": "2018-03-23T12:23:01.825Z",
+      "scopes": [{
+        "id": 1,
+        "name": "dgfip_fc_rfr",
+        "human_name": "Revenu Fiscal de Référence (RFR) et nombre de parts fiscales du foyer",
+        "description": "",
+        "resource_provider_id": 1,
+        "created_at": "2018-03-23T12:23:01.850Z",
+        "updated_at": "2018-03-23T12:23:01.850Z",
+        "services": [
+          {
+            "name": "Calcul du quotient familial de la ville de Lyon",
+            "url": "https://www.lyon.fr/demarche/loisirs/calcul-du-quotient-familial-municipal"
+          }
+        ]
+      },{
+        "id": 2,
+        "name": "dgfip_fc_taxe_ir",
+        "human_name": "Adresse fiscale de taxation au 1er janvier",
+        "description": "Ces données peuvent être utilisées, par exemple, pour la délivrance des cartes de stationnement résidentiel",
+        "resource_provider_id": 1,
+        "created_at": "2018-03-23T12:23:01.850Z",
+        "updated_at": "2018-03-23T12:23:01.850Z"
+      }]
+    }
+  ],
+  "apiParticulier": [
+  	{
+  		"id": 2,
+      "type": "apiParticulier",
+  		"short_name": "CNAF",
+  		"long_name": "Caisse Nationale des Allocation Familliales",
+  		"description": "La Caisse nationale des allocations familiales (CNAF) forme la branche «famille» de la Sécurité sociale française, qu'elle gère au travers le réseau formé par les 102 caisses d'allocations familiales (CAF) réparties sur tout le territoire.",
+  		"created_at": "2018-03-23T12:23:01.858Z",
+  		"updated_at": "2018-03-23T12:23:01.858Z",
+  		"scopes": [{
+  				"id": 2,
+  				"name": "cnaf_attestation_droits",
+  				"human_name": "Attestation de droits",
+  				"description": "Contient le revenu fiscal de référence, le nombre de part et les déclarants",
+  				"resource_provider_id": 2,
+  				"created_at": "2018-03-23T12:23:01.861Z",
+  				"updated_at": "2018-03-23T12:23:01.861Z",
+  				"services": []
+  			},
+  			{
+  				"id": 3,
+  				"name": "cnaf_quotient_familial",
+  				"human_name": "Quotient familial",
+  				"description": "Contient le quotient familial du mois précédent",
+  				"resource_provider_id": 2,
+  				"created_at": "2018-03-23T12:23:01.863Z",
+  				"updated_at": "2018-03-23T12:23:01.863Z",
+  				"services": []
+  			}
+  		]
+  	},
+  	{
+  		"id": 1,
+      "type": "apiParticulier",
+  		"short_name": "DGFiP",
+  		"long_name": "Direction Générale des Finances Publiques",
+  		"description": "La Direction générale des Finances publiques (DGFiP) est une direction de l'administration publique centrale française qui dépend du ministère de l'Économie et des Finances.",
+  		"created_at": "2018-03-23T12:23:01.825Z",
+  		"updated_at": "2018-03-23T12:23:01.825Z",
+  		"scopes": [{
+  			"id": 1,
+  			"name": "dgfip_avis_imposition",
+  			"human_name": "Avis d'imposition",
+  			"description": "Données issues du service svair de la DGFiP",
+  			"resource_provider_id": 1,
+  			"created_at": "2018-03-23T12:23:01.850Z",
+  			"updated_at": "2018-03-23T12:23:01.850Z",
+  			"services": [{
+  					"name": "BourseSCO",
+  					"url": "https://api.gouv.fr/service/bourse.html"
+  				},
+  				{
+  					"name": "Lyon : Mon compte",
+  					"url": "https://api.gouv.fr/service/calcul-quotient-familial.html"
+  				}
+  			]
+  		}]
+  	}
+  ]
+
+}

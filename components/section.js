@@ -1,31 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Section = ({className, title, imageSrc, altText, children}) => (
-  <section className={className}>
-    <div>
-      {title && <h2 className='section__title'>{title}</h2>}
-      {children}
-    </div>
-    <div>
-      <img src={imageSrc} alt={altText} />
-    </div>
+const Section = ({id, className, title, children}) => (
+  <section className={className} id={id} >
+    {title && <h2 className='section__title'>{title}</h2>}
+    {children}
   </section>
 )
 
 Section.propTypes = {
   className: PropTypes.string,
   title: PropTypes.string,
-  imageSrc: PropTypes.string,
-  altText: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
+  id: PropTypes.string
 }
 
 Section.defaultProps = {
   className: null,
   title: null,
-  imageSrc: null,
-  altText: null
+  id: null
 }
 
 export default Section

@@ -1,9 +1,8 @@
 import ReactTestRenderer from 'react-test-renderer'
-import AddToSelectionButton from '../add-to-selection-button'
 
-describe('components | AddToSelectionButton', () => {
+describe('pages | contractualisation-fc', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<AddToSelectionButton buttonKey="buttonKey" />)
+    const renderer = ReactTestRenderer.create(<contractualisation-fc />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

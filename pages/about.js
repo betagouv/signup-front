@@ -14,7 +14,7 @@ const About = () => (
         <div className='row'>
           <div className='column'>
             <h2 className='section__title'>Ne plus demander de pièces justificatives inutiles</h2>
-            <p>Limiter les demandes des pièces justificatives ou informations lorsqu’elles sont détenues par d’autres administrations ( CAF, DGFIP, Pôle Emploi…).</p>
+            <p>Limiter les demandes des pièces justificatives ou informations lorsqu’elles sont détenues par d’autres administrations ( CAF, DGFiP, Pôle Emploi…).</p>
             <p>Limiter le risque de fraude documentaire en récupérant des informations certifiées à la source dans un point d&lsquo;accès unique.</p>
           </div>
           <div className='column'>

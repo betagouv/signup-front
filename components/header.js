@@ -38,12 +38,9 @@ class Header extends React.Component {
             </a>
             <ul className='nav__links'>
               {user.loggedIn &&
-                <li><Link href='/demandes'><a>Demandes</a></Link></li>
+                <li><Link href='/demandes'><a>Liste des demandes</a></Link></li>
               }
-              <li><Link href='/about'><a>A propos</a></Link></li>
-              <li><Link href='/documentation'><a>Documentation technique</a></Link></li>
-              <li><Link href='/contractualisation'><a>contractualisation</a></Link></li>
-              <li><Link href='/contact'><a>Contactez-nous</a></Link></li>
+              <li><Link href='/#france-connect'><a>Données disponibles</a></Link></li>
               <li>
                 {user.loggedIn && (
                   <div className='dropdown'>
