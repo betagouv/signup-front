@@ -57,7 +57,7 @@ class ContractualisationForm extends React.Component {
   handleSubmit(event) {
     const token = localStorage.getItem('token')
     const componentState = this.state
-    Services.postFormToBack(componentState, token).then(response => {
+    Services.createUserEnrollment(componentState, token).then(response => {
       if (response.status === 201) {
         Router.push('/demandes')
       } else if (response.status === 422) {
@@ -204,7 +204,7 @@ class ContractualisationForm extends React.Component {
           </div>
 
           <div className='form__group'>
-            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil' value='fraise' />
+            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil'/>
             <label htmlFor='checkbox-cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
           </div>
 
