@@ -26,14 +26,18 @@ class Enrollment extends React.Component {
     const {enrollment} = this.props
 
     return (
-      <div className='container'>
-        <h2>Demande pour {enrollment.fournisseur_de_service}</h2>
+      <li className='panel'>
+        <h2>{enrollment.fournisseur_de_service}</h2>
         <p>{enrollment.description_service}</p>
-        <ul>
-          <li>Etat de la demande : {enrollment.state}</li>
-          <li><button onClick={this.deleteEnrollment} className='button' type='submit' name='subscribe' id='submit' value={enrollment.id}>Supprimer la demande</button></li>
-        </ul>
-      </div>
+        <p>État de la demande : {enrollment.state === 'pending' && 'En attente'}</p>
+
+        <div className='button-list'>
+          {
+            /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
+          }
+          <button className='button' type='submit' name='subscribe' id='submit'>Voir</button>
+        </div>
+      </li>
     )
   }
 }

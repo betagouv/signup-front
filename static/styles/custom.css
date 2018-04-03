@@ -155,3 +155,16 @@ iframe {
 section + section {
   padding-top: 0;
 }
+
+ul.panel-list {
+  padding: 0;
+}
+
+li.panel {
+	list-style: none;
+  padding: 1em;
+}
+
+li.panel .button-list {
+  margin: 0.5em 0;
+}
