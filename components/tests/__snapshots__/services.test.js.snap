@@ -16,16 +16,7 @@ exports[`components | Services render should match snapshot 1`] = `
       <a
         href={undefined}
       >
-        BourseSCO
-      </a>
-    </li>
-    <li
-      className="tag"
-    >
-      <a
-        href={undefined}
-      >
-        Lyon : Mon compte
+        Calcul du quotient familial de la ville de Lyon
       </a>
     </li>
   </ul>

@@ -15,7 +15,6 @@ class Index extends React.Component {
 
   render() {
     const {resourceProviders} = this.state
-
     let i = 0
     return (
       <Page>

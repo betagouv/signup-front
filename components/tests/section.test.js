@@ -28,12 +28,7 @@ describe('components | Section', () => {
     }
     it('should have proper title and content', () => {
       const wrapper = shallow(<Section {...props} />)
-      expect(
-        wrapper
-          .find('div')
-          .at(0)
-          .props().children,
-      ).toEqual([<h2 className="section__title">The title</h2>, '<p>Some html</p>'])
+      expect(wrapper.props().children).toEqual([<h2 className="section__title">The title</h2>, '<p>Some html</p>'])
     })
   })
 })
