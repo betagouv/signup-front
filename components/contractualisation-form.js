@@ -77,10 +77,9 @@ class ContractualisationForm extends React.Component {
     return (
       <div className='main-pane'>
         <form onSubmit={this.handleSubmit}>
-          <h1 id='legal'>Fondement légal</h1>
+          <h1 id='legal'>Fondement juridique</h1>
           <section className='information-text'>
-            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.</p>
-            <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
+            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de leur transmettre des données à caractère personnel.</p>
           </section>
           <div className='form__group'>
             <label htmlFor='fournisseur_de_service'>Nom du fournisseur de service</label>
@@ -91,23 +90,15 @@ class ContractualisationForm extends React.Component {
             <textarea onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={value} />
           </div>
           <div className='form__group'>
-            <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande</label>
+            <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande (décret, délibération …)</label>
             <textarea onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={value} />
           </div>
 
           <h1 id='donnees'>Choix des données</h1>
           <section className='information-text'>
-            <p>La loi informatique et libertés définit les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles.</p>
-            <p>L’article 6 précise :</p>
-            <ul>
-              <li>3° [les données] sont adéquates, pertinentes et non excessives au regard des finalités pour lesquelles
-                elles sont collectées et de leurs traitements ultérieurs ;</li>
-              <li>4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les mesures appropriées doivent être
-                prises pour que les données inexactes ou incomplètes au regard des finalités pour lesquelles elles sont
-                collectées ou traitées soient effacées ou rectifiées ;</li>
-            </ul>
+            <p>Les règles relatives à la protection de la vie privée fixent les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles. Les données ainsi récoltées doivent être adéquates, pertinentes et proportionnelles par rapport au traitement.</p>
             <p>Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice.
-              Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
+              Le non-respect de ces règles vous expose vis à vis de la CNIL.</p>
           </section>
           <div className='form__group'>
             <fieldset className='vertical'>
@@ -129,9 +120,9 @@ class ContractualisationForm extends React.Component {
 
           <h1 id='volumetrie'>Volumétrie</h1>
           <section className='information-text'>
-            <p>Connaitre les données relatives à la volumétrie et à la saisonnalité de votre téléservice nous
-            permettra de vous offrir la meilleure qualité de service possible. En effet, cela permettra de prévenir les pics de charges et de transmettre ces informations aux fournisseurs de vos données.</p>
-            <p>Conformément à notre charte, nous nous réservons le droit de réduire ou couper les appels autorisés au fournisseur de service.</p>
+            <p>Avoir une information de la volumétrie et, le cas échéant à la saisonnalité de votre démarche, nous
+            permettra de vous offrir la meilleure qualité de service possible en lien avec les différents fournisseurs de vos données.</p>
+            <p>Conformément à nos <a href='#convention'>conditions d’utilisation</a>, nous nous réservons le droit de réduire ou couper vos appels.</p>
           </section>
 
           <div className='form__group'>
@@ -164,38 +155,11 @@ class ContractualisationForm extends React.Component {
             </pre>
           </div>
 
-          <h1 id='securite'>Homologation de sécurité</h1>
-          <section className='information-text'>
-            <p>Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche d’homologation obligatoire pour les SI relatifs aux échanges entre une autorité administrative et les usagers ou entre autorités administratives.</p>
-            <p>Si vous l’avez déjà fait, complétez les informations relatives à l’homologation et déposez la décision formelle d’homologation (également appelée attestation formelle).</p>
-            <p>Si vous ne l’avez pas encore fait, envoyez-nous tout de même votre demande et nous vous aiderons à entamer cette démarche.</p>
-          </section>
-
-          <div className='form__group'>
-            <label htmlFor='autorite_certification_nom'>Nom de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='autorite_certification_fonction'>Fonction de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='date_homologation'>Date de début l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={value} />
-          </div>
-
           <h1 id='cnil'>Obligation CNIL</h1>
           <section className='information-text'>
             <p>L’entrée en vigueur le 25 mai 2018 du règlement européen sur la protection des données supprime totalement le régime déclaratif.</p>
             <p>Les fournisseurs de services ont en particulier l’obligation de tenir un registre de leurs activités de traitement, d’encadrer les opérations sous-traitées dans les contrats de prestation de services, de formaliser des politiques de confidentialité des données et des procédures relatives à la gestion des demandes d’exercice des droits.</p>
-            <p>La désignation d’un délégué à la protection des données - successeur du correspondant informatique et libertés (CIL) dont la désignation est aujourd’hui facultative - devient obligatoire pour les organismes et autorités publics, et donc pour les fournisseurs de services.</p>
+            <p>La désignation d’un délégué à la protection des données devient obligatoire pour les organismes et autorités publics, et donc pour les fournisseurs de services.</p>
           </section>
 
           <div className='form__group'>

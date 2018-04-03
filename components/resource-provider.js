@@ -11,8 +11,6 @@ class ResourceProvider extends React.Component {
     return (
       <Section className='section-grey section__subsection'>
         <div className='container'>
-          <h3 className='section__title'>Données issues de la <abbr title={resourceProvider.long_name}>{resourceProvider.short_name}</abbr></h3>
-          <p className='section__subtitle'>{resourceProvider.description}</p>
           {
             resourceProvider.scopes.map(dataSet => {
               return (
