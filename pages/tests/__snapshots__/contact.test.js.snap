@@ -26,34 +26,10 @@ exports[`pages | contact render should match snapshot 1`] = `
         >
           <li>
             <a
-              href="/about"
+              href="/#france-connect"
               onClick={[Function]}
             >
-              A propos
-            </a>
-          </li>
-          <li>
-            <a
-              href="/documentation"
-              onClick={[Function]}
-            >
-              Documentation technique
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contractualisation"
-              onClick={[Function]}
-            >
-              contractualisation
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              onClick={[Function]}
-            >
-              Contactez-nous
+              Données disponibles
             </a>
           </li>
           <li>
@@ -71,44 +47,37 @@ exports[`pages | contact render should match snapshot 1`] = `
     
     <section
       className={null}
+      id={null}
     >
-      <div>
-        <h2
-          className="section__title"
-        >
-          Contactez-nous
-        </h2>
-        <div
-          className="container"
-        >
-          <p>
-            Merci de nous envoyer un mail avec les informations suivantes :
-          </p>
-          <ul>
-            <li>
-              votre collectivité
-            </li>
-            <li>
-              votre numéro de téléphone
-            </li>
-            <li>
-              une description succincte de votre projet
-            </li>
-          </ul>
-          <p>
-            <a
-              href="mailto:contact@particulier.api.gouv.fr"
-            >
-              contact@particulier.api.gouv.fr
-            </a>
-          </p>
-        </div>
-      </div>
-      <div>
-        <img
-          alt={null}
-          src={null}
-        />
+      <h2
+        className="section__title"
+      >
+        Contactez-nous
+      </h2>
+      <div
+        className="container"
+      >
+        <p>
+          Merci de nous envoyer un mail avec les informations suivantes :
+        </p>
+        <ul>
+          <li>
+            votre collectivité
+          </li>
+          <li>
+            votre numéro de téléphone
+          </li>
+          <li>
+            une description succincte de votre projet
+          </li>
+        </ul>
+        <p>
+          <a
+            href="mailto:contact@particulier.api.gouv.fr"
+          >
+            contact@particulier.api.gouv.fr
+          </a>
+        </p>
       </div>
     </section>
   </div>
@@ -119,51 +88,62 @@ exports[`pages | contact render should match snapshot 1`] = `
       className="container"
     >
       <div
-        className="footer__logo"
+        className="jsx-696190668 footer__logo"
       >
         <a
+          className="jsx-696190668"
           href="https://api.gouv.fr/"
         >
           <img
-            alt="Logo Beta Gouv"
+            alt="Logo api.gouv.fr"
+            className="jsx-696190668"
             src="/static/images/logo-api.gouv.fr-white.png"
           />
         </a>
         <ul
-          className="footer__social"
+          className="jsx-696190668 footer__social"
         >
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="https://twitter.com/BetaGouv"
               title="Twitter"
             >
               <img
                 alt="Twitter"
-                className="icon icon-twitter"
+                className="jsx-696190668 icon icon-twitter"
                 src="/static/images/social/twitter.svg"
               />
             </a>
           </li>
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="https://github.com/betagouv"
               title="Github"
             >
               <img
                 alt="Github"
-                className="icon icon-github"
+                className="jsx-696190668 icon icon-github"
                 src="/static/images/social/github.svg"
               />
             </a>
           </li>
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="mailto:contact@particulier.api.gouv.fr"
               title="Nous écrire un mail"
             >
               <img
                 alt="Email"
-                className="icon icon-mail"
+                className="jsx-696190668 icon icon-mail"
                 src="/static/images/social/email.svg"
               />
             </a>
@@ -180,23 +160,9 @@ exports[`pages | contact render should match snapshot 1`] = `
         </li>
         <li>
           <a
-            href="https://www.data.gouv.fr/reference"
+            href="https://status.particulier.api.gouv.fr"
           >
-            Données de référence
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.data.gouv.fr/terms"
-          >
-            Conditions générales d‘utilisation
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.data.gouv.fr/api"
-          >
-            API
+            Status des API
           </a>
         </li>
       </ul>

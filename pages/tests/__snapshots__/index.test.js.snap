@@ -26,34 +26,10 @@ exports[`pages | index render should match snapshot 1`] = `
         >
           <li>
             <a
-              href="/about"
+              href="/#france-connect"
               onClick={[Function]}
             >
-              A propos
-            </a>
-          </li>
-          <li>
-            <a
-              href="/documentation"
-              onClick={[Function]}
-            >
-              Documentation technique
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contractualisation"
-              onClick={[Function]}
-            >
-              contractualisation
-            </a>
-          </li>
-          <li>
-            <a
-              href="/contact"
-              onClick={[Function]}
-            >
-              Contactez-nous
+              Données disponibles
             </a>
           </li>
           <li>
@@ -70,66 +46,377 @@ exports[`pages | index render should match snapshot 1`] = `
   <div>
     
     <div
-      className="jsx-998104001 hero__container"
+      className="jsx-3010837707 hero__container"
     >
       <h1
-        className="jsx-998104001 hero__white-background"
+        className="jsx-3010837707 hero__white-background"
       >
-        Accélérer l’ouverture des données personnelles et leur réutilisation 
+        particulier.api.gouv.fr
       </h1>
       <p
-        className="jsx-998104001 hero__white-background"
+        className="jsx-3010837707 hero__white-background"
       >
-        Automatisez vos demandes de pièces justificatives pour simplifier vos démarches
+        Pour accélérer l’ouverture des données personnelles et leur réutilisation, automatisez vos demandes de pièces justificatives
       </p>
     </div>
     <section
-      className="section-dark"
+      className={null}
+      id="france-connect"
     >
-      <div>
-        <div
-          className="jsx-2078901220 form__container"
+      <h2
+        className="section__title"
+      >
+        1. Données disponibles par FranceConnect
+      </h2>
+      <p
+        className="section__subtitle"
+      >
+        L’échange de données se fait en mode « ad hoc » entre Fournisseur de Services et Fournisseur de Données. Dans cet échange, FranceConnect tient un rôle de 
+        <em>
+          tiers de confiance
+        </em>
+        .
+        <br />
+        Il va fournir des jetons d’accès au Fournisseur de Services pour les jeux de données convenus avec les Fournisseurs de Données avec lesquels il échange. Le jeton contenant les jeux de données est transmis au Fournisseur de Services suite au consentement de l’usager.
+        <a
+          href="#api-particulier"
+        >
+          Vous n’avez pas encore FranceConnect ?
+        </a>
+      </p>
+      <div
+        className="container"
+      >
+        <section
+          className="section-grey section__subsection"
+          id={null}
         >
           <div
-            className="jsx-2078901220 form__group"
+            className="container"
           >
-            <label
-              className="jsx-2078901220"
-              htmlFor="search"
+            <h3
+              className="section__title"
             >
-              Rechercher une donnée :
-            </label>
-            <div
-              className="jsx-2078901220 search__group"
-            >
-              <input
-                className="jsx-2078901220  value="
-                id="search"
-                name="search"
-                type="text"
-              />
-              <button
-                aria-label="Recherche"
-                className="jsx-2078901220 overlay-button"
+              Données issues de la 
+              <abbr
+                title="Direction Générale des Finances Publiques"
               >
-                <svg
-                  className="jsx-2078901220 icon icon-search"
+                DGFiP
+              </abbr>
+            </h3>
+            <p
+              className="section__subtitle"
+            >
+              La Direction générale des Finances publiques (DGFiP) est une direction de l'administration publique centrale française qui dépend du ministère de l'Économie et des Finances.
+            </p>
+            <div
+              className="panel"
+            >
+              <div
+                className="panel__header"
+              >
+                <h3>
+                  Revenu Fiscal de Référence (RFR) et nombre de parts fiscales du foyer
+                </h3>
+                <small
+                  className="panel__header-extra"
                 >
-                  <use
-                    className="jsx-2078901220"
-                    xlinkHref="#icon-search"
-                  />
-                </svg>
-              </button>
+                  DGFiP
+                </small>
+              </div>
+              <div>
+                <p>
+                  
+                </p>
+                <div
+                  className="form__group"
+                >
+                  <label>
+                    Qui utilise ces données ?
+                  </label>
+                  <ul
+                    className="tag-list"
+                  >
+                    <li
+                      className="tag"
+                    >
+                      <a
+                        href={undefined}
+                      >
+                        Calcul du quotient familial de la ville de Lyon
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                className="panel__actions"
+              >
+                <a
+                  className="button"
+                  href="/contractualisation-fc"
+                  onClick={[Function]}
+                >
+                  Demander un accès
+                </a>
+              </div>
+            </div>
+            <div
+              className="panel"
+            >
+              <div
+                className="panel__header"
+              >
+                <h3>
+                  Adresse fiscale de taxation au 1er janvier
+                </h3>
+                <small
+                  className="panel__header-extra"
+                >
+                  DGFiP
+                </small>
+              </div>
+              <div>
+                <p>
+                  Ces données peuvent être utilisées, par exemple, pour la délivrance des cartes de stationnement résidentiel
+                </p>
+              </div>
+              <div
+                className="panel__actions"
+              >
+                <a
+                  className="button"
+                  href="/contractualisation-fc"
+                  onClick={[Function]}
+                >
+                  Demander un accès
+                </a>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
-      <div>
-        <img
-          alt={null}
-          src={null}
-        />
+    </section>
+    <section
+      className={null}
+      id="api-particulier"
+    >
+      <h2
+        className="section__title"
+      >
+        2. Données disponibles sans FranceConnect
+      </h2>
+      <p
+        className="section__subtitle"
+      >
+        L’accès aux données est réalisé au travers de protocoles de communications sécurisés et 
+        <em>
+          seuls les opérateurs agréés peuvent se connecter à l’API
+        </em>
+        . 
+        <br />
+        Pour obtenir un agrément, vous devez justifier d’une simplification pour les citoyens, et vous engager à n’accéder aux données personnelles qu’avec 
+        <em>
+          l’accord explicite de l’usager
+        </em>
+        .
+      </p>
+      <div
+        className="container"
+      >
+        <section
+          className="section-grey section__subsection"
+          id={null}
+        >
+          <div
+            className="container"
+          >
+            <h3
+              className="section__title"
+            >
+              Données issues de la 
+              <abbr
+                title="Caisse Nationale des Allocation Familliales"
+              >
+                CNAF
+              </abbr>
+            </h3>
+            <p
+              className="section__subtitle"
+            >
+              La Caisse nationale des allocations familiales (CNAF) forme la branche «famille» de la Sécurité sociale française, qu'elle gère au travers le réseau formé par les 102 caisses d'allocations familiales (CAF) réparties sur tout le territoire.
+            </p>
+            <div
+              className="panel"
+            >
+              <div
+                className="panel__header"
+              >
+                <h3>
+                  Attestation de droits
+                </h3>
+                <small
+                  className="panel__header-extra"
+                >
+                  CNAF
+                </small>
+              </div>
+              <div>
+                <p>
+                  Contient le revenu fiscal de référence, le nombre de part et les déclarants
+                </p>
+                <div
+                  className="form__group"
+                >
+                  <label>
+                    Qui utilise ces données ?
+                  </label>
+                  <ul
+                    className="tag-list"
+                  />
+                </div>
+              </div>
+              <div
+                className="panel__actions"
+              >
+                <a
+                  className="button"
+                  href="/contractualisation"
+                  onClick={[Function]}
+                >
+                  Demander un accès
+                </a>
+              </div>
+            </div>
+            <div
+              className="panel"
+            >
+              <div
+                className="panel__header"
+              >
+                <h3>
+                  Quotient familial
+                </h3>
+                <small
+                  className="panel__header-extra"
+                >
+                  CNAF
+                </small>
+              </div>
+              <div>
+                <p>
+                  Contient le quotient familial du mois précédent
+                </p>
+                <div
+                  className="form__group"
+                >
+                  <label>
+                    Qui utilise ces données ?
+                  </label>
+                  <ul
+                    className="tag-list"
+                  />
+                </div>
+              </div>
+              <div
+                className="panel__actions"
+              >
+                <a
+                  className="button"
+                  href="/contractualisation"
+                  onClick={[Function]}
+                >
+                  Demander un accès
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section
+          className="section-grey section__subsection"
+          id={null}
+        >
+          <div
+            className="container"
+          >
+            <h3
+              className="section__title"
+            >
+              Données issues de la 
+              <abbr
+                title="Direction Générale des Finances Publiques"
+              >
+                DGFiP
+              </abbr>
+            </h3>
+            <p
+              className="section__subtitle"
+            >
+              La Direction générale des Finances publiques (DGFiP) est une direction de l'administration publique centrale française qui dépend du ministère de l'Économie et des Finances.
+            </p>
+            <div
+              className="panel"
+            >
+              <div
+                className="panel__header"
+              >
+                <h3>
+                  Avis d'imposition
+                </h3>
+                <small
+                  className="panel__header-extra"
+                >
+                  DGFiP
+                </small>
+              </div>
+              <div>
+                <p>
+                  Données issues du service svair de la DGFiP
+                </p>
+                <div
+                  className="form__group"
+                >
+                  <label>
+                    Qui utilise ces données ?
+                  </label>
+                  <ul
+                    className="tag-list"
+                  >
+                    <li
+                      className="tag"
+                    >
+                      <a
+                        href={undefined}
+                      >
+                        BourseSCO
+                      </a>
+                    </li>
+                    <li
+                      className="tag"
+                    >
+                      <a
+                        href={undefined}
+                      >
+                        Lyon : Mon compte
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div
+                className="panel__actions"
+              >
+                <a
+                  className="button"
+                  href="/contractualisation"
+                  onClick={[Function]}
+                >
+                  Demander un accès
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </section>
   </div>
@@ -140,51 +427,62 @@ exports[`pages | index render should match snapshot 1`] = `
       className="container"
     >
       <div
-        className="footer__logo"
+        className="jsx-696190668 footer__logo"
       >
         <a
+          className="jsx-696190668"
           href="https://api.gouv.fr/"
         >
           <img
-            alt="Logo Beta Gouv"
+            alt="Logo api.gouv.fr"
+            className="jsx-696190668"
             src="/static/images/logo-api.gouv.fr-white.png"
           />
         </a>
         <ul
-          className="footer__social"
+          className="jsx-696190668 footer__social"
         >
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="https://twitter.com/BetaGouv"
               title="Twitter"
             >
               <img
                 alt="Twitter"
-                className="icon icon-twitter"
+                className="jsx-696190668 icon icon-twitter"
                 src="/static/images/social/twitter.svg"
               />
             </a>
           </li>
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="https://github.com/betagouv"
               title="Github"
             >
               <img
                 alt="Github"
-                className="icon icon-github"
+                className="jsx-696190668 icon icon-github"
                 src="/static/images/social/github.svg"
               />
             </a>
           </li>
-          <li>
+          <li
+            className="jsx-696190668"
+          >
             <a
+              className="jsx-696190668"
               href="mailto:contact@particulier.api.gouv.fr"
               title="Nous écrire un mail"
             >
               <img
                 alt="Email"
-                className="icon icon-mail"
+                className="jsx-696190668 icon icon-mail"
                 src="/static/images/social/email.svg"
               />
             </a>
@@ -201,23 +499,9 @@ exports[`pages | index render should match snapshot 1`] = `
         </li>
         <li>
           <a
-            href="https://www.data.gouv.fr/reference"
+            href="https://status.particulier.api.gouv.fr"
           >
-            Données de référence
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.data.gouv.fr/terms"
-          >
-            Conditions générales d‘utilisation
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://www.data.gouv.fr/api"
-          >
-            API
+            Status des API
           </a>
         </li>
       </ul>
