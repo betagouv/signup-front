@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Services from '../lib/services'
 
@@ -35,7 +36,11 @@ class Enrollment extends React.Component {
           {
             /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
           }
-          <button className='button' type='submit' name='subscribe' id='submit'>Voir</button>
+          <Link className='button' href={'/demandes/' + enrollment.id} id='submit'>
+          <button className='button' type='submit' name='subscribe' id='submit'>
+            Voir
+          </button>
+          </Link>
         </div>
       </li>
     )
