@@ -76,7 +76,7 @@ class ContractualisationForm extends React.Component {
     return (
       <div className='main-pane'>
         <form onSubmit={this.handleSubmit}>
-          <h1 id='legal'>Fondement légal</h1>
+          <h1 id='legal'>Fondement juridique</h1>
           <section className='information-text'>
             <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
             <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
@@ -188,33 +188,6 @@ class ContractualisationForm extends React.Component {
               <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en décembre (nombre total de demandes)?</label>
               <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_dec' id='nombre_de_demandes_mensuelles_dec' value={value} />
             </div>
-          </div>
-
-          <h1 id='securite'>Homologation de sécurité</h1>
-          <section className='information-text'>
-            <p>Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche d’homologation obligatoire pour les SI relatifs aux échanges entre une autorité administrative et les usagers ou entre autorités administratives.</p>
-            <p>Si vous l’avez déjà fait, complétez les informations relatives à l’homologation et déposez la décision formelle d’homologation (également appelée attestation formelle).</p>
-            <p>Si vous ne l’avez pas encore fait, envoyez-nous tout de même votre demande et nous vous aiderons à entamer cette démarche.</p>
-          </section>
-
-          <div className='form__group'>
-            <label htmlFor='autorite_certification_nom'>Nom de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='autorite_certification_fonction'>Fonction de l’autorité de certification</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='date_homologation'>Date de début l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={value} />
-          </div>
-
-          <div className='form__group'>
-            <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
-            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={value} />
           </div>
 
           <h1 id='cnil'>Obligation CNIL</h1>
