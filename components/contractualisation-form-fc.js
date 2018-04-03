@@ -78,13 +78,13 @@ class ContractualisationForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1 id='legal'>Fondement légal</h1>
           <section className='information-text'>
-            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.</p>
+            <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
             <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
           <div className='form__group'>
             <label htmlFor='fournisseur_de_service-fc'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
             <select onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service'>
-              <option value='fournisseur_de_service-fc-1'>Quotient familial de la ville de Lyon</option>
+              <option value='fournisseur_de_service-fc-1'>Calcul du quotient familial</option>
               <option value='fournisseur_de_service-fc-2'>Inscription à la cantine scolaire</option>
             </select>
           </div>
@@ -144,22 +144,50 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='pic_demandes_par_heure'>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
-            <pre>
-              <code>
-                &lsquo;nombre_demandes_mensuelles_jan&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_fev&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_mar&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_avr&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_mai&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_jui&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_jul&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_aou&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_sep&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_oct&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_nov&lsquo;: 45,
-                &lsquo;nombre_demandes_mensuelles_dec&lsquo;: 45,
-              </code>
-            </pre>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en janvier (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jan' id='nombre_de_demandes_mensuelles_jan' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en février (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_fev' id='nombre_de_demandes_mensuelles_fev' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en mars (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mar' id='nombre_de_demandes_mensuelles_mar' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en avril (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_avr' id='nombre_de_demandes_mensuelles_avr' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en mai (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mai' id='nombre_de_demandes_mensuelles_mai' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en juillet (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jui' id='nombre_de_demandes_mensuelles_jui' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en août (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_aou' id='nombre_de_demandes_mensuelles_aou' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en septembre (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_sep' id='nombre_de_demandes_mensuelles_sep' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en octobre (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_oct' id='nombre_de_demandes_mensuelles_oct' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en novembre (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_nov' id='nombre_de_demandes_mensuelles_nov' value={value} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en décembre (nombre total de demandes)?</label>
+              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_dec' id='nombre_de_demandes_mensuelles_dec' value={value} />
+            </div>
           </div>
 
           <h1 id='securite'>Homologation de sécurité</h1>
@@ -208,7 +236,7 @@ class ContractualisationForm extends React.Component {
 
           <h1 id='convention'>Convention</h1>
           <section className='information-text'>
-            <p>Merci de prendre connaissance de la convention d’adhésion d’API Particulier afin de demander un jeton d’accès en décrivant votre projet.</p>
+          <p>Votre raccordement à l'API « Impôt Particulier » nécessite l'acceptation de la convention d'adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l'issue de votre demande de raccordement contiendra l'ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>
           </section>
 
           <iframe src='static/docs/charte-fc.pdf' width='100%' height='800px' />
