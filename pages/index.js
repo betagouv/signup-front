@@ -1,16 +1,26 @@
 import React from 'react'
 import Page from '../components/page'
 import Section from '../components/section'
-import resourceProviderMocks from '../mock/data/resource-providers'
 import ResourceProvider from '../components/resource-provider'
+import ResourceProviderService from '../lib/resource-provider.service'
 
 class Index extends React.Component {
   constructor(props) {
     super(props)
 
+    this.resourceProviderService = new ResourceProviderService()
     this.state = {
-      resourceProviders: resourceProviderMocks
+      resourceProviders: {
+        franceConnect: [],
+        apiParticulier: []
+      }
     }
+  }
+
+  componentDidMount () {
+    this.resourceProviderService.getAll().then((resourceProviders) => {
+      this.setState({resourceProviders})
+    })
   }
 
   render() {
