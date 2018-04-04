@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | Enrollment with enrollment at deployed state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Déployé
+  </p>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that can deploy_application at technical_inputs state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    En attente de déploiement
+  </p>
+  <button
+    className="button"
+    id="submit"
+    name="deploy_application"
+    onClick={[Function]}
+    type="submit"
+  >
+    Déployer l'application
+  </button>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that can send_application at pending state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Demande en attente
+  </p>
+  <button
+    className="button"
+    id="submit"
+    name="send_application"
+    onClick={[Function]}
+    type="submit"
+  >
+    Envoyer la demande
+  </button>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that can send_technical_inputs at validated state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Demande validée
+  </p>
+  <button
+    className="button"
+    id="submit"
+    name="send_technical_inputs"
+    onClick={[Function]}
+    type="submit"
+  >
+    Ajouter les entrants techniques
+  </button>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that can validate_application, refuse_application and review_application at sent state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Demande envoyée
+  </p>
+  <button
+    className="button"
+    id="submit"
+    name="refuse_application"
+    onClick={[Function]}
+    type="submit"
+  >
+    Refuser
+  </button>
+  <button
+    className="button"
+    id="submit"
+    name="review_application"
+    onClick={[Function]}
+    type="submit"
+  >
+    Demande de modifications
+  </button>
+  <button
+    className="button"
+    id="submit"
+    name="validate_application"
+    onClick={[Function]}
+    type="submit"
+  >
+    Valider
+  </button>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that cannot send_technical_inputs at validated state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Demande validée
+  </p>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;
+
+exports[`components | Enrollment with enrollment that cannot validate_application at sent state should match snapshot 1`] = `
+<li
+  className="panel"
+>
+  <h2 />
+  <em>
+    test@test.test
+  </em>
+  <p />
+  <p>
+    État de la demande : 
+    Demande envoyée
+  </p>
+  <div
+    className="button-list"
+  >
+    <button
+      className="button"
+      id="submit"
+      name="subscribe"
+      onClick={[Function]}
+      type="submit"
+    >
+      Voir
+    </button>
+  </div>
+</li>
+`;

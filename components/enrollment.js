@@ -52,33 +52,33 @@ class Enrollment extends React.Component {
           {enrollment.state === 'deployed' && 'Déployé'}
         </p>
         {enrollment.acl.refuse_application &&
-          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('refuse_application', enrollment)}>
+          <button className='button' type='submit' name='refuse_application' id='submit' onClick={this.trigger('refuse_application', enrollment)}>
             Refuser
           </button>
         }
         {enrollment.acl.review_application &&
-          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('review_application', enrollment)}>
+          <button className='button' type='submit' name='review_application' id='submit' onClick={this.trigger('review_application', enrollment)}>
             Demande de modifications
           </button>
         }
         {enrollment.acl.validate_application &&
-          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('validate_application', enrollment)}>
+          <button className='button' type='submit' name='validate_application' id='submit' onClick={this.trigger('validate_application', enrollment)}>
             Valider
           </button>
         }
         {enrollment.acl.send_application &&
-          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('send_application', enrollment)}>
+          <button className='button' type='submit' name='send_application' id='submit' onClick={this.trigger('send_application', enrollment)}>
             Envoyer la demande
           </button>
         }
         {enrollment.acl.deploy_application &&
-          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('deploy_application', enrollment)}>
+          <button className='button' type='submit' name='deploy_application' id='submit' onClick={this.trigger('deploy_application', enrollment)}>
             Déployer l'application
           </button>
         }
         {enrollment.acl.send_technical_inputs &&
           <Link href={{pathname: '/entrants-techniques', query: {id: enrollment.id}}}>
-          <button className='button' type='submit' name='subscribe' id='submit'>
+          <button className='button' type='submit' name='send_technical_inputs' id='submit'>
             Ajouter les entrants techniques
           </button>
           </Link>
