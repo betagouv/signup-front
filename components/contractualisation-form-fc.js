@@ -56,7 +56,7 @@ class ContractualisationForm extends React.Component {
   handleSubmit(event) {
     const token = localStorage.getItem('token')
     const componentState = this.state
-    Services.postFormToBack(componentState, token).then(response => {
+    Services.createUserEnrollment(componentState, token).then(response => {
       if (response.status === 201) {
         Router.push('/demandes')
       } else if (response.status === 422) {
@@ -82,10 +82,11 @@ class ContractualisationForm extends React.Component {
             <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
           </section>
           <div className='form__group'>
-            <label htmlFor='fournisseur_de_service-fc'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
+            <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
             <select onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service'>
-              <option value='fournisseur_de_service-fc-1'>Calcul du quotient familial</option>
-              <option value='fournisseur_de_service-fc-2'>Inscription à la cantine scolaire</option>
+              <option value=''></option>
+              <option value='Calcul du quotient familial'>Calcul du quotient familial</option>
+              <option value='Inscription à la cantine scolaire'>Inscription à la cantine scolaire</option>
             </select>
           </div>
           <div className='form__group'>
