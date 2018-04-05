@@ -4,6 +4,11 @@ import PropTypes from 'prop-types'
 import Services from '../lib/services'
 
 class Enrollment extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {enrollment: props.enrollment}
+  }
   deleteEnrollment(event) {
     const token = localStorage.getItem('token')
     const id = event.target.value
@@ -23,20 +28,50 @@ class Enrollment extends React.Component {
     event.preventDefault()
   }
 
+  trigger(action, enrollment) {
+    return () => Services.triggerUserEnrollment(action, enrollment).then((enrollment) => {
+      if (enrollment) this.setState({enrollment})
+    })
+  }
+
   render() {
-    const {enrollment} = this.props
+    const {enrollment} = this.state
 
     return (
       <li className='panel'>
         <h2>{enrollment.fournisseur_de_service}</h2>
         <p>{enrollment.description_service}</p>
-        <p>État de la demande : {enrollment.state === 'pending' && 'En attente'}</p>
-
+        <p>État de la demande :&nbsp;
+          {enrollment.state === 'pending' && 'En attente'}
+          {enrollment.state === 'sent' && 'Demande envoyée'}
+          {enrollment.state === 'validated' && 'Demande validée'}
+          {enrollment.state === 'refused' && 'Demande refusée'}
+        </p>
+        {enrollment.acl.refuse_application &&
+          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('refuse_application', enrollment)}>
+        Refuse
+          </button>
+        }
+        {enrollment.acl.review_application &&
+          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('review_application', enrollment)}>
+        Review
+          </button>
+        }
+        {enrollment.acl.validate_application &&
+          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('validate_application', enrollment)}>
+            Valider
+          </button>
+        }
+        {enrollment.acl.send_application &&
+          <button className='button' type='submit' name='subscribe' id='submit' onClick={this.trigger('send_application', enrollment)}>
+            Envoyer la demande
+          </button>
+        }
         <div className='button-list'>
           {
             /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
           }
-          <Link className='button' href={'/demandes/' + enrollment.id} id='submit'>
+          <Link href={'/demandes/' + enrollment.id}>
           <button className='button' type='submit' name='subscribe' id='submit'>
             Voir
           </button>
