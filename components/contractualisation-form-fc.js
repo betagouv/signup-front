@@ -1,9 +1,11 @@
+import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
 import React from 'react'
 import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
 import {BACK_HOST} from '@env'
 const axios = require('axios')
+import User from '../lib/user'
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -40,7 +42,8 @@ class ContractualisationForm extends React.Component {
         validation_de_convention: false,
         certificat_pub_production: '',
         autorite_certification: ''
-      }
+      },
+      serviceProviders: []
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -60,6 +63,13 @@ class ContractualisationForm extends React.Component {
     }).then((response) => {
       this.setState({enrollment: response.data})
     })
+    const user = new User()
+
+    setTimeout(() => {
+      user.getServiceProviders().then((serviceProviders) => {
+        this.setState({serviceProviders})
+      })
+    }, 1000)
   }
 
   handleChange(event) {
@@ -105,9 +115,11 @@ class ContractualisationForm extends React.Component {
   }
 
   render() {
-    const {enrollment} = this.state
+    const {enrollment, serviceProviders} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
+    console.log(serviceProviders)
+    let i = 0
     return (
       <form onSubmit={this.handleSubmit}>
         <h1 id='legal'>Fondement juridique</h1>
@@ -117,10 +129,17 @@ class ContractualisationForm extends React.Component {
         </section>
         <div className='form__group'>
           <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
-          <select onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service'>
-            <option value=''></option>
-            <option value='Calcul du quotient familial' selected={enrollment.fournisseur_de_service == 'Calcul du quotient familial' ? 'selected' : false}>Calcul du quotient familial</option>
-            <option value='Inscription à la cantine scolaire' selected={enrollment.fournisseur_de_service == 'Inscription à la cantine scolaire' ? 'selected' : false}>Inscription à la cantine scolaire</option>
+          <p><a className='button' href={FRANCE_CONNECT_AUTHORIZE_URI}>Se connecter auprès de France Connect afin de récupérer mes démarches</a></p>
+          <select onChange={this.handleChange} name='enrollment.fournisseur_de_service'>
+          <option>-- sélectionnez une démarche --</option>
+          {enrollment.fournisseur_de_service &&
+            <option selected='selected' value={enrollment.fournisseur_de_service}>{enrollment.fournisseur_de_service}</option>
+          }
+          {
+            serviceProviders.map((serviceProvider) => {
+              return <option key={i++} value={serviceProvider.name}>{serviceProvider.name}</option>
+            })
+          }
           </select>
         </div>
         <div className='form__group'>

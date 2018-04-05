@@ -20,6 +20,9 @@ class ContractualisationFc extends React.Component {
   componentDidMount() {
     const {url} = this.props
 
+    const tokenFc = this.props.url.query.token
+    if (typeof localStorage !== 'undefined' && tokenFc) localStorage.setItem('token-fc', tokenFc)
+
     let token
     if (typeof localStorage) token = localStorage.getItem('token')
     axios.get(BACK_HOST + '/api/enrollments/' + url.query.id, {
