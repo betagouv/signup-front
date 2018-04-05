@@ -79,7 +79,7 @@ class EntrantsTecniquesForm extends React.Component {
   render() {
     let token
     if (typeof localStorage !== 'undefined') token = localStorage.getItem('token')
-    const {enrollment} = this.state
+    const {enrollment, value} = this.state
 
     const productionCertificate = enrollment.documents.filter((e) => e.type == 'Document::ProductionCertificatePublicKey')[0]
     return (
@@ -103,6 +103,32 @@ class EntrantsTecniquesForm extends React.Component {
           <div className='form__group'>
             <label htmlFor='ips_de_production'>IPs de production</label>
             <input type='text' onChange={this.handleChange} name='enrollment.ips_de_production' id='ips_de_production' value={enrollment.ips_de_production} />
+          </div>
+          <h1 id='securite'>Homologation de sécurité</h1>
+          <section className='information-text'>
+            <p>Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche d’homologation obligatoire pour les SI relatifs aux échanges entre une autorité administrative et les usagers ou entre autorités administratives.</p>
+            <p>Si vous l’avez déjà fait, complétez les informations relatives à l’homologation et déposez la décision formelle d’homologation (également appelée attestation formelle).</p>
+            <p>Si vous ne l’avez pas encore fait, envoyez-nous tout de même votre demande et nous vous aiderons à entamer cette démarche.</p>
+          </section>
+
+          <div className='form__group'>
+            <label htmlFor='autorite_certification_nom'>Nom de l’autorité de certification</label>
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_nom' id='autorite_certification_nom' value={value} />
+          </div>
+
+          <div className='form__group'>
+            <label htmlFor='autorite_certification_fonction'>Fonction de l’autorité de certification</label>
+            <input type='text' onChange={this.handleChange} name='enrollment.autorite_certification_fonction' id='autorite_certification_fonction' value={value} />
+          </div>
+
+          <div className='form__group'>
+            <label htmlFor='date_homologation'>Date de début l’homologation</label>
+            <input type='date' onChange={this.handleChange} name='enrollment.date_homologation' id='date_homologation' value={value} />
+          </div>
+
+          <div className='form__group'>
+            <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
+            <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={value} />
           </div>
           <div className='button-list'>
             <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
