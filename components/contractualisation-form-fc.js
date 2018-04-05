@@ -90,11 +90,11 @@ class ContractualisationForm extends React.Component {
           </div>
           <div className='form__group'>
             <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-            <textarea onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={value} />
+            <textarea rows='10' onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={value} />
           </div>
           <div className='form__group'>
             <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande</label>
-            <textarea onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={value} />
+            <textarea rows='10' onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={value} />
           </div>
 
           <h1 id='donnees'>Choix des données</h1>
