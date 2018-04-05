@@ -168,3 +168,16 @@ li.panel {
 li.panel .button-list {
   margin: 0.5em 0;
 }
+
+.date_input_row {
+	display: flex;
+	flex-wrap: wrap;
+  margin: 0 -5px;
+  justify-content: space-between;
+}
+
+.date_input_col {
+	min-width: 75px;
+	max-width: calc(100% / 6 - 10px);
+  margin: 0 5px;
+}

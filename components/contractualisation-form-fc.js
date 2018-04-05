@@ -143,50 +143,58 @@ class ContractualisationForm extends React.Component {
           </div>
 
           <div className='form__group'>
-            <label htmlFor='pic_demandes_par_heure'>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
+            <label>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
             <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en janvier (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jan' id='nombre_de_demandes_mensuelles_jan' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en février (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_fev' id='nombre_de_demandes_mensuelles_fev' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en mars (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mar' id='nombre_de_demandes_mensuelles_mar' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en avril (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_avr' id='nombre_de_demandes_mensuelles_avr' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en mai (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mai' id='nombre_de_demandes_mensuelles_mai' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en juillet (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jui' id='nombre_de_demandes_mensuelles_jui' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en août (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_aou' id='nombre_de_demandes_mensuelles_aou' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en septembre (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_sep' id='nombre_de_demandes_mensuelles_sep' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en octobre (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_oct' id='nombre_de_demandes_mensuelles_oct' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en novembre (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_nov' id='nombre_de_demandes_mensuelles_nov' value={value} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor='nombre_de_demandes_mensuelles_jan'>Connaissez-vous la charge en décembre (nombre total de demandes)?</label>
-              <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_dec' id='nombre_de_demandes_mensuelles_dec' value={value} />
+              <div className='date_input_row'>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_jan'>Janvier</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jan' id='nombre_de_demandes_mensuelles_jan' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_fev'>Février</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_fev' id='nombre_de_demandes_mensuelles_fev' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_mar'>Mars</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mar' id='nombre_de_demandes_mensuelles_mar' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_avr'>Avril</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_avr' id='nombre_de_demandes_mensuelles_avr' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_mai'>Mai</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mai' id='nombre_de_demandes_mensuelles_mai' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_juin'>Juin</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_juin' id='nombre_de_demandes_mensuelles_juin' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_jui'>Juillet</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jui' id='nombre_de_demandes_mensuelles_jui' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_aou'>Août</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_aou' id='nombre_de_demandes_mensuelles_aou' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_sep'>Septembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_sep' id='nombre_de_demandes_mensuelles_sep' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_oct'>Octobre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_oct' id='nombre_de_demandes_mensuelles_oct' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_nov'>Novembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_nov' id='nombre_de_demandes_mensuelles_nov' value={value} />
+                </div>
+                <div className='date_input_col'>
+                  <label htmlFor='nombre_de_demandes_mensuelles_dec'>Décembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_dec' id='nombre_de_demandes_mensuelles_dec' value={value} />
+                </div>
+              </div>
             </div>
           </div>
 
