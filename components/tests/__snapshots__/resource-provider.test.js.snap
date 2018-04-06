@@ -8,21 +8,6 @@ exports[`components | DataSet render should match snapshot 1`] = `
   <div
     className="container"
   >
-    <h3
-      className="section__title"
-    >
-      Données issues de la 
-      <abbr
-        title="Direction Générale des Finances Publiques"
-      >
-        DGFiP
-      </abbr>
-    </h3>
-    <p
-      className="section__subtitle"
-    >
-      La Direction générale des Finances publiques (DGFiP) est une direction de l'administration publique centrale française qui dépend du ministère de l'Économie et des Finances.
-    </p>
     <div
       className="panel"
     >

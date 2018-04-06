@@ -2,12 +2,17 @@ import React from 'react'
 import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
+import {BACK_HOST} from '@env'
+const axios = require('axios')
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       enrollment: {
+        acl: {
+          send_application: true
+        },
         fournisseur_de_service: '',
         description_service: '',
         fondement_juridique: '',
@@ -42,6 +47,21 @@ class ContractualisationForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+  componentDidMount() {
+    const {id} = this.props
+
+    let token
+    if (typeof localStorage) token = localStorage.getItem('token')
+    if (id) axios.get(BACK_HOST + '/api/enrollments/' + id, {
+      headers: {
+        Authorization: 'Bearer ' + token,
+        'Content-Type': 'application/json'
+      }
+    }).then((response) => {
+      this.setState({enrollment: response.data})
+    })
+  }
+
   handleChange(event) {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
@@ -71,10 +91,10 @@ class ContractualisationForm extends React.Component {
   }
 
   render() {
-    const {value} = this.state
+    const {enrollment} = this.state
+    const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     return (
-      <div className='main-pane'>
         <form onSubmit={this.handleSubmit}>
           <h1 id='legal'>Fondement juridique</h1>
           <section className='information-text'>
@@ -85,17 +105,17 @@ class ContractualisationForm extends React.Component {
             <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
             <select onChange={this.handleChange} name='enrollment.fournisseur_de_service' id='fournisseur_de_service'>
               <option value=''></option>
-              <option value='Calcul du quotient familial'>Calcul du quotient familial</option>
-              <option value='Inscription à la cantine scolaire'>Inscription à la cantine scolaire</option>
+              <option value='Calcul du quotient familial' selected={enrollment.fournisseur_de_service == 'Calcul du quotient familial' ? 'selected' : false}>Calcul du quotient familial</option>
+              <option value='Inscription à la cantine scolaire' selected={enrollment.fournisseur_de_service == 'Inscription à la cantine scolaire' ? 'selected' : false}>Inscription à la cantine scolaire</option>
             </select>
           </div>
           <div className='form__group'>
             <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-            <textarea rows='10' onChange={this.handleChange} name='enrollment.description_service' id='description_service' value={value} />
+            <textarea rows='10' onChange={this.handleChange} name='enrollment.description_service' id='description_service' disabled={readOnly} value={enrollment.description_service} />
           </div>
           <div className='form__group'>
             <label htmlFor='fondement_juridique'>Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande</label>
-            <textarea rows='10' onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' value={value} />
+            <textarea rows='10' onChange={this.handleChange} name='enrollment.fondement_juridique' id='fondement_juridique' disabled={readOnly} value={enrollment.fondement_juridique} />
           </div>
 
           <h1 id='donnees'>Choix des données</h1>
@@ -116,11 +136,11 @@ class ContractualisationForm extends React.Component {
             <fieldset className='vertical'>
               <legend>Sélectionnez vos jeux de données souhaités</legend>
               <div>
-                <input onChange={this.handleChange} checked={this.state.scope_dgfip_avis_imposition} type='checkbox' name='enrollment.scope_dgfip_RFR' id='checkbox-scope_dgfip_RFR' value='true' />
+                <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_RFR' id='checkbox-scope_dgfip_RFR' disabled={readOnly} checked={enrollment.scope_dgfip_RFR ? 'checked' : false} />
                 <label htmlFor='checkbox-scope_dgfip_RFR' className='label-inline'>DGFiP - Revenu Fiscal de Référence (RFR) et nombre de parts fiscales du foyer</label>
               </div>
               <div>
-                <input onChange={this.handleChange} checked={this.state.scope_dgfip_adresse_fiscale_taxation} type='checkbox' name='enrollment.scope_dgfip_adresse_fiscale_taxation' id='checkbox-scope_dgfip_adresse_fiscale_taxation' value='scope_dgfip_adresse_fiscale_taxation' />
+                <input onChange={this.handleChange} checked={enrollment.scope_dgfip_adresse_fiscale_taxation ? 'checked' : false} type='checkbox' name='enrollment.scope_dgfip_adresse_fiscale_taxation' id='checkbox-scope_dgfip_adresse_fiscale_taxation' disabled={readOnly} />
                 <label htmlFor='checkbox-scope_dgfip_adresse_fiscale_taxation' className='label-inline'>DGFiP - Adresse fiscale de taxation au 1er janvier</label>
               </div>
             </fieldset>
@@ -135,12 +155,12 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='nombre_demandes_annuelle'>Connaissez-vous le volume global annuel des demandes de votre téléservice&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_annuelle' id='nombre_demandes_annuelle' value={value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_annuelle' id='nombre_demandes_annuelle' disabled={readOnly} value={enrollment.nombre_demandes_annuelle} />
           </div>
 
           <div className='form__group'>
             <label htmlFor='pic_demandes_par_heure'>Connaissez-vous le pic de charge (en nombre de demandes horaires)&nbsp;?</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.pic_demandes_par_heure' id='pic_demandes_par_heure' value={value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.pic_demandes_par_heure' id='pic_demandes_par_heure' disabled={readOnly} value={enrollment.pic_demandes_par_heure} />
           </div>
 
           <div className='form__group'>
@@ -148,52 +168,52 @@ class ContractualisationForm extends React.Component {
             <div className='form__group'>
               <div className='date_input_row'>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_jan'>Janvier</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jan' id='nombre_de_demandes_mensuelles_jan' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_jan'>Janvier</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_jan' id='nombre_demandes_mensuelles_jan' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_jan} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_fev'>Février</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_fev' id='nombre_de_demandes_mensuelles_fev' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_fev'>Février</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_fev' id='nombre_demandes_mensuelles_fev' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_fev} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_mar'>Mars</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mar' id='nombre_de_demandes_mensuelles_mar' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_mar'>Mars</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_mar' id='nombre_demandes_mensuelles_mar' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_mar} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_avr'>Avril</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_avr' id='nombre_de_demandes_mensuelles_avr' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_avr'>Avril</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_avr' id='nombre_demandes_mensuelles_avr' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_avr} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_mai'>Mai</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_mai' id='nombre_de_demandes_mensuelles_mai' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_mai'>Mai</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_mai' id='nombre_demandes_mensuelles_mai' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_mai} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_juin'>Juin</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_juin' id='nombre_de_demandes_mensuelles_juin' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_juin'>Juin</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_juin' id='nombre_demandes_mensuelles_juin' disabled={readOnly} value={enrollment.nombrde_e_demandes_mensuelles_juin} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_jui'>Juillet</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_jui' id='nombre_de_demandes_mensuelles_jui' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_jui'>Juillet</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_jui' id='nombre_demandes_mensuelles_jui' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_jui} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_aou'>Août</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_aou' id='nombre_de_demandes_mensuelles_aou' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_aou'>Août</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_aou' id='nombre_demandes_mensuelles_aou' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_aou} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_sep'>Septembre</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_sep' id='nombre_de_demandes_mensuelles_sep' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_sep'>Septembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_sep' id='nombre_demandes_mensuelles_sep' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_sep} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_oct'>Octobre</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_oct' id='nombre_de_demandes_mensuelles_oct' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_oct'>Octobre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_oct' id='nombre_demandes_mensuelles_oct' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_oct} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_nov'>Novembre</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_nov' id='nombre_de_demandes_mensuelles_nov' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_nov'>Novembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_nov' id='nombre_demandes_mensuelles_nov' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_nov} />
                 </div>
                 <div className='date_input_col'>
-                  <label htmlFor='nombre_de_demandes_mensuelles_dec'>Décembre</label>
-                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_de_demandes_mensuelles_dec' id='nombre_de_demandes_mensuelles_dec' value={value} />
+                  <label htmlFor='nombre_demandes_mensuelles_dec'>Décembre</label>
+                  <input type='text' onChange={this.handleChange} name='enrollment.nombre_demandes_mensuelles_dec' id='nombre_demandes_mensuelles_dec' disabled={readOnly} value={enrollment.nombre_demandes_mensuelles_dec} />
                 </div>
               </div>
             </div>
@@ -208,12 +228,12 @@ class ContractualisationForm extends React.Component {
 
           <div className='form__group'>
             <label htmlFor='delegue_protection_donnees'>Délégué·e à la protection des données</label>
-            <input type='text' onChange={this.handleChange} name='enrollment.delegue_protection_donnees' id='delegue_protection_donnees' value={value} />
+            <input type='text' onChange={this.handleChange} name='enrollment.delegue_protection_donnees' id='delegue_protection_donnees' disabled={readOnly} value={enrollment.delegue_protection_donnees} />
           </div>
 
           <div className='form__group'>
-            <input type='checkbox' name='enrollment.checkbox-cnil' id='checkbox-cnil' value='fraise' />
-            <label htmlFor='checkbox-cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
+            <input type='checkbox' onChange={this.handleChange} name='enrollment.demarche_cnil' id='demarche_cnil' checked={enrollment.demarche_cnil ? 'checked' : false} />
+            <label htmlFor='demarche_cnil' className='label-inline'>Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données</label>
           </div>
 
           <h1 id='convention'>Convention</h1>
@@ -224,15 +244,16 @@ class ContractualisationForm extends React.Component {
           <iframe src='static/docs/charte-fc.pdf' width='100%' height='800px' />
 
           <div className='form__group'>
-            <input onChange={this.handleChange} checked={this.state.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
+            <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
             <label htmlFor='validation_de_convention' className='label-inline'>Je valide la présente convention</label>
           </div>
 
-          <div className='button-list'>
-            <button className='button' type='submit' name='subscribe' id='submit'>Soumettre la demande</button>
-          </div>
+          {!readOnly &&
+            <div className='button-list'>
+              <button className='button' type='submit' name='subscribe' id='submit'>Soumettre la demande</button>
+            </div>
+          }
         </form>
-      </div>
     )
   }
 }
