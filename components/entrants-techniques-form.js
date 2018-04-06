@@ -171,9 +171,6 @@ class EntrantsTecniquesForm extends React.Component {
                   <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
                 </div>
               </section>
-              <div className='button-list'>
-                <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
-              </div>
             </div>
           }
         </form>
