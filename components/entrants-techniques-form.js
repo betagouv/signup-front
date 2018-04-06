@@ -162,16 +162,18 @@ class EntrantsTecniquesForm extends React.Component {
             <label htmlFor='checkbox-recette_fonctionnelle' className='label-inline'>J'atteste avoir réalisé une recette fonctionnelle</label>
           </div>
           {!readOnly &&
-            <section className='section'>
-              <div className='notification'>
-                <p>La demande d’entrée en production revêt un caractère définitif et entraîne le transfert de vos entrants techniques vers les exploitants informatiques de la DGFiP. Merci de vous assurer de la bonne valorisation de l’ensemble des informations demandées avant de procéder à cette demande.</p>
-                <p>Votre entrée en production se fera lors du premier créneau disponible à compter de l’envoi des entrants technique de production et conformément au calendrier accessible via le lien ci-dessous. </p>
+            <div className='submit'>
+              <section className='section'>
+                <div className='notification'>
+                  <p>La demande d’entrée en production revêt un caractère définitif et entraîne le transfert de vos entrants techniques vers les exploitants informatiques de la DGFiP. Merci de vous assurer de la bonne valorisation de l’ensemble des informations demandées avant de procéder à cette demande.</p>
+                  <p>Votre entrée en production se fera lors du premier créneau disponible à compter de l’envoi des entrants technique de production et conformément au calendrier accessible via le lien ci-dessous. </p>
 
+                  <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
+                </div>
+              </section>
+              <div className='button-list'>
                 <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
               </div>
-            </section>
-            <div className='button-list'>
-              <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
             </div>
           }
         </form>
