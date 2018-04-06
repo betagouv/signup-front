@@ -135,6 +135,7 @@ class ContractualisationForm extends React.Component {
           {enrollment.fournisseur_de_service &&
             <option selected='selected' value={enrollment.fournisseur_de_service}>{enrollment.fournisseur_de_service}</option>
           }
+          <option value="Une démarche de test">Une démarche de test</option>
           {
             serviceProviders.map((serviceProvider) => {
               return <option key={i++} value={serviceProvider.name}>{serviceProvider.name}</option>
