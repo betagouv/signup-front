@@ -79,7 +79,7 @@ class Enrollment extends React.Component {
         {enrollment.acl.send_technical_inputs &&
           <Link href={{pathname: '/entrants-techniques', query: {id: enrollment.id}}}>
           <button className='button' type='submit' name='send_technical_inputs' id='submit'>
-            Ajouter les entrants techniques
+            Demander à entrer en production
           </button>
           </Link>
         }

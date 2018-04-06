@@ -125,7 +125,7 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
     onClick={[Function]}
     type="submit"
   >
-    Ajouter les entrants techniques
+    Demander à entrer en production
   </button>
   <div
     className="button-list"

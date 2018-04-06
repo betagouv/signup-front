@@ -13,7 +13,12 @@ class EntrantsTecniquesForm extends React.Component {
       enrollment: {
         documents: [],
         ips_de_production: '',
-        autorite_certification: ''
+        autorite_certification: '',
+        autorite_certification_nom: '',
+        autorite_certification_fonction: '',
+        date_homologation: '',
+        date_fin_homologation: '',
+        recette_fonctionnelle: false
       }
     }
     this.handleChange = this.handleChange.bind(this)
@@ -87,7 +92,10 @@ class EntrantsTecniquesForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <h1 id='legal'>Entrants techniques</h1>
           <section className='information-text'>
-            <p>Afin de mettre en production votre application et la connexion à API Impôts Particulier veuillez remplir les entrants techniques suivants</p>
+            <p>Afin de permettre la liaison technique entre votre SI et celui de la DGFiP, vous devez fournir les entrants techniques suivants : <br />
+            adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec l'API « Impôt Particulier »<br />
+            partie publique d'un certificat client RGS V2.0 en cours de validité avec son autorité de certification émettrice</p>
+            <p>Afin de permettre votre mise en production dans les meilleures conditions possibles, veuillez vous assurer de la qualité de ces livrables techniques.</p>
           </section>
           <div className='form__group'>
             <label htmlFor='production_certificate'>Certificat de production</label>
@@ -102,6 +110,10 @@ class EntrantsTecniquesForm extends React.Component {
           </div>
           <div className='form__group'>
             <label htmlFor='ips_de_production'>IPs de production</label>
+            <section className='information-text'>
+              <p>La demande d'entrée en production revêt un caractère définitif et entraîne le transfert de vos entrants techniques vers les exploitants informatiques de la DGFiP. Merci de vous assurer de la bonne valorisation de l'ensemble des informations demandées avant de procéder à cette demande.</p>
+              <p>Votre entrée en production se fera lors du premier créneau disponible à compter de l'envoi des entrants technique de production et conformément au calendrier accessible via le lien ci-dessous. </p>
+            </section>
             <input type='text' onChange={this.handleChange} name='enrollment.ips_de_production' id='ips_de_production' value={enrollment.ips_de_production} />
           </div>
           <h1 id='securite'>Homologation de sécurité</h1>
@@ -129,6 +141,15 @@ class EntrantsTecniquesForm extends React.Component {
           <div className='form__group'>
             <label htmlFor='date_fin_homologation'>Date de fin de l’homologation</label>
             <input type='date' onChange={this.handleChange} name='enrollment.date_fin_homologation' id='date_fin_homologation' value={value} />
+          </div>
+          <h1 id='securite'>Recette fonctionnelle</h1>
+          <section className='information-text'>
+          <p>Afin d'assurer la qualification de votre applicatif, un générateur de bouchons est mis à votre disposition en suivant le lien ci-dessous. Il vous permettra de valoriser les données retournées par l'API « Impôt Particulier » en fonction de vos besoins métier ou d'utiliser le jeu de données natif. Cette qualification est obligatoire tant pour votre homologation de sécurité ou vos obligations CNIL que pour demander l'entrée en production auprès de la DGFiP.</p>
+          <p><a href="">Accèder aux générateurs de bouchons</a></p>
+          </section>
+          <div>
+            <input onChange={this.handleChange} checked={enrollment.recette_fonctionnelle} type='checkbox' name='enrollment.recette_fonctionnelle' id='checkbox-recette_fonctionnelle' value='recette_fonctionnelle' />
+            <label htmlFor='checkbox-recette_fonctionnelle' className='label-inline'>J'atteste avoir réalisé une recette fonctionnelle</label>
           </div>
           <div className='button-list'>
             <button className='button' type='submit' name='subscribe' id='submit'>Envoyer les entrants techniques</button>
