@@ -11,7 +11,7 @@
     "start": "next start",
     "lint": "npm run lint:scripts",
     "lint:scripts": "xo",
-    "deploy": "next build && next export && touch out/.nojekyll && gh-pages -t -d out"
+    "deploy": "next build && next export && touch out/.nojekyll && cp CNAME out/CNAME  && gh-pages -t -d out"
   },
   "keywords": [],
   "author": "",
