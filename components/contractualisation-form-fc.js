@@ -118,7 +118,6 @@ class ContractualisationForm extends React.Component {
     const {enrollment, serviceProviders} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
-    console.log(serviceProviders)
     let i = 0
     return (
       <form onSubmit={this.handleSubmit}>
