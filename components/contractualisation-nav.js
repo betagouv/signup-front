@@ -34,7 +34,7 @@ class ContractualisationNav extends React.Component {
       <nav className='side-pane'>
         <ul className='side-pane__menu'>
           <li className='side-pane__title'>
-            <h3>Contractualisation</h3>
+            <h3>Votre demande</h3>
           </li>
           <li><a className='side-pane__link' href='#legal'>Fondement juridique</a></li>
           <li><a className='side-pane__link' href='#donnees'>Choix des données</a></li>
@@ -45,9 +45,9 @@ class ContractualisationNav extends React.Component {
           {enrollment.acl.show_technical_inputs &&
             <ul className='side-pane__menu'>
               <li className='side-pane__title'>
-                <h3>Entrants Techniques</h3>
+                <h3>Données de productions</h3>
               </li>
-              <li><a className='side-pane__link' href='#entrants-techniques'>Entrants tehniques</a></li>
+              <li><a className='side-pane__link' href='#entrants-techniques'>Entrants techniques</a></li>
               <li><a className='side-pane__link' href='#homologation-securite'>Homologation de sécurité</a></li>
               <li><a className='side-pane__link' href='#recette-fonctionnelle'>Recette fonctionnelle</a></li>
             </ul>
