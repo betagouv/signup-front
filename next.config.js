@@ -6,7 +6,8 @@ module.exports = {
       '/demandes': {page: '/demandes'},
       '/contact': {page: '/contact'},
       '/documentation': {page: '/documentation'},
-      '/contractualisation': {page: '/contractualisation'}
+      '/contractualisation': {page: '/contractualisation'},
+      '/dgfip': {page: '/dgfip'}
     }
   },
   webpackDevMiddleware: config => {
