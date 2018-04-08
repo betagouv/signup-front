@@ -45,7 +45,7 @@ class DataSetDescription extends React.Component {
             dataset.node_example ? <TryMeButton handleClick={this.handleClick} /> : null
           }
           {
-            provider.resource_provider_type === 'apiParticulier' ? <LinkButton url='/contractualisation' text='Demander un accès' /> : <LinkButton url='/contractualisation-fc' text='Demander un accès' />
+            provider.resource_provider_type === 'apiParticulier' ? <LinkButton url='/contractualisation' text='Demander un accès' /> : <LinkButton url='/dgfip' text='Demander un accès' />
           }
 
         </div>

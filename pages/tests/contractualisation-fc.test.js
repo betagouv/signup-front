@@ -1,8 +1,8 @@
 import ReactTestRenderer from 'react-test-renderer'
 
-describe('pages | contractualisation-fc', () => {
+describe('pages | dgfip', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<contractualisation-fc />)
+    const renderer = ReactTestRenderer.create(<dgfip />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

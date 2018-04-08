@@ -53,7 +53,7 @@ exports[`components | DataSet render should match snapshot 1`] = `
       >
         <a
           className="button"
-          href="/contractualisation-fc"
+          href="/dgfip"
           onClick={[Function]}
         >
           Demander un accès
@@ -85,7 +85,7 @@ exports[`components | DataSet render should match snapshot 1`] = `
       >
         <a
           className="button"
-          href="/contractualisation-fc"
+          href="/dgfip"
           onClick={[Function]}
         >
           Demander un accès
