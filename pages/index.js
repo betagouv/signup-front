@@ -2,13 +2,12 @@ import React from 'react'
 import Page from '../components/page'
 import Section from '../components/section'
 import ResourceProvider from '../components/resource-provider'
-import ResourceProviderService from '../lib/resource-provider.service'
+import Services from '../lib/services'
 
 class Index extends React.Component {
   constructor(props) {
     super(props)
 
-    this.resourceProviderService = new ResourceProviderService()
     this.state = {
       resourceProviders: {
         franceConnect: [],
@@ -17,8 +16,8 @@ class Index extends React.Component {
     }
   }
 
-  componentDidMount () {
-    this.resourceProviderService.getAll().then((resourceProviders) => {
+  componentDidMount() {
+    return Services.getResourceProviderService().then(resourceProviders => {
       this.setState({resourceProviders})
     })
   }
