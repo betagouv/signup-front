@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | ContractualisationNav render should match snapshot 1`] = `
+<nav
+  className="side-pane"
+>
+  <ul
+    className="side-pane__menu"
+  >
+    <li
+      className="side-pane__title"
+    >
+      <h3>
+        Votre demande
+      </h3>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#legal"
+      >
+        Fondement juridique
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#donnees"
+      >
+        Choix des données
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#volumetrie"
+      >
+        Volumétrie
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#cnil"
+      >
+        Obligation CNIL
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#convention"
+      >
+        Convention
+      </a>
+    </li>
+  </ul>
+</nav>
+`;
