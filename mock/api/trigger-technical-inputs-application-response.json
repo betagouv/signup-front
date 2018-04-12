@@ -1,6 +1,6 @@
 {
 	"id": 1,
-	"state": "pending",
+	"state": "technical_inputs",
 	"fournisseur_de_service": "Fournisseur de service",
 	"description_service": "Description du service",
 	"validation_de_convention": true,
