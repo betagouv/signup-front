@@ -57,6 +57,13 @@ Suivre le readme puis lancer le serveur sur le port de son choix (celui renseign
 yarn test
 ```
 
+Il est possible de voir la couverture de test
+```bash
+yarn test --coverage
+```
+
+Une version html est disponible en local `front/coverage/lcov-report/index.html`
+
 ### Génération des bundles de production
 
 ```bash
