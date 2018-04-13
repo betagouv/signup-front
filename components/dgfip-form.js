@@ -1,11 +1,11 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
+import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
 import React from 'react'
 import Router from 'next/router'
+import User from '../lib/user'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
-import {BACK_HOST} from '@env'
+
 const axios = require('axios')
-import User from '../lib/user'
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class ContractualisationForm extends React.Component {
         fournisseur_de_service: '',
         description_service: '',
         fondement_juridique: '',
-        scope_dgfip_RFR: true,
+        scope_dgfip_RFR: false,
         scope_dgfip_adresse_fiscale_taxation: false,
         nombre_demandes_annuelle: '',
         pic_demandes_par_heure: '',
@@ -41,7 +41,8 @@ class ContractualisationForm extends React.Component {
         delegue_protection_donnees: '',
         validation_de_convention: false,
         certificat_pub_production: '',
-        autorite_certification: ''
+        autorite_certification: '',
+        resource_provider_type: 'dgfip'
       },
       serviceProviders: []
     }
@@ -52,7 +53,6 @@ class ContractualisationForm extends React.Component {
 
   componentDidMount() {
     const {id} = this.props
-
     let token
     if (typeof localStorage) token = localStorage.getItem('token')
     if (id) axios.get(BACK_HOST + '/api/enrollments/' + id, {
@@ -60,13 +60,13 @@ class ContractualisationForm extends React.Component {
         Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json'
       }
-    }).then((response) => {
+    }).then(response => {
       this.setState({enrollment: response.data})
     })
     const user = new User()
 
     setTimeout(() => {
-      user.getServiceProviders().then((serviceProviders) => {
+      user.getServiceProviders().then(serviceProviders => {
         this.setState({serviceProviders})
       })
     }, 1000)
@@ -91,11 +91,11 @@ class ContractualisationForm extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         } else if (response.status === 422) {
-          alert('Formulaire incomplet' + response.request.response)
+          alert('Formulaire incomplet' + response.request.response) // eslint-disable-line no-alert
         } else if (response.status === 401) {
-          alert('Vous n\'êtes pas autorisé' + response)
+          alert('Vous n\'êtes pas autorisé' + response) // eslint-disable-line no-alert
         } else {
-          alert('Erreur inconnue' + response)
+          alert('Erreur inconnue' + response) // eslint-disable-line no-alert
         }
       })
     } else {
@@ -103,11 +103,11 @@ class ContractualisationForm extends React.Component {
         if (response.status === 201) {
           Router.push('/')
         } else if (response.status === 422) {
-          alert('Formulaire incomplet' + response.request.response)
+          alert('Formulaire incomplet' + response.request.response) // eslint-disable-line no-alert
         } else if (response.status === 401) {
-          alert('Vous n\'êtes pas autorisé' + response)
+          alert('Vous n\'êtes pas autorisé' + response) // eslint-disable-line no-alert
         } else {
-          alert('Erreur inconnue' + response)
+          alert('Erreur inconnue' + response) // eslint-disable-line no-alert
         }
       })
     }
@@ -130,16 +130,16 @@ class ContractualisationForm extends React.Component {
           <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>
           <p><a className='button' href={FRANCE_CONNECT_AUTHORIZE_URI}>Se connecter auprès de France Connect afin de récupérer mes démarches</a></p>
           <select onChange={this.handleChange} name='enrollment.fournisseur_de_service'>
-          <option>-- sélectionnez une démarche --</option>
-          {enrollment.fournisseur_de_service &&
+            <option>-- sélectionnez une démarche --</option>
+            {enrollment.fournisseur_de_service &&
             <option selected='selected' value={enrollment.fournisseur_de_service}>{enrollment.fournisseur_de_service}</option>
-          }
-          <option value="Une démarche de test">Une démarche de test</option>
-          {
-            serviceProviders.map((serviceProvider) => {
-              return <option key={i++} value={serviceProvider.name}>{serviceProvider.name}</option>
-            })
-          }
+            }
+            <option value='Une démarche de test'>Une démarche de test</option>
+            {
+              serviceProviders.map(serviceProvider => {
+                return <option key={i++} value={serviceProvider.name}>{serviceProvider.name}</option>
+              })
+            }
           </select>
         </div>
         <div className='form__group'>

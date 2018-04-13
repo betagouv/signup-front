@@ -9,27 +9,28 @@ class Enrollment extends React.Component {
 
     this.state = {enrollment: props.enrollment}
   }
+
   deleteEnrollment(event) {
     const token = localStorage.getItem('token')
     const id = event.target.value
     Services.deleteUserEnrollment(token, id)
       .then(response => {
         if (response.status === 204) {
-          alert('Demande supprimée avec succès' + response.request.response)
+          alert('Demande supprimée avec succès' + response.request.response) // eslint-disable-line no-alert
         } else if (response.status === 404) {
-          alert('Formulaire incomplet' + response.request.response)
+          alert('Formulaire incomplet' + response.request.response) // eslint-disable-line no-alert
         } else if (response.status === 401) {
-          alert("Vous n'êtes pas autorisé" + response)
+          alert('Vous n êtes pas autorisé' + response) // eslint-disable-line no-alert
         } else {
-          alert("Erreur inconnue" + response)
+          alert('Erreur inconnue' + response) // eslint-disable-line no-alert
         }
       })
-      .catch(error => alert("Oups !" + error) )
+      .catch(error => alert('Oups !' + error)) // eslint-disable-line no-alert
     event.preventDefault()
   }
 
   trigger(action, enrollment) {
-    return () => Services.triggerUserEnrollment(action, enrollment).then((response) => {
+    return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
       const enrollment = response.data
       if (enrollment) this.setState({enrollment: enrollment})
     })
@@ -38,17 +39,20 @@ class Enrollment extends React.Component {
   render() {
     const {enrollment} = this.state
 
+    console.log('----- resource_provider_type ', enrollment.resource_provider_type)
+
     return (
       <li className='panel'>
         <h2>{enrollment.fournisseur_de_service}</h2>
         <em>{enrollment.applicant.email}</em>
         <p>{enrollment.description_service}</p>
+        <p>Type : {enrollment.resource_provider_type}</p>
         <p>État de la demande :&nbsp;
-          {enrollment.state === 'pending' && 'Demande en attente'}
-          {enrollment.state === 'sent' && 'Demande envoyée'}
-          {enrollment.state === 'validated' && 'Demande validée'}
-          {enrollment.state === 'refused' && 'Demande refusée'}
-          {enrollment.state === 'technical_inputs' && 'En attente de déploiement'}
+        {enrollment.state === 'pending' && 'Demande en attente'}
+        {enrollment.state === 'sent' && 'Demande envoyée'}
+        {enrollment.state === 'validated' && 'Demande validée'}
+        {enrollment.state === 'refused' && 'Demande refusée'}
+        {enrollment.state === 'technical_inputs' && 'En attente de déploiement'}
           {enrollment.state === 'deployed' && 'Déployé'}
         </p>
         {enrollment.acl.refuse_application &&
@@ -77,10 +81,10 @@ class Enrollment extends React.Component {
           </button>
         }
         {enrollment.acl.send_technical_inputs &&
-          <Link href={{pathname: '/dgfip', query: {id: enrollment.id}, hash: 'entrants-techniques'}}>
-          <button className='button' type='submit' name='send_technical_inputs' id='submit'>
+          <Link href={{pathname: '/' + enrollment.resource_provider_type, query: {id: enrollment.id}, hash: 'entrants-techniques'}}>
+            <button className='button' type='submit' name='send_technical_inputs' id='submit'>
             Demander à entrer en production
-          </button>
+            </button>
           </Link>
         }
 
@@ -88,10 +92,10 @@ class Enrollment extends React.Component {
           {
             /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
           }
-          <Link href={{pathname: '/dgfip', query: {id: enrollment.id}}}>
-          <button className='button' type='submit' name='subscribe' id='submit'>
+          <Link href={{pathname: '/' + enrollment.resource_provider_type, query: {id: enrollment.id}}}>
+            <button className='button' type='submit' name='subscribe' id='submit'>
             Voir
-          </button>
+            </button>
           </Link>
         </div>
       </li>
