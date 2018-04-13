@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages | index render should match snapshot 1`] = `
+exports[`pages | index render snapshot should match snapshot 1`] = `
 <div
   className="page"
 >

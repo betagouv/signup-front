@@ -1,6 +1,8 @@
 import ReactTestRenderer from 'react-test-renderer'
 import ContractualisationNav from '../contractualisation-nav'
 
+require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
+
 describe('components | ContractualisationNav', () => {
   describe('render', () => {
     const props = {
