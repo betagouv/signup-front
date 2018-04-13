@@ -1,6 +1,6 @@
 import {mount, shallow} from 'enzyme'
 import ReactTestRenderer from 'react-test-renderer'
-import ContractualisationForm from '../contractualisation-form'
+import ContractualisationForm from '../api-particulier-form'
 import Services from '../../lib/services'
 import localStorage from '../../lib/tests/local-storage' // eslint-disable-line no-unused-vars
 import FORM_STATE from '../../mock/form/state'

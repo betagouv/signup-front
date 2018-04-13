@@ -89,7 +89,7 @@ class ContractualisationForm extends React.Component {
     if (componentState.enrollment.id) {
       Services.updateUserEnrollment(componentState, token).then(response => {
         if (response.status === 200) {
-          Router.push('/demandes')
+          Router.push('/')
         } else if (response.status === 422) {
           alert('Formulaire incomplet' + response.request.response)
         } else if (response.status === 401) {
@@ -101,7 +101,7 @@ class ContractualisationForm extends React.Component {
     } else {
       Services.createUserEnrollment(componentState, token).then(response => {
         if (response.status === 201) {
-          Router.push('/demandes')
+          Router.push('/')
         } else if (response.status === 422) {
           alert('Formulaire incomplet' + response.request.response)
         } else if (response.status === 401) {

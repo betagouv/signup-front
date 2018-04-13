@@ -1,8 +1,9 @@
 import React from 'react'
 import {BACK_HOST} from '@env'
+
 const axios = require('axios')
 
-class ContractualisationNav extends React.Component {
+class DgfipNav extends React.Component {
   constructor(props) {
     super(props)
 
@@ -57,4 +58,4 @@ class ContractualisationNav extends React.Component {
   }
 }
 
-export default ContractualisationNav
+export default DgfipNav

@@ -16,7 +16,7 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
           href="/"
         >
           <img
-            alt="Accueil de particulier.api.data.gouv.fr"
+            alt="Accueil de signup.api.gouv.fr"
             className="nav__logo"
             src="/static/images/logo-api-particulier.png"
           />
@@ -26,10 +26,18 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
         >
           <li>
             <a
-              href="/#france-connect"
+              href="/dgfip"
               onClick={[Function]}
             >
-              Données disponibles
+              DGFiP
+            </a>
+          </li>
+          <li>
+            <a
+              href="/api-particulier"
+              onClick={[Function]}
+            >
+              Api Particulier
             </a>
           </li>
           <li>
@@ -153,7 +161,7 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
           href="/"
         >
           <img
-            alt="Accueil de particulier.api.data.gouv.fr"
+            alt="Accueil de signup.api.gouv.fr"
             className="nav__logo"
             src="/static/images/logo-api-particulier.png"
           />
@@ -163,10 +171,18 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
         >
           <li>
             <a
-              href="/#france-connect"
+              href="/dgfip"
               onClick={[Function]}
             >
-              Données disponibles
+              DGFiP
+            </a>
+          </li>
+          <li>
+            <a
+              href="/api-particulier"
+              onClick={[Function]}
+            >
+              Api Particulier
             </a>
           </li>
           <li>

@@ -34,13 +34,14 @@ class Header extends React.Component {
         <nav className='nav'>
           <div className='nav__container'>
             <a className='nav__link' href='/'>
-              <img className='nav__logo' src='/static/images/logo-api-particulier.png' alt='Accueil de particulier.api.data.gouv.fr' />
+              <img className='nav__logo' src='/static/images/logo-api-particulier.png' alt='Accueil de signup.api.gouv.fr' />
             </a>
             <ul className='nav__links'>
               {user.loggedIn &&
-                <li><Link href='/demandes'><a>Liste des demandes</a></Link></li>
+                <li><Link href='/'><a>Liste des demandes</a></Link></li>
               }
-              <li><Link href='/#france-connect'><a>Données disponibles</a></Link></li>
+              <li><Link href='/dgfip'><a>DGFiP</a></Link></li>
+              <li><Link href='/api-particulier'><a>Api Particulier</a></Link></li>
               <li>
                 {user.loggedIn && (
                   <div className='dropdown'>
