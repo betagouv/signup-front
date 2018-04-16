@@ -3,6 +3,7 @@ import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
 import {BACK_HOST} from '@env'
+
 const axios = require('axios')
 
 class EntrantsTecniquesForm extends React.Component {
@@ -78,8 +79,8 @@ class EntrantsTecniquesForm extends React.Component {
     const {enrollment} = this.state
 
     Services.triggerUserEnrollment('send_technical_inputs', enrollment, token).then(response => {
-        if (response.status == 200) Router.push('/demandes')
-    }).catch((error) => {
+        if (response.status === 200) Router.push('/')
+    }).catch(error => {
       if (error.response.status === 422) {
         alert('Formulaire incomplet' + response.request.response)
       } else if (error.response.status === 401) {

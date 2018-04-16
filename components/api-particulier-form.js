@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
 
-class ContractualisationForm extends React.Component {
+class ApiParticulierForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,7 +35,8 @@ class ContractualisationForm extends React.Component {
         delegue_protection_donnees: '',
         validation_de_convention: false,
         certificat_pub_production: '',
-        autorite_certification: ''
+        autorite_certification: '',
+        type_fournisseur_donnees: 'api-particulier'
       }
     }
 
@@ -59,7 +60,7 @@ class ContractualisationForm extends React.Component {
     const componentState = this.state
     Services.createUserEnrollment(componentState, token).then(response => {
       if (response.status === 201) {
-        Router.push('/demandes')
+        Router.push('/')
       } else if (response.status === 422) {
         alert('Formulaire incomplet' + response.request.response)
       } else if (response.status === 401) {
@@ -193,4 +194,4 @@ class ContractualisationForm extends React.Component {
   }
 }
 
-export default ContractualisationForm
+export default ApiParticulierForm

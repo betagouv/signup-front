@@ -3,10 +3,9 @@ module.exports = {
     return {
       '/': {page: '/'},
       '/about': {page: '/about'},
-      '/demandes': {page: '/demandes'},
       '/contact': {page: '/contact'},
       '/documentation': {page: '/documentation'},
-      '/contractualisation': {page: '/contractualisation'},
+      '/api-particulier': {page: '/api-particulier'},
       '/dgfip': {page: '/dgfip'}
     }
   },

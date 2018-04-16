@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Page from '../components/page'
-import ContractualisationForm from '../components/contractualisation-form-fc'
-import ContractualisationNav from '../components/contractualisation-nav'
+import DgfipForm from '../components/dgfip-form'
+import DgfipNav from '../components/dgfip-nav'
 import EntrantsTechniquesForm from '../components/entrants-techniques-form'
 import {BACK_HOST} from '@env'
 
 const axios = require('axios')
 
-class ContractualisationFc extends React.Component {
+class Dgfip extends React.Component {
   constructor(props) {
     super(props)
 
@@ -48,9 +48,9 @@ class ContractualisationFc extends React.Component {
     return (
       <Page>
         <div className='documentation'>
-          <ContractualisationNav id={url.query.id} />
+          <DgfipNav id={url.query.id} />
           <div className='main-pane'>
-            <ContractualisationForm id={url.query.id} />
+            <DgfipForm id={url.query.id} />
             { enrollment.acl.show_technical_inputs &&
               <EntrantsTechniquesForm id={url.query.id} />
             }
@@ -61,8 +61,8 @@ class ContractualisationFc extends React.Component {
   }
 }
 
-ContractualisationFc.propTypes = {
+Dgfip.propTypes = {
   url: PropTypes.object.isRequired
 }
 
-export default ContractualisationFc
+export default Dgfip

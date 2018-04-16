@@ -1,11 +1,11 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
+import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
+import User from '../lib/user'
+import Services from '../lib/services'
 import React from 'react'
 import Router from 'next/router'
 import Utils from '../lib/utils'
-import Services from '../lib/services'
-import {BACK_HOST} from '@env'
+
 const axios = require('axios')
-import User from '../lib/user'
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -89,7 +89,7 @@ class ContractualisationForm extends React.Component {
     if (componentState.enrollment.id) {
       Services.updateUserEnrollment(componentState, token).then(response => {
         if (response.status === 200) {
-          Router.push('/demandes')
+          Router.push('/')
         } else if (response.status === 422) {
           alert('Formulaire incomplet' + response.request.response)
         } else if (response.status === 401) {
@@ -101,7 +101,7 @@ class ContractualisationForm extends React.Component {
     } else {
       Services.createUserEnrollment(componentState, token).then(response => {
         if (response.status === 201) {
-          Router.push('/demandes')
+          Router.push('/')
         } else if (response.status === 422) {
           alert('Formulaire incomplet' + response.request.response)
         } else if (response.status === 401) {
