@@ -33,15 +33,13 @@ class Header extends React.Component {
       <header>
         <nav className='nav'>
           <div className='nav__container'>
-            <a className='nav__link' href='/'>
-              <img className='nav__logo' src='/static/images/logo-api-particulier.png' alt='Accueil de signup.api.gouv.fr' />
+            <a className='nav__link' href='https://api.gouv.fr/'>
+              <img className='nav__logo' src='https://api.gouv.fr/img/logo_api.svg' alt='Accueil de signup.api.gouv.fr' />
             </a>
             <ul className='nav__links'>
               {user.loggedIn &&
                 <li><Link href='/'><a>Liste des demandes</a></Link></li>
               }
-              <li><Link href='/dgfip'><a>DGFiP</a></Link></li>
-              <li><Link href='/api-particulier'><a>Api Particulier</a></Link></li>
               <li>
                 {user.loggedIn && (
                   <div className='dropdown'>

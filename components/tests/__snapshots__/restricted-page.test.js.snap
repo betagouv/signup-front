@@ -13,33 +13,17 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
       >
         <a
           className="nav__link"
-          href="/"
+          href="https://api.gouv.fr/"
         >
           <img
             alt="Accueil de signup.api.gouv.fr"
             className="nav__logo"
-            src="/static/images/logo-api-particulier.png"
+            src="https://api.gouv.fr/img/logo_api.svg"
           />
         </a>
         <ul
           className="nav__links"
         >
-          <li>
-            <a
-              href="/dgfip"
-              onClick={[Function]}
-            >
-              DGFiP
-            </a>
-          </li>
-          <li>
-            <a
-              href="/api-particulier"
-              onClick={[Function]}
-            >
-              Api Particulier
-            </a>
-          </li>
           <li>
             <a
               href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="
@@ -158,33 +142,17 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
       >
         <a
           className="nav__link"
-          href="/"
+          href="https://api.gouv.fr/"
         >
           <img
             alt="Accueil de signup.api.gouv.fr"
             className="nav__logo"
-            src="/static/images/logo-api-particulier.png"
+            src="https://api.gouv.fr/img/logo_api.svg"
           />
         </a>
         <ul
           className="nav__links"
         >
-          <li>
-            <a
-              href="/dgfip"
-              onClick={[Function]}
-            >
-              DGFiP
-            </a>
-          </li>
-          <li>
-            <a
-              href="/api-particulier"
-              onClick={[Function]}
-            >
-              Api Particulier
-            </a>
-          </li>
           <li>
             <a
               href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000&scope=&response_type=token&state="

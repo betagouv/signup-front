@@ -42,7 +42,7 @@ class ContractualisationForm extends React.Component {
         validation_de_convention: false,
         certificat_pub_production: '',
         autorite_certification: '',
-        resource_provider_type: 'dgfip'
+        type_fournisseur_donnees: 'dgfip'
       },
       serviceProviders: []
     }

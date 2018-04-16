@@ -3,7 +3,7 @@ import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
 
-class ApiParticulierFormForm extends React.Component {
+class ApiParticulierForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,7 +35,8 @@ class ApiParticulierFormForm extends React.Component {
         delegue_protection_donnees: '',
         validation_de_convention: false,
         certificat_pub_production: '',
-        autorite_certification: ''
+        autorite_certification: '',
+        type_fournisseur_donnees: 'api-particulier'
       }
     }
 
@@ -193,4 +194,4 @@ class ApiParticulierFormForm extends React.Component {
   }
 }
 
-export default ApiParticulierFormForm
+export default ApiParticulierForm

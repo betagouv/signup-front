@@ -32,27 +32,27 @@ class Enrollment extends React.Component {
   trigger(action, enrollment) {
     return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
       const enrollment = response.data
-      if (enrollment) this.setState({enrollment: enrollment})
+      if (enrollment) {
+        this.setState({enrollment})
+      }
     })
   }
 
   render() {
     const {enrollment} = this.state
 
-    console.log('----- resource_provider_type ', enrollment.resource_provider_type)
-
     return (
       <li className='panel'>
         <h2>{enrollment.fournisseur_de_service}</h2>
         <em>{enrollment.applicant.email}</em>
         <p>{enrollment.description_service}</p>
-        <p>Type : {enrollment.resource_provider_type}</p>
+        <p>Type : {enrollment.type_fournisseur_donnees}</p>
         <p>État de la demande :&nbsp;
-        {enrollment.state === 'pending' && 'Demande en attente'}
-        {enrollment.state === 'sent' && 'Demande envoyée'}
-        {enrollment.state === 'validated' && 'Demande validée'}
-        {enrollment.state === 'refused' && 'Demande refusée'}
-        {enrollment.state === 'technical_inputs' && 'En attente de déploiement'}
+          {enrollment.state === 'pending' && 'Demande en attente'}
+          {enrollment.state === 'sent' && 'Demande envoyée'}
+          {enrollment.state === 'validated' && 'Demande validée'}
+          {enrollment.state === 'refused' && 'Demande refusée'}
+          {enrollment.state === 'technical_inputs' && 'En attente de déploiement'}
           {enrollment.state === 'deployed' && 'Déployé'}
         </p>
         {enrollment.acl.refuse_application &&
@@ -81,7 +81,7 @@ class Enrollment extends React.Component {
           </button>
         }
         {enrollment.acl.send_technical_inputs &&
-          <Link href={{pathname: '/' + enrollment.resource_provider_type, query: {id: enrollment.id}, hash: 'entrants-techniques'}}>
+          <Link href={{pathname: '/' + enrollment.type_fournisseur_donnees, query: {id: enrollment.id}, hash: 'entrants-techniques'}}>
             <button className='button' type='submit' name='send_technical_inputs' id='submit'>
             Demander à entrer en production
             </button>
@@ -92,7 +92,7 @@ class Enrollment extends React.Component {
           {
             /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
           }
-          <Link href={{pathname: '/' + enrollment.resource_provider_type, query: {id: enrollment.id}}}>
+          <Link href={{pathname: '/' + enrollment.type_fournisseur_donnees, query: {id: enrollment.id}}}>
             <button className='button' type='submit' name='subscribe' id='submit'>
             Voir
             </button>
