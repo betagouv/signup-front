@@ -3,7 +3,7 @@ import ReactTestRenderer from 'react-test-renderer'
 import ContractualisationForm from '../api-particulier-form'
 import Services from '../../lib/services'
 import localStorage from '../../lib/tests/local-storage' // eslint-disable-line no-unused-vars
-import FORM_STATE from '../../mock/form/state'
+import FORM_STATE from '../../mock/enrollment-form/initial-state-enrollment'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
