@@ -1,5 +1,4 @@
-{
-  "enrollment": {
+ {
     "id": 1,
     "state": "pending",
     "created_at": "2018-03-26T12:15:23.251Z",
@@ -46,4 +45,3 @@
       "destroy": false
     }
   }
-}
