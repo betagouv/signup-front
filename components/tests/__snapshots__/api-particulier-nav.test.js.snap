@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`components | ContractualisationNav render should match snapshot 1`] = `
+exports[`components | ApiParticulierNav render should match snapshot 1`] = `
 <nav
   className="side-pane"
 >
@@ -17,9 +17,17 @@ exports[`components | ContractualisationNav render should match snapshot 1`] = `
     <li>
       <a
         className="side-pane__link"
-        href="#legal"
+        href="#identite"
       >
-        Fondement juridique
+        Identité
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#demarches"
+      >
+        Démarches
       </a>
     </li>
     <li>
@@ -27,31 +35,7 @@ exports[`components | ContractualisationNav render should match snapshot 1`] = `
         className="side-pane__link"
         href="#donnees"
       >
-        Choix des données
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#volumetrie"
-      >
-        Volumétrie
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#cnil"
-      >
-        Obligation CNIL
-      </a>
-    </li>
-    <li>
-      <a
-        className="side-pane__link"
-        href="#convention"
-      >
-        Convention
+        Données
       </a>
     </li>
   </ul>

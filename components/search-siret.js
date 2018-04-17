@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Search = () => (
+const SearchSiret = () => (
   <div className='form__container'>
     <div className='form__group'>
       <label htmlFor='search'>Rechercher une donnée :</label>
@@ -20,4 +20,4 @@ const Search = () => (
   </div>
 )
 
-export default Search
+export default SearchSiret

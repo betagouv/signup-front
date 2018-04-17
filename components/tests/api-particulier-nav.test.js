@@ -1,14 +1,14 @@
 import ReactTestRenderer from 'react-test-renderer'
-import ContractualisationNav from '../api-particulier-nav'
+import ApiParticulierNav from '../api-particulier-nav'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
-describe('components | ContractualisationNav', () => {
+describe('components | ApiParticulierNav', () => {
   describe('render', () => {
     const props = {
       children: '<p>Some html</p>'
     }
-    const renderer = ReactTestRenderer.create(<ContractualisationNav {...props} />)
+    const renderer = ReactTestRenderer.create(<ApiParticulierNav {...props} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })
