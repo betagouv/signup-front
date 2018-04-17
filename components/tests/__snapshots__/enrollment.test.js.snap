@@ -10,9 +10,6 @@ exports[`components | Enrollment with enrollment at deployed state should match 
   </em>
   <p />
   <p>
-    Type : 
-  </p>
-  <p>
     État de la demande : 
     Déployé
   </p>
@@ -41,9 +38,6 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
     test@test.test
   </em>
   <p />
-  <p>
-    Type : 
-  </p>
   <p>
     État de la demande : 
     En attente de déploiement
@@ -83,9 +77,6 @@ exports[`components | Enrollment with enrollment that can send_application at pe
   </em>
   <p />
   <p>
-    Type : 
-  </p>
-  <p>
     État de la demande : 
     Demande en attente
   </p>
@@ -124,9 +115,6 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
   </em>
   <p />
   <p>
-    Type : 
-  </p>
-  <p>
     État de la demande : 
     Demande validée
   </p>
@@ -164,9 +152,6 @@ exports[`components | Enrollment with enrollment that can validate_application, 
     test@test.test
   </em>
   <p />
-  <p>
-    Type : 
-  </p>
   <p>
     État de la demande : 
     Demande envoyée
@@ -224,9 +209,6 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
   </em>
   <p />
   <p>
-    Type : 
-  </p>
-  <p>
     État de la demande : 
     Demande validée
   </p>
@@ -255,9 +237,6 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
     test@test.test
   </em>
   <p />
-  <p>
-    Type : 
-  </p>
   <p>
     État de la demande : 
     Demande envoyée

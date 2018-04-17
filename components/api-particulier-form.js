@@ -36,7 +36,7 @@ class ApiParticulierForm extends React.Component {
         validation_de_convention: false,
         certificat_pub_production: '',
         autorite_certification: '',
-        type_fournisseur_donnees: 'api-particulier'
+        fournisseur_donnees: 'api-particulier'
       }
     }
 

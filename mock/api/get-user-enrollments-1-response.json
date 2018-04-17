@@ -31,6 +31,7 @@
     "scope_dgfip_avis_imposition": true,
     "scope_cnaf_attestation_droits": true,
     "scope_cnaf_quotient_familial": null,
+    "fournisseur_donnees": "api-particulier",
     "documents": [],
     "messages": [],
     "acl": {
