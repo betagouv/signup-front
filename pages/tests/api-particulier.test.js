@@ -1,11 +1,11 @@
 import ReactTestRenderer from 'react-test-renderer'
-import About from '../../pages/about'
+import ApiParticulier from '../../pages/api-particulier'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
-describe('pages | index', () => {
+describe('pages | ApiParticulier', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<index />)
+    const renderer = ReactTestRenderer.create(<ApiParticulier />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })
@@ -13,5 +13,4 @@ describe('pages | index', () => {
       expect(renderer).toMatchSnapshot()
     })
   })
-  describe.skip('componentDidMount', () => {})
 })
