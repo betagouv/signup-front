@@ -4,20 +4,52 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
 <div
   className="main-pane"
 >
+  <h1>
+    Introdution
+  </h1>
+  <section
+    className="information-text"
+  >
+    <p>
+      Pour avoir accès à l‘API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.
+    </p>
+    <p>
+       L‘accès à cette API n‘est pour l‘instant disponible que si vous êtes :
+    </p>
+    <ul>
+      <li>
+        une administration
+      </li>
+      <li>
+        une entreprise prestataire d‘une administration ou ayant une délégation de service public
+      </li>
+    </ul>
+    <p>
+      Vous devez justifier d‘une simplification pour les citoyens, et vous engager à n‘accéder aux données personnelles qu‘avec l‘accord explicite de l‘usager.
+    </p>
+  </section>
   <form
     onSubmit={[Function]}
   >
     <h1
-      id="legal"
+      id="identite"
     >
-      Fondement juridique
+      Identité
     </h1>
     <section
       className="information-text"
     >
-      <p>
-        Pour pouvoir bénéficier du raccordement à l‘API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de leur transmettre des données à caractère personnel.
-      </p>
+      texte descriptif
+    </section>
+    <h1
+      id="demarches"
+    >
+      Démarches
+    </h1>
+    <section
+      className="information-text"
+    >
+      C‘est la raison pour laquelle vous collectez des données personnelles, l‘objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».
     </section>
     <div
       className="form__group"
@@ -25,14 +57,14 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       <label
         htmlFor="fournisseur_de_service"
       >
-        Nom du fournisseur de service
+        Titre de la démarche
       </label>
       <input
         id="fournisseur_de_service"
         name="enrollment.fournisseur_de_service"
         onChange={[Function]}
         type="text"
-        value={undefined}
+        value=""
       />
     </div>
     <div
@@ -41,266 +73,65 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       <label
         htmlFor="description_service"
       >
-        Décrivez brièvement votre service ainsi que l‘utilisation prévue des données transmises
+        Décrivez succintement votre démarche en indiquant les finalités au sens CNIL
       </label>
       <textarea
         id="description_service"
         name="enrollment.description_service"
         onChange={[Function]}
-        value={undefined}
+        rows="10"
+        value=""
+      />
+    </div>
+    <h2>
+      Cadre juridique
+    </h2>
+    <section
+      className="information-text"
+    >
+      Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande
+    </section>
+    <div
+      className="form__group"
+    >
+      <label
+        htmlFor="texte_fondement_juridique"
+      >
+        Indiquez la référence du texte
+      </label>
+      <textarea
+        id="texte_fondement_juridique"
+        name="enrollment.texte_fondement_juridique"
+        onChange={[Function]}
+        value=""
       />
     </div>
     <div
       className="form__group"
     >
       <label
-        htmlFor="fondement_juridique"
+        htmlFor="url_fondement_juridique"
       >
-        Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande (décret, délibération …)
+        Indiquez l‘url du texte
       </label>
-      <textarea
-        id="fondement_juridique"
-        name="enrollment.fondement_juridique"
+      <input
+        id="url_fondement_juridique"
+        name="enrollment.url_fondement_juridique"
         onChange={[Function]}
-        value={undefined}
+        type="text"
+        value=""
       />
     </div>
     <h1
       id="donnees"
     >
-      Choix des données
+      Données
     </h1>
     <section
       className="information-text"
     >
-      <p>
-        Les règles relatives à la protection de la vie privée fixent les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles. Les données ainsi récoltées doivent être adéquates, pertinentes et proportionnelles par rapport au traitement.
-      </p>
-      <p>
-        Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice. Le non-respect de ces règles vous expose vis à vis de la CNIL.
-      </p>
+      texte descriptif
     </section>
-    <div
-      className="form__group"
-    >
-      <fieldset
-        className="vertical"
-      >
-        <legend>
-          Sélectionnez vos jeux de données souhaités
-        </legend>
-        <div>
-          <input
-            checked={undefined}
-            id="checkbox-scope_dgfip_avis_imposition"
-            name="enrollment.scope_dgfip_avis_imposition"
-            onChange={[Function]}
-            type="checkbox"
-            value="true"
-          />
-          <label
-            className="label-inline"
-            htmlFor="checkbox-scope_dgfip_avis_imposition"
-          >
-            DGFiP - Avis Imposition
-          </label>
-        </div>
-        <div>
-          <input
-            checked={undefined}
-            id="checkbox-scope_cnaf_attestation_droits"
-            name="enrollment.scope_cnaf_attestation_droits"
-            onChange={[Function]}
-            type="checkbox"
-            value="scope_cnaf_attestation_droits"
-          />
-          <label
-            className="label-inline"
-            htmlFor="checkbox-scope_cnaf_attestation_droits"
-          >
-            CNAF - Attestation de droits
-          </label>
-        </div>
-        <div>
-          <input
-            checked={undefined}
-            id="checkbox-scope_cnaf_quotient_familial"
-            name="enrollment.scope_cnaf_quotient_familial"
-            onChange={[Function]}
-            type="checkbox"
-            value="true"
-          />
-          <label
-            className="label-inline"
-            htmlFor="checkbox-scope_cnaf_quotient_familial"
-          >
-            CNAF - Quotient Familial
-          </label>
-        </div>
-      </fieldset>
-    </div>
-    <h1
-      id="volumetrie"
-    >
-      Volumétrie
-    </h1>
-    <section
-      className="information-text"
-    >
-      <p>
-        Avoir une information de la volumétrie et, le cas échéant à la saisonnalité de votre démarche, nous permettra de vous offrir la meilleure qualité de service possible en lien avec les différents fournisseurs de vos données.
-      </p>
-      <p>
-        Conformément à nos 
-        <a
-          href="#convention"
-        >
-          conditions d’utilisation
-        </a>
-        , nous nous réservons le droit de réduire ou couper vos appels.
-      </p>
-    </section>
-    <div
-      className="form__group"
-    >
-      <label
-        htmlFor="nombre_demandes_annuelle"
-      >
-        Connaissez-vous le volume global annuel des demandes de votre téléservice ?
-      </label>
-      <input
-        id="nombre_demandes_annuelle"
-        name="enrollment.nombre_demandes_annuelle"
-        onChange={[Function]}
-        type="text"
-        value={undefined}
-      />
-    </div>
-    <div
-      className="form__group"
-    >
-      <label
-        htmlFor="pic_demandes_par_heure"
-      >
-        Connaissez-vous le pic de charge (en nombre de demandes horaires) ?
-      </label>
-      <input
-        id="pic_demandes_par_heure"
-        name="enrollment.pic_demandes_par_heure"
-        onChange={[Function]}
-        type="text"
-        value={undefined}
-      />
-    </div>
-    <div
-      className="form__group"
-    >
-      <label
-        htmlFor="pic_demandes_par_heure"
-      >
-        Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé) ?
-      </label>
-      <pre>
-        <code>
-          ‘nombre_demandes_mensuelles_jan‘: 45, ‘nombre_demandes_mensuelles_fev‘: 45, ‘nombre_demandes_mensuelles_mar‘: 45, ‘nombre_demandes_mensuelles_avr‘: 45, ‘nombre_demandes_mensuelles_mai‘: 45, ‘nombre_demandes_mensuelles_jui‘: 45, ‘nombre_demandes_mensuelles_jul‘: 45, ‘nombre_demandes_mensuelles_aou‘: 45, ‘nombre_demandes_mensuelles_sep‘: 45, ‘nombre_demandes_mensuelles_oct‘: 45, ‘nombre_demandes_mensuelles_nov‘: 45, ‘nombre_demandes_mensuelles_dec‘: 45,
-        </code>
-      </pre>
-    </div>
-    <h1
-      id="cnil"
-    >
-      Obligation CNIL
-    </h1>
-    <section
-      className="information-text"
-    >
-      <p>
-        L’entrée en vigueur le 25 mai 2018 du règlement européen sur la protection des données supprime totalement le régime déclaratif.
-      </p>
-      <p>
-        Les fournisseurs de services ont en particulier l’obligation de tenir un registre de leurs activités de traitement, d’encadrer les opérations sous-traitées dans les contrats de prestation de services, de formaliser des politiques de confidentialité des données et des procédures relatives à la gestion des demandes d’exercice des droits.
-      </p>
-      <p>
-        La désignation d’un délégué à la protection des données devient obligatoire pour les organismes et autorités publics, et donc pour les fournisseurs de services.
-      </p>
-    </section>
-    <div
-      className="form__group"
-    >
-      <label
-        htmlFor="delegue_protection_donnees"
-      >
-        Délégué·e à la protection des données
-      </label>
-      <input
-        id="delegue_protection_donnees"
-        name="enrollment.delegue_protection_donnees"
-        onChange={[Function]}
-        type="text"
-        value={undefined}
-      />
-    </div>
-    <div
-      className="form__group"
-    >
-      <input
-        id="checkbox-cnil"
-        name="enrollment.checkbox-cnil"
-        type="checkbox"
-      />
-      <label
-        className="label-inline"
-        htmlFor="checkbox-cnil"
-      >
-        Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données
-      </label>
-    </div>
-    <h1
-      id="convention"
-    >
-      Convention
-    </h1>
-    <section
-      className="information-text"
-    >
-      <p>
-        Merci de prendre connaissance de la convention d’adhésion d’API Particulier afin de demander un jeton d’accès en décrivant votre projet.
-      </p>
-    </section>
-    <iframe
-      height="800px"
-      src="static/docs/charte.pdf"
-      width="100%"
-    />
-    <div
-      className="form__group"
-    >
-      <input
-        checked={undefined}
-        id="validation_de_convention"
-        name="enrollment.validation_de_convention"
-        onChange={[Function]}
-        type="checkbox"
-      />
-      <label
-        className="label-inline"
-        htmlFor="validation_de_convention"
-      >
-        Je valide la présente convention
-      </label>
-    </div>
-    <div
-      className="button-list"
-    >
-      <button
-        className="button"
-        id="submit"
-        name="subscribe"
-        type="submit"
-      >
-        Soumettre la demande
-      </button>
-    </div>
   </form>
 </div>
 `;
