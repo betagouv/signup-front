@@ -4,6 +4,7 @@ import ReactTable from 'react-table'
 import withUser from '../components/hoc/with-user'
 import Services from '../lib/services'
 import Enrollment from '../components/enrollment'
+import Link from 'next/link'
 
 const STATE_HUMAN_NAMES = {
   'pending': 'Demande en attente',
