@@ -92,7 +92,7 @@ class EnrollmentTable extends React.Component {
               </button>
             }
             {row._original.acl.send_technical_inputs &&
-              <Link href={{pathname: '/' + row._original.fournisseur_donnees, query: {id: row._original.id}, hash: 'entrants-techniques'}}>
+              <Link href={{pathname: '/dgfip', query: {id: row._original.id}, hash: 'entrants-techniques'}}>
                 <button type='submit' name='send_technical_inputs' id='submit'>
                 Demander à entrer en production
                 </button>
