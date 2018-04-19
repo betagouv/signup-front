@@ -9,7 +9,7 @@ class ApiParticulierNav extends React.Component {
             <h3>Votre demande</h3>
           </li>
           <li><a className='side-pane__link' href='#identite'>Identité</a></li>
-          <li><a className='side-pane__link' href='#demarches'>Démarches</a></li>
+          <li><a className='side-pane__link' href='#demarche'>Démarche</a></li>
           <li><a className='side-pane__link' href='#donnees'>Données</a></li>
         </ul>
       </nav>

@@ -7,7 +7,9 @@ const ApiParticulier = () => (
   <Page>
     <div className='documentation'>
       <ApiParticulierNav />
-      <ApiParticulierForm />
+      <div className='main-pane'>
+        <ApiParticulierForm />
+      </div>
     </div>
   </Page>
 )
