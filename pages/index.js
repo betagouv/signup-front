@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from '../components/page'
 import Services from '../lib/services'
-import Enrollment from '../components/enrollment'
+import EnrollmentTable from '../components/enrollment-table'
 
 class Index extends React.Component {
   constructor(props) {
@@ -34,16 +34,8 @@ class Index extends React.Component {
         <section className='section-grey'>
           <div className='container'>
             <h1>Liste des demandes</h1>
-            {enrollments.length !== 0 &&
-              <ul className='panel-list'>
-                {
-                  enrollments.map(enrollment => <Enrollment key={'enrollment' + i++} enrollment={enrollment} />)
-                }
-              </ul>
-            }
-            {enrollments.length === 0 &&
-              <p>Aucune demande</p>
-            }
+            <EnrollmentTable>
+            </EnrollmentTable>
           </div>
         </section>
       </Page>
