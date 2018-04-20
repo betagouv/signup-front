@@ -5,10 +5,26 @@ import attachUser from '../components/hoc/attach-user'
 import Header from './header'
 import Footer from './footer'
 import Section from './section'
+import User from '../lib/user'
 
 class Page extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      user: {}
+    }
+  }
+  componentDidMount() {
+    const user = new User()
+
+    user.login().then((user) => {
+      this.setState({user})
+    })
+  }
   render() {
-    const {title, children, requireUser, user} = this.props
+    const {title, children, requireUser} = this.props
+    const {user} = this.state
     const checkUser = () => requireUser && !(user && user.loggedIn)
 
     return (

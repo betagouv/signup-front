@@ -58,7 +58,7 @@ class EnrollmentTable extends React.Component {
     const columns = [
       {
         Header: 'Fournisseur de service',
-        accessor: 'fournisseur_de_service'
+        accessor: 'demarche.intitule'
       }, {
         Header: 'Statut',
         accessor: 'human_state'
