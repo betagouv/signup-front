@@ -25,9 +25,9 @@ exports[`components | ApiParticulierNav render should match snapshot 1`] = `
     <li>
       <a
         className="side-pane__link"
-        href="#demarches"
+        href="#demarche"
       >
-        Démarches
+        Démarche
       </a>
     </li>
     <li>
