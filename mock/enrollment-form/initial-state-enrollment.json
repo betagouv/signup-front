@@ -1,34 +1,42 @@
 {
   "enrollment": {
-    "state": "pending",
-    "fournisseur_de_service": "Nom du fournisseur de service",
-    "description_service": "Description du service",
-    "fondement_juridique": null,
-    "nombre_demandes_annuelle": null,
-    "pic_demandes_par_heure": null,
-    "nombre_demandes_mensuelles_jan": null,
-    "nombre_demandes_mensuelles_fev": null,
-    "nombre_demandes_mensuelles_mar": null,
-    "nombre_demandes_mensuelles_avr": null,
-    "nombre_demandes_mensuelles_mai": null,
-    "nombre_demandes_mensuelles_jui": null,
-    "nombre_demandes_mensuelles_jul": null,
-    "nombre_demandes_mensuelles_aou": null,
-    "nombre_demandes_mensuelles_sep": null,
-    "nombre_demandes_mensuelles_oct": null,
-    "nombre_demandes_mensuelles_nov": null,
-    "nombre_demandes_mensuelles_dec": null,
-    "autorite_certification_nom": null,
-    "autorite_certification_fonction": null,
-    "date_homologation": null,
-    "date_fin_homologation": null,
-    "delegue_protection_donnees": null,
-    "certificat_pub_production": null,
-    "autorite_certification": null,
-    "validation_de_convention": true,
-    "scope_dgfip_avis_imposition": true,
-    "scope_cnaf_attestation_droits": true,
-    "scope_cnaf_quotient_familial": null,
-    "fournisseur_de_donnees": "api-particulier"
+    "fournisseur_de_données": "api-particulier",
+    "scopes": {},
+    "acl": {
+      "send_application": true
+    },
+    "contacts": [
+      {
+        "id": "dpo",
+        "heading": "Délégué à la protection des données"
+      }, {
+      "id": "responsable_traitement",
+      "heading": "Responsable de traitement"
+      }, {
+      "id": "metier",
+      "heading": "Responsable métier"
+      }, {
+      "id": "technique",
+      "heading": "Responsable technique"
+      }, {
+      "id": "support",
+      "heading": "Responsable support"
+      }, {
+      "id": "autre",
+      "heading": "Autre contact"
+      }
+    ],
+    "siren": "",
+    "demarche": {
+      "intitule": "",
+      "description": "",
+      "cadre_juridique": ""
+    },
+    "donnees": {
+      "conservation": "",
+      "destinataires": ""
+    },
+    "fondement_juridique": "",
+    "validation_de_convention": false
   }
 }

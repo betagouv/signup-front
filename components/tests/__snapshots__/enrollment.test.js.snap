@@ -4,7 +4,9 @@ exports[`components | Enrollment with enrollment at deployed state should match 
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -33,7 +35,9 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -71,7 +75,9 @@ exports[`components | Enrollment with enrollment that can send_application at pe
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -109,7 +115,9 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -147,7 +155,9 @@ exports[`components | Enrollment with enrollment that can validate_application, 
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -203,7 +213,9 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>
@@ -232,7 +244,9 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
 <li
   className="panel"
 >
-  <h2 />
+  <h2>
+    test
+  </h2>
   <em>
     test@test.test
   </em>

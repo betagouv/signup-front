@@ -6,6 +6,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that can send_application at pending state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -27,6 +30,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that can validate_application, refuse_application and review_application at sent state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -50,6 +56,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that cannot validate_application at sent state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -71,6 +80,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that cannot send_technical_inputs at validated state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -92,6 +104,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that can send_technical_inputs at validated state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -113,6 +128,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment that can deploy_application at technical_inputs state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
@@ -134,6 +152,9 @@ describe('components | Enrollment', () => {
   describe('with enrollment at deployed state', () => {
     const props = {
       enrollment: {
+        demarche: {
+          intitule: 'test'
+        },
         applicant: {
           email: 'test@test.test'
         },
