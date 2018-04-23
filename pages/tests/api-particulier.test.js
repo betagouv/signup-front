@@ -5,7 +5,7 @@ require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassi
 
 describe('pages | ApiParticulier', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<ApiParticulier />)
+    const renderer = ReactTestRenderer.create(<ApiParticulier url={{query: {}}}/>)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

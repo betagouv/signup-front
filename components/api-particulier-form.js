@@ -35,8 +35,8 @@ class ContractualisationForm extends React.Component {
 
     this.getSiren = this.getSiren.bind(this)
     this.state = {
-      suggestions: [],
       enrollment: {
+        fournisseur_de_données: 'api-particulier',
         scopes: {},
         acl: {
           send_application: true
@@ -55,8 +55,7 @@ class ContractualisationForm extends React.Component {
         fondement_juridique: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
-      },
-      serviceProviders: []
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -71,13 +70,7 @@ class ContractualisationForm extends React.Component {
       token = localStorage.getItem('token')
     }
     if (id) {
-      axios.get(BACK_HOST + '/api/enrollments/' + id, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        }
-      }).then(response => {
-        const enrollment = response.data
+      Services.getUserEnrollment(id).then(enrollment => {
         this.setState({enrollment})
       })
     }
