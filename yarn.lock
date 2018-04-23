@@ -1427,6 +1427,10 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
+classnames@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
+
 clean-regexp@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/clean-regexp/-/clean-regexp-1.0.0.tgz#8df7c7aae51fd36874e8f8d05b9180bc11a3fed7"
@@ -1933,6 +1937,10 @@ doctrine@^2.0.2, doctrine@^2.1.0:
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
   dependencies:
     esutils "^2.0.2"
+
+dom-scroll-into-view@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/dom-scroll-into-view/-/dom-scroll-into-view-1.0.1.tgz#32abb92f0d8feca6215162aef43e4b449ab8d99c"
 
 dom-serializer@0, dom-serializer@~0.1.0:
   version "0.1.0"
@@ -5350,6 +5358,14 @@ prop-types@15.6.0, prop-types@^15.6.0:
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+prop-types@^15.5.10:
+  version "15.6.1"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
+  dependencies:
+    fbjs "^0.8.16"
+    loose-envify "^1.3.1"
+    object-assign "^4.1.1"
+
 propagate@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/propagate/-/propagate-1.0.0.tgz#00c2daeedda20e87e3782b344adba1cddd6ad709"
@@ -5484,6 +5500,13 @@ react-addons-test-utils@^15.6.2:
   version "15.6.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
 
+react-autocomplete@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/react-autocomplete/-/react-autocomplete-1.8.1.tgz#ebbbc400006aa91ad538b2d14727b9e7e5d06310"
+  dependencies:
+    dom-scroll-into-view "1.0.1"
+    prop-types "^15.5.10"
+
 react-dom@^16.2.0:
   version "16.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.2.0.tgz#69003178601c0ca19b709b33a83369fe6124c044"
@@ -5520,6 +5543,12 @@ react-stand-in@^4.0.0-beta.18:
   resolved "https://registry.yarnpkg.com/react-stand-in/-/react-stand-in-4.0.0-beta.21.tgz#fb694e465cb20fab7f36d3284f82b68bbd7a657e"
   dependencies:
     shallowequal "^1.0.2"
+
+react-table@^6.8.0:
+  version "6.8.0"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-6.8.0.tgz#5ce402eb735df68534c03dabb3faa031478b6a58"
+  dependencies:
+    classnames "^2.2.5"
 
 react-test-renderer@^16.0.0-0, react-test-renderer@^16.2.0:
   version "16.2.0"
