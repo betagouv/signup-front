@@ -485,7 +485,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       name="enrollment.demarche.fondement_juridique"
       onChange={[Function]}
       type="text"
-      value={undefined}
+      value=""
     />
   </div>
   <section
