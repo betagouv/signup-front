@@ -7,57 +7,64 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
   <h1>
     Demande d'accès à API Particulier
   </h1>
-  <section
-    className="information-text"
-  >
-    <p>
-      Pour avoir accès à l'API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L'accès à cette API n'est pour l'instant disponible que si vous êtes:
-    </p>
-    <ul>
-      <li>
-        une administration
-      </li>
-      <li>
-        une entreprise prestataire d'une administration ou ayant une délégation de service public
-      </li>
-    </ul>
-    <p>
-      Vous devez justifier d'une simplification pour les citoyens, et vous engager à n'accéder aux données personnelles qu’avec l’accord explicite de l’usager.
-    </p>
-  </section>
+  <p>
+    Pour avoir accès à l'API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L'accès à cette API n'est pour l'instant disponible que si vous êtes:
+  </p>
+  <ul>
+    <li>
+      une administration;
+    </li>
+    <li>
+      une entreprise prestataire d'une administration ou ayant une délégation de service public.
+    </li>
+  </ul>
+  <p>
+    Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c'est à dire explicitement demander l'accord de l'usager pour récupérer ses données auprès d'un fournisseur.
+  </p>
   <h2
     id="identite"
   >
     Identité
   </h2>
-  <section
-    className="information-text"
-  >
-    <p>
-      Pour vous identifier veuillez renseigner votre SIREN, ce qui permettra de renseigner votre raison sociale et votre adresse de par une connection à 
-      <a
-        href="https://entreprise.data.gouv.fr/"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        l'API SIREN
-      </a>
-    </p>
-  </section>
   <div
     className="form__group"
   >
     <label
-      htmlFor="siren"
+      htmlFor="search-siren"
     >
-      Siren
+      Rechercher votre organisme avec son SIREN
     </label>
-    <input
-      name="enrollment.siren"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
+    <div
+      className="search__group"
+    >
+      <input
+        id="search-siren"
+        name="enrollment.siren"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+      <button
+        aria-label="Recherche"
+        className="overlay-button"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          className="icon icon-search"
+          height="100%"
+          id="icon-search"
+          width="100%"
+        >
+          <title>
+            Rechercher
+          </title>
+          <path
+            d="M15.504 13.616l-3.79-3.223c-0.392-0.353-0.811-0.514-1.149-0.499 0.895-1.048 1.435-2.407 1.435-3.893 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.486 0 2.845-0.54 3.893-1.435-0.016 0.338 0.146 0.757 0.499 1.149l3.223 3.79c0.552 0.613 1.453 0.665 2.003 0.115s0.498-1.452-0.115-2.003zM6 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"
+          />
+        </svg>
+      </button>
+    </div>
   </div>
   <div
     className="form__group"
@@ -131,294 +138,146 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     Contacts
   </h3>
   <div
-    className="row"
-    style={
-      Object {
-        "flexWrap": "wrap",
-        "justifyContent": "center",
-      }
-    }
+    className="row card-row"
   >
     <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
+      className="card"
     >
-      <h4>
-        Délégué à la protection des données
-      </h4>
       <div
-        className="form__group"
+        className="card__content"
       >
-        <label
-          htmlFor="person_dpo_nom"
+        <h3>
+          Délégué à la protection des données
+        </h3>
+        <div
+          className="card__meta"
         >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_dpo_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_dpo_email"
+          https://www.cnil.fr/fr/designation-dpo
+        </div>
+        <div
+          className="form__group"
         >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_dpo_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
+          <label
+            htmlFor="person_dpo_nom"
+          >
+            Nom et Prénom
+          </label>
+          <input
+            disabled={false}
+            id="person_dpo_nom"
+            name="nom"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <div
+          className="form__group"
+        >
+          <label
+            htmlFor="person_dpo_email"
+          >
+            Email
+          </label>
+          <input
+            disabled={false}
+            id="person_dpo_email"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
       </div>
     </div>
     <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
+      className="card"
     >
-      <h4>
-        Responsable de traitement
-      </h4>
       <div
-        className="form__group"
+        className="card__content"
       >
-        <label
-          htmlFor="person_responsable_traitement_nom"
+        <h3>
+          Responsable de traitement
+        </h3>
+        <div
+          className="form__group"
         >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_responsable_traitement_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_responsable_traitement_email"
+          <label
+            htmlFor="person_responsable_traitement_nom"
+          >
+            Nom et Prénom
+          </label>
+          <input
+            disabled={false}
+            id="person_responsable_traitement_nom"
+            name="nom"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <div
+          className="form__group"
         >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_responsable_traitement_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
+          <label
+            htmlFor="person_responsable_traitement_email"
+          >
+            Email
+          </label>
+          <input
+            disabled={false}
+            id="person_responsable_traitement_email"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
       </div>
     </div>
     <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
+      className="card"
     >
-      <h4>
-        Responsable métier
-      </h4>
       <div
-        className="form__group"
+        className="card__content"
       >
-        <label
-          htmlFor="person_metier_nom"
+        <h3>
+          Responsable technique
+        </h3>
+        <div
+          className="form__group"
         >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_metier_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_metier_email"
+          <label
+            htmlFor="person_technique_nom"
+          >
+            Nom et Prénom
+          </label>
+          <input
+            disabled={false}
+            id="person_technique_nom"
+            name="nom"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <div
+          className="form__group"
         >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_metier_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-    </div>
-    <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
-    >
-      <h4>
-        Responsable technique
-      </h4>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_technique_nom"
-        >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_technique_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_technique_email"
-        >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_technique_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-    </div>
-    <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
-    >
-      <h4>
-        Responsable support
-      </h4>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_support_nom"
-        >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_support_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_support_email"
-        >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_support_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-    </div>
-    <div
-      className="column"
-      style={
-        Object {
-          "flex": 1,
-          "minWidth": "400px",
-        }
-      }
-    >
-      <h4>
-        Autre contact
-      </h4>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_autre_nom"
-        >
-          Nom
-        </label>
-        <input
-          disabled={false}
-          id="person_autre_nom"
-          name="nom"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
-      </div>
-      <div
-        className="form__group"
-      >
-        <label
-          htmlFor="person_autre_email"
-        >
-          Email
-        </label>
-        <input
-          disabled={false}
-          id="person_autre_email"
-          name="email"
-          onChange={[Function]}
-          type="text"
-          value={undefined}
-        />
+          <label
+            htmlFor="person_technique_email"
+          >
+            Email
+          </label>
+          <input
+            disabled={false}
+            id="person_technique_email"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -432,6 +291,9 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
   >
     <p>
       C'est la raison pour laquelle vous collectez des données personnelles, l'objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».
+    </p>
+    <p>
+      Il vous est également demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
     </p>
   </section>
   <div
@@ -481,23 +343,13 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     </label>
     <input
       disabled={false}
-      id="fondement_juridique"
+      id="fondement_juridique_demarche"
       name="enrollment.demarche.fondement_juridique"
       onChange={[Function]}
       type="text"
       value=""
     />
   </div>
-  <section
-    className="information-text"
-  >
-    <p>
-      Pour pouvoir bénéficier du raccordement à l‘API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.
-    </p>
-    <p>
-      Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
-    </p>
-  </section>
   <h2
     id="donnees"
   >
@@ -650,25 +502,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="label-inline"
       htmlFor="validation_de_convention"
     >
-      Je valide la présente convention
-    </label>
-  </div>
-  <div
-    className="form__group"
-  >
-    <input
-      checked={false}
-      disabled={false}
-      id="dpo"
-      name="enrollment.validation_delegue_a_la_protection_des_données"
-      onChange={[Function]}
-      type="checkbox"
-    />
-    <label
-      className="label-inline"
-      htmlFor="dpo"
-    >
-      Je confirme que le DPO de mon organisme est informé de la présente demande
+      Je valide la présente convention et confirme que le DPO de mon organisme est informé de ma demande
     </label>
   </div>
   <div

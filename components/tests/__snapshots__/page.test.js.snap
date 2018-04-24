@@ -35,10 +35,12 @@ exports[`components | Page render should match snapshot 1`] = `
       </div>
     </nav>
   </header>
-  <div>
-    
-    &lt;p&gt;Some html&lt;/p&gt;
-  </div>
+  <main>
+    <div>
+      
+      &lt;p&gt;Some html&lt;/p&gt;
+    </div>
+  </main>
   <footer
     className="footer"
   >

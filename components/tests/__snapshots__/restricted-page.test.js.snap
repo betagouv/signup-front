@@ -35,10 +35,12 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
       </div>
     </nav>
   </header>
-  <div>
-    
-    &lt;p&gt;Some html&lt;/p&gt;
-  </div>
+  <main>
+    <div>
+      
+      &lt;p&gt;Some html&lt;/p&gt;
+    </div>
+  </main>
   <footer
     className="footer"
   >
@@ -164,10 +166,12 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
       </div>
     </nav>
   </header>
-  <div>
-    
-    &lt;p&gt;Some html&lt;/p&gt;
-  </div>
+  <main>
+    <div>
+      
+      &lt;p&gt;Some html&lt;/p&gt;
+    </div>
+  </main>
   <footer
     className="footer"
   >
