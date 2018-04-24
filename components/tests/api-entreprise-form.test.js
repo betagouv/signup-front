@@ -3,16 +3,15 @@ import ReactTestRenderer from 'react-test-renderer'
 import ApiEntrepriseForm from '../api-entreprise-form'
 import Services from '../../lib/services'
 import localStorage from '../../lib/tests/local-storage' // eslint-disable-line no-unused-vars
-import FORM_STATE from '../../mock/enrollment-form/initial-state-enrollment'
+import API_ENTREPRISE_FORM_STATE from '../../mock/enrollment-form/api-entreprise-initial-state-enrollment'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
 describe('components | ApiEntrepriseForm', () => {
   describe('constructor', () => {
-    it.skip('should initialize state with an empty json', () => {
+    it('should initialize state with an empty json', () => {
       const wrapper = shallow(<ApiEntrepriseForm />)
-      const componentInitialState = FORM_STATE
-      expect(wrapper.state()).toEqual(componentInitialState)
+      expect(wrapper.state()).toEqual(API_ENTREPRISE_FORM_STATE)
     })
   })
 
@@ -39,7 +38,7 @@ describe('components | ApiEntrepriseForm', () => {
         expect(wrapper.find('form')).toHaveLength(1)
       })
 
-      describe('handleInputChange', () => {
+      describe('handleChange', () => {
         it('should update the state when a value is input', () => {
           wrapper = shallow(<ApiEntrepriseForm />)
           const name = 'Fake Value'
@@ -53,6 +52,16 @@ describe('components | ApiEntrepriseForm', () => {
           expect(
             wrapper.state().legal1
           ).toBe(name)
+        })
+      })
+      describe('handleSubmit', () => {
+        it('should call the services with the good parameters', () => {
+          const spy = jest.spyOn(Services, 'createUserEnrollment')
+          localStorage.setItem('token', 'fakeToken')
+          const wrapper = mount(<ApiEntrepriseForm />)
+          const componentInitialState = wrapper.state()
+          wrapper.find('form').simulate('submit', {preventDefault: jest.fn()})
+          expect(spy).toHaveBeenCalledWith(componentInitialState, 'fakeToken')
         })
       })
     })

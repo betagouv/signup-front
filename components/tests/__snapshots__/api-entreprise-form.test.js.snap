@@ -5,10 +5,10 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
   onSubmit={[Function]}
 >
   <h1>
-    Demande d'accès à API Particulier
+    Demande d'accès à API Entreprise
   </h1>
   <p>
-    Pour avoir accès à l'API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L'accès à cette API n'est pour l'instant disponible que si vous êtes:
+    Pour avoir accès à l'API Entreprise, diffusant des données personnelles, vous devez obtenir un agrément.  L'accès à cette API n'est pour l'instant disponible que si vous êtes:
   </p>
   <ul>
     <li>
@@ -19,7 +19,7 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     </li>
   </ul>
   <p>
-    Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c'est à dire explicitement demander l'accord de l'usager pour récupérer ses données auprès d'un fournisseur.
+    Pour utiliser API Entreprise, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c'est à dire explicitement demander l'accord de l'usager pour récupérer ses données auprès d'un fournisseur.
   </p>
   <h2
     id="identite"
@@ -334,7 +334,7 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     className="form__group"
   >
     <label
-      htmlFor="cadre_juridique"
+      htmlFor="fondement_juridique"
     >
       Cadre juridique 
       <i>
@@ -343,8 +343,8 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     </label>
     <input
       disabled={false}
-      id="cadre_juridique_demarche"
-      name="enrollment.demarche.cadre_juridique"
+      id="fondement_juridique_demarche"
+      name="enrollment.demarche.fondement_juridique"
       onChange={[Function]}
       type="text"
       value=""
@@ -379,233 +379,272 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_declarants"
-              name="enrollment.scope_dgfip_declarants"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_declarants"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Déclarants du foyer fiscal
+              Attestation AGEFIPH
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_foyer_fiscal"
-              name="enrollment.scope_dgfip_foyer_fiscal"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_foyer_fiscal"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Adresse connue au 1er janvierde l'année d'imposition
+              Attestation Fiscale
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_date_recouvrement"
-              name="enrollment.scope_dgfip_date_recouvrement"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_date_recouvrement"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Date de mise en recouvrement de l'avis d'impôt
+              Attestation Sociale
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_date_etablissement"
-              name="enrollment.scope_dgfip_date_etablissement"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_date_etablissement"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Date d'établissement de l'impôt
+              Certificat CNETP
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_nombre_parts"
-              name="enrollment.scope_dgfip_nombre_parts"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_nombre_parts"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Nombre de parts fiscales du foyer
+              Association
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_situation_famille"
-              name="enrollment.scope_dgfip_situation_famille"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_situation_famille"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Situation_famille
+              Certificat OPQIBI
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_nombre_personnes_charge"
-              name="enrollment.scope_dgfip_nombre_personnes_charge"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_nombre_personnes_charge"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Nombre de personnes à charge
-            </label>
-          </div>
-        </div>
-        <div
-          className="column"
-          style={
-            Object {
-              "flex": 1,
-            }
-          }
-        >
-          <div>
-            <input
-              checked={false}
-              disabled={false}
-              id="checkbox-scope_dgfip_revenu_brut_global"
-              name="enrollment.scope_dgfip_revenu_brut_global"
-              onChange={[Function]}
-              type="checkbox"
-            />
-            <label
-              className="label-inline"
-              htmlFor="checkbox-scope_dgfip_revenu_brut_global"
-            >
-              DGFiP - Revenu brut Global
+              Document association
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_revenu_imposable"
-              name="enrollment.scope_dgfip_revenu_imposable"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_revenu_imposable"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Revenu imposable
+              INSEE Etablissement
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_revenu_net_avant_corrections"
-              name="enrollment.scope_dgfip_revenu_net_avant_corrections"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_revenu_net_avant_corrections"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Revenu net avant corrections
+              INSEE Entreprise
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_montant_impot"
-              name="enrollment.scope_dgfip_montant_impot"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_montant_impot"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Montant Impôt
+              Extrait INPI
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_dgfip_revenu_fiscal_reference"
-              name="enrollment.scope_dgfip_revenu_fiscal_reference"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_dgfip_revenu_fiscal_reference"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              DGFiP - Revenu fiscal de référence
+              Extrait RCS
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_cnaf_quotient_familial"
-              name="enrollment.scope_cnaf_quotient_familial"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_cnaf_quotient_familial"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              CNAF - Quatient familial
+              Exercice
             </label>
           </div>
           <div>
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_cnaf_attestation_droits"
-              name="enrollment.scope_cnaf_attestation_droits"
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_cnaf_attestation_droits"
+              htmlFor="checkbox-scope_api_entreprise"
             >
-              CNAF - Attestation de droits
+              Liasse fiscale
+            </label>
+          </div>
+          <div>
+            <input
+              checked={false}
+              disabled={false}
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="label-inline"
+              htmlFor="checkbox-scope_api_entreprise"
+            >
+              Carte Pro FNTP
+            </label>
+          </div>
+          <div>
+            <input
+              checked={false}
+              disabled={false}
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="label-inline"
+              htmlFor="checkbox-scope_api_entreprise"
+            >
+              Certificat Qualibat
+            </label>
+          </div>
+          <div>
+            <input
+              checked={false}
+              disabled={false}
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="label-inline"
+              htmlFor="checkbox-scope_api_entreprise"
+            >
+              Certificat PROBTP
+            </label>
+          </div>
+          <div>
+            <input
+              checked={false}
+              disabled={false}
+              id="checkbox-scope_api_entreprise"
+              name="enrollment.scopes.scopeCode"
+              onChange={[Function]}
+              type="checkbox"
+            />
+            <label
+              className="label-inline"
+              htmlFor="checkbox-scope_api_entreprise"
+            >
+              Cotisation MSA
             </label>
           </div>
         </div>
@@ -616,7 +655,7 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     className="form__group"
   >
     <label
-      htmlFor="data_conservation"
+      htmlFor="donnees_conservation"
     >
       Conservation des données 
       <i>
@@ -625,8 +664,8 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     </label>
     <input
       disabled={false}
-      id="data_conservation"
-      name="enrollment.data.conservation"
+      id="donnees_conservation"
+      name="enrollment.donnees.conservation"
       onChange={[Function]}
       type="number"
       value=""
@@ -636,14 +675,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
     className="form__group"
   >
     <label
-      htmlFor="data_destinataires"
+      htmlFor="donnees_destinataires"
     >
       Destinataires
     </label>
     <input
       disabled={false}
-      id="data_destinataires"
-      name="enrollment.data.destinataires"
+      id="donnees_destinataires"
+      name="enrollment.donnees.destinataires"
       onChange={[Function]}
       type="text"
       value=""
