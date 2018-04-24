@@ -12,7 +12,6 @@ class ApiEntrepriseForm extends React.Component {
   constructor(props) {
     super(props)
 
-    this.getSiren = this.getSiren.bind(this)
     this.state = {
       enrollment: {
         scopes: {},
@@ -22,22 +21,14 @@ class ApiEntrepriseForm extends React.Component {
         contacts: [
           {
             id: 'dpo',
-            heading: 'Délégué à la protection des données'
+            heading: 'Délégué à la protection des données',
+            description: 'https://www.cnil.fr/fr/designation-dpo'
           }, {
             id: 'responsable_traitement',
             heading: 'Responsable de traitement'
           }, {
-            id: 'metier',
-            heading: 'Responsable métier'
-          }, {
             id: 'technique',
             heading: 'Responsable technique'
-          }, {
-            id: 'support',
-            heading: 'Responsable support'
-          }, {
-            id: 'autre',
-            heading: 'Autre contact'
           }
         ],
         siren: '',
@@ -53,12 +44,13 @@ class ApiEntrepriseForm extends React.Component {
         fondement_juridique: '', // eslint-disable-line camelcase
         validation_de_convention: false, // eslint-disable-line camelcase
         dpo: false
-      },
-      serviceProviders: []
+      }
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.getSiren = this.getSiren.bind(this)
+    this.handleSiren = this.handleSiren.bind(this)
   }
 
   componentDidMount() {
@@ -78,13 +70,13 @@ class ApiEntrepriseForm extends React.Component {
         this.setState({enrollment: response.data})
       })
     }
-    // const user = new User()
+    const user = new User()
 
-    // setTimeout(() => {
-    //   user.getServiceProviders().then(serviceProviders => {
-    //     this.setState({serviceProviders})
-    //   })
-    // }, 1000)
+    setTimeout(() => {
+      user.getServiceProviders().then(serviceProviders => {
+        this.setState({serviceProviders})
+      })
+    }, 1000)
   }
 
   handleChange(event) {
@@ -135,11 +127,16 @@ class ApiEntrepriseForm extends React.Component {
     event.preventDefault()
   }
 
-  getSiren(e) {
-    const {enrollment} = this.state
+  handleSiren(e) {
     this.handleChange(e)
+    this.getSiren()
+  }
 
-    axios.get('https://sirene.entreprise.api.gouv.fr/v1/siren/' + e.target.value).then(response => {
+  getSiren() {
+    const {enrollment} = this.state
+    const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
+
+    axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social[0]
       const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
@@ -158,20 +155,20 @@ class ApiEntrepriseForm extends React.Component {
     const personForm = person => {
       person.id = person.id || 'person_' + personId++
       return (
-        <div key={person.id} className='column' style={{minWidth: '400px', flex: 1}}>
-          <h4>{person.heading}</h4>
-          {person.description &&
-            <section className='information-text'>
-              <p>{person.description}</p>
-            </section>
-          }
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_nom'}>Nom</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={readOnly} value={person.nom} />
-          </div>
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_email'}>Email</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={readOnly} value={person.email} />
+        <div key={person.id} className='card'>
+          <div className='card__content'>
+            <h3>{person.heading}</h3>
+            {person.description &&
+              <div className='card__meta'>{person.description}</div>
+            }
+            <div className='form__group'>
+              <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
+              <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={readOnly} value={person.nom} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor={'person_' + person.id + '_email'}>Email</label>
+              <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={readOnly} value={person.email} />
+            </div>
           </div>
         </div>
       )
@@ -180,29 +177,32 @@ class ApiEntrepriseForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Demande d&apos;accès à API Particulier</h1>
-        <section className='information-text'>
-          <p>Pour avoir accès à l&apos;API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L&apos;accès à cette API n&apos;est pour l&apos;instant disponible que si vous êtes:</p>
-          <ul>
-            <li>une administration</li>
-            <li>une entreprise prestataire d&apos;une administration ou ayant une délégation de service public</li>
-          </ul>
-          <p>Vous devez justifier d&apos;une simplification pour les citoyens, et vous engager à n&apos;accéder aux données personnelles qu’avec l’accord explicite de l’usager.</p>
-        </section>
+        <p>Pour avoir accès à l&apos;API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L&apos;accès à cette API n&apos;est pour l&apos;instant disponible que si vous êtes:</p>
+        <ul>
+          <li>une administration;</li>
+          <li>une entreprise prestataire d&apos;une administration ou ayant une délégation de service public.</li>
+        </ul>
+
+        <p>
+          Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c&apos;est à dire explicitement demander l&apos;accord de l&apos;usager pour récupérer ses données auprès d&apos;un fournisseur.
+        </p>
 
         <h2 id='identite'>Identité</h2>
-        <section className='information-text'>
-          <p>Pour vous identifier veuillez renseigner votre SIREN, ce qui permettra de renseigner votre raison sociale et votre adresse de par une connection à <a href='https://entreprise.data.gouv.fr/' target='_blank' rel='noopener noreferrer'>l&apos;API SIREN</a></p>
-        </section>
 
         <div className='form__group'>
-          <label htmlFor='siren'>Siren</label>
-          <input type='text'
-            name='enrollment.siren'
-            onChange={this.getSiren}
-          />
+          <label htmlFor='search-siren'>Rechercher votre organisme avec son SIREN</label>
+          <div className='search__group'>
+            <input type='text' value={enrollment.siren} name='enrollment.siren' id='search-siren' onChange={this.handleSiren} />
+            <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
+              <svg className='icon icon-search' id='icon-search' width='100%' height='100%'>
+                <title>Rechercher</title>
+                <path d='M15.504 13.616l-3.79-3.223c-0.392-0.353-0.811-0.514-1.149-0.499 0.895-1.048 1.435-2.407 1.435-3.893 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.486 0 2.845-0.54 3.893-1.435-0.016 0.338 0.146 0.757 0.499 1.149l3.223 3.79c0.552 0.613 1.453 0.665 2.003 0.115s0.498-1.452-0.115-2.003zM6 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z' />
+              </svg>
+            </button>
+          </div>
         </div>
         {sirenNotFound &&
-          <p><div className='notification warning'>Nos service ne parviennent pas à trouver votre SIREN</div></p>
+          <div className='notification warning'>Nos service ne parviennent pas à trouver votre SIREN</div>
         }
 
         <div className='form__group'>
@@ -223,13 +223,15 @@ class ApiEntrepriseForm extends React.Component {
         </div>
 
         <h3>Contacts</h3>
-        <div className='row' style={{flexWrap: 'wrap', justifyContent: 'center'}}>
+        <div className='row card-row'>
           {enrollment.contacts.map(person => personForm(person))}
         </div>
 
         <h2 id='demarche'>Démarche</h2>
         <section className='information-text'>
           <p>C&apos;est la raison pour laquelle vous collectez des données personnelles, l&apos;objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».</p>
+
+          <p>Il vous est également demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
         </section>
         <div className='form__group'>
           <label htmlFor='intitule_demarche'>Intitulé</label>
@@ -242,12 +244,9 @@ class ApiEntrepriseForm extends React.Component {
 
         <div className='form__group'>
           <label htmlFor='cadre_juridique'>Cadre juridique <i>(Indiquez la référence ou l&apos;URL du texte de loi)</i></label>
+
           <input type='text' onChange={this.handleChange} name='enrollment.demarche.cadre_juridique' id='cadre_juridique_demarche' disabled={readOnly} value={enrollment.demarche.cadre_juridique} />
         </div>
-        <section className='information-text'>
-          <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DINSIC de transmettre des données fiscales  à votre entité administrative.</p>
-          <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
-        </section>
 
         <h2 id='donnees'>Données</h2>
         <div className='form__group'>
@@ -337,11 +336,7 @@ class ApiEntrepriseForm extends React.Component {
 
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
-          <label htmlFor='validation_de_convention' className='label-inline'>Je valide la présente convention</label>
-        </div>
-        <div className='form__group'>
-          <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.dpo} type='checkbox' name='enrollment.dpo' id='dpo' />
-          <label htmlFor='dpo' className='label-inline'>Je confirme que le DPO de mon organisme est informé de la présente demande</label>
+          <label htmlFor='validation_de_convention' className='label-inline'>Je valide la présente convention et confirme que le DPO de mon organisme est informé de ma demande</label>
         </div>
 
         {!readOnly &&
