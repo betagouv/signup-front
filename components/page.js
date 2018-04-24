@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
 import attachUser from '../components/hoc/attach-user'
+import OAuth from '../lib/oauth'
+import User from '../lib/user'
 import Header from './header'
 import Footer from './footer'
 import Section from './section'
-import User from '../lib/user'
 
 class Page extends React.Component {
   constructor(props) {
@@ -15,14 +16,17 @@ class Page extends React.Component {
       user: {}
     }
   }
+
   componentDidMount() {
     const user = new User()
 
-    user.login().then((user) => {
+    user.login().then(user => {
       this.setState({user})
     })
   }
+
   render() {
+    const oauth = new OAuth()
     const {title, children, requireUser} = this.props
     const {user} = this.state
     const checkUser = () => requireUser && !(user && user.loggedIn)
@@ -43,15 +47,18 @@ class Page extends React.Component {
         </Head>
         <Header key='second' />
 
-        {
-          checkUser() ?
-            <Section className='section-grey'>
-              <div className='container'>
-                <h2 className='section__title'>Vous devez vous connecter avant de continuer</h2>
-              </div>
-            </Section> :
-            <div key='three'>{title}{children}</div>
-        }
+        <main>
+          {
+            checkUser() ?
+              <Section className='section-grey'>
+                <div className='container text-center'>
+                  <h2>Vous devez vous connecter avant de continuer</h2>
+                  <a className='button large' href={oauth.client.token.getUri()}>Se connecter</a>
+                </div>
+              </Section> :
+              <div key='three'>{title}{children}</div>
+          }
+        </main>
 
         <Footer key='four' />
       </div>
