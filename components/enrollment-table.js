@@ -62,44 +62,6 @@ class EnrollmentTable extends React.Component {
       }, {
         Header: 'Statut',
         accessor: 'human_state'
-      }, {
-        Header: 'Actions',
-        Cell: ({row}) => (
-          <div>
-            {row._original.acl.refuse_application &&
-              <button type='submit' name='refuse_application' id='submit' onClick={this.trigger('refuse_application', row._original)}>
-                Refuser
-              </button>
-            }
-            {row._original.acl.review_application &&
-              <button type='submit' name='review_application' id='submit' onClick={this.trigger('review_application', row._original)}>
-                Demande de modifications
-              </button>
-            }
-            {row._original.acl.validate_application &&
-              <button type='submit' name='validate_application' id='submit' onClick={this.trigger('validate_application', row._original)}>
-                Valider
-              </button>
-            }
-            {row._original.acl.send_application &&
-              <button type='submit' name='send_application' id='submit' onClick={this.trigger('send_application', row._original)}>
-                Envoyer la demande
-              </button>
-            }
-            {row._original.acl.deploy_application &&
-              <button type='submit' name='deploy_application' id='submit' onClick={this.trigger('deploy_application', row._original)}>
-                Déployer l'application
-              </button>
-            }
-            {row._original.acl.send_technical_inputs &&
-              <Link href={{pathname: '/dgfip', query: {id: row._original.id}, hash: 'entrants-techniques'}}>
-                <button type='submit' name='send_technical_inputs' id='submit'>
-                Demander à entrer en production
-                </button>
-              </Link>
-            }
-          </div>
-        )
       }
     ]
     return (

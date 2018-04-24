@@ -7,7 +7,7 @@ class Enrollment extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = {enrollment: props.enrollment}
+    this.state = {enrollment: props.enrollment, errors: []}
   }
 
   deleteEnrollment(event) {
@@ -35,11 +35,18 @@ class Enrollment extends React.Component {
       if (enrollment) {
         this.setState({enrollment})
       }
+    }).catch((error) => {
+      if (!(error.response.status == 422)) return
+      let errors = []
+      for (let enrollmentError in error.response.data) {
+        errors = errors.concat(error.response.data[enrollmentError])
+      }
+      this.setState({errors})
     })
   }
 
   render() {
-    const {enrollment} = this.state
+    const {enrollment, errors} = this.state
 
     return (
       <li className='panel'>
@@ -96,7 +103,14 @@ class Enrollment extends React.Component {
             Voir
             </button>
           </Link>
+
         </div>
+
+        {errors.map((error) => {
+          return <div className="notification error">
+            {error}
+          </div>
+        })}
       </li>
     )
   }

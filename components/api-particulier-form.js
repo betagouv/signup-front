@@ -35,8 +35,9 @@ class ContractualisationForm extends React.Component {
 
     this.getSiren = this.getSiren.bind(this)
     this.state = {
+      errors: [],
       enrollment: {
-        fournisseur_de_données: 'api-particulier',
+        fournisseur_de_donnees: 'api-particulier',
         scopes: {},
         acl: {
           send_application: true
@@ -46,13 +47,12 @@ class ContractualisationForm extends React.Component {
         demarche: {
           intitule: '',
           description: '',
-          cadre_juridique: ''
+          fondement_juridique: ''
         },
         donnees: {
           conservation: '',
           destinataires: ''
         },
-        fondement_juridique: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
       }
@@ -113,13 +113,27 @@ class ContractualisationForm extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
-      }).catch((error) => console.log(error))
+      }).catch((error) => {
+        if (!(error.response.status == 422)) return
+        let errors = []
+        for (let enrollmentError in error.response.data) {
+          errors = errors.concat(error.response.data[enrollmentError])
+        }
+        this.setState({errors})
+      })
     } else {
       Services.createUserEnrollment(componentState, token).then(response => {
         if (response.status === 201) {
-          console.log(response)
+          Router.push('/')
         }
-      }).catch((error) => console.log(error))
+      }).catch((error) => {
+        if (!(error.response.status == 422)) return
+        let errors = []
+        for (let enrollmentError in error.response.data) {
+          errors = errors.concat(error.response.data[enrollmentError])
+        }
+        this.setState({errors})
+      })
     }
     event.preventDefault()
   }
@@ -140,7 +154,7 @@ class ContractualisationForm extends React.Component {
   }
 
   render() {
-    const {enrollment, sirenNotFound} = this.state
+    const {enrollment, sirenNotFound, errors} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     let personId = 0
@@ -345,6 +359,12 @@ class ContractualisationForm extends React.Component {
             }
           </div>
         }
+
+        {errors.map((error) => {
+          return <div className="notification error">
+            {error}
+          </div>
+        })}
       </form>
     )
   }
