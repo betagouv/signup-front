@@ -4,7 +4,6 @@ module.exports = {
       '/': {page: '/'},
       '/about': {page: '/about'},
       '/contact': {page: '/contact'},
-      '/documentation': {page: '/documentation'},
       '/api-particulier': {page: '/api-particulier'},
       '/dgfip': {page: '/dgfip'}
     }
