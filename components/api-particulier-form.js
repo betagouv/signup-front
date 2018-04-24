@@ -30,24 +30,24 @@ class ContractualisationForm extends React.Component {
     this.state = {
       errors: [],
       enrollment: {
-        fournisseur_de_donnees: 'api-particulier',
+        fournisseur_de_donnees: 'api-particulier', // eslint-disable-line camelcase
         scopes: {},
         acl: {
-          send_application: true
+          send_application: true // eslint-disable-line camelcase
         },
         contacts: BASE_CONTACTS,
         siren: '',
         demarche: {
           intitule: '',
           description: '',
-          fondement_juridique: ''
+          fondement_juridique: '' // eslint-disable-line camelcase
         },
         donnees: {
           conservation: '',
           destinataires: ''
         },
-        validation_de_convention: false,
-        validation_delegue_a_la_protection_des_données: false
+        validation_de_convention: false, // eslint-disable-line camelcase
+        validation_delegue_a_la_protection_des_données: false // eslint-disable-line camelcase
       }
     }
 

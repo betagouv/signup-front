@@ -1,49 +1,52 @@
-import {BACK_HOST} from '@env'
 import PropTypes from 'prop-types'
-import User from '../lib/user'
-import Services from '../lib/services'
 import React from 'react'
 import Router from 'next/router'
+import Services from '../lib/services'
 import Utils from '../lib/utils'
 
 const axios = require('axios')
+
+const BASE_CONTACTS = [
+  {
+    id: 'dpo',
+    heading: 'Délégué à la protection des données',
+    description: 'https://www.cnil.fr/fr/designation-dpo'
+  },
+  {
+    id: 'responsable_traitement',
+    heading: 'Responsable de traitement'
+  },
+  {
+    id: 'technique',
+    heading: 'Responsable technique'
+  }
+]
 
 class ApiEntrepriseForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      errors: [],
       enrollment: {
+        fournisseur_de_donnees: 'api-entreprise', // eslint-disable-line camelcase
         scopes: {},
         acl: {
           send_application: true // eslint-disable-line camelcase
         },
-        contacts: [
-          {
-            id: 'dpo',
-            heading: 'Délégué à la protection des données',
-            description: 'https://www.cnil.fr/fr/designation-dpo'
-          }, {
-            id: 'responsable_traitement',
-            heading: 'Responsable de traitement'
-          }, {
-            id: 'technique',
-            heading: 'Responsable technique'
-          }
-        ],
+        contacts: BASE_CONTACTS,
         siren: '',
         demarche: {
           intitule: '',
           description: '',
-          cadre_juridique: '' // eslint-disable-line camelcase
+          fondement_juridique: '' // eslint-disable-line camelcase
         },
-        data: {
+        donnees: {
           conservation: '',
           destinataires: ''
         },
-        fondement_juridique: '', // eslint-disable-line camelcase
         validation_de_convention: false, // eslint-disable-line camelcase
-        dpo: false
+        validation_delegue_a_la_protection_des_données: false // eslint-disable-line camelcase
       }
     }
 
@@ -61,22 +64,11 @@ class ApiEntrepriseForm extends React.Component {
       token = localStorage.getItem('token')
     }
     if (id) {
-      axios.get(BACK_HOST + '/api/enrollments/' + id, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'application/json'
-        }
-      }).then(response => {
-        this.setState({enrollment: response.data})
+      token = localStorage.getItem('token')
+      Services.getUserEnrollment(id, token).then(enrollment => {
+        this.setState({enrollment})
       })
     }
-    const user = new User()
-
-    setTimeout(() => {
-      user.getServiceProviders().then(serviceProviders => {
-        this.setState({serviceProviders})
-      })
-    }, 1000)
   }
 
   handleChange(event) {
@@ -116,12 +108,26 @@ class ApiEntrepriseForm extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
+      }).catch((error) => {
+        if (!(error.response.status == 422)) return
+        let errors = []
+        for (let enrollmentError in error.response.data) {
+          errors = errors.concat(error.response.data[enrollmentError])
+        }
+        this.setState({errors})
       })
     } else {
       Services.createUserEnrollment(componentState, token).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
+      }).catch((error) => {
+        if (!(error.response.status == 422)) return
+        let errors = []
+        for (let enrollmentError in error.response.data) {
+          errors = errors.concat(error.response.data[enrollmentError])
+        }
+        this.setState({errors})
       })
     }
     event.preventDefault()
@@ -138,17 +144,17 @@ class ApiEntrepriseForm extends React.Component {
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social[0]
-      const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
+      const raison_sociale = siegeSocial.nom_raison_sociale
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
-      const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
+      const code_naf = siegeSocial.activite_principale
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
+      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})})
     }).catch(() => this.setState({sirenNotFound: true}))
   }
 
   render() {
-    const {enrollment, sirenNotFound} = this.state
+    const {enrollment, sirenNotFound, errors} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     let personId = 0
@@ -243,9 +249,9 @@ class ApiEntrepriseForm extends React.Component {
         </div>
 
         <div className='form__group'>
-          <label htmlFor='cadre_juridique'>Cadre juridique <i>(Indiquez la référence ou l&apos;URL du texte de loi)</i></label>
+          <label htmlFor='fondement_juridique'>Cadre juridique <i>(Indiquez la référence ou l&apos;URL du texte de loi)</i></label>
 
-          <input type='text' onChange={this.handleChange} name='enrollment.demarche.cadre_juridique' id='cadre_juridique_demarche' disabled={readOnly} value={enrollment.demarche.cadre_juridique} />
+          <input type='text' onChange={this.handleChange} name='enrollment.demarche.fondement_juridique' id='fondement_juridique_demarche' disabled={readOnly} value={enrollment.demarche.fondement_juridique} />
         </div>
 
         <h2 id='donnees'>Données</h2>
@@ -254,62 +260,63 @@ class ApiEntrepriseForm extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_declarants' id='checkbox-scope_dgfip_declarants' disabled={readOnly} checked={enrollment.scope_dgfip_declarants ? 'checked' : false} />
+              {/* <div>
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_declarants' id='checkbox-scope_dgfip_declarants' disabled={readOnly} checked={enrollment.scopes.dgfip_declarants ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_declarants' className='label-inline'>DGFiP - Déclarants du foyer fiscal</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_foyer_fiscal' id='checkbox-scope_dgfip_foyer_fiscal' disabled={readOnly} checked={enrollment.scope_dgfip_foyer_fiscal ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_foyer_fiscal' id='checkbox-scope_dgfip_foyer_fiscal' disabled={readOnly} checked={enrollment.scopes.dgfip_foyer_fiscal ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_foyer_fiscal' className='label-inline'>DGFiP - Adresse connue au 1er janvierde l&apos;année d&apos;imposition</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_date_recouvrement' id='checkbox-scope_dgfip_date_recouvrement' disabled={readOnly} checked={enrollment.scope_dgfip_date_recouvrement ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_recouvrement' id='checkbox-scope_dgfip_date_recouvrement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_recouvrement ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_date_recouvrement' className='label-inline'>DGFiP - Date de mise en recouvrement de l&apos;avis d&apos;impôt</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_date_etablissement' id='checkbox-scope_dgfip_date_etablissement' disabled={readOnly} checked={enrollment.scope_dgfip_date_etablissement ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_etablissement' id='checkbox-scope_dgfip_date_etablissement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_etablissement ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_date_etablissement' className='label-inline'>DGFiP - Date d&apos;établissement de l&apos;impôt</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_nombre_parts' id='checkbox-scope_dgfip_nombre_parts' disabled={readOnly} checked={enrollment.scope_dgfip_nombre_parts ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_parts' id='checkbox-scope_dgfip_nombre_parts' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_parts ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_nombre_parts' className='label-inline'>DGFiP - Nombre de parts fiscales du foyer</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_situation_famille' id='checkbox-scope_dgfip_situation_famille' disabled={readOnly} checked={enrollment.scope_dgfip_situation_famille ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_situation_famille' id='checkbox-scope_dgfip_situation_famille' disabled={readOnly} checked={enrollment.scopes.dgfip_situation_famille ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_situation_famille' className='label-inline'>DGFiP - Situation_famille</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_nombre_personnes_charge' id='checkbox-scope_dgfip_nombre_personnes_charge' disabled={readOnly} checked={enrollment.scope_dgfip_nombre_personnes_charge ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_personnes_charge' id='checkbox-scope_dgfip_nombre_personnes_charge' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_personnes_charge ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_nombre_personnes_charge' className='label-inline'>DGFiP - Nombre de personnes à charge</label>
                 </div>
               </div>
               <div className='column' style={{flex: 1}}>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_revenu_brut_global' id='checkbox-scope_dgfip_revenu_brut_global' disabled={readOnly} checked={enrollment.scope_dgfip_revenu_brut_global ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_brut_global' id='checkbox-scope_dgfip_revenu_brut_global' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_brut_global ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_revenu_brut_global' className='label-inline'>DGFiP - Revenu brut Global</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_revenu_imposable' id='checkbox-scope_dgfip_revenu_imposable' disabled={readOnly} checked={enrollment.scope_dgfip_revenu_imposable ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_imposable' id='checkbox-scope_dgfip_revenu_imposable' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_imposable ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_revenu_imposable' className='label-inline'>DGFiP - Revenu imposable</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_revenu_net_avant_corrections' id='checkbox-scope_dgfip_revenu_net_avant_corrections' disabled={readOnly} checked={enrollment.scope_dgfip_revenu_net_avant_corrections ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_net_avant_corrections' id='checkbox-scope_dgfip_revenu_net_avant_corrections' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_net_avant_corrections ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_revenu_net_avant_corrections' className='label-inline'>DGFiP - Revenu net avant corrections</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_montant_impot' id='checkbox-scope_dgfip_montant_impot' disabled={readOnly} checked={enrollment.scope_dgfip_montant_impot ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_montant_impot' id='checkbox-scope_dgfip_montant_impot' disabled={readOnly} checked={enrollment.scopes.dgfip_montant_impot ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_montant_impot' className='label-inline'>DGFiP - Montant Impôt</label>
                 </div>
+                */}
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_dgfip_revenu_fiscal_reference' id='checkbox-scope_dgfip_revenu_fiscal_reference' disabled={readOnly} checked={enrollment.scope_dgfip_revenu_fiscal_reference ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_fiscal_reference' className='label-inline'>DGFiP - Revenu fiscal de référence</label>
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
+                  <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Revenu fiscal de référence</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scope_cnaf_quotient_familial ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scopes.cnaf_quotient_familial ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quatient familial</label>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scope_cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scope_cnaf_attestation_droits ? 'checked' : false} />
+                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scopes.cnaf_attestation_droits ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
                 </div>
               </div>
@@ -318,13 +325,13 @@ class ApiEntrepriseForm extends React.Component {
         </div>
 
         <div className='form__group'>
-          <label htmlFor='data_conservation'>Conservation des données <i>(en mois)</i></label>
-          <input type='number' onChange={this.handleChange} name='enrollment.data.conservation' id='data_conservation' disabled={readOnly} value={enrollment.data.conservation} />
+          <label htmlFor='donnees_conservation'>Conservation des données <i>(en mois)</i></label>
+          <input type='number' onChange={this.handleChange} name='enrollment.donnees.conservation' id='donnees_conservation' disabled={readOnly} value={enrollment.donnees.conservation} />
         </div>
 
         <div className='form__group'>
-          <label htmlFor='data_destinataires'>Destinataires</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.data.destinataires' id='data_destinataires' disabled={readOnly} value={enrollment.data.destinataires} />
+          <label htmlFor='donnees_destinataires'>Destinataires</label>
+          <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires' id='donnees_destinataires' disabled={readOnly} value={enrollment.donnees.destinataires} />
         </div>
 
         <h1 id='convention'>Convention</h1>
@@ -349,6 +356,12 @@ class ApiEntrepriseForm extends React.Component {
             }
           </div>
         }
+
+        {errors.map((error) => {
+          return <div className="notification error">
+            {error}
+          </div>
+        })}
       </form>
     )
   }
