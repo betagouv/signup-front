@@ -1,3 +1,13 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
 .container {
 	padding-left: 16px;
 	padding-right: 16px;
@@ -180,4 +190,19 @@ li.panel .button-list {
 	min-width: 75px;
 	max-width: calc(100% / 6 - 10px);
   margin: 0 5px;
+}
+
+.card-row {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.card {
+  min-width: calc(50% - 2em);
+  max-width: calc(50% - 2em);
+  margin-bottom: 1em;
+}
+
+.card + .card {
+  margin-left: 0;
 }
