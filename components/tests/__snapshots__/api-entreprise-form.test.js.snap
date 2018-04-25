@@ -379,14 +379,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseattestations_agefiph"
+              name="enrollment.scopes.attestations_agefiph"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseattestations_agefiph"
             >
               Attestation AGEFIPH
             </label>
@@ -395,14 +395,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseattestations_fiscales"
+              name="enrollment.scopes.attestations_fiscales"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseattestations_fiscales"
             >
               Attestation Fiscale
             </label>
@@ -411,14 +411,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseattestations_sociales"
+              name="enrollment.scopes.attestations_sociales"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseattestations_sociales"
             >
               Attestation Sociale
             </label>
@@ -427,14 +427,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisecertificat_cnetp"
+              name="enrollment.scopes.certificat_cnetp"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisecertificat_cnetp"
             >
               Certificat CNETP
             </label>
@@ -443,14 +443,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseassociations"
+              name="enrollment.scopes.associations"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseassociations"
             >
               Association
             </label>
@@ -459,14 +459,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisecertificat_opqibi"
+              name="enrollment.scopes.certificat_opqibi"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisecertificat_opqibi"
             >
               Certificat OPQIBI
             </label>
@@ -475,14 +475,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisedocuments_association"
+              name="enrollment.scopes.documents_association"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisedocuments_association"
             >
               Document association
             </label>
@@ -491,14 +491,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseetablissements"
+              name="enrollment.scopes.etablissements"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseetablissements"
             >
               INSEE Etablissement
             </label>
@@ -507,14 +507,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseentreprises"
+              name="enrollment.scopes.entreprises"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseentreprises"
             >
               INSEE Entreprise
             </label>
@@ -523,14 +523,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseextrait_court_inpi"
+              name="enrollment.scopes.extrait_court_inpi"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseextrait_court_inpi"
             >
               Extrait INPI
             </label>
@@ -539,14 +539,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseextraits_rcs"
+              name="enrollment.scopes.extraits_rcs"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseextraits_rcs"
             >
               Extrait RCS
             </label>
@@ -555,14 +555,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseexercices"
+              name="enrollment.scopes.exercices"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseexercices"
             >
               Exercice
             </label>
@@ -571,14 +571,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseliasse_fiscale"
+              name="enrollment.scopes.liasse_fiscale"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseliasse_fiscale"
             >
               Liasse fiscale
             </label>
@@ -587,14 +587,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisefntp_carte_pro"
+              name="enrollment.scopes.fntp_carte_pro"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisefntp_carte_pro"
             >
               Carte Pro FNTP
             </label>
@@ -603,14 +603,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisequalibat"
+              name="enrollment.scopes.qualibat"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisequalibat"
             >
               Certificat Qualibat
             </label>
@@ -619,14 +619,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entrepriseprobtp"
+              name="enrollment.scopes.probtp"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entrepriseprobtp"
             >
               Certificat PROBTP
             </label>
@@ -635,14 +635,14 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             <input
               checked={false}
               disabled={false}
-              id="checkbox-scope_api_entreprise"
-              name="enrollment.scopes.scopeCode"
+              id="checkbox-scope_api_entreprisemsa_cotisations"
+              name="enrollment.scopes.msa_cotisations"
               onChange={[Function]}
               type="checkbox"
             />
             <label
               className="label-inline"
-              htmlFor="checkbox-scope_api_entreprise"
+              htmlFor="checkbox-scope_api_entreprisemsa_cotisations"
             >
               Cotisation MSA
             </label>

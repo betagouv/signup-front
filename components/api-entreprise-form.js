@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Router from 'next/router'
 import Services from '../lib/services'
-import ApiEntrepriseServices from '../lib/api-entreprise-services'
 import Utils from '../lib/utils'
 import API_ENTREPRISE_SCOPES from '../mock/api-entreprise/get-scopes-response'
 
@@ -71,12 +70,6 @@ class ApiEntrepriseForm extends React.Component {
         this.setState({enrollment})
       })
     }
-
-    setTimeout(() => {
-      ApiEntrepriseServices.getScopes().then(scopes => {
-        this.setState({scopes})
-      })
-    }, 1000)
   }
 
   handleChange(event) {
@@ -130,7 +123,7 @@ class ApiEntrepriseForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status == 422)) return
+        if (!(error.response.status === 422)) return
         let errors = []
         for (let enrollmentError in error.response.data) {
           errors = errors.concat(error.response.data[enrollmentError])
@@ -271,12 +264,10 @@ class ApiEntrepriseForm extends React.Component {
                 {
                   API_ENTREPRISE_SCOPES.map(scope => {
                     const scopeCode = scope.code
-                    console.log(scopeCode)
-                    // `enrollment.scopes.${scopeCode}`
                     return (
                       <div key={scope.id}>
-                        <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.scopeCode'  id='checkbox-scope_api_entreprise' disabled={readOnly} checked={enrollment.scopes.scopeCode ? 'checked' : false} />
-                        <label htmlFor='checkbox-scope_api_entreprise' className='label-inline'>{scope.name}</label>
+                        <input onChange={this.handleChange} type='checkbox' name={`enrollment.scopes.${scopeCode}`} id={`checkbox-scope_api_entreprise${scopeCode}`} disabled={readOnly} checked={enrollment.scopes[scopeCode] ? 'checked' : false} />
+                        <label htmlFor={`checkbox-scope_api_entreprise${scopeCode}`} className='label-inline'>{scope.name}</label>
                       </div>
                     )
                   })
@@ -319,10 +310,13 @@ class ApiEntrepriseForm extends React.Component {
           </div>
         }
 
-        {errors.map((error) => {
-          return <div className="notification error">
-            {error}
-          </div>
+        {errors.map(error => {
+          let i = 0
+          return (
+            <div key={i++} className='notification error'>
+              {error}
+            </div>
+          )
         })}
       </form>
     )
