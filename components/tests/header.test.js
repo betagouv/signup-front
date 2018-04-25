@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
 import Header from '../header'
 import attachUser from '../../components/hoc/attach-user'

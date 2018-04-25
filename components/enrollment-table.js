@@ -4,15 +4,14 @@ import ReactTable from 'react-table'
 import withUser from '../components/hoc/with-user'
 import Services from '../lib/services'
 import Enrollment from '../components/enrollment'
-import Link from 'next/link'
 
 const STATE_HUMAN_NAMES = {
-  'pending': 'Demande en attente',
-  'sent': 'Demande envoyée',
-  'validated': 'Demande validée',
-  'refused': 'Demande refusée',
-  'technical_inputs': 'En attente de déploiement',
-  'deployed': 'Déployé'
+  pending: 'Demande en attente',
+  sent: 'Demande envoyée',
+  validated: 'Demande validée',
+  refused: 'Demande refusée',
+  technical_inputs: 'En attente de déploiement', // eslint-disable-line camelcase
+  deployed: 'Déployé'
 }
 
 class EnrollmentTable extends React.Component {
@@ -20,15 +19,14 @@ class EnrollmentTable extends React.Component {
     super(props)
 
     this.state = {
-      user: props.user,
       enrollments: []
     }
   }
 
   componentDidMount() {
-    Services.getUserEnrollments().then((enrollments) => {
-      this.setState({enrollments: enrollments.map((enrollment) => {
-        enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state]
+    Services.getUserEnrollments().then(enrollments => {
+      this.setState({enrollments: enrollments.map(enrollment => {
+        enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state] // eslint-disable-line camelcase
         return enrollment
       })})
     })
@@ -38,10 +36,10 @@ class EnrollmentTable extends React.Component {
     return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
       const enrollment = response.data
       if (enrollment) {
-        enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state]
+        enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state] // eslint-disable-line camelcase
 
-        const enrollments = this.state.enrollments.map((e) => {
-          if (enrollment.id == e.id) {
+        const enrollments = this.state.enrollments.map(e => {
+          if (enrollment.id === e.id) {
             return enrollment
           } else {
             return e
@@ -66,7 +64,7 @@ class EnrollmentTable extends React.Component {
     return (
       <div className='enrollment-table'>
         <Head>
-          <link rel="stylesheet" href="https://unpkg.com/react-table@latest/react-table.css" />
+          <link rel='stylesheet' href='https://unpkg.com/react-table@latest/react-table.css' />
         </Head>
         <ReactTable
           data={enrollments}

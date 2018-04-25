@@ -65,7 +65,7 @@ class ContractualisationForm extends React.Component {
       token = localStorage.getItem('token')
     }
     if (id) {
-      Services.getUserEnrollment(id).then(enrollment => {
+      Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})
       })
     }
@@ -304,8 +304,9 @@ class ContractualisationForm extends React.Component {
         }
 
         {errors.map(error => {
+          let i = 0
           return (
-            <div className='notification error'>
+            <div key={i++} className='notification error'>
               {error}
             </div>
           )

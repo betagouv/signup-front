@@ -69,14 +69,12 @@ class Page extends React.Component {
 Page.propTypes = {
   children: PropTypes.node.isRequired,
   title: PropTypes.string,
-  user: PropTypes.object,
   requireUser: PropTypes.bool
 }
 
 Page.defaultProps = {
   title: '',
-  requireUser: false,
-  user: {}
+  requireUser: false
 }
 
 export default attachUser(Page)

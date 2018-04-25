@@ -1,6 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
 import Enrollment from '../enrollment'
-import RESOURCE_PROVIDERS from '../../mock/data/resource-providers'
 
 describe('components | Enrollment', () => {
   describe('with enrollment that can send_application at pending state', () => {
@@ -14,7 +13,7 @@ describe('components | Enrollment', () => {
         },
         state: 'pending',
         acl: {
-          send_application: true
+          send_application: true // eslint-disable-line camelcase
         }
       }
     }
@@ -38,9 +37,9 @@ describe('components | Enrollment', () => {
         },
         state: 'sent',
         acl: {
-          validate_application: true,
-          refuse_application: true,
-          review_application: true
+          validate_application: true, // eslint-disable-line camelcase
+          refuse_application: true, // eslint-disable-line camelcase
+          review_application: true // eslint-disable-line camelcase
         }
       }
     }
@@ -64,7 +63,7 @@ describe('components | Enrollment', () => {
         },
         state: 'sent',
         acl: {
-          validate_application: false
+          validate_application: false // eslint-disable-line camelcase
         }
       }
     }
@@ -88,7 +87,7 @@ describe('components | Enrollment', () => {
         },
         state: 'validated',
         acl: {
-          send_technical_inputs: false
+          send_technical_inputs: false // eslint-disable-line camelcase
         }
       }
     }
@@ -112,7 +111,7 @@ describe('components | Enrollment', () => {
         },
         state: 'validated',
         acl: {
-          send_technical_inputs: true
+          send_technical_inputs: true // eslint-disable-line camelcase
         }
       }
     }
@@ -136,7 +135,7 @@ describe('components | Enrollment', () => {
         },
         state: 'technical_inputs',
         acl: {
-          deploy_application: true
+          deploy_application: true // eslint-disable-line camelcase
         }
       }
     }
