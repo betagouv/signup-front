@@ -336,7 +336,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     <label
       htmlFor="fondement_juridique"
     >
-      Cadre juridique 
+      Cadre juridique
       <i>
         (Indiquez la référence ou l'URL du texte de loi)
       </i>
@@ -404,7 +404,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
               className="label-inline"
               htmlFor="checkbox-scope_cnaf_quotient_familial"
             >
-              CNAF - Quatient familial
+              CNAF - Quotient familial
             </label>
           </div>
           <div>
@@ -433,7 +433,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     <label
       htmlFor="donnees_conservation"
     >
-      Conservation des données 
+      Conservation des données
       <i>
         (en mois)
       </i>
@@ -473,11 +473,11 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     className="information-text"
   >
     <p>
-      Votre raccordement à l'API « Impôt Particulier » nécessite l'acceptation de la convention d'adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. 
+      Votre raccordement à l'API « Impôt Particulier » nécessite l'acceptation de la convention d'adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC.
       <br />
-       Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. 
+       Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes.
       <br />
-       La convention générée à l'issue de votre demande de raccordement contiendra l'ensemble des éléments propres à votre situation. 
+       La convention générée à l'issue de votre demande de raccordement contiendra l'ensemble des éléments propres à votre situation.
       <br />
        Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.
     </p>
