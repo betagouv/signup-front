@@ -3,7 +3,7 @@ import React from 'react'
 import Router from 'next/router'
 import Services from '../lib/services'
 import Utils from '../lib/utils'
-import API_ENTREPRISE_SCOPES from '../mock/api-entreprise/get-scopes-response'
+import ApiEntrepriseServices from '../lib/api-entreprise-services'
 
 const axios = require('axios')
 
@@ -32,6 +32,7 @@ class ApiEntrepriseForm extends React.Component {
     super(props)
 
     this.state = {
+      scopes: [],
       errors: [],
       enrollment: {
         fournisseur_de_donnees: 'api-entreprise', // eslint-disable-line camelcase
@@ -64,6 +65,9 @@ class ApiEntrepriseForm extends React.Component {
   componentDidMount() {
     const {id} = this.props
 
+    ApiEntrepriseServices.getScopes().then(scopes => {
+      this.setState({scopes})
+    })
     let token
     if (typeof localStorage !== 'undefined') {
       token = localStorage.getItem('token')
@@ -114,10 +118,16 @@ class ApiEntrepriseForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status === 422)) return
+        if (!(error.response.status === 422)) {
+          return
+        }
         let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+        let enrollmentError
+        for (enrollmentError in error.response.data) {
+          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            const errorMessage = error.response.data[enrollmentError]
+            errors = errors.concat(errorMessage)
+          }
         }
         this.setState({errors})
       })
@@ -127,10 +137,15 @@ class ApiEntrepriseForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status === 422)) return
+        if (!(error.response.status === 422)) {
+          return
+        }
         let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+        let enrollmentError
+        for (enrollmentError in error.response.data) {
+          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            errors = errors.concat(error.response.data[enrollmentError])
+          }
         }
         this.setState({errors})
       })
@@ -159,7 +174,7 @@ class ApiEntrepriseForm extends React.Component {
   }
 
   render() {
-    const {enrollment, sirenNotFound, errors} = this.state
+    const {enrollment, sirenNotFound, errors, scopes} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     let personId = 0
@@ -266,7 +281,7 @@ class ApiEntrepriseForm extends React.Component {
             <div className='row'>
               <div className='column' style={{flex: 1}}>
                 {
-                  API_ENTREPRISE_SCOPES.map(scope => {
+                  scopes.map(scope => {
                     const scopeCode = scope.code
                     return (
                       <div key={scope.id}>

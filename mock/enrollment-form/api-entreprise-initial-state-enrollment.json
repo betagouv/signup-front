@@ -1,4 +1,5 @@
 {
+  "scopes": [],
 	"errors": [],
 	"enrollment": {
 		"fournisseur_de_donnees": "api-entreprise",
