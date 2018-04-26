@@ -1,7 +1,6 @@
 import React from 'react'
-import {BACK_HOST} from '@env'
-
-const axios = require('axios')
+import PropTypes from 'prop-types'
+import Services from '../lib/services'
 
 class DgfipNav extends React.Component {
   constructor(props) {
@@ -13,19 +12,19 @@ class DgfipNav extends React.Component {
       }
     }
   }
+
   componentDidMount() {
     const {id} = this.props
 
     let token
-    if (typeof localStorage) token = localStorage.getItem('token')
-    if (id) axios.get(BACK_HOST + '/api/enrollments/' + id, {
-      headers: {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      }
-    }).then((response) => {
-      this.setState({enrollment: response.data})
-    })
+    if (typeof localStorage) { // eslint-disable-line no-constant-condition
+      token = localStorage.getItem('token')
+    }
+    if (id) {
+      Services.getUserEnrollment(id, token).then(response => {
+        this.setState({enrollment: response.data})
+      })
+    }
   }
 
   render() {
@@ -43,19 +42,26 @@ class DgfipNav extends React.Component {
           <li><a className='side-pane__link' href='#cnil'>Obligation CNIL</a></li>
           <li><a className='side-pane__link' href='#convention'>Convention</a></li>
         </ul>
-          {enrollment.acl.show_technical_inputs &&
-            <ul className='side-pane__menu'>
-              <li className='side-pane__title'>
-                <h3>Données de productions</h3>
-              </li>
-              <li><a className='side-pane__link' href='#entrants-techniques'>Entrants techniques</a></li>
-              <li><a className='side-pane__link' href='#homologation-securite'>Homologation de sécurité</a></li>
-              <li><a className='side-pane__link' href='#recette-fonctionnelle'>Recette fonctionnelle</a></li>
-            </ul>
-          }
+        {enrollment.acl.show_technical_inputs &&
+          <ul className='side-pane__menu'>
+            <li className='side-pane__title'>
+              <h3>Données de productions</h3>
+            </li>
+            <li><a className='side-pane__link' href='#entrants-techniques'>Entrants techniques</a></li>
+            <li><a className='side-pane__link' href='#homologation-securite'>Homologation de sécurité</a></li>
+            <li><a className='side-pane__link' href='#recette-fonctionnelle'>Recette fonctionnelle</a></li>
+          </ul>
+        }
       </nav>
     )
   }
+}
+
+DgfipNav.propTypes = {
+  id: PropTypes.string
+}
+DgfipNav.defaultProps = {
+  id: ''
 }
 
 export default DgfipNav

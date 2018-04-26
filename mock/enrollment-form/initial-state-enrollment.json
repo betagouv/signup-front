@@ -1,42 +1,33 @@
 {
-  "enrollment": {
-    "fournisseur_de_données": "api-particulier",
-    "scopes": {},
-    "acl": {
-      "send_application": true
-    },
-    "contacts": [
-      {
-        "id": "dpo",
-        "heading": "Délégué à la protection des données"
-      }, {
-      "id": "responsable_traitement",
-      "heading": "Responsable de traitement"
-      }, {
-      "id": "metier",
-      "heading": "Responsable métier"
-      }, {
-      "id": "technique",
-      "heading": "Responsable technique"
-      }, {
-      "id": "support",
-      "heading": "Responsable support"
-      }, {
-      "id": "autre",
-      "heading": "Autre contact"
-      }
-    ],
-    "siren": "",
-    "demarche": {
-      "intitule": "",
-      "description": "",
-      "cadre_juridique": ""
-    },
-    "donnees": {
-      "conservation": "",
-      "destinataires": ""
-    },
-    "fondement_juridique": "",
-    "validation_de_convention": false
-  }
+	"enrollment": {
+		"acl": {
+			"send_application": true
+		},
+		"contacts": [{
+			"description": "https://www.cnil.fr/fr/designation-dpo",
+			"heading": "Délégué à la protection des données",
+			"id": "dpo"
+		}, {
+			"heading": "Responsable de traitement",
+			"id": "responsable_traitement"
+		}, {
+			"heading": "Responsable technique",
+			"id": "technique"
+		}],
+		"demarche": {
+			"description": "",
+			"fondement_juridique": "",
+			"intitule": ""
+		},
+		"donnees": {
+			"conservation": "",
+			"destinataires": ""
+		},
+		"fournisseur_de_donnees": "api-particulier",
+		"scopes": {},
+		"siren": "",
+		"validation_de_convention": false,
+		"validation_delegue_a_la_protection_des_données": false
+	},
+	"errors": []
 }

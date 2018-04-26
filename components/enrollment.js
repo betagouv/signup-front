@@ -35,13 +35,15 @@ class Enrollment extends React.Component {
       if (enrollment) {
         this.setState({enrollment})
       }
-    }).catch((error) => {
-      if (!(error.response.status == 422)) return
-      let errors = []
-      for (let enrollmentError in error.response.data) {
-        errors = errors.concat(error.response.data[enrollmentError])
+    }).catch(error => {
+      if (!(error.response.status === 422)) {
+        let errors = []
+        let enrollmentError
+        for (enrollmentError in error.response.data) {
+          errors = errors.concat(error.response.data[enrollmentError])
+        }
+        this.setState({errors})
       }
-      this.setState({errors})
     })
   }
 
@@ -53,8 +55,7 @@ class Enrollment extends React.Component {
         <h2>{enrollment.demarche.intitule}</h2>
         <em>{enrollment.applicant.email}</em>
         <p>{enrollment.description_service}</p>
-        <p>État de la demande :&nbsp;
-          {enrollment.state === 'pending' && 'Demande en attente'}
+        <p>État de la demande :&nbsp; {enrollment.state === 'pending' && 'Demande en attente'}
           {enrollment.state === 'sent' && 'Demande envoyée'}
           {enrollment.state === 'validated' && 'Demande validée'}
           {enrollment.state === 'refused' && 'Demande refusée'}
@@ -83,7 +84,7 @@ class Enrollment extends React.Component {
         }
         {enrollment.acl.deploy_application &&
           <button className='button' type='submit' name='deploy_application' id='submit' onClick={this.trigger('deploy_application', enrollment)}>
-            Déployer l'application
+            Déployer l&apos;application
           </button>
         }
         {enrollment.acl.send_technical_inputs &&
@@ -106,10 +107,13 @@ class Enrollment extends React.Component {
 
         </div>
 
-        {errors.map((error) => {
-          return <div className="notification error">
-            {error}
-          </div>
+        {errors.map(error => {
+          let i
+          return (
+            <div key={i++} className='notification error'>
+              {error}
+            </div>
+          )
         })}
       </li>
     )

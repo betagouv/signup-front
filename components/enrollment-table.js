@@ -33,17 +33,17 @@ class EnrollmentTable extends React.Component {
   }
 
   trigger(action, enrollment) {
+    const toto = this.state.enrollments // eslint-disable-line react/destructuring-assignment
     return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
       const enrollment = response.data
       if (enrollment) {
         enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state] // eslint-disable-line camelcase
 
-        const enrollments = this.state.enrollments.map(e => {
+        const enrollments = toto.map(e => {
           if (enrollment.id === e.id) {
             return enrollment
-          } else {
-            return e
           }
+          return e
         })
         this.setState({enrollments})
       }
@@ -78,9 +78,7 @@ class EnrollmentTable extends React.Component {
           pageText='Page'
           ofText='sur'
           rowsText='lignes'
-          SubComponent={row => (
-            <Enrollment enrollment={row.original} />
-          )}
+          SubComponent={row => (<Enrollment enrollment={row.original} />)} // eslint-disable-line react/jsx-no-bind
         />
       </div>
     )
