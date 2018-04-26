@@ -18,6 +18,10 @@ const BASE_CONTACTS = [
     heading: 'Responsable de traitement'
   },
   {
+    id: 'metier',
+    heading: 'Responsable métier'
+  },
+  {
     id: 'technique',
     heading: 'Responsable technique'
   }

@@ -242,6 +242,51 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
         className="card__content"
       >
         <h3>
+          Responsable métier
+        </h3>
+        <div
+          className="form__group"
+        >
+          <label
+            htmlFor="person_metier_nom"
+          >
+            Nom et Prénom
+          </label>
+          <input
+            disabled={false}
+            id="person_metier_nom"
+            name="nom"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
+        <div
+          className="form__group"
+        >
+          <label
+            htmlFor="person_metier_email"
+          >
+            Email
+          </label>
+          <input
+            disabled={false}
+            id="person_metier_email"
+            name="email"
+            onChange={[Function]}
+            type="text"
+            value={undefined}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="card"
+    >
+      <div
+        className="card__content"
+      >
+        <h3>
           Responsable technique
         </h3>
         <div
