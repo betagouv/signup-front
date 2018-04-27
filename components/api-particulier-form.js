@@ -1,12 +1,11 @@
-import {BACK_HOST} from '@env'
 import PropTypes from 'prop-types'
-import User from '../lib/user'
-import Services from '../lib/services'
 import React from 'react'
 import Router from 'next/router'
+import Services from '../lib/services'
 import Utils from '../lib/utils'
 
 const axios = require('axios')
+
 const BASE_CONTACTS = [
   {
     id: 'dpo',
@@ -15,7 +14,8 @@ const BASE_CONTACTS = [
   },
   {
     id: 'responsable_traitement',
-    heading: 'Responsable de traitement'
+    heading: 'Responsable de traitement',
+    description: 'https://www.cnil.fr/fr/definition/responsable-de-traitement'
   },
   {
     id: 'technique',
@@ -165,7 +165,7 @@ class ContractualisationForm extends React.Component {
           <div className='card__content'>
             <h3>{person.heading}</h3>
             {person.description &&
-              <div className='card__meta'>{person.description}</div>
+              <a className='card__meta' href={person.description}>{person.description}</a>
             }
             <div className='form__group'>
               <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
@@ -190,7 +190,7 @@ class ContractualisationForm extends React.Component {
         </ul>
 
         <p>
-          Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c&apos;est à dire explicitement demander l&apos;accord de l&apos;usager pour récupérer ses données auprès d&apos;un fournisseur.
+          Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de votre administration et informer correctement l’usager.
         </p>
 
         <h2 id='identite'>Identité</h2>
@@ -223,10 +223,6 @@ class ContractualisationForm extends React.Component {
           <label htmlFor='code_naf'>Code NAF</label>
           <input type='text' onChange={this.handleChange} name='enrollment.code_naf' id='code_naf' disabled value={enrollment.code_naf} />
         </div>
-        <div className='form__group'>
-          <label htmlFor='responsable'>Responsable</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.responsable' id='responsable' disabled value={enrollment.responsable} />
-        </div>
 
         <h3>Contacts</h3>
         <div className='row card-row'>
@@ -237,7 +233,7 @@ class ContractualisationForm extends React.Component {
         <section className='information-text'>
           <p>C&apos;est la raison pour laquelle vous collectez des données personnelles, l&apos;objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».</p>
 
-          <p>Il vous est également demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
+          <p>Il vous est également demandé de préciser les références du cadre juridique de votre droit à demander ces informations (délibération du conseil municipal, décret …).</p>
         </section>
         <div className='form__group'>
           <label htmlFor='intitule_demarche'>Intitulé</label>
@@ -249,7 +245,7 @@ class ContractualisationForm extends React.Component {
         </div>
 
         <div className='form__group'>
-          <label htmlFor='fondement_juridique'>Cadre juridique <i>(Indiquez la référence ou l&apos;URL du texte de loi)</i></label>
+          <label htmlFor='fondement_juridique'>Cadre juridique <i>(indiquez la référence ou l&apos;URL du texte vous autorisant à récolter ces données)</i></label>
 
           <input type='text' onChange={this.handleChange} name='enrollment.demarche.fondement_juridique' id='fondement_juridique_demarche' disabled={readOnly} value={enrollment.demarche.fondement_juridique} />
         </div>
@@ -260,53 +256,6 @@ class ContractualisationForm extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-              {/* <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_declarants' id='checkbox-scope_dgfip_declarants' disabled={readOnly} checked={enrollment.scopes.dgfip_declarants ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_declarants' className='label-inline'>DGFiP - Déclarants du foyer fiscal</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_foyer_fiscal' id='checkbox-scope_dgfip_foyer_fiscal' disabled={readOnly} checked={enrollment.scopes.dgfip_foyer_fiscal ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_foyer_fiscal' className='label-inline'>DGFiP - Adresse connue au 1er janvierde l&apos;année d&apos;imposition</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_recouvrement' id='checkbox-scope_dgfip_date_recouvrement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_recouvrement ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_date_recouvrement' className='label-inline'>DGFiP - Date de mise en recouvrement de l&apos;avis d&apos;impôt</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_etablissement' id='checkbox-scope_dgfip_date_etablissement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_etablissement ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_date_etablissement' className='label-inline'>DGFiP - Date d&apos;établissement de l&apos;impôt</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_parts' id='checkbox-scope_dgfip_nombre_parts' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_parts ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_nombre_parts' className='label-inline'>DGFiP - Nombre de parts fiscales du foyer</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_situation_famille' id='checkbox-scope_dgfip_situation_famille' disabled={readOnly} checked={enrollment.scopes.dgfip_situation_famille ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_situation_famille' className='label-inline'>DGFiP - Situation_famille</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_personnes_charge' id='checkbox-scope_dgfip_nombre_personnes_charge' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_personnes_charge ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_nombre_personnes_charge' className='label-inline'>DGFiP - Nombre de personnes à charge</label>
-                </div>
-              </div>
-              <div className='column' style={{flex: 1}}>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_brut_global' id='checkbox-scope_dgfip_revenu_brut_global' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_brut_global ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_brut_global' className='label-inline'>DGFiP - Revenu brut Global</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_imposable' id='checkbox-scope_dgfip_revenu_imposable' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_imposable ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_imposable' className='label-inline'>DGFiP - Revenu imposable</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_net_avant_corrections' id='checkbox-scope_dgfip_revenu_net_avant_corrections' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_net_avant_corrections ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_net_avant_corrections' className='label-inline'>DGFiP - Revenu net avant corrections</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_montant_impot' id='checkbox-scope_dgfip_montant_impot' disabled={readOnly} checked={enrollment.scopes.dgfip_montant_impot ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_montant_impot' className='label-inline'>DGFiP - Montant Impôt</label>
-                </div>
-                */}
                 <div>
                   <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Revenu fiscal de référence</label>
@@ -330,20 +279,17 @@ class ContractualisationForm extends React.Component {
         </div>
 
         <div className='form__group'>
-          <label htmlFor='donnees_destinataires'>Destinataires</label>
+          <label htmlFor='donnees_destinataires'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire'>(plus d&acute;infos)</a></label>
           <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires' id='donnees_destinataires' disabled={readOnly} value={enrollment.donnees.destinataires} />
         </div>
 
-        <h1 id='convention'>Convention</h1>
-        <section className='information-text'>
-          <p>Votre raccordement à l&apos;API « Impôt Particulier » nécessite l&apos;acceptation de la convention d&apos;adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l&apos;issue de votre demande de raccordement contiendra l&apos;ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>
-        </section>
+        <h1 id='cgu'>Conditions d&acute;utilisation</h1>
 
         <iframe src='/static/docs/charte-fc.pdf' width='100%' height='800px' />
 
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
-          <label htmlFor='validation_de_convention' className='label-inline'>Je valide la présente convention et confirme que le DPO de mon organisme est informé de ma demande</label>
+          <label htmlFor='validation_de_convention' className='label-inline'>Je valide les présentes conditions d'utilisation et confirme que le DPO de mon organisme est informé de ma demande</label>
         </div>
 
         {!readOnly &&
@@ -357,10 +303,12 @@ class ContractualisationForm extends React.Component {
           </div>
         }
 
-        {errors.map((error) => {
-          return <div className="notification error">
-            {error}
-          </div>
+        {errors.map(error => {
+          return (
+            <div className='notification error'>
+              {error}
+            </div>
+          )
         })}
       </form>
     )
