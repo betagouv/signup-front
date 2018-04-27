@@ -54,7 +54,6 @@ class EnrollmentTable extends React.Component {
 
   render() {
     const {enrollments} = this.state
-    console.log(enrollments)
     const columns = [
       {
         Header: 'Fournisseur de service',

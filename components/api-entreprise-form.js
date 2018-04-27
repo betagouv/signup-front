@@ -1,12 +1,12 @@
-import {BACK_HOST} from '@env'
 import PropTypes from 'prop-types'
-import User from '../lib/user'
-import Services from '../lib/services'
 import React from 'react'
 import Router from 'next/router'
+import Services from '../lib/services'
 import Utils from '../lib/utils'
+import ApiEntrepriseServices from '../lib/api-entreprise-services'
 
 const axios = require('axios')
+
 const BASE_CONTACTS = [
   {
     id: 'dpo',
@@ -18,19 +18,24 @@ const BASE_CONTACTS = [
     heading: 'Responsable de traitement'
   },
   {
+    id: 'metier',
+    heading: 'Responsable métier'
+  },
+  {
     id: 'technique',
     heading: 'Responsable technique'
   }
 ]
 
-class ContractualisationForm extends React.Component {
+class ApiEntrepriseForm extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      scopes: [],
       errors: [],
       enrollment: {
-        fournisseur_de_donnees: 'api-particulier', // eslint-disable-line camelcase
+        fournisseur_de_donnees: 'api-entreprise', // eslint-disable-line camelcase
         scopes: {},
         acl: {
           send_application: true // eslint-disable-line camelcase
@@ -60,12 +65,16 @@ class ContractualisationForm extends React.Component {
   componentDidMount() {
     const {id} = this.props
 
+    ApiEntrepriseServices.getScopes().then(scopes => {
+      this.setState({scopes})
+    })
     let token
     if (typeof localStorage !== 'undefined') {
       token = localStorage.getItem('token')
     }
     if (id) {
-      Services.getUserEnrollment(id).then(enrollment => {
+      token = localStorage.getItem('token')
+      Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})
       })
     }
@@ -108,11 +117,17 @@ class ContractualisationForm extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
-      }).catch((error) => {
-        if (!(error.response.status == 422)) return
+      }).catch(error => {
+        if (!(error.response.status === 422)) {
+          return
+        }
         let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+        let enrollmentError
+        for (enrollmentError in error.response.data) {
+          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            const errorMessage = error.response.data[enrollmentError]
+            errors = errors.concat(errorMessage)
+          }
         }
         this.setState({errors})
       })
@@ -121,11 +136,16 @@ class ContractualisationForm extends React.Component {
         if (response.status === 201) {
           Router.push('/')
         }
-      }).catch((error) => {
-        if (!(error.response.status == 422)) return
+      }).catch(error => {
+        if (!(error.response.status === 422)) {
+          return
+        }
         let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+        let enrollmentError
+        for (enrollmentError in error.response.data) {
+          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            errors = errors.concat(error.response.data[enrollmentError])
+          }
         }
         this.setState({errors})
       })
@@ -144,17 +164,17 @@ class ContractualisationForm extends React.Component {
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social[0]
-      const raison_sociale = siegeSocial.nom_raison_sociale
+      const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
-      const code_naf = siegeSocial.activite_principale
+      const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})})
+      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
     }).catch(() => this.setState({sirenNotFound: true}))
   }
 
   render() {
-    const {enrollment, sirenNotFound, errors} = this.state
+    const {enrollment, sirenNotFound, errors, scopes} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     let personId = 0
@@ -182,15 +202,15 @@ class ContractualisationForm extends React.Component {
 
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>Demande d&apos;accès à API Particulier</h1>
-        <p>Pour avoir accès à l&apos;API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L&apos;accès à cette API n&apos;est pour l&apos;instant disponible que si vous êtes:</p>
+        <h1>Demande d&apos;accès à API Entreprise</h1>
+        <p>Pour avoir accès à l&apos;API Entreprise, diffusant des données personnelles, vous devez obtenir un agrément.  L&apos;accès à cette API n&apos;est pour l&apos;instant disponible que si vous êtes:</p>
         <ul>
           <li>une administration;</li>
           <li>une entreprise prestataire d&apos;une administration ou ayant une délégation de service public.</li>
         </ul>
 
         <p>
-          Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c&apos;est à dire explicitement demander l&apos;accord de l&apos;usager pour récupérer ses données auprès d&apos;un fournisseur.
+          Pour utiliser API Entreprise, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c&apos;est à dire explicitement demander l&apos;accord de l&apos;usager pour récupérer ses données auprès d&apos;un fournisseur.
         </p>
 
         <h2 id='identite'>Identité</h2>
@@ -260,65 +280,17 @@ class ContractualisationForm extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-              {/* <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_declarants' id='checkbox-scope_dgfip_declarants' disabled={readOnly} checked={enrollment.scopes.dgfip_declarants ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_declarants' className='label-inline'>DGFiP - Déclarants du foyer fiscal</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_foyer_fiscal' id='checkbox-scope_dgfip_foyer_fiscal' disabled={readOnly} checked={enrollment.scopes.dgfip_foyer_fiscal ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_foyer_fiscal' className='label-inline'>DGFiP - Adresse connue au 1er janvierde l&apos;année d&apos;imposition</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_recouvrement' id='checkbox-scope_dgfip_date_recouvrement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_recouvrement ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_date_recouvrement' className='label-inline'>DGFiP - Date de mise en recouvrement de l&apos;avis d&apos;impôt</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_date_etablissement' id='checkbox-scope_dgfip_date_etablissement' disabled={readOnly} checked={enrollment.scopes.dgfip_date_etablissement ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_date_etablissement' className='label-inline'>DGFiP - Date d&apos;établissement de l&apos;impôt</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_parts' id='checkbox-scope_dgfip_nombre_parts' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_parts ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_nombre_parts' className='label-inline'>DGFiP - Nombre de parts fiscales du foyer</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_situation_famille' id='checkbox-scope_dgfip_situation_famille' disabled={readOnly} checked={enrollment.scopes.dgfip_situation_famille ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_situation_famille' className='label-inline'>DGFiP - Situation_famille</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_nombre_personnes_charge' id='checkbox-scope_dgfip_nombre_personnes_charge' disabled={readOnly} checked={enrollment.scopes.dgfip_nombre_personnes_charge ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_nombre_personnes_charge' className='label-inline'>DGFiP - Nombre de personnes à charge</label>
-                </div>
-              </div>
-              <div className='column' style={{flex: 1}}>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_brut_global' id='checkbox-scope_dgfip_revenu_brut_global' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_brut_global ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_brut_global' className='label-inline'>DGFiP - Revenu brut Global</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_imposable' id='checkbox-scope_dgfip_revenu_imposable' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_imposable ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_imposable' className='label-inline'>DGFiP - Revenu imposable</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_revenu_net_avant_corrections' id='checkbox-scope_dgfip_revenu_net_avant_corrections' disabled={readOnly} checked={enrollment.scopes.dgfip_revenu_net_avant_corrections ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_revenu_net_avant_corrections' className='label-inline'>DGFiP - Revenu net avant corrections</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_montant_impot' id='checkbox-scope_dgfip_montant_impot' disabled={readOnly} checked={enrollment.scopes.dgfip_montant_impot ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_montant_impot' className='label-inline'>DGFiP - Montant Impôt</label>
-                </div>
-                */}
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Revenu fiscal de référence</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scopes.cnaf_quotient_familial ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quotient familial</label>
-                </div>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scopes.cnaf_attestation_droits ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
-                </div>
+                {
+                  scopes.map(scope => {
+                    const scopeCode = scope.code
+                    return (
+                      <div key={scope.id}>
+                        <input onChange={this.handleChange} type='checkbox' name={`enrollment.scopes.${scopeCode}`} id={`checkbox-scope_api_entreprise${scopeCode}`} disabled={readOnly} checked={enrollment.scopes[scopeCode] ? 'checked' : false} />
+                        <label htmlFor={`checkbox-scope_api_entreprise${scopeCode}`} className='label-inline'>{scope.name}</label>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </fieldset>
@@ -339,7 +311,7 @@ class ContractualisationForm extends React.Component {
           <p>Votre raccordement à l&apos;API « Impôt Particulier » nécessite l&apos;acceptation de la convention d&apos;adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l&apos;issue de votre demande de raccordement contiendra l&apos;ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>
         </section>
 
-        <iframe src='/static/docs/charte-fc.pdf' width='100%' height='800px' />
+        <iframe src='static/docs/charte-fc.pdf' width='100%' height='800px' />
 
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
@@ -357,21 +329,24 @@ class ContractualisationForm extends React.Component {
           </div>
         }
 
-        {errors.map((error) => {
-          return <div className="notification error">
-            {error}
-          </div>
+        {errors.map(error => {
+          let i = 0
+          return (
+            <div key={i++} className='notification error'>
+              {error}
+            </div>
+          )
         })}
       </form>
     )
   }
 }
 
-ContractualisationForm.propTypes = {
+ApiEntrepriseForm.propTypes = {
   id: PropTypes.string
 }
-ContractualisationForm.defaultProps = {
+ApiEntrepriseForm.defaultProps = {
   id: ''
 }
 
-export default ContractualisationForm
+export default ApiEntrepriseForm
