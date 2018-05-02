@@ -2,7 +2,9 @@
 
 exports[`pages | ApiParticulier render should match snapshot 1`] = `
 <div>
-  <div />
+  <div
+    className="redirect"
+  />
   <div
     className="page"
   >
