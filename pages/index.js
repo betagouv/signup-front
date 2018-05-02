@@ -33,16 +33,16 @@ class Index extends React.Component {
     let i = 0
     return (
       <div>
-      <Redirect redirect pathName={url.pathname} />
-      <Page requireUser enrollments>
-        <section className='section-grey'>
-          <div className='container'>
-            <h1>Liste des demandes</h1>
-            <EnrollmentTable>
-            </EnrollmentTable>
-          </div>
-        </section>
-      </Page>
+        <Redirect redirect pathName={url.pathname} />
+        <Page requireUser enrollments>
+          <section className='section-grey'>
+            <div className='container'>
+              <h1>Liste des demandes</h1>
+              <EnrollmentTable>
+              </EnrollmentTable>
+            </div>
+          </section>
+        </Page>
       </div>
     )
   }
