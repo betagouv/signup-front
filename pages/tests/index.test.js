@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Index from '../../pages/about'
+import Index from '../../pages'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
