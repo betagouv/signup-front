@@ -591,7 +591,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             </section>
             <iframe
               height="800px"
-              src="static/docs/charte-fc.pdf"
+              src="/static/docs/charte-fc.pdf"
               width="100%"
             />
             <div
