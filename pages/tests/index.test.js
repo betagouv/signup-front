@@ -5,7 +5,14 @@ require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassi
 
 describe('pages | index', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<Index />)
+    const props = {
+      url: {
+        query: {
+          id: '1'
+        }
+      }
+    }
+    const renderer = ReactTestRenderer.create(<Index {...props} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })

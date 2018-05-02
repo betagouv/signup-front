@@ -38,6 +38,14 @@ exports[`components | ApiParticulierNav render should match snapshot 1`] = `
         Données
       </a>
     </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#cgu"
+      >
+        Conditions d´utilisation
+      </a>
+    </li>
   </ul>
 </nav>
 `;

@@ -4,15 +4,16 @@
 			"send_application": true
 		},
 		"contacts": [{
-			"description": "https://www.cnil.fr/fr/designation-dpo",
-			"heading": "Délégué à la protection des données",
-			"id": "dpo"
+      "id": "dpo",
+      "heading": "Délégué à la protection des données",
+			"description": "https://www.cnil.fr/fr/designation-dpo"
 		}, {
 			"heading": "Responsable de traitement",
-			"id": "responsable_traitement"
+			"id": "responsable_traitement",
+      "description": "https://www.cnil.fr/fr/definition/responsable-de-traitement"
 		}, {
-			"heading": "Responsable technique",
-			"id": "technique"
+      "id": "technique",
+			"heading": "Responsable technique"
 		}],
 		"demarche": {
 			"description": "",

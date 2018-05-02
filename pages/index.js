@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Page from '../components/page'
 import EnrollmentTable from '../components/enrollment-table'
 import Redirect from '../components/redirect'
@@ -20,6 +21,10 @@ class Index extends React.Component {
       </div>
     )
   }
+}
+
+Index.propTypes = {
+  url: PropTypes.object.isRequired
 }
 
 export default Index
