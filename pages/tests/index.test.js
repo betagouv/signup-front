@@ -1,11 +1,18 @@
 import ReactTestRenderer from 'react-test-renderer'
-import About from '../../pages/about'
+import Index from '../../pages'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
 describe('pages | index', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<index />)
+    const props = {
+      url: {
+        query: {
+          id: '1'
+        }
+      }
+    }
+    const renderer = ReactTestRenderer.create(<Index {...props} />)
     it('should be defined', () => {
       expect(renderer).toBeDefined()
     })
@@ -13,5 +20,4 @@ describe('pages | index', () => {
       expect(renderer).toMatchSnapshot()
     })
   })
-  describe.skip('componentDidMount', () => {})
 })

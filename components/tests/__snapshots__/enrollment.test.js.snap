@@ -12,7 +12,7 @@ exports[`components | Enrollment with enrollment at deployed state should match 
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Déployé
   </p>
   <div
@@ -43,7 +43,7 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     En attente de déploiement
   </p>
   <button
@@ -83,7 +83,7 @@ exports[`components | Enrollment with enrollment that can send_application at pe
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Demande en attente
   </p>
   <button
@@ -123,7 +123,7 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Demande validée
   </p>
   <button
@@ -163,7 +163,7 @@ exports[`components | Enrollment with enrollment that can validate_application, 
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Demande envoyée
   </p>
   <button
@@ -221,7 +221,7 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Demande validée
   </p>
   <div
@@ -252,7 +252,7 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
   </em>
   <p />
   <p>
-    État de la demande : 
+    État de la demande :  
     Demande envoyée
   </p>
   <div

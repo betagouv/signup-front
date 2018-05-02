@@ -1,11 +1,9 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
+import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
 import React from 'react'
+import PropTypes from 'prop-types'
 import Router from 'next/router'
-import User from '../lib/user'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
-
-const axios = require('axios')
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
@@ -13,36 +11,36 @@ class ContractualisationForm extends React.Component {
     this.state = {
       enrollment: {
         acl: {
-          send_application: true
+          send_application: true // eslint-disable-line camelcase
         },
-        fournisseur_de_service: '',
-        description_service: '',
-        fondement_juridique: '',
-        scope_dgfip_RFR: false,
-        scope_dgfip_adresse_fiscale_taxation: false,
-        nombre_demandes_annuelle: '',
-        pic_demandes_par_heure: '',
-        nombre_demandes_mensuelles_jan: '',
-        nombre_demandes_mensuelles_fev: '',
-        nombre_demandes_mensuelles_mar: '',
-        nombre_demandes_mensuelles_avr: '',
-        nombre_demandes_mensuelles_mai: '',
-        nombre_demandes_mensuelles_jui: '',
-        nombre_demandes_mensuelles_jul: '',
-        nombre_demandes_mensuelles_aou: '',
-        nombre_demandes_mensuelles_sep: '',
-        nombre_demandes_mensuelles_oct: '',
-        nombre_demandes_mensuelles_nov: '',
-        nombre_demandes_mensuelles_dec: '',
-        autorite_certification_nom: '',
-        autorite_certification_fonction: '',
-        date_homologation: '',
-        date_fin_homologation: '',
-        delegue_protection_donnees: '',
-        validation_de_convention: false,
-        certificat_pub_production: '',
-        autorite_certification: '',
-        fournisseur_de_donnees: 'dgfip'
+        fournisseur_de_service: '', // eslint-disable-line camelcase
+        description_service: '', // eslint-disable-line camelcase
+        fondement_juridique: '', // eslint-disable-line camelcase
+        scope_dgfip_RFR: false, // eslint-disable-line camelcase
+        scope_dgfip_adresse_fiscale_taxation: false, // eslint-disable-line camelcase
+        nombre_demandes_annuelle: '', // eslint-disable-line camelcase
+        pic_demandes_par_heure: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_jan: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_fev: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_mar: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_avr: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_mai: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_jui: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_jul: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_aou: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_sep: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_oct: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_nov: '', // eslint-disable-line camelcase
+        nombre_demandes_mensuelles_dec: '', // eslint-disable-line camelcase
+        autorite_certification_nom: '', // eslint-disable-line camelcase
+        autorite_certification_fonction: '', // eslint-disable-line camelcase
+        date_homologation: '', // eslint-disable-line camelcase
+        date_fin_homologation: '', // eslint-disable-line camelcase
+        delegue_protection_donnees: '', // eslint-disable-line camelcase
+        validation_de_convention: false, // eslint-disable-line camelcase
+        certificat_pub_production: '', // eslint-disable-line camelcase
+        autorite_certification: '', // eslint-disable-line camelcase
+        fournisseur_de_donnees: 'dgfip' // eslint-disable-line camelcase
       },
       serviceProviders: []
     }
@@ -54,22 +52,14 @@ class ContractualisationForm extends React.Component {
   componentDidMount() {
     const {id} = this.props
     let token
-    if (typeof localStorage) token = localStorage.getItem('token')
-    if (id) axios.get(BACK_HOST + '/api/enrollments/' + id, {
-      headers: {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      this.setState({enrollment: response.data})
-    })
-    const user = new User()
-
-    setTimeout(() => {
-      user.getServiceProviders().then(serviceProviders => {
-        this.setState({serviceProviders})
+    if (typeof localStorage !== 'undefined') {
+      token = localStorage.getItem('token')
+    }
+    if (id) {
+      Services.getUserEnrollment(id, token).then(enrollment => {
+        this.setState({enrollment})
       })
-    }, 1000)
+    }
   }
 
   handleChange(event) {
@@ -271,7 +261,7 @@ class ContractualisationForm extends React.Component {
 
         <h1 id='convention'>Convention</h1>
         <section className='information-text'>
-        <p>Votre raccordement à l'API « Impôt Particulier » nécessite l'acceptation de la convention d'adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l'issue de votre demande de raccordement contiendra l'ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>
+          <p>Votre raccordement à l&lsquo;API « Impôt Particulier » nécessite l&lsquo;acceptation de la convention d&lsquo;adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l&lsquo;issue de votre demande de raccordement contiendra l&lsquo;ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>
         </section>
 
         <iframe src='/static/docs/charte-fc.pdf' width='100%' height='800px' />
@@ -294,6 +284,13 @@ class ContractualisationForm extends React.Component {
       </form>
     )
   }
+}
+
+ContractualisationForm.propTypes = {
+  id: PropTypes.string
+}
+ContractualisationForm.defaultProps = {
+  id: ''
 }
 
 export default ContractualisationForm

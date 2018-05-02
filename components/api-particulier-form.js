@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types'
 import React from 'react'
+import PropTypes from 'prop-types'
 import Router from 'next/router'
 import Services from '../lib/services'
 import Utils from '../lib/utils'
@@ -65,7 +65,7 @@ class ContractualisationForm extends React.Component {
       token = localStorage.getItem('token')
     }
     if (id) {
-      Services.getUserEnrollment(id).then(enrollment => {
+      Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})
       })
     }
@@ -108,26 +108,30 @@ class ContractualisationForm extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
-      }).catch((error) => {
-        if (!(error.response.status == 422)) return
-        let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+      }).catch(error => {
+        if (!(error.response.status === 422)) {
+          let errors = []
+          let enrollmentError
+          for (enrollmentError in error.response.data) {
+            errors = errors.concat(error.response.data[enrollmentError])
+          }
+          this.setState({errors})
         }
-        this.setState({errors})
       })
     } else {
       Services.createUserEnrollment(componentState, token).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
-      }).catch((error) => {
-        if (!(error.response.status == 422)) return
-        let errors = []
-        for (let enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+      }).catch(error => {
+        if (!(error.response.status === 422)) {
+          let errors = []
+          let enrollmentError
+          for (enrollmentError in error.response.data) {
+            errors = errors.concat(error.response.data[enrollmentError])
+          }
+          this.setState({errors})
         }
-        this.setState({errors})
       })
     }
     event.preventDefault()
@@ -144,12 +148,12 @@ class ContractualisationForm extends React.Component {
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social[0]
-      const raison_sociale = siegeSocial.nom_raison_sociale
+      const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
-      const code_naf = siegeSocial.activite_principale
+      const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})})
+      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
     }).catch(() => this.setState({sirenNotFound: true}))
   }
 
@@ -304,8 +308,9 @@ class ContractualisationForm extends React.Component {
         }
 
         {errors.map(error => {
+          let i = 0
           return (
-            <div className='notification error'>
+            <div key={i++} className='notification error'>
               {error}
             </div>
           )

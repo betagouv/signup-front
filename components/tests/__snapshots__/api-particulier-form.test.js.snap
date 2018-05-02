@@ -19,7 +19,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     </li>
   </ul>
   <p>
-    Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de la collectivité et informer correctement l’usager, c'est à dire explicitement demander l'accord de l'usager pour récupérer ses données auprès d'un fournisseur.
+    Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de votre administration et informer correctement l’usager.
   </p>
   <h2
     id="identite"
@@ -117,23 +117,6 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       value={undefined}
     />
   </div>
-  <div
-    className="form__group"
-  >
-    <label
-      htmlFor="responsable"
-    >
-      Responsable
-    </label>
-    <input
-      disabled={true}
-      id="responsable"
-      name="enrollment.responsable"
-      onChange={[Function]}
-      type="text"
-      value={undefined}
-    />
-  </div>
   <h3>
     Contacts
   </h3>
@@ -149,11 +132,12 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         <h3>
           Délégué à la protection des données
         </h3>
-        <div
+        <a
           className="card__meta"
+          href="https://www.cnil.fr/fr/designation-dpo"
         >
           https://www.cnil.fr/fr/designation-dpo
-        </div>
+        </a>
         <div
           className="form__group"
         >
@@ -199,6 +183,12 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
         <h3>
           Responsable de traitement
         </h3>
+        <a
+          className="card__meta"
+          href="https://www.cnil.fr/fr/definition/responsable-de-traitement"
+        >
+          https://www.cnil.fr/fr/definition/responsable-de-traitement
+        </a>
         <div
           className="form__group"
         >
@@ -293,7 +283,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       C'est la raison pour laquelle vous collectez des données personnelles, l'objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».
     </p>
     <p>
-      Il vous est également demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
+      Il vous est également demandé de préciser les références du cadre juridique de votre droit à demander ces informations (délibération du conseil municipal, décret …).
     </p>
   </section>
   <div
@@ -338,7 +328,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     >
       Cadre juridique 
       <i>
-        (Indiquez la référence ou l'URL du texte de loi)
+        (indiquez la référence ou l'URL du texte vous autorisant à récolter ces données)
       </i>
     </label>
     <input
@@ -453,7 +443,12 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     <label
       htmlFor="donnees_destinataires"
     >
-      Destinataires
+      Destinataires 
+      <a
+        href="https://www.cnil.fr/fr/definition/destinataire"
+      >
+        (plus d´infos)
+      </a>
     </label>
     <input
       disabled={false}
@@ -465,23 +460,10 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
     />
   </div>
   <h1
-    id="convention"
+    id="cgu"
   >
-    Convention
+    Conditions d´utilisation
   </h1>
-  <section
-    className="information-text"
-  >
-    <p>
-      Votre raccordement à l'API « Impôt Particulier » nécessite l'acceptation de la convention d'adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. 
-      <br />
-       Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. 
-      <br />
-       La convention générée à l'issue de votre demande de raccordement contiendra l'ensemble des éléments propres à votre situation. 
-      <br />
-       Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.
-    </p>
-  </section>
   <iframe
     height="800px"
     src="/static/docs/charte-fc.pdf"
@@ -502,7 +484,7 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       className="label-inline"
       htmlFor="validation_de_convention"
     >
-      Je valide la présente convention et confirme que le DPO de mon organisme est informé de ma demande
+      Je valide les présentes conditions d'utilisation et confirme que le DPO de mon organisme est informé de ma demande
     </label>
   </div>
   <div

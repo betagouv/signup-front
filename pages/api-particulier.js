@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Page from '../components/page'
-import ApiParticulierForm from '../components//api-particulier-form'
+import ApiParticulierForm from '../components/api-particulier-form'
 import ApiParticulierNav from '../components/api-particulier-nav'
 import Redirect from '../components/redirect'
 
