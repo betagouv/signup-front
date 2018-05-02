@@ -11,6 +11,7 @@ class ApiParticulierNav extends React.Component {
           <li><a className='side-pane__link' href='#identite'>Identité</a></li>
           <li><a className='side-pane__link' href='#demarche'>Démarche</a></li>
           <li><a className='side-pane__link' href='#donnees'>Données</a></li>
+          <li><a className='side-pane__link' href='#cgu'>Conditions d&acute;utilisation</a></li>
         </ul>
       </nav>
     )
