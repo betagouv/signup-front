@@ -6,12 +6,11 @@ class Redirect extends React.Component {
   constructor(props) {
     super(props)
 
-    const {redirect} = this.props
+    const {redirect, pathName} = this.props
 
-    if (redirect) {
-      this.state = {redirect: true}
-    } else {
-      this.state = {redirect: false}
+    this.state = {
+      redirect,
+      pathName
     }
   }
 
@@ -34,11 +33,13 @@ class Redirect extends React.Component {
 }
 
 Redirect.propTypes = {
-  redirect: PropTypes.bool
+  redirect: PropTypes.bool,
+  pathName: PropTypes.string
 }
 
 Redirect.defaultProps = {
-  redirect: false
+  redirect: false,
+  pathName: '/'
 }
 
 export default Redirect
