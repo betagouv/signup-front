@@ -4,9 +4,7 @@ import Page from '../components/page'
 import DgfipForm from '../components/dgfip-form'
 import DgfipNav from '../components/dgfip-nav'
 import EntrantsTechniquesForm from '../components/entrants-techniques-form'
-import {BACK_HOST} from '@env'
-
-const axios = require('axios')
+import Services from '../lib/services'
 
 class Dgfip extends React.Component {
   constructor(props) {
@@ -32,14 +30,11 @@ class Dgfip extends React.Component {
       token = localStorage.getItem('token')
     }
 
-    axios.get(BACK_HOST + '/api/enrollments/' + url.query.id, {
-      headers: {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      }
-    }).then(response => {
-      this.setState({enrollment: response.data})
-    })
+    if (url.query.id) {
+      Services.getUserEnrollment(url.query.id, token).then(enrollment => {
+        this.setState({enrollment})
+      })
+    }
   }
 
   render() {
