@@ -109,11 +109,13 @@ class ContractualisationForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status === 422)) {
+        if (error.response.status === 422) {
           let errors = []
           let enrollmentError
           for (enrollmentError in error.response.data) {
-            errors = errors.concat(error.response.data[enrollmentError])
+            if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+              errors = errors.concat(error.response.data[enrollmentError])
+            }
           }
           this.setState({errors})
         }
@@ -124,11 +126,13 @@ class ContractualisationForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status === 422)) {
+        if (error.response.status === 422) {
           let errors = []
           let enrollmentError
           for (enrollmentError in error.response.data) {
-            errors = errors.concat(error.response.data[enrollmentError])
+            if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+              errors = errors.concat(error.response.data[enrollmentError])
+            }
           }
           this.setState({errors})
         }
@@ -293,7 +297,7 @@ class ContractualisationForm extends React.Component {
 
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
-          <label htmlFor='validation_de_convention' className='label-inline'>Je valide les présentes conditions d'utilisation et confirme que le DPO de mon organisme est informé de ma demande</label>
+          <label htmlFor='validation_de_convention' className='label-inline'>Je valide les présentes conditions d&apos;utilisation et confirme que le DPO de mon organisme est informé de ma demande</label>
         </div>
 
         {!readOnly &&
