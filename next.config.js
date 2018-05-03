@@ -6,7 +6,8 @@ module.exports = {
       '/contact': {page: '/contact'},
       '/api-particulier': {page: '/api-particulier'},
       '/dgfip': {page: '/dgfip'},
-      '/api-entreprise': {page: '/api-entreprise'}
+      '/api-entreprise': {page: '/api-entreprise'},
+      '/oauth-callback': {page: '/oauth-callback'}
     }
   },
   webpackDevMiddleware: config => {

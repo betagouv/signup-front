@@ -11,7 +11,7 @@ class ApiParticulier extends React.Component {
 
     return (
       <div>
-        <Redirect pathName={url.pathname} />
+        <Redirect pathName={url.asPath} />
         <Page requireUser>
           <div className='documentation'>
             <ApiParticulierNav />
