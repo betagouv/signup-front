@@ -34,7 +34,7 @@ class Page extends React.Component {
     return (
       <div className='page'>
         <Head key='first' >
-          <title>particulier.api.gouv.fr</title>
+          <title>signup.api.gouv.fr</title>
           <meta charSet='utf-8' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
           <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
