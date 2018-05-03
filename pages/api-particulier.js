@@ -8,7 +8,6 @@ import Redirect from '../components/redirect'
 class ApiParticulier extends React.Component {
   render() {
     const {url} = this.props
-    console.log(this.props.url.query)
 
     return (
       <div>
