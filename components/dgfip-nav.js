@@ -21,8 +21,8 @@ class DgfipNav extends React.Component {
       token = localStorage.getItem('token')
     }
     if (id) {
-      Services.getUserEnrollment(id, token).then(response => {
-        this.setState({enrollment: response.data})
+      Services.getUserEnrollment(id, token).then(enrollment => {
+        this.setState({enrollment})
       })
     }
   }

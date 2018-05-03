@@ -118,7 +118,7 @@ class ApiEntrepriseForm extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (!(error.response.status === 422)) {
+        if (error.response.status === 422) {
           return
         }
         let errors = []

@@ -36,11 +36,13 @@ class Enrollment extends React.Component {
         this.setState({enrollment})
       }
     }).catch(error => {
-      if (!(error.response.status === 422)) {
+      if (error.response.status === 422) {
         let errors = []
         let enrollmentError
         for (enrollmentError in error.response.data) {
-          errors = errors.concat(error.response.data[enrollmentError])
+          if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
+            errors = errors.concat(error.response.data[enrollmentError])
+          }
         }
         this.setState({errors})
       }

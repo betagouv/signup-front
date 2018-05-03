@@ -14,6 +14,12 @@ const STATE_HUMAN_NAMES = {
   deployed: 'Déployé'
 }
 
+const FOURNISSEUR_DE_DONNEES_HUMAN_NAMES = {
+  'api-particulier': 'API Particulier',
+  'api-entreprise': 'API Entreprise',
+  dgfip: 'API Impôts particulier'
+}
+
 class EnrollmentTable extends React.Component {
   constructor(props) {
     super(props)
@@ -27,6 +33,7 @@ class EnrollmentTable extends React.Component {
     Services.getUserEnrollments().then(enrollments => {
       this.setState({enrollments: enrollments.map(enrollment => {
         enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state] // eslint-disable-line camelcase
+        enrollment.human_fournisseur_de_donnees = FOURNISSEUR_DE_DONNEES_HUMAN_NAMES[enrollment.fournisseur_de_donnees] // eslint-disable-line camelcase
         return enrollment
       })})
     })
@@ -56,6 +63,9 @@ class EnrollmentTable extends React.Component {
       {
         Header: 'Fournisseur de service',
         accessor: 'demarche.intitule'
+      }, {
+        Header: 'Type de demande',
+        accessor: 'human_fournisseur_de_donnees'
       }, {
         Header: 'Statut',
         accessor: 'human_state'
