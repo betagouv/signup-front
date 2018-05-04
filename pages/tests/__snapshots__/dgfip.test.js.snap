@@ -48,6 +48,23 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             className="side-pane__menu"
           >
             <li
+              className="text-center"
+            >
+              <a
+                className="side-pane__link"
+                href="http://dgfip.com"
+              >
+                <img
+                  src="/static/images/logo-dgfip.png"
+                  style={
+                    Object {
+                      "mixBlendMode": "multiply",
+                    }
+                  }
+                />
+              </a>
+            </li>
+            <li
               className="side-pane__title"
             >
               <h3>
@@ -102,6 +119,38 @@ exports[`pages | dgfip render should match snapshot 1`] = `
           <form
             onSubmit={[Function]}
           >
+            <h1>
+              Demande d'accès à l'API Impôts Particulier
+            </h1>
+            <p>
+              Dans le cadre du programme « Dites-le nous une fois -Particuliers», visant à simplifier les démarches administratives des usagers, l'API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d'imposition papier.
+            </p>
+            <p>
+              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
+            </p>
+            <p>
+              Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :
+            </p>
+            <ul>
+              <li>
+                le fondement juridique
+              </li>
+              <li>
+                les données nécessaires à la démarche administrative
+              </li>
+              <li>
+                la volumétrie de sollicitation de l'API
+              </li>
+              <li>
+                la protection des données personnelles.
+              </li>
+            </ul>
+            <p>
+              Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l'authentification SSL et concevoir vos bouchons .
+            </p>
+            <p>
+              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
+            </p>
             <h1
               id="legal"
             >
