@@ -33,6 +33,7 @@ class DgfipNav extends React.Component {
     return (
       <nav className='side-pane'>
         <ul className='side-pane__menu'>
+          <li className='text-center'><a className='side-pane__link' href='http://dgfip.com'><img src='/static/images/logo-dgfip.png' /></a></li>
           <li className='side-pane__title'>
             <h3>Votre demande</h3>
           </li>

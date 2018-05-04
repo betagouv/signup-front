@@ -111,6 +111,20 @@ class ContractualisationForm extends React.Component {
     let i = 0
     return (
       <form onSubmit={this.handleSubmit}>
+        <h1>Demande d&apos;accès à l&apos;API Impôts Particulier</h1>
+        <p>Dans le cadre du programme « Dites-le nous une fois -Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p>
+
+        <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
+
+        <p>Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :</p>
+        <ul>
+          <li>le fondement juridique</li>
+          <li>les données nécessaires à la démarche administrative</li>
+          <li>la volumétrie de sollicitation de l&apos;API</li>
+          <li>la protection des données personnelles.</li>
+        </ul>
+        <p>Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l&apos;authentification SSL et concevoir vos bouchons .</p>
+        <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
         <h1 id='legal'>Fondement juridique</h1>
         <section className='information-text'>
           <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
