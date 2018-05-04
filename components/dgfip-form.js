@@ -168,6 +168,7 @@ class ContractualisationForm extends React.Component {
           </ul>
           <p>Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice.
             Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
+          <p><a href='/static/docs/cst-dgfip.pdf' target='_blank'>Le Contrat de Service Technique</a> sont disponibles pour avoir le détail des données disponibles</p>
         </section>
         <div className='form__group'>
           <fieldset className='vertical'>
