@@ -423,6 +423,7 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseattestations_agefiph"
               name="enrollment.scopes.attestations_agefiph"
@@ -435,10 +436,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Attestation AGEFIPH
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_attestations_agefiph"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_attestations_agefiph"
+                  name="enrollment.donnees.destinataires.attestations_agefiph"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseattestations_fiscales"
               name="enrollment.scopes.attestations_fiscales"
@@ -451,10 +481,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Attestation Fiscale
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_attestations_fiscales"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_attestations_fiscales"
+                  name="enrollment.donnees.destinataires.attestations_fiscales"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseattestations_sociales"
               name="enrollment.scopes.attestations_sociales"
@@ -467,10 +526,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Attestation Sociale
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_attestations_sociales"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_attestations_sociales"
+                  name="enrollment.donnees.destinataires.attestations_sociales"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisecertificat_cnetp"
               name="enrollment.scopes.certificat_cnetp"
@@ -483,10 +571,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Certificat CNETP
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_certificat_cnetp"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_certificat_cnetp"
+                  name="enrollment.donnees.destinataires.certificat_cnetp"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseassociations"
               name="enrollment.scopes.associations"
@@ -499,10 +616,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Association
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_associations"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_associations"
+                  name="enrollment.donnees.destinataires.associations"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisecertificat_opqibi"
               name="enrollment.scopes.certificat_opqibi"
@@ -515,10 +661,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Certificat OPQIBI
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_certificat_opqibi"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_certificat_opqibi"
+                  name="enrollment.donnees.destinataires.certificat_opqibi"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisedocuments_association"
               name="enrollment.scopes.documents_association"
@@ -531,10 +706,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Document association
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_documents_association"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_documents_association"
+                  name="enrollment.donnees.destinataires.documents_association"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseetablissements"
               name="enrollment.scopes.etablissements"
@@ -547,10 +751,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               INSEE Etablissement
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_etablissements"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_etablissements"
+                  name="enrollment.donnees.destinataires.etablissements"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseentreprises"
               name="enrollment.scopes.entreprises"
@@ -563,10 +796,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               INSEE Entreprise
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_entreprises"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_entreprises"
+                  name="enrollment.donnees.destinataires.entreprises"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseextrait_court_inpi"
               name="enrollment.scopes.extrait_court_inpi"
@@ -579,10 +841,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Extrait INPI
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_extrait_court_inpi"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_extrait_court_inpi"
+                  name="enrollment.donnees.destinataires.extrait_court_inpi"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseextraits_rcs"
               name="enrollment.scopes.extraits_rcs"
@@ -595,10 +886,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Extrait RCS
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_extraits_rcs"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_extraits_rcs"
+                  name="enrollment.donnees.destinataires.extraits_rcs"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseexercices"
               name="enrollment.scopes.exercices"
@@ -611,10 +931,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Exercice
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_exercices"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_exercices"
+                  name="enrollment.donnees.destinataires.exercices"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseliasse_fiscale"
               name="enrollment.scopes.liasse_fiscale"
@@ -627,10 +976,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Liasse fiscale
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_liasse_fiscale"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_liasse_fiscale"
+                  name="enrollment.donnees.destinataires.liasse_fiscale"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisefntp_carte_pro"
               name="enrollment.scopes.fntp_carte_pro"
@@ -643,10 +1021,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Carte Pro FNTP
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_fntp_carte_pro"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_fntp_carte_pro"
+                  name="enrollment.donnees.destinataires.fntp_carte_pro"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisequalibat"
               name="enrollment.scopes.qualibat"
@@ -659,10 +1066,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Certificat Qualibat
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_qualibat"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_qualibat"
+                  name="enrollment.donnees.destinataires.qualibat"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entrepriseprobtp"
               name="enrollment.scopes.probtp"
@@ -675,10 +1111,39 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Certificat PROBTP
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_probtp"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_probtp"
+                  name="enrollment.donnees.destinataires.probtp"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_api_entreprisemsa_cotisations"
               name="enrollment.scopes.msa_cotisations"
@@ -691,6 +1156,34 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
             >
               Cotisation MSA
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_msa_cotisations"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="desinataire_msa_cotisations"
+                  name="enrollment.donnees.destinataires.msa_cotisations"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>

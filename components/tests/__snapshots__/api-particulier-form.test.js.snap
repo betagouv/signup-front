@@ -365,9 +365,12 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
             }
           }
         >
-          <div>
+          <div
+            className="scope"
+          >
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_dgfip_avis_imposition"
               name="enrollment.scopes.dgfip_avis_imposition"
@@ -378,12 +381,41 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
               className="label-inline"
               htmlFor="checkbox-scope_dgfip_avis_imposition"
             >
-              DGFiP - Revenu fiscal de référence
+              DGFiP - Avis d'imposition
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_dgfip_avis_imposition"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="destinataire_dgfip_avis_imposition"
+                  name="enrollment.donnees.destinataires.dgfip_avis_imposition"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_cnaf_quotient_familial"
               name="enrollment.scopes.cnaf_quotient_familial"
@@ -396,10 +428,39 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
             >
               CNAF - Quotient familial
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_cnaf_quotient_familial"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="destinataire_cnaf_quotient_familial"
+                  name="enrollment.donnees.destinataires.cnaf_quotient_familial"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
           <div>
             <input
               checked={false}
+              className="scope__checkbox"
               disabled={false}
               id="checkbox-scope_cnaf_attestation_droits"
               name="enrollment.scopes.cnaf_attestation_droits"
@@ -412,6 +473,34 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
             >
               CNAF - Attestation de droits
             </label>
+            <div
+              className="scope__destinataire"
+            >
+              <div
+                className="form__group"
+              >
+                <label
+                  htmlFor="destinataire_cnaf_attestation_droits"
+                >
+                  Destinataires 
+                  <a
+                    href="https://www.cnil.fr/fr/definition/destinataire"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    (plus d´infos)
+                  </a>
+                </label>
+                <input
+                  disabled={false}
+                  id="destinataire_cnaf_attestation_droits"
+                  name="enrollment.donnees.destinataires.cnaf_attestation_droits"
+                  onChange={[Function]}
+                  type="text"
+                  value={undefined}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -434,28 +523,6 @@ exports[`components | ContractualisationForm render should match snapshot 1`] = 
       name="enrollment.donnees.conservation"
       onChange={[Function]}
       type="number"
-      value=""
-    />
-  </div>
-  <div
-    className="form__group"
-  >
-    <label
-      htmlFor="donnees_destinataires"
-    >
-      Destinataires 
-      <a
-        href="https://www.cnil.fr/fr/definition/destinataire"
-      >
-        (plus d´infos)
-      </a>
-    </label>
-    <input
-      disabled={false}
-      id="donnees_destinataires"
-      name="enrollment.donnees.destinataires"
-      onChange={[Function]}
-      type="text"
       value=""
     />
   </div>

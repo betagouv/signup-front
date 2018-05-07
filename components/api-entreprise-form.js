@@ -285,8 +285,14 @@ class ApiEntrepriseForm extends React.Component {
                     const scopeCode = scope.code
                     return (
                       <div key={scope.id}>
-                        <input onChange={this.handleChange} type='checkbox' name={`enrollment.scopes.${scopeCode}`} id={`checkbox-scope_api_entreprise${scopeCode}`} disabled={readOnly} checked={enrollment.scopes[scopeCode] ? 'checked' : false} />
+                        <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`enrollment.scopes.${scopeCode}`} id={`checkbox-scope_api_entreprise${scopeCode}`} disabled={readOnly} checked={enrollment.scopes[scopeCode] ? 'checked' : false} />
                         <label htmlFor={`checkbox-scope_api_entreprise${scopeCode}`} className='label-inline'>{scope.name}</label>
+                        <div className='scope__destinataire'>
+                          <div className='form__group'>
+                            <label htmlFor={`destinataire_${scopeCode}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                            <input type='text' onChange={this.handleChange} name={`enrollment.donnees.destinataires.${scopeCode}`} id={`desinataire_${scopeCode}`} disabled={readOnly} value={enrollment.donnees.destinataires[scopeCode]} />
+                          </div>
+                        </div>
                       </div>
                     )
                   })
