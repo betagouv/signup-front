@@ -307,11 +307,6 @@ class ApiEntrepriseForm extends React.Component {
           <input type='number' onChange={this.handleChange} name='enrollment.donnees.conservation' id='donnees_conservation' disabled={readOnly} value={enrollment.donnees.conservation} />
         </div>
 
-        <div className='form__group'>
-          <label htmlFor='donnees_destinataires'>Destinataires</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires' id='donnees_destinataires' disabled={readOnly} value={enrollment.donnees.destinataires} />
-        </div>
-
         <h1 id='convention'>Convention</h1>
         <section className='information-text'>
           <p>Votre raccordement à l&apos;API « Impôt Particulier » nécessite l&apos;acceptation de la convention d&apos;adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l&apos;issue de votre demande de raccordement contiendra l&apos;ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>

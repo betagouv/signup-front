@@ -1209,23 +1209,6 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
       value=""
     />
   </div>
-  <div
-    className="form__group"
-  >
-    <label
-      htmlFor="donnees_destinataires"
-    >
-      Destinataires
-    </label>
-    <input
-      disabled={false}
-      id="donnees_destinataires"
-      name="enrollment.donnees.destinataires"
-      onChange={[Function]}
-      type="text"
-      value=""
-    />
-  </div>
   <h1
     id="convention"
   >
