@@ -124,7 +124,7 @@ class ApiEntrepriseForm extends React.Component {
         let errors = []
         let enrollmentError
         for (enrollmentError in error.response.data) {
-          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+          if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
             const errorMessage = error.response.data[enrollmentError]
             errors = errors.concat(errorMessage)
           }
@@ -143,7 +143,7 @@ class ApiEntrepriseForm extends React.Component {
         let errors = []
         let enrollmentError
         for (enrollmentError in error.response.data) {
-          if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+          if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
             errors = errors.concat(error.response.data[enrollmentError])
           }
         }
