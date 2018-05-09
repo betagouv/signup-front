@@ -117,23 +117,6 @@ exports[`components | ApiEntrepriseForm render should match snapshot 1`] = `
       value={undefined}
     />
   </div>
-  <div
-    className="form__group"
-  >
-    <label
-      htmlFor="responsable"
-    >
-      Responsable
-    </label>
-    <input
-      disabled={true}
-      id="responsable"
-      name="enrollment.responsable"
-      onChange={[Function]}
-      type="text"
-      value={undefined}
-    />
-  </div>
   <h3>
     Contacts
   </h3>

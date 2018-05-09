@@ -165,11 +165,10 @@ class ApiEntrepriseForm extends React.Component {
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social[0]
       const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
-      const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
       const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
+      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, code_naf})}) // eslint-disable-line camelcase
     }).catch(() => this.setState({sirenNotFound: true}))
   }
 
@@ -242,10 +241,6 @@ class ApiEntrepriseForm extends React.Component {
         <div className='form__group'>
           <label htmlFor='code_naf'>Code NAF</label>
           <input type='text' onChange={this.handleChange} name='enrollment.code_naf' id='code_naf' disabled value={enrollment.code_naf} />
-        </div>
-        <div className='form__group'>
-          <label htmlFor='responsable'>Responsable</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.responsable' id='responsable' disabled value={enrollment.responsable} />
         </div>
 
         <h3>Contacts</h3>
