@@ -112,7 +112,7 @@ class ContractualisationForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Demande d&apos;accès à l&apos;API Impôts Particulier</h1>
-        <p>Dans le cadre du programme « Dites-le nous une fois -Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p>
+        <p>Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p>
 
         <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
 
