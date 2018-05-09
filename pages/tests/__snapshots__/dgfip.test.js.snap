@@ -305,13 +305,14 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice. Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.
               </p>
               <p>
+                Vous pouvez consulter le 
                 <a
                   href="/static/docs/cst-dgfip.pdf"
                   target="_blank"
                 >
-                  Le Contrat de Service Technique
+                  Contrat de Service Technique (CST)
                 </a>
-                 sont disponibles pour avoir le détail des données disponibles
+                 pour voir le détail des données disponibles.
               </p>
             </section>
             <div
