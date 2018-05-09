@@ -151,6 +151,54 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             <p>
               Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
             </p>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-administration"
+                name="enrollment.administration"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-administration"
+              >
+                Êtes-vous ou représentez-vous une administration publique (État, collectivités territoriales...) ?
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-france_connect"
+                name="enrollment.france_connect"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-france_connect"
+              >
+                Avez-vous intégré le bouton FranceConnect ou êtes-vous éligible à son intégration ?
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-autorisation_legale"
+                name="enrollment.autorisation_legale"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-autorisation_legale"
+              >
+                Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?
+              </label>
+            </div>
             <h1
               id="legal"
             >

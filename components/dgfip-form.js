@@ -125,6 +125,18 @@ class ContractualisationForm extends React.Component {
         </ul>
         <p>Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l&apos;authentification SSL et concevoir vos bouchons .</p>
         <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.administration' id='checkbox-administration' disabled={readOnly} checked={enrollment.administration ? 'checked' : false} />
+          <label htmlFor='checkbox-administration' className='label-inline'>Êtes-vous ou représentez-vous une administration publique (État, collectivités territoriales...) ?</label>
+        </div>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.france_connect' id='checkbox-france_connect' disabled={readOnly} checked={enrollment.france_connect ? 'checked' : false} />
+          <label htmlFor='checkbox-france_connect' className='label-inline'>Avez-vous intégré le bouton FranceConnect ou êtes-vous éligible à son intégration ?</label>
+        </div>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.autorisation_legale' id='checkbox-autorisation_legale' disabled={readOnly} checked={enrollment.autorisation_legale ? 'checked' : false} />
+          <label htmlFor='checkbox-autorisation_legale' className='label-inline'>Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?</label>
+        </div>
         <h1 id='legal'>Fondement juridique</h1>
         <section className='information-text'>
           <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
