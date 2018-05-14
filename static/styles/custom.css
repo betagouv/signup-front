@@ -206,3 +206,14 @@ li.panel .button-list {
 .card + .card {
   margin-left: 0;
 }
+
+.scope__destinataire {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: all .5s ease;
+}
+
+.scope__checkbox:checked ~ .scope__destinataire {
+  max-height: 100px;
+}
