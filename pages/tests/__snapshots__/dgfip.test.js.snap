@@ -48,6 +48,23 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             className="side-pane__menu"
           >
             <li
+              className="text-center"
+            >
+              <a
+                className="side-pane__link"
+                href="http://dgfip.com"
+              >
+                <img
+                  src="/static/images/logo-dgfip.png"
+                  style={
+                    Object {
+                      "mixBlendMode": "multiply",
+                    }
+                  }
+                />
+              </a>
+            </li>
+            <li
               className="side-pane__title"
             >
               <h3>
@@ -102,6 +119,86 @@ exports[`pages | dgfip render should match snapshot 1`] = `
           <form
             onSubmit={[Function]}
           >
+            <h1>
+              Demande d'accès à l'API Impôts Particulier
+            </h1>
+            <p>
+              Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l'API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d'imposition papier.
+            </p>
+            <p>
+              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
+            </p>
+            <p>
+              Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :
+            </p>
+            <ul>
+              <li>
+                le fondement juridique
+              </li>
+              <li>
+                les données nécessaires à la démarche administrative
+              </li>
+              <li>
+                la volumétrie de sollicitation de l'API
+              </li>
+              <li>
+                la protection des données personnelles.
+              </li>
+            </ul>
+            <p>
+              Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l'authentification SSL et concevoir vos bouchons .
+            </p>
+            <p>
+              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
+            </p>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-administration"
+                name="enrollment.administration"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-administration"
+              >
+                Êtes-vous ou représentez-vous une administration publique (État, collectivités territoriales...) ?
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-france_connect"
+                name="enrollment.france_connect"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-france_connect"
+              >
+                Avez-vous intégré le bouton FranceConnect ou êtes-vous éligible à son intégration ?
+              </label>
+            </div>
+            <div>
+              <input
+                checked={false}
+                disabled={false}
+                id="checkbox-autorisation_legale"
+                name="enrollment.autorisation_legale"
+                onChange={[Function]}
+                type="checkbox"
+              />
+              <label
+                className="label-inline"
+                htmlFor="checkbox-autorisation_legale"
+              >
+                Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?
+              </label>
+            </div>
             <h1
               id="legal"
             >
@@ -206,6 +303,16 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               </ul>
               <p>
                 Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice. Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.
+              </p>
+              <p>
+                Vous pouvez consulter le 
+                <a
+                  href="/static/docs/cst-dgfip.pdf"
+                  target="_blank"
+                >
+                  Contrat de Service Technique (CST)
+                </a>
+                 pour voir le détail des données disponibles.
               </p>
             </section>
             <div

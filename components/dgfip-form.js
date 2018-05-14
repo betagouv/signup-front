@@ -111,6 +111,32 @@ class ContractualisationForm extends React.Component {
     let i = 0
     return (
       <form onSubmit={this.handleSubmit}>
+        <h1>Demande d&apos;accès à l&apos;API Impôts Particulier</h1>
+        <p>Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p>
+
+        <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
+
+        <p>Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :</p>
+        <ul>
+          <li>le fondement juridique</li>
+          <li>les données nécessaires à la démarche administrative</li>
+          <li>la volumétrie de sollicitation de l&apos;API</li>
+          <li>la protection des données personnelles.</li>
+        </ul>
+        <p>Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l&apos;authentification SSL et concevoir vos bouchons .</p>
+        <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.administration' id='checkbox-administration' disabled={readOnly} checked={enrollment.administration ? 'checked' : false} />
+          <label htmlFor='checkbox-administration' className='label-inline'>Êtes-vous ou représentez-vous une administration publique (État, collectivités territoriales...) ?</label>
+        </div>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.france_connect' id='checkbox-france_connect' disabled={readOnly} checked={enrollment.france_connect ? 'checked' : false} />
+          <label htmlFor='checkbox-france_connect' className='label-inline'>Avez-vous intégré le bouton FranceConnect ou êtes-vous éligible à son intégration ?</label>
+        </div>
+        <div>
+          <input onChange={this.handleChange} type='checkbox' name='enrollment.autorisation_legale' id='checkbox-autorisation_legale' disabled={readOnly} checked={enrollment.autorisation_legale ? 'checked' : false} />
+          <label htmlFor='checkbox-autorisation_legale' className='label-inline'>Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?</label>
+        </div>
         <h1 id='legal'>Fondement juridique</h1>
         <section className='information-text'>
           <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
@@ -154,6 +180,7 @@ class ContractualisationForm extends React.Component {
           </ul>
           <p>Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice.
             Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
+          <p>Vous pouvez consulter le <a href='/static/docs/cst-dgfip.pdf' target='_blank'>Contrat de Service Technique (CST)</a> pour voir le détail des données disponibles.</p>
         </section>
         <div className='form__group'>
           <fieldset className='vertical'>
