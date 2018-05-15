@@ -1,3 +1,4 @@
+import {PIWIK_URL, PIWIK_SITE_ID} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
@@ -18,6 +19,16 @@ class Page extends React.Component {
   }
 
   componentDidMount() {
+    setTimeout(() => {
+      if (window.Piwik) {
+        const tracker = window.Piwik.getTracker(`${PIWIK_URL}/piwik.php`, PIWIK_SITE_ID)
+
+        if (tracker) {
+          tracker.trackPageView()
+        }
+      }
+    }, 300)
+
     const user = new User()
 
     user.login().then(user => {
@@ -44,6 +55,7 @@ class Page extends React.Component {
           <link rel='icon' type='image/png' sizes='32x32' href='/static/favicons/favicon-32x32.png' />
           <link rel='manifest' href='/static/favicons/manifest.json' />
           <link rel='mask-icon' href='/static/favicons/safari-pinned-tab.svg' color='#5bbad5' />
+          <script src={`${PIWIK_URL}/piwik.js`} />
         </Head>
         <Header key='second' />
 
