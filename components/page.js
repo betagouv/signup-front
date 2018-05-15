@@ -9,7 +9,6 @@ import Header from './header'
 import Footer from './footer'
 import Section from './section'
 
-
 class Page extends React.Component {
   constructor(props) {
     super(props)
@@ -56,7 +55,7 @@ class Page extends React.Component {
           <link rel='icon' type='image/png' sizes='32x32' href='/static/favicons/favicon-32x32.png' />
           <link rel='manifest' href='/static/favicons/manifest.json' />
           <link rel='mask-icon' href='/static/favicons/safari-pinned-tab.svg' color='#5bbad5' />
-          <script src='https://stats.data.gouv.fr/piwik.js' />
+          <script src={`${PIWIK_URL}/piwik.js`} />
         </Head>
         <Header key='second' />
 
