@@ -24,7 +24,9 @@ exports[`components | RestrictedPage render while loggedIn should match snapshot
         <ul
           className="nav__links"
         >
-          <li>
+          <li
+            className="nav__item"
+          >
             <a
               href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback&scope=&response_type=token&state="
             >
@@ -162,7 +164,9 @@ exports[`components | RestrictedPage render while not loggedIn should match snap
         <ul
           className="nav__links"
         >
-          <li>
+          <li
+            className="nav__item"
+          >
             <a
               href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback&scope=&response_type=token&state="
             >
