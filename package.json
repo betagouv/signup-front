@@ -31,10 +31,12 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-runkit": "^0.9.0",
-    "react-table": "^6.8.0"
+    "react-table": "^6.8.0",
+    "template.data.gouv.fr": "^1.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.1",
+    "babel-plugin-inline-import": "^2.0.6",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-xo-nextjs": "^1.2.0",
