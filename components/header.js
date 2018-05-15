@@ -30,12 +30,12 @@ class Header extends React.Component {
     const {user} = this.state
 
     return (
-      <header>
-        <nav className='nav'>
-          <div className='nav__container'>
-            <a className='nav__link' href='https://api.gouv.fr/'>
-              <img className='nav__logo' src='https://api.gouv.fr/img/logo_api.svg' alt='Accueil de signup.api.gouv.fr' />
-            </a>
+      <header className='navbar'>
+        <div className='navbar__container'>
+          <a className='navbar__home' href='https://api.gouv.fr/'>
+            <img className='navbar__logo' src='https://api.gouv.fr/img/logo_api.svg' alt='Accueil de signup.api.gouv.fr' />
+          </a>
+          <nav>
             <ul className='nav__links'>
               {user.loggedIn &&
                 <li><Link href='/'><a>Liste des demandes</a></Link></li>
@@ -57,8 +57,8 @@ class Header extends React.Component {
                 }
               </li>
             </ul>
-          </div>
-        </nav>
+          </nav>
+        </div>
       </header>
     )
   }

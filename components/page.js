@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import templateGlobalStyles from 'template.data.gouv.fr/dist/style/main.min.css'
 import attachUser from '../components/hoc/attach-user'
 import OAuth from '../lib/oauth'
 import User from '../lib/user'
@@ -37,7 +38,6 @@ class Page extends React.Component {
           <title>signup.api.gouv.fr</title>
           <meta charSet='utf-8' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-          <link href='https://rawgit.com/etalab/template.data.gouv.fr/master/template.css' rel='stylesheet' />
           <link href='/static/styles/custom.css' rel='stylesheet' />
           <link rel='apple-touch-icon' sizes='180x180' href='/static/favicons/apple-icon-180x180.png' />
           <link rel='icon' type='image/png' sizes='16x16' href='/static/favicons/favicon-16x16.png' />
@@ -61,6 +61,10 @@ class Page extends React.Component {
         </main>
 
         <Footer key='four' />
+
+        <style
+          dangerouslySetInnerHTML={{__html: templateGlobalStyles}} // eslint-disable-line react/no-danger
+        />
       </div>
     )
   }

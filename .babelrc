@@ -10,7 +10,13 @@
           "whitelist": null,
           "safe": false,
           "allowUndefined": false
-        }]
+        }],
+        [
+          "inline-import",
+          {
+            "extensions": [".css"]
+          }
+        ]
       ]
     },
     "production": {
