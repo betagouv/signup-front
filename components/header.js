@@ -38,9 +38,9 @@ class Header extends React.Component {
           <nav>
             <ul className='nav__links'>
               {user.loggedIn &&
-                <li><Link href='/'><a>Liste des demandes</a></Link></li>
+                <li className='nav__item'><Link href='/'><a>Liste des demandes</a></Link></li>
               }
-              <li>
+              <li className='nav__item'>
                 {user.loggedIn && (
                   <div className='dropdown'>
                     { user.email }
