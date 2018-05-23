@@ -113,7 +113,7 @@ class ContractualisationForm extends React.Component {
           let errors = []
           let enrollmentError
           for (enrollmentError in error.response.data) {
-            if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
               errors = errors.concat(error.response.data[enrollmentError])
             }
           }
@@ -130,7 +130,7 @@ class ContractualisationForm extends React.Component {
           let errors = []
           let enrollmentError
           for (enrollmentError in error.response.data) {
-            if (Object.prototype.hasOwnProperty.call(enrollmentError, error.response.data)) {
+            if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
               errors = errors.concat(error.response.data[enrollmentError])
             }
           }
