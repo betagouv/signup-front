@@ -2,11 +2,11 @@ module.exports = {
   exportPathMap: () => {
     return {
       '/': {page: '/'},
-      '/about': {page: '/about'},
-      '/contact': {page: '/contact'},
-      '/api-particulier': {page: '/api-particulier'},
-      '/dgfip': {page: '/dgfip'},
-      '/api-entreprise': {page: '/api-entreprise'},
+      '/about.html': {page: '/about.html'},
+      '/contact.html': {page: '/contact.html'},
+      '/api-particulier.html': {page: '/api-particulier.html'},
+      '/dgfip.html': {page: '/dgfip.html'},
+      '/api-entreprise.html': {page: '/api-entreprise.html'},
       '/oauth-callback': {page: '/oauth-callback'}
     }
   },
