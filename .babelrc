@@ -10,7 +10,13 @@
           "whitelist": null,
           "safe": false,
           "allowUndefined": false
-        }]
+        }],
+        [
+          "inline-import",
+          {
+            "extensions": [".css"]
+          }
+        ]
       ]
     },
     "production": {
@@ -23,7 +29,13 @@
           "whitelist": null,
           "safe": false,
           "allowUndefined": false
-        }]
+        }],
+        [
+          "inline-import",
+          {
+            "extensions": [".css"]
+          }
+        ]
       ]
     },
     "test": {
@@ -36,7 +48,13 @@
           "whitelist": null,
           "safe": false,
           "allowUndefined": false
-        }]
+        }],
+        [
+          "inline-import",
+          {
+            "extensions": [".css"]
+          }
+        ]
       ]
     }
   }

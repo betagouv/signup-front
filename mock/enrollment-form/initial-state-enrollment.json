@@ -22,7 +22,7 @@
 		},
 		"donnees": {
 			"conservation": "",
-			"destinataires": ""
+			"destinataires": {}
 		},
 		"fournisseur_de_donnees": "api-particulier",
 		"scopes": {},

@@ -44,7 +44,7 @@ class ContractualisationForm extends React.Component {
         },
         donnees: {
           conservation: '',
-          destinataires: ''
+          destinataires: {}
         },
         validation_de_convention: false, // eslint-disable-line camelcase
         validation_delegue_a_la_protection_des_données: false // eslint-disable-line camelcase
@@ -264,17 +264,35 @@ class ContractualisationForm extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-                <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Revenu fiscal de référence</label>
+                <div className='scope'>
+                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
+                  <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Avis d&apos;imposition</label>
+                  <div className='scope__destinataire'>
+                    <div className='form__group'>
+                      <label htmlFor='destinataire_dgfip_avis_imposition'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.dgfip_avis_imposition' id='destinataire_dgfip_avis_imposition' disabled={readOnly} value={enrollment.donnees.destinataires.dgfip_avis_imposition} />
+                    </div>
+                  </div>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scopes.cnaf_quotient_familial ? 'checked' : false} />
+                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scopes.cnaf_quotient_familial ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quotient familial</label>
+                  <div className='scope__destinataire'>
+                    <div className='form__group'>
+                      <label htmlFor='destinataire_cnaf_quotient_familial'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.cnaf_quotient_familial' id='destinataire_cnaf_quotient_familial' disabled={readOnly} value={enrollment.donnees.destinataires.cnaf_quotient_familial} />
+                    </div>
+                  </div>
                 </div>
                 <div>
-                  <input onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scopes.cnaf_attestation_droits ? 'checked' : false} />
+                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scopes.cnaf_attestation_droits ? 'checked' : false} />
                   <label htmlFor='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
+                  <div className='scope__destinataire'>
+                    <div className='form__group'>
+                      <label htmlFor='destinataire_cnaf_attestation_droits'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.cnaf_attestation_droits' id='destinataire_cnaf_attestation_droits' disabled={readOnly} value={enrollment.donnees.destinataires.cnaf_attestation_droits} />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -284,11 +302,6 @@ class ContractualisationForm extends React.Component {
         <div className='form__group'>
           <label htmlFor='donnees_conservation'>Conservation des données <i>(en mois)</i></label>
           <input type='number' onChange={this.handleChange} name='enrollment.donnees.conservation' id='donnees_conservation' disabled={readOnly} value={enrollment.donnees.conservation} />
-        </div>
-
-        <div className='form__group'>
-          <label htmlFor='donnees_destinataires'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire'>(plus d&acute;infos)</a></label>
-          <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires' id='donnees_destinataires' disabled={readOnly} value={enrollment.donnees.destinataires} />
         </div>
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
