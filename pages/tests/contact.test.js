@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Contact from '../../pages/contact'
+import Contact from '../../pages/contact.html'
 
 describe('pages | contact', () => {
   describe('render', () => {

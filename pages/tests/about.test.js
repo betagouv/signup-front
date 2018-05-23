@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import About from '../../pages/about'
+import About from '../../pages/about.html'
 
 describe('pages | about', () => {
   describe('render', () => {

@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import ApiEntreprise from '../../pages/api-entreprise'
+import ApiEntreprise from '../../pages/api-entreprise.html'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
