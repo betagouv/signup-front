@@ -6,8 +6,27 @@ import ApiParticulierNav from '../components/api-particulier-nav'
 import Redirect from '../components/redirect'
 
 class ApiParticulier extends React.Component {
+  getQueryVariable(variable) {
+    if (typeof window === 'undefined') {
+      return null
+    }
+
+    const query = window.location.search.substring(1)
+    const vars = query.split('&')
+
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=')
+      if (decodeURIComponent(pair[0]) === variable) {
+        return decodeURIComponent(pair[1])
+      }
+    }
+
+    console.log('Query variable %s not found', variable)
+  }
+
   render() {
     const {url} = this.props
+    const id = this.getQueryVariable('id')
 
     return (
       <div>
@@ -16,7 +35,7 @@ class ApiParticulier extends React.Component {
           <div className='documentation'>
             <ApiParticulierNav />
             <div className='main-pane'>
-              <ApiParticulierForm id={url.query.id} />
+              <ApiParticulierForm id={id} />
             </div>
           </div>
         </Page>
