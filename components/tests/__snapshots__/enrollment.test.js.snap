@@ -18,15 +18,14 @@ exports[`components | Enrollment with enrollment at deployed state should match 
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -58,15 +57,14 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -98,15 +96,14 @@ exports[`components | Enrollment with enrollment that can send_application at pe
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -138,15 +135,14 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -196,15 +192,14 @@ exports[`components | Enrollment with enrollment that can validate_application, 
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -227,15 +222,14 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
@@ -258,15 +252,14 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
   <div
     className="button-list"
   >
-    <button
+    <a
       className="button"
-      id="submit"
+      href="/undefined.html?id="
       name="subscribe"
       onClick={[Function]}
-      type="submit"
     >
       Voir
-    </button>
+    </a>
   </div>
 </li>
 `;
