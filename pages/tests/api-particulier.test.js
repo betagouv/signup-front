@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import ApiParticulier from '../../pages/api-particulier'
+import ApiParticulier from '../../pages/api-particulier.html'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
