@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import Utils from '../lib/utils'
+import User from '../lib/user'
 import Services from '../lib/services'
 
 class ContractualisationForm extends React.Component {
@@ -60,6 +61,12 @@ class ContractualisationForm extends React.Component {
         this.setState({enrollment})
       })
     }
+    setTimeout(() => {
+      const user = new User()
+      user.getServiceProviders().then(serviceProviders => {
+        this.setState({serviceProviders})
+      })
+    }, 1000)
   }
 
   handleChange(event) {
