@@ -17,9 +17,26 @@ class Dgfip extends React.Component {
     }
   }
 
+  getQueryVariable(variable) {
+    if (typeof window === 'undefined') {
+      return null
+    }
+
+    const query = window.location.search.substring(1)
+    const vars = query.split('&')
+
+    for (let i = 0; i < vars.length; i++) {
+      const pair = vars[i].split('=')
+      if (decodeURIComponent(pair[0]) === variable) {
+        return decodeURIComponent(pair[1])
+      }
+    }
+
+    console.log('Query variable %s not found', variable)
+  }
+
   componentDidMount() {
-    const {url} = this.props
-    const tokenFc = url.query.token
+    const tokenFc = this.getQueryVariable('token')
     let token
 
     if (typeof localStorage !== 'undefined' && tokenFc) {
@@ -30,8 +47,9 @@ class Dgfip extends React.Component {
       token = localStorage.getItem('token')
     }
 
-    if (url.query.id) {
-      Services.getUserEnrollment(url.query.id, token).then(enrollment => {
+    const id = this.getQueryVariable('id')
+    if (id) {
+      Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})
       })
     }
