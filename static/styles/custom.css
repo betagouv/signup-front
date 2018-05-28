@@ -241,3 +241,7 @@ li.panel .button-list {
 .scope__checkbox:checked ~ .scope__destinataire {
   max-height: 100px;
 }
+
+input[type=checkbox]:before {
+  background-image: url(/static/images/tick.svg) !important;
+}
