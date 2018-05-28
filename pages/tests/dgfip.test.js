@@ -1,5 +1,5 @@
 import ReactTestRenderer from 'react-test-renderer'
-import Dgfip from '../../pages/dgfip'
+import Dgfip from '../../pages/dgfip.html'
 
 require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
