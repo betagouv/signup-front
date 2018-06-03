@@ -15,6 +15,8 @@ exports[`components | Enrollment with enrollment at deployed state should match 
     État de la demande :  
     Déployé
   </p>
+  <p />
+  <div />
   <div
     className="button-list"
   >
@@ -45,15 +47,18 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
     État de la demande :  
     En attente de déploiement
   </p>
-  <button
-    className="button"
-    id="submit"
-    name="deploy_application"
-    onClick={[Function]}
-    type="submit"
-  >
-    Déployer l'application
-  </button>
+  <p />
+  <div>
+    <button
+      className="button"
+      id="submit"
+      name="deploy_application"
+      onClick={[Function]}
+      type="submit"
+    >
+      Déployer l'application
+    </button>
+  </div>
   <div
     className="button-list"
   >
@@ -84,15 +89,18 @@ exports[`components | Enrollment with enrollment that can send_application at pe
     État de la demande :  
     Demande en attente
   </p>
-  <button
-    className="button"
-    id="submit"
-    name="send_application"
-    onClick={[Function]}
-    type="submit"
-  >
-    Envoyer la demande
-  </button>
+  <p />
+  <div>
+    <button
+      className="button"
+      id="submit"
+      name="send_application"
+      onClick={[Function]}
+      type="submit"
+    >
+      Envoyer la demande
+    </button>
+  </div>
   <div
     className="button-list"
   >
@@ -123,15 +131,18 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
     État de la demande :  
     Demande validée
   </p>
-  <button
-    className="button"
-    id="submit"
-    name="send_technical_inputs"
-    onClick={[Function]}
-    type="submit"
-  >
-    Demander à entrer en production
-  </button>
+  <p />
+  <div>
+    <button
+      className="button"
+      id="submit"
+      name="send_technical_inputs"
+      onClick={[Function]}
+      type="submit"
+    >
+      Demander à entrer en production
+    </button>
+  </div>
   <div
     className="button-list"
   >
@@ -162,33 +173,43 @@ exports[`components | Enrollment with enrollment that can validate_application, 
     État de la demande :  
     Demande envoyée
   </p>
-  <button
-    className="button"
-    id="submit"
-    name="refuse_application"
-    onClick={[Function]}
-    type="submit"
-  >
-    Refuser
-  </button>
-  <button
-    className="button"
-    id="submit"
-    name="review_application"
-    onClick={[Function]}
-    type="submit"
-  >
-    Demande de modifications
-  </button>
-  <button
-    className="button"
-    id="submit"
-    name="validate_application"
-    onClick={[Function]}
-    type="submit"
-  >
-    Valider
-  </button>
+  <p>
+    <input
+      name="content"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </p>
+  <div>
+    <button
+      className="button"
+      id="submit"
+      name="refuse_application"
+      onClick={[Function]}
+      type="submit"
+    >
+      Refuser
+    </button>
+    <button
+      className="button"
+      id="submit"
+      name="validate_application"
+      onClick={[Function]}
+      type="submit"
+    >
+      Valider
+    </button>
+    <button
+      className="button"
+      id="submit"
+      name="review_application"
+      onClick={[Function]}
+      type="submit"
+    >
+      Demande de modifications
+    </button>
+  </div>
   <div
     className="button-list"
   >
@@ -219,6 +240,8 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
     État de la demande :  
     Demande validée
   </p>
+  <p />
+  <div />
   <div
     className="button-list"
   >
@@ -249,6 +272,8 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
     État de la demande :  
     Demande envoyée
   </p>
+  <p />
+  <div />
   <div
     className="button-list"
   >
