@@ -36,6 +36,7 @@ class Enrollment extends React.Component {
       const enrollment = response.data
       if (enrollment) {
         this.setState({enrollment})
+        this.setState({errors: []})
       }
     }).catch(error => {
       if (error.response.status === 422) {
