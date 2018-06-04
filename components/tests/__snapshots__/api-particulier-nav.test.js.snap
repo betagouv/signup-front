@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | ApiParticulierNav render should match snapshot 1`] = `
+<nav
+  className="side-pane"
+>
+  <ul
+    className="side-pane__menu"
+  >
+    <li
+      className="side-pane__title"
+    >
+      <h3>
+        Votre demande
+      </h3>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#identite"
+      >
+        Identité
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#demarche"
+      >
+        Démarche
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#donnees"
+      >
+        Données
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#cgu"
+      >
+        Conditions d´utilisation
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

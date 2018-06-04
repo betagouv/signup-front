@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components | Section render should match snapshot 1`] = `
+<section
+  className="className"
+  id={null}
+>
+  <h2
+    className="section__title"
+  >
+    The title
+  </h2>
+  &lt;p&gt;Some html&lt;/p&gt;
+</section>
+`;
