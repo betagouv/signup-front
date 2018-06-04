@@ -35,8 +35,7 @@ class Enrollment extends React.Component {
     return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
       const enrollment = response.data
       if (enrollment) {
-        this.setState({enrollment})
-        this.setState({errors: []})
+        this.setState({enrollment, errors: []})
       }
     }).catch(error => {
       if (error.response.status === 422) {
