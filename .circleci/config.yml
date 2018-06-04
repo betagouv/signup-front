@@ -141,16 +141,16 @@ workflows:
             - test
           filters:
             branches:
-              only: V2
+              only: master
       - export:
           requires:
             - build
           filters:
             branches:
-              only: V2
+              only: master
       - deploy:
           requires:
             - export
           filters:
             branches:
-              only: V2
+              only: master
