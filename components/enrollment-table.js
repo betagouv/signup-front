@@ -79,7 +79,6 @@ class EnrollmentTable extends React.Component {
         <ReactTable
           data={enrollments}
           columns={columns}
-          expanded={columns.map(() => true)}
           showPageSizeOptions={false}
           pageSize='10'
           previousText='Précédent'
