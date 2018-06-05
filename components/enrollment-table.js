@@ -40,19 +40,18 @@ class EnrollmentTable extends React.Component {
   }
 
   trigger(action, enrollment) {
-    const toto = this.state.enrollments // eslint-disable-line react/destructuring-assignment
-    return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
-      const enrollment = response.data
-      if (enrollment) {
-        enrollment.human_state = STATE_HUMAN_NAMES[enrollment.state] // eslint-disable-line camelcase
+    const currentEnrollments = this.state.enrollments // eslint-disable-line react/destructuring-assignment
+    return () => Services.triggerUserEnrollment(action, enrollment).then(({data: updatedEnrollment}) => {
+      if (updatedEnrollment) {
+        updatedEnrollment.human_state = STATE_HUMAN_NAMES[updatedEnrollment.state] // eslint-disable-line camelcase
 
-        const enrollments = toto.map(e => {
-          if (enrollment.id === e.id) {
-            return enrollment
+        const updatedEnrollments = currentEnrollments.map(currentEnrollment => {
+          if (updatedEnrollment.id === currentEnrollment.id) {
+            return updatedEnrollment
           }
-          return e
+          return currentEnrollment
         })
-        this.setState({enrollments})
+        this.setState({enrollments: updatedEnrollments})
       }
     })
   }
@@ -71,6 +70,7 @@ class EnrollmentTable extends React.Component {
         accessor: 'human_state'
       }
     ]
+
     return (
       <div className='enrollment-table'>
         <Head>
