@@ -11,6 +11,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'pending',
         acl: {
           send_application: true // eslint-disable-line camelcase
@@ -35,6 +36,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'sent',
         acl: {
           validate_application: true, // eslint-disable-line camelcase
@@ -58,6 +60,7 @@ describe('components | Enrollment', () => {
         demarche: {
           intitule: 'test'
         },
+        messages: [],
         applicant: {
           email: 'test@test.test'
         },
@@ -85,6 +88,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'validated',
         acl: {
           send_technical_inputs: false // eslint-disable-line camelcase
@@ -109,6 +113,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'validated',
         acl: {
           send_technical_inputs: true // eslint-disable-line camelcase
@@ -133,6 +138,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'technical_inputs',
         acl: {
           deploy_application: true // eslint-disable-line camelcase
@@ -157,6 +163,7 @@ describe('components | Enrollment', () => {
         applicant: {
           email: 'test@test.test'
         },
+        messages: [],
         state: 'deployed',
         acl: {}
       }
