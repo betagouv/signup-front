@@ -5,9 +5,9 @@ import withUser from '../components/hoc/with-user'
 import Services from '../lib/services'
 import Enrollment from '../components/enrollment'
 
-const STATE_HUMAN_NAMES = {
-  pending: 'Demande en attente',
-  sent: 'Demande envoyée',
+export const STATE_HUMAN_NAMES = {
+  pending: 'En attente de soumission',
+  sent: 'En attente de validation',
   validated: 'Demande validée',
   refused: 'Demande refusée',
   technical_inputs: 'En attente de déploiement', // eslint-disable-line camelcase

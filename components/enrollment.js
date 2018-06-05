@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
+import {STATE_HUMAN_NAMES} from './enrollment-table'
 
 class Enrollment extends React.Component {
   constructor(props) {
@@ -77,13 +77,7 @@ class Enrollment extends React.Component {
         }
         <em>{enrollment.applicant.email}</em>
         <p>{enrollment.description_service}</p>
-        <p>État de la demande :&nbsp; {enrollment.state === 'pending' && 'Demande en attente'}
-          {enrollment.state === 'sent' && 'Demande envoyée'}
-          {enrollment.state === 'validated' && 'Demande validée'}
-          {enrollment.state === 'refused' && 'Demande refusée'}
-          {enrollment.state === 'technical_inputs' && 'En attente de déploiement'}
-          {enrollment.state === 'deployed' && 'Déployé'}
-        </p>
+        <p>État de la demande :&nbsp; {STATE_HUMAN_NAMES[enrollment.state]}</p>
         <p>
         {enrollment.acl.review_application &&
           <input type='text' onChange={this.handleChange} name='content' value={enrollment.messages_attributes[0].content} />
