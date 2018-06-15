@@ -32,7 +32,7 @@ exports[`pages | ApiEntreprise render should match snapshot 1`] = `
               className="nav__item"
             >
               <a
-                href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback&scope=&response_type=token&state="
+                href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback.html&scope=&response_type=token&state="
               >
                 Se connecter
               </a>
@@ -54,7 +54,7 @@ exports[`pages | ApiEntreprise render should match snapshot 1`] = `
           </h2>
           <a
             className="button large"
-            href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback&scope=&response_type=token&state="
+            href="http://localhost:3022/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Foauth-callback.html&scope=&response_type=token&state="
           >
             Se connecter
           </a>
