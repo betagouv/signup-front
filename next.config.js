@@ -7,7 +7,7 @@ module.exports = {
       '/api-particulier.html': {page: '/api-particulier.html'},
       '/dgfip.html': {page: '/dgfip.html'},
       '/api-entreprise.html': {page: '/api-entreprise.html'},
-      '/oauth-callback': {page: '/oauth-callback'}
+      '/oauth-callback.html': {page: '/oauth-callback.html'}
     }
   },
   webpackDevMiddleware: config => {
