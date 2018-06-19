@@ -276,7 +276,7 @@ class ContractualisationForm extends React.Component {
           </div>
         </div>
 
-        <h1 id='cnil'>Obligation CNIL</h1>
+        <h1 id='cnil'>Obligation RGPD</h1>
         <section className='information-text'>
           <p>L’entrée en vigueur le 25 mai 2018 du règlement européen sur la protection des données supprime totalement le régime déclaratif.</p>
           <p>Les fournisseurs de services ont en particulier l’obligation de tenir un registre de leurs activités de traitement, d’encadrer les opérations sous-traitées dans les contrats de prestation de services, de formaliser des politiques de confidentialité des données et des procédures relatives à la gestion des demandes d’exercice des droits.</p>
