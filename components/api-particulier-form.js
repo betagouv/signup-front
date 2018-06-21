@@ -151,14 +151,17 @@ class ContractualisationForm extends React.Component {
     const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
-      const siegeSocial = response.data.siege_social[0]
+      const siegeSocial = response.data.siege_social
       const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
       const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
       this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
-    }).catch(() => this.setState({sirenNotFound: true}))
+    }).catch(() => this.setState({
+      enrollment: Object.assign(enrollment, {raison_sociale: '', adresse: '', responsable: '', code_naf: ''}), // eslint-disable-line camelcase
+      sirenNotFound: true
+    }))
   }
 
   render() {
@@ -215,8 +218,11 @@ class ContractualisationForm extends React.Component {
             </button>
           </div>
         </div>
+
         {sirenNotFound &&
-          <div className='notification warning'>Nos service ne parviennent pas à trouver votre SIREN</div>
+          <div className='form__group'>
+            <div className='notification error'>Notre service ne parvient pas à trouver votre SIREN</div>
+          </div>
         }
 
         <div className='form__group'>

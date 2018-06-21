@@ -631,7 +631,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             <h1
               id="cnil"
             >
-              Obligation CNIL
+              Obligation RGPD
             </h1>
             <section
               className="information-text"
