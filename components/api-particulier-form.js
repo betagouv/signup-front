@@ -158,7 +158,10 @@ class ContractualisationForm extends React.Component {
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
       this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
-    }).catch(() => this.setState({sirenNotFound: true}))
+    }).catch(() => this.setState({
+      enrollment: Object.assign(enrollment, {raison_sociale: '', adresse: '', responsable: '', code_naf: ''}), // eslint-disable-line camelcase
+      sirenNotFound: true
+    }))
   }
 
   render() {
@@ -215,8 +218,11 @@ class ContractualisationForm extends React.Component {
             </button>
           </div>
         </div>
+
         {sirenNotFound &&
-          <div className='notification warning'>Nos service ne parviennent pas à trouver votre SIREN</div>
+          <div className='form__group'>
+            <div className='notification error'>Notre service ne parvient pas à trouver votre SIREN</div>
+          </div>
         }
 
         <div className='form__group'>
