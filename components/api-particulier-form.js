@@ -151,7 +151,7 @@ class ContractualisationForm extends React.Component {
     const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
-      const siegeSocial = response.data.siege_social[0]
+      const siegeSocial = response.data.siege_social
       const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
       const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
