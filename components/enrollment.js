@@ -12,25 +12,6 @@ class Enrollment extends React.Component {
     this.state = {enrollment: props.enrollment, errors: [], reviewApplicationMessageContent: null}
   }
 
-  deleteEnrollment(event) {
-    const token = localStorage.getItem('token')
-    const id = event.target.value
-    Services.deleteUserEnrollment(token, id)
-      .then(response => {
-        if (response.status === 204) {
-          alert('Demande supprimée avec succès' + response.request.response) // eslint-disable-line no-alert
-        } else if (response.status === 404) {
-          alert('Formulaire incomplet' + response.request.response) // eslint-disable-line no-alert
-        } else if (response.status === 401) {
-          alert('Vous n êtes pas autorisé' + response) // eslint-disable-line no-alert
-        } else {
-          alert('Erreur inconnue' + response) // eslint-disable-line no-alert
-        }
-      })
-      .catch(error => alert('Oups !' + error)) // eslint-disable-line no-alert
-    event.preventDefault()
-  }
-
   trigger(action) {
     const {enrollment, reviewApplicationMessageContent} = this.state
     enrollment.messages_attributes = [{content: reviewApplicationMessageContent}] // eslint-disable-line camelcase
@@ -109,9 +90,6 @@ class Enrollment extends React.Component {
         </div>
 
         <div className='button-list'>
-          {
-            /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
-          }
           <Link href={{pathname: `/${enrollment.fournisseur_de_donnees}.html`, query: {id: enrollment.id}}}>
             <a className='button' name='subscribe'>
               Voir
