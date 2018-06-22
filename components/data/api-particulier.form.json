@@ -1,0 +1,41 @@
+{
+  "provider": "api-particulier",
+  "scopes": [
+    {
+      "name": "dgfip_avis_imposition",
+      "humanName": "DGFIP - Avis d'imposition"
+    },
+    {
+      "name": "cnaf_quotient_familial",
+      "humanName": "CNAF - Quotient familial"
+    },
+    {
+      "name": "cnaf_attestation_droits",
+      "humanName": "CNAF - attestation droits"
+    }
+  ],
+  "cguLink": "/static/docs/charte-fc.pdf",
+  "text": {
+    "title": "Demande d'accès à API Particulier",
+    "intro": " <p>Pour avoir accès à l&apos;API Particulier, diffusant des données personnelles, vous devez obtenir un agrément.  L&apos;accès à cette API n&apos;est pour l&apos;instant disponible que si vous êtes:</p> <ul> <li>une administration;</li> <li>une entreprise prestataire d&apos;une administration ou ayant une délégation de service public.</li> </ul> <p> Pour utiliser API Particulier, vous devez vous engager à traiter la bonne donnée par le bon agent de votre administration et informer correctement l’usager.  </p> "
+    },
+  "description": {
+    "demarche": " <p>C&apos;est la raison pour laquelle vous collectez des données personnelles, l&apos;objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».</p> <p>Il vous est également demandé de préciser les références du cadre juridique de votre droit à demander ces informations (délibération du conseil municipal, décret …).</p> "
+  },
+  "contacts": [
+    {
+      "id": "dpo",
+      "heading": "Délégué à la protection des données",
+      "description": "https://www.cnil.fr/fr/designation-dpo"
+    },
+    {
+      "id": "responsable_traitement",
+      "heading": "Responsable de traitement",
+      "description": "https://www.cnil.fr/fr/definition/responsable-de-traitement"
+    },
+    {
+      "id": "technique",
+      "heading": "Responsable technique"
+    }
+  ]
+}

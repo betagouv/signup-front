@@ -6,39 +6,21 @@ import Utils from '../lib/utils'
 
 const axios = require('axios')
 
-const BASE_CONTACTS = [
-  {
-    id: 'dpo',
-    heading: 'Délégué à la protection des données',
-    description: 'https://www.cnil.fr/fr/designation-dpo'
-  },
-  {
-    id: 'responsable_traitement',
-    heading: 'Responsable de traitement',
-    description: 'https://www.cnil.fr/fr/definition/responsable-de-traitement'
-  },
-  {
-    id: 'technique',
-    heading: 'Responsable technique'
-  }
-]
-
 class ContractualisationForm extends React.Component {
   constructor(props) {
     super(props)
 
-    // api-particulier, dgfip
-    const {fournisseur} = props
+    const {form} = props
 
     this.state = {
       errors: [],
       enrollment: {
-        fournisseur_de_donnees: fournisseur, // eslint-disable-line camelcase
+        fournisseur_de_donnees: form.provider, // eslint-disable-line camelcase
         scopes: {},
         acl: {
           send_application: true // eslint-disable-line camelcase
         },
-        contacts: BASE_CONTACTS,
+        contacts: form.contacts,
         siren: '',
         demarche: {
           intitule: '',
@@ -70,6 +52,7 @@ class ContractualisationForm extends React.Component {
     if (id) {
       Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})
+        this.getSiren()
       })
     }
   }
@@ -169,7 +152,7 @@ class ContractualisationForm extends React.Component {
 
   render() {
     const {enrollment, sirenNotFound, errors} = this.state
-    const {formText} = this.props
+    const {form} = this.props
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
     let personId = 0
@@ -195,10 +178,11 @@ class ContractualisationForm extends React.Component {
       )
     }
 
+    /* eslint-disable react/no-danger */
     return (
       <form onSubmit={this.handleSubmit}>
-        <h1>{formText.title}</h1>
-        {formText.intro}
+        <h1>{form.text.title}</h1>
+        <div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
 
         <h2 id='identite'>Identité</h2>
 
@@ -240,11 +224,7 @@ class ContractualisationForm extends React.Component {
         </div>
 
         <h2 id='demarche'>Démarche</h2>
-        <section className='information-text'>
-          <p>C&apos;est la raison pour laquelle vous collectez des données personnelles, l&apos;objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».</p>
-
-          <p>Il vous est également demandé de préciser les références du cadre juridique de votre droit à demander ces informations (délibération du conseil municipal, décret …).</p>
-        </section>
+        <section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
         <div className='form__group'>
           <label htmlFor='intitule_demarche'>Intitulé</label>
           <input type='text' onChange={this.handleChange} name='enrollment.demarche.intitule' id='intitule_demarche' disabled={readOnly} value={enrollment.demarche.intitule} />
@@ -266,36 +246,22 @@ class ContractualisationForm extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-                <div className='scope'>
-                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.dgfip_avis_imposition' id='checkbox-scope_dgfip_avis_imposition' disabled={readOnly} checked={enrollment.scopes.dgfip_avis_imposition ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_dgfip_avis_imposition' className='label-inline'>DGFiP - Avis d&apos;imposition</label>
-                  <div className='scope__destinataire'>
-                    <div className='form__group'>
-                      <label htmlFor='destinataire_dgfip_avis_imposition'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.dgfip_avis_imposition' id='destinataire_dgfip_avis_imposition' disabled={readOnly} value={enrollment.donnees.destinataires.dgfip_avis_imposition} />
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_quotient_familial' id='checkbox-scope_cnaf_quotient_familial' disabled={readOnly} checked={enrollment.scopes.cnaf_quotient_familial ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_cnaf_quotient_familial' className='label-inline'>CNAF - Quotient familial</label>
-                  <div className='scope__destinataire'>
-                    <div className='form__group'>
-                      <label htmlFor='destinataire_cnaf_quotient_familial'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.cnaf_quotient_familial' id='destinataire_cnaf_quotient_familial' disabled={readOnly} value={enrollment.donnees.destinataires.cnaf_quotient_familial} />
-                    </div>
-                  </div>
-                </div>
-                <div>
-                  <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name='enrollment.scopes.cnaf_attestation_droits' id='checkbox-scope_cnaf_attestation_droits' disabled={readOnly} checked={enrollment.scopes.cnaf_attestation_droits ? 'checked' : false} />
-                  <label htmlFor='checkbox-scope_cnaf_attestation_droits' className='label-inline'>CNAF - Attestation de droits</label>
-                  <div className='scope__destinataire'>
-                    <div className='form__group'>
-                      <label htmlFor='destinataire_cnaf_attestation_droits'>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                      <input type='text' onChange={this.handleChange} name='enrollment.donnees.destinataires.cnaf_attestation_droits' id='destinataire_cnaf_attestation_droits' disabled={readOnly} value={enrollment.donnees.destinataires.cnaf_attestation_droits} />
-                    </div>
-                  </div>
-                </div>
+                {
+                  form.scopes.map(scope => {
+                    return (
+                      <div key={scope.id}>
+                        <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`enrollment.scopes.${scope.name}`} id={`checkbox-scope_api_entreprise${scope.name}`} disabled={readOnly} checked={enrollment.scopes[scope.name] ? 'checked' : false} />
+                        <label htmlFor={`checkbox-scope_api_entreprise${scope.name}`} className='label-inline'>{scope.humanName}</label>
+                        <div className='scope__destinataire'>
+                          <div className='form__group'>
+                            <label htmlFor={`destinataire_${scope.name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                            <input type='text' onChange={this.handleChange} name={`enrollment.donnees.destinataires.${scope.name}`} id={`desinataire_${scope.name}`} disabled={readOnly} value={enrollment.donnees.destinataires[scope.name]} />
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
               </div>
             </div>
           </fieldset>
@@ -307,8 +273,11 @@ class ContractualisationForm extends React.Component {
         </div>
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
+        { form.description.cgu &&
+          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' />
+        }
 
-        <iframe src='/static/docs/charte-fc.pdf' width='100%' height='800px' />
+        <iframe src={form.cguLink} width='100%' height='800px' />
 
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={readOnly} checked={enrollment.validation_de_convention} type='checkbox' name='enrollment.validation_de_convention' id='validation_de_convention' />
@@ -336,14 +305,29 @@ class ContractualisationForm extends React.Component {
         })}
       </form>
     )
+    /* eslint-enable react/no-danger */
   }
 }
 
 ContractualisationForm.propTypes = {
-  id: PropTypes.string
+  id: PropTypes.string,
+  form: PropTypes.object
 }
 ContractualisationForm.defaultProps = {
-  id: ''
+  id: '',
+  form: {
+    provider: '',
+    scopes: [],
+    cguLink: '',
+    text: {
+      title: '',
+      intro: ''
+    },
+    description: {
+      demarche: ''
+    },
+    contacts: []
+  }
 }
 
 export default ContractualisationForm

@@ -1,28 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Page from '../components/page'
-import DgfipForm from '../components/form'
+import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
 import EntrantsTechniquesForm from '../components/entrants-techniques-form'
 import Services from '../lib/services'
-
-const INTRO = (
-  <div>
-    <p>Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p>
-
-    <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
-
-    <p>Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :</p>
-    <ul>
-      <li>le fondement juridique</li>
-      <li>les données nécessaires à la démarche administrative</li>
-      <li>la volumétrie de sollicitation de l&apos;API</li>
-      <li>la protection des données personnelles.</li>
-    </ul>
-    <p>Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l&apos;authentification SSL et concevoir vos bouchons .</p>
-    <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p>
-  </div>
-)
+import DgfipFormData from '../components/data/dgfip.form'
 
 class Dgfip extends React.Component {
   constructor(props) {
@@ -76,17 +59,13 @@ class Dgfip extends React.Component {
   render() {
     const {url} = this.props
     const {enrollment} = this.state
-    const formText = {
-      title: 'Demande d\'accès à l\'API Impôts Particulier',
-      intro: INTRO
-    }
 
     return (
       <Page>
         <div className='documentation'>
           <DgfipNav id={url.query.id} />
           <div className='main-pane'>
-            <DgfipForm id={url.query.id} fournisseur='dgfip' formText={formText} />
+            <Form id={url.query.id} form={DgfipFormData} />
             { enrollment.acl.show_technical_inputs &&
               <EntrantsTechniquesForm id={url.query.id} />
             }
