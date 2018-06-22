@@ -115,6 +115,29 @@ class ContractualisationForm extends React.Component {
     const {enrollment, serviceProviders} = this.state
     const readOnly = enrollment.acl.send_application ? false : 'disabled'
 
+    let personId = 0
+    const personForm = person => {
+      person.id = person.id || 'person_' + personId++
+      return (
+        <div key={person.id} className='card'>
+          <div className='card__content'>
+            <h3>{person.heading}</h3>
+            {person.description &&
+              <a className='card__meta' href={person.description}>{person.description}</a>
+            }
+            <div className='form__group'>
+              <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
+              <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={readOnly} value={person.nom} />
+            </div>
+            <div className='form__group'>
+              <label htmlFor={'person_' + person.id + '_email'}>Email</label>
+              <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={readOnly} value={person.email} />
+            </div>
+          </div>
+        </div>
+      )
+    }
+
     let i = 0
     return (
       <form onSubmit={this.handleSubmit}>
@@ -144,7 +167,12 @@ class ContractualisationForm extends React.Component {
           <input onChange={this.handleChange} type='checkbox' name='enrollment.autorisation_legale' id='checkbox-autorisation_legale' disabled={readOnly} checked={enrollment.autorisation_legale ? 'checked' : false} />
           <label htmlFor='checkbox-autorisation_legale' className='label-inline'>Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?</label>
         </div>
-        <h1 id='legal'>Fondement juridique</h1>
+
+        <h3>Contacts</h3>
+        <div className='row card-row'>
+          {enrollment.contacts.map(person => personForm(person))}
+        </div>
+        <h1 id='legal'>Démarche</h1>
         <section className='information-text'>
           <p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p>
           <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>
