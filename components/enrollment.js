@@ -63,7 +63,7 @@ class Enrollment extends React.Component {
 
     return (
       <li className='panel'>
-        <h2>{enrollment.demarche.intitule}</h2>
+        <h2>{this.props.title}</h2>
         { enrollment.messages.map(({content}) => <li key={content} className='notification'>{content}</li>) }
         <em>{enrollment.applicant.email}</em>
         <p>{enrollment.description_service}</p>

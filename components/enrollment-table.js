@@ -91,7 +91,7 @@ class EnrollmentTable extends React.Component {
           pageText='Page'
           ofText='sur'
           rowsText='lignes'
-          SubComponent={row => (<Enrollment enrollment={row.original} />)} // eslint-disable-line react/jsx-no-bind
+          SubComponent={row => (<Enrollment title={row.original.demarche.intitule} enrollment={row.original} />)} // eslint-disable-line react/jsx-no-bind
         />
       </div>
     )
