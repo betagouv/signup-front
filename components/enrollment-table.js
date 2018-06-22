@@ -71,6 +71,8 @@ class EnrollmentTable extends React.Component {
       }
     ]
 
+    const pageSize = 10
+
     return (
       <div className='enrollment-table'>
         <Head>
@@ -79,8 +81,9 @@ class EnrollmentTable extends React.Component {
         <ReactTable
           data={enrollments}
           columns={columns}
+          expanded={Array(pageSize).fill(true)} // expand all
           showPageSizeOptions={false}
-          pageSize='10'
+          pageSize={pageSize}
           previousText='Précédent'
           nextText='Suivant'
           loadingText='Chargement...'
