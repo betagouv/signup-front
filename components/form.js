@@ -45,12 +45,8 @@ class Form extends React.Component {
   componentDidMount() {
     const {id} = this.props
 
-    let token
-    if (typeof localStorage !== 'undefined') {
-      token = localStorage.getItem('token')
-    }
     if (id) {
-      Services.getUserEnrollment(id, token).then(enrollment => {
+      Services.getUserEnrollment(id).then(enrollment => {
         this.setState({enrollment})
         this.getSiren()
       })
