@@ -6,7 +6,7 @@ import Utils from '../lib/utils'
 
 const axios = require('axios')
 
-class ContractualisationForm extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props)
 
@@ -309,11 +309,11 @@ class ContractualisationForm extends React.Component {
   }
 }
 
-ContractualisationForm.propTypes = {
+Form.propTypes = {
   id: PropTypes.string,
   form: PropTypes.object
 }
-ContractualisationForm.defaultProps = {
+Form.defaultProps = {
   id: '',
   form: {
     provider: '',
@@ -330,4 +330,4 @@ ContractualisationForm.defaultProps = {
   }
 }
 
-export default ContractualisationForm
+export default Form
