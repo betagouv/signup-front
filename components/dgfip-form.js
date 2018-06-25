@@ -1,10 +1,12 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
+import getConfig from 'next/config'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import Utils from '../lib/utils'
 import User from '../lib/user'
 import Services from '../lib/services'
+
+const {publicRuntimeConfig: {FRANCE_CONNECT_AUTHORIZE_URI}} = getConfig()
 
 class ContractualisationForm extends React.Component {
   constructor(props) {
