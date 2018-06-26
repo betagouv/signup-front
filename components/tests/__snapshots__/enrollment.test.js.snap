@@ -13,7 +13,6 @@ exports[`components | Enrollment with enrollment at deployed state should match 
   <p />
   <p>
     État de la demande :  
-    Déployé
   </p>
   <p />
   <div />
@@ -45,7 +44,6 @@ exports[`components | Enrollment with enrollment that can deploy_application at 
   <p />
   <p>
     État de la demande :  
-    En attente de déploiement
   </p>
   <p />
   <div>
@@ -87,7 +85,6 @@ exports[`components | Enrollment with enrollment that can send_application at pe
   <p />
   <p>
     État de la demande :  
-    En attente de soumission
   </p>
   <p />
   <div>
@@ -129,7 +126,6 @@ exports[`components | Enrollment with enrollment that can send_technical_inputs 
   <p />
   <p>
     État de la demande :  
-    Demande validée
   </p>
   <p />
   <div>
@@ -171,14 +167,13 @@ exports[`components | Enrollment with enrollment that can validate_application, 
   <p />
   <p>
     État de la demande :  
-    En attente de validation
   </p>
   <p>
     <input
       onChange={[Function]}
       placeholder="Message"
       type="text"
-      value={null}
+      value=""
     />
   </p>
   <div>
@@ -238,7 +233,6 @@ exports[`components | Enrollment with enrollment that cannot send_technical_inpu
   <p />
   <p>
     État de la demande :  
-    Demande validée
   </p>
   <p />
   <div />
@@ -270,7 +264,6 @@ exports[`components | Enrollment with enrollment that cannot validate_applicatio
   <p />
   <p>
     État de la demande :  
-    En attente de validation
   </p>
   <p />
   <div />
