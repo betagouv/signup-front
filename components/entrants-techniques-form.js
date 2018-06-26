@@ -1,11 +1,9 @@
-import getConfig from 'next/config'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import Utils from '../lib/utils'
 import Services from '../lib/services'
-
-const {publicRuntimeConfig: {BACK_HOST}} = getConfig()
+import {BACK_HOST} from '@env'
 
 const axios = require('axios')
 
