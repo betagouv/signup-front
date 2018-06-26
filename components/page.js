@@ -1,4 +1,4 @@
-import {PIWIK_URL, PIWIK_SITE_ID} from '@env'
+import getConfig from 'next/config'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
@@ -9,6 +9,8 @@ import User from '../lib/user'
 import Header from './header'
 import Footer from './footer'
 import Section from './section'
+
+const {publicRuntimeConfig: {PIWIK_URL, PIWIK_SITE_ID}} = getConfig()
 
 class Page extends React.Component {
   constructor(props) {

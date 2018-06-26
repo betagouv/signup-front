@@ -1,4 +1,22 @@
-module.exports = {
+const nextRuntimeDotenv = require('next-runtime-dotenv')
+
+const withConfig = nextRuntimeDotenv({
+  public: [
+    'OAUTH_ME_URI',
+    'OAUTH_CLIENT_ID',
+    'OAUTH_HOST',
+    'OAUTH_AUTHORIZE_URI',
+    'OAUTH_REDIRECT_URI',
+    'BACK_HOST',
+    'FRANCE_CONNECT_AUTHORIZE_URI',
+    'FRANCE_CONNECT_ME_URI',
+    'API_ENTREPRISE_HOST',
+    'PIWIK_URL',
+    'PIWIK_SITE_ID'
+  ]
+})
+
+module.exports = withConfig({
   exportPathMap: () => {
     return {
       '/': {page: '/'},
@@ -21,4 +39,4 @@ module.exports = {
 
     return config
   }
-}
+})
