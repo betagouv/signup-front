@@ -83,9 +83,8 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     const componentState = this.state
-    const token = localStorage.getItem('token')
     if (componentState.enrollment.id) {
-      Services.updateUserEnrollment(componentState, token).then(response => {
+      Services.updateUserEnrollment(componentState).then(response => {
         if (response.status === 200) {
           Router.push('/')
         }
@@ -102,7 +101,7 @@ class Form extends React.Component {
         }
       })
     } else {
-      Services.createUserEnrollment(componentState, token).then(response => {
+      Services.createUserEnrollment(componentState).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
