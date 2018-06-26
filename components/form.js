@@ -82,6 +82,9 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     const {enrollment} = this.state
+
+    event.preventDefault()
+
     if (enrollment.id) {
       Services.updateUserEnrollment({enrollment}).then(response => {
         if (response.status === 200) {
@@ -117,12 +120,6 @@ class Form extends React.Component {
         }
       })
     }
-    event.preventDefault()
-  }
-
-  handleSirenChange(e) {
-    this.handleChange(e)
-    this.getSiren()
   }
 
   getSiren() {
@@ -145,6 +142,11 @@ class Form extends React.Component {
         sirenNotFound: true
       })
     })
+  }
+
+  handleSirenChange(e) {
+    this.handleChange(e)
+    this.getSiren()
   }
 
   render() {
