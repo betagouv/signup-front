@@ -57,7 +57,7 @@ class Form extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    const stateCopy = merge({}, this.state, zipObjectDeep([name], [value]))
+    const stateCopy = merge({}, this.state, zipObjectDeep([`enrollment.${name}`], [value]))
 
     this.setState(stateCopy)
   }
@@ -134,10 +134,10 @@ class Form extends React.Component {
       const responsable = `${nom}  ${prenom}`
       const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
       this.setState({
-        enrollment: Object.assign(enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}, {sirenNotFound: false})})
+        enrollment: Object.assign({}, enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}, {sirenNotFound: false})})
     }).catch(() => {
       this.setState({
-        enrollment: Object.assign(enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
+        enrollment: Object.assign({}, enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
         sirenNotFound: true
       })
     })
