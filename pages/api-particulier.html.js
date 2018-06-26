@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Page from '../components/page'
 import Form from '../components/form'
-import ApiParticulierFormData from '../components/data/api-particulier.form'
+import ApiParticulierFormConfiguration from '../components/data/api-particulier.form'
 import ApiParticulierNav from '../components/api-particulier-nav'
 import Redirect from '../components/redirect'
 
@@ -36,7 +36,7 @@ class ApiParticulier extends React.Component {
           <div className='documentation'>
             <ApiParticulierNav />
             <div className='main-pane'>
-              <Form id={id} form={ApiParticulierFormData} />
+              <Form id={id} form={ApiParticulierFormConfiguration} />
             </div>
           </div>
         </Page>
