@@ -40,7 +40,7 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getSiren = this.getSiren.bind(this)
-    this.handleSiren = this.handleSiren.bind(this)
+    this.handleSirenChange = this.handleSirenChange.bind(this)
   }
 
   componentDidMount() {
@@ -124,7 +124,7 @@ class Form extends React.Component {
     event.preventDefault()
   }
 
-  handleSiren(e) {
+  handleSirenChange(e) {
     this.handleChange(e)
     this.getSiren()
   }
@@ -190,7 +190,7 @@ class Form extends React.Component {
         <div className='form__group'>
           <label htmlFor='search-siren'>Rechercher votre organisme avec son SIREN</label>
           <div className='search__group'>
-            <input type='text' value={enrollment.siren} name='enrollment.siren' id='search-siren' onChange={this.handleSiren} />
+            <input type='text' value={enrollment.siren} name='enrollment.siren' id='search-siren' onChange={this.handleSirenChange} />
             <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
               <svg className='icon icon-search' id='icon-search' width='100%' height='100%'>
                 <title>Rechercher</title>

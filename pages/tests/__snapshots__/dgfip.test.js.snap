@@ -181,14 +181,14 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               className="form__group"
             >
               <label
-                htmlFor="raison_sociale"
+                htmlFor="nom_raison_sociale"
               >
                 Raison sociale
               </label>
               <input
                 disabled={true}
-                id="raison_sociale"
-                name="enrollment.raison_sociale"
+                id="nom_raison_sociale"
+                name="enrollment.nom_raison_sociale"
                 onChange={[Function]}
                 type="text"
                 value={undefined}
@@ -215,14 +215,14 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               className="form__group"
             >
               <label
-                htmlFor="code_naf"
+                htmlFor="activite_principale"
               >
                 Code NAF
               </label>
               <input
                 disabled={true}
-                id="code_naf"
-                name="enrollment.code_naf"
+                id="activite_principale"
+                name="enrollment.activite_principale"
                 onChange={[Function]}
                 type="text"
                 value={undefined}
