@@ -65,19 +65,19 @@ class Form extends React.Component {
 
   handlePeopleChange(person) {
     return event => {
-      let {enrollment} = this.state
+      const {enrollment} = this.state
       const target = event.target
       const value = target.value
       const name = target.name
-      enrollment = Object.assign({}, enrollment)
-      enrollment.contacts = enrollment.contacts.map(contact => {
+      const enrollmentWithUpdatedContact = Object.assign({}, enrollment)
+      enrollmentWithUpdatedContact.contacts = enrollment.contacts.map(contact => {
         if (contact.id === person.id) {
           contact[name] = value
           return contact
         }
         return contact
       })
-      this.setState({enrollment})
+      this.setState({enrollmentWithUpdatedContact})
     }
   }
 
