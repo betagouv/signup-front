@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
@@ -15,24 +16,24 @@ class Form extends React.Component {
     this.state = {
       errors: [],
       enrollment: {
-        fournisseur_de_donnees: form.provider, // eslint-disable-line camelcase
+        fournisseur_de_donnees: form.provider,
         scopes: {},
         acl: {
-          send_application: true // eslint-disable-line camelcase
+          send_application: true
         },
         contacts: form.contacts,
         siren: '',
         demarche: {
           intitule: '',
           description: '',
-          fondement_juridique: '' // eslint-disable-line camelcase
+          fondement_juridique: ''
         },
         donnees: {
           conservation: '',
           destinataires: {}
         },
-        validation_de_convention: false, // eslint-disable-line camelcase
-        validation_delegue_a_la_protection_des_données: false // eslint-disable-line camelcase
+        validation_de_convention: false,
+        validation_delegue_a_la_protection_des_données: false
       }
     }
 
@@ -132,18 +133,22 @@ class Form extends React.Component {
     const {enrollment} = this.state
     const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
 
-    axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
-      const siegeSocial = response.data.siege_social
-      const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
-      const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
-      const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
-      const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
+    axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(({
+      data: {
+        siege_social: {nom_raison_sociale, nom, prenom, activite_principale, l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee}
+      }
+    }) => {
+      const responsable = `${nom}  ${prenom}`
+      const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
-    }).catch(() => this.setState({
-      enrollment: Object.assign(enrollment, {raison_sociale: '', adresse: '', responsable: '', code_naf: ''}), // eslint-disable-line camelcase
-      sirenNotFound: true
-    }))
+      this.setState({enrollment: Object.assign(enrollment, {nom_raison_sociale, adresse, responsable, activite_principale})})
+    }).catch(e => {
+      console.log(e)
+      this.setState({
+        enrollment: Object.assign(enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
+        sirenNotFound: true
+      })
+    })
   }
 
   render() {
@@ -202,16 +207,16 @@ class Form extends React.Component {
         }
 
         <div className='form__group'>
-          <label htmlFor='raison_sociale'>Raison sociale</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.raison_sociale' id='raison_sociale' disabled value={enrollment.raison_sociale} />
+          <label htmlFor='nom_raison_sociale'>Raison sociale</label>
+          <input type='text' onChange={this.handleChange} name='enrollment.nom_raison_sociale' id='nom_raison_sociale' disabled value={enrollment.nom_raison_sociale} />
         </div>
         <div className='form__group'>
           <label htmlFor='adresse'>Adresse</label>
           <input type='text' onChange={this.handleChange} name='enrollment.adresse' id='adresse' disabled value={enrollment.adresse} />
         </div>
         <div className='form__group'>
-          <label htmlFor='code_naf'>Code NAF</label>
-          <input type='text' onChange={this.handleChange} name='enrollment.code_naf' id='code_naf' disabled value={enrollment.code_naf} />
+          <label htmlFor='activite_principale'>Code NAF</label>
+          <input type='text' onChange={this.handleChange} name='enrollment.activite_principale' id='activite_principale' disabled value={enrollment.activite_principale} />
         </div>
 
         <h3>Contacts</h3>
@@ -327,3 +332,4 @@ Form.defaultProps = {
 }
 
 export default Form
+/* eslint-enable camelcase */
