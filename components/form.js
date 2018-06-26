@@ -5,8 +5,6 @@ import Router from 'next/router'
 import Services from '../lib/services'
 import Utils from '../lib/utils'
 
-const axios = require('axios')
-
 class Form extends React.Component {
   constructor(props) {
     super(props)
@@ -133,7 +131,7 @@ class Form extends React.Component {
     const {enrollment} = this.state
     const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
 
-    axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(({
+    Services.getSirenInformation(sirenWithoutSpaces).then(({
       data: {
         siege_social: {nom_raison_sociale, nom, prenom, activite_principale, l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee}
       }
