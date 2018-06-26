@@ -2,8 +2,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
+import merge from 'lodash/merge'
+import zipObjectDeep from 'lodash/zipObjectDeep'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
 
 class Form extends React.Component {
   constructor(props) {
@@ -56,9 +57,7 @@ class Form extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    const stateCopy = Object.assign({}, this.state)
-
-    Utils.deepSetInState(name, value, stateCopy)
+    const stateCopy = merge({}, this.state, zipObjectDeep([name], [value]))
 
     this.setState(stateCopy)
   }
