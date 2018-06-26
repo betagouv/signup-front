@@ -133,10 +133,9 @@ class Form extends React.Component {
     }) => {
       const responsable = `${nom}  ${prenom}`
       const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
-      this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {nom_raison_sociale, adresse, responsable, activite_principale})})
-    }).catch(e => {
-      console.log(e)
+      this.setState({
+        enrollment: Object.assign(enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}, {sirenNotFound: false})})
+    }).catch(() => {
       this.setState({
         enrollment: Object.assign(enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
         sirenNotFound: true
