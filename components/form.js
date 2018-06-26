@@ -311,9 +311,8 @@ class Form extends React.Component {
         }
 
         {errors.map(error => {
-          let i = 0
           return (
-            <div key={i++} className='notification error'>
+            <div key={error} className='notification error'>
               {error}
             </div>
           )
