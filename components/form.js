@@ -177,8 +177,8 @@ class Form extends React.Component {
         <div key={person.id} className='card'>
           <div className='card__content'>
             <h3>{person.heading}</h3>
-            {person.description &&
-              <a className='card__meta' href={person.description}>{person.description}</a>
+            {person.link &&
+              <a className='card__meta' href={person.link}>{person.link}</a>
             }
             <div className='form__group'>
               <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>

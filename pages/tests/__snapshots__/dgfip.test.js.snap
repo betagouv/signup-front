@@ -150,7 +150,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               >
                 <input
                   id="search-siren"
-                  name="enrollment.siren"
+                  name="siren"
                   onChange={[Function]}
                   type="text"
                   value=""
@@ -188,7 +188,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={true}
                 id="nom_raison_sociale"
-                name="enrollment.nom_raison_sociale"
+                name="nom_raison_sociale"
                 onChange={[Function]}
                 type="text"
                 value={undefined}
@@ -205,7 +205,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={true}
                 id="adresse"
-                name="enrollment.adresse"
+                name="adresse"
                 onChange={[Function]}
                 type="text"
                 value={undefined}
@@ -222,7 +222,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={true}
                 id="activite_principale"
-                name="enrollment.activite_principale"
+                name="activite_principale"
                 onChange={[Function]}
                 type="text"
                 value={undefined}
@@ -406,7 +406,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={false}
                 id="intitule_demarche"
-                name="enrollment.demarche.intitule"
+                name="demarche.intitule"
                 onChange={[Function]}
                 type="text"
                 value=""
@@ -423,7 +423,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <textarea
                 disabled={false}
                 id="description_service"
-                name="enrollment.demarche.description"
+                name="demarche.description"
                 onChange={[Function]}
                 rows="10"
                 value=""
@@ -443,7 +443,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={false}
                 id="fondement_juridique_demarche"
-                name="enrollment.demarche.fondement_juridique"
+                name="demarche.fondement_juridique"
                 onChange={[Function]}
                 type="text"
                 value=""
@@ -480,7 +480,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                         className="scope__checkbox"
                         disabled={false}
                         id="checkbox-scope_api_entreprisedgfip_revenu_fiscal_de_reference"
-                        name="enrollment.scopes.dgfip_revenu_fiscal_de_reference"
+                        name="scopes.dgfip_revenu_fiscal_de_reference"
                         onChange={[Function]}
                         type="checkbox"
                       />
@@ -511,7 +511,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                           <input
                             disabled={false}
                             id="desinataire_dgfip_revenu_fiscal_de_reference"
-                            name="enrollment.donnees.destinataires.dgfip_revenu_fiscal_de_reference"
+                            name="donnees.destinataires.dgfip_revenu_fiscal_de_reference"
                             onChange={[Function]}
                             type="text"
                             value={undefined}
@@ -525,7 +525,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                         className="scope__checkbox"
                         disabled={false}
                         id="checkbox-scope_api_entreprisedgfip_adresse_fiscale_de_taxation"
-                        name="enrollment.scopes.dgfip_adresse_fiscale_de_taxation"
+                        name="scopes.dgfip_adresse_fiscale_de_taxation"
                         onChange={[Function]}
                         type="checkbox"
                       />
@@ -556,7 +556,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                           <input
                             disabled={false}
                             id="desinataire_dgfip_adresse_fiscale_de_taxation"
-                            name="enrollment.donnees.destinataires.dgfip_adresse_fiscale_de_taxation"
+                            name="donnees.destinataires.dgfip_adresse_fiscale_de_taxation"
                             onChange={[Function]}
                             type="text"
                             value={undefined}
@@ -582,7 +582,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <input
                 disabled={false}
                 id="donnees_conservation"
-                name="enrollment.donnees.conservation"
+                name="donnees.conservation"
                 onChange={[Function]}
                 type="number"
                 value=""
@@ -613,7 +613,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 checked={false}
                 disabled={false}
                 id="validation_de_convention"
-                name="enrollment.validation_de_convention"
+                name="validation_de_convention"
                 onChange={[Function]}
                 type="checkbox"
               />

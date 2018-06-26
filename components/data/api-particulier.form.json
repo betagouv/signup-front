@@ -26,12 +26,12 @@
     {
       "id": "dpo",
       "heading": "Délégué à la protection des données",
-      "description": "https://www.cnil.fr/fr/designation-dpo"
+      "link": "https://www.cnil.fr/fr/designation-dpo"
     },
     {
       "id": "responsable_traitement",
       "heading": "Responsable de traitement",
-      "description": "https://www.cnil.fr/fr/definition/responsable-de-traitement"
+      "link": "https://www.cnil.fr/fr/definition/responsable-de-traitement"
     },
     {
       "id": "technique",
