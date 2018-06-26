@@ -132,6 +132,37 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 }
               }
             />
+            <div
+              className="form__group"
+            >
+              <h2
+                id="france-connect"
+              >
+                Partenaire FranceConnect
+              </h2>
+              <p>
+                <a
+                  className="button"
+                  href="http://localhost:3001/users/auth/france_connect"
+                  onClick={[Function]}
+                >
+                  Se connecter auprès de France Connect afin de récupérer mes démarches
+                </a>
+              </p>
+              <label
+                htmlFor="fournisseur_de_service"
+              >
+                Intitulé de la démarche
+              </label>
+              <select
+                name="enrollment.fournisseur_de_service"
+                onChange={[Function]}
+              >
+                <option>
+                  -- sélectionnez une démarche --
+                </option>
+              </select>
+            </div>
             <h2
               id="identite"
             >
@@ -394,23 +425,6 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 }
               }
             />
-            <div
-              className="form__group"
-            >
-              <label
-                htmlFor="intitule_demarche"
-              >
-                Intitulé
-              </label>
-              <input
-                disabled={false}
-                id="intitule_demarche"
-                name="demarche.intitule"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-            </div>
             <div
               className="form__group"
             >

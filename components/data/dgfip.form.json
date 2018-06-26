@@ -1,5 +1,6 @@
 {
   "provider": "dgfip",
+  "franceConnected": true,
   "scopes": [
     {
       "name": "dgfip_revenu_fiscal_de_reference",
