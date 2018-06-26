@@ -82,9 +82,9 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
-    const componentState = this.state
-    if (componentState.enrollment.id) {
-      Services.updateUserEnrollment(componentState).then(response => {
+    const {enrollment} = this.state
+    if (enrollment.id) {
+      Services.updateUserEnrollment({enrollment}).then(response => {
         if (response.status === 200) {
           Router.push('/')
         }
@@ -101,7 +101,7 @@ class Form extends React.Component {
         }
       })
     } else {
-      Services.createUserEnrollment(componentState).then(response => {
+      Services.createUserEnrollment({enrollment}).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
