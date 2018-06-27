@@ -80,6 +80,21 @@ class Form extends React.Component {
     }
   }
 
+  handleError(error) {
+    if (error.response.status !== 422) {
+      return
+    }
+
+    let errors = []
+    let enrollmentError
+    for (enrollmentError in error.response.data) {
+      if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
+        errors = errors.concat(error.response.data[enrollmentError])
+      }
+    }
+    this.setState({errors})
+  }
+
   handleSubmit(event) {
     const {enrollment} = this.state
 
@@ -91,16 +106,7 @@ class Form extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (error.response.status === 422) {
-          let errors = []
-          let enrollmentError
-          for (enrollmentError in error.response.data) {
-            if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
-              errors = errors.concat(error.response.data[enrollmentError])
-            }
-          }
-          this.setState({errors})
-        }
+        this.handleError(error)
       })
     } else {
       Services.createUserEnrollment({enrollment}).then(response => {
@@ -108,16 +114,7 @@ class Form extends React.Component {
           Router.push('/')
         }
       }).catch(error => {
-        if (error.response.status === 422) {
-          let errors = []
-          let enrollmentError
-          for (enrollmentError in error.response.data) {
-            if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
-              errors = errors.concat(error.response.data[enrollmentError])
-            }
-          }
-          this.setState({errors})
-        }
+        this.handleError(error)
       })
     }
   }
