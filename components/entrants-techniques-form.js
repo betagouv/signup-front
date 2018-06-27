@@ -35,13 +35,8 @@ class EntrantsTecniquesForm extends React.Component {
   componentDidMount() {
     const {id} = this.props
 
-    let token
-    if (typeof localStorage) { // eslint-disable-line no-constant-condition
-      token = localStorage.getItem('token')
-    }
-
     if (id) {
-      Services.getUserEnrollment(id, token).then(enrollment => {
+      Services.getUserEnrollment(id).then(enrollment => {
         this.setState({enrollment})
       })
     }
