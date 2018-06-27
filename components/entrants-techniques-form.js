@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
@@ -12,6 +13,7 @@ class EntrantsTecniquesForm extends React.Component {
     super(props)
 
     this.state = {
+      errors: [],
       enrollment: {
         documents: [],
         acl: {},
@@ -194,3 +196,4 @@ EntrantsTecniquesForm.defaultProps = {
 }
 
 export default EntrantsTecniquesForm
+/* eslint-enable camelcase */
