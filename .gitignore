@@ -9,6 +9,7 @@ out
 # misc
 .DS_Store
 *.swp
+*.swo
 *.orig
 npm-debug.log*
 yarn-debug.log*
