@@ -2,8 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
-import merge from 'lodash/merge'
-import zipObjectDeep from 'lodash/zipObjectDeep'
+import {merge, throttle, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
 
 class Form extends React.Component {
@@ -48,7 +47,7 @@ class Form extends React.Component {
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
         this.setState({enrollment})
-        this.getSiren()
+        this.getSiren(enrollment.siren)
       })
     }
   }
@@ -119,9 +118,8 @@ class Form extends React.Component {
     }
   }
 
-  getSiren() {
-    const {enrollment} = this.state
-    const sirenWithoutSpaces = enrollment.siren.replace(/ /g, '')
+  getSiren(siren) {
+    const sirenWithoutSpaces = siren.replace(/ /g, '')
 
     Services.getSirenInformation(sirenWithoutSpaces).then(({
       data: {
@@ -130,9 +128,15 @@ class Form extends React.Component {
     }) => {
       const responsable = `${nom}  ${prenom}`
       const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
+      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
+      const {enrollment} = this.state
       this.setState({
-        enrollment: Object.assign({}, enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}, {sirenNotFound: false})})
+        enrollment: Object.assign({}, enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}),
+        sirenNotFound: false
+      })
     }).catch(() => {
+      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
+      const {enrollment} = this.state
       this.setState({
         enrollment: Object.assign({}, enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
         sirenNotFound: true
@@ -140,10 +144,11 @@ class Form extends React.Component {
     })
   }
 
-  handleSirenChange(e) {
-    this.handleChange(e)
-    // In order to call getSiren after state update from handleChange
-    setTimeout(() => this.getSiren(), 0)
+  throttleGetSiren = throttle(event => this.getSiren(event.target.value), 500)
+
+  handleSirenChange(event) {
+    this.handleChange(event)
+    this.throttleGetSiren(event)
   }
 
   render() {
