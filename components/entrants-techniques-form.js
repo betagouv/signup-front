@@ -81,15 +81,7 @@ class EntrantsTecniquesForm extends React.Component {
       if (response.status === 200) {
         Router.push('/')
       }
-    }).catch(error => {
-      if (error.response.status === 422) {
-        alert('Formulaire incomplet' + error.response.request.response) // eslint-disable-line no-alert
-      } else if (error.response.status === 401) {
-        alert('Vous n\'êtes pas autorisé' + error.response) // eslint-disable-line no-alert
-      } else {
-        alert('Erreur inconnue' + error.response) // eslint-disable-line no-alert
-      }
-    })
+    }).catch(Utils.handleError(this))
     event.preventDefault()
   }
 
@@ -177,6 +169,12 @@ class EntrantsTecniquesForm extends React.Component {
             </section>
           </div>
         }
+
+        {errors.map(error => (
+          <div key={error} className='notification error'>
+            {error}
+          </div>
+        ))}
       </form>
     )
   }
