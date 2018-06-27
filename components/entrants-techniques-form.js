@@ -2,8 +2,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
-import Utils from '../lib/utils'
+import {merge, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
+import Utils from '../lib/utils'
 import {BACK_HOST} from '@env'
 
 const axios = require('axios')
@@ -69,11 +70,9 @@ class EntrantsTecniquesForm extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    const stateCopy = Object.assign({}, this.state)
+    const newState = merge({}, this.state, zipObjectDeep([`enrollment.${name}`], [value]))
 
-    Utils.deepSetInState(name, value, stateCopy)
-
-    this.setState(stateCopy)
+    this.setState(newState)
   }
 
   handleSubmit(event) {
