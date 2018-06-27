@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Page from '../components/page'
-import DgfipForm from '../components/dgfip-form'
+import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
 import EntrantsTechniquesForm from '../components/entrants-techniques-form'
 import Services from '../lib/services'
+import DgfipFormConfiguration from '../components/data/dgfip.form'
 
 class Dgfip extends React.Component {
   constructor(props) {
@@ -58,12 +59,13 @@ class Dgfip extends React.Component {
   render() {
     const {url} = this.props
     const {enrollment} = this.state
+
     return (
       <Page>
         <div className='documentation'>
           <DgfipNav id={url.query.id} />
           <div className='main-pane'>
-            <DgfipForm id={url.query.id} />
+            <Form id={url.query.id} form={DgfipFormConfiguration} />
             { enrollment.acl.show_technical_inputs &&
               <EntrantsTechniquesForm id={url.query.id} />
             }

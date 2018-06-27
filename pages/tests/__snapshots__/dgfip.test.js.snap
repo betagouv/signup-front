@@ -124,128 +124,293 @@ exports[`pages | dgfip render should match snapshot 1`] = `
             <h1>
               Demande d'accès à l'API Impôts Particulier
             </h1>
-            <p>
-              Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l'API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d'imposition papier.
-            </p>
-            <p>
-              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
-            </p>
-            <p>
-              Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :
-            </p>
-            <ul>
-              <li>
-                le fondement juridique
-              </li>
-              <li>
-                les données nécessaires à la démarche administrative
-              </li>
-              <li>
-                la volumétrie de sollicitation de l'API
-              </li>
-              <li>
-                la protection des données personnelles.
-              </li>
-            </ul>
-            <p>
-              Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l'authentification SSL et concevoir vos bouchons .
-            </p>
-            <p>
-              Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l'API « Impôt Particulier ».
-            </p>
-            <div>
-              <input
-                checked={false}
-                disabled={false}
-                id="checkbox-administration"
-                name="enrollment.administration"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="label-inline"
-                htmlFor="checkbox-administration"
-              >
-                Êtes-vous ou représentez-vous une administration publique (État, collectivités territoriales...) ?
-              </label>
-            </div>
-            <div>
-              <input
-                checked={false}
-                disabled={false}
-                id="checkbox-france_connect"
-                name="enrollment.france_connect"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="label-inline"
-                htmlFor="checkbox-france_connect"
-              >
-                Avez-vous intégré le bouton FranceConnect ou êtes-vous éligible à son intégration ?
-              </label>
-            </div>
-            <div>
-              <input
-                checked={false}
-                disabled={false}
-                id="checkbox-autorisation_legale"
-                name="enrollment.autorisation_legale"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="label-inline"
-                htmlFor="checkbox-autorisation_legale"
-              >
-                Possédez-vous un cadre légal permettant de solliciter des données fiscales auprès de la DGFiP ?
-              </label>
-            </div>
-            <h1
-              id="legal"
+            <div
+              className="intro"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<div> <p>Dans le cadre du programme « Dites-le nous une fois - Particuliers», visant à simplifier les démarches administratives des usagers, l&apos;API « Impôt Particulier » permet de récupérer des informations fiscales des usagers de façon à leur éviter la transmission de leur avis d&apos;imposition papier.</p> <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p> <p>Pour cela, il vous sera demandé de compléter le plus précisément possible les informations sur :</p> <ul> <li>le fondement juridique</li> <li>les données nécessaires à la démarche administrative</li> <li>la volumétrie de sollicitation de l&apos;API</li> <li>la protection des données personnelles.</li> </ul> <p>Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre disposition pour pouvoir tester l&apos;authentification SSL et concevoir vos bouchons .</p> <p>Ce portail permet de faciliter le raccordement du téléservice des fournisseurs de service à l&apos;API « Impôt Particulier ».</p> </div>",
+                }
+              }
+            />
+            <h2
+              id="identite"
             >
-              Fondement juridique
-            </h1>
-            <section
-              className="information-text"
-            >
-              <p>
-                Pour pouvoir bénéficier du raccordement à l‘API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.
-              </p>
-              <p>
-                Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.
-              </p>
-            </section>
+              Identité
+            </h2>
             <div
               className="form__group"
             >
               <label
-                htmlFor="fournisseur_de_service"
+                htmlFor="search-siren"
               >
-                Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement
+                Rechercher votre organisme avec son SIREN
               </label>
-              <p>
-                <a
-                  className="button"
-                  href="http://localhost:3001/users/auth/france_connect"
-                >
-                  Se connecter auprès de France Connect afin de récupérer mes démarches
-                </a>
-              </p>
-              <select
-                name="enrollment.fournisseur_de_service"
-                onChange={[Function]}
+              <div
+                className="search__group"
               >
-                <option>
-                  -- sélectionnez une démarche --
-                </option>
-                
-                <option
-                  value="Une démarche de test"
+                <input
+                  id="search-siren"
+                  name="siren"
+                  onChange={[Function]}
+                  type="text"
+                  value=""
+                />
+                <button
+                  aria-label="Recherche"
+                  className="overlay-button"
+                  onClick={[Function]}
+                  type="button"
                 >
-                  Une démarche de test
-                </option>
-              </select>
+                  <svg
+                    className="icon icon-search"
+                    height="100%"
+                    id="icon-search"
+                    width="100%"
+                  >
+                    <title>
+                      Rechercher
+                    </title>
+                    <path
+                      d="M15.504 13.616l-3.79-3.223c-0.392-0.353-0.811-0.514-1.149-0.499 0.895-1.048 1.435-2.407 1.435-3.893 0-3.314-2.686-6-6-6s-6 2.686-6 6 2.686 6 6 6c1.486 0 2.845-0.54 3.893-1.435-0.016 0.338 0.146 0.757 0.499 1.149l3.223 3.79c0.552 0.613 1.453 0.665 2.003 0.115s0.498-1.452-0.115-2.003zM6 10c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div
+              className="form__group"
+            >
+              <label
+                htmlFor="nom_raison_sociale"
+              >
+                Raison sociale
+              </label>
+              <input
+                disabled={true}
+                id="nom_raison_sociale"
+                name="nom_raison_sociale"
+                onChange={[Function]}
+                type="text"
+                value={undefined}
+              />
+            </div>
+            <div
+              className="form__group"
+            >
+              <label
+                htmlFor="adresse"
+              >
+                Adresse
+              </label>
+              <input
+                disabled={true}
+                id="adresse"
+                name="adresse"
+                onChange={[Function]}
+                type="text"
+                value={undefined}
+              />
+            </div>
+            <div
+              className="form__group"
+            >
+              <label
+                htmlFor="activite_principale"
+              >
+                Code NAF
+              </label>
+              <input
+                disabled={true}
+                id="activite_principale"
+                name="activite_principale"
+                onChange={[Function]}
+                type="text"
+                value={undefined}
+              />
+            </div>
+            <h3>
+              Contacts
+            </h3>
+            <div
+              className="row card-row"
+            >
+              <div
+                className="card"
+              >
+                <div
+                  className="card__content"
+                >
+                  <h3>
+                    Délégué à la protection des données
+                  </h3>
+                  <a
+                    className="card__meta"
+                    href="https://www.cnil.fr/fr/designation-dpo"
+                  >
+                    https://www.cnil.fr/fr/designation-dpo
+                  </a>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_dpo_nom"
+                    >
+                      Nom et Prénom
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_dpo_nom"
+                      name="nom"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_dpo_email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_dpo_email"
+                      name="email"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="card"
+              >
+                <div
+                  className="card__content"
+                >
+                  <h3>
+                    Responsable de traitement
+                  </h3>
+                  <a
+                    className="card__meta"
+                    href="https://www.cnil.fr/fr/definition/responsable-de-traitement"
+                  >
+                    https://www.cnil.fr/fr/definition/responsable-de-traitement
+                  </a>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_responsable_traitement_nom"
+                    >
+                      Nom et Prénom
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_responsable_traitement_nom"
+                      name="nom"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_responsable_traitement_email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_responsable_traitement_email"
+                      name="email"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                className="card"
+              >
+                <div
+                  className="card__content"
+                >
+                  <h3>
+                    Responsable technique
+                  </h3>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_technique_nom"
+                    >
+                      Nom et Prénom
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_technique_nom"
+                      name="nom"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                  <div
+                    className="form__group"
+                  >
+                    <label
+                      htmlFor="person_technique_email"
+                    >
+                      Email
+                    </label>
+                    <input
+                      disabled={false}
+                      id="person_technique_email"
+                      name="email"
+                      onChange={[Function]}
+                      type="text"
+                      value={undefined}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2
+              id="demarche"
+            >
+              Démarche
+            </h2>
+            <section
+              className="information-text"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p> <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p> </section> <div className='form__group'> <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label> <p><a className='button' href={FRANCE_CONNECT_AUTHORIZE_URI}>Se connecter auprès de France Connect afin de récupérer mes démarches</a></p>",
+                }
+              }
+            />
+            <div
+              className="form__group"
+            >
+              <label
+                htmlFor="intitule_demarche"
+              >
+                Intitulé
+              </label>
+              <input
+                disabled={false}
+                id="intitule_demarche"
+                name="demarche.intitule"
+                onChange={[Function]}
+                type="text"
+                value=""
+              />
             </div>
             <div
               className="form__group"
@@ -258,7 +423,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <textarea
                 disabled={false}
                 id="description_service"
-                name="enrollment.description_service"
+                name="demarche.description"
                 onChange={[Function]}
                 rows="10"
                 value=""
@@ -270,437 +435,175 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <label
                 htmlFor="fondement_juridique"
               >
-                Veuillez transmettre le fondement juridique sur lequel s’appuie votre demande
+                Cadre juridique 
+                <i>
+                  (indiquez la référence ou l'URL du texte vous autorisant à récolter ces données)
+                </i>
               </label>
-              <textarea
+              <input
                 disabled={false}
-                id="fondement_juridique"
-                name="enrollment.fondement_juridique"
+                id="fondement_juridique_demarche"
+                name="demarche.fondement_juridique"
                 onChange={[Function]}
-                rows="10"
+                type="text"
                 value=""
               />
             </div>
-            <h1
+            <h2
               id="donnees"
             >
-              Choix des données
-            </h1>
-            <section
-              className="information-text"
-            >
-              <p>
-                La loi informatique et libertés définit les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles.
-              </p>
-              <p>
-                L’article 6 précise :
-              </p>
-              <ul>
-                <li>
-                  3° [les données] sont adéquates, pertinentes et non excessives au regard des finalités pour lesquelles elles sont collectées et de leurs traitements ultérieurs ;
-                </li>
-                <li>
-                  4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les mesures appropriées doivent être prises pour que les données inexactes ou incomplètes au regard des finalités pour lesquelles elles sont collectées ou traitées soient effacées ou rectifiées ;
-                </li>
-              </ul>
-              <p>
-                Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice. Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.
-              </p>
-              <p>
-                Vous pouvez consulter le 
-                <a
-                  href="/static/docs/cst-dgfip.pdf"
-                  target="_blank"
-                >
-                  Contrat de Service Technique (CST)
-                </a>
-                 pour voir le détail des données disponibles.
-              </p>
-            </section>
+              Données
+            </h2>
             <div
               className="form__group"
             >
               <fieldset
                 className="vertical"
               >
-                <legend>
+                <label>
                   Sélectionnez vos jeux de données souhaités
-                </legend>
-                <div>
-                  <input
-                    checked={false}
-                    disabled={false}
-                    id="checkbox-scope_dgfip_RFR"
-                    name="enrollment.scope_dgfip_RFR"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <label
-                    className="label-inline"
-                    htmlFor="checkbox-scope_dgfip_RFR"
+                </label>
+                <div
+                  className="row"
+                >
+                  <div
+                    className="column"
+                    style={
+                      Object {
+                        "flex": 1,
+                      }
+                    }
                   >
-                    DGFiP - Revenu Fiscal de Référence (RFR) et nombre de parts fiscales du foyer
-                  </label>
-                </div>
-                <div>
-                  <input
-                    checked={false}
-                    disabled={false}
-                    id="checkbox-scope_dgfip_adresse_fiscale_taxation"
-                    name="enrollment.scope_dgfip_adresse_fiscale_taxation"
-                    onChange={[Function]}
-                    type="checkbox"
-                  />
-                  <label
-                    className="label-inline"
-                    htmlFor="checkbox-scope_dgfip_adresse_fiscale_taxation"
-                  >
-                    DGFiP - Adresse fiscale de taxation au 1er janvier
-                  </label>
+                    <div>
+                      <input
+                        checked={false}
+                        className="scope__checkbox"
+                        disabled={false}
+                        id="checkbox-scope_api_entreprisedgfip_revenu_fiscal_de_reference"
+                        name="scopes.dgfip_revenu_fiscal_de_reference"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="label-inline"
+                        htmlFor="checkbox-scope_api_entreprisedgfip_revenu_fiscal_de_reference"
+                      >
+                        DGFIP - Revenu fiscal de référence (RFR) et nombre de parts
+                      </label>
+                      <div
+                        className="scope__destinataire"
+                      >
+                        <div
+                          className="form__group"
+                        >
+                          <label
+                            htmlFor="destinataire_dgfip_revenu_fiscal_de_reference"
+                          >
+                            Destinataires 
+                            <a
+                              href="https://www.cnil.fr/fr/definition/destinataire"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                              (plus d´infos)
+                            </a>
+                          </label>
+                          <input
+                            disabled={false}
+                            id="desinataire_dgfip_revenu_fiscal_de_reference"
+                            name="donnees.destinataires.dgfip_revenu_fiscal_de_reference"
+                            onChange={[Function]}
+                            type="text"
+                            value={undefined}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <input
+                        checked={false}
+                        className="scope__checkbox"
+                        disabled={false}
+                        id="checkbox-scope_api_entreprisedgfip_adresse_fiscale_de_taxation"
+                        name="scopes.dgfip_adresse_fiscale_de_taxation"
+                        onChange={[Function]}
+                        type="checkbox"
+                      />
+                      <label
+                        className="label-inline"
+                        htmlFor="checkbox-scope_api_entreprisedgfip_adresse_fiscale_de_taxation"
+                      >
+                        DGFIP - Adresse fiscale de taxation au 1er janvier
+                      </label>
+                      <div
+                        className="scope__destinataire"
+                      >
+                        <div
+                          className="form__group"
+                        >
+                          <label
+                            htmlFor="destinataire_dgfip_adresse_fiscale_de_taxation"
+                          >
+                            Destinataires 
+                            <a
+                              href="https://www.cnil.fr/fr/definition/destinataire"
+                              rel="noopener noreferrer"
+                              target="_blank"
+                            >
+                              (plus d´infos)
+                            </a>
+                          </label>
+                          <input
+                            disabled={false}
+                            id="desinataire_dgfip_adresse_fiscale_de_taxation"
+                            name="donnees.destinataires.dgfip_adresse_fiscale_de_taxation"
+                            onChange={[Function]}
+                            type="text"
+                            value={undefined}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </fieldset>
             </div>
-            <h1
-              id="volumetrie"
-            >
-              Volumétrie
-            </h1>
-            <section
-              className="information-text"
-            >
-              <p>
-                Connaitre les données relatives à la volumétrie et à la saisonnalité de votre téléservice nous permettra de vous offrir la meilleure qualité de service possible. En effet, cela permettra de prévenir les pics de charges et de transmettre ces informations aux fournisseurs de vos données.
-              </p>
-              <p>
-                Conformément à notre charte, nous nous réservons le droit de réduire ou couper les appels autorisés au fournisseur de service.
-              </p>
-            </section>
             <div
               className="form__group"
             >
               <label
-                htmlFor="nombre_demandes_annuelle"
+                htmlFor="donnees_conservation"
               >
-                Connaissez-vous le volume global annuel des demandes de votre téléservice ?
+                Conservation des données 
+                <i>
+                  (en mois)
+                </i>
               </label>
               <input
                 disabled={false}
-                id="nombre_demandes_annuelle"
-                name="enrollment.nombre_demandes_annuelle"
+                id="donnees_conservation"
+                name="donnees.conservation"
                 onChange={[Function]}
-                type="text"
+                type="number"
                 value=""
               />
-            </div>
-            <div
-              className="form__group"
-            >
-              <label
-                htmlFor="pic_demandes_par_heure"
-              >
-                Connaissez-vous le pic de charge (en nombre de demandes horaires) ?
-              </label>
-              <input
-                disabled={false}
-                id="pic_demandes_par_heure"
-                name="enrollment.pic_demandes_par_heure"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-            </div>
-            <div
-              className="form__group"
-            >
-              <label>
-                Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé) ?
-              </label>
-              <div
-                className="form__group"
-              >
-                <div
-                  className="date_input_row"
-                >
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_jan"
-                    >
-                      Janvier
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_jan"
-                      name="enrollment.nombre_demandes_mensuelles_jan"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_fev"
-                    >
-                      Février
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_fev"
-                      name="enrollment.nombre_demandes_mensuelles_fev"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_mar"
-                    >
-                      Mars
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_mar"
-                      name="enrollment.nombre_demandes_mensuelles_mar"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_avr"
-                    >
-                      Avril
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_avr"
-                      name="enrollment.nombre_demandes_mensuelles_avr"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_mai"
-                    >
-                      Mai
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_mai"
-                      name="enrollment.nombre_demandes_mensuelles_mai"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_juin"
-                    >
-                      Juin
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_juin"
-                      name="enrollment.nombre_demandes_mensuelles_juin"
-                      onChange={[Function]}
-                      type="text"
-                      value={undefined}
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_jui"
-                    >
-                      Juillet
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_jui"
-                      name="enrollment.nombre_demandes_mensuelles_jui"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_aou"
-                    >
-                      Août
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_aou"
-                      name="enrollment.nombre_demandes_mensuelles_aou"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_sep"
-                    >
-                      Septembre
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_sep"
-                      name="enrollment.nombre_demandes_mensuelles_sep"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_oct"
-                    >
-                      Octobre
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_oct"
-                      name="enrollment.nombre_demandes_mensuelles_oct"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_nov"
-                    >
-                      Novembre
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_nov"
-                      name="enrollment.nombre_demandes_mensuelles_nov"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <div
-                    className="date_input_col"
-                  >
-                    <label
-                      htmlFor="nombre_demandes_mensuelles_dec"
-                    >
-                      Décembre
-                    </label>
-                    <input
-                      disabled={false}
-                      id="nombre_demandes_mensuelles_dec"
-                      name="enrollment.nombre_demandes_mensuelles_dec"
-                      onChange={[Function]}
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
             </div>
             <h1
-              id="cnil"
+              id="cgu"
             >
-              Obligation RGPD
+              Conditions d´utilisation
             </h1>
             <section
               className="information-text"
-            >
-              <p>
-                L’entrée en vigueur le 25 mai 2018 du règlement européen sur la protection des données supprime totalement le régime déclaratif.
-              </p>
-              <p>
-                Les fournisseurs de services ont en particulier l’obligation de tenir un registre de leurs activités de traitement, d’encadrer les opérations sous-traitées dans les contrats de prestation de services, de formaliser des politiques de confidentialité des données et des procédures relatives à la gestion des demandes d’exercice des droits.
-              </p>
-              <p>
-                La désignation d’un délégué à la protection des données - successeur du correspondant informatique et libertés (CIL) dont la désignation est aujourd’hui facultative - devient obligatoire pour les organismes et autorités publics, et donc pour les fournisseurs de services.
-              </p>
-            </section>
-            <div
-              className="form__group"
-            >
-              <label
-                htmlFor="delegue_protection_donnees"
-              >
-                Délégué·e à la protection des données
-              </label>
-              <input
-                disabled={false}
-                id="delegue_protection_donnees"
-                name="enrollment.delegue_protection_donnees"
-                onChange={[Function]}
-                type="text"
-                value=""
-              />
-            </div>
-            <div
-              className="form__group"
-            >
-              <input
-                checked={false}
-                id="demarche_cnil"
-                name="enrollment.demarche_cnil"
-                onChange={[Function]}
-                type="checkbox"
-              />
-              <label
-                className="label-inline"
-                htmlFor="demarche_cnil"
-              >
-                Je déclare avoir accompli mes démarches CNIL en accord avec le règlement général de protection des données
-              </label>
-            </div>
-            <h1
-              id="convention"
-            >
-              Convention
-            </h1>
-            <section
-              className="information-text"
-            >
-              <p>
-                Votre raccordement à l‘API « Impôt Particulier » nécessite l‘acceptation de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. 
-                <br />
-                 Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. 
-                <br />
-                 La convention générée à l‘issue de votre demande de raccordement contiendra l‘ensemble des éléments propres à votre situation. 
-                <br />
-                 Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.
-              </p>
-            </section>
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Votre raccordement à l&lsquo;API « Impôt Particulier » nécessite l&lsquo;acceptation de la convention d&lsquo;adhésion fixant vos engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous vous permettront de visualiser la convention type ainsi que ses annexes. <br /> La convention générée à l&lsquo;issue de votre demande de raccordement contiendra l&lsquo;ensemble des éléments propres à votre situation. <br /> Cette convention sera publiée sur api.gouv.fr et sera accessible via vos identifiants FranceConnect.</p>",
+                }
+              }
+            />
             <iframe
               height="800px"
-              src="/static/docs/charte-fc.pdf"
+              src="/static/docs/cst-dgfip.pdf"
               width="100%"
             />
             <div
@@ -710,7 +613,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 checked={false}
                 disabled={false}
                 id="validation_de_convention"
-                name="enrollment.validation_de_convention"
+                name="validation_de_convention"
                 onChange={[Function]}
                 type="checkbox"
               />
@@ -718,7 +621,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 className="label-inline"
                 htmlFor="validation_de_convention"
               >
-                Je valide la présente convention
+                Je valide les présentes conditions d'utilisation et confirme que le DPO de mon organisme est informé de ma demande
               </label>
             </div>
             <div
