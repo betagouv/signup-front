@@ -172,28 +172,24 @@ class Form extends React.Component {
     const {form} = this.props
     const disabled = !acl.send_application
 
-    let personId = 0
-    const personForm = person => {
-      person.id = person.id || 'person_' + personId++
-      return (
-        <div key={person.id} className='card'>
-          <div className='card__content'>
-            <h3>{person.heading}</h3>
-            {person.link &&
-              <a className='card__meta' href={person.link}>{person.link}</a>
-            }
-            <div className='form__group'>
-              <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
-              <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={disabled} value={person.nom} />
-            </div>
-            <div className='form__group'>
-              <label htmlFor={'person_' + person.id + '_email'}>Email</label>
-              <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={disabled} value={person.email} />
-            </div>
+    const personForm = person => (
+      <div key={person.id} className='card'>
+        <div className='card__content'>
+          <h3>{person.heading}</h3>
+          {person.link &&
+            <a className='card__meta' href={person.link}>{person.link}</a>
+          }
+          <div className='form__group'>
+            <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
+            <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={disabled} value={person.nom} />
+          </div>
+          <div className='form__group'>
+            <label htmlFor={'person_' + person.id + '_email'}>Email</label>
+            <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={disabled} value={person.email} />
           </div>
         </div>
-      )
-    }
+      </div>
+    )
 
     /* eslint-disable react/no-danger */
     return (
@@ -312,13 +308,11 @@ class Form extends React.Component {
           </div>
         }
 
-        {errors.map(error => {
-          return (
-            <div key={error} className='notification error'>
-              {error}
-            </div>
-          )
-        })}
+        {errors.map(error => (
+          <div key={error} className='notification error'>
+            {error}
+          </div>
+        ))}
       </form>
     )
     /* eslint-enable react/no-danger */
