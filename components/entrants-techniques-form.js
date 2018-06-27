@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
@@ -311,3 +312,4 @@ EntrantsTecniquesForm.defaultProps = {
 }
 
 export default EntrantsTecniquesForm
+/* eslint-enable camelcase */
