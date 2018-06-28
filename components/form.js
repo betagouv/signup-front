@@ -1,10 +1,9 @@
-/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {merge, throttle, zipObjectDeep} from 'lodash'
-import SearchIcon from './icons/search'
 import Services from '../lib/services'
+import SearchIcon from './icons/search'
 
 class Form extends React.Component {
   constructor(props) {

@@ -30,24 +30,24 @@ class ContractualisationForm extends React.Component {
     this.state = {
       errors: [],
       enrollment: {
-        fournisseur_de_donnees: 'api-particulier', // eslint-disable-line camelcase
+        fournisseur_de_donnees: 'api-particulier',
         scopes: {},
         acl: {
-          send_application: true // eslint-disable-line camelcase
+          send_application: true
         },
         contacts: BASE_CONTACTS,
         siren: '',
         demarche: {
           intitule: '',
           description: '',
-          fondement_juridique: '' // eslint-disable-line camelcase
+          fondement_juridique: ''
         },
         donnees: {
           conservation: '',
           destinataires: {}
         },
-        validation_de_convention: false, // eslint-disable-line camelcase
-        validation_delegue_a_la_protection_des_données: false // eslint-disable-line camelcase
+        validation_de_convention: false,
+        validation_delegue_a_la_protection_des_données: false
       }
     }
 
@@ -152,14 +152,14 @@ class ContractualisationForm extends React.Component {
 
     axios.get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${sirenWithoutSpaces}`).then(response => {
       const siegeSocial = response.data.siege_social
-      const raison_sociale = siegeSocial.nom_raison_sociale // eslint-disable-line camelcase
+      const raison_sociale = siegeSocial.nom_raison_sociale
       const responsable = siegeSocial.nom + ' ' + siegeSocial.prenom
-      const code_naf = siegeSocial.activite_principale // eslint-disable-line camelcase
+      const code_naf = siegeSocial.activite_principale
       const adresse = [siegeSocial.l2_normalisee, siegeSocial.l3_normalisee, siegeSocial.l4_normalisee, siegeSocial.l5_normalisee, siegeSocial.l6_normalisee, siegeSocial.l7_normalisee].filter(e => e).join(', ')
       this.setState({sirenNotFound: false})
-      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})}) // eslint-disable-line camelcase
+      this.setState({enrollment: Object.assign(enrollment, {raison_sociale, adresse, responsable, code_naf})})
     }).catch(() => this.setState({
-      enrollment: Object.assign(enrollment, {raison_sociale: '', adresse: '', responsable: '', code_naf: ''}), // eslint-disable-line camelcase
+      enrollment: Object.assign(enrollment, {raison_sociale: '', adresse: '', responsable: '', code_naf: ''}),
       sirenNotFound: true
     }))
   }

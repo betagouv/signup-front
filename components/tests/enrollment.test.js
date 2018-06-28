@@ -14,7 +14,7 @@ describe('components | Enrollment', () => {
         messages: [],
         state: 'pending',
         acl: {
-          send_application: true // eslint-disable-line camelcase
+          send_application: true
         }
       }
     }
@@ -39,9 +39,9 @@ describe('components | Enrollment', () => {
         messages: [],
         state: 'sent',
         acl: {
-          validate_application: true, // eslint-disable-line camelcase
-          refuse_application: true, // eslint-disable-line camelcase
-          review_application: true // eslint-disable-line camelcase
+          validate_application: true,
+          refuse_application: true,
+          review_application: true
         }
       }
     }
@@ -66,7 +66,7 @@ describe('components | Enrollment', () => {
         },
         state: 'sent',
         acl: {
-          validate_application: false // eslint-disable-line camelcase
+          validate_application: false
         }
       }
     }
@@ -91,7 +91,7 @@ describe('components | Enrollment', () => {
         messages: [],
         state: 'validated',
         acl: {
-          send_technical_inputs: false // eslint-disable-line camelcase
+          send_technical_inputs: false
         }
       }
     }
@@ -116,7 +116,7 @@ describe('components | Enrollment', () => {
         messages: [],
         state: 'validated',
         acl: {
-          send_technical_inputs: true // eslint-disable-line camelcase
+          send_technical_inputs: true
         }
       }
     }
@@ -141,7 +141,7 @@ describe('components | Enrollment', () => {
         messages: [],
         state: 'technical_inputs',
         acl: {
-          deploy_application: true // eslint-disable-line camelcase
+          deploy_application: true
         }
       }
     }

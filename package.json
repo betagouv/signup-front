@@ -55,7 +55,7 @@
     "space": 2,
     "env": "browser",
     "rules": {
-      "camelcase": "warn",
+      "camelcase": 0,
       "react/jsx-uses-vars": [
         2
       ],

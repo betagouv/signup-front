@@ -15,13 +15,13 @@ class EntrantsTecniquesForm extends React.Component {
       enrollment: {
         documents: [],
         acl: {},
-        ips_de_production: '', // eslint-disable-line camelcase
-        autorite_certification: '', // eslint-disable-line camelcase
-        autorite_certification_nom: '', // eslint-disable-line camelcase
-        autorite_certification_fonction: '', // eslint-disable-line camelcase
-        date_homologation: '', // eslint-disable-line camelcase
-        date_fin_homologation: '', // eslint-disable-line camelcase
-        recette_fonctionnelle: false // eslint-disable-line camelcase
+        ips_de_production: '',
+        autorite_certification: '',
+        autorite_certification_nom: '',
+        autorite_certification_fonction: '',
+        date_homologation: '',
+        date_fin_homologation: '',
+        recette_fonctionnelle: false
       }
     }
     this.handleChange = this.handleChange.bind(this)
