@@ -14,15 +14,17 @@ class Index extends React.Component {
         <Page requireUser>
           <section className='section-grey'>
             <div className='container'>
-              <h1>Liste des demandes</h1>
-              <EnrollmentTable />
-              <p className='text-right'>
-                <Link href={{pathname: '/api-particulier.html'}}>
-                  <a className='button large' name='nouvelle-demande'>
-                    Nouvelle Demande
-                  </a>
-                </Link>
-              </p>
+              <h2>Liste des demandes</h2>
+              <div className='panel'>
+                <EnrollmentTable />
+                <p className='text-right'>
+                  <Link href={{pathname: '/api-particulier.html'}}>
+                    <a className='button large' name='nouvelle-demande'>
+                      Nouvelle Demande
+                    </a>
+                  </Link>
+                </p>
+              </div>
             </div>
           </section>
         </Page>

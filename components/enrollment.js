@@ -46,12 +46,9 @@ class Enrollment extends React.Component {
     const {errors, messageContent} = this.state
     const {enrollment: {
       id,
-      demarche: {intitule},
       messages,
-      applicant: {email},
       description_service: descriptionService,
       fournisseur_de_donnees: fournisseurDeDonnees,
-      human_state: humanState,
       acl: {
         review_application: canReviewApplication,
         refuse_application: canRefuseApplication,
@@ -64,11 +61,8 @@ class Enrollment extends React.Component {
 
     return (
       <li className='panel'>
-        <h2>{intitule}</h2>
         { messages.map(({content}) => <div key={content} className='notification'>{content}</div>) }
-        <em>{email}</em>
         <p>{descriptionService}</p>
-        <p>État de la demande :&nbsp; {humanState}</p>
         <p>
           {canReviewApplication &&
             <input type='text' onChange={this.handleMessageContentChange} value={messageContent} placeholder='Message' />
@@ -107,15 +101,6 @@ class Enrollment extends React.Component {
               </button>
             </Link>
           }
-        </div>
-
-        <div className='button-list'>
-          <Link href={{pathname: `/${fournisseurDeDonnees}.html`, query: {id}}}>
-            <a className='button' name='subscribe'>
-              Voir
-            </a>
-          </Link>
-
         </div>
 
         {errors.map(error => (
