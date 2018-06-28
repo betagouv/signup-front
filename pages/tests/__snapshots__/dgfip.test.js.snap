@@ -164,7 +164,6 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                   <svg
                     className="icon icon-search"
                     height="100%"
-                    id="icon-search"
                     width="100%"
                   >
                     <title>
