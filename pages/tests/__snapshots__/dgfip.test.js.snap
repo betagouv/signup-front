@@ -417,7 +417,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               className="information-text"
               dangerouslySetInnerHTML={
                 Object {
-                  "__html": "<p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p> <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p> </section> <div className='form__group'> <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label> <p><a className='button' href={FRANCE_CONNECT_AUTHORIZE_URI}>Se connecter auprès de France Connect afin de récupérer mes démarches</a></p>",
+                  "__html": "<p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p> <p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p> </section> <div className='form__group'> <label htmlFor='fournisseur_de_service'>Sélectionnez le Fournisseur de Service FranceConnect pour lequel vous souhaitez un raccordement</label>",
                 }
               }
             />
@@ -436,6 +436,33 @@ exports[`pages | dgfip render should match snapshot 1`] = `
                 onChange={[Function]}
                 rows="10"
                 value=""
+              />
+            </div>
+            <h2>
+              Cadre juridique
+            </h2>
+            <section
+              className="information-text"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "<p>Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier, le cadre légal et réglementaire des fournisseurs de service doit permettre à la DGFIP de transmettre des données fiscales  à votre entité administrative.</p><p>Il vous est donc demandé de préciser les références du fondement légal de votre droit à demander ces informations (délibération du conseil municipal, décret …) ainsi que les informations relatives à votre téléservice.</p>",
+                }
+              }
+            />
+            <div
+              className="form__group"
+            >
+              <label
+                htmlFor="Document::LegalBasis"
+              >
+                Pièce jointe
+              </label>
+              <input
+                disabled={false}
+                id="document_legal_basis"
+                name="Document::LegalBasis"
+                onChange={[Function]}
+                type="file"
               />
             </div>
             <div
