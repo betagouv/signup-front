@@ -40,7 +40,7 @@ class MultipleChoiceButton extends React.Component {
   handleClickOnActionButtonFactory(trigger) {
     return event => {
       event.stopPropagation()
-      trigger()
+      trigger(event)
     }
   }
 

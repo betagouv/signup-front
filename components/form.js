@@ -204,7 +204,7 @@ class Form extends React.Component {
           <div className='search__group'>
             <input type='text' value={siren} name='siren' id='search-siren' onChange={this.handleSirenChange} />
             <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
-              <SearchIcon id='icon-search' />
+              <SearchIcon id='icon-search' title='Rechercher' />
             </button>
           </div>
         </div>
