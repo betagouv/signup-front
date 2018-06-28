@@ -1,106 +1,107 @@
 import React from 'react'
 import Link from 'next/link'
 import PropTypes from 'prop-types'
-import Services from '../lib/services'
-import {STATE_HUMAN_NAMES} from './enrollment-table'
 
 class Enrollment extends React.Component {
   constructor(props) {
     super(props)
 
-    this.handleReviewApplicationMessageContentChange = this.handleReviewApplicationMessageContentChange.bind(this)
-    this.state = {enrollment: props.enrollment, errors: [], reviewApplicationMessageContent: null}
+    this.handleMessageContentChange = this.handleMessageContentChange.bind(this)
+    this.state = {errors: [], messageContent: ''}
   }
 
-  deleteEnrollment(event) {
-    const token = localStorage.getItem('token')
-    const id = event.target.value
-    Services.deleteUserEnrollment(token, id)
-      .then(response => {
-        if (response.status === 204) {
-          alert('Demande supprimée avec succès' + response.request.response) // eslint-disable-line no-alert
-        } else if (response.status === 404) {
-          alert('Formulaire incomplet' + response.request.response) // eslint-disable-line no-alert
-        } else if (response.status === 401) {
-          alert('Vous n êtes pas autorisé' + response) // eslint-disable-line no-alert
-        } else {
-          alert('Erreur inconnue' + response) // eslint-disable-line no-alert
-        }
-      })
-      .catch(error => alert('Oups !' + error)) // eslint-disable-line no-alert
-    event.preventDefault()
+  componentDidUpdate(prevProps) {
+    if (prevProps.enrollment.demarche.intitule !== this.props.enrollment.demarche.intitule) {
+      // React-table does not destroy enrollment cell but re-use it instead
+      // Hence, we re-trigger a rendering here to reset this cell state so it can be used for another enrollment
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({errors: [], messageContent: ''})
+    }
   }
 
-  trigger(action) {
-    const {enrollment, reviewApplicationMessageContent} = this.state
-    enrollment.messages_attributes = [{content: reviewApplicationMessageContent}] // eslint-disable-line camelcase
-    return () => Services.triggerUserEnrollment(action, enrollment).then(response => {
-      const enrollment = response.data
-      if (enrollment) {
-        this.setState({enrollment, errors: []})
-      }
-    }).catch(error => {
-      if (error.response.status === 422) {
-        let errors = []
-        let enrollmentError
-        for (enrollmentError in error.response.data) {
-          if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
-            errors = errors.concat(error.response.data[enrollmentError])
+  handleMessageContentChange(event) {
+    this.setState({messageContent: event.target.value})
+  }
+
+  trigger(actionName) {
+    return () => {
+      this.props.triggerAction({...this.props.enrollment, messages_attributes: [{content: this.state.messageContent}]}, actionName)
+        .then(() => this.setState({errors: []}))
+        .catch(error => {
+          if (error.response.status === 422) {
+            let errors = []
+            let enrollmentError
+            for (enrollmentError in error.response.data) {
+              if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
+                errors = errors.concat(error.response.data[enrollmentError])
+              }
+            }
+            this.setState({errors})
           }
-        }
-        this.setState({errors})
-      }
-    })
-  }
-
-  handleReviewApplicationMessageContentChange(event) {
-    this.setState(Object.assign({}, this.state, {reviewApplicationMessageContent: event.target.value}))
+        })
+    }
   }
 
   render() {
-    const {enrollment, errors, reviewApplicationMessageContent} = this.state
-    enrollment.messages_attributes = enrollment.messages_attributes || [{content: ''}] // eslint-disable-line camelcase
+    const {errors, messageContent} = this.state
+    const {enrollment: {
+      id,
+      demarche: {intitule},
+      messages,
+      applicant: {email},
+      description_service: descriptionService,
+      fournisseur_de_donnees: fournisseurDeDonnees,
+      human_state: humanState,
+      acl: {
+        review_application: canReviewApplication,
+        refuse_application: canRefuseApplication,
+        validate_application: canValidateApplication,
+        send_application: canSendApplication,
+        deploy_application: canDeployApplication,
+        send_technical_inputs: canSendTechnicalInputs
+      }
+    }} = this.props
 
     return (
       <li className='panel'>
-        <h2>{enrollment.demarche.intitule}</h2>
-        { enrollment.messages.map(({content}) => <li key={content} className='notification'>{content}</li>) }
-        <em>{enrollment.applicant.email}</em>
-        <p>{enrollment.description_service}</p>
-        <p>État de la demande :&nbsp; {STATE_HUMAN_NAMES[enrollment.state]}</p>
+        <h2>{intitule}</h2>
+        { messages.map(({content}) => <div key={content} className='notification'>{content}</div>) }
+        <em>{email}</em>
+        <p>{descriptionService}</p>
+        <p>État de la demande :&nbsp; {humanState}</p>
         <p>
-          {enrollment.acl.review_application &&
-            <input type='text' onChange={this.handleReviewApplicationMessageContentChange} value={reviewApplicationMessageContent} placeholder='Message' />
+          {canReviewApplication &&
+            <input type='text' onChange={this.handleMessageContentChange} value={messageContent} placeholder='Message' />
           }
         </p>
         <div>
-          {enrollment.acl.refuse_application &&
+          {canRefuseApplication &&
             <button className='button' type='submit' name='refuse_application' id='submit' onClick={this.trigger('refuse_application')}>
               Refuser
             </button>
           }
-          {enrollment.acl.validate_application &&
+          {canValidateApplication &&
             <button className='button' type='submit' name='validate_application' id='submit' onClick={this.trigger('validate_application')}>
               Valider
             </button>
           }
-          {enrollment.acl.review_application &&
+          {canReviewApplication &&
             <button className='button' type='submit' name='review_application' id='submit' onClick={this.trigger('review_application')}>
               Demande de modifications
             </button>
           }
-          {enrollment.acl.send_application &&
+          {canSendApplication &&
             <button className='button' type='submit' name='send_application' id='submit' onClick={this.trigger('send_application')}>
               Envoyer la demande
             </button>
           }
-          {enrollment.acl.deploy_application &&
+          {canDeployApplication &&
             <button className='button' type='submit' name='deploy_application' id='submit' onClick={this.trigger('deploy_application')}>
               Déployer l&apos;application
             </button>
           }
-          {enrollment.acl.send_technical_inputs &&
-            <Link href={{pathname: `/${enrollment.fournisseur_de_donnees}.html`, query: {id: enrollment.id}, hash: 'entrants-techniques'}}>
+          {canSendTechnicalInputs &&
+            <Link href={{pathname: `/${fournisseurDeDonnees}.html`, query: {id}, hash: 'entrants-techniques'}}>
               <button className='button' type='submit' name='send_technical_inputs' id='submit'>
               Demander à entrer en production
               </button>
@@ -109,10 +110,7 @@ class Enrollment extends React.Component {
         </div>
 
         <div className='button-list'>
-          {
-            /* <button onClick={this.deleteEnrollment} className='button button-secondary' type='submit' name='delete' id='submit'>Supprimer</button> */
-          }
-          <Link href={{pathname: `/${enrollment.fournisseur_de_donnees}.html`, query: {id: enrollment.id}}}>
+          <Link href={{pathname: `/${fournisseurDeDonnees}.html`, query: {id}}}>
             <a className='button' name='subscribe'>
               Voir
             </a>
@@ -120,21 +118,19 @@ class Enrollment extends React.Component {
 
         </div>
 
-        {errors.map(error => {
-          let i
-          return (
-            <div key={i++} className='notification error'>
-              {error}
-            </div>
-          )
-        })}
+        {errors.map(error => (
+          <div key={error} className='notification error'>
+            {error}
+          </div>
+        ))}
       </li>
     )
   }
 }
 
 Enrollment.propTypes = {
-  enrollment: PropTypes.object.isRequired
+  enrollment: PropTypes.object.isRequired,
+  triggerAction: PropTypes.func.isRequired
 }
 
 export default Enrollment
