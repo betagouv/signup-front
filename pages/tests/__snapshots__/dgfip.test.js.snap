@@ -157,11 +157,7 @@ exports[`pages | dgfip render should match snapshot 1`] = `
               <select
                 name="enrollment.fournisseur_de_service"
                 onChange={[Function]}
-              >
-                <option>
-                  -- sélectionnez une démarche --
-                </option>
-              </select>
+              />
             </div>
             <h2
               id="identite"

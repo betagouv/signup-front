@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import {merge, throttle, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
+import Utils from '../lib/utils'
 import User from '../lib/user'
 import SearchIcon from './icons/search'
 
@@ -46,7 +47,9 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
+    const tokenFc = Utils.getQueryVariable('token')
     const {id} = this.props
+    const user = new User()
 
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
@@ -55,12 +58,9 @@ class Form extends React.Component {
       })
     }
 
-    setTimeout(() => {
-      const user = new User()
-      user.getServiceProviders().then(serviceProviders => {
-        this.setState({serviceProviders})
-      })
-    }, 1000)
+    user.getServiceProviders(tokenFc).then(serviceProviders => {
+      this.setState({serviceProviders})
+    })
   }
 
   handleChange(event) {
@@ -182,7 +182,6 @@ class Form extends React.Component {
       sirenNotFound,
       errors
     } = this.state
-    const france_connect_authorize_uri = FRANCE_CONNECT_AUTHORIZE_URI
 
     const {form} = this.props
     const disabled = !acl.send_application
@@ -215,13 +214,12 @@ class Form extends React.Component {
         { form.franceConnected && (
           <div className='form__group'>
             <h2 id='france-connect'>Partenaire FranceConnect</h2>
-            <p><Link href={france_connect_authorize_uri}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
+            <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
             <label htmlFor='fournisseur_de_service'>Intitulé de la démarche</label>
             <select onChange={this.handleChange} name='enrollment.fournisseur_de_service'>
-              <option>-- sélectionnez une démarche --</option>
               {
                 serviceProviders.map(serviceProvider => {
-                  return <option key={i++} selected={fournisseur_de_service === serviceProvider.name} value={serviceProvider.name}>{serviceProvider.name}</option>
+                  return <option key={serviceProvider.name} selected={fournisseur_de_service === serviceProvider.name} value={serviceProvider.name}>{serviceProvider.name}</option>
                 })
               }
             </select>
@@ -266,13 +264,12 @@ class Form extends React.Component {
 
         <h2 id='demarche'>Démarche</h2>
         <section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
-        { !form.franceConnected && (
+        {!form.franceConnected && (
           <div className='form__group'>
             <label htmlFor='intitule_demarche'>Intitulé</label>
             <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={disabled} value={demarche.intitule} />
           </div>
-        )
-        }
+        )}
 
         <div className='form__group'>
           <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
