@@ -1,5 +1,6 @@
 {
   "provider": "api-particulier",
+  "franceConnected": false,
   "scopes": [
     {
       "name": "dgfip_avis_imposition",
