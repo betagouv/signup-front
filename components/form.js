@@ -1,5 +1,4 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
-import {BACK_HOST} from '@env'
+import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
@@ -98,12 +97,10 @@ class Form extends React.Component {
     const files = [...event.target.files]
     const type = event.target.name
 
-    const documents_attributes = files.map(file => {
-      return {
-        attachment: file,
-        type
-      }
-    }, [])
+    const documents_attributes = files.map(file => ({
+      attachment: file,
+      type
+    }), [])
 
     this.setState(merge({}, {enrollment}, {enrollment: {documents_attributes}}))
   }
@@ -189,7 +186,7 @@ class Form extends React.Component {
 
     const {form} = this.props
     const disabled = !acl.send_application
-    const legalBasis = documents.filter(e => e.type === 'Document::LegalBasis')[0]
+    const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     const personForm = person => (
       <div key={person.id} className='card'>
@@ -287,7 +284,7 @@ class Form extends React.Component {
         }
         <div className='form__group'>
           {legalBasis ? (
-            <label><a href={BACK_HOST + legalBasis.attachment.url + '?token=' + token}>Pièce jointe</a></label>
+            <label><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
           ) : (
             <label htmlFor='Document::LegalBasis'>Pièce jointe</label>
           )}
