@@ -1,4 +1,4 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI} from '@env'
+import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
@@ -21,6 +21,7 @@ class Form extends React.Component {
       enrollment: {
         fournisseur_de_donnees: form.provider,
         scopes: {},
+        documents: [],
         acl: {
           send_application: true
         },
@@ -43,6 +44,7 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getSiren = this.getSiren.bind(this)
+    this.upload = this.upload.bind(this)
     this.handleSirenChange = this.handleSirenChange.bind(this)
   }
 
@@ -88,6 +90,19 @@ class Form extends React.Component {
       })
       this.setState({enrollmentWithUpdatedContact})
     }
+  }
+
+  upload(event) {
+    const {enrollment} = this.state
+    const files = [...event.target.files]
+    const type = event.target.name
+
+    const documents_attributes = files.map(file => ({
+      attachment: file,
+      type
+    }), [])
+
+    this.setState(merge({}, {enrollment}, {enrollment: {documents_attributes}}))
   }
 
   handleSubmit(event) {
@@ -144,10 +159,15 @@ class Form extends React.Component {
   }
 
   render() {
+    let token
+    if (typeof localStorage !== 'undefined') { // eslint-disable-line no-constant-condition
+      token = localStorage.getItem('token')
+    }
     const {
       enrollment: {
         fournisseur_de_service,
         acl,
+        documents,
         siren,
         nom_raison_sociale,
         adresse,
@@ -166,6 +186,7 @@ class Form extends React.Component {
 
     const {form} = this.props
     const disabled = !acl.send_application
+    const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     const personForm = person => (
       <div key={person.id} className='card'>
@@ -257,9 +278,20 @@ class Form extends React.Component {
           <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={disabled} value={demarche.description} />
         </div>
 
+        <h2>Cadre juridique</h2>
+        { form.description.fondementJuridique &&
+          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' />
+        }
+        <div className='form__group'>
+          {legalBasis ? (
+            <label><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
+          ) : (
+            <label htmlFor='Document::LegalBasis'>Pièce jointe</label>
+          )}
+          <input type='file' onChange={this.upload} disabled={disabled} name='Document::LegalBasis' id='document_legal_basis' />
+        </div>
         <div className='form__group'>
           <label htmlFor='fondement_juridique'>Cadre juridique <i>(indiquez la référence ou l&apos;URL du texte vous autorisant à récolter ces données)</i></label>
-
           <input type='text' onChange={this.handleChange} name='demarche.fondement_juridique' id='fondement_juridique_demarche' disabled={disabled} value={demarche.fondement_juridique} />
         </div>
 

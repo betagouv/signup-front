@@ -6,7 +6,6 @@ module.exports = {
       '/contact.html': {page: '/contact.html'},
       '/api-particulier.html': {page: '/api-particulier.html'},
       '/dgfip.html': {page: '/dgfip.html'},
-      '/api-entreprise.html': {page: '/api-entreprise.html'},
       '/oauth-callback.html': {page: '/oauth-callback.html'}
     }
   },
