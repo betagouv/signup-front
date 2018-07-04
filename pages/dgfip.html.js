@@ -5,7 +5,7 @@ import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
 import EntrantsTechniquesForm from '../components/entrants-techniques-form'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
+import {getQueryVariable} from '../lib/utils'
 import DgfipFormConfiguration from '../components/data/dgfip.form'
 
 class Dgfip extends React.Component {
@@ -26,7 +26,7 @@ class Dgfip extends React.Component {
       token = localStorage.getItem('token')
     }
 
-    const id = Utils.getQueryVariable('id')
+    const id = getQueryVariable('id')
     if (id) {
       Services.getUserEnrollment(id, token).then(enrollment => {
         this.setState({enrollment})

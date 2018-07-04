@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {merge, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import {handleError} from '../lib/utils'
+import {getErrorMessage} from '../lib/utils'
 import {BACK_HOST} from '@env'
 
 const axios = require('axios')
@@ -80,7 +80,7 @@ class EntrantsTecniquesForm extends React.Component {
       if (response.status === 200) {
         Router.push('/')
       }
-    }).catch(handleError(this))
+    }).catch(error => this.setState({errors: getErrorMessage(error)}))
     event.preventDefault()
   }
 
@@ -119,6 +119,68 @@ class EntrantsTecniquesForm extends React.Component {
         recette_fonctionnelle
       }
     } = this.state
+    const nombresDeDemandesMensuelles = [
+      {
+        label: 'Janvier',
+        name: 'nombre_demandes_mensuelles_jan',
+        value: nombre_demandes_mensuelles_jan
+      },
+      {
+        label: 'Février',
+        name: 'nombre_demandes_mensuelles_fev',
+        value: nombre_demandes_mensuelles_fev
+      },
+      {
+        label: 'Mars',
+        name: 'nombre_demandes_mensuelles_mar',
+        value: nombre_demandes_mensuelles_mar
+      },
+      {
+        label: 'Avril',
+        name: 'nombre_demandes_mensuelles_avr',
+        value: nombre_demandes_mensuelles_avr
+      },
+      {
+        label: 'Mai',
+        name: 'nombre_demandes_mensuelles_mai',
+        value: nombre_demandes_mensuelles_mai
+      },
+      {
+        label: 'Juin',
+        name: 'nombre_demandes_mensuelles_jui',
+        value: nombre_demandes_mensuelles_jui
+      },
+      {
+        label: 'Juillet',
+        name: 'nombre_demandes_mensuelles_jul',
+        value: nombre_demandes_mensuelles_jul
+      },
+      {
+        label: 'Août',
+        name: 'nombre_demandes_mensuelles_aou',
+        value: nombre_demandes_mensuelles_aou
+      },
+      {
+        label: 'Septembre',
+        name: 'nombre_demandes_mensuelles_sep',
+        value: nombre_demandes_mensuelles_sep
+      },
+      {
+        label: 'Octobre',
+        name: 'nombre_demandes_mensuelles_oct',
+        value: nombre_demandes_mensuelles_oct
+      },
+      {
+        label: 'Novembre',
+        name: 'nombre_demandes_mensuelles_nov',
+        value: nombre_demandes_mensuelles_nov
+      },
+      {
+        label: 'Décembre',
+        name: 'nombre_demandes_mensuelles_dec',
+        value: nombre_demandes_mensuelles_dec
+      }
+    ]
     const disabled = !canSendtechnicalInputs
 
     const productionCertificate = documents.filter(({type}) => type === 'Document::ProductionCertificatePublicKey')[0]
@@ -199,54 +261,12 @@ class EntrantsTecniquesForm extends React.Component {
           <label>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
           <div className='form__group'>
             <div className='date_input_row'>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_jan'>Janvier</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_jan' id='nombre_demandes_mensuelles_jan' disabled={disabled} value={nombre_demandes_mensuelles_jan} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_fev'>Février</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_fev' id='nombre_demandes_mensuelles_fev' disabled={disabled} value={nombre_demandes_mensuelles_fev} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_mar'>Mars</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_mar' id='nombre_demandes_mensuelles_mar' disabled={disabled} value={nombre_demandes_mensuelles_mar} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_avr'>Avril</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_avr' id='nombre_demandes_mensuelles_avr' disabled={disabled} value={nombre_demandes_mensuelles_avr} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_mai'>Mai</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_mai' id='nombre_demandes_mensuelles_mai' disabled={disabled} value={nombre_demandes_mensuelles_mai} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_juin'>Juin</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_jui' id='nombre_demandes_mensuelles_jui' disabled={disabled} value={nombre_demandes_mensuelles_jui} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_jui'>Juillet</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_jul' id='nombre_demandes_mensuelles_jul' disabled={disabled} value={nombre_demandes_mensuelles_jul} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_aou'>Août</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_aou' id='nombre_demandes_mensuelles_aou' disabled={disabled} value={nombre_demandes_mensuelles_aou} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_sep'>Septembre</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_sep' id='nombre_demandes_mensuelles_sep' disabled={disabled} value={nombre_demandes_mensuelles_sep} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_oct'>Octobre</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_oct' id='nombre_demandes_mensuelles_oct' disabled={disabled} value={nombre_demandes_mensuelles_oct} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_nov'>Novembre</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_nov' id='nombre_demandes_mensuelles_nov' disabled={disabled} value={nombre_demandes_mensuelles_nov} />
-              </div>
-              <div className='date_input_col'>
-                <label htmlFor='nombre_demandes_mensuelles_dec'>Décembre</label>
-                <input type='text' onChange={this.handleChange} name='nombre_demandes_mensuelles_dec' id='nombre_demandes_mensuelles_dec' disabled={disabled} value={nombre_demandes_mensuelles_dec} />
-              </div>
+              {nombresDeDemandesMensuelles.map(nombreDeDemendesMensuelles => (
+                <div key={nombreDeDemendesMensuelles.name} className='date_input_col'>
+                  <label htmlFor={nombreDeDemendesMensuelles.name}>{nombreDeDemendesMensuelles.label}</label>
+                  <input type='text' onChange={this.handleChange} name={nombreDeDemendesMensuelles.name} id={nombreDeDemendesMensuelles.name} disabled={disabled} value={nombreDeDemendesMensuelles.value} />
+                </div>
+              ))}
             </div>
           </div>
         </div>

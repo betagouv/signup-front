@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import {merge, throttle, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import {getErrorMessage} from '../lib/utils'
+import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import User from '../lib/user'
 import SearchIcon from './icons/search'
 
@@ -47,7 +47,7 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    const tokenFc = Utils.getQueryVariable('token')
+    const tokenFc = getQueryVariable('token')
     const {id} = this.props
     const user = new User()
 
