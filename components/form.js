@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import {merge, throttle, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
+import {getErrorMessage} from '../lib/utils'
 import User from '../lib/user'
 import SearchIcon from './icons/search'
 
@@ -100,13 +100,13 @@ class Form extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
-      }).catch(Utils.handleError(this))
+      }).catch(error => this.setState({errors: getErrorMessage(error)}))
     } else {
       Services.createUserEnrollment({enrollment}).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
-      }).catch(Utils.handleError(this))
+      }).catch(error => this.setState({errors: getErrorMessage(error)}))
     }
   }
 

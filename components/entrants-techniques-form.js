@@ -1,10 +1,9 @@
-/* eslint-disable camelcase */
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {merge, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
+import {handleError} from '../lib/utils'
 import {BACK_HOST} from '@env'
 
 const axios = require('axios')
@@ -81,7 +80,7 @@ class EntrantsTecniquesForm extends React.Component {
       if (response.status === 200) {
         Router.push('/')
       }
-    }).catch(Utils.handleError(this))
+    }).catch(handleError(this))
     event.preventDefault()
   }
 
@@ -122,7 +121,7 @@ class EntrantsTecniquesForm extends React.Component {
     } = this.state
     const disabled = !canSendtechnicalInputs
 
-    const productionCertificate = documents.filter(e => e.type === 'Document::ProductionCertificatePublicKey')[0]
+    const productionCertificate = documents.filter(({type}) => type === 'Document::ProductionCertificatePublicKey')[0]
     return (
       <form onSubmit={this.handleSubmit}>
         <h1 id='entrants-techniques'>Entrants techniques</h1>
@@ -292,4 +291,3 @@ EntrantsTecniquesForm.defaultProps = {
 }
 
 export default EntrantsTecniquesForm
-/* eslint-enable camelcase */
