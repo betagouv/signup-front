@@ -4,6 +4,7 @@ import Router from 'next/router'
 import ReactTable from 'react-table'
 import _ from 'lodash'
 import Services from '../lib/services'
+import {getErrorMessage} from '../lib/utils'
 import withUser from './hoc/with-user'
 import SearchIcon from './icons/search'
 import MultipleChoiceButton from './widgets/multiple-choice-button'
@@ -52,20 +53,7 @@ class EnrollmentTable extends React.Component {
         return currentEnrollment
       })
       this.setState({enrollments: updatedEnrollments})
-    }).catch(error => {
-      if (error.response.status === 422) {
-        let errors = []
-        let enrollmentError
-        for (enrollmentError in error.response.data) {
-          if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
-            errors = errors.concat(error.response.data[enrollmentError])
-          }
-        }
-        this.setState({errors})
-      } else {
-        this.setState({errors: [`Une erreur est survenue ! ${JSON.stringify(error)}`]})
-      }
-    })
+    }).catch(error => this.setState({errors: getErrorMessage(error)}))
   }
 
   aclToAction = {

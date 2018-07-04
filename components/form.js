@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import {merge, throttle, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import Utils from '../lib/utils'
+import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import User from '../lib/user'
 import SearchIcon from './icons/search'
 
@@ -47,7 +47,7 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    const tokenFc = Utils.getQueryVariable('token')
+    const tokenFc = getQueryVariable('token')
     const {id} = this.props
     const user = new User()
 
@@ -90,21 +90,6 @@ class Form extends React.Component {
     }
   }
 
-  handleError(error) {
-    if (error.response.status !== 422) {
-      return
-    }
-
-    let errors = []
-    let enrollmentError
-    for (enrollmentError in error.response.data) {
-      if (Object.prototype.hasOwnProperty.call(error.response.data, enrollmentError)) {
-        errors = errors.concat(error.response.data[enrollmentError])
-      }
-    }
-    this.setState({errors})
-  }
-
   handleSubmit(event) {
     const {enrollment} = this.state
 
@@ -115,17 +100,13 @@ class Form extends React.Component {
         if (response.status === 200) {
           Router.push('/')
         }
-      }).catch(error => {
-        this.handleError(error)
-      })
+      }).catch(error => this.setState({errors: getErrorMessage(error)}))
     } else {
       Services.createUserEnrollment({enrollment}).then(response => {
         if (response.status === 201) {
           Router.push('/')
         }
-      }).catch(error => {
-        this.handleError(error)
-      })
+      }).catch(error => this.setState({errors: getErrorMessage(error)}))
     }
   }
 
