@@ -69,9 +69,9 @@ class Form extends React.Component {
     const target = event.target
     const value = target.type === 'checkbox' ? target.checked : target.value
     const name = target.name
-    const stateCopy = merge({}, this.state, zipObjectDeep([`enrollment.${name}`], [value]))
+    const enrollment = merge({}, this.state.enrollment, zipObjectDeep([`${name}`], [value]))
 
-    this.setState(stateCopy)
+    this.setState({enrollment})
   }
 
   handlePeopleChange(person) {
