@@ -29,6 +29,14 @@
     "scope_dgfip_avis_imposition": true,
     "scope_cnaf_attestation_droits": true,
     "scope_cnaf_quotient_familial": null,
-    "fournisseur_de_donnees": "api-particulier"
+    "fournisseur_de_donnees": "api-particulier",
+    "contacts": [
+      {
+        "id": "dpo",
+        "heading": "Délégué à la protection des données",
+        "nom": "Raphaël Dubigny",
+        "email": "rdubigny@gmail.com"
+      }
+    ]
   }
 }

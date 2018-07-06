@@ -106,23 +106,14 @@ class Form extends React.Component {
   }
 
   handleSubmit(event) {
-    const {enrollment} = this.state
-
     event.preventDefault()
 
-    if (enrollment.id) {
-      Services.updateUserEnrollment({enrollment}).then(response => {
-        if (response.status === 200) {
-          Router.push('/')
-        }
-      }).catch(error => this.setState({errors: getErrorMessage(error)}))
-    } else {
-      Services.createUserEnrollment({enrollment}).then(response => {
-        if (response.status === 201) {
-          Router.push('/')
-        }
-      }).catch(error => this.setState({errors: getErrorMessage(error)}))
-    }
+    const {enrollment} = this.state
+    const createOrUpdateUserEnrollment = enrollment.id ? Services.updateUserEnrollment.bind(Services) : Services.createUserEnrollment.bind(Services)
+
+    createOrUpdateUserEnrollment(enrollment)
+      .then(() => Router.push('/'))
+      .catch(error => this.setState({errors: getErrorMessage(error)}))
   }
 
   getSiren(siren) {
