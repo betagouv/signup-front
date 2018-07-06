@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
 import Router from 'next/router'
-import {merge, throttle, zipObjectDeep} from 'lodash'
+import {merge, debounce, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
 import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import User from '../lib/user'
@@ -151,11 +151,13 @@ class Form extends React.Component {
     })
   }
 
-  throttleGetSiren = throttle(event => this.getSiren(event.target.value), 500)
+  debouncedGetSiren = debounce(this.getSiren, 1000)
 
   handleSirenChange(event) {
+    const siren = event.target.value
+
     this.handleChange(event)
-    this.throttleGetSiren(event)
+    this.debouncedGetSiren(siren)
   }
 
   render() {
