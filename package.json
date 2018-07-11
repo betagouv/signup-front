@@ -8,7 +8,7 @@
     "test:watch": "NODE_ENV=test jest --watchAll",
     "dev": "next",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3002",
     "lint": "npm run lint:scripts",
     "lint:scripts": "xo"
   },
