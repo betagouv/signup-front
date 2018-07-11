@@ -4,12 +4,7 @@
       "presets": ["next/babel"],
       "plugins": [
         ["dotenv-import", {
-          "moduleName": "@env",
-          "path": ".env.test",
-          "blacklist": null,
-          "whitelist": null,
-          "safe": false,
-          "allowUndefined": false
+          "moduleName": "@env"
         }],
         [
           "inline-import",
@@ -23,12 +18,7 @@
       "presets": ["next/babel"],
       "plugins": [
         ["dotenv-import", {
-          "moduleName": "@env",
-          "path": ".env",
-          "blacklist": null,
-          "whitelist": null,
-          "safe": false,
-          "allowUndefined": false
+          "moduleName": "@env"
         }],
         [
           "inline-import",
@@ -42,12 +32,7 @@
       "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
       "plugins": [
         ["dotenv-import", {
-          "moduleName": "@env",
-          "path": ".env.test",
-          "blacklist": null,
-          "whitelist": null,
-          "safe": false,
-          "allowUndefined": false
+          "moduleName": "@env"
         }],
         [
           "inline-import",
