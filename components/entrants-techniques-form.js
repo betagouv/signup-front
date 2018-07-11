@@ -5,7 +5,7 @@ import Router from 'next/router'
 import {merge, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
 import {getErrorMessage} from '../lib/utils'
-import {BACK_HOST} from '@env'
+const {BACK_HOST} = process.env
 
 const axios = require('axios')
 

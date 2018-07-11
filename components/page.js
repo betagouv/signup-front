@@ -1,4 +1,3 @@
-import {PIWIK_URL, PIWIK_SITE_ID} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
@@ -9,6 +8,8 @@ import User from '../lib/user'
 import Header from './header'
 import Footer from './footer'
 import Section from './section'
+
+const {PIWIK_URL, PIWIK_SITE_ID} = process.env
 
 class Page extends React.Component {
   constructor(props) {

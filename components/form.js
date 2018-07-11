@@ -1,4 +1,3 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'next/link'
@@ -8,6 +7,8 @@ import Services from '../lib/services'
 import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import User from '../lib/user'
 import SearchIcon from './icons/search'
+
+const {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} = process.env
 
 class Form extends React.Component {
   constructor(props) {
