@@ -173,11 +173,9 @@ class Form extends React.Component {
             <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
             <label htmlFor='fournisseur_de_service'>Intitulé de la démarche</label>
             <select onChange={this.handleChange} name='fournisseur_de_service'>
-              {
-                serviceProviders.map(serviceProvider => {
-                  return <option key={serviceProvider.name} selected={fournisseur_de_service === serviceProvider.name} value={serviceProvider.name}>{serviceProvider.name}</option>
-                })
-              }
+              {serviceProviders.map(({name}) => (
+                <option key={name} selected={fournisseur_de_service === name} value={name}>{name}</option>
+              ))}
             </select>
           </div>
         )}
@@ -271,22 +269,20 @@ class Form extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-                {
-                  form.scopes.map(scope => {
-                    return (
-                      <div key={scope.id}>
-                        <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`scopes.${scope.name}`} id={`checkbox-scope_api_entreprise${scope.name}`} disabled={disabled} checked={scopes[scope.name] ? 'checked' : false} />
-                        <label htmlFor={`checkbox-scope_api_entreprise${scope.name}`} className='label-inline'>{scope.humanName}</label>
-                        <div className='scope__destinataire'>
-                          <div className='form__group'>
-                            <label htmlFor={`destinataire_${scope.name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                            <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${scope.name}`} id={`desinataire_${scope.name}`} disabled={disabled} value={donnees.destinataires[scope.name]} />
-                          </div>
+                {form.scopes.map(({name, humanName}) => (
+                  <div key={name}>
+                    <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabled} checked={scopes[name] ? 'checked' : false} />
+                    <label htmlFor={`checkbox-scope_api_entreprise${name}`} className='label-inline'>{humanName}</label>
+                    {scopes[name] &&
+                      <div className='scope__destinataire'>
+                        <div className='form__group'>
+                          <label htmlFor={`destinataire_${name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                          <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${name}`} id={`destinataire_${name}`} disabled={disabled} value={donnees.destinataires[name]} />
                         </div>
                       </div>
-                    )
-                  })
-                }
+                    }
+                  </div>
+                ))}
               </div>
             </div>
           </fieldset>
