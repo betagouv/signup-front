@@ -18,24 +18,46 @@ class Form extends React.Component {
     this.state = {
       errors: [],
       serviceProviders: [],
+      nom_raison_sociale: '',
+      adresse: '',
+      activite_principale: '',
       enrollment: {
-        fournisseur_de_donnees: form.provider,
-        scopes: {},
-        documents: [],
-        acl: {
-          send_application: true
-        },
-        contacts: form.contacts,
-        siren: '',
+        acl: {},
+        contacts: [
+          {
+            id: 'dpo',
+            heading: 'Délégué à la protection des données',
+            link: 'https://www.cnil.fr/fr/designation-dpo',
+            nom: '',
+            email: ''
+          },
+          {
+            id: 'responsable_traitement',
+            heading: 'Responsable de traitement',
+            link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
+            nom: '',
+            email: ''
+          },
+          {
+            id: 'technique',
+            heading: 'Responsable technique',
+            nom: '',
+            email: ''
+          }
+        ],
         demarche: {
           intitule: '',
           description: '',
           fondement_juridique: ''
         },
+        documents: [],
         donnees: {
           conservation: '',
           destinataires: {}
         },
+        fournisseur_de_donnees: form.provider,
+        scopes: {},
+        siren: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
       }
@@ -43,6 +65,7 @@ class Form extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSaveDraft = this.handleSaveDraft.bind(this)
     this.getSiren = this.getSiren.bind(this)
     this.upload = this.upload.bind(this)
     this.handleSirenChange = this.handleSirenChange.bind(this)
@@ -55,7 +78,9 @@ class Form extends React.Component {
 
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
-        this.setState({enrollment})
+        this.setState(({enrollment: prevEnrollment}) => ({
+          enrollment: merge({}, prevEnrollment, enrollment)
+        }))
         this.getSiren(enrollment.siren)
       })
     }
@@ -65,80 +90,53 @@ class Form extends React.Component {
     })
   }
 
-  handleChange(event) {
-    const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-    const enrollment = merge({}, this.state.enrollment, zipObjectDeep([`${name}`], [value]))
+  handleChange({target: {type, checked, value: inputValue, name}}) {
+    const value = type === 'checkbox' ? checked : inputValue
 
-    this.setState({enrollment})
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, zipObjectDeep([`${name}`], [value]))
+    }))
   }
 
-  handlePeopleChange(person) {
-    return event => {
-      const {enrollment} = this.state
-      const target = event.target
-      const value = target.value
-      const name = target.name
-      const enrollmentWithUpdatedContact = Object.assign({}, enrollment)
-      enrollmentWithUpdatedContact.contacts = enrollment.contacts.map(contact => {
-        if (contact.id === person.id) {
-          contact[name] = value
-          return contact
-        }
-        return contact
-      })
-      this.setState({enrollmentWithUpdatedContact})
-    }
-  }
-
-  upload(event) {
-    const {enrollment} = this.state
-    const files = [...event.target.files]
-    const type = event.target.name
-
-    const documents_attributes = files.map(file => ({
+  upload({target: {files, name}}) {
+    const documents_attributes = [...files].map(file => ({
       attachment: file,
-      type
+      type: name
     }), [])
 
-    this.setState(merge({}, {enrollment}, {enrollment: {documents_attributes}}))
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, {documents_attributes})
+    }))
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, doSendEnrollment = true) {
     event.preventDefault()
 
     const {enrollment} = this.state
-    const createOrUpdateUserEnrollment = enrollment.id ? Services.updateUserEnrollment.bind(Services) : Services.createUserEnrollment.bind(Services)
 
-    createOrUpdateUserEnrollment(enrollment)
+    Services.createOrUpdateUserEnrollment({enrollment})
+      .then(enrollment => {
+        if (!doSendEnrollment) {
+          return null
+        }
+
+        return Services.triggerUserEnrollment('send_application', enrollment)
+      })
       .then(() => Router.push('/'))
       .catch(error => this.setState({errors: getErrorMessage(error)}))
+  }
+
+  handleSaveDraft(event) {
+    this.handleSubmit(event, false)
   }
 
   getSiren(siren) {
     const sirenWithoutSpaces = siren.replace(/ /g, '')
 
-    Services.getSirenInformation(sirenWithoutSpaces).then(({
-      data: {
-        siege_social: {nom_raison_sociale, nom, prenom, activite_principale, l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee}
-      }
-    }) => {
-      const responsable = `${nom}  ${prenom}`
-      const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
-      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
-      const {enrollment} = this.state
-      this.setState({
-        enrollment: Object.assign({}, enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}),
-        sirenNotFound: false
-      })
+    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, activite_principale}) => {
+      this.setState(({nom_raison_sociale, adresse, activite_principale, sirenNotFound: false}))
     }).catch(() => {
-      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
-      const {enrollment} = this.state
-      this.setState({
-        enrollment: Object.assign({}, enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
-        sirenNotFound: true
-      })
+      this.setState(({nom_raison_sociale: '', adresse: '', activite_principale: '', sirenNotFound: true}))
     })
   }
 
@@ -157,20 +155,19 @@ class Form extends React.Component {
       token = localStorage.getItem('token')
     }
     const {
+      nom_raison_sociale,
+      adresse,
+      activite_principale,
       enrollment: {
         fournisseur_de_service,
         acl,
         documents,
         siren,
-        nom_raison_sociale,
-        adresse,
-        activite_principale,
         contacts,
         demarche,
         scopes,
         donnees,
-        validation_de_convention,
-        id
+        validation_de_convention
       },
       serviceProviders,
       sirenNotFound,
@@ -181,46 +178,25 @@ class Form extends React.Component {
     const disabled = !acl.send_application
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
-    const personForm = person => (
-      <div key={person.id} className='card'>
-        <div className='card__content'>
-          <h3>{person.heading}</h3>
-          {person.link &&
-            <a className='card__meta' href={person.link}>{person.link}</a>
-          }
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={disabled} value={person.nom} />
-          </div>
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_email'}>Email</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={disabled} value={person.email} />
-          </div>
-        </div>
-      </div>
-    )
-
-    /* eslint-disable react/no-danger */
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <h1>{form.text.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
+        {
+          // eslint-disable-next-line react/no-danger
+        }<div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
 
         { form.franceConnected && (
           <div className='form__group'>
             <h2 id='france-connect'>Partenaire FranceConnect</h2>
             <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
             <label htmlFor='fournisseur_de_service'>Intitulé de la démarche</label>
-            <select onChange={this.handleChange} name='enrollment.fournisseur_de_service'>
-              {
-                serviceProviders.map(serviceProvider => {
-                  return <option key={serviceProvider.name} selected={fournisseur_de_service === serviceProvider.name} value={serviceProvider.name}>{serviceProvider.name}</option>
-                })
-              }
+            <select onChange={this.handleChange} name='fournisseur_de_service'>
+              {serviceProviders.map(({name}) => (
+                <option key={name} selected={fournisseur_de_service === name} value={name}>{name}</option>
+              ))}
             </select>
           </div>
-        )
-        }
+        )}
         <h2 id='identite'>Identité</h2>
 
         <div className='form__group'>
@@ -241,24 +217,41 @@ class Form extends React.Component {
 
         <div className='form__group'>
           <label htmlFor='nom_raison_sociale'>Raison sociale</label>
-          <input type='text' onChange={this.handleChange} name='nom_raison_sociale' id='nom_raison_sociale' disabled value={nom_raison_sociale} />
+          <input type='text' id='nom_raison_sociale' disabled value={nom_raison_sociale} />
         </div>
         <div className='form__group'>
           <label htmlFor='adresse'>Adresse</label>
-          <input type='text' onChange={this.handleChange} name='adresse' id='adresse' disabled value={adresse} />
+          <input type='text' id='adresse' disabled value={adresse} />
         </div>
         <div className='form__group'>
           <label htmlFor='activite_principale'>Code NAF</label>
-          <input type='text' onChange={this.handleChange} name='activite_principale' id='activite_principale' disabled value={activite_principale} />
+          <input type='text' id='activite_principale' disabled value={activite_principale} />
         </div>
 
         <h3>Contacts</h3>
         <div className='row card-row'>
-          {contacts.map(person => personForm(person))}
+          {contacts.map(({id, heading, link, nom, email}, index) => (
+            <div key={id} className='card'>
+              <div className='card__content'>
+                <h3>{heading}</h3>
+                {link && <a className='card__meta' href={link}>{link}</a>}
+                <div className='form__group'>
+                  <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].nom`} id={`person_${id}_nom`} disabled={disabled} value={nom} />
+                </div>
+                <div className='form__group'>
+                  <label htmlFor={`person_${id}_email`}>Email</label>
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabled} value={email} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <h2 id='demarche'>Démarche</h2>
-        <section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
+        {
+          // eslint-disable-next-line react/no-danger
+        }<section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
         {!form.franceConnected && (
           <div className='form__group'>
             <label htmlFor='intitule_demarche'>Intitulé</label>
@@ -272,8 +265,8 @@ class Form extends React.Component {
         </div>
 
         <h2>Cadre juridique</h2>
-        { form.description.fondementJuridique &&
-          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' />
+        {form.description.fondementJuridique &&
+          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' /> // eslint-disable-line react/no-danger
         }
         <div className='form__group'>
           {legalBasis ? (
@@ -294,22 +287,20 @@ class Form extends React.Component {
             <label>Sélectionnez vos jeux de données souhaités</label>
             <div className='row'>
               <div className='column' style={{flex: 1}}>
-                {
-                  form.scopes.map(scope => {
-                    return (
-                      <div key={scope.id}>
-                        <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`scopes.${scope.name}`} id={`checkbox-scope_api_entreprise${scope.name}`} disabled={disabled} checked={scopes[scope.name] ? 'checked' : false} />
-                        <label htmlFor={`checkbox-scope_api_entreprise${scope.name}`} className='label-inline'>{scope.humanName}</label>
-                        <div className='scope__destinataire'>
-                          <div className='form__group'>
-                            <label htmlFor={`destinataire_${scope.name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                            <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${scope.name}`} id={`desinataire_${scope.name}`} disabled={disabled} value={donnees.destinataires[scope.name]} />
-                          </div>
+                {form.scopes.map(({name, humanName}) => (
+                  <div key={name}>
+                    <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabled} checked={scopes[name] ? 'checked' : false} />
+                    <label htmlFor={`checkbox-scope_api_entreprise${name}`} className='label-inline'>{humanName}</label>
+                    {scopes[name] &&
+                      <div className='scope__destinataire'>
+                        <div className='form__group'>
+                          <label htmlFor={`destinataire_${name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
+                          <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${name}`} id={`destinataire_${name}`} disabled={disabled} value={donnees.destinataires[name]} />
                         </div>
                       </div>
-                    )
-                  })
-                }
+                    }
+                  </div>
+                ))}
               </div>
             </div>
           </fieldset>
@@ -322,7 +313,7 @@ class Form extends React.Component {
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
         { form.description.cgu &&
-          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' />
+          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' /> // eslint-disable-line react/no-danger
         }
 
         <iframe src={form.cguLink} width='100%' height='800px' />
@@ -334,12 +325,8 @@ class Form extends React.Component {
 
         {!disabled &&
           <div className='button-list'>
-            {id &&
-              <button className='button' type='submit' name='subscribe' id='submit'>Modifier la demande</button>
-            }
-            {!id &&
-              <button className='button' type='submit' name='subscribe' id='submit'>Soumettre la demande</button>
-            }
+            <button className='button secondary' onClick={this.handleSaveDraft}>Enregistrer le brouillon</button>
+            <button className='button' onClick={this.handleSubmit}>Soumettre la demande</button>
           </div>
         }
 
@@ -350,7 +337,6 @@ class Form extends React.Component {
         ))}
       </form>
     )
-    /* eslint-enable react/no-danger */
   }
 }
 
@@ -370,10 +356,8 @@ Form.defaultProps = {
     },
     description: {
       demarche: ''
-    },
-    contacts: []
+    }
   }
 }
 
 export default Form
-/* eslint-enable camelcase */
