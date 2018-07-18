@@ -43,6 +43,7 @@ class Form extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSaveDraft = this.handleSaveDraft.bind(this)
     this.getSiren = this.getSiren.bind(this)
     this.upload = this.upload.bind(this)
     this.handleSirenChange = this.handleSirenChange.bind(this)
@@ -105,15 +106,25 @@ class Form extends React.Component {
     this.setState(merge({}, {enrollment}, {enrollment: {documents_attributes}}))
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, doSendEnrollment=true) {
     event.preventDefault()
 
     const {enrollment} = this.state
-    const createOrUpdateUserEnrollment = enrollment.id ? Services.updateUserEnrollment.bind(Services) : Services.createUserEnrollment.bind(Services)
 
-    createOrUpdateUserEnrollment(enrollment)
+    Services.createOrUpdateUserEnrollment({enrollment})
+      .then((enrollment) => {
+        if (!doSendEnrollment) {
+          return null
+        }
+
+        return Services.triggerUserEnrollment('send_application', enrollment)
+      })
       .then(() => Router.push('/'))
       .catch(error => this.setState({errors: getErrorMessage(error)}))
+  }
+
+  handleSaveDraft(event) {
+    this.handleSubmit(event, false)
   }
 
   getSiren(siren) {
@@ -202,7 +213,7 @@ class Form extends React.Component {
 
     /* eslint-disable react/no-danger */
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form>
         <h1>{form.text.title}</h1>
         <div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
 
@@ -334,12 +345,8 @@ class Form extends React.Component {
 
         {!disabled &&
           <div className='button-list'>
-            {id &&
-              <button className='button' type='submit' name='subscribe' id='submit'>Modifier la demande</button>
-            }
-            {!id &&
-              <button className='button' type='submit' name='subscribe' id='submit'>Soumettre la demande</button>
-            }
+            <button className='button secondary' onClick={this.handleSaveDraft}>Enregistrer le brouillon</button>
+            <button className='button' onClick={this.handleSubmit}>Soumettre la demande</button>
           </div>
         }
 
