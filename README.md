@@ -1,6 +1,6 @@
 # France Connect + Api Particulier + Jeux de données disponibles et contractualisation
 
-:warning: This doc needs updates. Installation instructions can be found [here](https://github.com/betagouv/signup.api.gouv.fr-docker).
+:warning: This doc needs updates. Installation instructions can be found [here](https://gitlab.incubateur.net/beta.gouv.fr/api-particulier-ansible).
 
 # Présentation
 
