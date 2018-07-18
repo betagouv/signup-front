@@ -22,21 +22,5 @@
     },
   "description": {
     "demarche": " <p>C&apos;est la raison pour laquelle vous collectez des données personnelles, l&apos;objectif qui est poursuivi par le fichier que vous mettez en place. Par exemple, « télé-procédure permettant aux usagers de demander une aide au paiement de la cantine des collégiens » ou « télé-procédure de demande de bourses de lycée ».</p> <p>Il vous est également demandé de préciser les références du cadre juridique de votre droit à demander ces informations (délibération du conseil municipal, décret …).</p> "
-  },
-  "contacts": [
-    {
-      "id": "dpo",
-      "heading": "Délégué à la protection des données",
-      "link": "https://www.cnil.fr/fr/designation-dpo"
-    },
-    {
-      "id": "responsable_traitement",
-      "heading": "Responsable de traitement",
-      "link": "https://www.cnil.fr/fr/definition/responsable-de-traitement"
-    },
-    {
-      "id": "technique",
-      "heading": "Responsable technique"
-    }
-  ]
+  }
 }

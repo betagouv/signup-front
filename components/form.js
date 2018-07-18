@@ -18,24 +18,46 @@ class Form extends React.Component {
     this.state = {
       errors: [],
       serviceProviders: [],
+      nom_raison_sociale: '',
+      adresse: '',
+      activite_principale: '',
       enrollment: {
-        fournisseur_de_donnees: form.provider,
-        scopes: {},
-        documents: [],
-        acl: {
-          send_application: true
-        },
-        contacts: form.contacts,
-        siren: '',
+        acl: {},
+        contacts: [
+          {
+            id: 'dpo',
+            heading: 'Délégué à la protection des données',
+            link: 'https://www.cnil.fr/fr/designation-dpo',
+            nom: '',
+            email: ''
+          },
+          {
+            id: 'responsable_traitement',
+            heading: 'Responsable de traitement',
+            link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
+            nom: '',
+            email: ''
+          },
+          {
+            id: 'technique',
+            heading: 'Responsable technique',
+            nom: '',
+            email: ''
+          }
+        ],
         demarche: {
           intitule: '',
           description: '',
           fondement_juridique: ''
         },
+        documents: [],
         donnees: {
           conservation: '',
           destinataires: {}
         },
+        fournisseur_de_donnees: form.provider,
+        scopes: {},
+        siren: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
       }
@@ -56,7 +78,9 @@ class Form extends React.Component {
 
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
-        this.setState({enrollment})
+        this.setState(({enrollment: prevEnrollment}) => ({
+          enrollment: merge({}, prevEnrollment, enrollment)
+        }))
         this.getSiren(enrollment.siren)
       })
     }
@@ -109,16 +133,10 @@ class Form extends React.Component {
   getSiren(siren) {
     const sirenWithoutSpaces = siren.replace(/ /g, '')
 
-    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, responsable, activite_principale}) => {
-      this.setState(({enrollment: prevEnrollment}) => ({
-        enrollment: Object.assign({}, prevEnrollment, {nom_raison_sociale, adresse, responsable, activite_principale}),
-        sirenNotFound: false
-      }))
+    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, activite_principale}) => {
+      this.setState(({nom_raison_sociale, adresse, activite_principale, sirenNotFound: false}))
     }).catch(() => {
-      this.setState(({enrollment: prevEnrollment}) => ({
-        enrollment: Object.assign({}, prevEnrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
-        sirenNotFound: true
-      }))
+      this.setState(({nom_raison_sociale: '', adresse: '', activite_principale: '', sirenNotFound: true}))
     })
   }
 
@@ -137,14 +155,14 @@ class Form extends React.Component {
       token = localStorage.getItem('token')
     }
     const {
+      nom_raison_sociale,
+      adresse,
+      activite_principale,
       enrollment: {
         fournisseur_de_service,
         acl,
         documents,
         siren,
-        nom_raison_sociale,
-        adresse,
-        activite_principale,
         contacts,
         demarche,
         scopes,
@@ -199,15 +217,15 @@ class Form extends React.Component {
 
         <div className='form__group'>
           <label htmlFor='nom_raison_sociale'>Raison sociale</label>
-          <input type='text' onChange={this.handleChange} name='nom_raison_sociale' id='nom_raison_sociale' disabled value={nom_raison_sociale} />
+          <input type='text' id='nom_raison_sociale' disabled value={nom_raison_sociale} />
         </div>
         <div className='form__group'>
           <label htmlFor='adresse'>Adresse</label>
-          <input type='text' onChange={this.handleChange} name='adresse' id='adresse' disabled value={adresse} />
+          <input type='text' id='adresse' disabled value={adresse} />
         </div>
         <div className='form__group'>
           <label htmlFor='activite_principale'>Code NAF</label>
-          <input type='text' onChange={this.handleChange} name='activite_principale' id='activite_principale' disabled value={activite_principale} />
+          <input type='text' id='activite_principale' disabled value={activite_principale} />
         </div>
 
         <h3>Contacts</h3>
@@ -338,10 +356,8 @@ Form.defaultProps = {
     },
     description: {
       demarche: ''
-    },
-    contacts: []
+    }
   }
 }
 
 export default Form
-/* eslint-enable camelcase */
