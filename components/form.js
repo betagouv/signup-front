@@ -66,35 +66,32 @@ class Form extends React.Component {
     })
   }
 
-  handleChange(event) {
-    const target = event.target
-    const value = target.type === 'checkbox' ? target.checked : target.value
-    const name = target.name
-    const enrollment = merge({}, this.state.enrollment, zipObjectDeep([`${name}`], [value]))
+  handleChange({target: {type, checked, value: inputValue, name}}) {
+    const value = type === 'checkbox' ? checked : inputValue
 
-    this.setState({enrollment})
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, zipObjectDeep([`${name}`], [value]))
+    }))
   }
 
-  upload(event) {
-    const {enrollment} = this.state
-    const files = [...event.target.files]
-    const type = event.target.name
-
-    const documents_attributes = files.map(file => ({
+  upload({target: {files, name}}) {
+    const documents_attributes = [...files].map(file => ({
       attachment: file,
-      type
+      type: name
     }), [])
 
-    this.setState(merge({}, {enrollment}, {enrollment: {documents_attributes}}))
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, {documents_attributes})
+    }))
   }
 
-  handleSubmit(event, doSendEnrollment=true) {
+  handleSubmit(event, doSendEnrollment = true) {
     event.preventDefault()
 
     const {enrollment} = this.state
 
     Services.createOrUpdateUserEnrollment({enrollment})
-      .then((enrollment) => {
+      .then(enrollment => {
         if (!doSendEnrollment) {
           return null
         }
@@ -113,19 +110,15 @@ class Form extends React.Component {
     const sirenWithoutSpaces = siren.replace(/ /g, '')
 
     Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, responsable, activite_principale}) => {
-      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
-      const {enrollment} = this.state
-      this.setState({
-        enrollment: Object.assign({}, enrollment, {nom_raison_sociale, adresse, responsable, activite_principale}),
+      this.setState(({enrollment: prevEnrollment}) => ({
+        enrollment: Object.assign({}, prevEnrollment, {nom_raison_sociale, adresse, responsable, activite_principale}),
         sirenNotFound: false
-      })
+      }))
     }).catch(() => {
-      // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
-      const {enrollment} = this.state
-      this.setState({
-        enrollment: Object.assign({}, enrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
+      this.setState(({enrollment: prevEnrollment}) => ({
+        enrollment: Object.assign({}, prevEnrollment, {nom_raison_sociale: '', adresse: '', responsable: '', activite_principale: ''}),
         sirenNotFound: true
-      })
+      }))
     })
   }
 
@@ -156,8 +149,7 @@ class Form extends React.Component {
         demarche,
         scopes,
         donnees,
-        validation_de_convention,
-        id
+        validation_de_convention
       },
       serviceProviders,
       sirenNotFound,
@@ -171,7 +163,9 @@ class Form extends React.Component {
     return (
       <form>
         <h1>{form.text.title}</h1>
-        <div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
+        {
+          // eslint-disable-next-line react/no-danger
+        }<div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
 
         { form.franceConnected && (
           <div className='form__group'>
@@ -239,7 +233,9 @@ class Form extends React.Component {
         </div>
 
         <h2 id='demarche'>Démarche</h2>
-        <section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
+        {
+          // eslint-disable-next-line react/no-danger
+        }<section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
         {!form.franceConnected && (
           <div className='form__group'>
             <label htmlFor='intitule_demarche'>Intitulé</label>
@@ -253,8 +249,8 @@ class Form extends React.Component {
         </div>
 
         <h2>Cadre juridique</h2>
-        { form.description.fondementJuridique &&
-          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' />
+        {form.description.fondementJuridique &&
+          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' /> // eslint-disable-line react/no-danger
         }
         <div className='form__group'>
           {legalBasis ? (
@@ -303,7 +299,7 @@ class Form extends React.Component {
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
         { form.description.cgu &&
-          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' />
+          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' /> // eslint-disable-line react/no-danger
         }
 
         <iframe src={form.cguLink} width='100%' height='800px' />
