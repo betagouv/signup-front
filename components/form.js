@@ -75,24 +75,6 @@ class Form extends React.Component {
     this.setState({enrollment})
   }
 
-  handlePeopleChange(person) {
-    return event => {
-      const {enrollment} = this.state
-      const target = event.target
-      const value = target.value
-      const name = target.name
-      const enrollmentWithUpdatedContact = Object.assign({}, enrollment)
-      enrollmentWithUpdatedContact.contacts = enrollment.contacts.map(contact => {
-        if (contact.id === person.id) {
-          contact[name] = value
-          return contact
-        }
-        return contact
-      })
-      this.setState({enrollmentWithUpdatedContact})
-    }
-  }
-
   upload(event) {
     const {enrollment} = this.state
     const files = [...event.target.files]
@@ -130,13 +112,7 @@ class Form extends React.Component {
   getSiren(siren) {
     const sirenWithoutSpaces = siren.replace(/ /g, '')
 
-    Services.getSirenInformation(sirenWithoutSpaces).then(({
-      data: {
-        siege_social: {nom_raison_sociale, nom, prenom, activite_principale, l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee}
-      }
-    }) => {
-      const responsable = `${nom}  ${prenom}`
-      const adresse = [l2_normalisee, l3_normalisee, l4_normalisee, l5_normalisee, l6_normalisee, l7_normalisee].filter(e => e).join(', ')
+    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, responsable, activite_principale}) => {
       // Enrollment assignation in promise resolution because we need to have the current state, not modified during the remote call
       const {enrollment} = this.state
       this.setState({
@@ -192,26 +168,6 @@ class Form extends React.Component {
     const disabled = !acl.send_application
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
-    const personForm = person => (
-      <div key={person.id} className='card'>
-        <div className='card__content'>
-          <h3>{person.heading}</h3>
-          {person.link &&
-            <a className='card__meta' href={person.link}>{person.link}</a>
-          }
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_nom'}>Nom et Prénom</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='nom' id={'person_' + person.id + '_nom'} disabled={disabled} value={person.nom} />
-          </div>
-          <div className='form__group'>
-            <label htmlFor={'person_' + person.id + '_email'}>Email</label>
-            <input type='text' onChange={this.handlePeopleChange(person)} name='email' id={'person_' + person.id + '_email'} disabled={disabled} value={person.email} />
-          </div>
-        </div>
-      </div>
-    )
-
-    /* eslint-disable react/no-danger */
     return (
       <form>
         <h1>{form.text.title}</h1>
@@ -222,7 +178,7 @@ class Form extends React.Component {
             <h2 id='france-connect'>Partenaire FranceConnect</h2>
             <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
             <label htmlFor='fournisseur_de_service'>Intitulé de la démarche</label>
-            <select onChange={this.handleChange} name='enrollment.fournisseur_de_service'>
+            <select onChange={this.handleChange} name='fournisseur_de_service'>
               {
                 serviceProviders.map(serviceProvider => {
                   return <option key={serviceProvider.name} selected={fournisseur_de_service === serviceProvider.name} value={serviceProvider.name}>{serviceProvider.name}</option>
@@ -230,8 +186,7 @@ class Form extends React.Component {
               }
             </select>
           </div>
-        )
-        }
+        )}
         <h2 id='identite'>Identité</h2>
 
         <div className='form__group'>
@@ -265,7 +220,22 @@ class Form extends React.Component {
 
         <h3>Contacts</h3>
         <div className='row card-row'>
-          {contacts.map(person => personForm(person))}
+          {contacts.map(({id, heading, link, nom, email}, index) => (
+            <div key={id} className='card'>
+              <div className='card__content'>
+                <h3>{heading}</h3>
+                {link && <a className='card__meta' href={link}>{link}</a>}
+                <div className='form__group'>
+                  <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].nom`} id={`person_${id}_nom`} disabled={disabled} value={nom} />
+                </div>
+                <div className='form__group'>
+                  <label htmlFor={`person_${id}_email`}>Email</label>
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabled} value={email} />
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         <h2 id='demarche'>Démarche</h2>
@@ -357,7 +327,6 @@ class Form extends React.Component {
         ))}
       </form>
     )
-    /* eslint-enable react/no-danger */
   }
 }
 
