@@ -56,6 +56,7 @@ class Form extends React.Component {
           destinataires: {}
         },
         fournisseur_de_donnees: form.provider,
+        id: null,
         scopes: {},
         siren: '',
         validation_de_convention: false,
@@ -175,7 +176,8 @@ class Form extends React.Component {
     } = this.state
 
     const {form} = this.props
-    const disabled = !acl.send_application
+    // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
+    const disabled = !(acl.send_application || !id)
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     return (
