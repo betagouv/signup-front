@@ -56,6 +56,7 @@ class Form extends React.Component {
           destinataires: {}
         },
         fournisseur_de_donnees: form.provider,
+        id: null,
         scopes: {},
         siren: '',
         validation_de_convention: false,
@@ -159,14 +160,15 @@ class Form extends React.Component {
       adresse,
       activite_principale,
       enrollment: {
-        fournisseur_de_service,
         acl,
-        documents,
-        siren,
         contacts,
         demarche,
-        scopes,
+        documents,
         donnees,
+        fournisseur_de_service,
+        id,
+        scopes,
+        siren,
         validation_de_convention
       },
       serviceProviders,
@@ -175,7 +177,8 @@ class Form extends React.Component {
     } = this.state
 
     const {form} = this.props
-    const disabled = !acl.send_application
+    // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
+    const disabled = !(acl.send_application || !id)
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     return (
@@ -202,7 +205,7 @@ class Form extends React.Component {
         <div className='form__group'>
           <label htmlFor='search-siren'>Rechercher votre organisme avec son SIREN</label>
           <div className='search__group'>
-            <input type='text' value={siren} name='siren' id='search-siren' onChange={this.handleSirenChange} />
+            <input type='text' value={siren} name='siren' id='search-siren' disabled={disabled} onChange={this.handleSirenChange} />
             <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
               <SearchIcon id='icon-search' title='Rechercher' />
             </button>
