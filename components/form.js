@@ -205,7 +205,7 @@ class Form extends React.Component {
         <div className='form__group'>
           <label htmlFor='search-siren'>Rechercher votre organisme avec son SIREN</label>
           <div className='search__group'>
-            <input type='text' value={siren} name='siren' id='search-siren' onChange={this.handleSirenChange} />
+            <input type='text' value={siren} name='siren' id='search-siren' disabled={disabled} onChange={this.handleSirenChange} />
             <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
               <SearchIcon id='icon-search' title='Rechercher' />
             </button>
