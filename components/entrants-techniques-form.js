@@ -20,8 +20,8 @@ class EntrantsTecniquesForm extends React.Component {
         acl: {},
         ips_de_production: '',
         autorite_certification: '',
-        autorite_certification_nom: '',
-        autorite_certification_fonction: '',
+        autorite_homologation_nom: '',
+        autorite_homologation_fonction: '',
         date_homologation: '',
         date_fin_homologation: '',
         recette_fonctionnelle: false
@@ -99,8 +99,8 @@ class EntrantsTecniquesForm extends React.Component {
         documents,
         autorite_certification,
         ips_de_production,
-        autorite_certification_nom,
-        autorite_certification_fonction,
+        autorite_homologation_nom,
+        autorite_homologation_fonction,
         date_homologation,
         date_fin_homologation,
         nombre_demandes_annuelle,
@@ -189,8 +189,8 @@ class EntrantsTecniquesForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <h1 id='entrants-techniques'>Entrants techniques</h1>
         <section className='information-text'>
-          <p>Afin de permettre la liaison technique entre votre SI et celui de la DGFiP, vous devez fournir les entrants techniques suivants : <br />
-          adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec l&apos;API « Impôt Particulier »<br />
+          <p>Afin de permettre la liaison technique entre votre SI et celui de la DGFiP, vous devez fournir les entrants techniques suivants :<br />{' '}
+          adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec l&apos;API « Impôt Particulier »<br />{' '}
           partie publique d’un certificat client RGS V2.0 en cours de validité avec son autorité de certification émettrice</p>
           <p>Afin de permettre votre mise en production dans les meilleures conditions possibles, veuillez vous assurer de la qualité de ces livrables techniques.</p>
         </section>
@@ -222,13 +222,13 @@ class EntrantsTecniquesForm extends React.Component {
         </section>
 
         <div className='form__group'>
-          <label htmlFor='autorite_certification_nom'>Nom de l&apos;autorité de certification</label>
-          <input type='text' onChange={this.handleChange} name='autorite_certification_nom' id='autorite_certification_nom' disabled={disabled} value={autorite_certification_nom} />
+          <label htmlFor='autorite_homologation_nom'>Nom de l&apos;autorité d&apos;homologation</label>
+          <input type='text' onChange={this.handleChange} name='autorite_homologation_nom' id='autorite_homologation_nom' disabled={disabled} value={autorite_homologation_nom} />
         </div>
 
         <div className='form__group'>
-          <label htmlFor='autorite_certification_fonction'>Fonction de l&apos;autorité de certification</label>
-          <input type='text' onChange={this.handleChange} name='autorite_certification_fonction' id='autorite_certification_fonction' disabled={disabled} value={autorite_certification_fonction} />
+          <label htmlFor='autorite_homologation_fonction'>Fonction de l&apos;autorité d&apos;homologation</label>
+          <input type='text' onChange={this.handleChange} name='autorite_homologation_fonction' id='autorite_homologation_fonction' disabled={disabled} value={autorite_homologation_fonction} />
         </div>
 
         <div className='form__group'>
