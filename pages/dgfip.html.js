@@ -41,7 +41,7 @@ class Dgfip extends React.Component {
 
     return (
       <div>
-        <Redirect pathName={url.pathname} />
+        <Redirect pathName={url.asPath} />
         <Page requireUser>
           <div className='documentation'>
             <DgfipNav id={url.query.id} />

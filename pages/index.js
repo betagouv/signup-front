@@ -10,7 +10,7 @@ class Index extends React.Component {
     const {url} = this.props
     return (
       <div>
-        <Redirect redirect pathName={url.pathname} />
+        <Redirect redirect pathName={url.asPath} />
         <Page requireUser>
           <section className='section-grey'>
             <div className='container'>
