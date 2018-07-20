@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Redirect from '../components/redirect'
 import Page from '../components/page'
 import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
@@ -39,17 +40,20 @@ class Dgfip extends React.Component {
     const {enrollment} = this.state
 
     return (
-      <Page>
-        <div className='documentation'>
-          <DgfipNav id={url.query.id} />
-          <div className='main-pane'>
-            <Form id={url.query.id} form={DgfipFormConfiguration} />
-            { enrollment.acl.show_technical_inputs &&
-              <EntrantsTechniquesForm id={url.query.id} />
-            }
+      <div>
+        <Redirect pathName={url.pathname} />
+        <Page requireUser>
+          <div className='documentation'>
+            <DgfipNav id={url.query.id} />
+            <div className='main-pane'>
+              <Form id={url.query.id} form={DgfipFormConfiguration} />
+              { enrollment.acl.show_technical_inputs &&
+                <EntrantsTechniquesForm id={url.query.id} />
+              }
+            </div>
           </div>
-        </div>
-      </Page>
+        </Page>
+      </div>
     )
   }
 }

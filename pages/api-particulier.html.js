@@ -13,7 +13,7 @@ const ApiParticulier = ({url}) => {
 
   return (
     <div>
-      <Redirect pathName={url.asPath} />
+      <Redirect redirect pathName={url.pathname} />
       <Page requireUser>
         <div className='documentation'>
           <ApiParticulierNav />
