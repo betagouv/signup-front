@@ -275,7 +275,7 @@ class EntrantsTecniquesForm extends React.Component {
         <h1 id='recette-fonctionnelle'>Recette fonctionnelle</h1>
         <section className='information-text'>
           <p>Afin d’assurer la qualification de votre applicatif, un générateur de bouchons est mis à votre disposition en suivant le lien ci-dessous. Il vous permettra de valoriser les données retournées par l&apos;API « Impôt Particulier » en fonction de vos besoins métier ou d’utiliser le jeu de données natif. Cette qualification est obligatoire tant pour votre homologation de sécurité ou vos obligations CNIL que pour demander l&apos;entrée en production auprès de la DGFiP.</p>
-          <p><a href=''>Accèder aux générateurs de bouchons</a></p>
+          <p><a target='_blank' rel='noopener noreferrer' href='https://fip1.integ01.dev-franceconnect.fr/user/create'>Accèder aux générateurs de bouchons</a></p>
         </section>
         <div>
           <input onChange={this.handleChange} checked={recette_fonctionnelle} type='checkbox' name='recette_fonctionnelle' id='checkbox-recette_fonctionnelle' disabled={disabled} />
