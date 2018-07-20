@@ -1,13 +1,12 @@
-import {FRANCE_CONNECT_AUTHORIZE_URI, BACK_HOST} from '@env'
+import {BACK_HOST} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
 import Router from 'next/router'
-import {merge, debounce, zipObjectDeep} from 'lodash'
+import {merge, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import {getErrorMessage, getQueryVariable} from '../lib/utils'
-import User from '../lib/user'
-import SearchIcon from './icons/search'
+import {getErrorMessage} from '../lib/utils'
+import FranceConnectServiceProvider from './form/france-connect-service-provider'
+import Siren from './form/siren'
 
 class Form extends React.Component {
   constructor(props) {
@@ -17,10 +16,7 @@ class Form extends React.Component {
 
     this.state = {
       errors: [],
-      serviceProviders: [],
-      nom_raison_sociale: '',
-      adresse: '',
-      activite_principale: '',
+      isUserEnrollmentLoading: true,
       enrollment: {
         acl: {},
         contacts: [
@@ -56,6 +52,7 @@ class Form extends React.Component {
           destinataires: {}
         },
         fournisseur_de_donnees: form.provider,
+        fournisseur_de_service: '',
         id: null,
         scopes: {},
         siren: '',
@@ -67,28 +64,24 @@ class Form extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleSaveDraft = this.handleSaveDraft.bind(this)
-    this.getSiren = this.getSiren.bind(this)
     this.upload = this.upload.bind(this)
     this.handleSirenChange = this.handleSirenChange.bind(this)
+    this.handleServiceProviderChange = this.handleServiceProviderChange.bind(this)
   }
 
   componentDidMount() {
-    const tokenFc = getQueryVariable('token')
     const {id} = this.props
-    const user = new User()
 
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
         this.setState(({enrollment: prevEnrollment}) => ({
+          isUserEnrollmentLoading: false,
           enrollment: merge({}, prevEnrollment, enrollment)
         }))
-        this.getSiren(enrollment.siren)
-      })
+      }).catch(this.setState({isUserEnrollmentLoading: false}))
+    } else {
+      this.setState({isUserEnrollmentLoading: false})
     }
-
-    user.getServiceProviders(tokenFc).then(serviceProviders => {
-      this.setState({serviceProviders})
-    })
   }
 
   handleChange({target: {type, checked, value: inputValue, name}}) {
@@ -96,6 +89,24 @@ class Form extends React.Component {
 
     this.setState(({enrollment: prevEnrollment}) => ({
       enrollment: merge({}, prevEnrollment, zipObjectDeep([`${name}`], [value]))
+    }))
+  }
+
+  handleServiceProviderChange({intitule, description, fournisseur_de_service}) {
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, {
+        demarche: {
+          intitule,
+          description
+        },
+        fournisseur_de_service
+      })
+    }))
+  }
+
+  handleSirenChange({siren}) {
+    this.setState(({enrollment: prevEnrollment}) => ({
+      enrollment: merge({}, prevEnrollment, {siren})
     }))
   }
 
@@ -131,34 +142,12 @@ class Form extends React.Component {
     this.handleSubmit(event, false)
   }
 
-  getSiren(siren) {
-    const sirenWithoutSpaces = siren.replace(/ /g, '')
-
-    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, activite_principale}) => {
-      this.setState(({nom_raison_sociale, adresse, activite_principale, sirenNotFound: false}))
-    }).catch(() => {
-      this.setState(({nom_raison_sociale: '', adresse: '', activite_principale: '', sirenNotFound: true}))
-    })
-  }
-
-  debouncedGetSiren = debounce(this.getSiren, 1000)
-
-  handleSirenChange(event) {
-    const siren = event.target.value
-
-    this.handleChange(event)
-    this.debouncedGetSiren(siren)
-  }
-
   render() {
     let token
     if (typeof localStorage !== 'undefined') { // eslint-disable-line no-constant-condition
       token = localStorage.getItem('token')
     }
     const {
-      nom_raison_sociale,
-      adresse,
-      activite_principale,
       enrollment: {
         acl,
         contacts,
@@ -171,9 +160,8 @@ class Form extends React.Component {
         siren,
         validation_de_convention
       },
-      serviceProviders,
-      sirenNotFound,
-      errors
+      errors,
+      isUserEnrollmentLoading
     } = this.state
 
     const {form} = this.props
@@ -188,48 +176,11 @@ class Form extends React.Component {
           // eslint-disable-next-line react/no-danger
         }<div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
 
-        { form.franceConnected && (
-          <div className='form__group'>
-            <h2 id='france-connect'>Partenaire FranceConnect</h2>
-            <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
-            <label htmlFor='fournisseur_de_service'>Intitulé de la démarche</label>
-            <select onChange={this.handleChange} name='fournisseur_de_service'>
-              {serviceProviders.map(({name}) => (
-                <option key={name} selected={fournisseur_de_service === name} value={name}>{name}</option>
-              ))}
-            </select>
-          </div>
-        )}
         <h2 id='identite'>Identité</h2>
 
-        <div className='form__group'>
-          <label htmlFor='search-siren'>Rechercher votre organisme avec son SIREN</label>
-          <div className='search__group'>
-            <input type='text' value={siren} name='siren' id='search-siren' disabled={disabled} onChange={this.handleSirenChange} />
-            <button className='overlay-button' type='button' aria-label='Recherche' onClick={this.getSiren}>
-              <SearchIcon id='icon-search' title='Rechercher' />
-            </button>
-          </div>
-        </div>
-
-        {sirenNotFound &&
-          <div className='form__group'>
-            <div className='notification error'>Notre service ne parvient pas à trouver votre SIREN</div>
-          </div>
+        {!isUserEnrollmentLoading &&
+          <Siren disabled={disabled} siren={siren} handleSirenChange={this.handleSirenChange} />
         }
-
-        <div className='form__group'>
-          <label htmlFor='nom_raison_sociale'>Raison sociale</label>
-          <input type='text' id='nom_raison_sociale' disabled value={nom_raison_sociale} />
-        </div>
-        <div className='form__group'>
-          <label htmlFor='adresse'>Adresse</label>
-          <input type='text' id='adresse' disabled value={adresse} />
-        </div>
-        <div className='form__group'>
-          <label htmlFor='activite_principale'>Code NAF</label>
-          <input type='text' id='activite_principale' disabled value={activite_principale} />
-        </div>
 
         <h3>Contacts</h3>
         <div className='row card-row'>
@@ -255,17 +206,27 @@ class Form extends React.Component {
         {
           // eslint-disable-next-line react/no-danger
         }<section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
-        {!form.franceConnected && (
-          <div className='form__group'>
-            <label htmlFor='intitule_demarche'>Intitulé</label>
-            <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={disabled} value={demarche.intitule} />
-          </div>
+
+        {!isUserEnrollmentLoading && !disabled && form.franceConnected && (
+          <FranceConnectServiceProvider onServiceProviderChange={this.handleServiceProviderChange} fournisseur_de_service={fournisseur_de_service} />
         )}
 
         <div className='form__group'>
-          <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={disabled} value={demarche.description} />
+          <label htmlFor='intitule_demarche'>Intitulé</label>
+          <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={form.franceConnected || disabled} value={demarche.intitule} />
         </div>
+
+        <div className='form__group'>
+          <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
+          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={form.franceConnected || disabled} value={demarche.description} />
+        </div>
+
+        {form.franceConnected &&
+          <div className='form__group'>
+            <label>Clé fournisseur de service</label>
+            <input type='text' disabled value={fournisseur_de_service} />
+          </div>
+        }
 
         <h2>Cadre juridique</h2>
         {form.description.fondementJuridique &&
@@ -347,6 +308,7 @@ Form.propTypes = {
   id: PropTypes.string,
   form: PropTypes.object
 }
+
 Form.defaultProps = {
   id: '',
   form: {
