@@ -1,7 +1,7 @@
 import React from 'react'
 import {mount} from 'enzyme'
 import {JSDOM} from 'jsdom'
-import Utils from '../../../lib/utils'
+import * as Utils from '../../../lib/utils'
 import attachUser from '../../../components/hoc/attach-user'
 import User from '../../../lib/user'
 
