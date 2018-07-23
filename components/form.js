@@ -164,7 +164,13 @@ class Form extends React.Component {
       isUserEnrollmentLoading
     } = this.state
 
-    const {form} = this.props
+    const {
+      form,
+      IntroDescription,
+      DemarcheDescription,
+      CguDescription,
+      CadreJuridiqueDescription
+    } = this.props
     // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
     const disabled = !(acl.send_application || !id)
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
@@ -172,9 +178,7 @@ class Form extends React.Component {
     return (
       <form>
         <h1>{form.text.title}</h1>
-        {
-          // eslint-disable-next-line react/no-danger
-        }<div dangerouslySetInnerHTML={{__html: form.text.intro}} className='intro' />
+        <IntroDescription />
 
         <h2 id='identite'>Identité</h2>
 
@@ -203,9 +207,7 @@ class Form extends React.Component {
         </div>
 
         <h2 id='demarche'>Démarche</h2>
-        {
-          // eslint-disable-next-line react/no-danger
-        }<section dangerouslySetInnerHTML={{__html: form.description.demarche}} className='information-text' />
+        <DemarcheDescription />
 
         {!isUserEnrollmentLoading && !disabled && form.franceConnected && (
           <FranceConnectServiceProvider onServiceProviderChange={this.handleServiceProviderChange} fournisseur_de_service={fournisseur_de_service} />
@@ -229,9 +231,7 @@ class Form extends React.Component {
         }
 
         <h2>Cadre juridique</h2>
-        {form.description.fondementJuridique &&
-          <section dangerouslySetInnerHTML={{__html: form.description.fondementJuridique}} className='information-text' /> // eslint-disable-line react/no-danger
-        }
+        <CadreJuridiqueDescription />
         <div className='form__group'>
           {legalBasis ? (
             <label><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
@@ -276,9 +276,7 @@ class Form extends React.Component {
         </div>
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
-        { form.description.cgu &&
-          <section dangerouslySetInnerHTML={{__html: form.description.cgu}} className='information-text' /> // eslint-disable-line react/no-danger
-        }
+        <CguDescription />
 
         <iframe src={form.cguLink} width='100%' height='800px' />
 
@@ -306,7 +304,11 @@ class Form extends React.Component {
 
 Form.propTypes = {
   id: PropTypes.string,
-  form: PropTypes.object
+  form: PropTypes.object,
+  IntroDescription: PropTypes.node.isRequired,
+  DemarcheDescription: PropTypes.node.isRequired,
+  CguDescription: PropTypes.node.isRequired,
+  CadreJuridiqueDescription: PropTypes.node.isRequired
 }
 
 Form.defaultProps = {
@@ -316,11 +318,7 @@ Form.defaultProps = {
     scopes: [],
     cguLink: '',
     text: {
-      title: '',
-      intro: ''
-    },
-    description: {
-      demarche: ''
+      title: ''
     }
   }
 }

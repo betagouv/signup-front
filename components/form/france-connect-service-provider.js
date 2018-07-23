@@ -67,7 +67,7 @@ class FranceConnectServiceProvider extends React.Component {
       <React.Fragment>
         <div className='form__group'>
           <h4 id='france-connect'>Partenaire FranceConnect</h4>
-          <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de France Connect afin de récupérer mes démarches</a></Link></p>
+          <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de FranceConnect afin de récupérer mes démarches</a></Link></p>
         </div>
         {serviceProviders.length > 0 &&
           <div className='form__group'>
