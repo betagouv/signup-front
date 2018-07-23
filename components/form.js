@@ -44,7 +44,8 @@ class Form extends React.Component {
         demarche: {
           intitule: '',
           description: '',
-          fondement_juridique: ''
+          fondement_juridique: '',
+          url_fondement_juridique: ''
         },
         documents: [],
         donnees: {
@@ -233,16 +234,24 @@ class Form extends React.Component {
         <h2>Cadre juridique</h2>
         <CadreJuridiqueDescription />
         <div className='form__group'>
+          <label htmlFor='fondement_juridique'>Référence du texte vous autorisant à récolter ces données</label>
+          <input type='text' onChange={this.handleChange} name='demarche.fondement_juridique' id='fondement_juridique' disabled={disabled} value={demarche.fondement_juridique} />
+        </div>
+        <div className='form__group'>
+          <h3>Document associé</h3>
+          {demarche.url_fondement_juridique ? (
+            <label htmlFor='url_fondement_juridique'><a href={demarche.url_fondement_juridique}>URL du texte</a></label>
+          ) : (
+            <label htmlFor='url_fondement_juridique'>URL du texte</label>
+          )}
+          <input type='text' onChange={this.handleChange} name='demarche.url_fondement_juridique' id='url_fondement_juridique' disabled={disabled} value={demarche.url_fondement_juridique} />
+          <div style={{padding: '1em', fontWeight: 'bold'}}>ou</div>
           {legalBasis ? (
-            <label><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
+            <label htmlFor='Document::LegalBasis'><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
           ) : (
             <label htmlFor='Document::LegalBasis'>Pièce jointe</label>
           )}
           <input type='file' onChange={this.upload} disabled={disabled} name='Document::LegalBasis' id='document_legal_basis' />
-        </div>
-        <div className='form__group'>
-          <label htmlFor='fondement_juridique'>Cadre juridique <i>(indiquez la référence ou l&apos;URL du texte vous autorisant à récolter ces données)</i></label>
-          <input type='text' onChange={this.handleChange} name='demarche.fondement_juridique' id='fondement_juridique_demarche' disabled={disabled} value={demarche.fondement_juridique} />
         </div>
 
         <h2 id='donnees'>Données</h2>
