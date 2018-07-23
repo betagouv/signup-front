@@ -272,7 +272,7 @@ class Form extends React.Component {
 
         <div className='form__group'>
           <label htmlFor='donnees_conservation'>Conservation des données <i>(en mois)</i></label>
-          <input type='number' onChange={this.handleChange} name='donnees.conservation' id='donnees_conservation' disabled={disabled} value={donnees.conservation} />
+          <input type='number' min='0' onChange={this.handleChange} name='donnees.conservation' id='donnees_conservation' disabled={disabled} value={donnees.conservation} />
         </div>
 
         <h1 id='cgu'>Conditions d&acute;utilisation</h1>
