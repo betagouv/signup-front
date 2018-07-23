@@ -181,13 +181,32 @@ class Form extends React.Component {
         <h1>{form.text.title}</h1>
         <IntroDescription />
 
-        <h2 id='identite'>Identité</h2>
+        <h2 id='demarche'>Démarche</h2>
+        <DemarcheDescription />
+        {!isUserEnrollmentLoading && !disabled && form.franceConnected && (
+          <FranceConnectServiceProvider onServiceProviderChange={this.handleServiceProviderChange} fournisseur_de_service={fournisseur_de_service} />
+        )}
+        <div className='form__group'>
+          <label htmlFor='intitule_demarche'>Intitulé</label>
+          <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={form.franceConnected || disabled} value={demarche.intitule} />
+        </div>
+        <div className='form__group'>
+          <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
+          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={form.franceConnected || disabled} value={demarche.description} />
+        </div>
+        {form.franceConnected &&
+        <div className='form__group'>
+          <label>Clé fournisseur de service</label>
+          <input type='text' disabled value={fournisseur_de_service} />
+        </div>
+        }
 
+        <h2 id='identite'>Identité</h2>
         {!isUserEnrollmentLoading &&
           <Siren disabled={disabled} siren={siren} handleSirenChange={this.handleSirenChange} />
         }
 
-        <h3>Contacts</h3>
+        <h2>Contacts</h2>
         <div className='row card-row'>
           {contacts.map(({id, heading, link, nom, email}, index) => (
             <div key={id} className='card'>
@@ -206,30 +225,6 @@ class Form extends React.Component {
             </div>
           ))}
         </div>
-
-        <h2 id='demarche'>Démarche</h2>
-        <DemarcheDescription />
-
-        {!isUserEnrollmentLoading && !disabled && form.franceConnected && (
-          <FranceConnectServiceProvider onServiceProviderChange={this.handleServiceProviderChange} fournisseur_de_service={fournisseur_de_service} />
-        )}
-
-        <div className='form__group'>
-          <label htmlFor='intitule_demarche'>Intitulé</label>
-          <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={form.franceConnected || disabled} value={demarche.intitule} />
-        </div>
-
-        <div className='form__group'>
-          <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={form.franceConnected || disabled} value={demarche.description} />
-        </div>
-
-        {form.franceConnected &&
-          <div className='form__group'>
-            <label>Clé fournisseur de service</label>
-            <input type='text' disabled value={fournisseur_de_service} />
-          </div>
-        }
 
         <h2>Cadre juridique</h2>
         <CadreJuridiqueDescription />
@@ -278,17 +273,14 @@ class Form extends React.Component {
             </div>
           </fieldset>
         </div>
-
         <div className='form__group'>
           <label htmlFor='donnees_conservation'>Conservation des données <i>(en mois)</i></label>
           <input type='number' min='0' onChange={this.handleChange} name='donnees.conservation' id='donnees_conservation' disabled={disabled} value={donnees.conservation} />
         </div>
 
-        <h1 id='cgu'>Conditions d&acute;utilisation</h1>
+        <h2 id='cgu'>Conditions d&acute;utilisation</h2>
         <CguDescription />
-
         <iframe src={form.cguLink} width='100%' height='800px' />
-
         <div className='form__group'>
           <input onChange={this.handleChange} disabled={disabled ? 'disabled' : false} checked={validation_de_convention} type='checkbox' name='validation_de_convention' id='validation_de_convention' />
           <label htmlFor='validation_de_convention' className='label-inline'>Je valide les présentes conditions d&apos;utilisation et confirme que le DPO de mon organisme est informé de ma demande</label>
