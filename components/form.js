@@ -170,7 +170,8 @@ class Form extends React.Component {
       IntroDescription,
       DemarcheDescription,
       CguDescription,
-      CadreJuridiqueDescription
+      CadreJuridiqueDescription,
+      DonneesDescription
     } = this.props
     // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
     const disabled = !(acl.send_application || !id)
@@ -250,6 +251,7 @@ class Form extends React.Component {
         </div>
 
         <h2 id='donnees'>Données</h2>
+        <DonneesDescription />
         <div className='form__group'>
           <fieldset className='vertical'>
             <label>Sélectionnez vos jeux de données souhaités</label>
@@ -309,7 +311,8 @@ Form.propTypes = {
   IntroDescription: PropTypes.node.isRequired,
   DemarcheDescription: PropTypes.node.isRequired,
   CguDescription: PropTypes.node.isRequired,
-  CadreJuridiqueDescription: PropTypes.node.isRequired
+  CadreJuridiqueDescription: PropTypes.node.isRequired,
+  DonneesDescription: PropTypes.node.isRequired
 }
 
 Form.defaultProps = {
