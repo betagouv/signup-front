@@ -7,7 +7,6 @@ import moment from 'moment'
 import Services from '../lib/services'
 import {getErrorMessage} from '../lib/utils'
 import withUser from './hoc/with-user'
-import SearchIcon from './icons/search'
 import ScheduleIcons from './icons/schedule'
 import MultipleChoiceButton from './widgets/multiple-choice-button'
 
@@ -224,22 +223,10 @@ class EnrollmentTable extends React.Component {
             .value()
         } />
       )
-    }, {
-      Header: '',
-      id: 'lien-demarche',
-      headerStyle: this.style.header,
-      style: this.style.cell,
-      width: 35,
-      accessor: ({id, fournisseur_de_donnees}) => ({id, fournisseur_de_donnees}),
-      Cell: () => <SearchIcon />
     }
   ]
 
   getTitle = ({column, rowInfo}) => {
-    if (column.id === 'lien-demarche') {
-      return 'Voir la démarche'
-    }
-
     if (!rowInfo) {
       return null
     }
