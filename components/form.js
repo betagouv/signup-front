@@ -50,12 +50,12 @@ class Form extends React.Component {
         documents: [],
         donnees: {
           conservation: '',
-          destinataires: zipObject(form.scopes.map(({name}) => name), Array(form.scopes.length).fill(''))
+          destinataires: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(''))
         },
         fournisseur_de_donnees: form.provider,
         fournisseur_de_service: '',
         id: null,
-        scopes: zipObject(form.scopes.map(({name}) => name), Array(form.scopes.length).fill(false)),
+        scopes: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(false)),
         siren: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
