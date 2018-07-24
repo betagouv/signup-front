@@ -78,6 +78,26 @@ const CadreJuridiqueDescription = () => (
   </div>
 )
 
+const DonneesDescription = () => (
+  <div className='information-text'>
+    <p>La loi informatique et libertés définit les principes à respecter lors de la collecte, du traitement et de la conservation de données personnelles.</p>
+    <p>L’article 6 précise :</p>
+    <ul>
+      <li>3° [les données] sont adéquates, pertinentes et non excessives au regard des finalités pour lesquelles
+        elles sont collectées et de leurs traitements ultérieurs ;</li>
+      <li>4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les mesures appropriées doivent être
+        prises pour que les données inexactes ou incomplètes au regard des finalités pour lesquelles elles sont
+        collectées ou traitées soient effacées ou rectifiées ;</li>
+    </ul>
+    <p>Nous vous remercions de sélectionner uniquement les données strictement nécessaires à votre téléservice.
+      Le non-respect du principe de proportionnalité vous expose vis à vis de la CNIL.</p>
+    <p>Vous pouvez consulter le <a href='/static/docs/cst-dgfip.pdf' target='_blank'>Contrat de Service Technique (CST)</a> pour voir le détail des données disponibles.</p>
+    <p>
+      Si N représente l&apos;année de la demande et que j&apos;ai besoin de l&apos;information la plus fraîche : si mon usager fait la demande avant le mois d&apos;Aout, il faut que je demande le N-2; si mon usager fait la demande après, je demande le N-1.
+    </p>
+  </div>
+)
+
 class Dgfip extends React.Component {
   constructor(props) {
     super(props)
@@ -122,6 +142,7 @@ class Dgfip extends React.Component {
                 DemarcheDescription={DemarcheDescription}
                 CguDescription={CguDescription}
                 CadreJuridiqueDescription={CadreJuridiqueDescription}
+                DonneesDescription={DonneesDescription}
               />
               { enrollment.acl.show_technical_inputs &&
                 <EntrantsTechniquesForm id={url.query.id} />

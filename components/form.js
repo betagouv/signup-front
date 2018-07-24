@@ -2,7 +2,7 @@ import {BACK_HOST} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
-import {merge, zipObjectDeep} from 'lodash'
+import {merge, zipObject, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
 import {getErrorMessage} from '../lib/utils'
 import FranceConnectServiceProvider from './form/france-connect-service-provider'
@@ -50,12 +50,12 @@ class Form extends React.Component {
         documents: [],
         donnees: {
           conservation: '',
-          destinataires: {}
+          destinataires: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(''))
         },
         fournisseur_de_donnees: form.provider,
         fournisseur_de_service: '',
         id: null,
-        scopes: {},
+        scopes: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(false)),
         siren: '',
         validation_de_convention: false,
         validation_delegue_a_la_protection_des_données: false
@@ -170,7 +170,8 @@ class Form extends React.Component {
       IntroDescription,
       DemarcheDescription,
       CguDescription,
-      CadreJuridiqueDescription
+      CadreJuridiqueDescription,
+      DonneesDescription
     } = this.props
     // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
     const disabled = !(acl.send_application || !id)
@@ -250,6 +251,7 @@ class Form extends React.Component {
         </div>
 
         <h2 id='donnees'>Données</h2>
+        <DonneesDescription />
         <div className='form__group'>
           <fieldset className='vertical'>
             <label>Sélectionnez vos jeux de données souhaités</label>
@@ -257,7 +259,7 @@ class Form extends React.Component {
               <div className='column' style={{flex: 1}}>
                 {form.scopes.map(({name, humanName}) => (
                   <div key={name}>
-                    <input className='scope__checkbox' onChange={this.handleChange} type='checkbox' name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabled} checked={scopes[name] ? 'checked' : false} />
+                    <input type='checkbox' className='scope__checkbox' onChange={this.handleChange} name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabled} checked={scopes[name]} />
                     <label htmlFor={`checkbox-scope_api_entreprise${name}`} className='label-inline'>{humanName}</label>
                     {scopes[name] &&
                       <div className='scope__destinataire'>
@@ -309,7 +311,8 @@ Form.propTypes = {
   IntroDescription: PropTypes.node.isRequired,
   DemarcheDescription: PropTypes.node.isRequired,
   CguDescription: PropTypes.node.isRequired,
-  CadreJuridiqueDescription: PropTypes.node.isRequired
+  CadreJuridiqueDescription: PropTypes.node.isRequired,
+  DonneesDescription: PropTypes.node.isRequired
 }
 
 Form.defaultProps = {
