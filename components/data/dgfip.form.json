@@ -3,12 +3,20 @@
   "franceConnected": true,
   "scopes": [
     {
-      "name": "dgfip_revenu_fiscal_de_reference",
-      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts"
+      "name": "dgfip_revenu_fiscal_de_reference_n_moins_1",
+      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (N -1)"
     },
     {
-      "name": "dgfip_adresse_fiscale_de_taxation",
-      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier"
+      "name": "dgfip_revenu_fiscal_de_reference_n_moins_2",
+      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (N -2)"
+    },
+    {
+      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_1",
+      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (N -1)"
+    },
+    {
+      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_2",
+      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (N -2)"
     }
   ],
   "cguLink": "/static/docs/cst-dgfip.pdf",
