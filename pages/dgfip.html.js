@@ -5,9 +5,6 @@ import Redirect from '../components/redirect'
 import Page from '../components/page'
 import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
-import EntrantsTechniquesForm from '../components/entrants-techniques-form'
-import Services from '../lib/services'
-import {getQueryVariable} from '../lib/utils'
 import DgfipFormConfiguration from '../components/data/dgfip.form'
 
 const IntroDescription = () => (
@@ -98,62 +95,26 @@ const DonneesDescription = () => (
   </div>
 )
 
-class Dgfip extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      enrollment: {
-        acl: {}
-      }
-    }
-  }
-
-  componentDidMount() {
-    let token
-
-    if (typeof localStorage !== 'undefined') {
-      token = localStorage.getItem('token')
-    }
-
-    const id = getQueryVariable('id')
-    if (id) {
-      Services.getUserEnrollment(id, token).then(enrollment => {
-        this.setState({enrollment})
-      })
-    }
-  }
-
-  render() {
-    const {url} = this.props
-    const {enrollment} = this.state
-
-    return (
-      <div>
-        <Redirect pathName={url.asPath} />
-        <Page requireUser>
-          <div className='documentation'>
-            <DgfipNav id={url.query.id} />
-            <div className='main-pane'>
-              <Form
-                id={url.query.id}
-                form={DgfipFormConfiguration}
-                IntroDescription={IntroDescription}
-                DemarcheDescription={DemarcheDescription}
-                CguDescription={CguDescription}
-                CadreJuridiqueDescription={CadreJuridiqueDescription}
-                DonneesDescription={DonneesDescription}
-              />
-              { enrollment.acl.show_technical_inputs &&
-                <EntrantsTechniquesForm id={url.query.id} />
-              }
-            </div>
-          </div>
-        </Page>
+const Dgfip = ({url}) => (
+  <div>
+    <Redirect pathName={url.asPath} />
+    <Page requireUser>
+      <div className='documentation'>
+        <DgfipNav />
+        <div className='main-pane'>
+          <Form
+            form={DgfipFormConfiguration}
+            IntroDescription={IntroDescription}
+            DemarcheDescription={DemarcheDescription}
+            CguDescription={CguDescription}
+            CadreJuridiqueDescription={CadreJuridiqueDescription}
+            DonneesDescription={DonneesDescription}
+          />
+        </div>
       </div>
-    )
-  }
-}
+    </Page>
+  </div>
+)
 
 Dgfip.propTypes = {
   url: PropTypes.object.isRequired
