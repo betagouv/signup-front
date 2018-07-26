@@ -30,20 +30,23 @@ class Form extends React.Component {
             heading: 'Délégué à la protection des données',
             link: 'https://www.cnil.fr/fr/designation-dpo',
             nom: '',
-            email: ''
+            email: '',
+            telephone_portable: ''
           },
           {
             id: 'responsable_traitement',
             heading: 'Responsable de traitement',
             link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
             nom: '',
-            email: ''
+            email: '',
+            telephone_portable: ''
           },
           {
             id: 'technique',
             heading: 'Responsable technique',
             nom: '',
-            email: ''
+            email: '',
+            telephone_portable: ''
           }
         ],
         demarche: {
@@ -236,7 +239,7 @@ class Form extends React.Component {
 
         <h2>Contacts</h2>
         <div className='row card-row'>
-          {contacts.map(({id, heading, link, nom, email}, index) => (
+          {contacts.map(({id, heading, link, nom, email, telephone_portable}, index) => (
             <div key={id} className='card'>
               <div className='card__content'>
                 <h3>{heading}</h3>
@@ -247,7 +250,12 @@ class Form extends React.Component {
                 </div>
                 <div className='form__group'>
                   <label htmlFor={`person_${id}_email`}>Email</label>
-                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabledApplication} value={email} />
+                  <input type='email' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabledApplication} value={email} />
+                </div>
+                <div className='form__group'>
+                  <label htmlFor={`person_${id}_telephone_portable`}>Numéro de téléphone portable</label>
+                  <small className='card__meta'>La clé d'API vous sera envoyée par SMS à ce numéro</small>
+                  <input type='tel' onChange={this.handleChange} name={`contacts[${index}].telephone_portable`} id={`person_${id}_telephone_portable`} disabled={disabledApplication} value={telephone_portable} placeholder="0623456789" pattern="[0-9]{10}" />
                 </div>
               </div>
             </div>
@@ -267,7 +275,7 @@ class Form extends React.Component {
           ) : (
             <label htmlFor='url_fondement_juridique'>URL du texte</label>
           )}
-          <input type='text' onChange={this.handleChange} name='demarche.url_fondement_juridique' id='url_fondement_juridique' disabled={disabledApplication} value={demarche.url_fondement_juridique} />
+          <input type='url' onChange={this.handleChange} name='demarche.url_fondement_juridique' id='url_fondement_juridique' disabled={disabledApplication} value={demarche.url_fondement_juridique} />
           <div style={{padding: '1em', fontWeight: 'bold'}}>ou</div>
           {legalBasis ? (
             <label htmlFor='document_legal_basis'><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
