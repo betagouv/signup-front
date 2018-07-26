@@ -59,6 +59,7 @@ class Form extends React.Component {
         },
         fournisseur_de_donnees: form.provider,
         fournisseur_de_service: '',
+        messages: [],
         id: null,
         scopes: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(false)),
         siren: '',
@@ -175,6 +176,7 @@ class Form extends React.Component {
         documents,
         donnees,
         fournisseur_de_service,
+        messages,
         scopes,
         siren,
         validation_de_convention
@@ -198,6 +200,12 @@ class Form extends React.Component {
 
     return (
       <form>
+        {messages.map(({id, content}) => (
+          <div key={id} className='notification warning'>
+            {content}
+          </div>
+        ))}
+
         <h1>{form.text.title}</h1>
         <IntroDescription />
 

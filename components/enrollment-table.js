@@ -84,11 +84,6 @@ class EnrollmentTable extends React.Component {
   getColumnConfiguration = () => {
     const configuration = [
       {
-        // Remove arrow in sub components (see https://github.com/react-tools/react-table/issues/62#issuecomment-306061293)
-        expander: true,
-        show: false
-      },
-      {
         id: 'updated_at',
         accessor: ({updated_at, acl}) => ({updated_at, acl}),
         Header: () => <ScheduleIcons />,
@@ -182,8 +177,6 @@ class EnrollmentTable extends React.Component {
   render() {
     const {enrollments, errors} = this.state
 
-    const pageSize = 10
-
     return (
       <div className='enrollment-table'>
         {errors.map(error => <div key={error} className='notification error'>{error}</div>)}
@@ -216,7 +209,7 @@ class EnrollmentTable extends React.Component {
           style={this.style.table}
           className='-highlight'
           showPageSizeOptions={false}
-          pageSize={pageSize}
+          pageSize={10}
           resizable={false}
           previousText='Précédent'
           nextText='Suivant'
@@ -225,10 +218,6 @@ class EnrollmentTable extends React.Component {
           pageText='Page'
           ofText='sur'
           rowsText='lignes'
-          expanded={new Array(pageSize).fill(true)} // Expand all
-          SubComponent={({original: {messages = []}}) => (
-            messages.map(({content}) => <div key={content} className='notification warning'>{content}</div>)
-          )}
         />
       </div>
     )
