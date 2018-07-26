@@ -4,9 +4,11 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {merge, zipObject, zipObjectDeep} from 'lodash'
 import Services from '../lib/services'
-import {getErrorMessage} from '../lib/utils'
+import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import FranceConnectServiceProvider from './form/france-connect-service-provider'
 import Siren from './form/siren'
+import ActionButton from './form/action-button'
+import EntrantsTechniques from './form/entrants-techniques'
 
 class Form extends React.Component {
   constructor(props) {
@@ -18,7 +20,10 @@ class Form extends React.Component {
       errors: [],
       isUserEnrollmentLoading: true,
       enrollment: {
-        acl: {},
+        acl: {
+          update: true,
+          send_application: true // Enable edition for new enrollment (ie. enrollment has no id)
+        },
         contacts: [
           {
             id: 'dpo',
@@ -57,13 +62,12 @@ class Form extends React.Component {
         id: null,
         scopes: zipObject(form.scopes.map(({name}) => name), new Array(form.scopes.length).fill(false)),
         siren: '',
-        validation_de_convention: false,
-        validation_delegue_a_la_protection_des_données: false
+        validation_de_convention: false
       }
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmitFactory = this.handleSubmitFactory.bind(this)
     this.handleSaveDraft = this.handleSaveDraft.bind(this)
     this.upload = this.upload.bind(this)
     this.handleSirenChange = this.handleSirenChange.bind(this)
@@ -71,7 +75,7 @@ class Form extends React.Component {
   }
 
   componentDidMount() {
-    const {id} = this.props
+    const id = getQueryVariable('id')
 
     if (id) {
       Services.getUserEnrollment(id).then(enrollment => {
@@ -122,25 +126,40 @@ class Form extends React.Component {
     }))
   }
 
-  handleSubmit(event, doSendEnrollment = true) {
-    event.preventDefault()
+  triggerAction = action => {
+    if (action === 'review_application') {
+      const message = window.prompt('Précisez au demandeur les modifications à apporter à sa demande :') // eslint-disable-line no-alert
+      if (message) {
+        return Services.triggerUserEnrollment({action, id: this.state.enrollment.id, message})
+      }
 
-    const {enrollment} = this.state
+      return null
+    }
 
-    Services.createOrUpdateUserEnrollment({enrollment})
-      .then(enrollment => {
-        if (!doSendEnrollment) {
-          return null
-        }
+    if (this.state.enrollment.acl.update) {
+      return Services.createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
+        .then(({id}) => Services.triggerUserEnrollment({action, id}))
+    }
 
-        return Services.triggerUserEnrollment('send_application', enrollment)
-      })
-      .then(() => Router.push('/'))
-      .catch(error => this.setState({errors: getErrorMessage(error)}))
+    return Services.triggerUserEnrollment({action, id: this.state.enrollment.id})
+  }
+
+  handleSubmitFactory = action => {
+    return event => {
+      event.preventDefault()
+
+      this.triggerAction(action)
+        .then(() => Router.push('/'))
+        .catch(error => this.setState({errors: getErrorMessage(error)}))
+    }
   }
 
   handleSaveDraft(event) {
-    this.handleSubmit(event, false)
+    event.preventDefault()
+
+    Services.createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
+      .then(() => Router.push('/'))
+      .catch(error => this.setState({errors: getErrorMessage(error)}))
   }
 
   render() {
@@ -156,7 +175,6 @@ class Form extends React.Component {
         documents,
         donnees,
         fournisseur_de_service,
-        id,
         scopes,
         siren,
         validation_de_convention
@@ -173,8 +191,9 @@ class Form extends React.Component {
       CadreJuridiqueDescription,
       DonneesDescription
     } = this.props
-    // Enable edition if user can send application or if it's a new enrollment (ie. enrollment has no id)
-    const disabled = !(acl.send_application || !id)
+
+    const disabledApplication = !acl.send_application
+    const disabledTechnicalInputs = !acl.send_technical_inputs
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     return (
@@ -184,16 +203,16 @@ class Form extends React.Component {
 
         <h2 id='demarche'>Démarche</h2>
         <DemarcheDescription />
-        {!isUserEnrollmentLoading && !disabled && form.franceConnected && (
+        {!isUserEnrollmentLoading && !disabledApplication && form.franceConnected && (
           <FranceConnectServiceProvider onServiceProviderChange={this.handleServiceProviderChange} fournisseur_de_service={fournisseur_de_service} />
         )}
         <div className='form__group'>
           <label htmlFor='intitule_demarche'>Intitulé</label>
-          <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={form.franceConnected || disabled} value={demarche.intitule} />
+          <input type='text' onChange={this.handleChange} name='demarche.intitule' id='intitule_demarche' disabled={form.franceConnected || disabledApplication} value={demarche.intitule} />
         </div>
         <div className='form__group'>
           <label htmlFor='description_service'>Décrivez brièvement votre service ainsi que l&lsquo;utilisation prévue des données transmises</label>
-          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={form.franceConnected || disabled} value={demarche.description} />
+          <textarea rows='10' onChange={this.handleChange} name='demarche.description' id='description_service' disabled={form.franceConnected || disabledApplication} value={demarche.description} />
         </div>
         {form.franceConnected &&
         <div className='form__group'>
@@ -204,7 +223,7 @@ class Form extends React.Component {
 
         <h2 id='identite'>Identité</h2>
         {!isUserEnrollmentLoading &&
-          <Siren disabled={disabled} siren={siren} handleSirenChange={this.handleSirenChange} />
+          <Siren disabled={disabledApplication} siren={siren} handleSirenChange={this.handleSirenChange} />
         }
 
         <h2>Contacts</h2>
@@ -216,11 +235,11 @@ class Form extends React.Component {
                 {link && <a className='card__meta' href={link}>{link}</a>}
                 <div className='form__group'>
                   <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
-                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].nom`} id={`person_${id}_nom`} disabled={disabled} value={nom} />
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].nom`} id={`person_${id}_nom`} disabled={disabledApplication} value={nom} />
                 </div>
                 <div className='form__group'>
                   <label htmlFor={`person_${id}_email`}>Email</label>
-                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabled} value={email} />
+                  <input type='text' onChange={this.handleChange} name={`contacts[${index}].email`} id={`person_${id}_email`} disabled={disabledApplication} value={email} />
                 </div>
               </div>
             </div>
@@ -231,7 +250,7 @@ class Form extends React.Component {
         <CadreJuridiqueDescription />
         <div className='form__group'>
           <label htmlFor='fondement_juridique'>Référence du texte vous autorisant à récolter ces données</label>
-          <input type='text' onChange={this.handleChange} name='demarche.fondement_juridique' id='fondement_juridique' disabled={disabled} value={demarche.fondement_juridique} />
+          <input type='text' onChange={this.handleChange} name='demarche.fondement_juridique' id='fondement_juridique' disabled={disabledApplication} value={demarche.fondement_juridique} />
         </div>
         <div className='form__group'>
           <h3>Document associé</h3>
@@ -240,14 +259,14 @@ class Form extends React.Component {
           ) : (
             <label htmlFor='url_fondement_juridique'>URL du texte</label>
           )}
-          <input type='text' onChange={this.handleChange} name='demarche.url_fondement_juridique' id='url_fondement_juridique' disabled={disabled} value={demarche.url_fondement_juridique} />
+          <input type='text' onChange={this.handleChange} name='demarche.url_fondement_juridique' id='url_fondement_juridique' disabled={disabledApplication} value={demarche.url_fondement_juridique} />
           <div style={{padding: '1em', fontWeight: 'bold'}}>ou</div>
           {legalBasis ? (
-            <label htmlFor='Document::LegalBasis'><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
+            <label htmlFor='document_legal_basis'><a href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}>Pièce jointe</a></label>
           ) : (
-            <label htmlFor='Document::LegalBasis'>Pièce jointe</label>
+            <label htmlFor='document_legal_basis'>Pièce jointe</label>
           )}
-          <input type='file' onChange={this.upload} disabled={disabled} name='Document::LegalBasis' id='document_legal_basis' />
+          <input type='file' onChange={this.upload} disabled={disabledApplication} name='Document::LegalBasis' id='document_legal_basis' />
         </div>
 
         <h2 id='donnees'>Données</h2>
@@ -259,13 +278,13 @@ class Form extends React.Component {
               <div className='column' style={{flex: 1}}>
                 {form.scopes.map(({name, humanName}) => (
                   <div key={name}>
-                    <input type='checkbox' className='scope__checkbox' onChange={this.handleChange} name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabled} checked={scopes[name]} />
+                    <input type='checkbox' className='scope__checkbox' onChange={this.handleChange} name={`scopes.${name}`} id={`checkbox-scope_api_entreprise${name}`} disabled={disabledApplication} checked={scopes[name]} />
                     <label htmlFor={`checkbox-scope_api_entreprise${name}`} className='label-inline'>{humanName}</label>
                     {scopes[name] &&
                       <div className='scope__destinataire'>
                         <div className='form__group'>
                           <label htmlFor={`destinataire_${name}`}>Destinataires <a href='https://www.cnil.fr/fr/definition/destinataire' target='_blank' rel='noopener noreferrer'>(plus d&acute;infos)</a></label>
-                          <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${name}`} id={`destinataire_${name}`} disabled={disabled} value={donnees.destinataires[name]} />
+                          <input type='text' onChange={this.handleChange} name={`donnees.destinataires.${name}`} id={`destinataire_${name}`} disabled={disabledApplication} value={donnees.destinataires[name]} />
                         </div>
                       </div>
                     }
@@ -277,23 +296,25 @@ class Form extends React.Component {
         </div>
         <div className='form__group'>
           <label htmlFor='donnees_conservation'>Conservation des données <i>(en mois)</i></label>
-          <input type='number' min='0' onChange={this.handleChange} name='donnees.conservation' id='donnees_conservation' disabled={disabled} value={donnees.conservation} />
+          <input type='number' min='0' onChange={this.handleChange} name='donnees.conservation' id='donnees_conservation' disabled={disabledApplication} value={donnees.conservation} />
         </div>
 
         <h2 id='cgu'>Conditions d&acute;utilisation</h2>
         <CguDescription />
         <iframe src={form.cguLink} width='100%' height='800px' />
         <div className='form__group'>
-          <input onChange={this.handleChange} disabled={disabled ? 'disabled' : false} checked={validation_de_convention} type='checkbox' name='validation_de_convention' id='validation_de_convention' />
+          <input onChange={this.handleChange} disabled={disabledApplication ? 'disabled' : false} checked={validation_de_convention} type='checkbox' name='validation_de_convention' id='validation_de_convention' />
           <label htmlFor='validation_de_convention' className='label-inline'>Je valide les présentes conditions d&apos;utilisation et confirme que le DPO de mon organisme est informé de ma demande</label>
         </div>
 
-        {!disabled &&
-          <div className='button-list'>
-            <button className='button secondary' onClick={this.handleSaveDraft}>Enregistrer le brouillon</button>
-            <button className='button' onClick={this.handleSubmit}>Soumettre la demande</button>
-          </div>
+        {acl.show_technical_inputs &&
+          <EntrantsTechniques enrollment={this.state.enrollment} onChange={this.handleChange} upload={this.upload} disabled={disabledTechnicalInputs} />
         }
+
+        <div className='button-list'>
+          {acl.update && <button className='button secondary' onClick={this.handleSaveDraft}>Enregistrer le brouillon</button>}
+          <ActionButton acl={acl} handleSubmitFactory={this.handleSubmitFactory} />
+        </div>
 
         {errors.map(error => (
           <div key={error} className='notification error'>
@@ -306,25 +327,12 @@ class Form extends React.Component {
 }
 
 Form.propTypes = {
-  id: PropTypes.string,
-  form: PropTypes.object,
+  form: PropTypes.object.isRequired,
   IntroDescription: PropTypes.node.isRequired,
   DemarcheDescription: PropTypes.node.isRequired,
   CguDescription: PropTypes.node.isRequired,
   CadreJuridiqueDescription: PropTypes.node.isRequired,
   DonneesDescription: PropTypes.node.isRequired
-}
-
-Form.defaultProps = {
-  id: '',
-  form: {
-    provider: '',
-    scopes: [],
-    cguLink: '',
-    text: {
-      title: ''
-    }
-  }
 }
 
 export default Form

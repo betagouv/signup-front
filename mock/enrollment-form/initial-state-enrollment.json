@@ -27,8 +27,7 @@
 		"fournisseur_de_donnees": "api-particulier",
 		"scopes": {},
 		"siren": "",
-		"validation_de_convention": false,
-		"validation_delegue_a_la_protection_des_données": false
+		"validation_de_convention": false
 	},
 	"errors": []
 }

@@ -5,11 +5,8 @@ import ReactTable from 'react-table'
 import _ from 'lodash'
 import moment from 'moment'
 import Services from '../lib/services'
-import {getErrorMessage} from '../lib/utils'
 import withUser from './hoc/with-user'
-import SearchIcon from './icons/search'
 import ScheduleIcons from './icons/schedule'
-import MultipleChoiceButton from './widgets/multiple-choice-button'
 
 const STATE_LABELS = {
   pending: 'À envoyer',
@@ -22,7 +19,6 @@ const STATE_LABELS = {
 
 const FOURNISSEUR_DE_DONNEES_LABELS = {
   'api-particulier': 'API Particulier',
-  'api-entreprise': 'API Entreprise',
   dgfip: 'API Impôts particulier'
 }
 
@@ -30,7 +26,6 @@ class EnrollmentTable extends React.Component {
   constructor(props) {
     super(props)
 
-    this.triggerAction = this.triggerAction.bind(this)
     this.state = {
       enrollments: [],
       errors: []
@@ -43,52 +38,6 @@ class EnrollmentTable extends React.Component {
         return enrollment
       })})
     })
-  }
-
-  triggerAction = (enrollment, action) => {
-    return Services.triggerUserEnrollment(action, enrollment).then(({data: updatedEnrollment}) => {
-      const currentEnrollments = this.state.enrollments
-      const updatedEnrollments = currentEnrollments.map(currentEnrollment => {
-        if (updatedEnrollment.id === currentEnrollment.id) {
-          return updatedEnrollment
-        }
-        return currentEnrollment
-      })
-      this.setState({enrollments: updatedEnrollments})
-    }).catch(error => this.setState({errors: getErrorMessage(error)}))
-  }
-
-  aclToAction = {
-    validate_application: {
-      getTrigger: enrollment => () => this.triggerAction(enrollment, 'validate_application'),
-      label: 'Valider'
-    },
-    review_application: {
-      getTrigger: enrollment => () => {
-        const reason = window.prompt('Précisez au demandeur les modifications à apporter à sa demande :') // eslint-disable-line no-alert
-        if (reason) {
-          this.triggerAction({...enrollment, messages_attributes: [{content: reason}]}, 'review_application')
-        }
-      },
-      label: 'À modifier'
-    },
-    refuse_application: {
-      getTrigger: enrollment => () => this.triggerAction(enrollment, 'refuse_application'),
-      label: 'Refuser'
-    },
-    send_application: {
-      getTrigger: enrollment => () => this.triggerAction(enrollment, 'send_application'),
-      label: 'Envoyer'
-    },
-    deploy_application: {
-      getTrigger: enrollment => () => this.triggerAction(enrollment, 'deploy_application'),
-      label: 'Déployer'
-    },
-    send_technical_inputs: {
-      getTrigger: ({fournisseur_de_donnees: fournisseurDeDonnees, id}) => () =>
-        Router.push({pathname: `/${fournisseurDeDonnees}.html`, query: {id}, hash: 'entrants-techniques'}),
-      label: 'Mettre en production'
-    }
   }
 
   style = {
@@ -120,19 +69,16 @@ class EnrollmentTable extends React.Component {
     centeredCell: {
       textAlign: 'center'
     },
-    actionCell: {
-      cursor: 'inherit',
-      padding: '0.5em',
-      overflow: 'visible'
-    },
     pagination: {
       boxShadow: 'none',
       borderTop: '1px solid rgba(0,0,0,0.1)'
     }
   }
 
+  availableAction = new Set(['validate_application', 'review_application', 'refuse_application', 'send_application', 'deploy_application', 'send_technical_inputs'])
+
   hasTriggerableActions = ({acl}) => (
-    !_.isEmpty(_.pickBy(acl, (value, key) => value && this.aclToAction[key]))
+    !_.isEmpty(_.pickBy(acl, (value, key) => value && this.availableAction.has(key)))
   )
 
   columnConfiguration = [
@@ -205,41 +151,10 @@ class EnrollmentTable extends React.Component {
       style: {...this.style.cell, ...this.style.centeredCell},
       width: 100,
       accessor: ({state}) => (STATE_LABELS[state])
-    }, {
-      Header: 'Action',
-      id: 'action',
-      headerStyle: this.style.header,
-      style: {...this.style.cell, ...this.style.actionCell},
-      width: 170,
-      Cell: ({original: enrollment}) => (
-        <MultipleChoiceButton actions={
-          _(enrollment.acl)
-            // {'send_application': true, 'deploy_application': false, 'create': true}
-            .pickBy((value, key) => value && this.aclToAction[key])
-            // {'send_application': true}
-            .keys()
-            // ['send_application']
-            .map(acl => ({id: acl, label: this.aclToAction[acl].label, trigger: this.aclToAction[acl].getTrigger(enrollment)}))
-            // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
-            .value()
-        } />
-      )
-    }, {
-      Header: '',
-      id: 'lien-demarche',
-      headerStyle: this.style.header,
-      style: this.style.cell,
-      width: 35,
-      accessor: ({id, fournisseur_de_donnees}) => ({id, fournisseur_de_donnees}),
-      Cell: () => <SearchIcon />
     }
   ]
 
   getTitle = ({column, rowInfo}) => {
-    if (column.id === 'lien-demarche') {
-      return 'Voir la démarche'
-    }
-
     if (!rowInfo) {
       return null
     }
@@ -272,7 +187,7 @@ class EnrollmentTable extends React.Component {
           ]}
           getTdProps={(state, rowInfo, column) => ({
             onClick: (e, handleOriginal) => {
-              if (rowInfo && column.id !== 'action') {
+              if (rowInfo) {
                 const {original: {id, fournisseur_de_donnees}} = rowInfo
                 Router.push({pathname: `/${fournisseur_de_donnees}.html`, query: {id}})
               }
