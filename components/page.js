@@ -8,7 +8,6 @@ import OAuth from '../lib/oauth'
 import User from '../lib/user'
 import Header from './header'
 import Footer from './footer'
-import Section from './section'
 
 class Page extends React.Component {
   constructor(props) {
@@ -62,12 +61,12 @@ class Page extends React.Component {
         <main>
           {
             checkUser() ?
-              <Section className='section-grey'>
+              <section className='section-grey'>
                 <div className='container text-center'>
                   <h2>Vous devez vous connecter avant de continuer</h2>
                   <a className='button large' href={oauth.client.token.getUri()}>Se connecter</a>
                 </div>
-              </Section> :
+              </section> :
               <div key='three'>{title}{children}</div>
           }
         </main>
