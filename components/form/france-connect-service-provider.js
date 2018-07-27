@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {OauthLink} from '../../pages/oauth-callback.html'
 import {getQueryVariable} from '../../lib/utils'
-import Services from '../../lib/services'
+import {getServiceProviders} from '../../lib/services'
 
 class FranceConnectServiceProvider extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class FranceConnectServiceProvider extends React.Component {
     const tokenFc = getQueryVariable('token-fc')
 
     if (tokenFc) {
-      Services.getServiceProviders(tokenFc)
+      getServiceProviders(tokenFc)
         .then(serviceProviders => {
           this.setState({serviceProviders, isServiceProvidersLoading: false})
 

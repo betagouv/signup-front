@@ -5,7 +5,7 @@ import ReactTable from 'react-table'
 import reactTableStyles from 'react-table/react-table.css'
 import _ from 'lodash'
 import moment from 'moment'
-import Services from '../lib/services'
+import {getUserEnrollments} from '../lib/services'
 import ScheduleIcons from './icons/schedule'
 
 const STATE_LABELS = {
@@ -33,7 +33,7 @@ class EnrollmentTable extends React.Component {
   }
 
   componentDidMount() {
-    Services.getUserEnrollments().then(enrollments => {
+    getUserEnrollments().then(enrollments => {
       this.setState({enrollments: enrollments.map(enrollment => {
         return enrollment
       })})

@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {merge, zipObject, zipObjectDeep} from 'lodash'
-import Services from '../lib/services'
+import {createOrUpdateUserEnrollment, getUserEnrollment, triggerUserEnrollment} from '../lib/services'
 import {getErrorMessage, getQueryVariable} from '../lib/utils'
 import FranceConnectServiceProvider from './form/france-connect-service-provider'
 import Siren from './form/siren'
@@ -82,7 +82,7 @@ class Form extends React.Component {
     const id = getQueryVariable('id')
 
     if (id) {
-      Services.getUserEnrollment(id).then(enrollment => {
+      getUserEnrollment(id).then(enrollment => {
         this.setState(({enrollment: prevEnrollment}) => ({
           isUserEnrollmentLoading: false,
           enrollment: merge({}, prevEnrollment, enrollment)
@@ -134,18 +134,18 @@ class Form extends React.Component {
     if (action === 'review_application') {
       const message = window.prompt('Précisez au demandeur les modifications à apporter à sa demande :') // eslint-disable-line no-alert
       if (message) {
-        return Services.triggerUserEnrollment({action, id: this.state.enrollment.id, message})
+        return triggerUserEnrollment({action, id: this.state.enrollment.id, message})
       }
 
       return null
     }
 
     if (this.state.enrollment.acl.update) {
-      return Services.createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
-        .then(({id}) => Services.triggerUserEnrollment({action, id}))
+      return createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
+        .then(({id}) => triggerUserEnrollment({action, id}))
     }
 
-    return Services.triggerUserEnrollment({action, id: this.state.enrollment.id})
+    return triggerUserEnrollment({action, id: this.state.enrollment.id})
   }
 
   handleSubmitFactory = action => {
@@ -161,7 +161,7 @@ class Form extends React.Component {
   handleSaveDraft(event) {
     event.preventDefault()
 
-    Services.createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
+    createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
       .then(() => Router.push('/'))
       .catch(error => this.setState({errors: getErrorMessage(error)}))
   }

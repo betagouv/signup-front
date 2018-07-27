@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {debounce} from 'lodash'
-import Services from '../../lib/services'
+import {getSirenInformation} from '../../lib/services'
 import SearchIcon from '../icons/search'
 
 class Siren extends React.Component {
@@ -34,7 +34,7 @@ class Siren extends React.Component {
   getSiren(siren) {
     const sirenWithoutSpaces = siren.replace(/ /g, '')
 
-    Services.getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, activite_principale}) => {
+    getSirenInformation(sirenWithoutSpaces).then(({nom_raison_sociale, adresse, activite_principale}) => {
       this.setState(({nom_raison_sociale, adresse, activite_principale, sirenNotFound: false}))
     }).catch(() => {
       this.setState(({nom_raison_sociale: '', adresse: '', activite_principale: '', sirenNotFound: true}))
