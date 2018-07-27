@@ -16,7 +16,7 @@ const Header = ({user, handleDisconnect}) => (
               <li className='nav__item'>
                 <div className='dropdown'>
                   { user.email }
-                  <div className='dropdown-content'>
+                  <div className='dropdown-content' style={{top: '1.8em'}}>
                     <a onClick={handleDisconnect}>Se déconnecter</a>
                   </div>
                 </div>
