@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Head from 'next/head'
 import Router from 'next/router'
 import ReactTable from 'react-table'
+import reactTableStyles from 'react-table/react-table.css'
 import _ from 'lodash'
 import moment from 'moment'
-import Services from '../lib/services'
-import withUser from './hoc/with-user'
+import {getUserEnrollments} from '../lib/services'
 import ScheduleIcons from './icons/schedule'
 
 const STATE_LABELS = {
@@ -34,7 +33,7 @@ class EnrollmentTable extends React.Component {
   }
 
   componentDidMount() {
-    Services.getUserEnrollments().then(enrollments => {
+    getUserEnrollments().then(enrollments => {
       this.setState({enrollments: enrollments.map(enrollment => {
         return enrollment
       })})
@@ -181,9 +180,9 @@ class EnrollmentTable extends React.Component {
     return (
       <div className='enrollment-table'>
         {errors.map(error => <div key={error} className='notification error'>{error}</div>)}
-        <Head>
-          <link rel='stylesheet' href='https://unpkg.com/react-table@latest/react-table.css' />
-        </Head>
+        <style
+          dangerouslySetInnerHTML={{__html: reactTableStyles}} // eslint-disable-line react/no-danger
+        />
         <ReactTable
           data={enrollments}
           columns={this.getColumnConfiguration()}
@@ -231,4 +230,4 @@ EnrollmentTable.propTypes = {
   }).isRequired
 }
 
-export default withUser(EnrollmentTable)
+export default EnrollmentTable

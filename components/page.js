@@ -2,10 +2,10 @@ import {PIWIK_URL, PIWIK_SITE_ID} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
 import Head from 'next/head'
+import Spinner from '../components/icons/spinner'
 import templateGlobalStyles from 'template.data.gouv.fr/dist/style/main.min.css'
-import attachUser from '../components/hoc/attach-user'
 import OAuthClient from '../lib/oauth-client'
-import User from '../lib/user'
+import {login, logout, UserContext} from '../lib/auth'
 import Header from './header'
 import Footer from './footer'
 import {OauthLink} from '../pages/oauth-callback.html'
@@ -15,7 +15,8 @@ class Page extends React.Component {
     super(props)
 
     this.state = {
-      user: {}
+      user: null,
+      isLoading: true
     }
   }
 
@@ -30,22 +31,31 @@ class Page extends React.Component {
       }
     }, 300)
 
-    const user = new User()
-
-    user.login().then(user => {
-      this.setState({user})
+    login().then(user => {
+      this.setState({user, isLoading: false})
+    }).catch(error => {
+      console.log(error)
+      this.setState({isLoading: false})
     })
   }
 
+  handleDisconnect = event => {
+    event.preventDefault()
+
+    this.setState({
+      user: null
+    })
+    logout()
+  }
+
   render() {
-    const {title, children, requireUser} = this.props
-    const {user} = this.state
-    const checkUser = () => requireUser && !(user && user.loggedIn)
+    const {children} = this.props
+    const {user, isLoading} = this.state
     const authorizeUri = new OAuthClient().getAuthorizationUri()
 
     return (
       <div className='page'>
-        <Head key='first' >
+        <Head>
           <title>signup.api.gouv.fr</title>
           <meta charSet='utf-8' />
           <meta name='viewport' content='initial-scale=1.0, width=device-width' />
@@ -57,22 +67,28 @@ class Page extends React.Component {
           <link rel='mask-icon' href='/static/favicons/safari-pinned-tab.svg' color='#5bbad5' />
           <script src={`${PIWIK_URL}/piwik.js`} />
         </Head>
-        <Header key='second' />
+        <Header user={user} handleDisconnect={this.handleDisconnect} />
 
         <main>
-          {
-            checkUser() ?
-              <section className='section-grey'>
-                <div className='container text-center'>
-                  <h2>Vous devez vous connecter avant de continuer</h2>
-                  <OauthLink href={authorizeUri} className='button large'>Se connecter</OauthLink>
-                </div>
-              </section> :
-              <div key='three'>{title}{children}</div>
+          {isLoading && (
+            <section className='section-grey'>
+              <div className='container text-center'>
+                <Spinner />
+              </div>
+            </section>
+          )}
+          {!isLoading && !user &&
+            <section className='section-grey'>
+              <div className='container text-center'>
+                <h2>Vous devez vous connecter avant de continuer</h2>
+                <OauthLink href={authorizeUri} className='button large'>Se connecter</OauthLink>
+              </div>
+            </section>
           }
+          {!isLoading && user && <UserContext.Provider value={user}>{children}</UserContext.Provider>}
         </main>
 
-        <Footer key='four' />
+        <Footer />
 
         <style
           dangerouslySetInnerHTML={{__html: templateGlobalStyles}} // eslint-disable-line react/no-danger
@@ -83,14 +99,7 @@ class Page extends React.Component {
 }
 
 Page.propTypes = {
-  children: PropTypes.node.isRequired,
-  title: PropTypes.string,
-  requireUser: PropTypes.bool
+  children: PropTypes.node.isRequired
 }
 
-Page.defaultProps = {
-  title: '',
-  requireUser: false
-}
-
-export default attachUser(Page)
+export default Page
