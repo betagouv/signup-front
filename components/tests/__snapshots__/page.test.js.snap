@@ -23,25 +23,28 @@ exports[`components | Page render should match snapshot 1`] = `
       <nav>
         <ul
           className="nav__links"
-        >
-          <li
-            className="nav__item"
-          >
-            <a
-              href="https://oauth.signup-development.api.gouv.fr/oauth/authorize?client_id=82546188522214c3577d35c283ce8842786649b35a026a9d44908037a597f29b&redirect_uri=https%3A%2F%2Fsignup-development.api.gouv.fr%2Foauth-callback.html&scope=&response_type=token&state="
-            >
-              Se connecter
-            </a>
-          </li>
-        </ul>
+        />
       </nav>
     </div>
   </header>
   <main>
-    <div>
-      
-      &lt;p&gt;Some html&lt;/p&gt;
-    </div>
+    <section
+      className="section-grey"
+    >
+      <div
+        className="container text-center"
+      >
+        <h2>
+          Vous devez vous connecter avant de continuer
+        </h2>
+        <a
+          className="button large"
+          onClick={[Function]}
+        >
+          Se connecter
+        </a>
+      </div>
+    </section>
   </main>
   <footer
     className="footer"

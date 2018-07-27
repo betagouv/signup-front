@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Router from 'next/router'
-import {getQueryVariable} from '../lib/utils'
+import {extractTokenFromUrl, getQueryVariable} from '../lib/utils'
 
 export class OauthLink extends React.Component {
   handleAuthoriseClick = event => {
@@ -30,6 +30,11 @@ export class OauthCallback extends React.Component {
   componentDidMount() {
     const storedPath = new URL(localStorage.getItem('returnUrl') || window.location.origin)
     localStorage.removeItem('returnUrl')
+
+    const token = extractTokenFromUrl(window.location.toString())
+    if (token) {
+      localStorage.setItem('token', token)
+    }
 
     const tokenFc = getQueryVariable('token-fc')
     if (tokenFc) {

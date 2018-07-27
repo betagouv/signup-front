@@ -65,23 +65,21 @@ const DonneesDescription = () => (
 const CguDescription = () => (<React.Fragment />)
 
 const ApiParticulier = () => (
-  <div>
-    <Page requireUser>
-      <div className='documentation'>
-        <ApiParticulierNav />
-        <div className='main-pane'>
-          <Form
-            form={ApiParticulierFormConfiguration}
-            IntroDescription={IntroDescription}
-            DemarcheDescription={DemarcheDescription}
-            CguDescription={CguDescription}
-            CadreJuridiqueDescription={CadreJuridiqueDescription}
-            DonneesDescription={DonneesDescription}
-          />
-        </div>
+  <Page>
+    <div className='documentation'>
+      <ApiParticulierNav />
+      <div className='main-pane'>
+        <Form
+          form={ApiParticulierFormConfiguration}
+          IntroDescription={IntroDescription}
+          DemarcheDescription={DemarcheDescription}
+          CguDescription={CguDescription}
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+          DonneesDescription={DonneesDescription}
+        />
       </div>
-    </Page>
-  </div>
+    </div>
+  </Page>
 )
 
 export default ApiParticulier

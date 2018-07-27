@@ -94,23 +94,21 @@ const DonneesDescription = () => (
 )
 
 const Dgfip = () => (
-  <div>
-    <Page requireUser>
-      <div className='documentation'>
-        <DgfipNav />
-        <div className='main-pane'>
-          <Form
-            form={DgfipFormConfiguration}
-            IntroDescription={IntroDescription}
-            DemarcheDescription={DemarcheDescription}
-            CguDescription={CguDescription}
-            CadreJuridiqueDescription={CadreJuridiqueDescription}
-            DonneesDescription={DonneesDescription}
-          />
-        </div>
+  <Page>
+    <div className='documentation'>
+      <DgfipNav />
+      <div className='main-pane'>
+        <Form
+          form={DgfipFormConfiguration}
+          IntroDescription={IntroDescription}
+          DemarcheDescription={DemarcheDescription}
+          CguDescription={CguDescription}
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+          DonneesDescription={DonneesDescription}
+        />
       </div>
-    </Page>
-  </div>
+    </div>
+  </Page>
 )
 
 export default Dgfip
