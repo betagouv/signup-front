@@ -2,14 +2,13 @@ import Link from 'next/link'
 import React from 'react'
 import Router from 'next/router'
 import PropTypes from 'prop-types'
-import OAuth from '../lib/oauth'
+import OAuthClient from '../lib/oauth-client'
 import User from '../lib/user'
 import withUser from '../components/hoc/with-user'
 
 class Header extends React.Component {
   constructor(props) {
     super(props)
-    this.oauth = new OAuth()
     this.logout = this.logout.bind(this)
 
     this.state = {
@@ -52,7 +51,7 @@ class Header extends React.Component {
                 }
                 {
                   !user.loggedIn && (
-                    <a href={this.oauth.client.token.getUri()}>Se connecter</a>
+                    <a href={new OAuthClient().getAuthorizationUri()}>Se connecter</a>
                   )
                 }
               </li>

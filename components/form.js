@@ -254,8 +254,8 @@ class Form extends React.Component {
                 </div>
                 <div className='form__group'>
                   <label htmlFor={`person_${id}_telephone_portable`}>Numéro de téléphone portable</label>
-                  <small className='card__meta'>La clé d'API vous sera envoyée par SMS à ce numéro</small>
-                  <input type='tel' onChange={this.handleChange} name={`contacts[${index}].telephone_portable`} id={`person_${id}_telephone_portable`} disabled={disabledApplication} value={telephone_portable} placeholder="0623456789" pattern="[0-9]{10}" />
+                  <small className='card__meta'>La clé d&apos;API vous sera envoyée par SMS à ce numéro</small>
+                  <input type='tel' onChange={this.handleChange} name={`contacts[${index}].telephone_portable`} id={`person_${id}_telephone_portable`} disabled={disabledApplication} value={telephone_portable} placeholder='0623456789' pattern='[0-9]{10}' />
                 </div>
               </div>
             </div>

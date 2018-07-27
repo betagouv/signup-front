@@ -1,7 +1,7 @@
 import {FRANCE_CONNECT_AUTHORIZE_URI, FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI} from '@env'
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'next/link'
+import {OauthLink} from '../../pages/oauth-callback.html'
 import {getQueryVariable} from '../../lib/utils'
 import Services from '../../lib/services'
 
@@ -20,7 +20,7 @@ class FranceConnectServiceProvider extends React.Component {
   }
 
   componentDidMount() {
-    const tokenFc = getQueryVariable('token')
+    const tokenFc = getQueryVariable('token-fc')
 
     if (tokenFc) {
       Services.getServiceProviders(tokenFc)
@@ -67,7 +67,9 @@ class FranceConnectServiceProvider extends React.Component {
       <React.Fragment>
         <div className='form__group'>
           <h4 id='france-connect'>Partenaire FranceConnect</h4>
-          <p><Link href={FRANCE_CONNECT_AUTHORIZE_URI}><a className='button'>Se connecter auprès de FranceConnect afin de récupérer mes démarches</a></Link></p>
+          <p>
+            <OauthLink href={FRANCE_CONNECT_AUTHORIZE_URI} className='button'>Se connecter auprès de FranceConnect afin de récupérer mes démarches</OauthLink>
+          </p>
         </div>
         {serviceProviders.length > 0 &&
           <div className='form__group'>

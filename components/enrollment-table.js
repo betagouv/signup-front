@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Head from 'next/head'
 import Router from 'next/router'
 import ReactTable from 'react-table'
@@ -155,7 +156,7 @@ class EnrollmentTable extends React.Component {
         Header: 'Fin homologation',
         accessor: 'date_fin_homologation',
         headerStyle: this.style.header,
-        style: this.style.cell,
+        style: this.style.cell
       })
     }
 
@@ -222,6 +223,12 @@ class EnrollmentTable extends React.Component {
       </div>
     )
   }
+}
+
+EnrollmentTable.propTypes = {
+  user: PropTypes.shape({
+    account_type: PropTypes.string.isRequired
+  }).isRequired
 }
 
 export default withUser(EnrollmentTable)
