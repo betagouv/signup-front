@@ -142,7 +142,13 @@ class Form extends React.Component {
 
     if (this.state.enrollment.acl.update) {
       return createOrUpdateUserEnrollment({enrollment: this.state.enrollment})
-        .then(({id}) => triggerUserEnrollment({action, id}))
+        .then(enrollment => {
+          this.setState(({enrollment: prevEnrollment}) => ({
+            isUserEnrollmentLoading: false,
+            enrollment: merge({}, prevEnrollment, enrollment)
+          }))
+          return triggerUserEnrollment({action, id: enrollment.id})
+        })
     }
 
     return triggerUserEnrollment({action, id: this.state.enrollment.id})
