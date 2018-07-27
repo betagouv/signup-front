@@ -4,10 +4,11 @@ import PropTypes from 'prop-types'
 import Head from 'next/head'
 import templateGlobalStyles from 'template.data.gouv.fr/dist/style/main.min.css'
 import attachUser from '../components/hoc/attach-user'
-import OAuth from '../lib/oauth'
+import OAuthClient from '../lib/oauth-client'
 import User from '../lib/user'
 import Header from './header'
 import Footer from './footer'
+import {OauthLink} from '../pages/oauth-callback.html'
 
 class Page extends React.Component {
   constructor(props) {
@@ -37,10 +38,10 @@ class Page extends React.Component {
   }
 
   render() {
-    const oauth = new OAuth()
     const {title, children, requireUser} = this.props
     const {user} = this.state
     const checkUser = () => requireUser && !(user && user.loggedIn)
+    const authorizeUri = new OAuthClient().getAuthorizationUri()
 
     return (
       <div className='page'>
@@ -64,7 +65,7 @@ class Page extends React.Component {
               <section className='section-grey'>
                 <div className='container text-center'>
                   <h2>Vous devez vous connecter avant de continuer</h2>
-                  <a className='button large' href={oauth.client.token.getUri()}>Se connecter</a>
+                  <OauthLink href={authorizeUri} className='button large'>Se connecter</OauthLink>
                 </div>
               </section> :
               <div key='three'>{title}{children}</div>

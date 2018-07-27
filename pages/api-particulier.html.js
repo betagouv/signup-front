@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import Redirect from '../components/redirect'
 import Page from '../components/page'
 import Form from '../components/form'
 import ApiParticulierNav from '../components/api-particulier-nav'
@@ -66,9 +64,8 @@ const DonneesDescription = () => (
 
 const CguDescription = () => (<React.Fragment />)
 
-const ApiParticulier = ({url}) => (
+const ApiParticulier = () => (
   <div>
-    <Redirect redirect pathName={url.asPath} />
     <Page requireUser>
       <div className='documentation'>
         <ApiParticulierNav />
@@ -86,9 +83,5 @@ const ApiParticulier = ({url}) => (
     </Page>
   </div>
 )
-
-ApiParticulier.propTypes = {
-  url: PropTypes.object.isRequired
-}
 
 export default ApiParticulier

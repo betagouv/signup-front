@@ -1,7 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import {FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI} from '@env'
-import Redirect from '../components/redirect'
 import Page from '../components/page'
 import Form from '../components/form'
 import DgfipNav from '../components/dgfip-nav'
@@ -95,9 +93,8 @@ const DonneesDescription = () => (
   </div>
 )
 
-const Dgfip = ({url}) => (
+const Dgfip = () => (
   <div>
-    <Redirect pathName={url.asPath} />
     <Page requireUser>
       <div className='documentation'>
         <DgfipNav />
@@ -115,9 +112,5 @@ const Dgfip = ({url}) => (
     </Page>
   </div>
 )
-
-Dgfip.propTypes = {
-  url: PropTypes.object.isRequired
-}
 
 export default Dgfip
