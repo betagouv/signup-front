@@ -22,7 +22,8 @@ export class OauthLink extends React.Component {
 
 OauthLink.propTypes = {
   href: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired
+  className: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
 }
 
 export class OauthCallback extends React.Component {
@@ -31,7 +32,7 @@ export class OauthCallback extends React.Component {
     localStorage.removeItem('returnUrl')
 
     const tokenFc = getQueryVariable('token-fc')
-    if (tokenFc) {
+    if (tokenFc) {
       storedPath.searchParams.set('token-fc', tokenFc)
     }
 
