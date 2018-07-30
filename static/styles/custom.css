@@ -126,7 +126,12 @@ a.button.button-secondary:hover {
   background-color: #bdbdbd;
 }
 
-.main-pane form {
+.form {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.main-pane .form {
   max-width: 100%;
 }
 
@@ -141,7 +146,7 @@ fieldset div {
   margin: 0.5em 0 0.5em 1em;
 }
 
-form label {
+.form label {
   font-weight: bold;
 }
 

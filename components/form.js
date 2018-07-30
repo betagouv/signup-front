@@ -208,7 +208,7 @@ class Form extends React.Component {
     const legalBasis = documents.filter(({type}) => type === 'Document::LegalBasis')[0]
 
     return (
-      <form>
+      <div className='form'>
         {messages.map(({id, content}) => (
           <div key={id} className='notification warning'>
             {content}
@@ -343,7 +343,7 @@ class Form extends React.Component {
             {error}
           </div>
         ))}
-      </form>
+      </div>
     )
   }
 }
