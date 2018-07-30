@@ -65,7 +65,7 @@ class Page extends React.Component {
           <link rel='icon' type='image/png' sizes='32x32' href='/static/favicons/favicon-32x32.png' />
           <link rel='manifest' href='/static/favicons/manifest.json' />
           <link rel='mask-icon' href='/static/favicons/safari-pinned-tab.svg' color='#5bbad5' />
-          <script src={`${PIWIK_URL}/piwik.js`} />
+          {PIWIK_URL && <script src={`${PIWIK_URL}/piwik.js`} />}
         </Head>
         <Header user={user} handleDisconnect={this.handleDisconnect} />
 
