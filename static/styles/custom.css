@@ -150,6 +150,10 @@ fieldset div {
   font-weight: bold;
 }
 
+textarea:disabled {
+  background-color: #ebeff3;
+}
+
 .button-list {
   margin: 3em 0;
   text-align: right;
