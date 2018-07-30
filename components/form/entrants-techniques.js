@@ -155,21 +155,21 @@ const EntrantsTechniques = ({disabled, onChange, upload, enrollment: {
         <p>Conformément à notre charte, nous nous réservons le droit de réduire ou couper les appels autorisés au fournisseur de service.</p>
       </div>
       <div className='form__group'>
-        <label htmlFor='nombre_demandes_annuelle'>Connaissez-vous le volume global annuel des demandes de votre téléservice&nbsp;?</label>
-        <input type='text' onChange={onChange} name='nombre_demandes_annuelle' id='nombre_demandes_annuelle' disabled={disabled} value={nombre_demandes_annuelle} />
+        <label htmlFor='nombre_demandes_annuelle'>Quel est le volume global annuel des demandes de votre téléservice (en nombre de demandes par an)&nbsp;?</label>
+        <input type='number' min='0' onChange={onChange} name='nombre_demandes_annuelle' id='nombre_demandes_annuelle' disabled={disabled} value={nombre_demandes_annuelle} />
       </div>
       <div className='form__group'>
-        <label htmlFor='pic_demandes_par_seconde'>Connaissez-vous le pic de charge (en nombre de demandes horaires)&nbsp;?</label>
-        <input type='text' onChange={onChange} name='pic_demandes_par_seconde' id='pic_demandes_par_seconde' disabled={disabled} value={pic_demandes_par_seconde} />
+        <label htmlFor='pic_demandes_par_seconde'>Quel est le pic de charge (en nombre de demandes par heure)&nbsp;?</label>
+        <input type='number' min='0' onChange={onChange} name='pic_demandes_par_seconde' id='pic_demandes_par_seconde' disabled={disabled} value={pic_demandes_par_seconde} />
       </div>
       <div className='form__group'>
-        <label>Connaissez-vous la répartition de la charge des demandes mensuelles (0 si le service est fermé)&nbsp;?</label>
+        <label>Quel est la répartition de la charge (en nombre de demandes par mois, 0 si le service est fermé)&nbsp;?</label>
         <div className='form__group'>
           <div className='date_input_row'>
             {nombresDeDemandesMensuelles.map(nombreDeDemendesMensuelles => (
               <div key={nombreDeDemendesMensuelles.name} className='date_input_col'>
                 <label htmlFor={nombreDeDemendesMensuelles.name}>{nombreDeDemendesMensuelles.label}</label>
-                <input type='text' onChange={onChange} name={nombreDeDemendesMensuelles.name} id={nombreDeDemendesMensuelles.name} disabled={disabled} value={nombreDeDemendesMensuelles.value} />
+                <input type='number' min='0' onChange={onChange} name={nombreDeDemendesMensuelles.name} id={nombreDeDemendesMensuelles.name} disabled={disabled} value={nombreDeDemendesMensuelles.value} />
               </div>
             ))}
           </div>
