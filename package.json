@@ -4,13 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watchAll",
-    "dev": "next",
-    "build": "next build",
-    "start": "next start -p 3002",
-    "lint": "npm run lint:scripts",
-    "lint:scripts": "xo"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "xo"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +23,6 @@
     "jsdom": "^11.6.2",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
-    "next": "^5.1.0",
     "nock": "^9.2.3",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
@@ -43,6 +40,7 @@
     "jest": "^22.2.1",
     "prop-types": "^15.6.0",
     "react-addons-test-utils": "^15.6.2",
+    "react-scripts": "^1.1.4",
     "react-test-renderer": "^16.2.0",
     "xo": "^0.20.2"
   },
