@@ -3,11 +3,17 @@ import PropTypes from 'prop-types'
 import Router from 'next/router'
 import {extractTokenFromUrl, getQueryVariable} from '../lib/utils'
 
+export const saveCurrentPageForPostloginRedirect = () =>
+  localStorage.setItem('returnUrl', window.location.href)
+
 export class OauthLink extends React.Component {
   handleAuthoriseClick = event => {
     event.preventDefault()
 
-    localStorage.setItem('returnUrl', window.location.href)
+    if (!localStorage.getItem('returnUrl')) {
+      localStorage.setItem('returnUrl', window.location.href)
+    }
+
     Router.push(this.props.href)
   }
 
