@@ -243,7 +243,7 @@ class Form extends React.Component {
           <Siren disabled={disabledApplication} siren={siren} handleSirenChange={this.handleSirenChange} />
         }
 
-        <h2>Contacts</h2>
+        <h2 id='contacts'>Contacts</h2>
         <div className='row card-row'>
           {contacts.map(({id, heading, link, nom, email, telephone_portable}, index) => (
             <div key={id} className='card'>
@@ -268,7 +268,7 @@ class Form extends React.Component {
           ))}
         </div>
 
-        <h2>Cadre juridique</h2>
+        <h2 id='cadre-juridique'>Cadre juridique</h2>
         <CadreJuridiqueDescription />
         <div className='form__group'>
           <label htmlFor='fondement_juridique'>Référence du texte vous autorisant à récolter ces données</label>

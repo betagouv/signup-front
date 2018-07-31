@@ -6,8 +6,10 @@ const ApiParticulierNav = () => (
       <li className='side-pane__title'>
         <h3>Votre demande</h3>
       </li>
-      <li><a className='side-pane__link' href='#identite'>Identité</a></li>
       <li><a className='side-pane__link' href='#demarche'>Démarche</a></li>
+      <li><a className='side-pane__link' href='#identite'>Identité</a></li>
+      <li><a className='side-pane__link' href='#contacts'>Contacts</a></li>
+      <li><a className='side-pane__link' href='#cadre-juridique'>Cadre juridique</a></li>
       <li><a className='side-pane__link' href='#donnees'>Données</a></li>
       <li><a className='side-pane__link' href='#cgu'>Conditions d&acute;utilisation</a></li>
     </ul>

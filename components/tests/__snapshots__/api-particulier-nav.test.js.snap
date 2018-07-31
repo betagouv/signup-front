@@ -17,6 +17,14 @@ exports[`components | ApiParticulierNav render should match snapshot 1`] = `
     <li>
       <a
         className="side-pane__link"
+        href="#demarche"
+      >
+        Démarche
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
         href="#identite"
       >
         Identité
@@ -25,9 +33,17 @@ exports[`components | ApiParticulierNav render should match snapshot 1`] = `
     <li>
       <a
         className="side-pane__link"
-        href="#demarche"
+        href="#contacts"
       >
-        Démarche
+        Contacts
+      </a>
+    </li>
+    <li>
+      <a
+        className="side-pane__link"
+        href="#cadre-juridique"
+      >
+        Cadre juridique
       </a>
     </li>
     <li>
