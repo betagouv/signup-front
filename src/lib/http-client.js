@@ -13,7 +13,7 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(
   response => response,
   error => {
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
       localStorage.removeItem('token')
       window.location.reload() // will generate new state from scratch, hence emptying user in UserContext
     }
