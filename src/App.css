@@ -9,47 +9,47 @@ main {
 }
 
 .container {
-	padding-left: 16px;
-	padding-right: 16px;
-	max-width: 1072px;
-	margin: 0 auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 1072px;
+  margin: 0 auto;
 }
 
 $services-breakpoint: 950px;
 
 .services {
-	@extend %horizontal-list;
-	justify-content: space-between;
-	width: 100%;
+  @extend %horizontal-list;
+  justify-content: space-between;
+  width: 100%;
 
-	&:first-of-type {
-		margin-bottom: 45px;
-	}
+  &:first-of-type {
+    margin-bottom: 45px;
+  }
 
-	@media (max-width: $services-breakpoint) {
-		justify-content: space-around;
+  @media (max-width: $services-breakpoint) {
+    justify-content: space-around;
 
-		&:first-of-type {
-			margin-bottom: 0;
-		}
-	}
+    &:first-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
 
 .service {
-	@extend %horizontal-list-item;
-	width: 170px;
+  @extend %horizontal-list-item;
+  width: 170px;
 
-	&:hover {
-		opacity: 0.6;
-	}
+  &:hover {
+    opacity: 0.6;
+  }
 
-	@media (max-width: $services-breakpoint) {
-		margin: 0 15px 15px;
-	}
+  @media (max-width: $services-breakpoint) {
+    margin: 0 15px 15px;
+  }
 }
 
 .service-image {
-	width: 170px;
+  width: 170px;
 }
 
 .tag-darker-grey {
@@ -84,8 +84,8 @@ $services-breakpoint: 950px;
 .panel__actions button.button:active,
 .panel__actions button.button:focus,
 .panel__actions button.button:visited {
-    margin-left: 5px;
-    margin-right: 0;
+  margin-left: 5px;
+  margin-right: 0;
 }
 
 .button.button-secondary,
@@ -144,7 +144,7 @@ textarea:disabled {
 }
 
 iframe {
-	margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .section__subtitle {
@@ -180,7 +180,7 @@ ul.panel-list {
 }
 
 li.panel {
-	list-style: none;
+  list-style: none;
   padding: 1em;
 }
 
@@ -189,15 +189,15 @@ li.panel .button-list {
 }
 
 .date_input_row {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
   margin: 0 -5px;
   justify-content: space-between;
 }
 
 .date_input_col {
-	min-width: 75px;
-	max-width: calc(100% / 6 - 10px);
+  min-width: 75px;
+  max-width: calc(100% / 6 - 10px);
   margin: 0 5px;
 }
 
@@ -220,7 +220,7 @@ li.panel .button-list {
   display: block;
   max-height: 0;
   overflow: hidden;
-  transition: all .5s ease;
+  transition: all 0.5s ease;
 }
 
 .scope__checkbox:checked ~ .scope__destinataire {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'template.data.gouv.fr/dist/style/main.css'
+import 'template.data.gouv.fr/dist/style/main.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
