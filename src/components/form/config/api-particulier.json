@@ -1,0 +1,22 @@
+{
+  "provider": "api-particulier",
+  "franceConnected": false,
+  "scopes": [
+    {
+      "name": "dgfip_avis_imposition",
+      "humanName": "DGFIP - Avis d'imposition"
+    },
+    {
+      "name": "cnaf_quotient_familial",
+      "humanName": "CNAF - Quotient familial"
+    },
+    {
+      "name": "cnaf_attestation_droits",
+      "humanName": "CNAF - attestation droits"
+    }
+  ],
+  "cguLink": "/docs/charte-fc.pdf",
+  "text": {
+    "title": "Demande d'accès à API Particulier"
+  }
+}
