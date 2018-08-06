@@ -14,7 +14,7 @@ exports[`components | Header render should match snapshot 1`] = `
       <img
         alt="Accueil de signup.api.gouv.fr"
         className="navbar__logo"
-        src="https://api.gouv.fr/img/logo_api.svg"
+        src="/images/logo_api.svg"
       />
     </a>
     <nav>

@@ -1,7 +1,6 @@
+import React from 'react'
 import ReactTestRenderer from 'react-test-renderer'
 import ApiParticulierNav from '../ApiParticulierNav'
-
-require('../../lib/tests/local-storage') // eslint-disable-line import/no-unassigned-import
 
 describe('components | ApiParticulierNav', () => {
   describe('render', () => {
