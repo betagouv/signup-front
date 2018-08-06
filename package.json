@@ -8,8 +8,7 @@
     "dev": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && PORT=3002 react-scripts start",
     "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "lint": "exit 1"
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
@@ -25,15 +24,6 @@
     "react-scripts": "1.1.4",
     "react-table": "^6.8.0",
     "serve": "^9.4.0",
-    "template.data.gouv.fr": "^1.0.1"
-  },
-  "devDependencies": {
-    "cypress": "^3.0.3",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-import": "^2.13.0",
-    "eslint-plugin-jsx-a11y": "^6.1.1",
-    "eslint-plugin-react": "^7.10.0",
-    "nock": "^9.2.3"
+    "template.data.gouv.fr": "^1.1.4"
   }
 }
