@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && PORT=3002 react-scripts start",
-    "build": "react-scripts build",
+    "start": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && serve -l 3002 -s build",
+    "dev": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && PORT=3002 react-scripts start",
+    "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "lint": "exit 1"
@@ -23,6 +24,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-table": "^6.8.0",
+    "serve": "^9.4.0",
     "template.data.gouv.fr": "^1.0.1"
   },
   "devDependencies": {

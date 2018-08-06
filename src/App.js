@@ -48,7 +48,7 @@ class App extends Component {
                     {!isLoading && (
                       <React.Fragment>
                         <Route path='/login' component={Login} />
-                        <Route path='/oauth-callback.html' component={OauthCallback} />
+                        <Route path='/oauth-callback' component={OauthCallback} />
                         <PrivateRoute exact path="/" component={EnrollmentList} />
                         <PrivateRoute path='/api-particulier/:enrollmentId?' component={ApiParticulier} />
                         <PrivateRoute path='/dgfip/:enrollmentId?' component={Dgfip} />
