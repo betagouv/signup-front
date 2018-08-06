@@ -27,7 +27,9 @@
     "template.data.gouv.fr": "^1.1.4"
   },
   "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.2",
     "nock": "^9.4.4",
+    "prettier": "^1.14.0",
     "react-test-renderer": "^16.4.2"
   }
 }
