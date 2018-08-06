@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && serve -l 3002 -s build",
-    "dev": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && PORT=3002 react-scripts start",
+    "dev": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && BROWSER=none CHOKIDAR_USEPOLLING=true PORT=3002 react-scripts start",
     "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "precommit": "pretty-quick --staged"
   },
   "keywords": [],
   "author": "",
@@ -25,5 +26,13 @@
     "react-table": "^6.8.0",
     "serve": "^9.4.0",
     "template.data.gouv.fr": "^1.1.4"
+  },
+  "devDependencies": {
+    "eslint-plugin-prettier": "^2.6.2",
+    "husky": "^0.14.3",
+    "nock": "^9.4.4",
+    "prettier": "^1.14.0",
+    "pretty-quick": "^1.6.0",
+    "react-test-renderer": "^16.4.2"
   }
 }

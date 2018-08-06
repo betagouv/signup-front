@@ -1,11 +1,11 @@
-import axios from 'axios'
-import httpAdapter from 'axios/lib/adapters/http'
+import axios from 'axios';
+import httpAdapter from 'axios/lib/adapters/http';
 
-axios.defaults.adapter = httpAdapter
+axios.defaults.adapter = httpAdapter;
 
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem('token');
-  config.headers.Authorization =  token ? `Bearer ${token}` : '';
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
 
   return config;
 });
@@ -13,13 +13,13 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(
   response => response,
   error => {
-    if (error.response.status === 401) {
-      localStorage.removeItem('token')
-      window.location.reload() // will generate new state from scratch, hence emptying user in UserContext
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('token');
+      window.location.reload(); // will generate new state from scratch, hence emptying user in UserContext
     }
 
-    return Promise.reject(error)
+    return Promise.reject(error);
   }
-)
+);
 
-export default axios
+export default axios;

@@ -1,14 +1,15 @@
-import ReactTestRenderer from 'react-test-renderer'
-import Footer from '../footer'
+import React from 'react';
+import ReactTestRenderer from 'react-test-renderer';
+import Footer from '../Footer';
 
 describe('components | Footer', () => {
   describe('render', () => {
-    const renderer = ReactTestRenderer.create(<Footer />)
+    const renderer = ReactTestRenderer.create(<Footer />);
     it('should be defined', () => {
-      expect(renderer).toBeDefined()
-    })
+      expect(renderer).toBeDefined();
+    });
     it('should match snapshot', () => {
-      expect(renderer).toMatchSnapshot()
-    })
-  })
-})
+      expect(renderer).toMatchSnapshot();
+    });
+  });
+});

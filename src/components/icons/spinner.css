@@ -1,6 +1,8 @@
 /* Source https://stephanwagner.me/only-css-loading-spinner */
 @keyframes spinner {
-  to {transform: rotate(360deg);}
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .spinner:before {
@@ -12,7 +14,7 @@
   margin-top: -50px;
   margin-left: -50px;
   border-radius: 50%;
-  border: 7px solid #C9D3DF;
+  border: 7px solid #c9d3df;
   border-top-color: #53657d;
   animation: spinner 1s linear infinite;
 }
