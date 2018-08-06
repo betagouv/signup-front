@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import './App.css' // TODO split this in App.css
+import './App.css'
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Spinner from './components/icons/spinner'

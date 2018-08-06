@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {extractTokenFromUrl} from './lib/utils'
 import {withUser} from './components/UserContext'
 
-// TODO split in multiple files
 export const saveCurrentPageForPostloginRedirect = () => localStorage.setItem('returnUrl', window.location.pathname)
 
 export class OauthLink extends React.Component {
