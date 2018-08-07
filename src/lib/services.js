@@ -122,8 +122,10 @@ export function getSirenInformation(siren) {
     );
 }
 
-export function getServiceProviders() {
+export function getServiceProviders(tokenFc) {
   return httpClient
-    .get(FRANCE_CONNECT_ME_URI)
+    .get(FRANCE_CONNECT_ME_URI, {
+      headers: { Authorization: tokenFc ? `Bearer ${tokenFc}` : '' },
+    })
     .then(({ data }) => data['service-providers']);
 }
