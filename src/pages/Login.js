@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { withUser } from './components/UserContext';
+import { withUser } from '../components/UserContext';
 
 const {
   REACT_APP_OAUTH_CLIENT_ID: OAUTH_CLIENT_ID,

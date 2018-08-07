@@ -4,12 +4,12 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Spinner from './components/icons/spinner';
-import Login from './Login';
+import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
-import OauthCallback from './OauthCallback';
-import EnrollmentList from './EnrollmentList';
-import ApiParticulier from './ApiParticulier';
-import Dgfip from './Dgfip';
+import OauthCallback from './pages/OauthCallback';
+import EnrollmentList from './pages/EnrollmentList';
+import ApiParticulier from './pages/ApiParticulier';
+import Dgfip from './pages/Dgfip';
 import { UserStore, UserContext } from './components/UserContext';
 
 const {

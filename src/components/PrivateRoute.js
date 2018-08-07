@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { withUser } from './UserContext';
-import { saveCurrentPageForPostloginRedirect } from '../OauthCallback';
+import { saveCurrentPageForPostloginRedirect } from '../pages/OauthCallback';
 
 const SaveCurrentPageAndRedirect = ({ location }) => {
   saveCurrentPageForPostloginRedirect();

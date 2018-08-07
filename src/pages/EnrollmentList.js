@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import { getUserEnrollments } from './lib/services';
-import ScheduleIcons from './components/icons/schedule';
-import { withUser } from './components/UserContext';
+import { getUserEnrollments } from '../lib/services';
+import ScheduleIcons from '../components/icons/schedule';
+import { withUser } from '../components/UserContext';
 import _ from 'lodash';
 import moment from 'moment';
 
