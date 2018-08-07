@@ -158,19 +158,24 @@ class Form extends React.Component {
   }
 
   triggerAction = action => {
-    if (action === 'review_application') {
-      const message = window.prompt(
-        'Précisez au demandeur les modifications à apporter à sa demande :'
-      ); // eslint-disable-line no-alert
-      if (message) {
-        return triggerUserEnrollment({
-          action,
-          id: this.state.enrollment.id,
-          message,
-        });
+    if (['review_application', 'refuse_application'].includes(action)) {
+      const promptMessage = {
+        review_application:
+          'Précisez au demandeur les modifications à apporter à sa demande :',
+        refuse_application: 'Précisez au demandeur le motif de votre refus :',
+      }[action];
+      const message = window.prompt(promptMessage); // eslint-disable-line no-alert
+
+      if (!message) {
+        // do not trigger action if no message is provided or when clicking on cancel
+        return Promise.resolve();
       }
 
-      return null;
+      return triggerUserEnrollment({
+        action,
+        id: this.state.enrollment.id,
+        message,
+      });
     }
 
     if (this.state.enrollment.acl.update) {
