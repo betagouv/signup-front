@@ -5,7 +5,24 @@
 }
 
 main {
+  position: relative;
   flex-grow: 1;
+}
+
+section.enrollment-page {
+  padding: 1em 0;
+}
+
+section.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 
 .container {
@@ -61,6 +78,7 @@ textarea:disabled {
   margin: 3em 0;
   text-align: right;
 }
+
 .button + .button {
   margin-left: 1em;
 }

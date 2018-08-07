@@ -45,10 +45,8 @@ class App extends Component {
                 {({ isLoading }) => (
                   <main>
                     {isLoading && (
-                      <section className="section-grey">
-                        <div className="container text-center">
-                          <Spinner />
-                        </div>
+                      <section className="section-grey loader">
+                        <Spinner />
                       </section>
                     )}
                     {!isLoading && (

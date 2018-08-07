@@ -201,7 +201,7 @@ class EnrollmentList extends React.Component {
     const { enrollments, errors } = this.state;
 
     return (
-      <section className="section-grey">
+      <section className="section-grey enrollment-page">
         <div className="container">
           <h2>Liste des demandes</h2>
           <div className="panel">
