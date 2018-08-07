@@ -64,3 +64,5 @@ yarn deploy
 ## License
 
 MIT
+
+Powered by: [<img src="http://www.browserstack.com/images/layout/browserstack-logo-600x315.png" height="100"/>](https://www.browserstack.com/)
