@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OauthLink } from '../../OauthCallback';
+import { OauthLink } from '../../pages/OauthCallback';
 import { getServiceProviders } from '../../lib/services';
 const {
   REACT_APP_FRANCE_CONNECT_AUTHORIZE_URI: FRANCE_CONNECT_AUTHORIZE_URI,

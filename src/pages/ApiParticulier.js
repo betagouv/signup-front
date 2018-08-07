@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Form from './components/Form';
-import ApiParticulierNav from './components/ApiParticulierNav';
-import ApiParticulierFormConfiguration from './components/form/config/api-particulier';
+import Form from '../components/Form';
+import ApiParticulierNav from '../components/ApiParticulierNav';
+import ApiParticulierFormConfiguration from '../components/form/config/api-particulier';
 
 const IntroDescription = () => (
   <div className="intro">

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { extractTokenFromUrl } from './lib/utils';
-import { withUser } from './components/UserContext';
+import { extractTokenFromUrl } from '../lib/utils';
+import { withUser } from '../components/UserContext';
 
 export const saveCurrentPageForPostloginRedirect = () =>
   localStorage.setItem('returnUrl', window.location.pathname);
