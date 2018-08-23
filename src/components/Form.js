@@ -12,6 +12,7 @@ import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siren from './form/Siren';
 import ActionButton from './form/ActionButton';
 import EntrantsTechniques from './form/EntrantsTechniques';
+import moment from 'moment';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 class Form extends React.Component {
@@ -254,11 +255,29 @@ class Form extends React.Component {
 
     return (
       <div className="form">
-        {messages.map(({ id, content }) => (
-          <div key={id} className="notification warning">
-            {content}
-          </div>
-        ))}
+        {messages.map(({ id, content, category, updated_at }) => {
+          if (category === 'refuse_application') {
+            return (
+              <div key={id} className="notification error">
+                <strong>
+                  {moment(updated_at).calendar()} - demande refusée :
+                </strong>{' '}
+                {content}
+              </div>
+            );
+          }
+          if (category === 'review_application') {
+            return (
+              <div key={id} className="notification warning">
+                <strong>
+                  {moment(updated_at).calendar()} - modifications nécessaires :
+                </strong>{' '}
+                {content}
+              </div>
+            );
+          }
+          return null;
+        })}
 
         <h1>{form.text.title}</h1>
         <IntroDescription />
