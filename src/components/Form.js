@@ -166,11 +166,7 @@ class Form extends React.Component {
   };
 
   render() {
-    let token;
-    if (typeof localStorage !== 'undefined') {
-      // eslint-disable-line no-constant-condition
-      token = localStorage.getItem('token');
-    }
+    const token = localStorage.getItem('token');
     const {
       enrollment: {
         acl,
