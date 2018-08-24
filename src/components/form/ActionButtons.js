@@ -5,8 +5,17 @@ import {
   createOrUpdateUserEnrollment,
   triggerUserEnrollment,
 } from '../../lib/services';
+import Prompt from '../Prompt';
 
 class ActionButtons extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      doShowPrompt: false,
+      promptMessage: '',
+    };
+  }
+
   aclToDisplayInfo = {
     send_application: {
       label: 'Soumettre la demande',
@@ -53,14 +62,35 @@ class ActionButtons extends React.Component {
     );
   };
 
-  triggerAction = action => {
+  getActionMessage = action => {
+    const promptMessage = {
+      review_application:
+        'Précisez au demandeur les modifications à apporter à sa demande\xa0:',
+      refuse_application: 'Précisez au demandeur le motif de votre refus\xa0:',
+    }[action];
+
+    this.setState({ doShowPrompt: true, promptMessage });
+
+    return new Promise(resolve => {
+      this.resolveActionMessagePromise = resolve;
+    });
+  };
+
+  submitActionMessage = message => {
+    this.resolveActionMessagePromise(message);
+
+    this.setState({ doShowPrompt: false, promptMessage: '' });
+  };
+
+  cancelActionMessage = () => {
+    this.resolveActionMessagePromise();
+
+    this.setState({ doShowPrompt: false, promptMessage: '' });
+  };
+
+  triggerAction = async action => {
     if (['review_application', 'refuse_application'].includes(action)) {
-      const promptMessage = {
-        review_application:
-          'Précisez au demandeur les modifications à apporter à sa demande :',
-        refuse_application: 'Précisez au demandeur le motif de votre refus :',
-      }[action];
-      const message = window.prompt(promptMessage); // eslint-disable-line no-alert
+      const message = await this.getActionMessage(action);
 
       if (!message) {
         // do not trigger action if no message is provided or when clicking on cancel
@@ -108,6 +138,7 @@ class ActionButtons extends React.Component {
   render() {
     const { acl } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
+    const { doShowPrompt, promptMessage } = this.state;
 
     return (
       <React.Fragment>
@@ -124,6 +155,14 @@ class ActionButtons extends React.Component {
             </button>
           ))}
         </div>
+
+        {doShowPrompt && (
+          <Prompt
+            onAccept={this.submitActionMessage}
+            onCancel={this.cancelActionMessage}
+            promptMessage={promptMessage}
+          />
+        )}
       </React.Fragment>
     );
   }
