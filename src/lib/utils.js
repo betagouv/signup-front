@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _, { isObject } from 'lodash';
 
 export function extractTokenFromUrl(url) {
   const hash = url.split('#')[1];
@@ -14,14 +14,18 @@ export function extractTokenFromUrl(url) {
 }
 
 export function getErrorMessage(error) {
-  if (error.response && error.response.status === 422) {
+  if (
+    error.response &&
+    isObject(error.response.data) &&
+    error.response.status === 422
+  ) {
     return _(error.response.data)
       .values()
       .flatten()
       .value();
   }
 
-  if (error.response && error.response.data) {
+  if (error.response && isObject(error.response.data)) {
     return _(error.response.data)
       .values()
       .flatten()

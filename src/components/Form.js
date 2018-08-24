@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
-import {
-  createOrUpdateUserEnrollment,
-  getUserEnrollment,
-  triggerUserEnrollment,
-} from '../lib/services';
+import { isEmpty, omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
+import moment from 'moment';
+
+import { getUserEnrollment } from '../lib/services';
 import { getErrorMessage } from '../lib/utils';
 import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siren from './form/Siren';
-import ActionButton from './form/ActionButton';
+import ActionButtons from './form/ActionButtons';
 import EntrantsTechniques from './form/EntrantsTechniques';
+
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 class Form extends React.Component {
@@ -79,15 +78,6 @@ class Form extends React.Component {
         validation_de_convention: false,
       },
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmitFactory = this.handleSubmitFactory.bind(this);
-    this.handleSaveDraft = this.handleSaveDraft.bind(this);
-    this.upload = this.upload.bind(this);
-    this.handleSirenChange = this.handleSirenChange.bind(this);
-    this.handleServiceProviderChange = this.handleServiceProviderChange.bind(
-      this
-    );
   }
 
   componentDidMount() {
@@ -109,7 +99,17 @@ class Form extends React.Component {
     }
   }
 
-  handleChange({ target: { type, checked, value: inputValue, name } }) {
+  updateEnrollment = enrollment => {
+    this.setState(({ enrollment: prevEnrollment }) => ({
+      enrollment: merge(
+        {},
+        prevEnrollment,
+        omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+      ),
+    }));
+  };
+
+  handleChange = ({ target: { type, checked, value: inputValue, name } }) => {
     const value = type === 'checkbox' ? checked : inputValue;
 
     this.setState(({ enrollment: prevEnrollment }) => ({
@@ -119,13 +119,13 @@ class Form extends React.Component {
         zipObjectDeep([`${name}`], [value])
       ),
     }));
-  }
+  };
 
-  handleServiceProviderChange({
+  handleServiceProviderChange = ({
     intitule,
     description,
     fournisseur_de_service,
-  }) {
+  }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, {
         demarche: {
@@ -135,15 +135,15 @@ class Form extends React.Component {
         fournisseur_de_service,
       }),
     }));
-  }
+  };
 
-  handleSirenChange({ siren }) {
+  handleSirenChange = ({ siren }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, { siren }),
     }));
-  }
+  };
 
-  upload({ target: { files, name } }) {
+  upload = ({ target: { files, name } }) => {
     const documents_attributes = [...files].map(
       file => ({
         attachment: file,
@@ -155,66 +155,18 @@ class Form extends React.Component {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, { documents_attributes }),
     }));
-  }
-
-  triggerAction = action => {
-    if (action === 'review_application') {
-      const message = window.prompt(
-        'Précisez au demandeur les modifications à apporter à sa demande :'
-      ); // eslint-disable-line no-alert
-      if (message) {
-        return triggerUserEnrollment({
-          action,
-          id: this.state.enrollment.id,
-          message,
-        });
-      }
-
-      return null;
-    }
-
-    if (this.state.enrollment.acl.update) {
-      return createOrUpdateUserEnrollment({
-        enrollment: this.state.enrollment,
-      }).then(enrollment => {
-        this.setState(({ enrollment: prevEnrollment }) => ({
-          enrollment: merge(
-            {},
-            prevEnrollment,
-            omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-          ),
-        }));
-        return triggerUserEnrollment({ action, id: enrollment.id });
-      });
-    }
-
-    return triggerUserEnrollment({ action, id: this.state.enrollment.id });
   };
 
-  handleSubmitFactory = action => {
-    return event => {
-      event.preventDefault();
+  handleSubmit = ({ errors }) => {
+    if (!isEmpty(errors)) {
+      return this.setState({ errors: getErrorMessage(errors) });
+    }
 
-      this.triggerAction(action)
-        .then(() => this.props.history.push('/'))
-        .catch(error => this.setState({ errors: getErrorMessage(error) }));
-    };
+    return this.props.history.push('/');
   };
-
-  handleSaveDraft(event) {
-    event.preventDefault();
-
-    createOrUpdateUserEnrollment({ enrollment: this.state.enrollment })
-      .then(() => this.props.history.push('/'))
-      .catch(error => this.setState({ errors: getErrorMessage(error) }));
-  }
 
   render() {
-    let token;
-    if (typeof localStorage !== 'undefined') {
-      // eslint-disable-line no-constant-condition
-      token = localStorage.getItem('token');
-    }
+    const token = localStorage.getItem('token');
     const {
       enrollment: {
         acl,
@@ -249,11 +201,29 @@ class Form extends React.Component {
 
     return (
       <div className="form">
-        {messages.map(({ id, content }) => (
-          <div key={id} className="notification warning">
-            {content}
-          </div>
-        ))}
+        {messages.map(({ id, content, category, updated_at }) => {
+          if (category === 'refuse_application') {
+            return (
+              <div key={id} className="notification error">
+                <strong>
+                  {moment(updated_at).calendar()} - demande refusée :
+                </strong>{' '}
+                {content}
+              </div>
+            );
+          }
+          if (category === 'review_application') {
+            return (
+              <div key={id} className="notification warning">
+                <strong>
+                  {moment(updated_at).calendar()} - modifications nécessaires :
+                </strong>{' '}
+                {content}
+              </div>
+            );
+          }
+          return null;
+        })}
 
         <h1>{form.text.title}</h1>
         <IntroDescription />
@@ -522,17 +492,11 @@ class Form extends React.Component {
           />
         )}
 
-        <div className="button-list">
-          {acl.update && (
-            <button className="button secondary" onClick={this.handleSaveDraft}>
-              Enregistrer le brouillon
-            </button>
-          )}
-          <ActionButton
-            acl={acl}
-            handleSubmitFactory={this.handleSubmitFactory}
-          />
-        </div>
+        <ActionButtons
+          enrollment={this.state.enrollment}
+          updateEnrollment={this.updateEnrollment}
+          handleSubmit={this.handleSubmit}
+        />
 
         {errors.map(error => (
           <div key={error} className="notification error">

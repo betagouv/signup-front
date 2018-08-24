@@ -14,9 +14,6 @@ class Siren extends React.Component {
       activite_principale: '',
       sirenNotFound: '',
     };
-
-    this.getSiren = this.getSiren.bind(this);
-    this.handleSirenChange = this.handleSirenChange.bind(this);
   }
 
   componentDidMount() {
@@ -31,7 +28,11 @@ class Siren extends React.Component {
     }
   }
 
-  getSiren(siren) {
+  componentWillUnmount() {
+    this.debouncedGetSiren.cancel();
+  }
+
+  getSiren = siren => {
     const sirenWithoutSpaces = siren.replace(/ /g, '');
 
     getSirenInformation(sirenWithoutSpaces)
@@ -51,15 +52,15 @@ class Siren extends React.Component {
           sirenNotFound: true,
         })
       );
-  }
+  };
 
   debouncedGetSiren = debounce(this.getSiren, 1000);
 
-  handleSirenChange(event) {
+  handleSirenChange = event => {
     const siren = event.target.value;
 
     this.props.handleSirenChange({ siren });
-  }
+  };
 
   render() {
     const { disabled, siren } = this.props;

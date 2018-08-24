@@ -31,6 +31,7 @@ const EntrantsTechniques = ({
     recette_fonctionnelle,
   },
 }) => {
+  const token = localStorage.getItem('token');
   const nombresDeDemandesMensuelles = [
     {
       label: 'Janvier',
@@ -93,12 +94,6 @@ const EntrantsTechniques = ({
       value: nombre_demandes_mensuelles_dec,
     },
   ];
-
-  let token;
-  if (typeof localStorage !== 'undefined') {
-    // eslint-disable-line no-constant-condition
-    token = localStorage.getItem('token');
-  }
   const productionCertificate = documents.filter(
     ({ type }) => type === 'Document::ProductionCertificatePublicKey'
   )[0];
