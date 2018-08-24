@@ -84,16 +84,22 @@ class Form extends React.Component {
     const id = this.props.enrollmentId;
 
     if (id) {
-      getUserEnrollment(id).then(enrollment => {
-        this.setState(({ enrollment: prevEnrollment }) => ({
-          isUserEnrollmentLoading: false,
-          enrollment: merge(
-            {},
-            prevEnrollment,
-            omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-          ),
-        }));
-      });
+      getUserEnrollment(id)
+        .then(enrollment => {
+          this.setState(({ enrollment: prevEnrollment }) => ({
+            isUserEnrollmentLoading: false,
+            enrollment: merge(
+              {},
+              prevEnrollment,
+              omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+            ),
+          }));
+        })
+        .catch(error => {
+          if (error.response && error.response.status === 404) {
+            this.props.history.push('/');
+          }
+        });
     } else {
       this.setState({ isUserEnrollmentLoading: false });
     }
