@@ -89,32 +89,33 @@ class ActionButtons extends React.Component {
   };
 
   triggerAction = async action => {
+    let message = null;
+
     if (['review_application', 'refuse_application'].includes(action)) {
-      const message = await this.getActionMessage(action);
+      message = await this.getActionMessage(action);
 
       if (!message) {
         // do not trigger action if no message is provided or when clicking on cancel
         return Promise.resolve();
       }
-
-      return triggerUserEnrollment({
-        action,
-        id: this.props.enrollment.id,
-        message,
-      });
     }
+
+    let enrollmentId = this.props.enrollment.id;
 
     if (this.props.enrollment.acl.update) {
-      return createOrUpdateUserEnrollment({
+      const newEnrollment = await createOrUpdateUserEnrollment({
         enrollment: this.props.enrollment,
-      }).then(enrollment => {
-        this.props.updateEnrollment(enrollment);
-
-        return triggerUserEnrollment({ action, id: enrollment.id });
       });
+
+      this.props.updateEnrollment(newEnrollment);
+      enrollmentId = newEnrollment.id;
     }
 
-    return triggerUserEnrollment({ action, id: this.props.enrollment.id });
+    return await triggerUserEnrollment({
+      action,
+      id: enrollmentId,
+      message,
+    });
   };
 
   handleSubmitFactory = action => {

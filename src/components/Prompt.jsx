@@ -35,7 +35,6 @@ export default class Prompt extends React.Component {
     return (
       <div className="modal__backdrop" id="modal" style={{ display: 'flex' }}>
         <div className="modal">
-          <h2>Hello</h2>
           <p>{promptMessage}</p>
           <textarea value={input} onChange={this.handleInputChange} />
           <div className="form__group button__group">
