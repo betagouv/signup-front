@@ -80,16 +80,15 @@ export function getResourceProviderService() {
     .then(response => response.data);
 }
 
-export function getSirenInformation(siren) {
+export function getSiretInformation(siret) {
   return httpClient
-    .get(`https://sirene.entreprise.api.gouv.fr/v1/siren/${siren}`)
+    .get(`https://sirene.entreprise.api.gouv.fr/v1/siret/${siret}`)
     .then(
       ({
         data: {
-          siege_social: {
+          etablissement: {
+            enseigne,
             nom_raison_sociale,
-            nom,
-            prenom,
             activite_principale,
             l2_normalisee,
             l3_normalisee,
@@ -100,7 +99,6 @@ export function getSirenInformation(siren) {
           },
         },
       }) => {
-        const responsable = `${nom}  ${prenom}`;
         const adresse = [
           l2_normalisee,
           l3_normalisee,
@@ -113,10 +111,10 @@ export function getSirenInformation(siren) {
           .join(', ');
 
         return {
+          enseigne,
           nom_raison_sociale,
-          adresse,
-          responsable,
           activite_principale,
+          adresse
         };
       }
     );

@@ -7,7 +7,7 @@ import moment from 'moment';
 import { getUserEnrollment } from '../lib/services';
 import { getErrorMessage } from '../lib/utils';
 import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
-import Siren from './form/Siren';
+import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import EntrantsTechniques from './form/EntrantsTechniques';
 
@@ -74,7 +74,7 @@ class Form extends React.Component {
           form.scopes.map(({ name }) => name),
           new Array(form.scopes.length).fill(false)
         ),
-        siren: '',
+        siret: '',
         validation_de_convention: false,
       },
     };
@@ -143,9 +143,9 @@ class Form extends React.Component {
     }));
   };
 
-  handleSirenChange = ({ siren }) => {
+  handleSiretChange = ({ siret }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
-      enrollment: merge({}, prevEnrollment, { siren }),
+      enrollment: merge({}, prevEnrollment, { siret }),
     }));
   };
 
@@ -183,7 +183,7 @@ class Form extends React.Component {
         fournisseur_de_service,
         messages,
         scopes,
-        siren,
+        siret,
         validation_de_convention,
       },
       errors,
@@ -278,10 +278,10 @@ class Form extends React.Component {
 
         <h2 id="identite">Identité</h2>
         {!isUserEnrollmentLoading && (
-          <Siren
+          <Siret
             disabled={disabledApplication}
-            siren={siren}
-            handleSirenChange={this.handleSirenChange}
+            siret={siret}
+            handleSiretChange={this.handleSiretChange}
           />
         )}
 
