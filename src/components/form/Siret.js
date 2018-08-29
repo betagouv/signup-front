@@ -94,7 +94,7 @@ class Siret extends React.Component {
               className="overlay-button"
               type="button"
               aria-label="Recherche"
-              onClick={this.getSiren}
+              onClick={this.getSiret}
             >
               <SearchIcon id="icon-search" title="Rechercher" />
             </button>
@@ -110,15 +110,6 @@ class Siret extends React.Component {
         )}
 
         <div className="form__group">
-          <label htmlFor="enseigne">Enseigne</label>
-          <input
-            type="text"
-            id="enseigne"
-            disabled
-            value={enseigne}
-          />
-        </div>
-        <div className="form__group">
           <label htmlFor="nom_raison_sociale">Raison sociale</label>
           <input
             type="text"
@@ -127,6 +118,17 @@ class Siret extends React.Component {
             value={nom_raison_sociale}
           />
         </div>
+
+        <div className="form__group">
+          <label htmlFor="enseigne">Enseigne</label>
+          <input
+            type="text"
+            id="enseigne"
+            disabled
+            value={enseigne}
+          />
+        </div>
+        
         <div className="form__group">
           <label htmlFor="adresse">Adresse</label>
           <input type="text" id="adresse" disabled value={adresse} />
