@@ -1,90 +1,94 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
-import { getSirenInformation } from '../../lib/services';
+import { getSiretInformation } from '../../lib/services';
 import SearchIcon from '../icons/search';
 
-class Siren extends React.Component {
+class Siret extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      enseigne: '',
       nom_raison_sociale: '',
       adresse: '',
       activite_principale: '',
-      sirenNotFound: '',
+      siretNotFound: '',
     };
   }
 
   componentDidMount() {
-    if (this.props.siren) {
-      this.debouncedGetSiren(this.props.siren);
+    if (this.props.siret) {
+      this.debouncedGetSiret(this.props.siret);
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.siren !== prevProps.siren) {
-      this.debouncedGetSiren(this.props.siren);
+    if (this.props.siret !== prevProps.siret) {
+      this.debouncedGetSiret(this.props.siret);
     }
   }
 
   componentWillUnmount() {
-    this.debouncedGetSiren.cancel();
+    this.debouncedGetSiret.cancel();
   }
 
-  getSiren = siren => {
-    const sirenWithoutSpaces = siren.replace(/ /g, '');
+  getSiret = siret => {
+    const siretWithoutSpaces = siret.replace(/ /g, '');
 
-    getSirenInformation(sirenWithoutSpaces)
-      .then(({ nom_raison_sociale, adresse, activite_principale }) => {
+    getSiretInformation(siretWithoutSpaces)
+      .then(({ enseigne, nom_raison_sociale, adresse, activite_principale }) => {
         this.setState({
+          enseigne,
           nom_raison_sociale,
           adresse,
           activite_principale,
-          sirenNotFound: false,
+          siretNotFound: false,
         });
       })
       .catch(() =>
         this.setState({
+          enseigne: '',
           nom_raison_sociale: '',
           adresse: '',
           activite_principale: '',
-          sirenNotFound: true,
+          siretNotFound: true,
         })
       );
   };
 
-  debouncedGetSiren = debounce(this.getSiren, 1000);
+  debouncedGetSiret = debounce(this.getSiret, 1000);
 
-  handleSirenChange = event => {
-    const siren = event.target.value;
+  handleSiretChange = event => {
+    const siret = event.target.value;
 
-    this.props.handleSirenChange({ siren });
+    this.props.handleSiretChange({ siret });
   };
 
   render() {
-    const { disabled, siren } = this.props;
+    const { disabled, siret } = this.props;
     const {
+      enseigne,
       nom_raison_sociale,
       adresse,
       activite_principale,
-      sirenNotFound,
+      siretNotFound,
     } = this.state;
 
     return (
       <React.Fragment>
         <div className="form__group">
-          <label htmlFor="search-siren">
-            Rechercher votre organisme avec son SIREN
+          <label htmlFor="search-siret">
+            Rechercher votre organisme avec son SIRET
           </label>
           <div className="search__group">
             <input
               type="text"
-              value={siren}
-              name="siren"
-              id="search-siren"
+              value={siret}
+              name="siret"
+              id="search-siret"
               disabled={disabled}
-              onChange={this.handleSirenChange}
+              onChange={this.handleSiretChange}
             />
             <button
               className="overlay-button"
@@ -97,14 +101,23 @@ class Siren extends React.Component {
           </div>
         </div>
 
-        {sirenNotFound && (
+        {siretNotFound && (
           <div className="form__group">
             <div className="notification error">
-              Notre service ne parvient pas à trouver votre SIREN
+              Notre service ne parvient pas à trouver votre SIRET
             </div>
           </div>
         )}
 
+        <div className="form__group">
+          <label htmlFor="enseigne">Enseigne</label>
+          <input
+            type="text"
+            id="enseigne"
+            disabled
+            value={enseigne}
+          />
+        </div>
         <div className="form__group">
           <label htmlFor="nom_raison_sociale">Raison sociale</label>
           <input
@@ -132,14 +145,14 @@ class Siren extends React.Component {
   }
 }
 
-Siren.propTypes = {
-  siren: PropTypes.string,
+Siret.propTypes = {
+  siret: PropTypes.string,
   disabled: PropTypes.bool.isRequired,
-  handleSirenChange: PropTypes.func.isRequired,
+  handleSiretChange: PropTypes.func.isRequired,
 };
 
-Siren.defaultProps = {
-  siren: '',
+Siret.defaultProps = {
+  siret: '',
 };
 
-export default Siren;
+export default Siret;
