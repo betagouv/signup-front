@@ -10,7 +10,6 @@ export class OauthLink extends React.Component {
   handleAuthoriseClick = event => {
     event.preventDefault();
     localStorage.setItem('returnUrl', window.location.pathname);
-    console.log(window.location.pathname, 'window.location.pathname OauthLink');
 
     window.location = this.props.href;
   };

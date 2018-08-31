@@ -33,8 +33,8 @@ class ActionButtons extends React.Component {
       label: 'Refuser',
       cssClass: 'warning',
     },
-    deploy_application: {
-      label: 'Déployer',
+    validate_technical_inputs: {
+      label: 'Valider',
       cssClass: 'primary',
     },
     send_technical_inputs: {
@@ -46,7 +46,7 @@ class ActionButtons extends React.Component {
   transformAclToActions = acl => {
     return (
       _(acl)
-        // {'send_application': true, 'deploy_application': false, 'create': true}
+        // {'send_application': true, 'review_application': false, 'create': true}
         .pickBy((value, key) => value && this.aclToDisplayInfo[key])
         // {'send_application': true}
         .keys()
