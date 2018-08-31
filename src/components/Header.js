@@ -6,8 +6,8 @@ import ArrowBackIcon from './icons/arrowBack';
 
 const Header = ({ user, logout }) => {
   const onDetailPage =
-    window.location.pathname.includes('/api-particulier/') ||
-    window.location.pathname.includes('/dgfip/');
+    window.location.pathname.includes('/api-particulier') ||
+    window.location.pathname.includes('/dgfip');
 
   return (
     <header className="navbar">

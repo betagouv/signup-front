@@ -123,7 +123,7 @@ class ActionButtons extends React.Component {
       event.preventDefault();
 
       this.triggerAction(action)
-        .then(() => this.props.handleSubmit())
+        .then(() => this.props.handleSubmit({}))
         .catch(errors => this.props.handleSubmit({ errors }));
     };
   };
@@ -132,7 +132,7 @@ class ActionButtons extends React.Component {
     event.preventDefault();
 
     createOrUpdateUserEnrollment({ enrollment: this.props.enrollment })
-      .then(() => this.props.handleSubmit())
+      .then(() => this.props.handleSubmit({}))
       .catch(errors => this.props.handleSubmit({ errors }));
   };
 
