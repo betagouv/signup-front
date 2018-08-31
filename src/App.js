@@ -62,6 +62,13 @@ class App extends Component {
                           component={EnrollmentList}
                         />
                         <PrivateRoute
+                          exact
+                          path="/archive"
+                          component={props => (
+                            <EnrollmentList {...props} showArchived />
+                          )}
+                        />
+                        <PrivateRoute
                           path="/api-particulier/:enrollmentId?"
                           component={ApiParticulier}
                         />

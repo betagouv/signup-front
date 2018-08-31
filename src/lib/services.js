@@ -42,9 +42,19 @@ export function getUserEnrollment(id) {
     .then(({ data }) => data);
 }
 
-export function getUserEnrollments() {
+export function getUserPendingEnrollments() {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data }) => data);
+}
+
+export function getUserArchivedEnrollments() {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/?archived=true`, {
       headers: {
         'Content-Type': 'application/json',
       },

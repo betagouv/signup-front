@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=schedule&style=baseline
-const ScheduleIcons = ({ title }) => (
+const ScheduleIcon = ({ title }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -16,12 +16,12 @@ const ScheduleIcons = ({ title }) => (
   </svg>
 );
 
-ScheduleIcons.propTypes = {
+ScheduleIcon.propTypes = {
   title: PropTypes.string,
 };
 
-ScheduleIcons.defaultProps = {
+ScheduleIcon.defaultProps = {
   title: null,
 };
 
-export default ScheduleIcons;
+export default ScheduleIcon;

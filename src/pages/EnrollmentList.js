@@ -1,21 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import { getUserEnrollments } from '../lib/services';
-import ScheduleIcons from '../components/icons/schedule';
+import {
+  getUserArchivedEnrollments,
+  getUserPendingEnrollments,
+} from '../lib/services';
+import ScheduleIcon from '../components/icons/schedule';
 import { withUser } from '../components/UserContext';
 import _ from 'lodash';
 import moment from 'moment';
 
 const STATE_LABELS = {
-  pending: 'À envoyer',
+  pending: 'Brouillon',
+  technical_inputs_pending: 'Brouillon',
   sent: 'À valider',
+  technical_inputs_sent: 'À valider',
   validated: 'Validée',
   refused: 'Refusée',
-  technical_inputs: 'À déployer',
-  deployed: 'Déployé',
 };
 
 const FOURNISSEUR_DE_DONNEES_LABELS = {
@@ -30,16 +33,24 @@ class EnrollmentList extends React.Component {
     this.state = {
       enrollments: [],
       errors: [],
+      loading: true,
     };
   }
 
-  componentDidMount() {
-    getUserEnrollments().then(enrollments => {
-      this.setState({
-        enrollments: enrollments.map(enrollment => {
-          return enrollment;
-        }),
-      });
+  async componentDidMount() {
+    let enrollments = null;
+
+    if (this.props.showArchived === true) {
+      enrollments = await getUserArchivedEnrollments();
+    } else {
+      enrollments = await getUserPendingEnrollments();
+    }
+
+    this.setState({
+      enrollments: enrollments.map(enrollment => {
+        return enrollment;
+      }),
+      loading: false,
     });
   }
 
@@ -81,8 +92,8 @@ class EnrollmentList extends React.Component {
     'review_application',
     'refuse_application',
     'send_application',
-    'deploy_application',
     'send_technical_inputs',
+    'validate_technical_inputs',
   ]);
 
   hasTriggerableActions = ({ acl }) =>
@@ -93,52 +104,20 @@ class EnrollmentList extends React.Component {
   getColumnConfiguration = user => {
     const configuration = [
       {
-        id: 'updated_at',
-        accessor: ({ updated_at, acl }) => ({ updated_at, acl }),
-        Header: () => <ScheduleIcons />,
+        Header: () => <ScheduleIcon title="date de dernière mise à jour" />,
+        accessor: 'updated_at',
         headerStyle: { ...this.style.header, ...this.style.updateAtHeader },
-        style: this.style.cell,
-        width: 30,
-        Cell: ({ value: { updated_at: updatedAt, acl } }) => {
-          if (!this.hasTriggerableActions({ acl })) {
-            return null;
+        style: { ...this.style.cell, ...this.style.centeredCell },
+        width: 50,
+        Cell: ({ value: updatedAt }) => {
+          if (this.props.showArchived) {
+            return <small>{moment(updatedAt).format('D/M')}</small>;
           }
 
           const daysFromToday = moment().diff(updatedAt, 'days');
           const color =
             daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
           return <span style={{ color }}>{daysFromToday}j</span>;
-        },
-        sortMethod: (firstMember, secondMember) => {
-          // Enrollment that have action triggerable by the user are shown first
-          // Then we order by last update date in order to have:
-          // 1. the oldest enrollment with triggerable action appears first
-          // 2. the oldest enrollment without triggerable action appears last
-          const firstMemberCanTriggerAction = this.hasTriggerableActions({
-            acl: firstMember.acl,
-          });
-          const secondMemberCanTriggerAction = this.hasTriggerableActions({
-            acl: secondMember.acl,
-          });
-
-          if (firstMemberCanTriggerAction && !secondMemberCanTriggerAction) {
-            return -1;
-          }
-          if (!firstMemberCanTriggerAction && secondMemberCanTriggerAction) {
-            return 1;
-          }
-          if (firstMember.updated_at > secondMember.updated_at) {
-            return firstMemberCanTriggerAction && secondMemberCanTriggerAction
-              ? 1
-              : -1;
-          }
-          if (firstMember.updated_at < secondMember.updated_at) {
-            return firstMemberCanTriggerAction && secondMemberCanTriggerAction
-              ? -1
-              : 1;
-          }
-          // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
-          return 0;
         },
       },
       {
@@ -155,25 +134,46 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Fournisseur',
+        accessor: ({ fournisseur_de_donnees }) =>
+          FOURNISSEUR_DE_DONNEES_LABELS[fournisseur_de_donnees],
         id: 'fournisseur_de_donnees',
         headerStyle: this.style.header,
         style: { ...this.style.cell, ...this.style.centeredCell },
         width: 130,
-        accessor: ({ fournisseur_de_donnees }) =>
-          FOURNISSEUR_DE_DONNEES_LABELS[fournisseur_de_donnees],
       },
       {
         Header: 'Statut',
+        accessor: ({ state, acl }) => ({
+          stateLabel: STATE_LABELS[state],
+          acl,
+        }),
         id: 'status',
         headerStyle: this.style.header,
         style: { ...this.style.cell, ...this.style.centeredCell },
         width: 100,
-        accessor: ({ state }) => STATE_LABELS[state],
+        Cell: ({ value: { stateLabel, acl } }) => {
+          if (!this.hasTriggerableActions({ acl })) {
+            return stateLabel;
+          }
+
+          return <button className="button warning small">{stateLabel}</button>;
+        },
+        sortMethod: (firstMember, secondMember) => {
+          if (firstMember.stateLabel > secondMember.stateLabel) {
+            return 1;
+          }
+          if (firstMember.stateLabel < secondMember.stateLabel) {
+            return -1;
+          }
+          // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
+          return 0;
+        },
       },
     ];
 
     if (user.account_type === 'dgfip') {
-      configuration.push({
+      // insert this column before the last one
+      configuration.splice(configuration.length - 1, 0, {
         Header: 'Fin homologation',
         accessor: 'date_fin_homologation',
         headerStyle: this.style.header,
@@ -189,21 +189,60 @@ class EnrollmentList extends React.Component {
       return null;
     }
 
-    if (column.id === 'updated_at') {
-      return moment(rowInfo.row[column.id].updated_at).format('llll');
+    // The idea here is to display content as tooltip in case the cell is not large enough to display its whole content
+    const cellValue = rowInfo.row[column.id];
+
+    if (column.id === 'status') {
+      return cellValue.stateLabel;
     }
 
-    return rowInfo.row[column.id];
+    if (column.id === 'updated_at') {
+      return moment(cellValue.updated_at).format('llll');
+    }
+
+    return cellValue;
   };
 
   render() {
-    const { history, user } = this.props;
-    const { enrollments, errors } = this.state;
+    const { history, showArchived, user } = this.props;
+    const { enrollments, errors, loading } = this.state;
 
     return (
       <section className="section-grey enrollment-page">
         <div className="container">
-          <h2>Liste des demandes</h2>
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <h2>Liste des demandes</h2>
+              <ul
+                className="nav__links"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-around',
+                  fill: 'currentColor',
+                  margin: '1.4em 0',
+                }}
+              >
+                <li className="nav__item">
+                  <NavLink
+                    activeStyle={{ background: '#c9d3df', color: '#1c1c1c' }}
+                    exact
+                    to="/"
+                  >
+                    Demandes en cours
+                  </NavLink>
+                </li>
+                <li className="nav__item">
+                  <NavLink
+                    activeStyle={{ background: '#c9d3df', color: '#1c1c1c' }}
+                    exact
+                    to="/archive"
+                  >
+                    Demandes traitées
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+          </div>
           <div className="panel">
             <div className="enrollment-table">
               {errors.map(error => (
@@ -217,6 +256,7 @@ class EnrollmentList extends React.Component {
                 defaultSorted={[
                   {
                     id: 'updated_at',
+                    desc: !!showArchived,
                   },
                 ]}
                 getTdProps={(state, rowInfo, column) => ({
@@ -238,13 +278,18 @@ class EnrollmentList extends React.Component {
                 getPaginationProps={() => ({ style: this.style.pagination })}
                 style={this.style.table}
                 className="-highlight"
+                loading={loading}
                 showPageSizeOptions={false}
                 pageSize={10}
                 resizable={false}
                 previousText="Précédent"
                 nextText="Suivant"
                 loadingText="Chargement..."
-                noDataText="Aucun résultat"
+                noDataText={
+                  showArchived
+                    ? 'Aucune demande'
+                    : 'Toute les demandes ont été traitées'
+                }
                 pageText="Page"
                 ofText="sur"
                 rowsText="lignes"
@@ -268,10 +313,12 @@ EnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
+  showArchived: PropTypes.bool,
   user: PropTypes.object,
 };
 
 EnrollmentList.defaultProps = {
+  showArchived: false,
   user: null,
 };
 
