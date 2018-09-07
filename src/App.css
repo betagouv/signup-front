@@ -147,3 +147,7 @@ li.panel .button-list {
 .scope__checkbox:checked ~ .scope__destinataire {
   max-height: 100px;
 }
+
+.side-pane__menu a {
+  text-decoration: none;
+}

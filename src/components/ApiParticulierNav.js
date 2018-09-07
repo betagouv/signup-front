@@ -4,7 +4,7 @@ const ApiParticulierNav = () => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       <li className="side-pane__title">
-        <h3>Votre demande</h3>
+        <h2>Votre demande</h2>
       </li>
       <li>
         <a className="side-pane__link" href="#demarche">
