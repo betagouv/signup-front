@@ -165,6 +165,10 @@ li.panel .button-list {
   .panel {
     padding: 0;
   }
+  .nav__item {
+    text-align: center;
+    display: flex;
+  }
 }
 
 @media (min-width: 550px) {
