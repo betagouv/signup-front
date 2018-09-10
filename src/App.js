@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import history from './history';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
@@ -12,31 +13,18 @@ import ApiParticulier from './pages/ApiParticulier';
 import Dgfip from './pages/Dgfip';
 import { UserStore, UserContext } from './components/UserContext';
 
-const {
-  REACT_APP_PIWIK_URL: PIWIK_URL,
-  REACT_APP_PIWIK_SITE_ID: PIWIK_SITE_ID,
-} = process.env;
+const PiwikReactRouter = require('piwik-react-router');
+
+const piwik = PiwikReactRouter({
+  url: '',
+  siteId: '',
+});
 
 class App extends Component {
-  componentDidMount() {
-    setTimeout(() => {
-      if (window.Piwik) {
-        const tracker = window.Piwik.getTracker(
-          `${PIWIK_URL}/piwik.php`,
-          PIWIK_SITE_ID
-        );
-
-        if (tracker) {
-          tracker.trackPageView();
-        }
-      }
-    }, 300);
-  }
-
   render() {
     return (
       <div className="page">
-        <Router>
+        <Router history={piwik.connectToHistory(history)}>
           <UserStore>
             <React.Fragment>
               <Header />
@@ -86,7 +74,6 @@ class App extends Component {
             </React.Fragment>
           </UserStore>
         </Router>
-        {PIWIK_URL && <script src={`${PIWIK_URL}/piwik.js`} />}
       </div>
     );
   }
