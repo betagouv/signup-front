@@ -157,7 +157,32 @@ li.panel .button-list {
   color: #1c1c1c;
 }
 
+.demande.button-list {
+  display: flex;
+}
+
+.demande.button.button {
+  min-width: 20%;
+  max-width: 33%;
+}
+
+@media (min-width: 550px) {
+  .container {
+    width: 95%;
+  }
+  .panel {
+    padding: 1em;
+  }
+  .card {
+    min-width: calc(100% - 2em);
+    max-width: calc(100% - 2em);
+  }
+}
+
 @media (max-width: 400px) {
+  .main-pane {
+    padding: 5%;
+  }
   .container {
     width: 95%;
     padding: 0;
@@ -169,13 +194,24 @@ li.panel .button-list {
     text-align: center;
     display: flex;
   }
-}
-
-@media (min-width: 550px) {
-  .container {
-    width: 95%;
+  .card {
+    min-width: 100%;
+    -webkit-box-shadow: none;
   }
-  .panel {
-    padding: 1em;
+  .card__content {
+    padding: 0;
+  }
+  .demande.button-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .demande.button.button {
+    min-width: 80%;
+    max-width: 80%;
+    margin-bottom: 1em;
+    padding: 1em 2em;
+  }
+  .demande .button + .button {
+    margin-left: 0;
   }
 }
