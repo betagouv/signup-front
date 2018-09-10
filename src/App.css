@@ -151,3 +151,22 @@ li.panel .button-list {
 .side-pane__menu a {
   text-decoration: none;
 }
+
+@media (max-width: 400px) {
+  .container {
+    width: 95%;
+    padding: 0;
+  }
+  .panel {
+    padding: 0;
+  }
+}
+
+@media (min-width: 550px) {
+  .container {
+    width: 95%;
+  }
+  .panel {
+    padding: 1em;
+  }
+}
