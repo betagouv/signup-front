@@ -152,6 +152,11 @@ li.panel .button-list {
   text-decoration: none;
 }
 
+.active_link {
+  background: #c9d3df;
+  color: #1c1c1c;
+}
+
 @media (max-width: 400px) {
   .container {
     width: 95%;

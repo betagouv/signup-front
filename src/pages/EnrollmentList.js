@@ -223,20 +223,12 @@ class EnrollmentList extends React.Component {
                 }}
               >
                 <li className="nav__item">
-                  <NavLink
-                    activeStyle={{ background: '#c9d3df', color: '#1c1c1c' }}
-                    exact
-                    to="/"
-                  >
+                  <NavLink activeClassName={'active_link'} exact to="/">
                     Demandes en cours
                   </NavLink>
                 </li>
                 <li className="nav__item">
-                  <NavLink
-                    activeStyle={{ background: '#c9d3df', color: '#1c1c1c' }}
-                    exact
-                    to="/archive"
-                  >
+                  <NavLink activeClassName={'active_link'} exact to="/archive">
                     Demandes traitées
                   </NavLink>
                 </li>
