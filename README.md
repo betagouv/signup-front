@@ -14,6 +14,13 @@ PIWIK_URL=http://mywebsite.domain
 PIWIK_SITE_ID=123456789
 ```
 
+If you don't use Matomo, pass:
+
+```bash
+PIWIK_URL=''
+PIWIK_SITE_ID=''
+```
+
 The usage of this project can be seen on [http://www.stats.data.gouv.fr](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
 
 ## License

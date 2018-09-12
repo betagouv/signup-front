@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import history from './history';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -12,8 +11,10 @@ import EnrollmentList from './pages/EnrollmentList';
 import ApiParticulier from './pages/ApiParticulier';
 import Dgfip from './pages/Dgfip';
 import { UserStore, UserContext } from './components/UserContext';
+import { createBrowserHistory } from 'history';
+import PiwikReactRouter from 'piwik-react-router';
 
-const PiwikReactRouter = require('piwik-react-router');
+const history = createBrowserHistory();
 
 const piwik = PiwikReactRouter({
   url: process.env.REACT_APP_PIWIK_URL,
