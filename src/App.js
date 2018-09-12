@@ -16,8 +16,8 @@ import { UserStore, UserContext } from './components/UserContext';
 const PiwikReactRouter = require('piwik-react-router');
 
 const piwik = PiwikReactRouter({
-  url: '',
-  siteId: '',
+  url: process.env.REACT_APP_PIWIK_URL,
+  siteId: process.env.REACT_APP_PIWIK_SITE_ID,
 });
 
 class App extends Component {
