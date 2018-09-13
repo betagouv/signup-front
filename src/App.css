@@ -127,14 +127,9 @@ li.panel .button-list {
   justify-content: space-between;
 }
 
-.card {
-  min-width: calc(50% - 2em);
-  max-width: calc(50% - 2em);
-  margin-bottom: 1em;
-}
-
 .card + .card {
   margin-left: 0;
+  margin-top: 2em;
 }
 
 .scope__destinataire {
@@ -163,23 +158,10 @@ li.panel .button-list {
 
 .demande.button.button {
   min-width: 20%;
-  max-width: 33%;
+  max-width: 40%;
 }
 
-@media (min-width: 550px) {
-  .container {
-    width: 95%;
-  }
-  .panel {
-    padding: 1em;
-  }
-  .card {
-    min-width: calc(100% - 2em);
-    max-width: calc(100% - 2em);
-  }
-}
-
-@media (max-width: 400px) {
+@media (max-width: 550px) {
   .main-pane {
     padding: 5%;
   }
@@ -195,7 +177,6 @@ li.panel .button-list {
     display: flex;
   }
   .card {
-    min-width: 100%;
     -webkit-box-shadow: none;
   }
   .card__content {
