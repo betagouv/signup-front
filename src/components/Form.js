@@ -286,7 +286,7 @@ class Form extends React.Component {
         )}
 
         <h2 id="contacts">Contacts</h2>
-        <div className="row card-row">
+        <div className="card-row">
           {contacts.map(
             ({ id, heading, link, nom, email, telephone_portable }, index) => (
               <div key={id} className="card">

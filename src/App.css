@@ -127,14 +127,9 @@ li.panel .button-list {
   justify-content: space-between;
 }
 
-.card {
-  min-width: calc(50% - 2em);
-  max-width: calc(50% - 2em);
-  margin-bottom: 1em;
-}
-
 .card + .card {
   margin-left: 0;
+  margin-top: 2em;
 }
 
 .scope__destinataire {
@@ -146,4 +141,59 @@ li.panel .button-list {
 
 .scope__checkbox:checked ~ .scope__destinataire {
   max-height: 100px;
+}
+
+.side-pane__menu a {
+  text-decoration: none;
+}
+
+.active_link {
+  background: #c9d3df;
+  color: #1c1c1c;
+}
+
+.enrollment.button-list {
+  display: flex;
+  justify-content: center;
+}
+
+.enrollment.button {
+  min-width: 20%;
+  max-width: 40%;
+}
+
+@media (max-width: 550px) {
+  .main-pane {
+    padding: 5%;
+  }
+  .container {
+    width: 95%;
+    padding: 0;
+  }
+  .panel {
+    padding: 0;
+  }
+  .nav__item {
+    text-align: center;
+    display: flex;
+  }
+  .card {
+    -webkit-box-shadow: none;
+  }
+  .card__content {
+    padding: 0;
+  }
+  .enrollment.button-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .enrollment.button {
+    min-width: 80%;
+    max-width: 80%;
+    margin-bottom: 1em;
+    padding: 1em 2em;
+  }
+  .enrollment.button + .enrollment.button {
+    margin-left: 0;
+  }
 }
