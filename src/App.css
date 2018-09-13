@@ -154,9 +154,10 @@ li.panel .button-list {
 
 .enrollment.button-list {
   display: flex;
+  justify-content: center;
 }
 
-.enrollment.button.button {
+.enrollment.button {
   min-width: 20%;
   max-width: 40%;
 }
@@ -186,13 +187,13 @@ li.panel .button-list {
     flex-direction: column;
     align-items: center;
   }
-  .enrollment.button.button {
+  .enrollment.button {
     min-width: 80%;
     max-width: 80%;
     margin-bottom: 1em;
     padding: 1em 2em;
   }
-  .enrollment .button + .button {
+  .enrollment.button + .enrollment.button {
     margin-left: 0;
   }
 }
