@@ -19,27 +19,27 @@ class ActionButtons extends React.Component {
   aclToDisplayInfo = {
     send_application: {
       label: 'Soumettre la demande',
-      cssClass: 'primary demande',
+      cssClass: 'primary enrollment',
     },
     validate_application: {
       label: 'Valider',
-      cssClass: 'primary demande',
+      cssClass: 'primary enrollment',
     },
     review_application: {
       label: 'Demander une modification',
-      cssClass: 'secondary demande',
+      cssClass: 'secondary enrollment',
     },
     refuse_application: {
       label: 'Refuser',
-      cssClass: 'warning demande',
+      cssClass: 'warning enrollment',
     },
     validate_technical_inputs: {
       label: 'Valider',
-      cssClass: 'primary demande',
+      cssClass: 'primary enrollment',
     },
     send_technical_inputs: {
       label: 'Envoyer les entrants techniques',
-      cssClass: 'primary demande',
+      cssClass: 'primary enrollment',
     },
   };
 
@@ -143,10 +143,10 @@ class ActionButtons extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="button-list demande">
+        <div className="button-list enrollment">
           {acl.update && (
             <button
-              className="button secondary demande"
+              className="button secondary enrollment"
               onClick={this.handleSaveDraft}
             >
               Enregistrer le brouillon
