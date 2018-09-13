@@ -154,7 +154,7 @@ li.panel .button-list {
 
 .enrollment.button-list {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .enrollment.button {
