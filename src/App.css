@@ -78,6 +78,10 @@ textarea:disabled {
   background-color: #ebeff3;
 }
 
+input[type='tel']::placeholder {
+  color: #c9d3df;
+}
+
 .button-list {
   margin: 3em 0;
   text-align: right;

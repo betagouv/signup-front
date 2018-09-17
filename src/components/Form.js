@@ -333,7 +333,7 @@ class Form extends React.Component {
                       id={`person_${id}_telephone_portable`}
                       disabled={disabledApplication}
                       value={telephone_portable}
-                      placeholder="0623456789"
+                      placeholder="06XXXXXXXX"
                       pattern="[0-9]{10}"
                     />
                   </div>
