@@ -4,6 +4,7 @@ import _ from 'lodash';
 import {
   createOrUpdateUserEnrollment,
   triggerUserEnrollment,
+  updateEnrollmentContacts,
 } from '../../lib/services';
 import Prompt from '../Prompt';
 
@@ -39,6 +40,10 @@ class ActionButtons extends React.Component {
     },
     send_technical_inputs: {
       label: 'Envoyer les entrants techniques',
+      cssClass: 'primary enrollment',
+    },
+    update_contacts: {
+      label: 'Mettre à jour les contacts',
       cssClass: 'primary enrollment',
     },
   };
@@ -102,13 +107,16 @@ class ActionButtons extends React.Component {
 
     let enrollmentId = this.props.enrollment.id;
 
-    if (this.props.enrollment.acl.update) {
-      const newEnrollment = await createOrUpdateUserEnrollment({
+    if (this.props.enrollment.acl.update_contacts) {
+      return await updateEnrollmentContacts({
         enrollment: this.props.enrollment,
       });
+    }
 
-      this.props.updateEnrollment(newEnrollment);
-      enrollmentId = newEnrollment.id;
+    if (this.props.enrollment.acl.update) {
+      return await createOrUpdateUserEnrollment({
+        enrollment: this.props.enrollment,
+      });
     }
 
     return await triggerUserEnrollment({
