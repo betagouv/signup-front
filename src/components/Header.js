@@ -38,6 +38,14 @@ const Header = ({ user, logout }) => {
 
         <nav>
           <ul className="nav__links">
+            <li className="nav__item">
+              <a href="https://api.gouv.fr/apropos">À propos</a>
+            </li>
+            <li className="nav__item">
+              <a href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
+                Nous contacter
+              </a>
+            </li>
             {user && (
               <li className="nav__item">
                 <div className="dropdown">

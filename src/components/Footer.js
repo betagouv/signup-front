@@ -31,7 +31,7 @@ const Footer = () => (
           </li>
           <li>
             <a
-              href="mailto:contact@particulier.api.gouv.fr"
+              href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr"
               title="Nous écrire un mail"
             >
               <img
@@ -48,7 +48,41 @@ const Footer = () => (
           <h2>particulier.api.gouv.fr</h2>
         </li>
         <li>
+          <a href="https://api.gouv.fr/apropos#quest-ce-quune-api">
+            Qu'est ce qu'une API ?
+          </a>
+        </li>
+        <li>
+          <a href="https://particulier.api.gouv.fr/FAQ.html">FAQ</a>
+        </li>
+        <li>
           <a href="https://status.particulier.api.gouv.fr">Status des API</a>
+        </li>
+        <li>
+          <a href="https://api.gouv.fr/apropos#mentions-légales">
+            Mentions légales
+          </a>
+        </li>
+        <li>
+          <a href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
+            Contactez nous
+          </a>
+        </li>
+      </ul>
+      <ul className="footer__links">
+        <li>
+          <h2>api.gouv.fr</h2>
+        </li>
+        <li>
+          <a href="http://beta.gouv.fr/">Une réalisation de beta.gouv.fr</a>
+        </li>
+        <li>
+          <a href="http://modernisation.gouv.fr/">Une mission de la DINSIC</a>
+        </li>
+        <li>
+          <a href="http://etatplateforme.modernisation.gouv.fr/">
+            Un site de l'État plateforme
+          </a>
         </li>
       </ul>
     </div>
