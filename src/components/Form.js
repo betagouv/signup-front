@@ -201,7 +201,7 @@ class Form extends React.Component {
 
     const disabledApplication = !acl.send_application;
     const disabledTechnicalInputs = !acl.send_technical_inputs;
-    const disableContactInputs = !(acl.update_contacts | acl.update);
+    const disableContactInputs = !(acl.update_contacts || acl.send_application);
     const legalBasis = documents.filter(
       ({ type }) => type === 'Document::LegalBasis'
     )[0];
