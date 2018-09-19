@@ -105,18 +105,20 @@ class ActionButtons extends React.Component {
       }
     }
 
-    let enrollmentId = this.props.enrollment.id;
-
-    if (this.props.enrollment.acl.update_contacts) {
+    if (action === 'update_contacts') {
       return await updateEnrollmentContacts({
         enrollment: this.props.enrollment,
       });
     }
 
+    let enrollmentId = this.props.enrollment.id;
+
     if (this.props.enrollment.acl.update) {
-      return await createOrUpdateEnrollment({
+      const newEnrollment = await createOrUpdateEnrollment({
         enrollment: this.props.enrollment,
       });
+      this.props.updateEnrollment(newEnrollment);
+      enrollmentId = newEnrollment.id;
     }
 
     return await triggerEnrollment({
