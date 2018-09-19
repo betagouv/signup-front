@@ -26,7 +26,7 @@ export function updateEnrollmentContacts({ enrollment }) {
     .then(({ data }) => data);
 }
 
-export function createOrUpdateUserEnrollment({ enrollment }) {
+export function createOrUpdateEnrollment({ enrollment }) {
   const serializedEnrollment = serializeEnrollment(enrollment);
   const config = {
     headers: {
@@ -79,7 +79,7 @@ export function getUserArchivedEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerUserEnrollment({ action, id, message }) {
+export function triggerEnrollment({ action, id, message }) {
   const options = {
     event: action,
   };
