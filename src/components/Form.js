@@ -201,6 +201,7 @@ class Form extends React.Component {
 
     const disabledApplication = !acl.send_application;
     const disabledTechnicalInputs = !acl.send_technical_inputs;
+    const disableContactInputs = !(acl.update_contacts || acl.send_application);
     const legalBasis = documents.filter(
       ({ type }) => type === 'Document::LegalBasis'
     )[0];
@@ -304,7 +305,7 @@ class Form extends React.Component {
                       onChange={this.handleChange}
                       name={`contacts[${index}].nom`}
                       id={`person_${id}_nom`}
-                      disabled={disabledApplication}
+                      disabled={disableContactInputs}
                       value={nom}
                     />
                   </div>
@@ -315,7 +316,7 @@ class Form extends React.Component {
                       onChange={this.handleChange}
                       name={`contacts[${index}].email`}
                       id={`person_${id}_email`}
-                      disabled={disabledApplication}
+                      disabled={disableContactInputs}
                       value={email}
                     />
                   </div>
@@ -331,7 +332,7 @@ class Form extends React.Component {
                       onChange={this.handleChange}
                       name={`contacts[${index}].telephone_portable`}
                       id={`person_${id}_telephone_portable`}
-                      disabled={disabledApplication}
+                      disabled={disableContactInputs}
                       value={telephone_portable}
                       placeholder="06XXXXXXXX"
                       pattern="[0-9]{10}"

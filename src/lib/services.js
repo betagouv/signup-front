@@ -9,7 +9,24 @@ export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });
 }
 
-export function createOrUpdateUserEnrollment({ enrollment }) {
+export function updateEnrollmentContacts({ enrollment }) {
+  const serializedEnrollment = serializeEnrollment(enrollment);
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  };
+
+  return httpClient
+    .patch(
+      `${BACK_HOST}/api/enrollments/${enrollment.id}/update_contacts`,
+      serializedEnrollment,
+      config
+    )
+    .then(({ data }) => data);
+}
+
+export function createOrUpdateEnrollment({ enrollment }) {
   const serializedEnrollment = serializeEnrollment(enrollment);
   const config = {
     headers: {
@@ -62,7 +79,7 @@ export function getUserArchivedEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerUserEnrollment({ action, id, message }) {
+export function triggerEnrollment({ action, id, message }) {
   const options = {
     event: action,
   };
@@ -124,7 +141,7 @@ export function getSiretInformation(siret) {
           enseigne,
           nom_raison_sociale,
           activite_principale,
-          adresse
+          adresse,
         };
       }
     );

@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
-  createOrUpdateUserEnrollment,
-  triggerUserEnrollment,
+  createOrUpdateEnrollment,
+  triggerEnrollment,
+  updateEnrollmentContacts,
 } from '../../lib/services';
 import Prompt from '../Prompt';
 
@@ -39,6 +40,10 @@ class ActionButtons extends React.Component {
     },
     send_technical_inputs: {
       label: 'Envoyer les entrants techniques',
+      cssClass: 'primary enrollment',
+    },
+    update_contacts: {
+      label: 'Mettre à jour les contacts',
       cssClass: 'primary enrollment',
     },
   };
@@ -100,18 +105,23 @@ class ActionButtons extends React.Component {
       }
     }
 
+    if (action === 'update_contacts') {
+      return await updateEnrollmentContacts({
+        enrollment: this.props.enrollment,
+      });
+    }
+
     let enrollmentId = this.props.enrollment.id;
 
     if (this.props.enrollment.acl.update) {
-      const newEnrollment = await createOrUpdateUserEnrollment({
+      const newEnrollment = await createOrUpdateEnrollment({
         enrollment: this.props.enrollment,
       });
-
       this.props.updateEnrollment(newEnrollment);
       enrollmentId = newEnrollment.id;
     }
 
-    return await triggerUserEnrollment({
+    return await triggerEnrollment({
       action,
       id: enrollmentId,
       message,
@@ -131,7 +141,7 @@ class ActionButtons extends React.Component {
   handleSaveDraft = event => {
     event.preventDefault();
 
-    createOrUpdateUserEnrollment({ enrollment: this.props.enrollment })
+    createOrUpdateEnrollment({ enrollment: this.props.enrollment })
       .then(() => this.props.handleSubmit({}))
       .catch(errors => this.props.handleSubmit({ errors }));
   };
