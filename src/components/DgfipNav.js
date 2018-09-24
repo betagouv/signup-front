@@ -13,7 +13,7 @@ const DgfipNav = () => (
         </a>
       </li>
       <li className="side-pane__title">
-        <h3>Votre demande</h3>
+        <h2>Votre demande</h2>
       </li>
       <li>
         <a className="side-pane__link" href="#demarche">
@@ -48,7 +48,7 @@ const DgfipNav = () => (
     </ul>
     <ul className="side-pane__menu">
       <li className="side-pane__title">
-        <h3>Données de productions</h3>
+        <h2>Données de productions</h2>
       </li>
       <li>
         <a className="side-pane__link" href="#entrants-techniques">
