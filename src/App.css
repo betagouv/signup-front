@@ -21,12 +21,18 @@ section.loader {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
+  margin: 6em auto;
+}
+
+@media (min-width: 1000px) {
+  section.loader {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+  }
 }
 
 .container {
