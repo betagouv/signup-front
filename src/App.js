@@ -24,58 +24,49 @@ const piwik = PiwikReactRouter({
 class App extends Component {
   render() {
     return (
-      <div className="page">
-        <Router history={piwik.connectToHistory(history)}>
-          <UserStore>
-            <React.Fragment>
-              <Header />
+      <Router history={piwik.connectToHistory(history)}>
+        <UserStore>
+          <div className="page">
+            <Header />
 
-              <UserContext.Consumer>
-                {({ isLoading }) => (
-                  <main>
-                    {isLoading && (
-                      <section className="section-grey loader">
-                        <Spinner />
-                      </section>
-                    )}
-                    {!isLoading && (
-                      <React.Fragment>
-                        <Route path="/login" component={Login} />
-                        <Route
-                          path="/oauth-callback"
-                          component={OauthCallback}
-                        />
-                        <PrivateRoute
-                          exact
-                          path="/"
-                          component={EnrollmentList}
-                        />
-                        <PrivateRoute
-                          exact
-                          path="/archive"
-                          component={props => (
-                            <EnrollmentList {...props} showArchived />
-                          )}
-                        />
-                        <PrivateRoute
-                          path="/api-particulier/:enrollmentId?"
-                          component={ApiParticulier}
-                        />
-                        <PrivateRoute
-                          path="/dgfip/:enrollmentId?"
-                          component={Dgfip}
-                        />
-                      </React.Fragment>
-                    )}
-                  </main>
-                )}
-              </UserContext.Consumer>
+            <UserContext.Consumer>
+              {({ isLoading }) => (
+                <main>
+                  {isLoading && (
+                    <section className="section-grey loader">
+                      <Spinner />
+                    </section>
+                  )}
+                  {!isLoading && (
+                    <React.Fragment>
+                      <Route path="/login" component={Login} />
+                      <Route path="/oauth-callback" component={OauthCallback} />
+                      <PrivateRoute exact path="/" component={EnrollmentList} />
+                      <PrivateRoute
+                        exact
+                        path="/archive"
+                        component={props => (
+                          <EnrollmentList {...props} showArchived />
+                        )}
+                      />
+                      <PrivateRoute
+                        path="/api-particulier/:enrollmentId?"
+                        component={ApiParticulier}
+                      />
+                      <PrivateRoute
+                        path="/dgfip/:enrollmentId?"
+                        component={Dgfip}
+                      />
+                    </React.Fragment>
+                  )}
+                </main>
+              )}
+            </UserContext.Consumer>
 
-              <Footer />
-            </React.Fragment>
-          </UserStore>
-        </Router>
-      </div>
+            <Footer />
+          </div>
+        </UserStore>
+      </Router>
     );
   }
 }
