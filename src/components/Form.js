@@ -21,6 +21,7 @@ class Form extends React.Component {
 
     this.state = {
       errors: [],
+      fileTooLargeError: false,
       isUserEnrollmentLoading: true,
       enrollment: {
         acl: {
@@ -150,16 +151,28 @@ class Form extends React.Component {
   };
 
   upload = ({ target: { files, name } }) => {
-    const documents_attributes = [...files].map(
-      file => ({
-        attachment: file,
-        type: name,
-      }),
-      []
-    );
+    const fileSizeInMB = files[0].size / 1024 / 1024; // in MB
+
+    // NB: please keep this limit in sync with the limit in nginx signup-back configuration
+    if (fileSizeInMB >= 1) {
+      return this.setState(({ enrollment: prevEnrollment }) => ({
+        fileTooLargeError: true,
+        enrollment: merge({}, prevEnrollment, {
+          documents_attributes: [],
+        }),
+      }));
+    }
 
     this.setState(({ enrollment: prevEnrollment }) => ({
-      enrollment: merge({}, prevEnrollment, { documents_attributes }),
+      fileTooLargeError: false,
+      enrollment: merge({}, prevEnrollment, {
+        documents_attributes: [
+          {
+            attachment: files[0],
+            type: name,
+          },
+        ],
+      }),
     }));
   };
 
@@ -187,6 +200,7 @@ class Form extends React.Component {
         validation_de_convention,
       },
       errors,
+      fileTooLargeError,
       isUserEnrollmentLoading,
     } = this.state;
 
@@ -395,6 +409,12 @@ class Form extends React.Component {
             name="Document::LegalBasis"
             id="document_legal_basis"
           />
+          {fileTooLargeError && (
+            <div className="notification error">
+              La taille de la pièce jointe du cadre juridique dépasse la taille
+              maximale authorisée (1 MO)
+            </div>
+          )}
         </div>
 
         <h2 id="donnees">Données</h2>
