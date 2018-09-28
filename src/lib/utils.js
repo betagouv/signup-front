@@ -1,4 +1,4 @@
-import _, { isObject } from 'lodash';
+import _, { isEmpty, isObject } from 'lodash';
 
 export function extractTokenFromUrl(url) {
   const hash = url.split('#')[1];
@@ -15,7 +15,7 @@ export function extractTokenFromUrl(url) {
 
 export function getErrorMessage(error) {
   if (
-    error.response &&
+    !isEmpty(error.response) &&
     isObject(error.response.data) &&
     error.response.status === 422
   ) {
@@ -25,13 +25,25 @@ export function getErrorMessage(error) {
       .value();
   }
 
-  if (error.response && isObject(error.response.data)) {
+  if (!isEmpty(error.response) && isObject(error.response.data)) {
     return _(error.response.data)
       .values()
       .flatten()
       .value();
   }
 
+  const errorMessageEnd =
+    'Merci de réessayer ultérieurement. ' +
+    'Vous pouvez également nous signaler cette erreur par mail à contact@particulier.api.gouv.fr.';
+
+  if (!isEmpty(error.response)) {
+    return [
+      `Une erreur est survenue. Le code de l'erreur est ${
+        error.response.status
+      } (${error.response.statusText}). ${errorMessageEnd}`,
+    ];
+  }
+
   console.error(error);
-  return ['Une erreur est survenue, merci de réessayer ultérieurement.'];
+  return [`Une erreur inconnue est survenue. ${errorMessageEnd}`];
 }
