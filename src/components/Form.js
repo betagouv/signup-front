@@ -13,6 +13,9 @@ import EntrantsTechniques from './form/EntrantsTechniques';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
+// NB: please keep this limit in sync with the limit in nginx signup-back configuration
+const FILE_SIZE_LIMIT_IN_MB = 10;
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -153,8 +156,7 @@ class Form extends React.Component {
   upload = ({ target: { files, name } }) => {
     const fileSizeInMB = files[0].size / 1024 / 1024; // in MB
 
-    // NB: please keep this limit in sync with the limit in nginx signup-back configuration
-    if (fileSizeInMB >= 1) {
+    if (fileSizeInMB >= FILE_SIZE_LIMIT_IN_MB) {
       return this.setState(({ enrollment: prevEnrollment }) => ({
         fileTooLargeError: true,
         enrollment: merge({}, prevEnrollment, {
@@ -411,8 +413,8 @@ class Form extends React.Component {
           />
           {fileTooLargeError && (
             <div className="notification error">
-              La taille de la pièce jointe du cadre juridique dépasse la taille
-              maximale authorisée (1 MO)
+              La taille de la pièce jointe dépasse la taille maximale autorisée
+              ({FILE_SIZE_LIMIT_IN_MB} MO)
             </div>
           )}
         </div>
