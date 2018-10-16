@@ -288,11 +288,11 @@ class EnrollmentList extends React.Component {
               />
             </div>
             <p className="text-right">
-              <Link to={'/api-particulier'}>
+              <a href="http://api.gouv.fr">
                 <button className="button large" name="nouvelle-demande">
                   Nouvelle Demande
                 </button>
-              </Link>
+              </a>
             </p>
           </div>
         </div>
