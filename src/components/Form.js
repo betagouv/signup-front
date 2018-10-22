@@ -488,7 +488,7 @@ class Form extends React.Component {
           />
         </div>
 
-        <h2 id="cgu">Conditions d&acute;utilisation</h2>
+        <h2 id="cgu">Modalités d&apos;utilisation</h2>
         <CguDescription />
         <embed
           title="CGU"
@@ -507,8 +507,8 @@ class Form extends React.Component {
             id="validation_de_convention"
           />
           <label htmlFor="validation_de_convention" className="label-inline">
-            Je valide les présentes conditions d&apos;utilisation et confirme
-            que le DPO de mon organisme est informé de ma demande
+            Je valide les présentes modalités d&apos;utilisation et confirme que
+            le DPO de mon organisme est informé de ma demande
           </label>
         </div>
 

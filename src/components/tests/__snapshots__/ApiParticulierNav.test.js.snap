@@ -59,7 +59,7 @@ exports[`components | ApiParticulierNav render should match snapshot 1`] = `
         className="side-pane__link"
         href="#cgu"
       >
-        Conditions d´utilisation
+        Modalités d'utilisation
       </a>
     </li>
   </ul>

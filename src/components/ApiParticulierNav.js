@@ -33,7 +33,7 @@ const ApiParticulierNav = () => (
       </li>
       <li>
         <a className="side-pane__link" href="#cgu">
-          Conditions d&acute;utilisation
+          Modalités d&apos;utilisation
         </a>
       </li>
     </ul>
