@@ -7,12 +7,16 @@
       "humanName": "DGFIP - Avis d'imposition"
     },
     {
+      "name": "dgfip_adresse",
+      "humanName": "DGFIP - Adresse"
+    },
+    {
       "name": "cnaf_quotient_familial",
       "humanName": "CNAF - Quotient familial"
     },
     {
       "name": "cnaf_attestation_droits",
-      "humanName": "CNAF - attestation droits"
+      "humanName": "CNAF - Attestation de droits"
     }
   ],
   "cguLink": "/docs/API_Particulier_modalites.pdf",
