@@ -143,7 +143,7 @@ const Dgfip = ({
   },
 }) => (
   <div className="documentation">
-    <DgfipNav />
+    <DgfipNav enrollmentId={enrollmentId} />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
