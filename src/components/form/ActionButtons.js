@@ -34,14 +34,6 @@ class ActionButtons extends React.Component {
       label: 'Refuser',
       cssClass: 'warning enrollment',
     },
-    validate_technical_inputs: {
-      label: 'Valider',
-      cssClass: 'primary enrollment',
-    },
-    send_technical_inputs: {
-      label: 'Envoyer les entrants techniques',
-      cssClass: 'primary enrollment',
-    },
     update_contacts: {
       label: 'Mettre à jour les contacts',
       cssClass: 'primary enrollment',

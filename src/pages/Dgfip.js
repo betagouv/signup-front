@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
-import DgfipNav from '../components/DgfipNav';
+import Nav from '../components/Nav';
 import DgfipFormConfiguration from '../components/form/config/dgfip';
 const {
   REACT_APP_FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI: FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI,
@@ -143,11 +143,12 @@ const Dgfip = ({
   },
 }) => (
   <div className="documentation">
-    <DgfipNav enrollmentId={enrollmentId} />
+    <Nav isDgfip={true} />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
         form={DgfipFormConfiguration}
+        isDgfip={true}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         CguDescription={CguDescription}

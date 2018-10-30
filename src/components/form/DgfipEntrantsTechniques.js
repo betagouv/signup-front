@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+import DocumentUpload from './DocumentUpload';
 
-const EntrantsTechniques = ({
+const DgfipEntrantsTechniques = ({
   disabled,
   onChange,
-  upload,
+  handleDocumentsChange,
   enrollment: {
     documents,
+    documents_attributes,
     autorite_certification,
     ips_de_production,
     autorite_homologation_nom,
@@ -31,7 +32,6 @@ const EntrantsTechniques = ({
     recette_fonctionnelle,
   },
 }) => {
-  const token = localStorage.getItem('token');
   const nombresDeDemandesMensuelles = [
     {
       label: 'Janvier',
@@ -94,9 +94,6 @@ const EntrantsTechniques = ({
       value: nombre_demandes_mensuelles_dec,
     },
   ];
-  const productionCertificate = documents.filter(
-    ({ type }) => type === 'Document::ProductionCertificatePublicKey'
-  )[0];
 
   return (
     <React.Fragment>
@@ -116,29 +113,14 @@ const EntrantsTechniques = ({
           livrables techniques.
         </p>
       </div>
-      <div className="form__group">
-        {productionCertificate ? (
-          <label htmlFor="production_certificate">
-            <a
-              href={`${BACK_HOST +
-                productionCertificate.attachment.url}?token=${token}`}
-            >
-              Certificat de production
-            </a>
-          </label>
-        ) : (
-          <label htmlFor="production_certificate">
-            Certificat de production
-          </label>
-        )}
-        <input
-          type="file"
-          onChange={upload}
-          disabled={disabled}
-          name="Document::ProductionCertificatePublicKey"
-          id="production_certificate"
-        />
-      </div>
+      <DocumentUpload
+        disabled={disabled}
+        uploadedDocuments={documents}
+        documentsToUpload={documents_attributes}
+        documentType={'Document::ProductionCertificatePublicKey'}
+        handleDocumentsChange={handleDocumentsChange}
+        label={'Certificat de production'}
+      />
       <div className="form__group">
         <label htmlFor="autorite_certification">
           Autorité de certification
@@ -153,21 +135,6 @@ const EntrantsTechniques = ({
         />
       </div>
       <div className="form__group">
-        <section className="information-text">
-          <p>
-            La demande d&apos;entrée en production revêt un caractère définitif
-            et entraîne le transfert de vos entrants techniques vers les
-            exploitants informatiques de la DGFiP. Merci de vous assurer de la
-            bonne valorisation de l&apos;ensemble des informations demandées
-            avant de procéder à cette demande.
-          </p>
-          <p>
-            Votre entrée en production se fera lors du premier créneau
-            disponible à compter de l&apos;envoi des entrants technique de
-            production et conformément au calendrier accessible via le lien
-            ci-dessous.{' '}
-          </p>
-        </section>
         <label htmlFor="ips_de_production">IPs de production</label>
         <input
           type="text"
@@ -372,20 +339,29 @@ const EntrantsTechniques = ({
           <p>
             Votre entrée en production se fera lors du premier créneau
             disponible à compter de l&apos;envoi des entrants technique de
-            production et conformément au calendrier accessible via le lien
-            ci-dessous.{' '}
+            production et conformément au calendrier de nos disponibilités.
           </p>
+          <p>Les périodes sans aucunes mise en prod sont :</p>
+          <ul>
+            <li>Fin mars -> Fin juin</li>
+            <li>Aout -> Septembre</li>
+            <li>Mi-décembre -> début janvier</li>
+          </ul>
+          <p>Les périodes tendues :</p>
+          <ul>
+            <li>Juillet</li>
+          </ul>
         </div>
       )}
     </React.Fragment>
   );
 };
 
-EntrantsTechniques.propTypes = {
+DgfipEntrantsTechniques.propTypes = {
   enrollment: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  upload: PropTypes.func.isRequired,
+  handleDocumentsChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
-export default EntrantsTechniques;
+export default DgfipEntrantsTechniques;
