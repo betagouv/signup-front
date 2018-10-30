@@ -153,21 +153,6 @@ const DgfipEntrantsTechniques = ({
         />
       </div>
       <div className="form__group">
-        <section className="information-text">
-          <p>
-            La demande d&apos;entrée en production revêt un caractère définitif
-            et entraîne le transfert de vos entrants techniques vers les
-            exploitants informatiques de la DGFiP. Merci de vous assurer de la
-            bonne valorisation de l&apos;ensemble des informations demandées
-            avant de procéder à cette demande.
-          </p>
-          <p>
-            Votre entrée en production se fera lors du premier créneau
-            disponible à compter de l&apos;envoi des entrants technique de
-            production et conformément au calendrier accessible via le lien
-            ci-dessous.{' '}
-          </p>
-        </section>
         <label htmlFor="ips_de_production">IPs de production</label>
         <input
           type="text"
@@ -372,9 +357,18 @@ const DgfipEntrantsTechniques = ({
           <p>
             Votre entrée en production se fera lors du premier créneau
             disponible à compter de l&apos;envoi des entrants technique de
-            production et conformément au calendrier accessible via le lien
-            ci-dessous.{' '}
+            production et conformément au calendrier de nos disponibilités.
           </p>
+          <p>Les périodes sans aucunes mise en prod sont :</p>
+          <ul>
+            <li>Fin mars -> Fin juin</li>
+            <li>Aout -> Septembre</li>
+            <li>Mi-décembre -> début janvier</li>
+          </ul>
+          <p>Les périodes tendues :</p>
+          <ul>
+            <li>Juillet</li>
+          </ul>
         </div>
       )}
     </React.Fragment>
