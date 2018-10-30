@@ -9,7 +9,7 @@ import { getErrorMessage } from '../lib/utils';
 import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
-import EntrantsTechniques from './form/EntrantsTechniques';
+import DgfipEntrantsTechniques from './form/DgfipEntrantsTechniques';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -208,6 +208,7 @@ class Form extends React.Component {
 
     const {
       form,
+      isDgfip,
       IntroDescription,
       DemarcheDescription,
       CguDescription,
@@ -216,7 +217,6 @@ class Form extends React.Component {
     } = this.props;
 
     const disabledApplication = !acl.send_application;
-    const disabledTechnicalInputs = !acl.send_technical_inputs;
     const disableContactInputs = !(acl.update_contacts || acl.send_application);
     const legalBasis = documents.filter(
       ({ type }) => type === 'Document::LegalBasis'
@@ -512,12 +512,12 @@ class Form extends React.Component {
           </label>
         </div>
 
-        {acl.show_technical_inputs && (
-          <EntrantsTechniques
+        {isDgfip && (
+          <DgfipEntrantsTechniques
             enrollment={this.state.enrollment}
             onChange={this.handleChange}
             upload={this.upload}
-            disabled={disabledTechnicalInputs}
+            disabled={disabledApplication}
           />
         )}
 
@@ -540,6 +540,7 @@ class Form extends React.Component {
 Form.propTypes = {
   enrollmentId: PropTypes.string,
   form: PropTypes.object.isRequired,
+  isDgfip: PropTypes.bool,
   IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
   CguDescription: PropTypes.func.isRequired,
@@ -552,6 +553,7 @@ Form.propTypes = {
 
 Form.defaultProps = {
   enrollmentId: null,
+  isDgfip: false,
 };
 
 export default withRouter(Form);

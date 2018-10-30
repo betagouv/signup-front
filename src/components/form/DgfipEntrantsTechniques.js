@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-const EntrantsTechniques = ({
+const DgfipEntrantsTechniques = ({
   disabled,
   onChange,
   upload,
@@ -381,11 +381,11 @@ const EntrantsTechniques = ({
   );
 };
 
-EntrantsTechniques.propTypes = {
+DgfipEntrantsTechniques.propTypes = {
   enrollment: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   upload: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
-export default EntrantsTechniques;
+export default DgfipEntrantsTechniques;

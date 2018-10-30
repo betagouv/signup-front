@@ -148,6 +148,7 @@ const Dgfip = ({
       <Form
         enrollmentId={enrollmentId}
         form={DgfipFormConfiguration}
+        isDgfip={true}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         CguDescription={CguDescription}

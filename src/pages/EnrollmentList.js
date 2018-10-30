@@ -14,9 +14,7 @@ import moment from 'moment';
 
 const STATE_LABELS = {
   pending: 'Brouillon',
-  technical_inputs_pending: 'Brouillon',
   sent: 'À valider',
-  technical_inputs_sent: 'À valider',
   validated: 'Validée',
   refused: 'Refusée',
 };
@@ -92,8 +90,6 @@ class EnrollmentList extends React.Component {
     'review_application',
     'refuse_application',
     'send_application',
-    'send_technical_inputs',
-    'validate_technical_inputs',
   ]);
 
   hasTriggerableActions = ({ acl }) =>
