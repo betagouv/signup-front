@@ -10,11 +10,7 @@ import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import DgfipEntrantsTechniques from './form/DgfipEntrantsTechniques';
-
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
-
-// NB: please keep this limit in sync with the limit in nginx signup-back configuration
-const FILE_SIZE_LIMIT_IN_MB = 10;
+import DocumentUpload from './form/DocumentUpload';
 
 class Form extends React.Component {
   constructor(props) {
@@ -24,7 +20,6 @@ class Form extends React.Component {
 
     this.state = {
       errors: [],
-      fileTooLargeError: false,
       isUserEnrollmentLoading: true,
       enrollment: {
         acl: {
@@ -63,6 +58,7 @@ class Form extends React.Component {
           url_fondement_juridique: '',
         },
         documents: [],
+        documents_attributes: [],
         donnees: {
           conservation: '',
           destinataires: zipObject(
@@ -153,27 +149,10 @@ class Form extends React.Component {
     }));
   };
 
-  upload = ({ target: { files, name } }) => {
-    const fileSizeInMB = files[0].size / 1024 / 1024; // in MB
-
-    if (fileSizeInMB >= FILE_SIZE_LIMIT_IN_MB) {
-      return this.setState(({ enrollment: prevEnrollment }) => ({
-        fileTooLargeError: true,
-        enrollment: merge({}, prevEnrollment, {
-          documents_attributes: [],
-        }),
-      }));
-    }
-
+  handleDocumentsChange = documentsToUpload => {
     this.setState(({ enrollment: prevEnrollment }) => ({
-      fileTooLargeError: false,
       enrollment: merge({}, prevEnrollment, {
-        documents_attributes: [
-          {
-            attachment: files[0],
-            type: name,
-          },
-        ],
+        documents_attributes: documentsToUpload,
       }),
     }));
   };
@@ -187,13 +166,13 @@ class Form extends React.Component {
   };
 
   render() {
-    const token = localStorage.getItem('token');
     const {
       enrollment: {
         acl,
         contacts,
         demarche,
         documents,
+        documents_attributes,
         donnees,
         fournisseur_de_service,
         messages,
@@ -202,7 +181,6 @@ class Form extends React.Component {
         validation_de_convention,
       },
       errors,
-      fileTooLargeError,
       isUserEnrollmentLoading,
     } = this.state;
 
@@ -218,9 +196,6 @@ class Form extends React.Component {
 
     const disabledApplication = !acl.send_application;
     const disableContactInputs = !(acl.update_contacts || acl.send_application);
-    const legalBasis = documents.filter(
-      ({ type }) => type === 'Document::LegalBasis'
-    )[0];
 
     return (
       <div className="form">
@@ -375,8 +350,8 @@ class Form extends React.Component {
             value={demarche.fondement_juridique}
           />
         </div>
+        <h3>Document associé</h3>
         <div className="form__group">
-          <h3>Document associé</h3>
           {demarche.url_fondement_juridique ? (
             <label htmlFor="url_fondement_juridique">
               <a href={demarche.url_fondement_juridique}>URL du texte</a>
@@ -392,32 +367,16 @@ class Form extends React.Component {
             disabled={disabledApplication}
             value={demarche.url_fondement_juridique}
           />
-          <div style={{ padding: '1em', fontWeight: 'bold' }}>ou</div>
-          {legalBasis ? (
-            <label htmlFor="document_legal_basis">
-              <a
-                href={`${BACK_HOST + legalBasis.attachment.url}?token=${token}`}
-              >
-                Pièce jointe
-              </a>
-            </label>
-          ) : (
-            <label htmlFor="document_legal_basis">Pièce jointe</label>
-          )}
-          <input
-            type="file"
-            onChange={this.upload}
-            disabled={disabledApplication}
-            name="Document::LegalBasis"
-            id="document_legal_basis"
-          />
-          {fileTooLargeError && (
-            <div className="notification error">
-              La taille de la pièce jointe dépasse la taille maximale autorisée
-              ({FILE_SIZE_LIMIT_IN_MB} MO)
-            </div>
-          )}
         </div>
+        <h3>ou</h3>
+        <DocumentUpload
+          disabled={disabledApplication}
+          uploadedDocuments={documents}
+          documentsToUpload={documents_attributes}
+          documentType={'Document::LegalBasis'}
+          handleDocumentsChange={this.handleDocumentsChange}
+          label={'Pièce jointe'}
+        />
 
         <h2 id="donnees">Données</h2>
         <DonneesDescription />
@@ -516,7 +475,7 @@ class Form extends React.Component {
           <DgfipEntrantsTechniques
             enrollment={this.state.enrollment}
             onChange={this.handleChange}
-            upload={this.upload}
+            handleDocumentsChange={this.handleDocumentsChange}
             disabled={disabledApplication}
           />
         )}

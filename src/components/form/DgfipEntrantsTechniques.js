@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+import DocumentUpload from './DocumentUpload';
 
 const DgfipEntrantsTechniques = ({
   disabled,
   onChange,
-  upload,
+  handleDocumentsChange,
   enrollment: {
     documents,
+    documents_attributes,
     autorite_certification,
     ips_de_production,
     autorite_homologation_nom,
@@ -31,7 +32,6 @@ const DgfipEntrantsTechniques = ({
     recette_fonctionnelle,
   },
 }) => {
-  const token = localStorage.getItem('token');
   const nombresDeDemandesMensuelles = [
     {
       label: 'Janvier',
@@ -94,9 +94,6 @@ const DgfipEntrantsTechniques = ({
       value: nombre_demandes_mensuelles_dec,
     },
   ];
-  const productionCertificate = documents.filter(
-    ({ type }) => type === 'Document::ProductionCertificatePublicKey'
-  )[0];
 
   return (
     <React.Fragment>
@@ -116,29 +113,14 @@ const DgfipEntrantsTechniques = ({
           livrables techniques.
         </p>
       </div>
-      <div className="form__group">
-        {productionCertificate ? (
-          <label htmlFor="production_certificate">
-            <a
-              href={`${BACK_HOST +
-                productionCertificate.attachment.url}?token=${token}`}
-            >
-              Certificat de production
-            </a>
-          </label>
-        ) : (
-          <label htmlFor="production_certificate">
-            Certificat de production
-          </label>
-        )}
-        <input
-          type="file"
-          onChange={upload}
-          disabled={disabled}
-          name="Document::ProductionCertificatePublicKey"
-          id="production_certificate"
-        />
-      </div>
+      <DocumentUpload
+        disabled={disabled}
+        uploadedDocuments={documents}
+        documentsToUpload={documents_attributes}
+        documentType={'Document::ProductionCertificatePublicKey'}
+        handleDocumentsChange={handleDocumentsChange}
+        label={'Certificat de production'}
+      />
       <div className="form__group">
         <label htmlFor="autorite_certification">
           Autorité de certification
@@ -378,7 +360,7 @@ const DgfipEntrantsTechniques = ({
 DgfipEntrantsTechniques.propTypes = {
   enrollment: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
-  upload: PropTypes.func.isRequired,
+  handleDocumentsChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
 
