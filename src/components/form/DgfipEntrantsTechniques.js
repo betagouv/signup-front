@@ -103,9 +103,9 @@ const DgfipEntrantsTechniques = ({
           Afin de permettre la liaison technique entre votre SI et celui de la
           DGFiP, vous devez fournir les entrants techniques suivants :<br />{' '}
           adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec
-          l&apos;API « Impôt Particulier »<br /> partie publique d’un certificat
-          client RGS V2.0 en cours de validité avec son autorité de
-          certification émettrice
+          l&apos;API Impôts Particulier
+          <br /> partie publique d’un certificat client RGS V2.0 en cours de
+          validité avec son autorité de certification émettrice
         </p>
         <p>
           Afin de permettre votre mise en production dans les meilleures
@@ -295,8 +295,8 @@ const DgfipEntrantsTechniques = ({
         <p>
           Afin d’assurer la qualification de votre applicatif, un générateur de
           bouchons est mis à votre disposition en suivant le lien ci-dessous. Il
-          vous permettra de valoriser les données retournées par l&apos;API «
-          Impôt Particulier » en fonction de vos besoins métier ou d’utiliser le
+          vous permettra de valoriser les données retournées par l&apos;API
+          Impôts Particulier en fonction de vos besoins métier ou d’utiliser le
           jeu de données natif. Cette qualification est obligatoire tant pour
           votre homologation de sécurité ou vos obligations CNIL que pour
           demander l&apos;entrée en production auprès de la DGFiP.

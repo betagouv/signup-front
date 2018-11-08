@@ -10,15 +10,14 @@ const {
 const IntroDescription = () => (
   <div className="intro">
     <p>
-      Dans le cadre du programme « Dites-le nous une fois - Particuliers»,
-      visant à simplifier les démarches administratives des usagers, l&apos;API
-      « Impôt Particulier » permet de récupérer des informations fiscales des
-      usagers de façon à leur éviter la transmission de leur avis
-      d&apos;imposition papier.
+      Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
+      les démarches administratives des usagers, l&apos;API Impôts Particulier
+      permet de récupérer des informations fiscales des usagers de façon à leur
+      éviter la transmission de leur avis d&apos;imposition papier.
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API « Impôt Particulier ».
+      fournisseurs de service à l&apos;API Impôts Particulier.
     </p>
     <p>
       Pour cela, il vous sera demandé de compléter le plus précisément possible
@@ -37,7 +36,7 @@ const IntroDescription = () => (
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API « Impôt Particulier ».
+      fournisseurs de service à l&apos;API Impôts Particulier.
     </p>
   </div>
 );
@@ -68,7 +67,7 @@ const DemarcheDescription = () => (
 const CguDescription = () => (
   <div className="information-text">
     <p>
-      Votre raccordement à l&lsquo;API « Impôt Particulier » nécessite
+      Votre raccordement à l&lsquo;API Impôts Particulier nécessite
       l&lsquo;acceptation de la convention d&lsquo;adhésion fixant vos
       engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous
       vous permettront de visualiser la convention type ainsi que ses annexes.{' '}
