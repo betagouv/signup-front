@@ -3,9 +3,6 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import DgfipFormConfiguration from '../components/form/config/dgfip';
-const {
-  REACT_APP_FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI: FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI,
-} = process.env;
 
 const IntroDescription = () => (
   <div className="intro">
@@ -49,17 +46,6 @@ const DemarcheDescription = () => (
       mettez en place. Par exemple, « télé-procédure permettant aux usagers de
       demander une aide au paiement de la cantine des collégiens » ou «
       télé-procédure de demande de bourses de lycée ».
-    </p>
-    <p>
-      Si vous n&apos;en avez pas encore, veuillez{' '}
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI}
-      >
-        créer un fournisseur de service
-      </a>{' '}
-      qui implémentera cette démarche.
     </p>
   </div>
 );

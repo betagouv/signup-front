@@ -98,11 +98,26 @@ class FranceConnectServiceProvider extends React.Component {
     return (
       <React.Fragment>
         <div className="form__group">
-          <h4 id="france-connect">Partenaire FranceConnect</h4>
+          <h4 id="france-connect">Connexion à FranceConnect Partenaire</h4>
+          <p>
+            Pour demander l'accès à une l'API FranceConnectée, vous devez avoir
+            préalablement créer une démarche (<i>fournisseur de service</i>)
+            auprès de FranceConnect Partenaire.
+            <br />
+            Si vous n'en avez pas encore, veuillez créer un{' '}
+            <i>fournisseur de service</i> sur{' '}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={FRANCE_CONNECT_CREATE_SERVICE_PROVIDER_URI}
+            >
+              FranceConnect Partenaire.
+            </a>{' '}
+          </p>
           <p>
             <OauthLink href={FRANCE_CONNECT_AUTHORIZE_URI} className="button">
-              Se connecter auprès de FranceConnect afin de récupérer mes
-              démarches
+              Se connecter auprès de FranceConnect afin de séléctionner ma
+              démarche
             </OauthLink>
           </p>
         </div>

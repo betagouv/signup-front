@@ -144,6 +144,10 @@ const DgfipEntrantsTechniques = ({
           disabled={disabled}
           value={ips_de_production}
         />
+        <p>
+          Vous pouvez ajouter plusieurs adresses IP en les séparant par une
+          virgule (ex: 111.111.11.11, 111.111.11.12)
+        </p>
       </div>
 
       <h2 id="homologation-securite">Homologation de sécurité</h2>
