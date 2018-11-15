@@ -30,7 +30,7 @@ const DemarcheDescription = () => (
   <div className="information-text">
     <p>
       C&apos;est la raison pour laquelle vous collectez des données
-      personnelles, l&apos;objectif qui est poursuivi par le fichier que vous
+      personnelles, l&apos;objectif qui est poursuivi par le traitement que vous
       mettez en place. Par exemple, « télé-procédure permettant aux usagers de
       demander une aide au paiement de la cantine des collégiens » ou «
       télé-procédure de demande de bourses de lycée ».
