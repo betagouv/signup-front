@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isDgfip }) => (
+const Nav = ({ isDgfip, isFranceConnect }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       {isDgfip && (
@@ -38,11 +38,13 @@ const Nav = ({ isDgfip }) => (
           Cadre juridique
         </a>
       </li>
-      <li>
-        <a className="side-pane__link" href="#donnees">
-          Données
-        </a>
-      </li>
+      {!isFranceConnect && (
+        <li>
+          <a className="side-pane__link" href="#donnees">
+            Données
+          </a>
+        </li>
+      )}
       <li>
         <a className="side-pane__link" href="#cgu">
           Modalités d&apos;utilisation

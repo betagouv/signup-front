@@ -378,74 +378,78 @@ class Form extends React.Component {
           label={'Pièce jointe'}
         />
 
-        <h2 id="donnees">Données</h2>
-        <DonneesDescription />
-        <div className="form__group">
-          <fieldset className="vertical">
-            <label>Sélectionnez vos jeux de données souhaités</label>
-            <div className="row">
-              <div className="column" style={{ flex: 1 }}>
-                {form.scopes.map(({ name, humanName }) => (
-                  <div key={name}>
-                    <input
-                      type="checkbox"
-                      className="scope__checkbox"
-                      onChange={this.handleChange}
-                      name={`scopes.${name}`}
-                      id={`checkbox-scope_api_entreprise${name}`}
-                      disabled={disabledApplication}
-                      checked={scopes[name]}
-                    />
-                    <label
-                      htmlFor={`checkbox-scope_api_entreprise${name}`}
-                      className="label-inline"
-                    >
-                      {humanName}
-                    </label>
-                    {scopes[name] && (
-                      <div className="scope__destinataire">
-                        <div className="form__group">
-                          <label htmlFor={`destinataire_${name}`}>
-                            Destinataires{' '}
-                            <a
-                              href="https://www.cnil.fr/fr/definition/destinataire"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              (plus d&acute;infos)
-                            </a>
-                          </label>
-                          <input
-                            type="text"
-                            onChange={this.handleChange}
-                            name={`donnees.destinataires.${name}`}
-                            id={`destinataire_${name}`}
-                            disabled={disabledApplication}
-                            value={donnees.destinataires[name]}
-                          />
-                        </div>
+        {!isEmpty(form.scopes) && (
+          <React.Fragment>
+            <h2 id="donnees">Données</h2>
+            <DonneesDescription />
+            <div className="form__group">
+              <fieldset className="vertical">
+                <label>Sélectionnez vos jeux de données souhaités</label>
+                <div className="row">
+                  <div className="column" style={{ flex: 1 }}>
+                    {form.scopes.map(({ name, humanName }) => (
+                      <div key={name}>
+                        <input
+                          type="checkbox"
+                          className="scope__checkbox"
+                          onChange={this.handleChange}
+                          name={`scopes.${name}`}
+                          id={`checkbox-scope_api_entreprise${name}`}
+                          disabled={disabledApplication}
+                          checked={scopes[name]}
+                        />
+                        <label
+                          htmlFor={`checkbox-scope_api_entreprise${name}`}
+                          className="label-inline"
+                        >
+                          {humanName}
+                        </label>
+                        {scopes[name] && (
+                          <div className="scope__destinataire">
+                            <div className="form__group">
+                              <label htmlFor={`destinataire_${name}`}>
+                                Destinataires{' '}
+                                <a
+                                  href="https://www.cnil.fr/fr/definition/destinataire"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  (plus d&acute;infos)
+                                </a>
+                              </label>
+                              <input
+                                type="text"
+                                onChange={this.handleChange}
+                                name={`donnees.destinataires.${name}`}
+                                id={`destinataire_${name}`}
+                                disabled={disabledApplication}
+                                value={donnees.destinataires[name]}
+                              />
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    )}
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+              </fieldset>
             </div>
-          </fieldset>
-        </div>
-        <div className="form__group">
-          <label htmlFor="donnees_conservation">
-            Conservation des données <i>(en mois)</i>
-          </label>
-          <input
-            type="number"
-            min="0"
-            onChange={this.handleChange}
-            name="donnees.conservation"
-            id="donnees_conservation"
-            disabled={disabledApplication}
-            value={donnees.conservation}
-          />
-        </div>
+            <div className="form__group">
+              <label htmlFor="donnees_conservation">
+                Conservation des données <i>(en mois)</i>
+              </label>
+              <input
+                type="number"
+                min="0"
+                onChange={this.handleChange}
+                name="donnees.conservation"
+                id="donnees_conservation"
+                disabled={disabledApplication}
+                value={donnees.conservation}
+              />
+            </div>
+          </React.Fragment>
+        )}
 
         <h2 id="cgu">Modalités d&apos;utilisation</h2>
         <CguDescription />

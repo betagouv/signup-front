@@ -10,6 +10,7 @@ import OauthCallback from './pages/OauthCallback';
 import EnrollmentList from './pages/EnrollmentList';
 import ApiParticulier from './pages/ApiParticulier';
 import Dgfip from './pages/Dgfip';
+import FranceConnect from './pages/FranceConnect';
 import { UserStore, UserContext } from './components/UserContext';
 import { createBrowserHistory } from 'history';
 import PiwikReactRouter from 'piwik-react-router';
@@ -56,6 +57,10 @@ class App extends Component {
                       <PrivateRoute
                         path="/dgfip/:enrollmentId?"
                         component={Dgfip}
+                      />
+                      <PrivateRoute
+                        path="/franceconnect/:enrollmentId?"
+                        component={FranceConnect}
                       />
                     </React.Fragment>
                   )}
