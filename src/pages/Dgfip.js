@@ -28,8 +28,15 @@ const IntroDescription = () => (
     </ul>
     <p>
       Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre
-      disposition pour pouvoir tester l&apos;authentification SSL et concevoir
-      vos bouchons.
+      disposition une{' '}
+      <a
+        href="https://github.com/france-connect/service-provider-example/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        API de test
+      </a>
+      .
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
