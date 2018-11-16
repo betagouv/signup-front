@@ -14,7 +14,7 @@ const IntroDescription = () => (
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API Impôts Particulier.
+      fournisseurs de service à l&apos;API Impot Particulier.
     </p>
     <p>
       Pour cela, il vous sera demandé de compléter le plus précisément possible
@@ -27,20 +27,19 @@ const IntroDescription = () => (
       <li>la protection des données personnelles.</li>
     </ul>
     <p>
-      Un outil, conçu par la DGFiP et la DINSIC, est par ailleurs mis à votre
-      disposition une{' '}
+      Pour faciliter votre racordement à l'API Impot Particulier, une{' '}
       <a
         href="https://github.com/france-connect/service-provider-example/"
         target="_blank"
         rel="noopener noreferrer"
       >
         API de test
-      </a>
-      .
+      </a>{' '}
+      est à votre disposition.
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API Impôts Particulier.
+      fournisseurs de service à l&apos;API Impot Particulier.
     </p>
   </div>
 );
