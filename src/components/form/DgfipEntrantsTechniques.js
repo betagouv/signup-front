@@ -297,21 +297,20 @@ const DgfipEntrantsTechniques = ({
       <h2 id="recette-fonctionnelle">Recette fonctionnelle</h2>
       <div className="information-text">
         <p>
-          Afin d’assurer la qualification de votre applicatif, un générateur de
-          bouchons est mis à votre disposition en suivant le lien ci-dessous. Il
-          vous permettra de valoriser les données retournées par l&apos;API
-          Impôts Particulier en fonction de vos besoins métier ou d’utiliser le
-          jeu de données natif. Cette qualification est obligatoire tant pour
-          votre homologation de sécurité ou vos obligations CNIL que pour
-          demander l&apos;entrée en production auprès de la DGFiP.
+          Afin d’assurer la qualification de votre applicatif, une API de test
+          est mise à votre disposition en suivant le lien ci-dessous. Elle vous
+          permettra de visualiser les données retournées par l&apos;API Impôts
+          Particulier. Cette qualification est obligatoire tant pour votre
+          homologation de sécurité ou vos obligations CNIL que pour demander
+          l&apos;entrée en production auprès de la DGFiP.
         </p>
         <p>
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href="https://fip1.integ01.dev-franceconnect.fr/user/create"
+            href="https://github.com/france-connect/service-provider-example"
           >
-            Accèder aux générateurs de bouchons
+            Accèder à l'API de test
           </a>
         </p>
       </div>
