@@ -19,7 +19,7 @@
       "humanName": "CNAF - Attestation de droits"
     }
   ],
-  "cguLink": "/docs/API_Particulier_modalites.pdf",
+  "cguLink": "https://particulier.api.gouv.fr/API_Particulier_modalites.pdf",
   "text": {
     "title": "Demande d'accès à API Particulier"
   }

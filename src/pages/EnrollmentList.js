@@ -22,7 +22,7 @@ const STATE_LABELS = {
 const FOURNISSEUR_DE_DONNEES_LABELS = {
   'api-particulier': 'API Particulier',
   franceconnect: 'FranceConnect',
-  dgfip: 'API Impôts particulier',
+  dgfip: 'API Impot particulier',
 };
 
 class EnrollmentList extends React.Component {

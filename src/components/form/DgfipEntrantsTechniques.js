@@ -103,7 +103,7 @@ const DgfipEntrantsTechniques = ({
           Afin de permettre la liaison technique entre votre SI et celui de la
           DGFiP, vous devez fournir les entrants techniques suivants :<br />{' '}
           adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec
-          l&apos;API Impôts Particulier
+          l&apos;API Impot Particulier
           <br /> partie publique d’un certificat client RGS V2.0 en cours de
           validité avec son autorité de certification émettrice
         </p>
@@ -144,10 +144,10 @@ const DgfipEntrantsTechniques = ({
           disabled={disabled}
           value={ips_de_production}
         />
-        <p>
+        <small className="card__meta">
           Vous pouvez ajouter plusieurs adresses IP en les séparant par une
           virgule (ex: 111.111.11.11, 111.111.11.12)
-        </p>
+        </small>
       </div>
 
       <h2 id="homologation-securite">Homologation de sécurité</h2>
@@ -299,7 +299,7 @@ const DgfipEntrantsTechniques = ({
         <p>
           Afin d’assurer la qualification de votre applicatif, une API de test
           est mise à votre disposition en suivant le lien ci-dessous. Elle vous
-          permettra de visualiser les données retournées par l&apos;API Impôts
+          permettra de visualiser les données retournées par l&apos;API Impot
           Particulier. Cette qualification est obligatoire tant pour votre
           homologation de sécurité ou vos obligations CNIL que pour demander
           l&apos;entrée en production auprès de la DGFiP.
