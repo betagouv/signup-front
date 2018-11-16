@@ -8,7 +8,7 @@ const IntroDescription = () => (
   <div className="intro">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l&apos;API Impôts Particulier
+      les démarches administratives des usagers, l&apos;API Impot Particulier
       permet de récupérer des informations fiscales des usagers de façon à leur
       éviter la transmission de leur avis d&apos;imposition papier.
     </p>
@@ -59,7 +59,7 @@ const DemarcheDescription = () => (
 const CguDescription = () => (
   <div className="information-text">
     <p>
-      Votre raccordement à l&lsquo;API Impôts Particulier nécessite
+      Votre raccordement à l&lsquo;API Impot Particulier nécessite
       l&lsquo;acceptation de la convention d&lsquo;adhésion fixant vos
       engagements et ceux de la DGFIP et la DINSIC. <br /> Les liens ci-dessous
       vous permettront de visualiser la convention type ainsi que ses annexes.{' '}
@@ -74,7 +74,7 @@ const CguDescription = () => (
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
-      Pour pouvoir bénéficier du raccordement à l&lsquo;API Impôts Particulier,
+      Pour pouvoir bénéficier du raccordement à l&lsquo;API Impot Particulier,
       le cadre légal et réglementaire des fournisseurs de service doit permettre
       à la DGFIP de transmettre des données fiscales à votre entité
       administrative.
