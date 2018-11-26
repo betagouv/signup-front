@@ -8,6 +8,8 @@ import {
 } from '../../lib/services';
 import Prompt from '../Prompt';
 
+const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
+
 class ActionButtons extends React.Component {
   constructor(props) {
     super(props);
@@ -139,7 +141,7 @@ class ActionButtons extends React.Component {
   };
 
   render() {
-    const { acl } = this.props.enrollment;
+    const { acl, token_id } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
     const { doShowPrompt, promptMessage } = this.state;
 
@@ -152,6 +154,14 @@ class ActionButtons extends React.Component {
               onClick={this.handleSaveDraft}
             >
               Enregistrer le brouillon
+            </button>
+          )}
+
+          {token_id && (
+            <button className="button secondary enrollment">
+              <a href={`${API_PARTICULIER_HOST}/admin/token/${token_id}`}>
+                Gérer l'accès à l'API
+              </a>
             </button>
           )}
 
