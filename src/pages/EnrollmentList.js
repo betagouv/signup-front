@@ -194,7 +194,7 @@ class EnrollmentList extends React.Component {
     }
 
     if (column.id === 'updated_at') {
-      return moment(cellValue.updated_at).format('llll');
+      return moment(cellValue).format('llll');
     }
 
     return cellValue;
