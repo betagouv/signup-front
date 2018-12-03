@@ -76,6 +76,7 @@ class Form extends React.Component {
         ),
         siret: '',
         validation_de_convention: false,
+        token_id: null,
       },
     };
   }
