@@ -38,15 +38,17 @@ class Siret extends React.Component {
     const siretWithoutSpaces = siret.replace(/ /g, '');
 
     getSiretInformation(siretWithoutSpaces)
-      .then(({ enseigne, nom_raison_sociale, adresse, activite_principale }) => {
-        this.setState({
-          enseigne,
-          nom_raison_sociale,
-          adresse,
-          activite_principale,
-          siretNotFound: false,
-        });
-      })
+      .then(
+        ({ enseigne, nom_raison_sociale, adresse, activite_principale }) => {
+          this.setState({
+            enseigne,
+            nom_raison_sociale,
+            adresse,
+            activite_principale,
+            siretNotFound: false,
+          });
+        }
+      )
       .catch(() =>
         this.setState({
           enseigne: '',
@@ -131,14 +133,9 @@ class Siret extends React.Component {
 
         <div className="form__group">
           <label htmlFor="enseigne">Enseigne</label>
-          <input
-            type="text"
-            id="enseigne"
-            disabled
-            value={enseigne}
-          />
+          <input type="text" id="enseigne" disabled value={enseigne} />
         </div>
-        
+
         <div className="form__group">
           <label htmlFor="adresse">Adresse</label>
           <input type="text" id="adresse" disabled value={adresse} />
