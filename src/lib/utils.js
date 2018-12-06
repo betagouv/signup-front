@@ -1,4 +1,4 @@
-import _, { isEmpty, isObject } from 'lodash';
+import _, { isEmpty, isObject, isString } from 'lodash';
 
 export function extractTokenFromUrl(url) {
   const hash = url.split('#')[1];
@@ -46,4 +46,28 @@ export function getErrorMessage(error) {
 
   console.error(error);
   return [`Une erreur inconnue est survenue. ${errorMessageEnd}`];
+}
+
+const validNAFCode = {
+  'api-particulier': [
+    '84', // SERVICES D’ADMINISTRATION PUBLIQUE ET DE DÉFENSE ; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE
+    '85', // ENSEIGNEMENT
+    '86', // ACTIVITÉS POUR LA SANTÉ HUMAINE
+  ],
+};
+
+export function isValidNAFCode(provider, NAFcode) {
+  if (!isString(NAFcode)) {
+    return false;
+  }
+
+  if (isEmpty(validNAFCode[provider])) {
+    return true;
+  }
+
+  if (!validNAFCode[provider].includes(NAFcode.substring(0, 2))) {
+    return false;
+  }
+
+  return true;
 }

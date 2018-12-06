@@ -175,6 +175,7 @@ class Form extends React.Component {
         documents,
         documents_attributes,
         donnees,
+        fournisseur_de_donnees,
         fournisseur_de_service,
         messages,
         scopes,
@@ -274,6 +275,7 @@ class Form extends React.Component {
           <Siret
             disabled={disabledApplication}
             siret={siret}
+            fournisseurDeDonnees={fournisseur_de_donnees}
             handleSiretChange={this.handleSiretChange}
           />
         )}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import { getSiretInformation } from '../../lib/services';
 import SearchIcon from '../icons/search';
+import { isValidNAFCode } from '../../lib/utils';
 
 class Siret extends React.Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Siret extends React.Component {
   };
 
   render() {
-    const { disabled, siret } = this.props;
+    const { disabled, siret, fournisseurDeDonnees } = this.props;
     const {
       enseigne,
       nom_raison_sociale,
@@ -109,6 +110,15 @@ class Siret extends React.Component {
           </div>
         )}
 
+        {activite_principale &&
+          !isValidNAFCode(fournisseurDeDonnees, activite_principale) && (
+            <div className="form__group">
+              <div className="notification warning">
+                Votre organisme ne semble pas être éligible
+              </div>
+            </div>
+          )}
+
         <div className="form__group">
           <label htmlFor="nom_raison_sociale">Raison sociale</label>
           <input
@@ -150,6 +160,7 @@ class Siret extends React.Component {
 Siret.propTypes = {
   siret: PropTypes.string,
   disabled: PropTypes.bool.isRequired,
+  fournisseurDeDonnees: PropTypes.string.isRequired,
   handleSiretChange: PropTypes.func.isRequired,
 };
 
