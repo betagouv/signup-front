@@ -97,7 +97,6 @@ class Siret extends React.Component {
               className="overlay-button"
               type="button"
               aria-label="Recherche"
-              onClick={this.getSiret}
             >
               <SearchIcon id="icon-search" title="Rechercher" />
             </button>
