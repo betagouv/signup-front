@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { debounce } from 'lodash';
 import { getSiretInformation } from '../../lib/services';
 import SearchIcon from '../icons/search';
+import { isValidNAFCode } from '../../lib/utils';
 
 class Siret extends React.Component {
   constructor(props) {
@@ -37,15 +38,17 @@ class Siret extends React.Component {
     const siretWithoutSpaces = siret.replace(/ /g, '');
 
     getSiretInformation(siretWithoutSpaces)
-      .then(({ enseigne, nom_raison_sociale, adresse, activite_principale }) => {
-        this.setState({
-          enseigne,
-          nom_raison_sociale,
-          adresse,
-          activite_principale,
-          siretNotFound: false,
-        });
-      })
+      .then(
+        ({ enseigne, nom_raison_sociale, adresse, activite_principale }) => {
+          this.setState({
+            enseigne,
+            nom_raison_sociale,
+            adresse,
+            activite_principale,
+            siretNotFound: false,
+          });
+        }
+      )
       .catch(() =>
         this.setState({
           enseigne: '',
@@ -66,7 +69,7 @@ class Siret extends React.Component {
   };
 
   render() {
-    const { disabled, siret } = this.props;
+    const { disabled, siret, fournisseurDeDonnees } = this.props;
     const {
       enseigne,
       nom_raison_sociale,
@@ -94,7 +97,6 @@ class Siret extends React.Component {
               className="overlay-button"
               type="button"
               aria-label="Recherche"
-              onClick={this.getSiret}
             >
               <SearchIcon id="icon-search" title="Rechercher" />
             </button>
@@ -109,6 +111,15 @@ class Siret extends React.Component {
           </div>
         )}
 
+        {activite_principale &&
+          !isValidNAFCode(fournisseurDeDonnees, activite_principale) && (
+            <div className="form__group">
+              <div className="notification warning">
+                Votre organisme ne semble pas être éligible
+              </div>
+            </div>
+          )}
+
         <div className="form__group">
           <label htmlFor="nom_raison_sociale">Raison sociale</label>
           <input
@@ -121,14 +132,9 @@ class Siret extends React.Component {
 
         <div className="form__group">
           <label htmlFor="enseigne">Enseigne</label>
-          <input
-            type="text"
-            id="enseigne"
-            disabled
-            value={enseigne}
-          />
+          <input type="text" id="enseigne" disabled value={enseigne} />
         </div>
-        
+
         <div className="form__group">
           <label htmlFor="adresse">Adresse</label>
           <input type="text" id="adresse" disabled value={adresse} />
@@ -150,6 +156,7 @@ class Siret extends React.Component {
 Siret.propTypes = {
   siret: PropTypes.string,
   disabled: PropTypes.bool.isRequired,
+  fournisseurDeDonnees: PropTypes.string.isRequired,
   handleSiretChange: PropTypes.func.isRequired,
 };
 

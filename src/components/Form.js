@@ -33,7 +33,6 @@ class Form extends React.Component {
             link: 'https://www.cnil.fr/fr/designation-dpo',
             nom: '',
             email: '',
-            telephone_portable: '',
           },
           {
             id: 'responsable_traitement',
@@ -41,11 +40,12 @@ class Form extends React.Component {
             link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
             nom: '',
             email: '',
-            telephone_portable: '',
           },
           {
             id: 'technique',
             heading: 'Responsable technique',
+            hint:
+              "Cette personne recevra la clé d'API. Le responsable technique peut être le contact technique de votre prestataire",
             nom: '',
             email: '',
             telephone_portable: '',
@@ -175,6 +175,7 @@ class Form extends React.Component {
         documents,
         documents_attributes,
         donnees,
+        fournisseur_de_donnees,
         fournisseur_de_service,
         messages,
         scopes,
@@ -274,6 +275,7 @@ class Form extends React.Component {
           <Siret
             disabled={disabledApplication}
             siret={siret}
+            fournisseurDeDonnees={fournisseur_de_donnees}
             handleSiretChange={this.handleSiretChange}
           />
         )}
@@ -281,7 +283,10 @@ class Form extends React.Component {
         <h2 id="contacts">Contacts</h2>
         <div className="card-row">
           {contacts.map(
-            ({ id, heading, link, nom, email, telephone_portable }, index) => (
+            (
+              { id, heading, link, hint, nom, email, telephone_portable },
+              index
+            ) => (
               <div key={id} className="card">
                 <div className="card__content">
                   <h3>{heading}</h3>
@@ -290,6 +295,7 @@ class Form extends React.Component {
                       {link}
                     </a>
                   )}
+                  {hint && <div className="card__meta">{hint}</div>}
                   <div className="form__group">
                     <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
                     <input
@@ -312,24 +318,26 @@ class Form extends React.Component {
                       value={email}
                     />
                   </div>
-                  <div className="form__group">
-                    <label htmlFor={`person_${id}_telephone_portable`}>
-                      Numéro de téléphone portable
-                    </label>
-                    <small className="card__meta">
-                      La clé d&apos;API vous sera envoyée par SMS à ce numéro
-                    </small>
-                    <input
-                      type="tel"
-                      onChange={this.handleChange}
-                      name={`contacts[${index}].telephone_portable`}
-                      id={`person_${id}_telephone_portable`}
-                      disabled={disableContactInputs}
-                      value={telephone_portable}
-                      placeholder="06XXXXXXXX"
-                      pattern="[0-9]{10}"
-                    />
-                  </div>
+                  {id === 'technique' && (
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_telephone_portable`}>
+                        Numéro de téléphone portable
+                      </label>
+                      <small className="card__meta">
+                        La clé d&apos;API vous sera envoyée par SMS à ce numéro
+                      </small>
+                      <input
+                        type="tel"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].telephone_portable`}
+                        id={`person_${id}_telephone_portable`}
+                        disabled={disableContactInputs}
+                        value={telephone_portable}
+                        placeholder="06XXXXXXXX"
+                        pattern="[0-9]{10}"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             )
