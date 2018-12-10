@@ -37,10 +37,6 @@ const IntroDescription = () => (
       </a>{' '}
       est à votre disposition.
     </p>
-    <p>
-      Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API Impôt Particulier.
-    </p>
   </div>
 );
 
