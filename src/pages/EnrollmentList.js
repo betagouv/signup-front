@@ -22,6 +22,7 @@ const STATE_LABELS = {
 const FOURNISSEUR_DE_DONNEES_LABELS = {
   'api-particulier': 'API Particulier',
   franceconnect: 'FranceConnect',
+  'api-droits-cnam': 'API Droits CNAM',
   dgfip: 'API Impot particulier',
 };
 

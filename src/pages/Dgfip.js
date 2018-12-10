@@ -114,7 +114,10 @@ const DonneesDescription = () => (
     </p>
     <p>
       Vous pouvez consulter le{' '}
-      <a href="/docs/cst-dgfip.pdf" target="_blank">
+      <a
+        href="/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
+        target="_blank"
+      >
         Contrat de Service Technique (CST)
       </a>{' '}
       pour voir le détail des données disponibles.
