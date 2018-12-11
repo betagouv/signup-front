@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isCnam, isDgfip, isFranceConnect }) => (
+const Nav = ({ isCnam, isDgfip }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       {isDgfip && (
@@ -38,14 +38,13 @@ const Nav = ({ isCnam, isDgfip, isFranceConnect }) => (
           Cadre juridique
         </a>
       </li>
-      {!isFranceConnect &&
-        !isCnam && (
-          <li>
-            <a className="side-pane__link" href="#donnees">
-              Données
-            </a>
-          </li>
-        )}
+      {!isCnam && (
+        <li>
+          <a className="side-pane__link" href="#donnees">
+            Données
+          </a>
+        </li>
+      )}
       <li>
         <a className="side-pane__link" href="#cgu">
           Modalités d&apos;utilisation
@@ -85,13 +84,11 @@ const Nav = ({ isCnam, isDgfip, isFranceConnect }) => (
 Nav.propTypes = {
   isCnam: PropTypes.bool,
   isDgfip: PropTypes.bool,
-  isFranceConnect: PropTypes.bool,
 };
 
 Nav.defaultProps = {
   isCnam: false,
   isDgfip: false,
-  isFranceConnect: false,
 };
 
 export default Nav;

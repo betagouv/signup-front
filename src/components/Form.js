@@ -72,7 +72,7 @@ class Form extends React.Component {
         id: null,
         scopes: zipObject(
           form.scopes.map(({ name }) => name),
-          new Array(form.scopes.length).fill(false)
+          form.scopes.map(({ mandatory }) => !!mandatory)
         ),
         siret: '',
         validation_de_convention: false,
@@ -396,7 +396,7 @@ class Form extends React.Component {
                 <label>Sélectionnez vos jeux de données souhaités</label>
                 <div className="row">
                   <div className="column" style={{ flex: 1 }}>
-                    {form.scopes.map(({ name, humanName }) => (
+                    {form.scopes.map(({ name, humanName, mandatory }) => (
                       <div key={name}>
                         <input
                           type="checkbox"
@@ -404,7 +404,7 @@ class Form extends React.Component {
                           onChange={this.handleChange}
                           name={`scopes.${name}`}
                           id={`checkbox-scope_api_entreprise${name}`}
-                          disabled={disabledApplication}
+                          disabled={disabledApplication || mandatory}
                           checked={scopes[name]}
                         />
                         <label

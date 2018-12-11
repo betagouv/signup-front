@@ -6,8 +6,52 @@ import Nav from '../components/Nav';
 const FranceConnectFormConfiguration = {
   provider: 'franceconnect',
   franceConnected: false,
-  scopes: [],
-  cguLink: '/docs/CGU%20FS%20-%20Corps%20juridique%20v2.6.pdf',
+  scopes: [
+    {
+      name: 'openid',
+      humanName:
+        "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
+      mandatory: true,
+    },
+    { name: 'gender', humanName: 'Sexe' },
+    {
+      name: 'birthdate',
+      humanName: 'Date de naissance',
+    },
+    {
+      name: 'birthcountry',
+      humanName: 'Pays de naissance',
+    },
+    {
+      name: 'birthplace',
+      humanName: 'Ville de naissance',
+    },
+    {
+      name: 'given_name',
+      humanName: 'Prénoms',
+    },
+    {
+      name: 'family_name',
+      humanName: 'Nom de naissance',
+    },
+    {
+      name: 'email',
+      humanName: 'Adresse électronique',
+    },
+    {
+      name: 'preferred_username',
+      humanName: "Nom d'usage (information renvoyée si disponible)",
+    },
+    {
+      name: 'address',
+      humanName: 'Adresse postale (information renvoyée si disponible)',
+    },
+    {
+      name: 'phone',
+      humanName: 'Numéro de téléphone (information renvoyée si disponible)',
+    },
+  ],
+  cguLink: '/docs/Franceconnect_CGU_FS_v3.pdf',
   text: {
     title: "Demande d'accès à FranceConnect",
   },
@@ -87,7 +131,7 @@ const FranceConnect = ({
   },
 }) => (
   <div className="documentation">
-    <Nav isFranceConnect />
+    <Nav />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
