@@ -158,11 +158,12 @@ class ActionButtons extends React.Component {
           )}
 
           {token_id && (
-            <button className="button secondary enrollment">
-              <a href={`${API_PARTICULIER_HOST}/admin/token/${token_id}`}>
-                Gérer l'accès à l'API
-              </a>
-            </button>
+            <a
+              className="button secondary enrollment"
+              href={`${API_PARTICULIER_HOST}/admin/token/${token_id}`}
+            >
+              Gérer l'accès à l'API
+            </a>
           )}
 
           {actions.map(({ cssClass, id, label, trigger }) => (
