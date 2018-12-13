@@ -480,7 +480,7 @@ class Form extends React.Component {
           />
           <label htmlFor="validation_de_convention" className="label-inline">
             Je valide les présentes modalités d&apos;utilisation et confirme que
-            le DPO de mon organisme est informé de ma demande
+            le DPD de mon organisme est informé de ma demande
           </label>
         </div>
 
