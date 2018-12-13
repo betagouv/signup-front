@@ -100,8 +100,8 @@ class FranceConnectServiceProvider extends React.Component {
         <div className="form__group">
           <h4 id="france-connect">Connexion à FranceConnect Partenaire</h4>
           <p>
-            Pour demander l'accès à une l'API FranceConnectée, vous devez avoir
-            préalablement créer une démarche (<i>fournisseur de service</i>)
+            Pour demander l'accès à l'API « impôt particulier », vous devez
+            avoir préalablement créé une démarche (fournisseur de service)
             auprès de FranceConnect Partenaire.
             <br />
             Si vous n'en avez pas encore, veuillez créer un{' '}

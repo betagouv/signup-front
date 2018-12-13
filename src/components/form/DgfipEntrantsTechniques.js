@@ -101,12 +101,18 @@ const DgfipEntrantsTechniques = ({
       <div className="information-text">
         <p>
           Afin de permettre la liaison technique entre votre SI et celui de la
-          DGFiP, vous devez fournir les entrants techniques suivants :<br />{' '}
-          adresse(s) IP du(-es) serveur(s) qui va(-ont) communiquer avec
-          l&apos;API Impôt Particulier
-          <br /> partie publique d’un certificat client RGS V2.0 en cours de
-          validité avec son autorité de certification émettrice
+          DGFiP, vous devez fournir les entrants techniques suivants :
         </p>
+        <ul>
+          <li>
+            adresses IP des serveurs qui vont communiquer avec l'API « impôt
+            particulier »
+          </li>
+          <li>
+            partie publique d’un certificat client RGS V2.0 en cours de validité
+            avec son autorité de certification émettrice
+          </li>
+        </ul>
         <p>
           Afin de permettre votre mise en production dans les meilleures
           conditions possibles, veuillez vous assurer de la qualité de ces
@@ -159,13 +165,9 @@ const DgfipEntrantsTechniques = ({
           administratives.
         </p>
         <p>
-          Si vous l&apos;avez déjà fait, complétez les informations relatives à
-          l&apos;homologation et déposez la décision formelle d’homologation
+          Si vous l'avez déjà fait, complétez les informations relatives à
+          l'homologation et déposez la décision formelle d’homologation
           (également appelée attestation formelle).
-        </p>
-        <p>
-          Si vous ne l&apos;avez pas encore fait, envoyez-nous tout de même
-          votre demande et nous vous aiderons à entamer cette démarche.
         </p>
       </div>
       <div className="form__group">
@@ -224,15 +226,14 @@ const DgfipEntrantsTechniques = ({
       <h2 id="volumetrie">Volumétrie</h2>
       <div className="information-text">
         <p>
-          Connaitre les données relatives à la volumétrie et à la saisonnalité
-          de votre téléservice nous permettra de vous offrir la meilleure
-          qualité de service possible. En effet, cela permettra de prévenir les
-          pics de charges et de transmettre ces informations aux fournisseurs de
-          vos données.
+          Connaître les données relatives à la volumétrie et à la saisonnalité
+          de votre téléservice nous permet de vous offrir la meilleure qualité
+          de service possible. Ces informations sont transmises aux fournisseurs
+          de vos données pour prévenir les pics de charges .
         </p>
         <p>
-          Conformément à notre charte, nous nous réservons le droit de réduire
-          ou couper les appels autorisés au fournisseur de service.
+          Conformément à la convention d'adhésion, nous nous réservons le droit
+          de réduire ou couper les appels autorisés au fournisseur de service.
         </p>
       </div>
       <div className="form__group">
@@ -297,12 +298,9 @@ const DgfipEntrantsTechniques = ({
       <h2 id="recette-fonctionnelle">Recette fonctionnelle</h2>
       <div className="information-text">
         <p>
-          Afin d’assurer la qualification de votre applicatif, une API de test
-          est mise à votre disposition en suivant le lien ci-dessous. Elle vous
-          permettra de visualiser les données retournées par l&apos;API Impôt
-          Particulier. Cette qualification est obligatoire tant pour votre
-          homologation de sécurité ou vos obligations CNIL que pour demander
-          l&apos;entrée en production auprès de la DGFiP.
+          Une API de test est mise à votre disposition pour vous permettre de
+          qualifier votre applicatif. Elle vous permet de visualiser les données
+          retournées par l'API « impôt particulier ».
         </p>
         <p>
           <a
@@ -312,6 +310,11 @@ const DgfipEntrantsTechniques = ({
           >
             Accèder à l'API de test
           </a>
+        </p>
+        <p>
+          Cette qualification est obligatoire tant pour votre homologation de
+          sécurité ou vos obligations RGPD que pour demander l'entrée en
+          production auprès de la DGFiP.
         </p>
       </div>
       <div className="form__group">
@@ -336,24 +339,11 @@ const DgfipEntrantsTechniques = ({
             La demande d’entrée en production revêt un caractère définitif et
             entraîne le transfert de vos entrants techniques vers les
             exploitants informatiques de la DGFiP. Merci de vous assurer de la
-            bonne valorisation de l&apos;ensemble des informations demandées
-            avant de procéder à cette demande.
+            bonne valorisation de l'ensemble des informations demandées avant de
+            procéder à cette demande. Votre entrée en production se fera lors du
+            premier créneau disponible à compter de l'envoi des entrants
+            techniques de production.
           </p>
-          <p>
-            Votre entrée en production se fera lors du premier créneau
-            disponible à compter de l&apos;envoi des entrants technique de
-            production et conformément au calendrier de nos disponibilités.
-          </p>
-          <p>Les périodes sans aucunes mise en prod sont :</p>
-          <ul>
-            <li>Fin mars -> Fin juin</li>
-            <li>Aout -> Septembre</li>
-            <li>Mi-décembre -> début janvier</li>
-          </ul>
-          <p>Les périodes tendues :</p>
-          <ul>
-            <li>Juillet</li>
-          </ul>
         </div>
       )}
     </React.Fragment>
