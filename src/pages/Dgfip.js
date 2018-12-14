@@ -62,10 +62,6 @@ const CguDescription = () => (
       la DINSIC. Les liens ci-dessous vous permettront de visualiser la
       convention type ainsi que ses annexes.
     </p>
-    <p>
-      La convention générée à l‘issue de votre demande de raccordement
-      contiendra l‘ensemble des éléments propres à votre situation.
-    </p>
   </div>
 );
 
@@ -120,13 +116,15 @@ const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-    <label>
-      <input type="checkbox" />
-      J'atteste respecter les principes fondamentaux de la protection des
-      données et avoir réalisé l'étude d'impact associée avant la mise en
-      production de mon téléservice, conformément au règlement général sur la
-      protection des données (RGPD) en vigueur depuis le 25 mai 2018.
-    </label>
+    <p>
+      <b>
+        En poursuivant cette demande, j'atteste respecter les principes
+        fondamentaux de la protection des données et avoir réalisé l'étude
+        d'impact associée avant la mise en production de mon téléservice,
+        conformément au règlement général sur la protection des données (RGPD)
+        en vigueur depuis le 25 mai 2018.
+      </b>
+    </p>
     <p>
       L'API « impôt particulier » restitue à des années de revenus différentes
       selon que la demande soit formulée avant ou après la taxation des revenus.
