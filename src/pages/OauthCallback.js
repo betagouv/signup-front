@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { extractTokenFromUrl } from '../lib/utils';
+
 import { withUser } from '../components/UserContext';
 
 export const saveCurrentPageForPostloginRedirect = () =>
@@ -36,7 +36,7 @@ class OauthCallback extends React.Component {
     const storedPath = localStorage.getItem('returnUrl') || '/';
     localStorage.removeItem('returnUrl');
 
-    const token = extractTokenFromUrl(window.location.hash);
+    const token = new URL(window.location.href).searchParams.get('token');
 
     if (token) {
       localStorage.setItem('token', token);
