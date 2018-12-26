@@ -60,6 +60,7 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
+const isFranceConnected = true;
 
 // Le demandeur doit donner le SIRET de son organisme
 // Le demandeur doit indiquer ses contacts
@@ -145,7 +146,7 @@ const DonneesDescription = () => (
           <td>Revenus 2015</td>
         </tr>
         <tr>
-          <td colspan="3" style={{ textAlign: 'center' }}>
+          <td colSpan="3" style={{ textAlign: 'center' }}>
             Taxation des revenus à compter du mois d'août
           </td>
         </tr>
@@ -158,10 +159,7 @@ const DonneesDescription = () => (
     </table>
   </div>
 );
-
-const DgfipFormConfiguration = {
-  franceConnected: true,
-  scopes: [
+const donneesDisponibles = [
     {
       "name": "dgfip_revenu_fiscal_de_reference_n_moins_1",
       "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)"
@@ -178,12 +176,9 @@ const DgfipFormConfiguration = {
       "name": "dgfip_adresse_fiscale_de_taxation_n_moins_2",
       "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)"
     }
-  ],
-  cguLink: '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf',
-};
+  ];
 
 // Le demandeur valide les modalités d'utilisation
-
 const CguDescription = () => (
   <div className="information-text">
     <p>
@@ -194,6 +189,7 @@ const CguDescription = () => (
     </p>
   </div>
 );
+const cguLink = "/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
 
 const Dgfip = ({
   match: {
@@ -205,15 +201,17 @@ const Dgfip = ({
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        form={DgfipFormConfiguration}
         isDgfip={true}
         provider={provider}
         title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
-        CguDescription={CguDescription}
+        isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
+        donneesDisponibles={donneesDisponibles}
+        CguDescription={CguDescription}
+        cguLink={cguLink}
       />
     </div>
   </div>

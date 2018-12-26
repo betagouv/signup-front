@@ -16,7 +16,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    const { form } = props;
+    const donneesDisponibles = props.donneesDisponibles;
 
     this.state = {
       errors: [],
@@ -62,8 +62,8 @@ class Form extends React.Component {
         donnees: {
           conservation: '',
           destinataires: zipObject(
-            form.scopes.map(({ name }) => name),
-            new Array(form.scopes.length).fill('')
+            donneesDisponibles.map(({ name }) => name),
+            new Array(donneesDisponibles.length).fill('')
           ),
         },
         fournisseur_de_donnees: props.provider,
@@ -71,8 +71,8 @@ class Form extends React.Component {
         messages: [],
         id: null,
         scopes: zipObject(
-          form.scopes.map(({ name }) => name),
-          form.scopes.map(({ mandatory }) => !!mandatory)
+          donneesDisponibles.map(({ name }) => name),
+          donneesDisponibles.map(({ mandatory }) => !!mandatory)
         ),
         siret: '',
         validation_de_convention: false,
@@ -187,14 +187,16 @@ class Form extends React.Component {
     } = this.state;
 
     const {
-      form,
       isDgfip,
       title,
       IntroDescription,
       DemarcheDescription,
+      isFranceConnected,
       CguDescription,
+      cguLink,
       CadreJuridiqueDescription,
       DonneesDescription,
+      donneesDisponibles
     } = this.props;
 
     const disabledApplication = !acl.send_application;
@@ -233,7 +235,7 @@ class Form extends React.Component {
         <DemarcheDescription />
         {!isUserEnrollmentLoading &&
           !disabledApplication &&
-          form.franceConnected && (
+          isFranceConnected && (
             <FranceConnectServiceProvider
               onServiceProviderChange={this.handleServiceProviderChange}
               fournisseur_de_service={fournisseur_de_service}
@@ -246,7 +248,7 @@ class Form extends React.Component {
             onChange={this.handleChange}
             name="demarche.intitule"
             id="intitule_demarche"
-            disabled={form.franceConnected || disabledApplication}
+            disabled={isFranceConnected || disabledApplication}
             value={demarche.intitule}
           />
         </div>
@@ -260,11 +262,12 @@ class Form extends React.Component {
             onChange={this.handleChange}
             name="demarche.description"
             id="description_service"
-            disabled={form.franceConnected || disabledApplication}
+            disabled={isFranceConnected
+             || disabledApplication}
             value={demarche.description}
           />
         </div>
-        {form.franceConnected && (
+        {isFranceConnected && (
           <div className="form__group">
             <label>Clé fournisseur de service</label>
             <input type="text" disabled value={fournisseur_de_service} />
@@ -388,7 +391,7 @@ class Form extends React.Component {
           label={'Pièce jointe'}
         />
 
-        {!isEmpty(form.scopes) && (
+        {!isEmpty(donneesDisponibles) && (
           <React.Fragment>
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
@@ -397,7 +400,7 @@ class Form extends React.Component {
                 <label>Sélectionnez vos jeux de données souhaités</label>
                 <div className="row">
                   <div className="column" style={{ flex: 1 }}>
-                    {form.scopes.map(({ name, humanName, mandatory }) => (
+                    {donneesDisponibles.map(({ name, humanName, mandatory }) => (
                       <div key={name}>
                         <input
                           type="checkbox"
@@ -466,7 +469,7 @@ class Form extends React.Component {
         <embed
           title="CGU"
           type="application/pdf"
-          src={form.cguLink}
+          src={cguLink}
           width="100%"
           height="800px"
         />
@@ -517,7 +520,9 @@ Form.propTypes = {
   title: PropTypes.string,
   IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
+  isFranceConnected: PropTypes.bool,
   CguDescription: PropTypes.func.isRequired,
+  cguLink: PropTypes.string.isRequired,
   CadreJuridiqueDescription: PropTypes.func.isRequired,
   DonneesDescription: PropTypes.func.isRequired,
   history: PropTypes.shape({
@@ -528,6 +533,7 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isDgfip: false,
+  isFranceConnected: false
 };
 
 export default withRouter(Form);
