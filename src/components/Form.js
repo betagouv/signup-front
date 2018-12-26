@@ -66,7 +66,7 @@ class Form extends React.Component {
             new Array(form.scopes.length).fill('')
           ),
         },
-        fournisseur_de_donnees: form.provider,
+        fournisseur_de_donnees: props.provider,
         fournisseur_de_service: '',
         messages: [],
         id: null,
@@ -189,6 +189,7 @@ class Form extends React.Component {
     const {
       form,
       isDgfip,
+      title,
       IntroDescription,
       DemarcheDescription,
       CguDescription,
@@ -225,7 +226,7 @@ class Form extends React.Component {
           return null;
         })}
 
-        <h1>{form.text.title}</h1>
+        <h1>{title}</h1>
         <IntroDescription />
 
         <h2 id="demarche">Démarche</h2>
@@ -513,6 +514,7 @@ Form.propTypes = {
   enrollmentId: PropTypes.string,
   form: PropTypes.object.isRequired,
   isDgfip: PropTypes.bool,
+  title: PropTypes.string,
   IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
   CguDescription: PropTypes.func.isRequired,

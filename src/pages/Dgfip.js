@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 
+const provider = 'dgfip';
+
+const title = "Demande d'accès à l'API Impot Particulier";
+
 const IntroDescription = () => (
   <div className="intro">
     <p>
@@ -159,7 +163,6 @@ const DonneesDescription = () => (
 );
 
 const DgfipFormConfiguration = {
-  provider: 'dgfip',
   franceConnected: true,
   scopes: [
     {
@@ -182,9 +185,6 @@ const DgfipFormConfiguration = {
     },
   ],
   cguLink: '/docs/cst-dgfip.pdf',
-  text: {
-    title: "Demande d'accès à l'API Impot Particulier",
-  },
 };
 
 const Dgfip = ({
@@ -199,6 +199,8 @@ const Dgfip = ({
         enrollmentId={enrollmentId}
         form={DgfipFormConfiguration}
         isDgfip={true}
+        provider={provider}
+        title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         CguDescription={CguDescription}
