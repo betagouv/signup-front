@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 
+// Description du contexte
+
 const provider = 'dgfip';
 
 const title = "Demande d'accès à l'API « impôt particulier »";
@@ -44,6 +46,8 @@ const IntroDescription = () => (
   </div>
 );
 
+// Le demandeur doit décrire le contexte d'usage de l'API
+
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>
@@ -57,17 +61,9 @@ const DemarcheDescription = () => (
   </div>
 );
 
-const CguDescription = () => (
-  <div className="information-text">
-    <p>
-      Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
-      de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
-      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
-      convention type ainsi que ses annexes.
-    </p>
-  </div>
-);
-
+// Le demandeur doit donner le SIRET de son organisme
+// Le demandeur doit indiquer ses contacts
+// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
@@ -84,6 +80,7 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
+// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
   <div className="information-text">
     <p>
@@ -184,6 +181,19 @@ const DgfipFormConfiguration = {
   ],
   cguLink: '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf',
 };
+
+// Le demandeur valide les modalités d'utilisation
+
+const CguDescription = () => (
+  <div className="information-text">
+    <p>
+      Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
+      de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
+      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
+      convention type ainsi que ses annexes.
+    </p>
+  </div>
+);
 
 const Dgfip = ({
   match: {
