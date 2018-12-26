@@ -5,7 +5,7 @@ import Nav from '../components/Nav';
 
 const provider = 'dgfip';
 
-const title = "Demande d'accès à l'API Impot Particulier";
+const title = "Demande d'accès à l'API « impôt particulier »";
 
 const IntroDescription = () => (
   <div className="intro">
@@ -166,25 +166,23 @@ const DgfipFormConfiguration = {
   franceConnected: true,
   scopes: [
     {
-      name: 'dgfip_revenu_fiscal_de_reference_n_moins_1',
-      humanName:
-        'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (N -1)',
+      "name": "dgfip_revenu_fiscal_de_reference_n_moins_1",
+      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)"
     },
     {
-      name: 'dgfip_revenu_fiscal_de_reference_n_moins_2',
-      humanName:
-        'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (N -2)',
+      "name": "dgfip_revenu_fiscal_de_reference_n_moins_2",
+      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (avant-dernière année de revenu)"
     },
     {
-      name: 'dgfip_adresse_fiscale_de_taxation_n_moins_1',
-      humanName: 'DGFIP - Adresse fiscale de taxation au 1er janvier (N -1)',
+      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_1",
+      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (dernière année de revenu)"
     },
     {
-      name: 'dgfip_adresse_fiscale_de_taxation_n_moins_2',
-      humanName: 'DGFIP - Adresse fiscale de taxation au 1er janvier (N -2)',
-    },
+      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_2",
+      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)"
+    }
   ],
-  cguLink: '/docs/cst-dgfip.pdf',
+  cguLink: '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf',
 };
 
 const Dgfip = ({
