@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import CnamFormConfiguration from '../components/form/config/api-droits-cnam';
 
+// Description du contexte
+const provider = 'api-droits-cnam';
+const title = "Demande d'accès à l'API Droits CNAM";
 const IntroDescription = () => (
   <div className="intro">
     <p>
@@ -30,13 +32,22 @@ const IntroDescription = () => (
   </div>
 );
 
+// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => <React.Fragment />;
+const isFranceConnected = true;
 
-const CguDescription = () => <React.Fragment />;
-
+// Le demandeur doit donner le SIRET de son organisme
+// Le demandeur doit indiquer ses contacts
+// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => <React.Fragment />;
 
+// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => <React.Fragment />;
+const donneesDisponibles = [];
+
+// Le demandeur valide les modalités d'utilisation
+const CguDescription = () => <React.Fragment />;
+const cguLink = "/docs/API_Droits_CNAM_CGU_20181210.pdf";
 
 const ApiDroitsCnam = ({
   match: {
@@ -48,13 +59,17 @@ const ApiDroitsCnam = ({
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        form={CnamFormConfiguration}
         isCnam={true}
+        provider={provider}
+        title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
-        CguDescription={CguDescription}
+        isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
+        donneesDisponibles={donneesDisponibles}
+        CguDescription={CguDescription}
+        cguLink={cguLink}
       />
     </div>
   </div>

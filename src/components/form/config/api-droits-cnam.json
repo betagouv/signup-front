@@ -1,9 +1,0 @@
-{
-  "provider": "api-droits-cnam",
-  "franceConnected": true,
-  "scopes": [],
-  "cguLink": "/docs/API_Droits_CNAM_CGU_20181210.pdf",
-  "text": {
-    "title": "Demande d'accès à l'API Droits CNAM"
-  }
-}
