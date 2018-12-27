@@ -42,6 +42,8 @@ const isFranceConnected = true;
 const CadreJuridiqueDescription = () => <React.Fragment />;
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
+// Les perimètres de données ne sont pas disponibles
+// La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
 const DonneesDescription = () => <React.Fragment />;
 const donneesDisponibles = [];
 
@@ -58,7 +60,15 @@ const ApiDroitsCnam = ({
   },
 }) => (
   <div className="documentation">
-    <Nav isCnam={true} />
+    <Nav
+      navLinksGeneral = {[
+      {id: "#demarche", text: "Démarche"},
+      {id: "#identite", text: "Identité"},
+      {id: "#contacts", text: "Contacts"},
+      {id: "#cadre-juridique", text: "Cadre juridique"},
+      {id: "#cgu", text: "Modalités d'utilisation"},
+      ]}
+    />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}

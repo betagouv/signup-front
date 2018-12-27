@@ -202,10 +202,28 @@ const Dgfip = ({
 }) => (
   <div className="documentation">
     <Nav 
-    isDgfip={true}
-    logo = {{src: "/images/logo-dgfip.png", alt: "Direction générale des finances publiques"}}
-     />
-    }
+    logo = {{
+      src: "/images/logo-dgfip.png",
+      alt: "Direction générale des finances publiques"
+    }}
+    navLinksGeneral = {[
+      {id: "#demarche", text: "Démarche"},
+      {id: "#identite", text: "Identité"},
+      {id: "#contacts", text: "Contacts"},
+      {id: "#cadre-juridique", text: "Cadre juridique"},
+      {id: "#donnees", text: "Données"},
+      {id: "#cgu", text: "Modalités d'utilisation"},
+      ]}
+    titleContenusSupplementaires = {"Données de productions"}
+    navLinksContenusSupplementaires = {[
+      {id: "#entrants-techniques", text: "Entrants techniques"},
+      {id: "#homologation-securite", text: "Homologation de sécurité"},
+      {id: "#volumetrie", text: "Volumétrie"},
+      {id: "#recette-fonctionnelle", text: "Recette fonctionnelle"},
+      ]}
+    />
+  }
+    
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
