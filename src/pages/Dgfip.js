@@ -201,7 +201,11 @@ const Dgfip = ({
   },
 }) => (
   <div className="documentation">
-    <Nav isDgfip={true} />
+    <Nav 
+    isDgfip={true}
+    logo = {{src: "/images/logo-dgfip.png", alt: "Direction générale des finances publiques"}}
+     />
+    }
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}

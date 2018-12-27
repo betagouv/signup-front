@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isCnam, isDgfip }) => (
+const Nav = ({ isCnam, isDgfip, logo }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
-      {isDgfip && (
+      {logo && (
         <li className="text-center">
           <a className="side-pane__link" href="https://www.impots.gouv.fr/">
             <img
-              alt=""
-              src="/images/logo-dgfip.png"
+              alt={logo.alt}
+              src={logo.src}
               style={{ mixBlendMode: 'multiply' }}
             />
           </a>
@@ -84,6 +84,7 @@ const Nav = ({ isCnam, isDgfip }) => (
 Nav.propTypes = {
   isCnam: PropTypes.bool,
   isDgfip: PropTypes.bool,
+  logo: PropTypes.object
 };
 
 Nav.defaultProps = {
