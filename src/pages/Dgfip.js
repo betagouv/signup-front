@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
 
 // Description du contexte
 
@@ -191,6 +192,9 @@ const CguDescription = () => (
 );
 const cguLink = "/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
 
+// Le demandeur doit remplir des contenus supplémentaires
+const ContenusSupplementaires = DgfipEntrantsTechniques;
+
 const Dgfip = ({
   match: {
     params: { enrollmentId },
@@ -212,6 +216,7 @@ const Dgfip = ({
         donneesDisponibles={donneesDisponibles}
         CguDescription={CguDescription}
         cguLink={cguLink}
+        ContenusSupplementaires={ContenusSupplementaires}
       />
     </div>
   </div>

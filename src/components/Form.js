@@ -9,7 +9,6 @@ import { getErrorMessage } from '../lib/utils';
 import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
-import DgfipEntrantsTechniques from './form/DgfipEntrantsTechniques';
 import DocumentUpload from './form/DocumentUpload';
 
 class Form extends React.Component {
@@ -187,7 +186,6 @@ class Form extends React.Component {
     } = this.state;
 
     const {
-      isDgfip,
       title,
       IntroDescription,
       DemarcheDescription,
@@ -196,7 +194,8 @@ class Form extends React.Component {
       cguLink,
       CadreJuridiqueDescription,
       DonneesDescription,
-      donneesDisponibles
+      donneesDisponibles,
+      ContenusSupplementaires
     } = this.props;
 
     const disabledApplication = !acl.send_application;
@@ -488,14 +487,12 @@ class Form extends React.Component {
           </label>
         </div>
 
-        {isDgfip && (
-          <DgfipEntrantsTechniques
+        <ContenusSupplementaires
             enrollment={this.state.enrollment}
             onChange={this.handleChange}
             handleDocumentsChange={this.handleDocumentsChange}
             disabled={disabledApplication}
           />
-        )}
 
         <ActionButtons
           enrollment={this.state.enrollment}
@@ -515,16 +512,16 @@ class Form extends React.Component {
 
 Form.propTypes = {
   enrollmentId: PropTypes.string,
-  form: PropTypes.object.isRequired,
-  isDgfip: PropTypes.bool,
   title: PropTypes.string,
   IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
   isFranceConnected: PropTypes.bool,
-  CguDescription: PropTypes.func.isRequired,
-  cguLink: PropTypes.string.isRequired,
   CadreJuridiqueDescription: PropTypes.func.isRequired,
   DonneesDescription: PropTypes.func.isRequired,
+  donneesDisponibles: PropTypes.array.isRequired,
+  CguDescription: PropTypes.func.isRequired,
+  cguLink: PropTypes.string.isRequired,
+  ContenusSupplementaires: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
@@ -532,7 +529,6 @@ Form.propTypes = {
 
 Form.defaultProps = {
   enrollmentId: null,
-  isDgfip: false,
   isFranceConnected: false
 };
 

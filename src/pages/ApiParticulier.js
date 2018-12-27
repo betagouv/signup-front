@@ -119,6 +119,9 @@ const donneesDisponibles = [
 const CguDescription = () => <React.Fragment />;
 const cguLink = "https://particulier.api.gouv.fr/API_Particulier_modalites.pdf";
 
+// Le demandeur doit remplir des contenus supplémentaires
+const ContenusSupplementaires = () => <React.Fragment />;
+
 const ApiParticulier = ({
   match: {
     params: { enrollmentId },
@@ -139,6 +142,7 @@ const ApiParticulier = ({
         donneesDisponibles={donneesDisponibles}
         CguDescription={CguDescription}
         cguLink={cguLink}
+        ContenusSupplementaires={ContenusSupplementaires}
       />
     </div>
   </div>

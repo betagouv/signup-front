@@ -49,6 +49,9 @@ const donneesDisponibles = [];
 const CguDescription = () => <React.Fragment />;
 const cguLink = "/docs/API_Droits_CNAM_CGU_20181210.pdf";
 
+// Le demandeur doit remplir des contenus supplémentaires
+const ContenusSupplementaires = () => <React.Fragment />;
+
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -70,6 +73,7 @@ const ApiDroitsCnam = ({
         donneesDisponibles={donneesDisponibles}
         CguDescription={CguDescription}
         cguLink={cguLink}
+        ContenusSupplementaires={ContenusSupplementaires}
       />
     </div>
   </div>
