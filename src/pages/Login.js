@@ -3,16 +3,10 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { withUser } from '../components/UserContext';
 
-const {
-  REACT_APP_OAUTH_CLIENT_ID: OAUTH_CLIENT_ID,
-  REACT_APP_OAUTH_AUTHORIZE_URI: OAUTH_AUTHORIZE_URI,
-  REACT_APP_OAUTH_REDIRECT_URI: OAUTH_REDIRECT_URI,
-} = process.env;
+const { REACT_APP_OAUTH_AUTHORIZE_URI: OAUTH_AUTHORIZE_URI } = process.env;
 
 const Login = ({ user }) => {
-  const authorizeUri = `${OAUTH_AUTHORIZE_URI}?client_id=${OAUTH_CLIENT_ID}&redirect_uri=${encodeURIComponent(
-    OAUTH_REDIRECT_URI
-  )}&scope=&response_type=token&state=`;
+  const authorizeUri = OAUTH_AUTHORIZE_URI;
 
   if (user) {
     return <Redirect to="/" />;
