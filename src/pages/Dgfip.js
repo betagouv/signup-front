@@ -5,7 +5,6 @@ import Nav from '../components/Nav';
 import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
 
 // Description du contexte
-
 const provider = 'dgfip';
 
 const title = "Demande d'accès à l'API « impôt particulier »";
@@ -48,7 +47,6 @@ const IntroDescription = () => (
 );
 
 // Le demandeur doit décrire le contexte d'usage de l'API
-
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>

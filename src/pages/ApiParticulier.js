@@ -4,7 +4,6 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 
 // Description du contexte
-
 const provider = "api-particulier";
 const title = "Demande d'accès à API Particulier";
 
@@ -31,7 +30,6 @@ const IntroDescription = () => (
 );
 
 // Le demandeur doit décrire le contexte d'usage de l'API
-
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>
@@ -48,7 +46,6 @@ const isFranceConnected = false;
 // Le demandeur doit donner le SIRET de son organisme
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
-
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
@@ -66,7 +63,6 @@ const CadreJuridiqueDescription = () => (
 );
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
-
 const DonneesDescription = () => (
   <section className="information-text">
     <p>
@@ -115,7 +111,6 @@ const availableScopes = [
   ];
 
 // Le demandeur valide les modalités d'utilisation
-
 const CguDescription = () => <React.Fragment />;
 const cguLink = "https://particulier.api.gouv.fr/API_Particulier_modalites.pdf";
 
