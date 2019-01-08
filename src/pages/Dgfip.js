@@ -207,19 +207,19 @@ const Dgfip = ({
       alt: "Direction générale des finances publiques"
     }}
     navLinksGeneral = {[
-      {id: "#demarche", text: "Démarche"},
-      {id: "#identite", text: "Identité"},
-      {id: "#contacts", text: "Contacts"},
-      {id: "#cadre-juridique", text: "Cadre juridique"},
-      {id: "#donnees", text: "Données"},
-      {id: "#cgu", text: "Modalités d'utilisation"},
+      {id: "demarche", text: "Démarche"},
+      {id: "identite", text: "Identité"},
+      {id: "contacts", text: "Contacts"},
+      {id: "cadre-juridique", text: "Cadre juridique"},
+      {id: "donnees", text: "Données"},
+      {id: "cgu", text: "Modalités d'utilisation"},
       ]}
     titleContenusSupplementaires = {"Données de productions"}
     navLinksContenusSupplementaires = {[
-      {id: "#entrants-techniques", text: "Entrants techniques"},
-      {id: "#homologation-securite", text: "Homologation de sécurité"},
-      {id: "#volumetrie", text: "Volumétrie"},
-      {id: "#recette-fonctionnelle", text: "Recette fonctionnelle"},
+      {id: "entrants-techniques", text: "Entrants techniques"},
+      {id: "homologation-securite", text: "Homologation de sécurité"},
+      {id: "volumetrie", text: "Volumétrie"},
+      {id: "recette-fonctionnelle", text: "Recette fonctionnelle"},
       ]}
     />
   }

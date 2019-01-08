@@ -20,7 +20,7 @@ const Nav = ({ isCnam, logo, navLinksGeneral, titleContenusSupplementaires, navL
       </li>
         {navLinksGeneral.map(({id, text}) => (
           <li key={id}>
-            <a className="side-pane__link" href={id}>
+            <a className="side-pane__link" href="#{id}">
               {text}
             </a>
           </li>
@@ -33,7 +33,7 @@ const Nav = ({ isCnam, logo, navLinksGeneral, titleContenusSupplementaires, navL
         </li>
         {navLinksContenusSupplementaires.map(({id, text}) => (
           <li key={id}>
-            <a className="side-pane__link" href={id}>
+            <a className="side-pane__link" href="#{id}">
               {text}
             </a>
           </li>

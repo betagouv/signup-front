@@ -130,12 +130,12 @@ const ApiParticulier = ({
   <div className="documentation">
     <Nav 
       navLinksGeneral = {[
-        {id: "#demarche", text: "Démarche"},
-        {id: "#identite", text: "Identité"},
-        {id: "#contacts", text: "Contacts"},
-        {id: "#cadre-juridique", text: "Cadre juridique"},
-        {id: "#donnees", text: "Données"},
-        {id: "#cgu", text: "Modalités d'utilisation"},
+        {id: "demarche", text: "Démarche"},
+        {id: "identite", text: "Identité"},
+        {id: "contacts", text: "Contacts"},
+        {id: "cadre-juridique", text: "Cadre juridique"},
+        {id: "donnees", text: "Données"},
+        {id: "cgu", text: "Modalités d'utilisation"},
         ]}
     />
     <div className="main-pane">

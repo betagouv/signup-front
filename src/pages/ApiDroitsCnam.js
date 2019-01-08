@@ -62,11 +62,11 @@ const ApiDroitsCnam = ({
   <div className="documentation">
     <Nav
       navLinksGeneral = {[
-      {id: "#demarche", text: "Démarche"},
-      {id: "#identite", text: "Identité"},
-      {id: "#contacts", text: "Contacts"},
-      {id: "#cadre-juridique", text: "Cadre juridique"},
-      {id: "#cgu", text: "Modalités d'utilisation"},
+      {id: "demarche", text: "Démarche"},
+      {id: "identite", text: "Identité"},
+      {id: "contacts", text: "Contacts"},
+      {id: "cadre-juridique", text: "Cadre juridique"},
+      {id: "cgu", text: "Modalités d'utilisation"},
       ]}
     />
     <div className="main-pane">
