@@ -160,7 +160,7 @@ const DonneesDescription = () => (
     </table>
   </div>
 );
-const donneesDisponibles = [
+const availableScopes = [
     {
       "name": "dgfip_revenu_fiscal_de_reference_n_moins_1",
       "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)"
@@ -235,7 +235,7 @@ const Dgfip = ({
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
-        donneesDisponibles={donneesDisponibles}
+        availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
         ContenusSupplementaires={ContenusSupplementaires}

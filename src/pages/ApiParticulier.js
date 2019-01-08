@@ -95,7 +95,7 @@ const DonneesDescription = () => (
   </section>
 );
 
-const donneesDisponibles = [
+const availableScopes = [
     {
       "name": "dgfip_avis_imposition",
       "humanName": "DGFIP - Avis d'imposition"
@@ -148,7 +148,7 @@ const ApiParticulier = ({
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
-        donneesDisponibles={donneesDisponibles}
+        availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
         ContenusSupplementaires={ContenusSupplementaires}

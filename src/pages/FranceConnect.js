@@ -77,7 +77,7 @@ const CadreJuridiqueDescription = () => (
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => <React.Fragment />;
-const donneesDisponibles = [
+const availableScopes = [
     {
       name: 'openid',
       humanName:
@@ -156,7 +156,7 @@ const FranceConnect = ({
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
-        donneesDisponibles={donneesDisponibles}
+        availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
         ContenusSupplementaires={ContenusSupplementaires}

@@ -45,7 +45,7 @@ const CadreJuridiqueDescription = () => <React.Fragment />;
 // Les perimètres de données ne sont pas disponibles
 // La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
 const DonneesDescription = () => <React.Fragment />;
-const donneesDisponibles = [];
+const availableScopes = [];
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
@@ -80,7 +80,7 @@ const ApiDroitsCnam = ({
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
-        donneesDisponibles={donneesDisponibles}
+        availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
         ContenusSupplementaires={ContenusSupplementaires}

@@ -15,7 +15,7 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    const donneesDisponibles = props.donneesDisponibles;
+    const availableScopes = props.availableScopes;
 
     this.state = {
       errors: [],
@@ -61,8 +61,8 @@ class Form extends React.Component {
         donnees: {
           conservation: '',
           destinataires: zipObject(
-            donneesDisponibles.map(({ name }) => name),
-            new Array(donneesDisponibles.length).fill('')
+            availableScopes.map(({ name }) => name),
+            new Array(availableScopes.length).fill('')
           ),
         },
         fournisseur_de_donnees: props.provider,
@@ -70,8 +70,8 @@ class Form extends React.Component {
         messages: [],
         id: null,
         scopes: zipObject(
-          donneesDisponibles.map(({ name }) => name),
-          donneesDisponibles.map(({ mandatory }) => !!mandatory)
+          availableScopes.map(({ name }) => name),
+          availableScopes.map(({ mandatory }) => !!mandatory)
         ),
         siret: '',
         validation_de_convention: false,
@@ -194,7 +194,7 @@ class Form extends React.Component {
       cguLink,
       CadreJuridiqueDescription,
       DonneesDescription,
-      donneesDisponibles,
+      availableScopes,
       ContenusSupplementaires
     } = this.props;
 
@@ -390,7 +390,7 @@ class Form extends React.Component {
           label={'Pièce jointe'}
         />
 
-        {!isEmpty(donneesDisponibles) && (
+        {!isEmpty(availableScopes) && (
           <React.Fragment>
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
@@ -399,7 +399,7 @@ class Form extends React.Component {
                 <label>Sélectionnez vos jeux de données souhaités</label>
                 <div className="row">
                   <div className="column" style={{ flex: 1 }}>
-                    {donneesDisponibles.map(({ name, humanName, mandatory }) => (
+                    {availableScopes.map(({ name, humanName, mandatory }) => (
                       <div key={name}>
                         <input
                           type="checkbox"
@@ -518,7 +518,7 @@ Form.propTypes = {
   isFranceConnected: PropTypes.bool,
   CadreJuridiqueDescription: PropTypes.func.isRequired,
   DonneesDescription: PropTypes.func.isRequired,
-  donneesDisponibles: PropTypes.array.isRequired,
+  availableScopes: PropTypes.array.isRequired,
   CguDescription: PropTypes.func.isRequired,
   cguLink: PropTypes.string.isRequired,
   ContenusSupplementaires: PropTypes.func.isRequired,
