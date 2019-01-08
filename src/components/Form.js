@@ -195,7 +195,7 @@ class Form extends React.Component {
       CadreJuridiqueDescription,
       DonneesDescription,
       availableScopes,
-      ContenusSupplementaires
+      AdditionalContent
     } = this.props;
 
     const disabledApplication = !acl.send_application;
@@ -487,7 +487,7 @@ class Form extends React.Component {
           </label>
         </div>
 
-        <ContenusSupplementaires
+        <AdditionalContent
             enrollment={this.state.enrollment}
             onChange={this.handleChange}
             handleDocumentsChange={this.handleDocumentsChange}
@@ -521,7 +521,7 @@ Form.propTypes = {
   availableScopes: PropTypes.array.isRequired,
   CguDescription: PropTypes.func.isRequired,
   cguLink: PropTypes.string.isRequired,
-  ContenusSupplementaires: PropTypes.func.isRequired,
+  AdditionalContent: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),

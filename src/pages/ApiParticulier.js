@@ -120,7 +120,7 @@ const CguDescription = () => <React.Fragment />;
 const cguLink = "https://particulier.api.gouv.fr/API_Particulier_modalites.pdf";
 
 // Le demandeur doit remplir des contenus supplémentaires
-const ContenusSupplementaires = () => <React.Fragment />;
+const AdditionalContent = () => <React.Fragment />;
 
 const ApiParticulier = ({
   match: {
@@ -151,7 +151,7 @@ const ApiParticulier = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        ContenusSupplementaires={ContenusSupplementaires}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

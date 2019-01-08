@@ -128,7 +128,7 @@ const CguDescription = () => <React.Fragment />;
 const cguLink = "/docs/Franceconnect_CGU_FS_v3.pdf"
 
 // Le demandeur doit remplir des contenus supplémentaires
-const ContenusSupplementaires = () => <React.Fragment />;
+const AdditionalContent = () => <React.Fragment />;
 
 const FranceConnect = ({
   match: {
@@ -159,7 +159,7 @@ const FranceConnect = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        ContenusSupplementaires={ContenusSupplementaires}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

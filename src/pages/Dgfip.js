@@ -193,7 +193,7 @@ const CguDescription = () => (
 const cguLink = "/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
 
 // Le demandeur doit remplir des contenus supplémentaires
-const ContenusSupplementaires = DgfipEntrantsTechniques;
+const AdditionalContent = DgfipEntrantsTechniques;
 
 const Dgfip = ({
   match: {
@@ -214,8 +214,8 @@ const Dgfip = ({
       {id: "donnees", text: "Données"},
       {id: "cgu", text: "Modalités d'utilisation"},
       ]}
-    titleContenusSupplementaires = {"Données de productions"}
-    navLinksContenusSupplementaires = {[
+    titleAdditionalContent = {"Données de productions"}
+    navLinksAdditionalContent = {[
       {id: "entrants-techniques", text: "Entrants techniques"},
       {id: "homologation-securite", text: "Homologation de sécurité"},
       {id: "volumetrie", text: "Volumétrie"},
@@ -238,7 +238,7 @@ const Dgfip = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        ContenusSupplementaires={ContenusSupplementaires}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

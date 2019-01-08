@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isCnam, logo, navLinksGeneral, titleContenusSupplementaires, navLinksContenusSupplementaires }) => (
+const Nav = ({ isCnam, logo, navLinksGeneral, titleAdditionalContent, navLinksAdditionalContent }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       {logo && (
@@ -26,12 +26,12 @@ const Nav = ({ isCnam, logo, navLinksGeneral, titleContenusSupplementaires, navL
           </li>
         ))}
     </ul>
-    {titleContenusSupplementaires && (
+    {titleAdditionalContent && (
       <ul className="side-pane__menu">
         <li className="side-pane__title">
-          <h2>{titleContenusSupplementaires}</h2>
+          <h2>{titleAdditionalContent}</h2>
         </li>
-        {navLinksContenusSupplementaires.map(({id, text}) => (
+        {navLinksAdditionalContent.map(({id, text}) => (
           <li key={id}>
             <a className="side-pane__link" href="#{id}">
               {text}
@@ -46,8 +46,8 @@ const Nav = ({ isCnam, logo, navLinksGeneral, titleContenusSupplementaires, navL
 Nav.propTypes = {
   logo: PropTypes.object,
   navLinksGeneral: PropTypes.array.isRequired,
-  titleContenusSupplementaires: PropTypes.string,
-  navLinksContenusSupplementaires: PropTypes.array
+  titleAdditionalContent: PropTypes.string,
+  navLinksAdditionalContent: PropTypes.array
 };
 
 export default Nav;
