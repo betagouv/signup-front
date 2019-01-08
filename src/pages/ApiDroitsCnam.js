@@ -72,7 +72,6 @@ const ApiDroitsCnam = ({
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        isCnam={true}
         provider={provider}
         title={title}
         IntroDescription={IntroDescription}

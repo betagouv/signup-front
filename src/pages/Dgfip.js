@@ -227,7 +227,6 @@ const Dgfip = ({
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        isDgfip={true}
         provider={provider}
         title={title}
         IntroDescription={IntroDescription}

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isCnam, logo, navLinksGeneral, titleAdditionalContent, navLinksAdditionalContent }) => (
+const Nav = ({ logo, navLinksGeneral, titleAdditionalContent, navLinksAdditionalContent }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       {logo && (
