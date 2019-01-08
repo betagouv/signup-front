@@ -4,7 +4,7 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 
 // Description du contexte
-const provider = "api-particulier";
+const provider = 'api-particulier';
 const title = "Demande d'accès à API Particulier";
 
 const IntroDescription = () => (
@@ -92,27 +92,27 @@ const DonneesDescription = () => (
 );
 
 const availableScopes = [
-    {
-      "name": "dgfip_avis_imposition",
-      "humanName": "DGFIP - Avis d'imposition"
-    },
-    {
-      "name": "dgfip_adresse",
-      "humanName": "DGFIP - Adresse"
-    },
-    {
-      "name": "cnaf_quotient_familial",
-      "humanName": "CNAF - Quotient familial"
-    },
-    {
-      "name": "cnaf_attestation_droits",
-      "humanName": "CNAF - Attestation de droits"
-    }
-  ];
+  {
+    name: 'dgfip_avis_imposition',
+    humanName: "DGFIP - Avis d'imposition",
+  },
+  {
+    name: 'dgfip_adresse',
+    humanName: 'DGFIP - Adresse',
+  },
+  {
+    name: 'cnaf_quotient_familial',
+    humanName: 'CNAF - Quotient familial',
+  },
+  {
+    name: 'cnaf_attestation_droits',
+    humanName: 'CNAF - Attestation de droits',
+  },
+];
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
-const cguLink = "https://particulier.api.gouv.fr/API_Particulier_modalites.pdf";
+const cguLink = 'https://particulier.api.gouv.fr/API_Particulier_modalites.pdf';
 
 // Le demandeur doit remplir des contenus supplémentaires
 const AdditionalContent = () => <React.Fragment />;
@@ -123,15 +123,15 @@ const ApiParticulier = ({
   },
 }) => (
   <div className="documentation">
-    <Nav 
-      navLinksGeneral = {[
-        {id: "demarche", text: "Démarche"},
-        {id: "identite", text: "Identité"},
-        {id: "contacts", text: "Contacts"},
-        {id: "cadre-juridique", text: "Cadre juridique"},
-        {id: "donnees", text: "Données"},
-        {id: "cgu", text: "Modalités d'utilisation"},
-        ]}
+    <Nav
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
+      ]}
     />
     <div className="main-pane">
       <Form

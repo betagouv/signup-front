@@ -159,23 +159,27 @@ const DonneesDescription = () => (
   </div>
 );
 const availableScopes = [
-    {
-      "name": "dgfip_revenu_fiscal_de_reference_n_moins_1",
-      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)"
-    },
-    {
-      "name": "dgfip_revenu_fiscal_de_reference_n_moins_2",
-      "humanName": "DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (avant-dernière année de revenu)"
-    },
-    {
-      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_1",
-      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (dernière année de revenu)"
-    },
-    {
-      "name": "dgfip_adresse_fiscale_de_taxation_n_moins_2",
-      "humanName": "DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)"
-    }
-  ];
+  {
+    name: 'dgfip_revenu_fiscal_de_reference_n_moins_1',
+    humanName:
+      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_revenu_fiscal_de_reference_n_moins_2',
+    humanName:
+      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (avant-dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_1',
+    humanName:
+      'DGFIP - Adresse fiscale de taxation au 1er janvier (dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_2',
+    humanName:
+      'DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)',
+  },
+];
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => (
@@ -188,7 +192,8 @@ const CguDescription = () => (
     </p>
   </div>
 );
-const cguLink = "/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
+const cguLink =
+  '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
 // Le demandeur doit remplir des contenus supplémentaires
 const AdditionalContent = DgfipEntrantsTechniques;
@@ -199,29 +204,28 @@ const Dgfip = ({
   },
 }) => (
   <div className="documentation">
-    <Nav 
-    logo = {{
-      src: "/images/logo-dgfip.png",
-      alt: "Direction générale des finances publiques"
-    }}
-    navLinksGeneral = {[
-      {id: "demarche", text: "Démarche"},
-      {id: "identite", text: "Identité"},
-      {id: "contacts", text: "Contacts"},
-      {id: "cadre-juridique", text: "Cadre juridique"},
-      {id: "donnees", text: "Données"},
-      {id: "cgu", text: "Modalités d'utilisation"},
+    <Nav
+      logo={{
+        src: '/images/logo-dgfip.png',
+        alt: 'Direction générale des finances publiques',
+      }}
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
-    titleAdditionalContent = {"Données de productions"}
-    navLinksAdditionalContent = {[
-      {id: "entrants-techniques", text: "Entrants techniques"},
-      {id: "homologation-securite", text: "Homologation de sécurité"},
-      {id: "volumetrie", text: "Volumétrie"},
-      {id: "recette-fonctionnelle", text: "Recette fonctionnelle"},
+      titleAdditionalContent={'Données de productions'}
+      navLinksAdditionalContent={[
+        { id: 'entrants-techniques', text: 'Entrants techniques' },
+        { id: 'homologation-securite', text: 'Homologation de sécurité' },
+        { id: 'volumetrie', text: 'Volumétrie' },
+        { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
       ]}
     />
-  }
-    
+    }
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}

@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ logo, navLinksGeneral, titleAdditionalContent, navLinksAdditionalContent }) => (
+const Nav = ({
+  logo,
+  navLinksGeneral,
+  titleAdditionalContent,
+  navLinksAdditionalContent,
+}) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
       {logo && (
@@ -18,20 +23,20 @@ const Nav = ({ logo, navLinksGeneral, titleAdditionalContent, navLinksAdditional
       <li className="side-pane__title">
         <h2>Votre demande</h2>
       </li>
-        {navLinksGeneral.map(({id, text}) => (
-          <li key={id}>
-            <a className="side-pane__link" href="#{id}">
-              {text}
-            </a>
-          </li>
-        ))}
+      {navLinksGeneral.map(({ id, text }) => (
+        <li key={id}>
+          <a className="side-pane__link" href="#{id}">
+            {text}
+          </a>
+        </li>
+      ))}
     </ul>
     {titleAdditionalContent && (
       <ul className="side-pane__menu">
         <li className="side-pane__title">
           <h2>{titleAdditionalContent}</h2>
         </li>
-        {navLinksAdditionalContent.map(({id, text}) => (
+        {navLinksAdditionalContent.map(({ id, text }) => (
           <li key={id}>
             <a className="side-pane__link" href="#{id}">
               {text}
@@ -47,7 +52,7 @@ Nav.propTypes = {
   logo: PropTypes.object,
   navLinksGeneral: PropTypes.array.isRequired,
   titleAdditionalContent: PropTypes.string,
-  navLinksAdditionalContent: PropTypes.array
+  navLinksAdditionalContent: PropTypes.array,
 };
 
 export default Nav;

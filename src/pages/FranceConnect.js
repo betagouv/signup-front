@@ -78,54 +78,54 @@ const CadreJuridiqueDescription = () => (
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => <React.Fragment />;
 const availableScopes = [
-    {
-      name: 'openid',
-      humanName:
-        "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
-      mandatory: true,
-    },
-    { name: 'gender', humanName: 'Sexe' },
-    {
-      name: 'birthdate',
-      humanName: 'Date de naissance',
-    },
-    {
-      name: 'birthcountry',
-      humanName: 'Pays de naissance',
-    },
-    {
-      name: 'birthplace',
-      humanName: 'Ville de naissance',
-    },
-    {
-      name: 'given_name',
-      humanName: 'Prénoms',
-    },
-    {
-      name: 'family_name',
-      humanName: 'Nom de naissance',
-    },
-    {
-      name: 'email',
-      humanName: 'Adresse électronique',
-    },
-    {
-      name: 'preferred_username',
-      humanName: "Nom d'usage (information renvoyée si disponible)",
-    },
-    {
-      name: 'address',
-      humanName: 'Adresse postale (information renvoyée si disponible)',
-    },
-    {
-      name: 'phone',
-      humanName: 'Numéro de téléphone (information renvoyée si disponible)',
-    },
-  ];
+  {
+    name: 'openid',
+    humanName:
+      "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
+    mandatory: true,
+  },
+  { name: 'gender', humanName: 'Sexe' },
+  {
+    name: 'birthdate',
+    humanName: 'Date de naissance',
+  },
+  {
+    name: 'birthcountry',
+    humanName: 'Pays de naissance',
+  },
+  {
+    name: 'birthplace',
+    humanName: 'Ville de naissance',
+  },
+  {
+    name: 'given_name',
+    humanName: 'Prénoms',
+  },
+  {
+    name: 'family_name',
+    humanName: 'Nom de naissance',
+  },
+  {
+    name: 'email',
+    humanName: 'Adresse électronique',
+  },
+  {
+    name: 'preferred_username',
+    humanName: "Nom d'usage (information renvoyée si disponible)",
+  },
+  {
+    name: 'address',
+    humanName: 'Adresse postale (information renvoyée si disponible)',
+  },
+  {
+    name: 'phone',
+    humanName: 'Numéro de téléphone (information renvoyée si disponible)',
+  },
+];
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
-const cguLink = "/docs/Franceconnect_CGU_FS_v3.pdf"
+const cguLink = '/docs/Franceconnect_CGU_FS_v3.pdf';
 
 // Le demandeur doit remplir des contenus supplémentaires
 const AdditionalContent = () => <React.Fragment />;
@@ -136,14 +136,14 @@ const FranceConnect = ({
   },
 }) => (
   <div className="documentation">
-    <Nav 
-      navLinksGeneral = {[
-      {id: "demarche", text: "Démarche"},
-      {id: "identite", text: "Identité"},
-      {id: "contacts", text: "Contacts"},
-      {id: "cadre-juridique", text: "Cadre juridique"},
-      {id: "donnees", text: "Données"},
-      {id: "cgu", text: "Modalités d'utilisation"},
+    <Nav
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
     />
     <div className="main-pane">

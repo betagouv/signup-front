@@ -49,7 +49,7 @@ const availableScopes = [];
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
-const cguLink = "/docs/API_Droits_CNAM_CGU_20181210.pdf";
+const cguLink = '/docs/API_Droits_CNAM_CGU_20181210.pdf';
 
 // Le demandeur doit remplir des contenus supplémentaires
 const AdditionalContent = () => <React.Fragment />;
@@ -61,12 +61,12 @@ const ApiDroitsCnam = ({
 }) => (
   <div className="documentation">
     <Nav
-      navLinksGeneral = {[
-      {id: "demarche", text: "Démarche"},
-      {id: "identite", text: "Identité"},
-      {id: "contacts", text: "Contacts"},
-      {id: "cadre-juridique", text: "Cadre juridique"},
-      {id: "cgu", text: "Modalités d'utilisation"},
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
     />
     <div className="main-pane">

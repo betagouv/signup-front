@@ -195,7 +195,7 @@ class Form extends React.Component {
       CadreJuridiqueDescription,
       DonneesDescription,
       availableScopes,
-      AdditionalContent
+      AdditionalContent,
     } = this.props;
 
     const disabledApplication = !acl.send_application;
@@ -261,8 +261,7 @@ class Form extends React.Component {
             onChange={this.handleChange}
             name="demarche.description"
             id="description_service"
-            disabled={isFranceConnected
-             || disabledApplication}
+            disabled={isFranceConnected || disabledApplication}
             value={demarche.description}
           />
         </div>
@@ -488,11 +487,11 @@ class Form extends React.Component {
         </div>
 
         <AdditionalContent
-            enrollment={this.state.enrollment}
-            onChange={this.handleChange}
-            handleDocumentsChange={this.handleDocumentsChange}
-            disabled={disabledApplication}
-          />
+          enrollment={this.state.enrollment}
+          onChange={this.handleChange}
+          handleDocumentsChange={this.handleDocumentsChange}
+          disabled={disabledApplication}
+        />
 
         <ActionButtons
           enrollment={this.state.enrollment}
@@ -529,7 +528,7 @@ Form.propTypes = {
 
 Form.defaultProps = {
   enrollmentId: null,
-  isFranceConnected: false
+  isFranceConnected: false,
 };
 
 export default withRouter(Form);
