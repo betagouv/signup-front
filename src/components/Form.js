@@ -410,12 +410,12 @@ class Form extends React.Component {
                           className="scope__checkbox"
                           onChange={this.handleChange}
                           name={`scopes.${name}`}
-                          id={`checkbox-scope_api_entreprise${name}`}
+                          id={`checkbox-scope-${name}`}
                           disabled={disabledApplication || mandatory}
                           checked={scopes[name]}
                         />
                         <label
-                          htmlFor={`checkbox-scope_api_entreprise${name}`}
+                          htmlFor={`checkbox-scope-${name}`}
                           className="label-inline"
                         >
                           {humanName}
