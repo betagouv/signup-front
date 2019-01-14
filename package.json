@@ -9,7 +9,8 @@
     "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
     "test": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "precommit": "pretty-quick --staged"
+    "precommit": "pretty-quick --staged",
+    "lint": "prettier --list-different src/**/*.js"
   },
   "keywords": [],
   "author": "",
