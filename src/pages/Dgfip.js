@@ -131,24 +131,24 @@ const DonneesDescription = () => (
 
 const availableScopes = [
   {
-    name: 'dgfip_revenu_fiscal_de_reference_n_moins_1',
-    humanName:
-      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)',
+    name: 'dgfip_rfr',
+    humanName: 'DGFIP - Revenu fiscal de référence (RFR)',
   },
   {
-    name: 'dgfip_revenu_fiscal_de_reference_n_moins_2',
-    humanName:
-      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (avant-dernière année de revenu)',
+    name: 'dgfip_nbpart',
+    humanName: 'DGFIP - nombre de parts',
   },
   {
-    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_1',
-    humanName:
-      'DGFIP - Adresse fiscale de taxation au 1er janvier (dernière année de revenu)',
+    name: 'dgfip_sitfam',
+    humanName: 'DGFIP - situation de famille',
   },
   {
-    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_2',
-    humanName:
-      'DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)',
+    name: 'dgfip_pac',
+    humanName: 'DGFIP - composition du foyer fiscal',
+  },
+  {
+    name: 'dgfip_aft',
+    humanName: 'DGFIP - adresse fiscale de taxation au 1er janvier',
   },
 ];
 
