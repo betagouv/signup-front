@@ -9,14 +9,13 @@ import { getErrorMessage } from '../lib/utils';
 import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
-import DgfipEntrantsTechniques from './form/DgfipEntrantsTechniques';
 import DocumentUpload from './form/DocumentUpload';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    const { form } = props;
+    const availableScopes = props.availableScopes;
 
     this.state = {
       errors: [],
@@ -62,17 +61,17 @@ class Form extends React.Component {
         donnees: {
           conservation: '',
           destinataires: zipObject(
-            form.scopes.map(({ name }) => name),
-            new Array(form.scopes.length).fill('')
+            availableScopes.map(({ name }) => name),
+            new Array(availableScopes.length).fill('')
           ),
         },
-        fournisseur_de_donnees: form.provider,
+        fournisseur_de_donnees: props.provider,
         fournisseur_de_service: '',
         messages: [],
         id: null,
         scopes: zipObject(
-          form.scopes.map(({ name }) => name),
-          form.scopes.map(({ mandatory }) => !!mandatory)
+          availableScopes.map(({ name }) => name),
+          availableScopes.map(({ mandatory }) => !!mandatory)
         ),
         siret: '',
         validation_de_convention: false,
@@ -187,13 +186,16 @@ class Form extends React.Component {
     } = this.state;
 
     const {
-      form,
-      isDgfip,
+      title,
       IntroDescription,
       DemarcheDescription,
+      isFranceConnected,
       CguDescription,
+      cguLink,
       CadreJuridiqueDescription,
       DonneesDescription,
+      availableScopes,
+      AdditionalContent,
     } = this.props;
 
     const disabledApplication = !acl.send_application;
@@ -225,14 +227,14 @@ class Form extends React.Component {
           return null;
         })}
 
-        <h1>{form.text.title}</h1>
+        <h1>{title}</h1>
         <IntroDescription />
 
         <h2 id="demarche">Démarche</h2>
         <DemarcheDescription />
         {!isUserEnrollmentLoading &&
           !disabledApplication &&
-          form.franceConnected && (
+          isFranceConnected && (
             <FranceConnectServiceProvider
               onServiceProviderChange={this.handleServiceProviderChange}
               fournisseur_de_service={fournisseur_de_service}
@@ -245,7 +247,7 @@ class Form extends React.Component {
             onChange={this.handleChange}
             name="demarche.intitule"
             id="intitule_demarche"
-            disabled={form.franceConnected || disabledApplication}
+            disabled={isFranceConnected || disabledApplication}
             value={demarche.intitule}
           />
         </div>
@@ -259,11 +261,11 @@ class Form extends React.Component {
             onChange={this.handleChange}
             name="demarche.description"
             id="description_service"
-            disabled={form.franceConnected || disabledApplication}
+            disabled={isFranceConnected || disabledApplication}
             value={demarche.description}
           />
         </div>
-        {form.franceConnected && (
+        {isFranceConnected && (
           <div className="form__group">
             <label>Clé fournisseur de service</label>
             <input type="text" disabled value={fournisseur_de_service} />
@@ -387,7 +389,7 @@ class Form extends React.Component {
           label={'Pièce jointe'}
         />
 
-        {!isEmpty(form.scopes) && (
+        {!isEmpty(availableScopes) && (
           <React.Fragment>
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
@@ -396,7 +398,7 @@ class Form extends React.Component {
                 <label>Sélectionnez vos jeux de données souhaités</label>
                 <div className="row">
                   <div className="column" style={{ flex: 1 }}>
-                    {form.scopes.map(({ name, humanName, mandatory }) => (
+                    {availableScopes.map(({ name, humanName, mandatory }) => (
                       <div key={name}>
                         <input
                           type="checkbox"
@@ -465,7 +467,7 @@ class Form extends React.Component {
         <embed
           title="CGU"
           type="application/pdf"
-          src={form.cguLink}
+          src={cguLink}
           width="100%"
           height="800px"
         />
@@ -484,14 +486,12 @@ class Form extends React.Component {
           </label>
         </div>
 
-        {isDgfip && (
-          <DgfipEntrantsTechniques
-            enrollment={this.state.enrollment}
-            onChange={this.handleChange}
-            handleDocumentsChange={this.handleDocumentsChange}
-            disabled={disabledApplication}
-          />
-        )}
+        <AdditionalContent
+          enrollment={this.state.enrollment}
+          onChange={this.handleChange}
+          handleDocumentsChange={this.handleDocumentsChange}
+          disabled={disabledApplication}
+        />
 
         <ActionButtons
           enrollment={this.state.enrollment}
@@ -511,13 +511,16 @@ class Form extends React.Component {
 
 Form.propTypes = {
   enrollmentId: PropTypes.string,
-  form: PropTypes.object.isRequired,
-  isDgfip: PropTypes.bool,
+  title: PropTypes.string,
   IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
-  CguDescription: PropTypes.func.isRequired,
+  isFranceConnected: PropTypes.bool,
   CadreJuridiqueDescription: PropTypes.func.isRequired,
   DonneesDescription: PropTypes.func.isRequired,
+  availableScopes: PropTypes.array.isRequired,
+  CguDescription: PropTypes.func.isRequired,
+  cguLink: PropTypes.string.isRequired,
+  AdditionalContent: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
@@ -525,7 +528,7 @@ Form.propTypes = {
 
 Form.defaultProps = {
   enrollmentId: null,
-  isDgfip: false,
+  isFranceConnected: false,
 };
 
 export default withRouter(Form);

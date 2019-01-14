@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import ApiParticulierFormConfiguration from '../components/form/config/api-particulier';
+
+// Description du contexte
+const provider = 'api-particulier';
+const title = "Demande d'accès à API Particulier";
 
 const IntroDescription = () => (
   <div className="intro">
@@ -26,6 +29,7 @@ const IntroDescription = () => (
   </div>
 );
 
+// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>
@@ -37,7 +41,11 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
+const isFranceConnected = false;
 
+// Le demandeur doit donner le SIRET de son organisme
+// Le demandeur doit indiquer ses contacts
+// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
@@ -54,6 +62,7 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
+// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
   <section className="information-text">
     <p>
@@ -82,7 +91,31 @@ const DonneesDescription = () => (
   </section>
 );
 
+const availableScopes = [
+  {
+    name: 'dgfip_avis_imposition',
+    humanName: "DGFIP - Avis d'imposition",
+  },
+  {
+    name: 'dgfip_adresse',
+    humanName: 'DGFIP - Adresse',
+  },
+  {
+    name: 'cnaf_quotient_familial',
+    humanName: 'CNAF - Quotient familial',
+  },
+  {
+    name: 'cnaf_attestation_droits',
+    humanName: 'CNAF - Attestation de droits',
+  },
+];
+
+// Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
+const cguLink = 'https://particulier.api.gouv.fr/API_Particulier_modalites.pdf';
+
+// Le demandeur doit remplir des contenus supplémentaires
+const AdditionalContent = () => <React.Fragment />;
 
 const ApiParticulier = ({
   match: {
@@ -90,16 +123,30 @@ const ApiParticulier = ({
   },
 }) => (
   <div className="documentation">
-    <Nav />
+    <Nav
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
+      ]}
+    />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        form={ApiParticulierFormConfiguration}
+        provider={provider}
+        title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
-        CguDescription={CguDescription}
+        isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
+        availableScopes={availableScopes}
+        CguDescription={CguDescription}
+        cguLink={cguLink}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

@@ -1,15 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Nav = ({ isCnam, isDgfip }) => (
+const Nav = ({
+  logo,
+  navLinksGeneral,
+  titleAdditionalContent,
+  navLinksAdditionalContent,
+}) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
-      {isDgfip && (
+      {logo && (
         <li className="text-center">
           <a className="side-pane__link" href="https://www.impots.gouv.fr/">
             <img
-              alt=""
-              src="/images/logo-dgfip.png"
+              alt={logo.alt}
+              src={logo.src}
               style={{ mixBlendMode: 'multiply' }}
             />
           </a>
@@ -18,77 +23,36 @@ const Nav = ({ isCnam, isDgfip }) => (
       <li className="side-pane__title">
         <h2>Votre demande</h2>
       </li>
-      <li>
-        <a className="side-pane__link" href="#demarche">
-          Démarche
-        </a>
-      </li>
-      <li>
-        <a className="side-pane__link" href="#identite">
-          Identité
-        </a>
-      </li>
-      <li>
-        <a className="side-pane__link" href="#contacts">
-          Contacts
-        </a>
-      </li>
-      <li>
-        <a className="side-pane__link" href="#cadre-juridique">
-          Cadre juridique
-        </a>
-      </li>
-      {!isCnam && (
-        <li>
-          <a className="side-pane__link" href="#donnees">
-            Données
+      {navLinksGeneral.map(({ id, text }) => (
+        <li key={id}>
+          <a className="side-pane__link" href="#{id}">
+            {text}
           </a>
         </li>
-      )}
-      <li>
-        <a className="side-pane__link" href="#cgu">
-          Modalités d&apos;utilisation
-        </a>
-      </li>
+      ))}
     </ul>
-    {isDgfip && (
+    {titleAdditionalContent && (
       <ul className="side-pane__menu">
         <li className="side-pane__title">
-          <h2>Données de productions</h2>
+          <h2>{titleAdditionalContent}</h2>
         </li>
-        <li>
-          <a className="side-pane__link" href="#entrants-techniques">
-            Entrants techniques
-          </a>
-        </li>
-        <li>
-          <a className="side-pane__link" href="#homologation-securite">
-            Homologation de sécurité
-          </a>
-        </li>
-        <li>
-          <a className="side-pane__link" href="#volumetrie">
-            Volumétrie
-          </a>
-        </li>
-        <li>
-          <a className="side-pane__link" href="#recette-fonctionnelle">
-            Recette fonctionnelle
-          </a>
-        </li>
+        {navLinksAdditionalContent.map(({ id, text }) => (
+          <li key={id}>
+            <a className="side-pane__link" href="#{id}">
+              {text}
+            </a>
+          </li>
+        ))}
       </ul>
     )}
   </nav>
 );
 
 Nav.propTypes = {
-  isCnam: PropTypes.bool,
-  isDgfip: PropTypes.bool,
-};
-
-Nav.defaultProps = {
-  isCnam: false,
-  isDgfip: false,
+  logo: PropTypes.object,
+  navLinksGeneral: PropTypes.array.isRequired,
+  titleAdditionalContent: PropTypes.string,
+  navLinksAdditionalContent: PropTypes.array,
 };
 
 export default Nav;

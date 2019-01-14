@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import DgfipFormConfiguration from '../components/form/config/dgfip';
+import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
+
+// Description du contexte
+const provider = 'dgfip';
+
+const title = "Demande d'accès à l'API « impôt particulier »";
 
 const IntroDescription = () => (
   <div className="intro">
@@ -41,6 +46,7 @@ const IntroDescription = () => (
   </div>
 );
 
+// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>
@@ -53,18 +59,11 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
+const isFranceConnected = true;
 
-const CguDescription = () => (
-  <div className="information-text">
-    <p>
-      Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
-      de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
-      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
-      convention type ainsi que ses annexes.
-    </p>
-  </div>
-);
-
+// Le demandeur doit donner le SIRET de son organisme
+// Le demandeur doit indiquer ses contacts
+// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
@@ -81,6 +80,7 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
+// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
   <div className="information-text">
     <p>
@@ -145,7 +145,7 @@ const DonneesDescription = () => (
           <td>Revenus 2015</td>
         </tr>
         <tr>
-          <td colspan="3" style={{ textAlign: 'center' }}>
+          <td colSpan="3" style={{ textAlign: 'center' }}>
             Taxation des revenus à compter du mois d'août
           </td>
         </tr>
@@ -158,6 +158,45 @@ const DonneesDescription = () => (
     </table>
   </div>
 );
+const availableScopes = [
+  {
+    name: 'dgfip_revenu_fiscal_de_reference_n_moins_1',
+    humanName:
+      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_revenu_fiscal_de_reference_n_moins_2',
+    humanName:
+      'DGFIP - Revenu fiscal de référence (RFR) et nombre de parts (avant-dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_1',
+    humanName:
+      'DGFIP - Adresse fiscale de taxation au 1er janvier (dernière année de revenu)',
+  },
+  {
+    name: 'dgfip_adresse_fiscale_de_taxation_n_moins_2',
+    humanName:
+      'DGFIP - Adresse fiscale de taxation au 1er janvier (avant-dernière année de revenu)',
+  },
+];
+
+// Le demandeur valide les modalités d'utilisation
+const CguDescription = () => (
+  <div className="information-text">
+    <p>
+      Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
+      de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
+      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
+      convention type ainsi que ses annexes.
+    </p>
+  </div>
+);
+const cguLink =
+  '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
+
+// Le demandeur doit remplir des contenus supplémentaires
+const AdditionalContent = DgfipEntrantsTechniques;
 
 const Dgfip = ({
   match: {
@@ -165,17 +204,42 @@ const Dgfip = ({
   },
 }) => (
   <div className="documentation">
-    <Nav isDgfip={true} />
+    <Nav
+      logo={{
+        src: '/images/logo-dgfip.png',
+        alt: 'Direction générale des finances publiques',
+      }}
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
+      ]}
+      titleAdditionalContent={'Données de productions'}
+      navLinksAdditionalContent={[
+        { id: 'entrants-techniques', text: 'Entrants techniques' },
+        { id: 'homologation-securite', text: 'Homologation de sécurité' },
+        { id: 'volumetrie', text: 'Volumétrie' },
+        { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
+      ]}
+    />
+    }
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        form={DgfipFormConfiguration}
-        isDgfip={true}
+        provider={provider}
+        title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
-        CguDescription={CguDescription}
+        isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
+        availableScopes={availableScopes}
+        CguDescription={CguDescription}
+        cguLink={cguLink}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

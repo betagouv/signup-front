@@ -3,60 +3,9 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 
-const FranceConnectFormConfiguration = {
-  provider: 'franceconnect',
-  franceConnected: false,
-  scopes: [
-    {
-      name: 'openid',
-      humanName:
-        "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
-      mandatory: true,
-    },
-    { name: 'gender', humanName: 'Sexe' },
-    {
-      name: 'birthdate',
-      humanName: 'Date de naissance',
-    },
-    {
-      name: 'birthcountry',
-      humanName: 'Pays de naissance',
-    },
-    {
-      name: 'birthplace',
-      humanName: 'Ville de naissance',
-    },
-    {
-      name: 'given_name',
-      humanName: 'Prénoms',
-    },
-    {
-      name: 'family_name',
-      humanName: 'Nom de naissance',
-    },
-    {
-      name: 'email',
-      humanName: 'Adresse électronique',
-    },
-    {
-      name: 'preferred_username',
-      humanName: "Nom d'usage (information renvoyée si disponible)",
-    },
-    {
-      name: 'address',
-      humanName: 'Adresse postale (information renvoyée si disponible)',
-    },
-    {
-      name: 'phone',
-      humanName: 'Numéro de téléphone (information renvoyée si disponible)',
-    },
-  ],
-  cguLink: '/docs/Franceconnect_CGU_FS_v3.pdf',
-  text: {
-    title: "Demande d'accès à FranceConnect",
-  },
-};
-
+// Description du contexte
+const provider = 'franceconnect';
+const title = "Demande d'accès à FranceConnect";
 const IntroDescription = () => (
   <div className="intro">
     <p>
@@ -94,6 +43,7 @@ const IntroDescription = () => (
   </div>
 );
 
+// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="information-text">
     <p>
@@ -105,7 +55,11 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
+const isFranceConnected = false;
 
+// Le demandeur doit donner le SIRET de son organisme
+// Le demandeur doit indiquer ses contacts
+// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
@@ -121,9 +75,60 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
+// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => <React.Fragment />;
+const availableScopes = [
+  {
+    name: 'openid',
+    humanName:
+      "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
+    mandatory: true,
+  },
+  { name: 'gender', humanName: 'Sexe' },
+  {
+    name: 'birthdate',
+    humanName: 'Date de naissance',
+  },
+  {
+    name: 'birthcountry',
+    humanName: 'Pays de naissance',
+  },
+  {
+    name: 'birthplace',
+    humanName: 'Ville de naissance',
+  },
+  {
+    name: 'given_name',
+    humanName: 'Prénoms',
+  },
+  {
+    name: 'family_name',
+    humanName: 'Nom de naissance',
+  },
+  {
+    name: 'email',
+    humanName: 'Adresse électronique',
+  },
+  {
+    name: 'preferred_username',
+    humanName: "Nom d'usage (information renvoyée si disponible)",
+  },
+  {
+    name: 'address',
+    humanName: 'Adresse postale (information renvoyée si disponible)',
+  },
+  {
+    name: 'phone',
+    humanName: 'Numéro de téléphone (information renvoyée si disponible)',
+  },
+];
 
+// Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
+const cguLink = '/docs/Franceconnect_CGU_FS_v3.pdf';
+
+// Le demandeur doit remplir des contenus supplémentaires
+const AdditionalContent = () => <React.Fragment />;
 
 const FranceConnect = ({
   match: {
@@ -131,16 +136,30 @@ const FranceConnect = ({
   },
 }) => (
   <div className="documentation">
-    <Nav />
+    <Nav
+      navLinksGeneral={[
+        { id: 'demarche', text: 'Démarche' },
+        { id: 'identite', text: 'Identité' },
+        { id: 'contacts', text: 'Contacts' },
+        { id: 'cadre-juridique', text: 'Cadre juridique' },
+        { id: 'donnees', text: 'Données' },
+        { id: 'cgu', text: "Modalités d'utilisation" },
+      ]}
+    />
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
-        form={FranceConnectFormConfiguration}
+        provider={provider}
+        title={title}
         IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
-        CguDescription={CguDescription}
+        isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
+        availableScopes={availableScopes}
+        CguDescription={CguDescription}
+        cguLink={cguLink}
+        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>
