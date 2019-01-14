@@ -189,10 +189,10 @@ const Dgfip = ({
         { id: 'donnees', text: 'Données' },
         { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
-      titleAdditionalContent={'Données de productions'}
+      titleAdditionalContent={'Données de production'}
       navLinksAdditionalContent={[
-        { id: 'entrants-techniques', text: 'Entrants techniques' },
         { id: 'homologation-securite', text: 'Homologation de sécurité' },
+        { id: 'entrants-techniques', text: 'Entrants techniques' },
         { id: 'volumetrie', text: 'Volumétrie' },
         { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
       ]}
