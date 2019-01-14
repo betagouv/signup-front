@@ -64,6 +64,10 @@ class Form extends React.Component {
             availableScopes.map(({ name }) => name),
             new Array(availableScopes.length).fill('')
           ),
+          dgfip_data_years: {
+            n_moins_1: false,
+            n_moins_2: false,
+          },
         },
         fournisseur_de_donnees: props.provider,
         fournisseur_de_service: '',
@@ -195,6 +199,7 @@ class Form extends React.Component {
       CadreJuridiqueDescription,
       DonneesDescription,
       availableScopes,
+      AdditionalDataContent,
       AdditionalContent,
     } = this.props;
 
@@ -445,6 +450,13 @@ class Form extends React.Component {
                 </div>
               </fieldset>
             </div>
+
+            <AdditionalDataContent
+              disabled={disabledApplication}
+              onChange={this.handleChange}
+              enrollment={this.state.enrollment}
+            />
+
             <div className="form__group">
               <label htmlFor="donnees_conservation">
                 Conservation des données <i>(en mois)</i>
@@ -520,7 +532,8 @@ Form.propTypes = {
   availableScopes: PropTypes.array.isRequired,
   CguDescription: PropTypes.func.isRequired,
   cguLink: PropTypes.string.isRequired,
-  AdditionalContent: PropTypes.func.isRequired,
+  AdditionalDataContent: PropTypes.func,
+  AdditionalContent: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
@@ -529,6 +542,8 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isFranceConnected: false,
+  AdditionalDataContent: () => <React.Fragment />,
+  AdditionalContent: () => <React.Fragment />,
 };
 
 export default withRouter(Form);

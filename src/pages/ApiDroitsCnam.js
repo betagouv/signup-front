@@ -51,9 +51,6 @@ const availableScopes = [];
 const CguDescription = () => <React.Fragment />;
 const cguLink = '/docs/API_Droits_CNAM_CGU_20181210.pdf';
 
-// Le demandeur doit remplir des contenus supplémentaires
-const AdditionalContent = () => <React.Fragment />;
-
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -82,7 +79,6 @@ const ApiDroitsCnam = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

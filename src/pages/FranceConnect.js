@@ -127,9 +127,6 @@ const availableScopes = [
 const CguDescription = () => <React.Fragment />;
 const cguLink = '/docs/Franceconnect_CGU_FS_v3.pdf';
 
-// Le demandeur doit remplir des contenus supplémentaires
-const AdditionalContent = () => <React.Fragment />;
-
 const FranceConnect = ({
   match: {
     params: { enrollmentId },
@@ -159,7 +156,6 @@ const FranceConnect = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        AdditionalContent={AdditionalContent}
       />
     </div>
   </div>

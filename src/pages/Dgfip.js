@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import DgfipDataYears from '../components/form/DgfipDataYears';
 import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
 
 // Description du contexte
@@ -19,7 +20,7 @@ const IntroDescription = () => (
       FranceConnecté n'a plus besoin de transmettre son avis d'imposition.
     </p>
     <p>
-      Ce portail permet en qualité de fournisseur de service de demander le
+      Ce portail vous permet en qualité de fournisseur de service de demander le
       raccordement de votre téléservice à l'API « impôt particulier ».
     </p>
     <p>
@@ -125,39 +126,9 @@ const DonneesDescription = () => (
         en vigueur depuis le 25 mai 2018.
       </b>
     </p>
-    <p>
-      L'API « impôt particulier » restitue à des années de revenus différentes
-      selon que la demande soit formulée avant ou après la taxation des revenus.
-    </p>
-    <p>Exemple :</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Date de la demande</th>
-          <th>dernière année de revenu</th>
-          <th>avant-dernière année de revenu</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Février 2018</td>
-          <td>Revenus 2016</td>
-          <td>Revenus 2015</td>
-        </tr>
-        <tr>
-          <td colSpan="3" style={{ textAlign: 'center' }}>
-            Taxation des revenus à compter du mois d'août
-          </td>
-        </tr>
-        <tr>
-          <td>Novembre 2018</td>
-          <td>Revenus 2017</td>
-          <td>Revenus 2016</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 );
+
 const availableScopes = [
   {
     name: 'dgfip_revenu_fiscal_de_reference_n_moins_1',
@@ -196,6 +167,7 @@ const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
 // Le demandeur doit remplir des contenus supplémentaires
+const AdditionalDataContent = DgfipDataYears;
 const AdditionalContent = DgfipEntrantsTechniques;
 
 const Dgfip = ({
@@ -239,6 +211,7 @@ const Dgfip = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
+        AdditionalDataContent={AdditionalDataContent}
         AdditionalContent={AdditionalContent}
       />
     </div>

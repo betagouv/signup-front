@@ -5,7 +5,7 @@ import { withUser } from './UserContext';
 import ArrowBackIcon from './icons/arrowBack';
 
 const Header = ({ user, logout }) => {
-  const onDetailPage =
+  const isOnDetailPage =
     window.location.pathname.includes('/api-particulier') ||
     window.location.pathname.includes('/franceconnect') ||
     window.location.pathname.includes('/api-droits-cnam') ||
@@ -14,7 +14,7 @@ const Header = ({ user, logout }) => {
   return (
     <header className="navbar">
       <div className="navbar__container">
-        {onDetailPage ? (
+        {isOnDetailPage ? (
           <Link
             to="/"
             style={{
