@@ -163,6 +163,14 @@ const DgfipEntrantsTechniques = ({
           value={date_fin_homologation}
         />
       </div>
+      <DocumentUpload
+        disabled={disabled}
+        uploadedDocuments={documents}
+        documentsToUpload={documents_attributes}
+        documentType={'Document::DecisionHomologation'}
+        handleDocumentsChange={handleDocumentsChange}
+        label={"Décision d'homologation"}
+      />
 
       <h2 id="entrants-techniques">Entrants techniques</h2>
       <div className="information-text">
