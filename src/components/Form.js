@@ -6,7 +6,7 @@ import moment from 'moment';
 
 import { getUserEnrollment } from '../lib/services';
 import { getErrorMessage } from '../lib/utils';
-import FranceConnectServiceProvider from './form/FranceConnectServiceProvider';
+import ValidatedFranceconnectEnrollmentsSelector from './form/ValidatedFranceconnectEnrollmentsSelector';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import DocumentUpload from './form/DocumentUpload';
@@ -70,7 +70,7 @@ class Form extends React.Component {
           },
         },
         fournisseur_de_donnees: props.provider,
-        fournisseur_de_service: '',
+        linked_franceconnect_enrollment_id: '',
         messages: [],
         id: null,
         scopes: zipObject(
@@ -131,18 +131,22 @@ class Form extends React.Component {
     }));
   };
 
-  handleServiceProviderChange = ({
+  handleLinkedFranceconnectEnrollmentChange = ({
+    linked_franceconnect_enrollment_id,
     intitule,
     description,
-    fournisseur_de_service,
+    siret,
+    contacts,
   }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, {
+        contacts,
         demarche: {
           intitule,
           description,
         },
-        fournisseur_de_service,
+        linked_franceconnect_enrollment_id,
+        siret,
       }),
     }));
   };
@@ -179,7 +183,7 @@ class Form extends React.Component {
         documents_attributes,
         donnees,
         fournisseur_de_donnees,
-        fournisseur_de_service,
+        linked_franceconnect_enrollment_id,
         messages,
         scopes,
         siret,
@@ -240,9 +244,13 @@ class Form extends React.Component {
         {!isUserEnrollmentLoading &&
           !disabledApplication &&
           isFranceConnected && (
-            <FranceConnectServiceProvider
-              onServiceProviderChange={this.handleServiceProviderChange}
-              fournisseur_de_service={fournisseur_de_service}
+            <ValidatedFranceconnectEnrollmentsSelector
+              onValidatedFranceconnectEnrollment={
+                this.handleLinkedFranceconnectEnrollmentChange
+              }
+              linked_franceconnect_enrollment_id={
+                linked_franceconnect_enrollment_id
+              }
             />
           )}
         <div className="form__group">
@@ -270,17 +278,11 @@ class Form extends React.Component {
             value={demarche.description}
           />
         </div>
-        {isFranceConnected && (
-          <div className="form__group">
-            <label>Clé fournisseur de service</label>
-            <input type="text" disabled value={fournisseur_de_service} />
-          </div>
-        )}
 
         <h2 id="identite">Identité</h2>
         {!isUserEnrollmentLoading && (
           <Siret
-            disabled={disabledApplication}
+            disabled={isFranceConnected || disabledApplication}
             siret={siret}
             fournisseurDeDonnees={fournisseur_de_donnees}
             handleSiretChange={this.handleSiretChange}
@@ -310,7 +312,7 @@ class Form extends React.Component {
                       onChange={this.handleChange}
                       name={`contacts[${index}].nom`}
                       id={`person_${id}_nom`}
-                      disabled={disableContactInputs}
+                      disabled={isFranceConnected || disableContactInputs}
                       value={nom}
                     />
                   </div>
@@ -321,7 +323,7 @@ class Form extends React.Component {
                       onChange={this.handleChange}
                       name={`contacts[${index}].email`}
                       id={`person_${id}_email`}
-                      disabled={disableContactInputs}
+                      disabled={isFranceConnected || disableContactInputs}
                       value={email}
                     />
                   </div>
@@ -338,7 +340,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].telephone_portable`}
                         id={`person_${id}_telephone_portable`}
-                        disabled={disableContactInputs}
+                        disabled={isFranceConnected || disableContactInputs}
                         value={telephone_portable}
                         placeholder="06XXXXXXXX"
                         pattern="[0-9]{10}"

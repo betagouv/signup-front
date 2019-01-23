@@ -1,9 +1,6 @@
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
-const {
-  REACT_APP_BACK_HOST: BACK_HOST,
-  REACT_APP_FRANCE_CONNECT_ME_URI: FRANCE_CONNECT_ME_URI,
-} = process.env;
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });
@@ -56,6 +53,20 @@ export function getUserEnrollment(id) {
         'Content-Type': 'application/json',
       },
     })
+    .then(({ data }) => data);
+}
+
+export function getUserValidatedFranceconnectEnrollments() {
+  // TODO create a route that returns only the validated FC enrollments
+  return httpClient
+    .get(
+      `${BACK_HOST}/api/enrollments/?state=validated&fournisseur_de_donnees=franceconnect`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    )
     .then(({ data }) => data);
 }
 
@@ -145,12 +156,4 @@ export function getSiretInformation(siret) {
         };
       }
     );
-}
-
-export function getServiceProviders(tokenFc) {
-  return httpClient
-    .get(FRANCE_CONNECT_ME_URI, {
-      headers: { Authorization: tokenFc ? `Bearer ${tokenFc}` : '' },
-    })
-    .then(({ data }) => data['service-providers']);
 }

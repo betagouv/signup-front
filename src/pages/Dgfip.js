@@ -197,7 +197,6 @@ const Dgfip = ({
         { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
       ]}
     />
-    }
     <div className="main-pane">
       <Form
         enrollmentId={enrollmentId}
