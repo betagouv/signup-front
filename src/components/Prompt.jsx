@@ -38,10 +38,14 @@ export default class Prompt extends React.Component {
           <p>{promptMessage}</p>
           <textarea value={input} onChange={this.handleInputChange} />
           <div className="form__group button__group">
-            <a className="button" onClick={this.handleAccept}>
+            <a className="button" href="#validate" onClick={this.handleAccept}>
               Valider
             </a>
-            <a className="button secondary" onClick={this.handleCancel}>
+            <a
+              className="button secondary"
+              href="#cancel"
+              onClick={this.handleCancel}
+            >
               Annuler
             </a>
           </div>

@@ -53,7 +53,9 @@ const Header = ({ user, logout }) => {
                 <div className="dropdown">
                   {user.email}
                   <div className="dropdown-content" style={{ top: '1.8em' }}>
-                    <a onClick={logout}>Se déconnecter</a>
+                    <a onClick={logout} href="#logout">
+                      Se déconnecter
+                    </a>
                   </div>
                 </div>
               </li>
