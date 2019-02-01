@@ -32,6 +32,7 @@ class Form extends React.Component {
             link: 'https://www.cnil.fr/fr/designation-dpo',
             nom: '',
             email: '',
+            phone_number: '',
           },
           {
             id: 'responsable_traitement',
@@ -39,15 +40,16 @@ class Form extends React.Component {
             link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
             nom: '',
             email: '',
+            phone_number: '',
           },
           {
             id: 'technique',
             heading: 'Responsable technique',
             hint:
-              "Cette personne recevra la clé d'API. Le responsable technique peut être le contact technique de votre prestataire",
+              'Cette personne recevra les accès techniques. Le responsable technique peut être le contact technique de votre prestataire.',
             nom: '',
             email: '',
-            telephone_portable: '',
+            phone_number: '',
           },
         ],
         demarche: {
@@ -292,10 +294,7 @@ class Form extends React.Component {
         <h2 id="contacts">Contacts</h2>
         <div className="card-row">
           {contacts.map(
-            (
-              { id, heading, link, hint, nom, email, telephone_portable },
-              index
-            ) => (
+            ({ id, heading, link, hint, nom, email, phone_number }, index) => (
               <div key={id} className="card">
                 <div className="card__content">
                   <h3>{heading}</h3>
@@ -327,26 +326,25 @@ class Form extends React.Component {
                       value={email}
                     />
                   </div>
-                  {id === 'technique' && (
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_telephone_portable`}>
-                        Numéro de téléphone portable
-                      </label>
-                      <small className="card__meta">
-                        La clé d&apos;API vous sera envoyée par SMS à ce numéro
-                      </small>
-                      <input
-                        type="tel"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].telephone_portable`}
-                        id={`person_${id}_telephone_portable`}
-                        disabled={isFranceConnected || disableContactInputs}
-                        value={telephone_portable}
-                        placeholder="06XXXXXXXX"
-                        pattern="[0-9]{10}"
-                      />
-                    </div>
-                  )}
+                  <div className="form__group">
+                    <label htmlFor={`person_${id}_phone_number`}>
+                      Numéro de téléphone portable
+                    </label>
+                    <small className="card__meta">
+                      Ce numéro peut être le numéro du secrétariat ou le numéro
+                      direct de la personne concernée. Ce numéro nous permettra
+                      de vous contacter lors d'incidents ou difficultées.
+                    </small>
+                    <input
+                      type="tel"
+                      onChange={this.handleChange}
+                      name={`contacts[${index}].phone_number`}
+                      id={`person_${id}_phone_number`}
+                      disabled={isFranceConnected || disableContactInputs}
+                      value={phone_number}
+                      pattern="[0-9]{10}"
+                    />
+                  </div>
                 </div>
               </div>
             )
