@@ -328,7 +328,7 @@ class Form extends React.Component {
                   </div>
                   <div className="form__group">
                     <label htmlFor={`person_${id}_phone_number`}>
-                      Numéro de téléphone portable
+                      Numéro de téléphone
                     </label>
                     <small className="card__meta">
                       Ce numéro peut être le numéro du secrétariat ou le numéro
