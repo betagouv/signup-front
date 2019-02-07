@@ -64,8 +64,8 @@ const CadreJuridiqueDescription = () => (
   <div className="information-text">
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
-      réglementaire qui s'applique à votre entité (administration ou entreprise) doit
-      permettre à la DINSIC de lui transmettre des données d'identité.
+      réglementaire qui s'applique à votre entité (administration ou entreprise)
+      doit permettre à la DINSIC de lui transmettre des données d'identité.
     </p>
     <p>
       Il vous est donc demandé de préciser les références du fondement légal de
