@@ -67,11 +67,20 @@ const CadreJuridiqueDescription = () => (
       réglementaire qui s'applique à votre entité (administration ou entreprise)
       doit permettre à la DINSIC de lui transmettre des données d'identité.
     </p>
-    <p>
-      Il vous est donc demandé de préciser les références du fondement légal de
-      votre droit à demander ces informations (délibération du conseil
-      municipal, décret …).
-    </p>
+    <ul>
+      <li>
+        Si vous êtes une <b>administration</b>, vous pouvez citer ici{' '}
+        <a href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037611479&categorieLien=id">
+          l'arrêté du 8 novembre 2018
+        </a>
+        . N'oubliez pas de justifier la nécessité d'identification de la
+        personne dans le champs de description de votre démarche.{' '}
+      </li>
+      <li>
+        Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
+        réglementaire qui s'applique à votre entité.
+      </li>
+    </ul>
   </div>
 );
 
