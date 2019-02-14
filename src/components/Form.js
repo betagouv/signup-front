@@ -215,6 +215,12 @@ class Form extends React.Component {
 
     return (
       <div className="form">
+        {acl.update && (
+          <div className="notification info">
+            Pensez à sauvegarder régulièrement votre demande en brouillon.
+          </div>
+        )}
+
         {messages.map(({ id, content, category, updated_at }) => {
           if (category === 'refuse_application') {
             return (
