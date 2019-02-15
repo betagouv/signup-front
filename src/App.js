@@ -4,7 +4,6 @@ import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Spinner from './components/icons/spinner';
-import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import OauthCallback from './pages/OauthCallback';
 import EnrollmentList from './pages/EnrollmentList';
@@ -41,7 +40,6 @@ class App extends Component {
                   )}
                   {!isLoading && (
                     <React.Fragment>
-                      <Route path="/login" component={Login} />
                       <Route path="/oauth-callback" component={OauthCallback} />
                       <PrivateRoute exact path="/" component={EnrollmentList} />
                       <PrivateRoute
