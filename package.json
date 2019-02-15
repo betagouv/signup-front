@@ -18,7 +18,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "piwik-react-router": "^0.12.1",
     "prop-types": "^15.6.2",
