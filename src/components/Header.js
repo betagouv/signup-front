@@ -44,22 +44,19 @@ const Header = ({ user, logout }) => {
               <a href="https://api.gouv.fr/apropos">À propos</a>
             </li>
             <li className="nav__item">
-              <a href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
-                Nous contacter
-              </a>
-            </li>
-            {user && (
-              <li className="nav__item">
-                <div className="dropdown">
-                  {user.email}
-                  <div className="dropdown-content" style={{ top: '1.8em' }}>
-                    <a onClick={logout} href="#logout">
-                      Se déconnecter
-                    </a>
+              {user && (
+                <li className="nav__item">
+                  <div className="dropdown">
+                    {user.email}
+                    <div className="dropdown-content" style={{ top: '1.8em' }}>
+                      <a onClick={logout} href="#logout">
+                        Se déconnecter
+                      </a>
+                    </div>
                   </div>
-                </div>
-              </li>
-            )}
+                </li>
+              )}
+            </li>
           </ul>
         </nav>
       </div>

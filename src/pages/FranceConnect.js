@@ -151,6 +151,20 @@ const FranceConnect = ({
         { id: 'donnees', text: 'Données' },
         { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
+      contactInformation={[
+        {
+          email: 'support.usagers@franceconnect.gouv.fr',
+          text: 'Particuliers, nous contacter',
+        },
+        {
+          email: 'support.partenaires@franceconnect.gouv.fr',
+          text: 'Entreprises, nous contacter',
+        },
+        {
+          email: 'support.partenaires@franceconnect.gouv.fr',
+          text: 'Administrations, nous contacter',
+        },
+      ]}
     />
     <div className="main-pane">
       <Form

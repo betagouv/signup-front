@@ -6,6 +6,7 @@ const Nav = ({
   navLinksGeneral,
   titleAdditionalContent,
   navLinksAdditionalContent,
+  contactInformation,
 }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
@@ -20,7 +21,7 @@ const Nav = ({
           </a>
         </li>
       )}
-      <li className="side-pane__title">
+      <li>
         <h2>Votre demande</h2>
       </li>
       {navLinksGeneral.map(({ id, text }) => (
@@ -33,12 +34,29 @@ const Nav = ({
     </ul>
     {titleAdditionalContent && (
       <ul className="side-pane__menu">
-        <li className="side-pane__title">
+        <li>
           <h2>{titleAdditionalContent}</h2>
         </li>
         {navLinksAdditionalContent.map(({ id, text }) => (
           <li key={id}>
             <a className="side-pane__link" href={`#${id}`}>
+              {text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    {contactInformation && (
+      <ul className="side-pane__menu">
+        <li>
+          <h2>Contact</h2>
+        </li>
+        {contactInformation.map(({ email, text }) => (
+          <li key={email}>
+            <a
+              className="button secondary"
+              href={`mailto:${email}?subject=Contact%20via%20signup.api.gouv.fr`}
+            >
               {text}
             </a>
           </li>
