@@ -7,6 +7,7 @@ import {
   updateEnrollmentContacts,
 } from '../../lib/services';
 import Prompt from '../Prompt';
+import { getErrorMessages } from '../../lib/utils';
 
 const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
 
@@ -88,47 +89,61 @@ class ActionButtons extends React.Component {
   };
 
   triggerAction = async action => {
-    let message = null;
+    const resultMessages = { errorMessages: [], successMessages: [] };
 
-    if (['review_application', 'refuse_application'].includes(action)) {
-      message = await this.getActionMessage(action);
+    try {
+      let actionMessage = null;
 
-      if (!message) {
-        // do not trigger action if no message is provided or when clicking on cancel
-        return Promise.resolve();
+      if (['review_application', 'refuse_application'].includes(action)) {
+        actionMessage = await this.getActionMessage(action);
+
+        if (!actionMessage) {
+          // do not trigger action if no message is provided or when clicking on cancel
+          return resultMessages;
+        }
       }
-    }
 
-    if (action === 'update_contacts') {
-      return await updateEnrollmentContacts({
-        enrollment: this.props.enrollment,
+      if (action === 'update_contacts') {
+        await updateEnrollmentContacts({
+          enrollment: this.props.enrollment,
+        });
+
+        return resultMessages;
+      }
+
+      let enrollmentId = this.props.enrollment.id;
+
+      if (this.props.enrollment.acl.update) {
+        const newEnrollment = await createOrUpdateEnrollment({
+          enrollment: this.props.enrollment,
+        });
+        this.props.updateEnrollment(newEnrollment);
+        enrollmentId = newEnrollment.id;
+
+        resultMessages.successMessages.push('Votre demande a été sauvegardée.');
+      }
+
+      await triggerEnrollment({
+        action,
+        id: enrollmentId,
+        actionMessage,
       });
+
+      return resultMessages;
+    } catch (error) {
+      resultMessages.errorMessages.push(...getErrorMessages(error));
+
+      return resultMessages;
     }
-
-    let enrollmentId = this.props.enrollment.id;
-
-    if (this.props.enrollment.acl.update) {
-      const newEnrollment = await createOrUpdateEnrollment({
-        enrollment: this.props.enrollment,
-      });
-      this.props.updateEnrollment(newEnrollment);
-      enrollmentId = newEnrollment.id;
-    }
-
-    return await triggerEnrollment({
-      action,
-      id: enrollmentId,
-      message,
-    });
   };
 
   handleSubmitFactory = action => {
-    return event => {
+    return async event => {
       event.preventDefault();
 
-      this.triggerAction(action)
-        .then(() => this.props.handleSubmit({}))
-        .catch(errors => this.props.handleSubmit({ errors }));
+      const resultMessages = await this.triggerAction(action);
+
+      this.props.handleSubmit(resultMessages);
     };
   };
 
@@ -137,7 +152,9 @@ class ActionButtons extends React.Component {
 
     createOrUpdateEnrollment({ enrollment: this.props.enrollment })
       .then(() => this.props.handleSubmit({}))
-      .catch(errors => this.props.handleSubmit({ errors }));
+      .catch(errors =>
+        this.props.handleSubmit({ errorMessages: getErrorMessages(errors) })
+      );
   };
 
   render() {
@@ -153,7 +170,7 @@ class ActionButtons extends React.Component {
               className="button secondary enrollment"
               onClick={this.handleSaveDraft}
             >
-              Enregistrer le brouillon
+              Sauvegarder le brouillon
             </button>
           )}
 

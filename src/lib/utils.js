@@ -1,6 +1,6 @@
 import _, { isEmpty, isObject, isString } from 'lodash';
 
-export function getErrorMessage(error) {
+export function getErrorMessages(error) {
   if (
     !isEmpty(error.response) &&
     isObject(error.response.data) &&

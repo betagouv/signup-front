@@ -5,7 +5,6 @@ import { isEmpty, omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
 import moment from 'moment';
 
 import { getUserEnrollment } from '../lib/services';
-import { getErrorMessage } from '../lib/utils';
 import ValidatedFranceconnectEnrollmentsSelector from './form/ValidatedFranceconnectEnrollmentsSelector';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
@@ -18,7 +17,8 @@ class Form extends React.Component {
     const availableScopes = props.availableScopes;
 
     this.state = {
-      errors: [],
+      errorMessages: [],
+      successMessages: [],
       isUserEnrollmentLoading: true,
       enrollment: {
         acl: {
@@ -167,9 +167,9 @@ class Form extends React.Component {
     }));
   };
 
-  handleSubmit = ({ errors }) => {
-    if (!isEmpty(errors)) {
-      return this.setState({ errors: getErrorMessage(errors) });
+  handleSubmit = ({ errorMessages = [], successMessages = [] }) => {
+    if (!isEmpty(errorMessages)) {
+      return this.setState({ errorMessages, successMessages });
     }
 
     return this.props.history.push('/');
@@ -191,7 +191,8 @@ class Form extends React.Component {
         siret,
         validation_de_convention,
       },
-      errors,
+      errorMessages,
+      successMessages,
       isUserEnrollmentLoading,
     } = this.state;
 
@@ -214,6 +215,12 @@ class Form extends React.Component {
 
     return (
       <div className="form">
+        {acl.update && (
+          <div className="notification info">
+            Pensez à sauvegarder régulièrement votre demande en brouillon.
+          </div>
+        )}
+
         {messages.map(({ id, content, category, updated_at }) => {
           if (category === 'refuse_application') {
             return (
@@ -511,9 +518,14 @@ class Form extends React.Component {
           handleSubmit={this.handleSubmit}
         />
 
-        {errors.map(error => (
-          <div key={error} className="notification error">
-            {error}
+        {successMessages.map(successMessage => (
+          <div key={successMessage} className="notification success">
+            {successMessage}
+          </div>
+        ))}
+        {errorMessages.map(errorMessage => (
+          <div key={errorMessage} className="notification error">
+            {errorMessage}
           </div>
         ))}
       </div>
