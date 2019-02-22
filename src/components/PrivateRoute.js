@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Route, Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { withUser } from './UserContext';
 import { saveCurrentPageForPostloginRedirect } from '../pages/OauthCallback';
 
-const SaveCurrentPageAndRedirect = ({ location }) => {
+const { REACT_APP_OAUTH_AUTHORIZE_URI: OAUTH_AUTHORIZE_URI } = process.env;
+
+const SaveCurrentPageAndRedirect = () => {
   saveCurrentPageForPostloginRedirect();
 
-  return (
-    <Redirect
-      to={{
-        pathname: '/login',
-        state: { from: location },
-      }}
-    />
-  );
+  window.location.href = OAUTH_AUTHORIZE_URI;
+
+  return null;
 };
 
 // We do not use isLoading, login, logout but we do not want these properties to be forwarded downward as there are added ia the withUser HOC
