@@ -155,14 +155,17 @@ const FranceConnect = ({
         {
           email: 'support.usagers@franceconnect.gouv.fr',
           text: 'Particuliers, nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr',
         },
         {
           email: 'support.partenaires@franceconnect.gouv.fr',
           text: 'Entreprises, nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr',
         },
         {
           email: 'support.partenaires@franceconnect.gouv.fr',
           text: 'Administrations, nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr',
         },
       ]}
     />

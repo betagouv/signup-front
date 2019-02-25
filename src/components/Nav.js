@@ -51,11 +51,11 @@ const Nav = ({
         <li>
           <h2>Contact</h2>
         </li>
-        {contactInformation.map(({ email, text }) => (
+        {contactInformation.map(({ email, text, subject }) => (
           <li key={email}>
             <a
               className="button secondary"
-              href={`mailto:${email}?subject=Contact%20via%20signup.api.gouv.fr`}
+              href={`mailto:${email}?subject=${subject}`}
             >
               {text}
             </a>
