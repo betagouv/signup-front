@@ -45,16 +45,14 @@ const Header = ({ user, logout }) => {
             </li>
             <li className="nav__item">
               {user && (
-                <li className="nav__item">
-                  <div className="dropdown">
-                    {user.email}
-                    <div className="dropdown-content" style={{ top: '1.8em' }}>
-                      <a onClick={logout} href="#logout">
-                        Se déconnecter
-                      </a>
-                    </div>
+                <div className="dropdown">
+                  {user.email}
+                  <div className="dropdown-content" style={{ top: '1.8em' }}>
+                    <a onClick={logout} href="#logout">
+                      Se déconnecter
+                    </a>
                   </div>
-                </li>
+                </div>
               )}
             </li>
           </ul>
