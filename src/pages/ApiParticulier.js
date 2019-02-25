@@ -129,6 +129,13 @@ const ApiParticulier = ({
         { id: 'donnees', text: 'Données' },
         { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
+      contactInformation={[
+        {
+          email: 'contact@api.gouv.fr',
+          text: 'Nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr - API Particulier',
+        },
+      ]}
     />
     <div className="main-pane">
       <Form

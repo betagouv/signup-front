@@ -196,6 +196,13 @@ const Dgfip = ({
         { id: 'volumetrie', text: 'Volumétrie' },
         { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
       ]}
+      contactInformation={[
+        {
+          email: 'contact@api.gouv.fr',
+          text: 'Nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr - DGFIP',
+        },
+      ]}
     />
     <div className="main-pane">
       <Form

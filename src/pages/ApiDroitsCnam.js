@@ -65,6 +65,13 @@ const ApiDroitsCnam = ({
         { id: 'cadre-juridique', text: 'Cadre juridique' },
         { id: 'cgu', text: "Modalités d'utilisation" },
       ]}
+      contactInformation={[
+        {
+          email: 'contact@api.gouv.fr',
+          text: 'Nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr - CNAM',
+        },
+      ]}
     />
     <div className="main-pane">
       <Form
