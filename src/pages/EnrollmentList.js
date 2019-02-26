@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
+import _ from 'lodash';
+import moment from 'moment';
+
 import {
   getUserArchivedEnrollments,
   getUserPendingEnrollments,
 } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
 import { withUser } from '../components/UserContext';
-import _ from 'lodash';
-import moment from 'moment';
 
 const STATE_LABELS = {
   pending: 'Brouillon',
@@ -19,11 +20,44 @@ const STATE_LABELS = {
   refused: 'Refusée',
 };
 
-const FOURNISSEUR_DE_DONNEES_LABELS = {
+export const FOURNISSEUR_DE_DONNEES_LABELS = {
   'api-particulier': 'API Particulier',
   franceconnect: 'FranceConnect',
   'api-droits-cnam': 'API Droits CNAM',
   dgfip: 'API Impot particulier',
+};
+
+export const enrollmentListStyle = {
+  table: {
+    border: 'none',
+  },
+  thead: {
+    boxShadow: 'none',
+  },
+  header: {
+    padding: '1em',
+    backgroundColor: '#ebeff3',
+    fontWeight: 'bold',
+    borderRight: 'none',
+    outline: '0',
+  },
+  updateAtHeader: {
+    padding: '0.7em 0',
+  },
+  footer: {},
+  cell: {
+    cursor: 'pointer',
+    padding: '1em 0.5em',
+    borderRight: 'none',
+    overflow: 'hidden',
+  },
+  centeredCell: {
+    textAlign: 'center',
+  },
+  pagination: {
+    boxShadow: 'none',
+    borderTop: '1px solid rgba(0,0,0,0.1)',
+  },
 };
 
 class EnrollmentList extends React.Component {
@@ -54,39 +88,6 @@ class EnrollmentList extends React.Component {
     });
   }
 
-  style = {
-    table: {
-      border: 'none',
-    },
-    thead: {
-      boxShadow: 'none',
-    },
-    header: {
-      padding: '1em',
-      backgroundColor: '#ebeff3',
-      fontWeight: 'bold',
-      borderRight: 'none',
-      outline: '0',
-    },
-    updateAtHeader: {
-      padding: '0.7em 0',
-    },
-    footer: {},
-    cell: {
-      cursor: 'pointer',
-      padding: '1em 0.5em',
-      borderRight: 'none',
-      overflow: 'hidden',
-    },
-    centeredCell: {
-      textAlign: 'center',
-    },
-    pagination: {
-      boxShadow: 'none',
-      borderTop: '1px solid rgba(0,0,0,0.1)',
-    },
-  };
-
   availableAction = new Set([
     'validate_application',
     'review_application',
@@ -104,8 +105,14 @@ class EnrollmentList extends React.Component {
       {
         Header: () => <ScheduleIcon title="date de dernière mise à jour" />,
         accessor: 'updated_at',
-        headerStyle: { ...this.style.header, ...this.style.updateAtHeader },
-        style: { ...this.style.cell, ...this.style.centeredCell },
+        headerStyle: {
+          ...enrollmentListStyle.header,
+          ...enrollmentListStyle.updateAtHeader,
+        },
+        style: {
+          ...enrollmentListStyle.cell,
+          ...enrollmentListStyle.centeredCell,
+        },
         width: 50,
         Cell: ({ value: updatedAt }) => {
           if (this.props.showArchived) {
@@ -121,22 +128,25 @@ class EnrollmentList extends React.Component {
       {
         Header: 'Intitulé',
         accessor: 'demarche.intitule',
-        headerStyle: this.style.header,
-        style: this.style.cell,
+        headerStyle: enrollmentListStyle.header,
+        style: enrollmentListStyle.cell,
       },
       {
         Header: 'Demandeur',
         accessor: 'applicant.email',
-        headerStyle: this.style.header,
-        style: this.style.cell,
+        headerStyle: enrollmentListStyle.header,
+        style: enrollmentListStyle.cell,
       },
       {
         Header: 'Fournisseur',
         accessor: ({ fournisseur_de_donnees }) =>
           FOURNISSEUR_DE_DONNEES_LABELS[fournisseur_de_donnees],
         id: 'fournisseur_de_donnees',
-        headerStyle: this.style.header,
-        style: { ...this.style.cell, ...this.style.centeredCell },
+        headerStyle: enrollmentListStyle.header,
+        style: {
+          ...enrollmentListStyle.cell,
+          ...enrollmentListStyle.centeredCell,
+        },
         width: 130,
       },
       {
@@ -146,8 +156,11 @@ class EnrollmentList extends React.Component {
           acl,
         }),
         id: 'status',
-        headerStyle: this.style.header,
-        style: { ...this.style.cell, ...this.style.centeredCell },
+        headerStyle: enrollmentListStyle.header,
+        style: {
+          ...enrollmentListStyle.cell,
+          ...enrollmentListStyle.centeredCell,
+        },
         width: 100,
         Cell: ({ value: { stateLabel, acl } }) => {
           if (!this.hasTriggerableActions({ acl })) {
@@ -174,8 +187,8 @@ class EnrollmentList extends React.Component {
       configuration.splice(configuration.length - 1, 0, {
         Header: 'Fin homologation',
         accessor: 'date_fin_homologation',
-        headerStyle: this.style.header,
-        style: this.style.cell,
+        headerStyle: enrollmentListStyle.header,
+        style: enrollmentListStyle.cell,
       });
     }
 
@@ -264,9 +277,11 @@ class EnrollmentList extends React.Component {
                   },
                   title: this.getTitle({ column, rowInfo }),
                 })}
-                getTheadProps={() => ({ style: this.style.thead })}
-                getPaginationProps={() => ({ style: this.style.pagination })}
-                style={this.style.table}
+                getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+                getPaginationProps={() => ({
+                  style: enrollmentListStyle.pagination,
+                })}
+                style={enrollmentListStyle.table}
                 className="-highlight"
                 loading={loading}
                 showPageSizeOptions={false}

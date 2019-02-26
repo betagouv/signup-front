@@ -7,6 +7,7 @@ import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
 import OauthCallback from './pages/OauthCallback';
 import EnrollmentList from './pages/EnrollmentList';
+import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import ApiParticulier from './pages/ApiParticulier';
 import Dgfip from './pages/Dgfip';
 import FranceConnect from './pages/FranceConnect';
@@ -40,6 +41,10 @@ class App extends Component {
                   )}
                   {!isLoading && (
                     <React.Fragment>
+                      <Route
+                        path="/public/:fournisseurDeDonnees?"
+                        component={PublicEnrollmentList}
+                      />
                       <Route path="/oauth-callback" component={OauthCallback} />
                       <PrivateRoute exact path="/" component={EnrollmentList} />
                       <PrivateRoute
