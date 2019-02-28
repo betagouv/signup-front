@@ -6,6 +6,7 @@ const Nav = ({
   navLinksGeneral,
   titleAdditionalContent,
   navLinksAdditionalContent,
+  contactInformation,
 }) => (
   <nav className="side-pane">
     <ul className="side-pane__menu">
@@ -20,26 +21,43 @@ const Nav = ({
           </a>
         </li>
       )}
-      <li className="side-pane__title">
+      <li>
         <h2>Votre demande</h2>
       </li>
-      {navLinksGeneral.map(({ id, text }) => (
+      {navLinksGeneral.map(({ id, label }) => (
         <li key={id}>
           <a className="side-pane__link" href={`#${id}`}>
-            {text}
+            {label}
           </a>
         </li>
       ))}
     </ul>
     {titleAdditionalContent && (
       <ul className="side-pane__menu">
-        <li className="side-pane__title">
+        <li>
           <h2>{titleAdditionalContent}</h2>
         </li>
-        {navLinksAdditionalContent.map(({ id, text }) => (
+        {navLinksAdditionalContent.map(({ id, label }) => (
           <li key={id}>
             <a className="side-pane__link" href={`#${id}`}>
-              {text}
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+    {contactInformation && (
+      <ul className="side-pane__menu">
+        <li>
+          <h2>Contact</h2>
+        </li>
+        {contactInformation.map(({ email, label, subject }) => (
+          <li key={label}>
+            <a
+              className="button secondary"
+              href={`mailto:${email}?subject=${subject}`}
+            >
+              {label}
             </a>
           </li>
         ))}
@@ -53,6 +71,7 @@ Nav.propTypes = {
   navLinksGeneral: PropTypes.array.isRequired,
   titleAdditionalContent: PropTypes.string,
   navLinksAdditionalContent: PropTypes.array,
+  contactInformation: PropTypes.array,
 };
 
 export default Nav;

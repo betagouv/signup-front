@@ -163,19 +163,26 @@ const Dgfip = ({
         alt: 'Direction générale des finances publiques',
       }}
       navLinksGeneral={[
-        { id: 'demarche', text: 'Démarche' },
-        { id: 'identite', text: 'Identité' },
-        { id: 'contacts', text: 'Contacts' },
-        { id: 'cadre-juridique', text: 'Cadre juridique' },
-        { id: 'donnees', text: 'Données' },
-        { id: 'cgu', text: "Modalités d'utilisation" },
+        { id: 'demarche', label: 'Démarche' },
+        { id: 'identite', label: 'Identité' },
+        { id: 'contacts', label: 'Contacts' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'donnees', label: 'Données' },
+        { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       titleAdditionalContent={'Données de production'}
       navLinksAdditionalContent={[
-        { id: 'homologation-securite', text: 'Homologation de sécurité' },
-        { id: 'entrants-techniques', text: 'Entrants techniques' },
-        { id: 'volumetrie', text: 'Volumétrie' },
-        { id: 'recette-fonctionnelle', text: 'Recette fonctionnelle' },
+        { id: 'homologation-securite', label: 'Homologation de sécurité' },
+        { id: 'entrants-techniques', label: 'Entrants techniques' },
+        { id: 'volumetrie', label: 'Volumétrie' },
+        { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
+      ]}
+      contactInformation={[
+        {
+          email: 'contact@api.gouv.fr',
+          label: 'Nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20DGFIP',
+        },
       ]}
     />
     <div className="main-pane">
