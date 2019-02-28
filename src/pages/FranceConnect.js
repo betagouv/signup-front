@@ -134,8 +134,7 @@ const availableScopes = [
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
-const cguLink =
-  'https://partenaires.franceconnect.gouv.fr/files/CGU%20FS%20-%20Corps%20juridique%20v3.3.pdf';
+const cguLink = 'https://partenaires.franceconnect.gouv.fr/cgu';
 
 const FranceConnect = ({
   match: {

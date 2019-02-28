@@ -490,13 +490,6 @@ class Form extends React.Component {
 
         <h2 id="cgu">Modalités d&apos;utilisation</h2>
         <CguDescription />
-        <embed
-          title="CGU"
-          type="application/pdf"
-          src={cguLink}
-          width="100%"
-          height="800px"
-        />
         <div className="form__group">
           <input
             onChange={this.handleChange}
@@ -507,8 +500,12 @@ class Form extends React.Component {
             id="validation_de_convention"
           />
           <label htmlFor="validation_de_convention" className="label-inline">
-            Je valide les présentes modalités d&apos;utilisation et confirme que
-            le DPD de mon organisme est informé de ma demande
+            J'ai pris connaissance des{' '}
+            <a href={cguLink} target="_blank" rel="noreferrer noopener">
+              modalités d&apos;utilisation
+            </a>{' '}
+            et je les valide. Je confirme que le DPD de mon organisme est
+            informé de ma demande.
           </label>
         </div>
 
