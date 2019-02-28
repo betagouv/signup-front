@@ -144,27 +144,27 @@ const FranceConnect = ({
   <div className="documentation">
     <Nav
       navLinksGeneral={[
-        { id: 'demarche', text: 'Démarche' },
-        { id: 'identite', text: 'Identité' },
-        { id: 'contacts', text: 'Contacts' },
-        { id: 'cadre-juridique', text: 'Cadre juridique' },
-        { id: 'donnees', text: 'Données' },
-        { id: 'cgu', text: "Modalités d'utilisation" },
+        { id: 'demarche', label: 'Démarche' },
+        { id: 'identite', label: 'Identité' },
+        { id: 'contacts', label: 'Contacts' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'donnees', label: 'Données' },
+        { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
         {
           email: 'support.usagers@franceconnect.gouv.fr',
-          text: 'Particuliers, nous contacter',
+          label: 'Particuliers, nous contacter',
           subject: 'Contact%20via%20signup.api.gouv.fr',
         },
         {
           email: 'support.partenaires@franceconnect.gouv.fr',
-          text: 'Entreprises, nous contacter',
+          label: 'Entreprises, nous contacter',
           subject: 'Contact%20via%20signup.api.gouv.fr',
         },
         {
           email: 'support.partenaires@franceconnect.gouv.fr',
-          text: 'Administrations, nous contacter',
+          label: 'Administrations, nous contacter',
           subject: 'Contact%20via%20signup.api.gouv.fr',
         },
       ]}

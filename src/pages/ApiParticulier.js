@@ -122,18 +122,18 @@ const ApiParticulier = ({
   <div className="documentation">
     <Nav
       navLinksGeneral={[
-        { id: 'demarche', text: 'Démarche' },
-        { id: 'identite', text: 'Identité' },
-        { id: 'contacts', text: 'Contacts' },
-        { id: 'cadre-juridique', text: 'Cadre juridique' },
-        { id: 'donnees', text: 'Données' },
-        { id: 'cgu', text: "Modalités d'utilisation" },
+        { id: 'demarche', label: 'Démarche' },
+        { id: 'identite', label: 'Identité' },
+        { id: 'contacts', label: 'Contacts' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'donnees', label: 'Données' },
+        { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
         {
           email: 'contact@api.gouv.fr',
-          text: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr - API Particulier',
+          label: 'Nous contacter',
+          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20API%20Particulier',
         },
       ]}
     />

@@ -24,10 +24,10 @@ const Nav = ({
       <li>
         <h2>Votre demande</h2>
       </li>
-      {navLinksGeneral.map(({ id, text }) => (
+      {navLinksGeneral.map(({ id, label }) => (
         <li key={id}>
           <a className="side-pane__link" href={`#${id}`}>
-            {text}
+            {label}
           </a>
         </li>
       ))}
@@ -37,10 +37,10 @@ const Nav = ({
         <li>
           <h2>{titleAdditionalContent}</h2>
         </li>
-        {navLinksAdditionalContent.map(({ id, text }) => (
+        {navLinksAdditionalContent.map(({ id, label }) => (
           <li key={id}>
             <a className="side-pane__link" href={`#${id}`}>
-              {text}
+              {label}
             </a>
           </li>
         ))}
@@ -51,13 +51,13 @@ const Nav = ({
         <li>
           <h2>Contact</h2>
         </li>
-        {contactInformation.map(({ email, text, subject }) => (
-          <li key={email}>
+        {contactInformation.map(({ email, label, subject }) => (
+          <li key={label}>
             <a
               className="button secondary"
               href={`mailto:${email}?subject=${subject}`}
             >
-              {text}
+              {label}
             </a>
           </li>
         ))}
@@ -71,6 +71,7 @@ Nav.propTypes = {
   navLinksGeneral: PropTypes.array.isRequired,
   titleAdditionalContent: PropTypes.string,
   navLinksAdditionalContent: PropTypes.array,
+  contactInformation: PropTypes.array,
 };
 
 export default Nav;
