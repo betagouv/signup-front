@@ -66,6 +66,7 @@ class Form extends React.Component {
             availableScopes.map(({ name }) => name),
             new Array(availableScopes.length).fill('')
           ),
+          rgpd_general_agreement: false,
           dgfip_data_years: {
             n_moins_1: false,
             n_moins_2: false,
@@ -206,6 +207,7 @@ class Form extends React.Component {
       CadreJuridiqueDescription,
       DonneesDescription,
       availableScopes,
+      AdditionalRgpdAgreement,
       AdditionalDataContent,
       AdditionalContent,
     } = this.props;
@@ -405,6 +407,11 @@ class Form extends React.Component {
           <React.Fragment>
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
+            <AdditionalRgpdAgreement
+              disabled={disabledApplication}
+              onChange={this.handleChange}
+              enrollment={this.state.enrollment}
+            />
             <div className="form__group">
               <fieldset className="vertical">
                 <label>Sélectionnez vos jeux de données souhaités</label>
@@ -544,6 +551,7 @@ Form.propTypes = {
   availableScopes: PropTypes.array.isRequired,
   CguDescription: PropTypes.func.isRequired,
   cguLink: PropTypes.string.isRequired,
+  DgfipRgpdAgreement: PropTypes.func,
   AdditionalDataContent: PropTypes.func,
   AdditionalContent: PropTypes.func,
   history: PropTypes.shape({
@@ -554,6 +562,7 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isFranceConnected: false,
+  AdditionalRgpdAgreement: () => <React.Fragment />,
   AdditionalDataContent: () => <React.Fragment />,
   AdditionalContent: () => <React.Fragment />,
 };
