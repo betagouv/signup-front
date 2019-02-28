@@ -4,6 +4,7 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 import DgfipDataYears from '../components/form/DgfipDataYears';
 import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
+import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
 
 // Description du contexte
 const provider = 'dgfip';
@@ -104,27 +105,11 @@ const DonneesDescription = () => (
     </ul>
     <p>
       Nous vous remercions de sélectionner uniquement les données strictement
-      nécessaires à votre téléservice. Vous pouvez consulter le{' '}
-      <a
-        href="/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf"
-        target="_blank"
-      >
-        Contrat de Service Technique (CST)
-      </a>{' '}
-      pour voir le détail des données disponibles.
+      nécessaires à votre téléservice.
     </p>
     <p>
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
-    </p>
-    <p>
-      <b>
-        En poursuivant cette demande, j'atteste respecter les principes
-        fondamentaux de la protection des données et avoir réalisé l'étude
-        d'impact associée avant la mise en production de mon téléservice,
-        conformément au règlement général sur la protection des données (RGPD)
-        en vigueur depuis le 25 mai 2018.
-      </b>
     </p>
   </div>
 );
@@ -166,10 +151,6 @@ const CguDescription = () => (
 const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
-// Le demandeur doit remplir des contenus supplémentaires
-const AdditionalDataContent = DgfipDataYears;
-const AdditionalContent = DgfipEntrantsTechniques;
-
 const Dgfip = ({
   match: {
     params: { enrollmentId },
@@ -210,8 +191,10 @@ const Dgfip = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        AdditionalDataContent={AdditionalDataContent}
-        AdditionalContent={AdditionalContent}
+        // Le demandeur peut remplir des contenus supplémentaires
+        AdditionalRgpdAgreement={DgfipRgpdAgreement}
+        AdditionalDataContent={DgfipDataYears}
+        AdditionalContent={DgfipEntrantsTechniques}
       />
     </div>
   </div>
