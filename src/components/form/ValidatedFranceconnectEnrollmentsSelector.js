@@ -156,11 +156,11 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
 ValidatedFranceconnectEnrollmentsSelector.propTypes = {
   onValidatedFranceconnectEnrollment: PropTypes.func.isRequired,
-  linked_franceconnect_enrollment_id: PropTypes.string,
+  linked_franceconnect_enrollment_id: PropTypes.number,
 };
 
 ValidatedFranceconnectEnrollmentsSelector.defaultProps = {
-  linked_franceconnect_enrollment_id: '',
+  linked_franceconnect_enrollment_id: null,
 };
 
 export default ValidatedFranceconnectEnrollmentsSelector;

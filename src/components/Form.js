@@ -73,7 +73,7 @@ class Form extends React.Component {
           },
         },
         fournisseur_de_donnees: props.provider,
-        linked_franceconnect_enrollment_id: '',
+        linked_franceconnect_enrollment_id: null,
         messages: [],
         id: null,
         scopes: zipObject(
@@ -548,7 +548,7 @@ Form.propTypes = {
   availableScopes: PropTypes.array.isRequired,
   CguDescription: PropTypes.func.isRequired,
   cguLink: PropTypes.string.isRequired,
-  DgfipRgpdAgreement: PropTypes.func,
+  AdditionalRgpdAgreement: PropTypes.func,
   AdditionalDataContent: PropTypes.func,
   AdditionalContent: PropTypes.func,
   history: PropTypes.shape({
