@@ -70,6 +70,20 @@ export function getUserValidatedFranceconnectEnrollments() {
     .then(({ data }) => data);
 }
 
+export function getPublicValidatedEnrollments(fournisseurDeDonnees) {
+  const filterParams = fournisseurDeDonnees
+    ? `?fournisseur_de_donnees=${fournisseurDeDonnees}`
+    : '';
+
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/public${filterParams}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data }) => data);
+}
+
 export function getUserPendingEnrollments() {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/`, {

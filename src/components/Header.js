@@ -6,10 +6,10 @@ import ArrowBackIcon from './icons/arrowBack';
 
 const Header = ({ user, logout }) => {
   const isOnDetailPage =
-    window.location.pathname.includes('/api-particulier') ||
-    window.location.pathname.includes('/franceconnect') ||
-    window.location.pathname.includes('/api-droits-cnam') ||
-    window.location.pathname.includes('/dgfip');
+    window.location.pathname.startsWith('/api-particulier') ||
+    window.location.pathname.startsWith('/franceconnect') ||
+    window.location.pathname.startsWith('/api-droits-cnam') ||
+    window.location.pathname.startsWith('/dgfip');
 
   return (
     <header className="navbar">
