@@ -274,6 +274,9 @@ class Form extends React.Component {
             disabled={isFranceConnected || disabledApplication}
             value={demarche.intitule}
           />
+          <small className="card__meta">
+            <i>Cette information peut être rendue publique.</i>
+          </small>
         </div>
         <div className="form__group">
           <label htmlFor="description_service">
@@ -323,6 +326,11 @@ class Form extends React.Component {
                       disabled={isFranceConnected || disableContactInputs}
                       value={nom}
                     />
+                    {id === 'responsable_traitement' && (
+                      <small className="card__meta">
+                        <i>Cette information peut être rendue publique.</i>
+                      </small>
+                    )}
                   </div>
                   <div className="form__group">
                     <label htmlFor={`person_${id}_email`}>Email</label>

@@ -101,6 +101,9 @@ class Siret extends React.Component {
               <SearchIcon id="icon-search" title="Rechercher" />
             </button>
           </div>
+          <small className="card__meta">
+            <i>Cette information peut être rendue publique.</i>
+          </small>
         </div>
 
         {siretNotFound && (
@@ -128,6 +131,9 @@ class Siret extends React.Component {
             disabled
             value={nom_raison_sociale}
           />
+          <small className="card__meta">
+            <i>Cette information peut être rendue publique.</i>
+          </small>
         </div>
 
         <div className="form__group">
