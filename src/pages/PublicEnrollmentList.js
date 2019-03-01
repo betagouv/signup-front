@@ -187,6 +187,7 @@ class PublicEnrollmentList extends React.Component {
                 defaultSorted={[
                   {
                     id: 'updated_at',
+                    desc: true,
                   },
                 ]}
                 getTdProps={(state, rowInfo, column) => ({
