@@ -5,13 +5,13 @@ import Nav from '../components/Nav';
 
 // Description du contexte
 const provider = 'franceconnect';
-const title = "Demande d'accès à FranceConnect";
+const title = "Demande d'habilitation juridique à FranceConnect";
 const IntroDescription = () => (
   <div className="intro">
     <p>
-      Pour avoir accès à FranceConnect, vous devez obtenir un agrément.
-      L&apos;accès à ce service n&apos;est pour l&apos;instant disponible que si
-      vous êtes:
+      Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
+      une habilitation. L&apos;accès à ce service n&apos;est pour l&apos;instant
+      disponible que si vous êtes:
     </p>
     <ul>
       <li>une administration</li>
