@@ -50,7 +50,7 @@ const isFranceConnected = false;
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
-  <div className="information-text">
+  <React.Fragment>
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
       réglementaire qui s'applique à votre entité (administration ou entreprise)
@@ -70,7 +70,7 @@ const CadreJuridiqueDescription = () => (
         réglementaire qui s'applique à votre entité.
       </li>
     </ul>
-  </div>
+  </React.Fragment>
 );
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
@@ -130,7 +130,7 @@ const FranceConnect = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       navLinksGeneral={[
         { id: 'demarche', label: 'Démarche' },
@@ -158,7 +158,7 @@ const FranceConnect = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}

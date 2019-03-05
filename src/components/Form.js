@@ -216,7 +216,18 @@ class Form extends React.Component {
     const disableContactInputs = !(acl.update_contacts || acl.send_application);
 
     return (
-      <div className="form">
+      <div>
+        {successMessages.map(successMessage => (
+          <div key={successMessage} className="notification success">
+            {successMessage}
+          </div>
+        ))}
+        {errorMessages.map(errorMessage => (
+          <div key={errorMessage} className="notification error">
+            {errorMessage}
+          </div>
+        ))}
+
         {acl.update && (
           <div className="notification info">
             Pensez à sauvegarder régulièrement votre demande en brouillon.
@@ -247,183 +258,198 @@ class Form extends React.Component {
           return null;
         })}
 
-        <h1>{title}</h1>
-        <IntroDescription />
+        <div className="panel">
+          <h2 id="demarche">{title}</h2>
+          <DemarcheDescription />
+          <br />
+          {!isUserEnrollmentLoading &&
+            !disabledApplication &&
+            isFranceConnected && (
+              <ValidatedFranceconnectEnrollmentsSelector
+                onValidatedFranceconnectEnrollment={
+                  this.handleLinkedFranceconnectEnrollmentChange
+                }
+                linked_franceconnect_enrollment_id={
+                  linked_franceconnect_enrollment_id
+                }
+              />
+            )}
+          <div className="form__group">
+            <label htmlFor="intitule_demarche">Intitulé</label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="demarche.intitule"
+              id="intitule_demarche"
+              disabled={isFranceConnected || disabledApplication}
+              value={demarche.intitule}
+            />
+            <small className="card__meta">
+              <i>Cette information peut être rendue publique.</i>
+            </small>
+          </div>
+          <div className="form__group">
+            <label htmlFor="description_service">
+              Décrivez brièvement la raison pour laquelle vous collectez des
+              données à caractère personnel relatives à la gestion de
+              l'identification, l&apos;objectif qui est poursuivi par le
+              traitement que vous mettez en place.
+            </label>
+            <textarea
+              rows="10"
+              onChange={this.handleChange}
+              name="demarche.description"
+              id="description_service"
+              disabled={isFranceConnected || disabledApplication}
+              value={demarche.description}
+              placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
+            />
+          </div>
+        </div>
 
-        <h2 id="demarche">Démarche</h2>
-        <DemarcheDescription />
-        {!isUserEnrollmentLoading &&
-          !disabledApplication &&
-          isFranceConnected && (
-            <ValidatedFranceconnectEnrollmentsSelector
-              onValidatedFranceconnectEnrollment={
-                this.handleLinkedFranceconnectEnrollmentChange
-              }
-              linked_franceconnect_enrollment_id={
-                linked_franceconnect_enrollment_id
-              }
+        <div className="panel">
+          <h2 id="identite">Identité</h2>
+          {!isUserEnrollmentLoading && (
+            <Siret
+              disabled={isFranceConnected || disabledApplication}
+              siret={siret}
+              fournisseurDeDonnees={fournisseur_de_donnees}
+              handleSiretChange={this.handleSiretChange}
             />
           )}
-        <div className="form__group">
-          <label htmlFor="intitule_demarche">Intitulé</label>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            name="demarche.intitule"
-            id="intitule_demarche"
-            disabled={isFranceConnected || disabledApplication}
-            value={demarche.intitule}
-          />
-          <small className="card__meta">
-            <i>Cette information peut être rendue publique.</i>
-          </small>
-        </div>
-        <div className="form__group">
-          <label htmlFor="description_service">
-            Décrivez brièvement votre service ainsi que l&lsquo;utilisation
-            prévue des données transmises
-          </label>
-          <textarea
-            rows="10"
-            onChange={this.handleChange}
-            name="demarche.description"
-            id="description_service"
-            disabled={isFranceConnected || disabledApplication}
-            value={demarche.description}
-          />
         </div>
 
-        <h2 id="identite">Identité</h2>
-        {!isUserEnrollmentLoading && (
-          <Siret
-            disabled={isFranceConnected || disabledApplication}
-            siret={siret}
-            fournisseurDeDonnees={fournisseur_de_donnees}
-            handleSiretChange={this.handleSiretChange}
-          />
-        )}
-
-        <h2 id="contacts">Contacts</h2>
-        <div className="card-row">
-          {contacts.map(
-            ({ id, heading, link, hint, nom, email, phone_number }, index) => (
-              <div key={id} className="card">
-                <div className="card__content">
-                  <h3>{heading}</h3>
-                  {link && (
-                    <a className="card__meta" href={link}>
-                      {link}
-                    </a>
-                  )}
-                  {hint && <div className="card__meta">{hint}</div>}
-                  <div className="form__group">
-                    <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
-                    <input
-                      type="text"
-                      onChange={this.handleChange}
-                      name={`contacts[${index}].nom`}
-                      id={`person_${id}_nom`}
-                      disabled={isFranceConnected || disableContactInputs}
-                      value={nom}
-                    />
-                    {id === 'responsable_traitement' && (
-                      <small className="card__meta">
-                        <i>Cette information peut être rendue publique.</i>
-                      </small>
+        <div className="panel">
+          <h2 id="contacts">Contacts</h2>
+          <div className="row">
+            {contacts.map(
+              (
+                { id, heading, link, hint, nom, email, phone_number },
+                index
+              ) => (
+                <div key={id} className="card">
+                  <div className="card__content">
+                    <h3>{heading}</h3>
+                    {link && (
+                      <a className="card__meta" href={link}>
+                        {link}
+                      </a>
                     )}
-                  </div>
-                  <div className="form__group">
-                    <label htmlFor={`person_${id}_email`}>Email</label>
-                    <input
-                      type="email"
-                      onChange={this.handleChange}
-                      name={`contacts[${index}].email`}
-                      id={`person_${id}_email`}
-                      disabled={isFranceConnected || disableContactInputs}
-                      value={email}
-                    />
-                  </div>
-                  <div className="form__group">
-                    <label htmlFor={`person_${id}_phone_number`}>
-                      Numéro de téléphone
-                    </label>
-                    <small className="card__meta">
-                      Ce numéro peut être le numéro du secrétariat ou le numéro
-                      direct de la personne concernée. Ce numéro nous permettra
-                      de vous contacter lors d'incidents ou difficultées.
-                    </small>
-                    <input
-                      type="tel"
-                      onChange={this.handleChange}
-                      name={`contacts[${index}].phone_number`}
-                      id={`person_${id}_phone_number`}
-                      disabled={isFranceConnected || disableContactInputs}
-                      value={phone_number}
-                      pattern="[0-9]{10}"
-                    />
+                    {hint && <div className="card__meta">{hint}</div>}
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
+                      <input
+                        type="text"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].nom`}
+                        id={`person_${id}_nom`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={nom}
+                      />
+                      {id === 'responsable_traitement' && (
+                        <small className="card__meta">
+                          <i>Cette information peut être rendue publique.</i>
+                        </small>
+                      )}
+                    </div>
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_email`}>Email</label>
+                      <input
+                        type="email"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].email`}
+                        id={`person_${id}_email`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={email}
+                      />
+                    </div>
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_phone_number`}>
+                        Numéro de téléphone
+                      </label>
+                      <small className="card__meta">
+                        Ce numéro peut être le numéro du secrétariat ou le
+                        numéro direct de la personne concernée. Ce numéro nous
+                        permettra de vous contacter lors d'incidents ou
+                        difficultées.
+                      </small>
+                      <input
+                        type="tel"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].phone_number`}
+                        id={`person_${id}_phone_number`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={phone_number}
+                        pattern="[0-9]{10}"
+                      />
+                    </div>
                   </div>
                 </div>
-              </div>
-            )
-          )}
+              )
+            )}
+          </div>
         </div>
 
-        <h2 id="cadre-juridique">Cadre juridique</h2>
-        <CadreJuridiqueDescription />
-        <div className="form__group">
-          <label htmlFor="fondement_juridique">
-            Référence du texte vous autorisant à récolter ces données
-          </label>
-          <input
-            type="text"
-            onChange={this.handleChange}
-            name="demarche.fondement_juridique"
-            id="fondement_juridique"
+        <div className="panel">
+          <h2 id="cadre-juridique">Cadre juridique</h2>
+          <CadreJuridiqueDescription />
+          <br />
+          <div className="form__group">
+            <label htmlFor="fondement_juridique">
+              Référence du texte vous autorisant à récolter ces données
+            </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="demarche.fondement_juridique"
+              id="fondement_juridique"
+              disabled={disabledApplication}
+              value={demarche.fondement_juridique}
+            />
+          </div>
+          <h3>Document associé</h3>
+          <div className="form__group">
+            <label htmlFor="url_fondement_juridique">
+              URL du texte{' '}
+              {demarche.url_fondement_juridique && (
+                <span>
+                  (
+                  <a
+                    href={demarche.url_fondement_juridique}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    accéder à cette URL
+                  </a>
+                  )
+                </span>
+              )}
+            </label>
+            <input
+              type="url"
+              onChange={this.handleChange}
+              name="demarche.url_fondement_juridique"
+              id="url_fondement_juridique"
+              disabled={disabledApplication}
+              value={demarche.url_fondement_juridique}
+            />
+          </div>
+          <h3>ou</h3>
+          <DocumentUpload
             disabled={disabledApplication}
-            value={demarche.fondement_juridique}
+            uploadedDocuments={documents}
+            documentsToUpload={documents_attributes}
+            documentType={'Document::LegalBasis'}
+            handleDocumentsChange={this.handleDocumentsChange}
+            label={'Pièce jointe'}
           />
         </div>
-        <h3>Document associé</h3>
-        <div className="form__group">
-          <label htmlFor="url_fondement_juridique">
-            URL du texte{' '}
-            {demarche.url_fondement_juridique && (
-              <span>
-                (
-                <a
-                  href={demarche.url_fondement_juridique}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  accéder à cette URL
-                </a>
-                )
-              </span>
-            )}
-          </label>
-          <input
-            type="url"
-            onChange={this.handleChange}
-            name="demarche.url_fondement_juridique"
-            id="url_fondement_juridique"
-            disabled={disabledApplication}
-            value={demarche.url_fondement_juridique}
-          />
-        </div>
-        <h3>ou</h3>
-        <DocumentUpload
-          disabled={disabledApplication}
-          uploadedDocuments={documents}
-          documentsToUpload={documents_attributes}
-          documentType={'Document::LegalBasis'}
-          handleDocumentsChange={this.handleDocumentsChange}
-          label={'Pièce jointe'}
-        />
 
         {!isEmpty(availableScopes) && (
-          <React.Fragment>
+          <div className="panel">
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
+            <br />
             <AdditionalRgpdAgreement
               disabled={disabledApplication}
               onChange={this.handleChange}
@@ -502,28 +528,30 @@ class Form extends React.Component {
                 value={donnees.conservation}
               />
             </div>
-          </React.Fragment>
+          </div>
         )}
 
-        <h2 id="cgu">Modalités d&apos;utilisation</h2>
-        <CguDescription />
-        <div className="form__group">
-          <input
-            onChange={this.handleChange}
-            disabled={disabledApplication ? 'disabled' : false}
-            checked={validation_de_convention}
-            type="checkbox"
-            name="validation_de_convention"
-            id="validation_de_convention"
-          />
-          <label htmlFor="validation_de_convention" className="label-inline">
-            J'ai pris connaissance des{' '}
-            <a href={cguLink} target="_blank" rel="noreferrer noopener">
-              modalités d&apos;utilisation
-            </a>{' '}
-            et je les valide. Je confirme que le DPD de mon organisme est
-            informé de ma demande.
-          </label>
+        <div className="panel">
+          <h2 id="cgu">Modalités d&apos;utilisation</h2>
+          <CguDescription />
+          <div className="form__group">
+            <input
+              onChange={this.handleChange}
+              disabled={disabledApplication ? 'disabled' : false}
+              checked={validation_de_convention}
+              type="checkbox"
+              name="validation_de_convention"
+              id="validation_de_convention"
+            />
+            <label htmlFor="validation_de_convention" className="label-inline">
+              J'ai pris connaissance des{' '}
+              <a href={cguLink} target="_blank" rel="noreferrer noopener">
+                modalités d&apos;utilisation
+              </a>{' '}
+              et je les valide. Je confirme que le DPD de mon organisme est
+              informé de ma demande.
+            </label>
+          </div>
         </div>
 
         <AdditionalContent

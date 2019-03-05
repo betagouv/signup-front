@@ -55,7 +55,7 @@ const ApiDroitsCnam = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       navLinksGeneral={[
         { id: 'demarche', label: 'Démarche' },
@@ -72,7 +72,7 @@ const ApiDroitsCnam = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}

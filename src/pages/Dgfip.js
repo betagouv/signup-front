@@ -143,7 +143,7 @@ const Dgfip = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       logo={{
         src: '/images/logo-dgfip.png',
@@ -172,12 +172,11 @@ const Dgfip = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}
         title={title}
-        IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
