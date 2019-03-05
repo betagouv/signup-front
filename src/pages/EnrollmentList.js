@@ -127,7 +127,8 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Intitulé',
-        accessor: 'demarche.intitule',
+        accessor: ({ demarche: { intitule }, id }) => `${id} - ${intitule}`,
+        id: 'intitule',
         headerStyle: enrollmentListStyle.header,
         style: enrollmentListStyle.cell,
       },
