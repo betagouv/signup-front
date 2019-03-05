@@ -127,10 +127,21 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Intitulé',
-        accessor: ({ demarche: { intitule }, id }) => `${id} - ${intitule}`,
+        accessor: ({ demarche: { intitule }, id }) => ({ id, intitule }),
         id: 'intitule',
         headerStyle: enrollmentListStyle.header,
         style: enrollmentListStyle.cell,
+        Cell: ({ value: { id, intitule } }) => `${id} - ${intitule}`,
+        sortMethod: ({ id: firstMemberId }, { id: secondMemberId }) => {
+          if (firstMemberId > secondMemberId) {
+            return 1;
+          }
+          if (firstMemberId < secondMemberId) {
+            return -1;
+          }
+          // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
+          return 0;
+        },
       },
       {
         Header: 'Demandeur',
