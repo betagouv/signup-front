@@ -67,6 +67,7 @@ class Form extends React.Component {
             new Array(availableScopes.length).fill('')
           ),
           rgpd_general_agreement: false,
+          has_alternative_authentication_methods: false,
           dgfip_data_years: {
             n_moins_1: false,
             n_moins_2: false,

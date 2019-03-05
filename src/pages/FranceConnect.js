@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAlternativeAuthenticationMethod';
 
 // Description du contexte
 const provider = 'franceconnect';
@@ -182,6 +183,7 @@ const FranceConnect = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
+        AdditionalContent={FcHasAlternativeAuthenticationMethod}
       />
     </div>
   </div>
