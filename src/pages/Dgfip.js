@@ -11,7 +11,8 @@ const provider = 'dgfip';
 
 const title = "Demande d'accès à l'API « impôt particulier »";
 
-const IntroDescription = () => (
+// Le demandeur doit décrire le contexte d'usage de l'API
+const DemarcheDescription = () => (
   <div className="intro">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
@@ -44,20 +45,6 @@ const IntroDescription = () => (
         API de test
       </a>{' '}
       est à votre disposition.
-    </p>
-  </div>
-);
-
-// Le demandeur doit décrire le contexte d'usage de l'API
-const DemarcheDescription = () => (
-  <div className="information-text">
-    <p>
-      C'est la raison pour laquelle vous collectez des données personnelles,
-      l'objectif qui est poursuivi par le téléservice que vous mettez en place.
-    </p>
-    <p>
-      Par exemple, « télé-procédure permettant aux usagers de calculer le tarif
-      de la cantine. »
     </p>
   </div>
 );
