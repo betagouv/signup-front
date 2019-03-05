@@ -65,13 +65,6 @@ a.button.button-secondary:hover {
   max-width: 100%;
 }
 
-.information-text {
-  background-color: #ebeff3;
-  border-left: 8px solid #c9d3df;
-  padding: 4px 0 4px 25px;
-  margin-bottom: 2em;
-}
-
 fieldset div {
   margin: 0.5em 0 0.5em 1em;
 }

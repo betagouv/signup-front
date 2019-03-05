@@ -9,7 +9,7 @@ const title = "Demande d'accès à l'API Droits CNAM";
 
 // Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
-  <div className="intro">
+  <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l&apos;API Droits CNAM permet

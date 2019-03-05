@@ -449,7 +449,6 @@ class Form extends React.Component {
           <div className="panel">
             <h2 id="donnees">Données</h2>
             <DonneesDescription />
-            <br />
             <AdditionalRgpdAgreement
               disabled={disabledApplication}
               onChange={this.handleChange}

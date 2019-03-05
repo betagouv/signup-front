@@ -8,7 +8,7 @@ import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAltern
 const provider = 'franceconnect';
 const title = "Demande d'habilitation juridique à FranceConnect";
 const DemarcheDescription = () => (
-  <div className="intro">
+  <div className="text-quote">
     <p>
       Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
       une habilitation. L&apos;accès à ce service n&apos;est pour l&apos;instant
@@ -50,7 +50,7 @@ const isFranceConnected = false;
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
-  <React.Fragment>
+  <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
       réglementaire qui s'applique à votre entité (administration ou entreprise)
@@ -70,7 +70,7 @@ const CadreJuridiqueDescription = () => (
         réglementaire qui s'applique à votre entité.
       </li>
     </ul>
-  </React.Fragment>
+  </div>
 );
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
