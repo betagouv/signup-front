@@ -200,7 +200,6 @@ class Form extends React.Component {
 
     const {
       title,
-      IntroDescription,
       DemarcheDescription,
       isFranceConnected,
       CguDescription,
@@ -558,7 +557,6 @@ class Form extends React.Component {
 Form.propTypes = {
   enrollmentId: PropTypes.string,
   title: PropTypes.string,
-  IntroDescription: PropTypes.func.isRequired,
   DemarcheDescription: PropTypes.func.isRequired,
   isFranceConnected: PropTypes.bool,
   CadreJuridiqueDescription: PropTypes.func.isRequired,

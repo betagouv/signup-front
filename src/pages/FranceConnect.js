@@ -7,7 +7,7 @@ import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAltern
 // Description du contexte
 const provider = 'franceconnect';
 const title = "Demande d'habilitation juridique à FranceConnect";
-const IntroDescription = () => (
+const DemarcheDescription = () => (
   <div className="intro">
     <p>
       Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
@@ -44,18 +44,6 @@ const IntroDescription = () => (
   </div>
 );
 
-// Le demandeur doit décrire le contexte d'usage de l'API
-const DemarcheDescription = () => (
-  <div className="information-text">
-    <p>
-      C&apos;est la raison pour laquelle vous collectez des données à caractère
-      personnel relatives à la gestion de l'identification, l&apos;objectif qui
-      est poursuivi par le traitement que vous mettez en place. Par exemple, «
-      se connecter au portail famille de ma ville » ou « accèder à son compte
-      personnel de mutuelle ».
-    </p>
-  </div>
-);
 const isFranceConnected = false;
 
 // Le demandeur doit donner le SIRET de son organisme
@@ -175,7 +163,6 @@ const FranceConnect = ({
         enrollmentId={enrollmentId}
         provider={provider}
         title={title}
-        IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
