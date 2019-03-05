@@ -386,13 +386,22 @@ class Form extends React.Component {
         </div>
         <h3>Document associé</h3>
         <div className="form__group">
-          {demarche.url_fondement_juridique ? (
-            <label htmlFor="url_fondement_juridique">
-              <a href={demarche.url_fondement_juridique}>URL du texte</a>
-            </label>
-          ) : (
-            <label htmlFor="url_fondement_juridique">URL du texte</label>
-          )}
+          <label htmlFor="url_fondement_juridique">
+            URL du texte{' '}
+            {demarche.url_fondement_juridique && (
+              <span>
+                (
+                <a
+                  href={demarche.url_fondement_juridique}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  accéder à cette URL
+                </a>
+                )
+              </span>
+            )}
+          </label>
           <input
             type="url"
             onChange={this.handleChange}

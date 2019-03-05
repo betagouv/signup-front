@@ -73,18 +73,21 @@ class DocumentUpload extends React.Component {
 
     return (
       <div className="form__group">
-        {uploadedDocument ? (
-          <label htmlFor={documentType}>
-            <a
-              href={`${BACK_HOST +
-                uploadedDocument.attachment.url}?token=${token}`}
-            >
-              {label}
-            </a>
-          </label>
-        ) : (
-          <label htmlFor={documentType}>{label}</label>
-        )}
+        <label htmlFor={documentType}>
+          {label}{' '}
+          {uploadedDocument && (
+            <span>
+              (
+              <a
+                href={`${BACK_HOST +
+                  uploadedDocument.attachment.url}?token=${token}`}
+              >
+                télécharger la pièce jointe actuellement associée
+              </a>
+              )
+            </span>
+          )}
+        </label>
         <input
           type="file"
           onChange={this.onChange}
