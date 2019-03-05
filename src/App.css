@@ -132,16 +132,6 @@ li.panel .button-list {
   margin: 0 5px;
 }
 
-.card-row {
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.card + .card {
-  margin-left: 0;
-  margin-top: 2em;
-}
-
 .scope__destinataire {
   display: block;
   max-height: 0;
@@ -170,6 +160,20 @@ li.panel .button-list {
 .enrollment.button {
   min-width: 20%;
   max-width: 40%;
+}
+
+aside .section {
+  padding: 1em 0;
+}
+
+aside .contact-button-list {
+  display: flex;
+  flex-direction: column;
+}
+
+aside .contact-button-list > .button-outline + .button-outline {
+  margin-left: 0;
+  margin-top: 1em;
 }
 
 @media (max-width: 550px) {

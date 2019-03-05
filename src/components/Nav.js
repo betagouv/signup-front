@@ -8,11 +8,11 @@ const Nav = ({
   navLinksAdditionalContent,
   contactInformation,
 }) => (
-  <nav className="side-pane">
-    <ul className="side-pane__menu">
+  <aside className="side-menu" role="navigation">
+    <ul>
       {logo && (
-        <li className="text-center">
-          <a className="side-pane__link" href="https://www.impots.gouv.fr/">
+        <li>
+          <a href="https://www.impots.gouv.fr/">
             <img
               alt={logo.alt}
               src={logo.src}
@@ -21,49 +21,41 @@ const Nav = ({
           </a>
         </li>
       )}
-      <li>
-        <h2>Votre demande</h2>
-      </li>
       {navLinksGeneral.map(({ id, label }) => (
         <li key={id}>
-          <a className="side-pane__link" href={`#${id}`}>
-            {label}
-          </a>
+          <a href={`#${id}`}>{label}</a>
         </li>
       ))}
-    </ul>
-    {titleAdditionalContent && (
-      <ul className="side-pane__menu">
-        <li>
-          <h2>{titleAdditionalContent}</h2>
-        </li>
-        {navLinksAdditionalContent.map(({ id, label }) => (
+      {titleAdditionalContent &&
+        navLinksAdditionalContent.map(({ id, label }) => (
           <li key={id}>
             <a className="side-pane__link" href={`#${id}`}>
               {label}
             </a>
           </li>
         ))}
-      </ul>
-    )}
+    </ul>
+
     {contactInformation && (
-      <ul className="side-pane__menu">
-        <li>
-          <h2>Contact</h2>
-        </li>
-        {contactInformation.map(({ email, label, subject }) => (
-          <li key={label}>
-            <a
-              className="button secondary"
-              href={`mailto:${email}?subject=${subject}`}
-            >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
+      <div className="section section-grey">
+        <div className="container">
+          <h3>Une question ?</h3>
+
+          <div className="contact-button-list">
+            {contactInformation.map(({ email, label, subject }) => (
+              <button
+                key={label}
+                className="button-outline primary"
+                href={`mailto:${email}?subject=${subject}`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
     )}
-  </nav>
+  </aside>
 );
 
 Nav.propTypes = {
