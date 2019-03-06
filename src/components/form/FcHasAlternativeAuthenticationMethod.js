@@ -21,8 +21,9 @@ const FcHasAlternativeAuthenticationMethod = ({
       htmlFor="has_alternative_authentication_methods"
       className="label-inline"
     >
-      J'atteste que mon service propose une alternative à la connection avec
-      FranceConnect
+      J’atteste que mon service propose une alternative à la connection avec
+      FranceConnect, et que cette alternative permet l’accès, dans des
+      conditions analogues, à la même prestation de service public.
     </label>
   </div>
 );
