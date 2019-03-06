@@ -291,9 +291,9 @@ class Form extends React.Component {
           <div className="form__group">
             <label htmlFor="description_service">
               Décrivez brièvement la raison pour laquelle vous collectez des
-              données à caractère personnel relatives à la gestion de
-              l'identification, l&apos;objectif qui est poursuivi par le
-              traitement que vous mettez en place.
+              données à caractère personnel relatives, c'est à dire
+              l&apos;objectif qui est poursuivi par le traitement que vous
+              mettez en place.
             </label>
             <textarea
               rows="10"
