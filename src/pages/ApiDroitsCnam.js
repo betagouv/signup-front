@@ -6,8 +6,10 @@ import Nav from '../components/Nav';
 // Description du contexte
 const provider = 'api-droits-cnam';
 const title = "Demande d'accès à l'API Droits CNAM";
-const IntroDescription = () => (
-  <div className="intro">
+
+// Le demandeur doit décrire le contexte d'usage de l'API
+const DemarcheDescription = () => (
+  <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l&apos;API Droits CNAM permet
@@ -31,9 +33,6 @@ const IntroDescription = () => (
     </p>
   </div>
 );
-
-// Le demandeur doit décrire le contexte d'usage de l'API
-const DemarcheDescription = () => <React.Fragment />;
 const isFranceConnected = true;
 
 // Le demandeur doit donner le SIRET de son organisme
@@ -56,7 +55,7 @@ const ApiDroitsCnam = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       navLinksGeneral={[
         { id: 'demarche', label: 'Démarche' },
@@ -73,12 +72,11 @@ const ApiDroitsCnam = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}
         title={title}
-        IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}

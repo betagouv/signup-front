@@ -167,7 +167,7 @@ class ActionButtons extends React.Component {
         <div className="button-list enrollment">
           {acl.update && (
             <button
-              className="button secondary enrollment"
+              className="button large secondary enrollment"
               onClick={this.handleSaveDraft}
             >
               Sauvegarder le brouillon
@@ -176,7 +176,7 @@ class ActionButtons extends React.Component {
 
           {token_id && (
             <a
-              className="button secondary enrollment"
+              className="button large secondary enrollment"
               href={`${API_PARTICULIER_HOST}/admin/token/${token_id}`}
             >
               Gérer l'accès à l'API
@@ -184,7 +184,11 @@ class ActionButtons extends React.Component {
           )}
 
           {actions.map(({ cssClass, id, label, trigger }) => (
-            <button key={id} className={`button ${cssClass}`} onClick={trigger}>
+            <button
+              key={id}
+              className={`button large ${cssClass}`}
+              onClick={trigger}
+            >
               {label}
             </button>
           ))}

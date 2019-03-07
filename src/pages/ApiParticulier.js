@@ -7,8 +7,9 @@ import Nav from '../components/Nav';
 const provider = 'api-particulier';
 const title = "Demande d'accès à API Particulier";
 
-const IntroDescription = () => (
-  <div className="intro">
+// Le demandeur doit décrire le contexte d'usage de l'API
+const DemarcheDescription = () => (
+  <div className="text-quote">
     <p>
       Pour avoir accès à l&apos;API Particulier, diffusant des données
       personnelles, vous devez obtenir un agrément. L&apos;accès à cette API
@@ -28,26 +29,13 @@ const IntroDescription = () => (
     </p>
   </div>
 );
-
-// Le demandeur doit décrire le contexte d'usage de l'API
-const DemarcheDescription = () => (
-  <div className="information-text">
-    <p>
-      C&apos;est la raison pour laquelle vous collectez des données
-      personnelles, l&apos;objectif qui est poursuivi par le traitement que vous
-      mettez en place. Par exemple, « télé-procédure permettant aux usagers de
-      demander une aide au paiement de la cantine des collégiens » ou «
-      télé-procédure de demande de bourses de lycée ».
-    </p>
-  </div>
-);
 const isFranceConnected = false;
 
 // Le demandeur doit donner le SIRET de son organisme
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
-  <div className="information-text">
+  <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
@@ -64,7 +52,7 @@ const CadreJuridiqueDescription = () => (
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
-  <section className="information-text">
+  <div className="text-quote">
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -88,7 +76,7 @@ const DonneesDescription = () => (
       nécessaires à votre téléservice. Le non-respect du principe de
       proportionnalité vous expose vis à vis de la CNIL.
     </p>
-  </section>
+  </div>
 );
 
 const availableScopes = [
@@ -119,7 +107,7 @@ const ApiParticulier = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       navLinksGeneral={[
         { id: 'demarche', label: 'Démarche' },
@@ -137,12 +125,11 @@ const ApiParticulier = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}
         title={title}
-        IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}

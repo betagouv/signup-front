@@ -11,8 +11,9 @@ const provider = 'dgfip';
 
 const title = "Demande d'accès à l'API « impôt particulier »";
 
-const IntroDescription = () => (
-  <div className="intro">
+// Le demandeur doit décrire le contexte d'usage de l'API
+const DemarcheDescription = () => (
+  <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l'API « impôt particulier »
@@ -47,27 +48,13 @@ const IntroDescription = () => (
     </p>
   </div>
 );
-
-// Le demandeur doit décrire le contexte d'usage de l'API
-const DemarcheDescription = () => (
-  <div className="information-text">
-    <p>
-      C'est la raison pour laquelle vous collectez des données personnelles,
-      l'objectif qui est poursuivi par le téléservice que vous mettez en place.
-    </p>
-    <p>
-      Par exemple, « télé-procédure permettant aux usagers de calculer le tarif
-      de la cantine. »
-    </p>
-  </div>
-);
 const isFranceConnected = true;
 
 // Le demandeur doit donner le SIRET de son organisme
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
-  <div className="information-text">
+  <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API « impôt particulier », le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
@@ -84,7 +71,7 @@ const CadreJuridiqueDescription = () => (
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
-  <div className="information-text">
+  <div className="text-quote">
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -139,7 +126,7 @@ const availableScopes = [
 
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => (
-  <div className="information-text">
+  <div className="text-quote">
     <p>
       Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
       de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
@@ -156,7 +143,7 @@ const Dgfip = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="documentation">
+  <div className="dashboard">
     <Nav
       logo={{
         src: '/images/logo-dgfip.png',
@@ -185,12 +172,11 @@ const Dgfip = ({
         },
       ]}
     />
-    <div className="main-pane">
+    <div className="main">
       <Form
         enrollmentId={enrollmentId}
         provider={provider}
         title={title}
-        IntroDescription={IntroDescription}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         CadreJuridiqueDescription={CadreJuridiqueDescription}

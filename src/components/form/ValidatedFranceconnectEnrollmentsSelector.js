@@ -109,15 +109,6 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="form__group">
-          <h4 id="franceconnect-enrollment">
-            Association à votre demande Franceconnect
-          </h4>
-          <p>
-            Pour demander l'accès à l'API « impôt particulier », vous devez
-            avoir préalablement obtenu un accès à Franceconnect.
-          </p>
-        </div>
         {validatedFranceconnectEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
@@ -141,11 +132,17 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
         {noValidatedFranceconnectEnrollments && (
           <div className="form__group">
             <div className="notification error">
-              Veuillez{' '}
-              <Link to={'/franceconnect'}>
-                demander votre accès à Franceconnect
-              </Link>{' '}
-              avant de continuer cette demande.
+              <p>
+                Pour demander l'accès à l'API « impôt particulier », vous devez
+                avoir préalablement obtenu un accès à Franceconnect.
+              </p>
+              <p>
+                Veuillez{' '}
+                <Link to={'/franceconnect'}>
+                  demander votre accès à Franceconnect
+                </Link>{' '}
+                avant de continuer cette demande.
+              </p>
             </div>
           </div>
         )}
