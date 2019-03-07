@@ -203,4 +203,7 @@ aside .contact-button-list > .button-outline + .button-outline {
   .enrollment.button + .enrollment.button {
     margin-left: 0;
   }
+  .dashboard {
+    flex-direction: column-reverse;
+  }
 }
