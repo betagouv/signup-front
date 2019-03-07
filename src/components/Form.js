@@ -217,17 +217,6 @@ class Form extends React.Component {
 
     return (
       <div>
-        {successMessages.map(successMessage => (
-          <div key={successMessage} className="notification success">
-            {successMessage}
-          </div>
-        ))}
-        {errorMessages.map(errorMessage => (
-          <div key={errorMessage} className="notification error">
-            {errorMessage}
-          </div>
-        ))}
-
         {acl.update && (
           <div className="notification info">
             Pensez à sauvegarder régulièrement votre demande en brouillon.
