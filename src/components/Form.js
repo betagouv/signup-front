@@ -217,7 +217,7 @@ class Form extends React.Component {
     const disableContactInputs = !(acl.update_contacts || acl.send_application);
 
     return (
-      <div>
+      <React.Fragment>
         {acl.update && (
           <div className="notification info">
             Pensez à sauvegarder régulièrement votre demande en brouillon.
@@ -573,7 +573,7 @@ class Form extends React.Component {
             {errorMessage}
           </div>
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
