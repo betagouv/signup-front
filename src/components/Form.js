@@ -209,6 +209,7 @@ class Form extends React.Component {
       availableScopes,
       AdditionalRgpdAgreement,
       AdditionalDataContent,
+      AdditionalCguContent,
       AdditionalContent,
     } = this.props;
 
@@ -540,6 +541,13 @@ class Form extends React.Component {
               informé de ma demande.
             </label>
           </div>
+
+          <AdditionalCguContent
+            enrollment={this.state.enrollment}
+            onChange={this.handleChange}
+            handleDocumentsChange={this.handleDocumentsChange}
+            disabled={disabledApplication}
+          />
         </div>
 
         <AdditionalContent
@@ -583,6 +591,7 @@ Form.propTypes = {
   AdditionalRgpdAgreement: PropTypes.func,
   AdditionalDataContent: PropTypes.func,
   AdditionalContent: PropTypes.func,
+  AdditionalCguContent: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
@@ -594,6 +603,7 @@ Form.defaultProps = {
   AdditionalRgpdAgreement: () => <React.Fragment />,
   AdditionalDataContent: () => <React.Fragment />,
   AdditionalContent: () => <React.Fragment />,
+  AdditionalCguContent: () => <React.Fragment />,
 };
 
 export default withRouter(Form);

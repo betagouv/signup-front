@@ -170,7 +170,7 @@ const FranceConnect = ({
         availableScopes={availableScopes}
         CguDescription={CguDescription}
         cguLink={cguLink}
-        AdditionalContent={FcHasAlternativeAuthenticationMethod}
+        AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
       />
     </div>
   </div>
