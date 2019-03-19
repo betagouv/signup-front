@@ -126,7 +126,7 @@ class ActionButtons extends React.Component {
       await triggerEnrollment({
         action,
         id: enrollmentId,
-        actionMessage,
+        message: actionMessage,
       });
 
       return resultMessages;
