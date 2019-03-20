@@ -175,6 +175,20 @@ aside .contact-button-list > .button-outline + .button-outline {
   padding: 0.5em 1em;
 }
 
+@media (max-width: 1300px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .row > .card {
+    margin: 0;
+  }
+
+  .row > .card + .card {
+    margin-top: 2em;
+  }
+}
+
 @media (max-width: 550px) {
   .main-pane {
     padding: 5%;
