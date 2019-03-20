@@ -39,17 +39,17 @@ const Nav = ({
     {contactInformation && (
       <div className="section section-grey">
         <div className="container">
-          <h3>Une question ?</h3>
+          <h3>Une question&nbsp;?</h3>
 
           <div className="contact-button-list">
             {contactInformation.map(({ email, label, subject }) => (
-              <button
+              <a
                 key={label}
                 className="button-outline primary"
                 href={`mailto:${email}?subject=${subject}`}
               >
                 {label}
-              </button>
+              </a>
             ))}
           </div>
         </div>
