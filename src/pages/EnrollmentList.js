@@ -145,7 +145,7 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Demandeur',
-        accessor: 'applicant.email',
+        accessor: 'user.email',
         headerStyle: enrollmentListStyle.header,
         style: enrollmentListStyle.cell,
       },
