@@ -86,14 +86,7 @@ class ActivityFeed extends React.Component {
                     {moment(updated_at).calendar()}
                   </div>
                 </div>
-                {comment && (
-                  <input
-                    className="event-comment"
-                    type="text"
-                    disabled={true}
-                    value={comment}
-                  />
-                )}
+                {comment && <div className="event-comment">{comment}</div>}
               </div>
             </div>
           )

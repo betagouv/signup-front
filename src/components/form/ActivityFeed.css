@@ -26,9 +26,11 @@
   color: var(--dark-grey);
 }
 
-input.event-comment {
+.event-comment {
   background-color: white;
   margin-top: 0.4em;
+  white-space: pre-line;
+  padding: 1em;
 }
 
 button.button.toogle-detail {
