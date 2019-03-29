@@ -1,0 +1,39 @@
+.event-item {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-icon {
+  width: 3em;
+  padding: 0.5em 0;
+}
+
+.event-content {
+  flex: 1 100%;
+  padding: 0.5em 0;
+}
+.event-item + .event-item > .event-content {
+  border-top: 1px solid var(--light-grey);
+}
+
+.event-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.event-date {
+  color: var(--dark-grey);
+}
+
+input.event-comment {
+  background-color: white;
+  margin-top: 0.4em;
+}
+
+button.button.toogle-detail {
+  background-color: inherit;
+  box-shadow: inherit;
+  color: inherit;
+  padding: inherit;
+}
