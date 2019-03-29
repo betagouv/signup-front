@@ -215,6 +215,10 @@ class EnrollmentList extends React.Component {
     // The idea here is to display content as tooltip in case the cell is not large enough to display its whole content
     const cellValue = rowInfo.row[column.id];
 
+    if (column.id === 'intitule') {
+      return cellValue.intitule;
+    }
+
     if (column.id === 'status') {
       return cellValue.stateLabel;
     }
