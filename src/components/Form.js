@@ -460,6 +460,7 @@ class Form extends React.Component {
                               </label>
                               <input
                                 type="text"
+                                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
                                 onChange={this.handleChange}
                                 name={`donnees.destinataires.${name}`}
                                 id={`destinataire_${name}`}
