@@ -1,7 +1,3 @@
-.notification {
-  white-space: pre-line;
-}
-
 .page {
   display: flex;
   flex-direction: column;

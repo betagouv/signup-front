@@ -15,6 +15,7 @@ class ActionButtons extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       doShowPrompt: false,
       promptMessage: '',
     };
@@ -140,27 +141,33 @@ class ActionButtons extends React.Component {
   handleSubmitFactory = action => {
     return async event => {
       event.preventDefault();
+      this.setState({ isLoading: true });
 
       const resultMessages = await this.triggerAction(action);
 
       this.props.handleSubmit(resultMessages);
+
+      this.setState({ isLoading: false });
     };
   };
 
-  handleSaveDraft = event => {
+  handleSaveDraft = async event => {
     event.preventDefault();
+    this.setState({ isLoading: true });
 
-    createOrUpdateEnrollment({ enrollment: this.props.enrollment })
+    await createOrUpdateEnrollment({ enrollment: this.props.enrollment })
       .then(() => this.props.handleSubmit({}))
       .catch(errors =>
         this.props.handleSubmit({ errorMessages: getErrorMessages(errors) })
       );
+
+    this.setState({ isLoading: false });
   };
 
   render() {
     const { acl, token_id } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
-    const { doShowPrompt, promptMessage } = this.state;
+    const { isLoading, doShowPrompt, promptMessage } = this.state;
 
     return (
       <React.Fragment>
@@ -169,6 +176,7 @@ class ActionButtons extends React.Component {
             <button
               className="button large secondary enrollment"
               onClick={this.handleSaveDraft}
+              disabled={isLoading}
             >
               Sauvegarder le brouillon
             </button>
@@ -188,6 +196,7 @@ class ActionButtons extends React.Component {
               key={id}
               className={`button large ${cssClass}`}
               onClick={trigger}
+              disabled={isLoading}
             >
               {label}
             </button>
