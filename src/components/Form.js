@@ -225,7 +225,7 @@ class Form extends React.Component {
             </div>
           )}
 
-        <ActivityFeed events={events} />
+        {events.length > 0 && <ActivityFeed events={events} />}
 
         <div className="panel">
           <h2 id="demarche">{title}</h2>
