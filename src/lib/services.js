@@ -104,15 +104,13 @@ export function getUserArchivedEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerEnrollment({ action, id, message }) {
+export function triggerEnrollment({ action, id, comment }) {
   const options = {
     event: action,
   };
 
-  if (message) {
-    options.enrollment = {
-      messages_attributes: [{ content: message }],
-    };
+  if (comment) {
+    options.comment = comment;
   }
 
   return httpClient.patch(

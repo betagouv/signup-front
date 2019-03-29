@@ -92,12 +92,12 @@ class ActionButtons extends React.Component {
     const resultMessages = { errorMessages: [], successMessages: [] };
 
     try {
-      let actionMessage = null;
+      let comment = null;
 
       if (['review_application', 'refuse_application'].includes(action)) {
-        actionMessage = await this.getActionMessage(action);
+        comment = await this.getActionMessage(action);
 
-        if (!actionMessage) {
+        if (!comment) {
           // do not trigger action if no message is provided or when clicking on cancel
           return resultMessages;
         }
@@ -126,7 +126,7 @@ class ActionButtons extends React.Component {
       await triggerEnrollment({
         action,
         id: enrollmentId,
-        message: actionMessage,
+        comment,
       });
 
       return resultMessages;

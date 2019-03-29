@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { isEmpty, omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
-import moment from 'moment';
 
 import { getUserEnrollment } from '../lib/services';
 import ValidatedFranceconnectEnrollmentsSelector from './form/ValidatedFranceconnectEnrollmentsSelector';
 import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import DocumentUpload from './form/DocumentUpload';
+import ActivityFeed from './form/ActivityFeed';
 
 class Form extends React.Component {
   constructor(props) {
@@ -75,7 +75,7 @@ class Form extends React.Component {
         },
         fournisseur_de_donnees: props.provider,
         linked_franceconnect_enrollment_id: null,
-        messages: [],
+        events: [],
         id: null,
         scopes: zipObject(
           availableScopes.map(({ name }) => name),
@@ -188,7 +188,7 @@ class Form extends React.Component {
         donnees,
         fournisseur_de_donnees,
         linked_franceconnect_enrollment_id,
-        messages,
+        events,
         scopes,
         siret,
         validation_de_convention,
@@ -218,35 +218,14 @@ class Form extends React.Component {
 
     return (
       <React.Fragment>
-        {acl.update && (
-          <div className="notification info">
-            Pensez à sauvegarder régulièrement votre demande en brouillon.
-          </div>
-        )}
+        {!isUserEnrollmentLoading &&
+          acl.update && (
+            <div className="notification info">
+              Pensez à sauvegarder régulièrement votre demande en brouillon.
+            </div>
+          )}
 
-        {messages.map(({ id, content, category, updated_at }) => {
-          if (category === 'refuse_application') {
-            return (
-              <div key={id} className="notification error">
-                <strong>
-                  {moment(updated_at).calendar()} - demande refusée :
-                </strong>{' '}
-                {content}
-              </div>
-            );
-          }
-          if (category === 'review_application') {
-            return (
-              <div key={id} className="notification warning">
-                <strong>
-                  {moment(updated_at).calendar()} - modifications nécessaires :
-                </strong>{' '}
-                {content}
-              </div>
-            );
-          }
-          return null;
-        })}
+        {events.length > 0 && <ActivityFeed events={events} />}
 
         <div className="panel">
           <h2 id="demarche">{title}</h2>
@@ -481,6 +460,7 @@ class Form extends React.Component {
                               </label>
                               <input
                                 type="text"
+                                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
                                 onChange={this.handleChange}
                                 name={`donnees.destinataires.${name}`}
                                 id={`destinataire_${name}`}
