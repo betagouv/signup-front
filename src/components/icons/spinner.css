@@ -13,8 +13,20 @@
   height: 100px;
   margin-top: -50px;
   margin-left: -50px;
-  border-radius: 50%;
   border: 7px solid #c9d3df;
+  border-radius: 50%;
   border-top-color: #53657d;
   animation: spinner 1s linear infinite;
+}
+
+.spinner.inline {
+  padding-left: 0.5em;
+}
+
+.spinner.inline:before {
+  width: 1.25em;
+  height: 1.25em;
+  margin-top: 0;
+  margin-left: 0;
+  border-width: 3px;
 }
