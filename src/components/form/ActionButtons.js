@@ -8,6 +8,7 @@ import {
 } from '../../lib/services';
 import Prompt from '../Prompt';
 import { getErrorMessages } from '../../lib/utils';
+import Spinner from '../icons/spinner';
 
 const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
 
@@ -16,6 +17,7 @@ class ActionButtons extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
+      isLoadingSaveDraft: false,
       doShowPrompt: false,
       promptMessage: '',
     };
@@ -153,7 +155,7 @@ class ActionButtons extends React.Component {
 
   handleSaveDraft = async event => {
     event.preventDefault();
-    this.setState({ isLoading: true });
+    this.setState({ isLoadingSaveDraft: true });
 
     await createOrUpdateEnrollment({ enrollment: this.props.enrollment })
       .then(() => this.props.handleSubmit({}))
@@ -161,13 +163,18 @@ class ActionButtons extends React.Component {
         this.props.handleSubmit({ errorMessages: getErrorMessages(errors) })
       );
 
-    this.setState({ isLoading: false });
+    this.setState({ isLoadingSaveDraft: false });
   };
 
   render() {
     const { acl, token_id } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
-    const { isLoading, doShowPrompt, promptMessage } = this.state;
+    const {
+      isLoading,
+      isLoadingSaveDraft,
+      doShowPrompt,
+      promptMessage,
+    } = this.state;
 
     return (
       <React.Fragment>
@@ -176,9 +183,10 @@ class ActionButtons extends React.Component {
             <button
               className="button large secondary enrollment"
               onClick={this.handleSaveDraft}
-              disabled={isLoading}
+              disabled={isLoading || isLoadingSaveDraft}
             >
               Sauvegarder le brouillon
+              {isLoadingSaveDraft && <Spinner inline={true} />}
             </button>
           )}
 
@@ -196,9 +204,10 @@ class ActionButtons extends React.Component {
               key={id}
               className={`button large ${cssClass}`}
               onClick={trigger}
-              disabled={isLoading}
+              disabled={isLoading || isLoadingSaveDraft}
             >
               {label}
+              {isLoading && <Spinner inline={true} />}
             </button>
           ))}
         </div>
