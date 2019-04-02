@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 const FcHasAlternativeAuthenticationMethod = ({
   disabled,
   onChange,
-  enrollment: {
-    donnees: { has_alternative_authentication_methods },
-  },
+  additional_content: { has_alternative_authentication_methods = false },
 }) => (
   <div className="form__group">
     <input
@@ -14,7 +12,7 @@ const FcHasAlternativeAuthenticationMethod = ({
       disabled={disabled ? 'disabled' : false}
       checked={has_alternative_authentication_methods}
       type="checkbox"
-      name="donnees.has_alternative_authentication_methods"
+      name="additional_content.has_alternative_authentication_methods"
       id="has_alternative_authentication_methods"
     />
     <label
@@ -29,7 +27,7 @@ const FcHasAlternativeAuthenticationMethod = ({
 );
 
 FcHasAlternativeAuthenticationMethod.propTypes = {
-  enrollment: PropTypes.object.isRequired,
+  additional_content: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };

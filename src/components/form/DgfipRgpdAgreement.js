@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 const DgfipRgpdAgreement = ({
   disabled,
   onChange,
-  enrollment: {
-    donnees: { rgpd_general_agreement },
-  },
+  additional_content: { rgpd_general_agreement = false },
 }) => (
   <div className="information-text form__group">
     <p>
@@ -16,7 +14,7 @@ const DgfipRgpdAgreement = ({
           disabled={disabled ? 'disabled' : false}
           checked={rgpd_general_agreement}
           type="checkbox"
-          name="donnees.rgpd_general_agreement"
+          name="additional_content.rgpd_general_agreement"
           id="rgpd_general_agreement"
         />
         <label className="label-inline" htmlFor="rgpd_general_agreement">
@@ -31,7 +29,7 @@ const DgfipRgpdAgreement = ({
 );
 
 DgfipRgpdAgreement.propTypes = {
-  enrollment: PropTypes.object.isRequired,
+  additional_content: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
 };
