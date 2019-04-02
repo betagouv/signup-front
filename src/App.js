@@ -12,6 +12,7 @@ import ApiParticulier from './pages/ApiParticulier';
 import Dgfip from './pages/Dgfip';
 import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
+import ApiEntreprise from './pages/ApiEntreprise';
 import { UserStore, UserContext } from './components/UserContext';
 import { createBrowserHistory } from 'history';
 import PiwikReactRouter from 'piwik-react-router';
@@ -69,6 +70,10 @@ class App extends Component {
                       <PrivateRoute
                         path="/api-droits-cnam/:enrollmentId?"
                         component={ApiDroitsCnam}
+                      />
+                      <PrivateRoute
+                        path="/api-entreprise/:enrollmentId?"
+                        component={ApiEntreprise}
                       />
                     </React.Fragment>
                   )}
