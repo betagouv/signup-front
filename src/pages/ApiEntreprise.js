@@ -194,4 +194,4 @@ ApiEntreprise.defaultProps = {
   },
 };
 
-export default ApiDroitsEntreprise;
+export default ApiEntreprise;
