@@ -25,6 +25,7 @@ export const FOURNISSEUR_DE_DONNEES_LABELS = {
   franceconnect: 'FranceConnect',
   'api-droits-cnam': 'API Droits CNAM',
   dgfip: 'API Impot particulier',
+  'api-entreprise': 'API Entreprise',
 };
 
 export const enrollmentListStyle = {
