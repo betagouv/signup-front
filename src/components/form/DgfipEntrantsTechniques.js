@@ -1,102 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentUpload from './DocumentUpload';
+import moment from 'moment';
 
 const DgfipEntrantsTechniques = ({
   disabled,
   onChange,
   handleDocumentsChange,
-  enrollment: {
-    documents,
-    documents_attributes,
-    autorite_certification,
-    ips_de_production,
-    autorite_homologation_nom,
-    autorite_homologation_fonction,
-    date_homologation,
-    date_fin_homologation,
-    nombre_demandes_annuelle,
-    pic_demandes_par_seconde,
-    nombre_demandes_mensuelles_jan,
-    nombre_demandes_mensuelles_fev,
-    nombre_demandes_mensuelles_mar,
-    nombre_demandes_mensuelles_avr,
-    nombre_demandes_mensuelles_mai,
-    nombre_demandes_mensuelles_jui,
-    nombre_demandes_mensuelles_jul,
-    nombre_demandes_mensuelles_aou,
-    nombre_demandes_mensuelles_sep,
-    nombre_demandes_mensuelles_oct,
-    nombre_demandes_mensuelles_nov,
-    nombre_demandes_mensuelles_dec,
-    recette_fonctionnelle,
+  documents,
+  documents_attributes,
+  additional_content: {
+    autorite_certification = '',
+    ips_de_production = '',
+    autorite_homologation_nom = '',
+    autorite_homologation_fonction = '',
+    date_homologation = '',
+    date_fin_homologation = '',
+    nombre_demandes_annuelle = '',
+    pic_demandes_par_seconde = '',
+    nombre_demandes_mensuelles,
+    recette_fonctionnelle = '',
   },
 }) => {
-  const nombresDeDemandesMensuelles = [
-    {
-      label: 'Janvier',
-      name: 'nombre_demandes_mensuelles_jan',
-      value: nombre_demandes_mensuelles_jan,
-    },
-    {
-      label: 'Février',
-      name: 'nombre_demandes_mensuelles_fev',
-      value: nombre_demandes_mensuelles_fev,
-    },
-    {
-      label: 'Mars',
-      name: 'nombre_demandes_mensuelles_mar',
-      value: nombre_demandes_mensuelles_mar,
-    },
-    {
-      label: 'Avril',
-      name: 'nombre_demandes_mensuelles_avr',
-      value: nombre_demandes_mensuelles_avr,
-    },
-    {
-      label: 'Mai',
-      name: 'nombre_demandes_mensuelles_mai',
-      value: nombre_demandes_mensuelles_mai,
-    },
-    {
-      label: 'Juin',
-      name: 'nombre_demandes_mensuelles_jui',
-      value: nombre_demandes_mensuelles_jui,
-    },
-    {
-      label: 'Juillet',
-      name: 'nombre_demandes_mensuelles_jul',
-      value: nombre_demandes_mensuelles_jul,
-    },
-    {
-      label: 'Août',
-      name: 'nombre_demandes_mensuelles_aou',
-      value: nombre_demandes_mensuelles_aou,
-    },
-    {
-      label: 'Septembre',
-      name: 'nombre_demandes_mensuelles_sep',
-      value: nombre_demandes_mensuelles_sep,
-    },
-    {
-      label: 'Octobre',
-      name: 'nombre_demandes_mensuelles_oct',
-      value: nombre_demandes_mensuelles_oct,
-    },
-    {
-      label: 'Novembre',
-      name: 'nombre_demandes_mensuelles_nov',
-      value: nombre_demandes_mensuelles_nov,
-    },
-    {
-      label: 'Décembre',
-      name: 'nombre_demandes_mensuelles_dec',
-      value: nombre_demandes_mensuelles_dec,
-    },
-  ];
+  // initialize additional_content
+  if (!nombre_demandes_mensuelles) {
+    onChange({
+      target: {
+        type: null,
+        checked: null,
+        value: Array(12).fill(''),
+        name: 'additional_content.nombre_demandes_mensuelles',
+      },
+    });
+
+    return null;
+  }
 
   return (
-    <React.Fragment>
+    <>
       <div className="panel">
         <h2 id="homologation-securite">Homologation de sécurité</h2>
         <div className="information-text">
@@ -119,7 +60,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="text"
             onChange={onChange}
-            name="autorite_homologation_nom"
+            name="additional_content.autorite_homologation_nom"
             id="autorite_homologation_nom"
             disabled={disabled}
             value={autorite_homologation_nom}
@@ -132,7 +73,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="text"
             onChange={onChange}
-            name="autorite_homologation_fonction"
+            name="additional_content.autorite_homologation_fonction"
             id="autorite_homologation_fonction"
             disabled={disabled}
             value={autorite_homologation_fonction}
@@ -145,7 +86,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="date"
             onChange={onChange}
-            name="date_homologation"
+            name="additional_content.date_homologation"
             id="date_homologation"
             disabled={disabled}
             value={date_homologation}
@@ -158,7 +99,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="date"
             onChange={onChange}
-            name="date_fin_homologation"
+            name="additional_content.date_fin_homologation"
             id="date_fin_homologation"
             disabled={disabled}
             value={date_fin_homologation}
@@ -184,8 +125,8 @@ const DgfipEntrantsTechniques = ({
           </p>
           <ul>
             <li>
-              adresses IP des serveurs qui vont communiquer avec l'API « impôt
-              particulier »
+              adresses IP des serveurs qui vont communiquer avec l'API « impôt
+              particulier »
             </li>
             <li>
               partie publique d’un certificat client RGS V2.0 en cours de
@@ -214,7 +155,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="text"
             onChange={onChange}
-            name="autorite_certification"
+            name="additional_content.autorite_certification"
             id="autorite_certification"
             disabled={disabled}
             value={autorite_certification}
@@ -225,7 +166,7 @@ const DgfipEntrantsTechniques = ({
           <input
             type="text"
             onChange={onChange}
-            name="ips_de_production"
+            name="additional_content.ips_de_production"
             id="ips_de_production"
             disabled={disabled}
             value={ips_de_production}
@@ -260,7 +201,7 @@ const DgfipEntrantsTechniques = ({
             type="number"
             min="0"
             onChange={onChange}
-            name="nombre_demandes_annuelle"
+            name="additional_content.nombre_demandes_annuelle"
             id="nombre_demandes_annuelle"
             disabled={disabled}
             value={nombre_demandes_annuelle}
@@ -274,7 +215,7 @@ const DgfipEntrantsTechniques = ({
             type="number"
             min="0"
             onChange={onChange}
-            name="pic_demandes_par_seconde"
+            name="additional_content.pic_demandes_par_seconde"
             id="pic_demandes_par_seconde"
             disabled={disabled}
             value={pic_demandes_par_seconde}
@@ -287,22 +228,22 @@ const DgfipEntrantsTechniques = ({
           </label>
           <div className="form__group">
             <div className="date_input_row">
-              {nombresDeDemandesMensuelles.map(nombreDeDemendesMensuelles => (
+              {nombre_demandes_mensuelles.map((nombresDeDemandes, index) => (
                 <div
-                  key={nombreDeDemendesMensuelles.name}
+                  key={`nombre_demandes_mensuelles.${index}`}
                   className="date_input_col"
                 >
-                  <label htmlFor={nombreDeDemendesMensuelles.name}>
-                    {nombreDeDemendesMensuelles.label}
+                  <label htmlFor={`nombre_demandes_mensuelles.${index}`}>
+                    {moment(index + 1, 'M').format('MMMM')}
                   </label>
                   <input
                     type="number"
                     min="0"
                     onChange={onChange}
-                    name={nombreDeDemendesMensuelles.name}
-                    id={nombreDeDemendesMensuelles.name}
+                    name={`additional_content.nombre_demandes_mensuelles.${index}`}
+                    id={`nombre_demandes_mensuelles.${index}`}
                     disabled={disabled}
-                    value={nombreDeDemendesMensuelles.value}
+                    value={nombresDeDemandes}
                   />
                 </div>
               ))}
@@ -317,7 +258,7 @@ const DgfipEntrantsTechniques = ({
           <p>
             Une API de test est mise à votre disposition pour vous permettre de
             qualifier votre applicatif. Elle vous permet de visualiser les
-            données retournées par l'API « impôt particulier ».
+            données retournées par l'API « impôt particulier ».
           </p>
           <p>
             <a
@@ -339,7 +280,7 @@ const DgfipEntrantsTechniques = ({
             onChange={onChange}
             checked={recette_fonctionnelle}
             type="checkbox"
-            name="recette_fonctionnelle"
+            name="additional_content.recette_fonctionnelle"
             id="checkbox-recette_fonctionnelle"
             disabled={disabled}
           />
@@ -364,15 +305,17 @@ const DgfipEntrantsTechniques = ({
           </div>
         )}
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
 DgfipEntrantsTechniques.propTypes = {
-  enrollment: PropTypes.object.isRequired,
+  additional_content: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
   handleDocumentsChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool.isRequired,
+  documents: PropTypes.array.isRequired,
+  documents_attributes: PropTypes.array.isRequired,
 };
 
 export default DgfipEntrantsTechniques;

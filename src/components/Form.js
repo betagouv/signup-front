@@ -66,12 +66,6 @@ class Form extends React.Component {
             availableScopes.map(({ name }) => name),
             new Array(availableScopes.length).fill('')
           ),
-          rgpd_general_agreement: false,
-          has_alternative_authentication_methods: false,
-          dgfip_data_years: {
-            n_moins_1: false,
-            n_moins_2: false,
-          },
         },
         fournisseur_de_donnees: props.provider,
         linked_franceconnect_enrollment_id: null,
@@ -84,6 +78,7 @@ class Form extends React.Component {
         siret: '',
         validation_de_convention: false,
         token_id: null,
+        additional_content: {},
       },
     };
   }
@@ -192,6 +187,7 @@ class Form extends React.Component {
         scopes,
         siret,
         validation_de_convention,
+        additional_content,
       },
       errorMessages,
       successMessages,
@@ -217,7 +213,7 @@ class Form extends React.Component {
     const disableContactInputs = !(acl.update_contacts || acl.send_application);
 
     return (
-      <React.Fragment>
+      <>
         {!isUserEnrollmentLoading &&
           acl.update && (
             <div className="notification info">
@@ -421,7 +417,7 @@ class Form extends React.Component {
             <AdditionalRgpdAgreement
               disabled={disabledApplication}
               onChange={this.handleChange}
-              enrollment={this.state.enrollment}
+              additional_content={additional_content}
             />
             <div className="form__group">
               <fieldset className="vertical">
@@ -480,7 +476,7 @@ class Form extends React.Component {
             <AdditionalDataContent
               disabled={disabledApplication}
               onChange={this.handleChange}
-              enrollment={this.state.enrollment}
+              additional_content={additional_content}
             />
 
             <div className="form__group">
@@ -523,18 +519,19 @@ class Form extends React.Component {
           </div>
 
           <AdditionalCguContent
-            enrollment={this.state.enrollment}
+            additional_content={additional_content}
             onChange={this.handleChange}
-            handleDocumentsChange={this.handleDocumentsChange}
             disabled={disabledApplication}
           />
         </div>
 
         <AdditionalContent
-          enrollment={this.state.enrollment}
+          additional_content={additional_content}
           onChange={this.handleChange}
           handleDocumentsChange={this.handleDocumentsChange}
           disabled={disabledApplication}
+          documents={documents}
+          documents_attributes={documents_attributes}
         />
 
         <ActionButtons
@@ -553,7 +550,7 @@ class Form extends React.Component {
             {errorMessage}
           </div>
         ))}
-      </React.Fragment>
+      </>
     );
   }
 }
