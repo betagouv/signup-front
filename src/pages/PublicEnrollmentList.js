@@ -7,10 +7,7 @@ import moment from 'moment';
 
 import { getPublicValidatedEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
-import {
-  enrollmentListStyle,
-  FOURNISSEUR_DE_DONNEES_LABELS,
-} from './EnrollmentList';
+import { enrollmentListStyle, TARGET_API_LABELS } from './EnrollmentList';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -25,7 +22,7 @@ class PublicEnrollmentList extends React.Component {
 
   async componentDidMount() {
     const enrollments = await getPublicValidatedEnrollments(
-      this.props.match.params.fournisseurDeDonnees
+      this.props.match.params.targetApi
     );
 
     this.setState({
@@ -38,8 +35,7 @@ class PublicEnrollmentList extends React.Component {
 
   async componentDidUpdate(prevProps) {
     if (
-      this.props.match.params.fournisseurDeDonnees !==
-      prevProps.match.params.fournisseurDeDonnees
+      this.props.match.params.targetApi !== prevProps.match.params.targetApi
     ) {
       this.setState({
         enrollments: [],
@@ -48,7 +44,7 @@ class PublicEnrollmentList extends React.Component {
       });
 
       const enrollments = await getPublicValidatedEnrollments(
-        this.props.match.params.fournisseurDeDonnees
+        this.props.match.params.targetApi
       );
 
       this.setState({
@@ -103,9 +99,8 @@ class PublicEnrollmentList extends React.Component {
     },
     {
       Header: 'Fournisseur',
-      accessor: ({ fournisseur_de_donnees }) =>
-        FOURNISSEUR_DE_DONNEES_LABELS[fournisseur_de_donnees],
-      id: 'fournisseur_de_donnees',
+      accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
+      id: 'target_api',
       headerStyle: enrollmentListStyle.header,
       style: {
         ...enrollmentListStyle.cell,
@@ -166,7 +161,7 @@ class PublicEnrollmentList extends React.Component {
                   <NavLink
                     activeClassName={'active_link'}
                     exact
-                    to="/public/api-particulier"
+                    to="/public/api_particulier"
                   >
                     Demandes API Particulier
                   </NavLink>
@@ -222,7 +217,7 @@ class PublicEnrollmentList extends React.Component {
 PublicEnrollmentList.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
-      fournisseurDeDonnees: PropTypes.string,
+      targetApi: PropTypes.string,
     }),
   }),
 };
@@ -230,7 +225,7 @@ PublicEnrollmentList.propTypes = {
 PublicEnrollmentList.defaultProps = {
   match: {
     params: {
-      fournisseurDeDonnees: null,
+      targetApi: null,
     },
   },
 };

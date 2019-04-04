@@ -13,19 +13,19 @@ import {
 import ScheduleIcon from '../components/icons/schedule';
 import { withUser } from '../components/UserContext';
 
-const STATE_LABELS = {
+const STATUS_LABELS = {
   pending: 'Brouillon',
   sent: 'À valider',
   validated: 'Validée',
   refused: 'Refusée',
 };
 
-export const FOURNISSEUR_DE_DONNEES_LABELS = {
-  'api-particulier': 'API Particulier',
+export const TARGET_API_LABELS = {
+  api_particulier: 'API Particulier',
   franceconnect: 'FranceConnect',
-  'api-droits-cnam': 'API Droits CNAM',
+  api_droits_cnam: 'API Droits CNAM',
   dgfip: 'API Impot particulier',
-  'api-entreprise': 'API Entreprise',
+  api_entreprise: 'API Entreprise',
 };
 
 export const enrollmentListStyle = {
@@ -152,9 +152,8 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Fournisseur',
-        accessor: ({ fournisseur_de_donnees }) =>
-          FOURNISSEUR_DE_DONNEES_LABELS[fournisseur_de_donnees],
-        id: 'fournisseur_de_donnees',
+        accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
+        id: 'target_api',
         headerStyle: enrollmentListStyle.header,
         style: {
           ...enrollmentListStyle.cell,
@@ -164,8 +163,8 @@ class EnrollmentList extends React.Component {
       },
       {
         Header: 'Statut',
-        accessor: ({ state, acl }) => ({
-          stateLabel: STATE_LABELS[state],
+        accessor: ({ status, acl }) => ({
+          statusLabel: STATUS_LABELS[status],
           acl,
         }),
         id: 'status',
@@ -175,18 +174,20 @@ class EnrollmentList extends React.Component {
           ...enrollmentListStyle.centeredCell,
         },
         width: 100,
-        Cell: ({ value: { stateLabel, acl } }) => {
+        Cell: ({ value: { statusLabel, acl } }) => {
           if (!this.hasTriggerableActions({ acl })) {
-            return stateLabel;
+            return statusLabel;
           }
 
-          return <button className="button warning small">{stateLabel}</button>;
+          return (
+            <button className="button warning small">{statusLabel}</button>
+          );
         },
         sortMethod: (firstMember, secondMember) => {
-          if (firstMember.stateLabel > secondMember.stateLabel) {
+          if (firstMember.statusLabel > secondMember.statusLabel) {
             return 1;
           }
-          if (firstMember.stateLabel < secondMember.stateLabel) {
+          if (firstMember.statusLabel < secondMember.statusLabel) {
             return -1;
           }
           // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
@@ -221,7 +222,7 @@ class EnrollmentList extends React.Component {
     }
 
     if (column.id === 'status') {
-      return cellValue.stateLabel;
+      return cellValue.statusLabel;
     }
 
     if (column.id === 'updated_at') {
@@ -283,9 +284,9 @@ class EnrollmentList extends React.Component {
                   onClick: (e, handleOriginal) => {
                     if (rowInfo) {
                       const {
-                        original: { id, fournisseur_de_donnees },
+                        original: { id, target_api },
                       } = rowInfo;
-                      history.push(`/${fournisseur_de_donnees}/${id}`);
+                      history.push(`/${target_api.replace(/_/g, '-')}/${id}`);
                     }
 
                     if (handleOriginal) {

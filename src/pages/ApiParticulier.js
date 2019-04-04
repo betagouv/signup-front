@@ -4,7 +4,7 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 
 // Description du contexte
-const provider = 'api-particulier';
+const target_api = 'api_particulier';
 const title = "Demande d'accès à API Particulier";
 
 // Le demandeur doit décrire le contexte d'usage de l'API
@@ -128,7 +128,7 @@ const ApiParticulier = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        provider={provider}
+        target_api={target_api}
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}

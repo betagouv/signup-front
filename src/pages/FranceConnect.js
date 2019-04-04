@@ -5,7 +5,7 @@ import Nav from '../components/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAlternativeAuthenticationMethod';
 
 // Description du contexte
-const provider = 'franceconnect';
+const target_api = 'franceconnect';
 const title = "Demande d'habilitation juridique à FranceConnect";
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -161,7 +161,7 @@ const FranceConnect = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        provider={provider}
+        target_api={target_api}
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}

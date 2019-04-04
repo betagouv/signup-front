@@ -4,7 +4,7 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 
 // Description du contexte
-const provider = 'api-droits-cnam';
+const target_api = 'api_droits_cnam';
 const title = "Demande d'accès à l'API Droits CNAM";
 
 // Le demandeur doit décrire le contexte d'usage de l'API
@@ -75,7 +75,7 @@ const ApiDroitsCnam = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        provider={provider}
+        target_api={target_api}
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
