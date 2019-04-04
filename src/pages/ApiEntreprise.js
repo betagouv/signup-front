@@ -88,8 +88,8 @@ const availableScopes = [
     humanName: 'Certificat CNETP',
   },
   {
-    name: 'Cotisation MSA',
-    humanName: 'cotisation_msa',
+    name: 'cotisation_msa',
+    humanName: 'Cotisation MSA',
   },
   {
     name: 'certificat_opqibi',

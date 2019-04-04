@@ -52,21 +52,14 @@ class Form extends React.Component {
             phone_number: '',
           },
         ],
-        demarche: {
-          intitule: '',
-          description: '',
-          fondement_juridique: '',
-          url_fondement_juridique: '',
-        },
+        intitule: '',
+        description: '',
+        fondement_juridique_title: '',
+        fondement_juridique_url: '',
         documents: [],
         documents_attributes: [],
-        donnees: {
-          conservation: '',
-          destinataires: zipObject(
-            availableScopes.map(({ name }) => name),
-            new Array(availableScopes.length).fill('')
-          ),
-        },
+        data_retention_period: '',
+        data_recipients: '',
         fournisseur_de_donnees: props.provider,
         linked_franceconnect_enrollment_id: null,
         events: [],
@@ -140,10 +133,8 @@ class Form extends React.Component {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, {
         contacts,
-        demarche: {
-          intitule,
-          description,
-        },
+        intitule,
+        description,
         linked_franceconnect_enrollment_id,
         siret,
       }),
@@ -177,10 +168,14 @@ class Form extends React.Component {
       enrollment: {
         acl,
         contacts,
-        demarche,
+        intitule,
+        description,
+        fondement_juridique_title,
+        fondement_juridique_url,
         documents,
         documents_attributes,
-        donnees,
+        data_recipients,
+        data_retention_period,
         fournisseur_de_donnees,
         linked_franceconnect_enrollment_id,
         events,
@@ -240,21 +235,21 @@ class Form extends React.Component {
               />
             )}
           <div className="form__group">
-            <label htmlFor="intitule_demarche">Intitulé</label>
+            <label htmlFor="intitule">Intitulé</label>
             <input
               type="text"
               onChange={this.handleChange}
-              name="demarche.intitule"
-              id="intitule_demarche"
+              name="intitule"
+              id="intitule"
               disabled={isFranceConnected || disabledApplication}
-              value={demarche.intitule}
+              value={intitule}
             />
             <small className="card__meta">
               <i>Cette information peut être rendue publique.</i>
             </small>
           </div>
           <div className="form__group">
-            <label htmlFor="description_service">
+            <label htmlFor="description">
               Décrivez brièvement la raison pour laquelle vous collectez des
               données à caractère personnel relatives, c'est à dire
               l&apos;objectif qui est poursuivi par le traitement que vous
@@ -263,10 +258,10 @@ class Form extends React.Component {
             <textarea
               rows="10"
               onChange={this.handleChange}
-              name="demarche.description"
-              id="description_service"
+              name="description"
+              id="description"
               disabled={isFranceConnected || disabledApplication}
-              value={demarche.description}
+              value={description}
               placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
             />
           </div>
@@ -360,27 +355,27 @@ class Form extends React.Component {
           <CadreJuridiqueDescription />
           <br />
           <div className="form__group">
-            <label htmlFor="fondement_juridique">
+            <label htmlFor="fondement_juridique_title">
               Référence du texte vous autorisant à récolter ces données
             </label>
             <input
               type="text"
               onChange={this.handleChange}
-              name="demarche.fondement_juridique"
-              id="fondement_juridique"
+              name="fondement_juridique_title"
+              id="fondement_juridique_title"
               disabled={disabledApplication}
-              value={demarche.fondement_juridique}
+              value={fondement_juridique_title}
             />
           </div>
           <h3>Document associé</h3>
           <div className="form__group">
-            <label htmlFor="url_fondement_juridique">
+            <label htmlFor="fondement_juridique_url">
               URL du texte{' '}
-              {demarche.url_fondement_juridique && (
+              {fondement_juridique_url && (
                 <span>
                   (
                   <a
-                    href={demarche.url_fondement_juridique}
+                    href={fondement_juridique_url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -393,10 +388,10 @@ class Form extends React.Component {
             <input
               type="url"
               onChange={this.handleChange}
-              name="demarche.url_fondement_juridique"
-              id="url_fondement_juridique"
+              name="fondement_juridique_url"
+              id="fondement_juridique_url"
               disabled={disabledApplication}
-              value={demarche.url_fondement_juridique}
+              value={fondement_juridique_url}
             />
           </div>
           <h3>ou</h3>
@@ -441,31 +436,6 @@ class Form extends React.Component {
                         >
                           {humanName}
                         </label>
-                        {scopes[name] && (
-                          <div className="scope__destinataire">
-                            <div className="form__group">
-                              <label htmlFor={`destinataire_${name}`}>
-                                Destinataires{' '}
-                                <a
-                                  href="https://www.cnil.fr/fr/definition/destinataire"
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  (plus d&acute;infos)
-                                </a>
-                              </label>
-                              <input
-                                type="text"
-                                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
-                                onChange={this.handleChange}
-                                name={`donnees.destinataires.${name}`}
-                                id={`destinataire_${name}`}
-                                disabled={disabledApplication}
-                                value={donnees.destinataires[name]}
-                              />
-                            </div>
-                          </div>
-                        )}
                       </div>
                     ))}
                   </div>
@@ -480,17 +450,39 @@ class Form extends React.Component {
             />
 
             <div className="form__group">
-              <label htmlFor="donnees_conservation">
+              <label htmlFor="data_recipients">
+                Destinataires{' '}
+                <a
+                  href="https://www.cnil.fr/fr/definition/destinataire"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  (plus d&acute;infos)
+                </a>
+              </label>
+              <input
+                type="text"
+                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
+                onChange={this.handleChange}
+                name="data_recipients"
+                id="data_recipients"
+                disabled={disabledApplication}
+                value={data_recipients}
+              />
+            </div>
+
+            <div className="form__group">
+              <label htmlFor="data_retention_period">
                 Conservation des données <i>(en mois)</i>
               </label>
               <input
                 type="number"
                 min="0"
                 onChange={this.handleChange}
-                name="donnees.conservation"
-                id="donnees_conservation"
+                name="data_retention_period"
+                id="data_retention_period"
                 disabled={disabledApplication}
-                value={donnees.conservation}
+                value={data_retention_period}
               />
             </div>
           </div>

@@ -121,17 +121,6 @@ li.panel .button-list {
   margin: 0 5px;
 }
 
-.scope__destinataire {
-  display: block;
-  max-height: 0;
-  overflow: hidden;
-  transition: all 0.5s ease;
-}
-
-.scope__checkbox:checked ~ .scope__destinataire {
-  max-height: 100px;
-}
-
 .side-pane__menu a {
   text-decoration: none;
 }
