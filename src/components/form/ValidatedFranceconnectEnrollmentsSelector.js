@@ -41,7 +41,8 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
         const {
           id: linked_franceconnect_enrollment_id,
-          demarche: { intitule, description },
+          intitule,
+          description,
           siret,
           contacts,
         } = enrollments[initialIndex];
@@ -69,7 +70,8 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
     const {
       id: linked_franceconnect_enrollment_id,
-      demarche: { intitule, description },
+      intitule,
+      description,
       siret,
       contacts,
     } = this.state.validatedFranceconnectEnrollments[
@@ -120,7 +122,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
               value={validatedFranceconnectEnrollmentsSelectedIndex}
             >
               {validatedFranceconnectEnrollments.map(
-                ({ demarche: { intitule: name }, id: key }, index) => (
+                ({ intitule: name, id: key }, index) => (
                   <option key={key} value={index}>
                     {name}
                   </option>
