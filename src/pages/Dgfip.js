@@ -7,7 +7,7 @@ import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques'
 import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
 
 // Description du contexte
-const provider = 'dgfip';
+const target_api = 'dgfip';
 
 const title = "Demande d'accès à l'API « impôt particulier »";
 
@@ -175,7 +175,7 @@ const Dgfip = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        provider={provider}
+        target_api={target_api}
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}

@@ -167,7 +167,7 @@ class ActionButtons extends React.Component {
   };
 
   render() {
-    const { acl, token_id } = this.props.enrollment;
+    const { acl, linked_token_manager_id } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
     const {
       isLoading,
@@ -190,10 +190,10 @@ class ActionButtons extends React.Component {
             </button>
           )}
 
-          {token_id && (
+          {linked_token_manager_id && (
             <a
               className="button large secondary enrollment"
-              href={`${API_PARTICULIER_HOST}/admin/token/${token_id}`}
+              href={`${API_PARTICULIER_HOST}/admin/token/${linked_token_manager_id}`}
             >
               Gérer l'accès à l'API
             </a>

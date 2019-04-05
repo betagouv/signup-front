@@ -36,7 +36,7 @@ export function getErrorMessages(error) {
 }
 
 const validNAFCode = {
-  'api-particulier': [
+  api_particulier: [
     '84', // SERVICES D’ADMINISTRATION PUBLIQUE ET DE DÉFENSE ; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE
     '85', // ENSEIGNEMENT
     '86', // ACTIVITÉS POUR LA SANTÉ HUMAINE

@@ -69,7 +69,7 @@ class Siret extends React.Component {
   };
 
   render() {
-    const { disabled, siret, fournisseurDeDonnees } = this.props;
+    const { disabled, siret, targetApi } = this.props;
     const {
       enseigne,
       nom_raison_sociale,
@@ -115,7 +115,7 @@ class Siret extends React.Component {
         )}
 
         {activite_principale &&
-          !isValidNAFCode(fournisseurDeDonnees, activite_principale) && (
+          !isValidNAFCode(targetApi, activite_principale) && (
             <div className="form__group">
               <div className="notification warning">
                 Votre organisme ne semble pas être éligible
@@ -162,7 +162,7 @@ class Siret extends React.Component {
 Siret.propTypes = {
   siret: PropTypes.string,
   disabled: PropTypes.bool.isRequired,
-  fournisseurDeDonnees: PropTypes.string.isRequired,
+  targetApi: PropTypes.string.isRequired,
   handleSiretChange: PropTypes.func.isRequired,
 };
 

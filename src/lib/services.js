@@ -60,7 +60,7 @@ export function getUserValidatedFranceconnectEnrollments() {
   // TODO create a route that returns only the validated FC enrollments
   return httpClient
     .get(
-      `${BACK_HOST}/api/enrollments/?state=validated&fournisseur_de_donnees=franceconnect`,
+      `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -70,10 +70,8 @@ export function getUserValidatedFranceconnectEnrollments() {
     .then(({ data }) => data);
 }
 
-export function getPublicValidatedEnrollments(fournisseurDeDonnees) {
-  const filterParams = fournisseurDeDonnees
-    ? `?fournisseur_de_donnees=${fournisseurDeDonnees}`
-    : '';
+export function getPublicValidatedEnrollments(targetApi) {
+  const filterParams = targetApi ? `?target_api=${targetApi}` : '';
 
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/public${filterParams}`, {

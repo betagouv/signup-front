@@ -43,7 +43,7 @@ class App extends Component {
                   {!isLoading && (
                     <React.Fragment>
                       <Route
-                        path="/public/:fournisseurDeDonnees?"
+                        path="/public/:targetApi?"
                         component={PublicEnrollmentList}
                       />
                       <Route path="/oauth-callback" component={OauthCallback} />

@@ -67,7 +67,7 @@ describe('serializeEnrollment', () => {
     it('should return a 200 status', () => {
       const enrollment = FIRST_ENROLLMENT_1;
       const formData = serializeEnrollment(enrollment);
-      expect(formData.getAll('enrollment[enrollment][state]')).toEqual([
+      expect(formData.getAll('enrollment[enrollment][status]')).toEqual([
         'pending',
       ]);
       expect(
@@ -76,18 +76,18 @@ describe('serializeEnrollment', () => {
       expect(
         formData.getAll('enrollment[enrollment][description_service]')
       ).toEqual(['Description du service']);
-      expect(
-        formData.getAll('enrollment[enrollment][validation_de_convention]')
-      ).toEqual(['true']);
+      expect(formData.getAll('enrollment[enrollment][cgu_approved]')).toEqual([
+        'true',
+      ]);
       expect(
         formData.getAll('enrollment[enrollment][scope_dgfip_avis_imposition]')
       ).toEqual(['true']);
       expect(
         formData.getAll('enrollment[enrollment][scope_cnaf_attestation_droits]')
       ).toEqual(['true']);
-      expect(
-        formData.getAll('enrollment[enrollment][fournisseur_de_donnees]')
-      ).toEqual(['api-particulier']);
+      expect(formData.getAll('enrollment[enrollment][target_api]')).toEqual([
+        'api_particulier',
+      ]);
       expect(formData.getAll('enrollment[enrollment][contacts][][id]')).toEqual(
         ['dpo']
       );

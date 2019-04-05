@@ -60,7 +60,7 @@ class Form extends React.Component {
         documents_attributes: [],
         data_retention_period: '',
         data_recipients: '',
-        fournisseur_de_donnees: props.provider,
+        target_api: props.target_api,
         linked_franceconnect_enrollment_id: null,
         events: [],
         id: null,
@@ -69,8 +69,8 @@ class Form extends React.Component {
           availableScopes.map(({ mandatory }) => !!mandatory)
         ),
         siret: '',
-        validation_de_convention: false,
-        token_id: null,
+        cgu_approved: false,
+        linked_token_manager_id: null,
         additional_content: {},
       },
     };
@@ -176,12 +176,12 @@ class Form extends React.Component {
         documents_attributes,
         data_recipients,
         data_retention_period,
-        fournisseur_de_donnees,
+        target_api,
         linked_franceconnect_enrollment_id,
         events,
         scopes,
         siret,
-        validation_de_convention,
+        cgu_approved,
         additional_content,
       },
       errorMessages,
@@ -273,7 +273,7 @@ class Form extends React.Component {
             <Siret
               disabled={isFranceConnected || disabledApplication}
               siret={siret}
-              fournisseurDeDonnees={fournisseur_de_donnees}
+              targetApi={target_api}
               handleSiretChange={this.handleSiretChange}
             />
           )}
@@ -495,12 +495,12 @@ class Form extends React.Component {
             <input
               onChange={this.handleChange}
               disabled={disabledApplication ? 'disabled' : false}
-              checked={validation_de_convention}
+              checked={cgu_approved}
               type="checkbox"
-              name="validation_de_convention"
-              id="validation_de_convention"
+              name="cgu_approved"
+              id="cgu_approved"
             />
-            <label htmlFor="validation_de_convention" className="label-inline">
+            <label htmlFor="cgu_approved" className="label-inline">
               J'ai pris connaissance des{' '}
               <a href={cguLink} target="_blank" rel="noreferrer noopener">
                 modalités d&apos;utilisation
