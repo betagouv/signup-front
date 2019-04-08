@@ -485,6 +485,14 @@ class Form extends React.Component {
                 value={data_retention_period}
               />
             </div>
+            {data_retention_period > 36 && (
+              <div className="form__group">
+                <div className="notification warning">
+                  Cette durée excède la durée communément constatée (36 mois).
+                  Assurez vous que votre DPO est bien informé de votre demande.
+                </div>
+              </div>
+            )}
           </div>
         )}
 
