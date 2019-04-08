@@ -70,6 +70,12 @@ class EnrollmentList extends React.Component {
       errors: [],
       loading: true,
       page: 0,
+      sorted: [
+        {
+          id: 'updated_at',
+          desc: !!this.props.showArchived,
+        },
+      ],
     };
   }
 
@@ -81,6 +87,20 @@ class EnrollmentList extends React.Component {
     if (urlParams.has('page')) {
       const page = parseInt(urlParams.get('page'));
       this.setState({ page });
+    }
+
+    if (urlParams.has('sorted')) {
+      const sortedQueryParams = urlParams.getAll('sorted');
+      const sorted = [];
+
+      sortedQueryParams.forEach(value => {
+        sorted.push({
+          id: value.split(':')[0],
+          desc: value.split(':')[1] === 'desc',
+        });
+      });
+
+      this.setState({ sorted });
     }
 
     if (this.props.showArchived === true) {
@@ -255,9 +275,28 @@ class EnrollmentList extends React.Component {
     this.setState({ page: pageIndex });
   };
 
+  onSortedChange = newSorted => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.delete('sorted');
+
+    newSorted.forEach(({ id, desc }) => {
+      urlParams.append('sorted', `${id}:${desc ? 'desc' : 'asc'}`);
+    });
+
+    const newQueryString = urlParams.toString();
+
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}?${newQueryString}`
+    );
+    this.setState({ sorted: newSorted });
+  };
+
   render() {
     const { history, showArchived, user } = this.props;
-    const { enrollments, errors, loading, page } = this.state;
+    const { enrollments, errors, loading, page, sorted } = this.state;
 
     return (
       <section className="section-grey enrollment-page">
@@ -297,12 +336,6 @@ class EnrollmentList extends React.Component {
               <ReactTable
                 data={enrollments}
                 columns={this.getColumnConfiguration(user)}
-                defaultSorted={[
-                  {
-                    id: 'updated_at',
-                    desc: !!showArchived,
-                  },
-                ]}
                 getTdProps={(state, rowInfo, column) => ({
                   onClick: (e, handleOriginal) => {
                     if (rowInfo) {
@@ -329,6 +362,8 @@ class EnrollmentList extends React.Component {
                 page={page}
                 pageSize={10}
                 onPageChange={this.onPageChange}
+                sorted={sorted}
+                onSortedChange={this.onSortedChange}
                 resizable={false}
                 previousText="Précédent"
                 nextText="Suivant"
