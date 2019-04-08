@@ -342,7 +342,16 @@ class EnrollmentList extends React.Component {
                       const {
                         original: { id, target_api },
                       } = rowInfo;
-                      history.push(`/${target_api.replace(/_/g, '-')}/${id}`);
+                      const targetUrl = `/${target_api.replace(
+                        /_/g,
+                        '-'
+                      )}/${id}`;
+
+                      if (e.ctrlKey) {
+                        window.open(targetUrl); // open in new tab
+                      } else {
+                        history.push(targetUrl);
+                      }
                     }
 
                     if (handleOriginal) {
