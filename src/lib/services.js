@@ -57,7 +57,6 @@ export function getUserEnrollment(id) {
 }
 
 export function getUserValidatedFranceconnectEnrollments() {
-  // TODO create a route that returns only the validated FC enrollments
   return httpClient
     .get(
       `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect`,
