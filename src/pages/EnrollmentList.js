@@ -69,11 +69,39 @@ class EnrollmentList extends React.Component {
       enrollments: [],
       errors: [],
       loading: true,
+      page: 0,
+      sorted: [
+        {
+          id: 'updated_at',
+          desc: !!this.props.showArchived,
+        },
+      ],
     };
   }
 
   async componentDidMount() {
     let enrollments = null;
+
+    const urlParams = new URLSearchParams(window.location.search);
+
+    if (urlParams.has('page')) {
+      const page = parseInt(urlParams.get('page'));
+      this.setState({ page });
+    }
+
+    if (urlParams.has('sorted')) {
+      const sortedQueryParams = urlParams.getAll('sorted');
+      const sorted = [];
+
+      sortedQueryParams.forEach(value => {
+        sorted.push({
+          id: value.split(':')[0],
+          desc: value.split(':')[1] === 'desc',
+        });
+      });
+
+      this.setState({ sorted });
+    }
 
     if (this.props.showArchived === true) {
       enrollments = await getUserArchivedEnrollments();
@@ -232,9 +260,43 @@ class EnrollmentList extends React.Component {
     return cellValue;
   };
 
+  onPageChange = pageIndex => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('page', pageIndex);
+
+    const newQueryString = urlParams.toString();
+
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}?${newQueryString}`
+    );
+    this.setState({ page: pageIndex });
+  };
+
+  onSortedChange = newSorted => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.delete('sorted');
+
+    newSorted.forEach(({ id, desc }) => {
+      urlParams.append('sorted', `${id}:${desc ? 'desc' : 'asc'}`);
+    });
+
+    const newQueryString = urlParams.toString();
+
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}?${newQueryString}`
+    );
+    this.setState({ sorted: newSorted });
+  };
+
   render() {
     const { history, showArchived, user } = this.props;
-    const { enrollments, errors, loading } = this.state;
+    const { enrollments, errors, loading, page, sorted } = this.state;
 
     return (
       <section className="section-grey enrollment-page">
@@ -274,19 +336,22 @@ class EnrollmentList extends React.Component {
               <ReactTable
                 data={enrollments}
                 columns={this.getColumnConfiguration(user)}
-                defaultSorted={[
-                  {
-                    id: 'updated_at',
-                    desc: !!showArchived,
-                  },
-                ]}
                 getTdProps={(state, rowInfo, column) => ({
                   onClick: (e, handleOriginal) => {
                     if (rowInfo) {
                       const {
                         original: { id, target_api },
                       } = rowInfo;
-                      history.push(`/${target_api.replace(/_/g, '-')}/${id}`);
+                      const targetUrl = `/${target_api.replace(
+                        /_/g,
+                        '-'
+                      )}/${id}`;
+
+                      if (e.ctrlKey) {
+                        window.open(targetUrl); // open in new tab
+                      } else {
+                        history.push(targetUrl);
+                      }
                     }
 
                     if (handleOriginal) {
@@ -303,7 +368,11 @@ class EnrollmentList extends React.Component {
                 className="-highlight"
                 loading={loading}
                 showPageSizeOptions={false}
+                page={page}
                 pageSize={10}
+                onPageChange={this.onPageChange}
+                sorted={sorted}
+                onSortedChange={this.onSortedChange}
                 resizable={false}
                 previousText="Précédent"
                 nextText="Suivant"
