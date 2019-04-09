@@ -489,7 +489,7 @@ class Form extends React.Component {
               <div className="form__group">
                 <div className="notification warning">
                   Cette durée excède la durée communément constatée (36 mois).
-                  Assurez vous que votre DPO est bien informé de votre demande.
+                  Assurez vous que votre DPD est bien informé de votre demande.
                 </div>
               </div>
             )}
