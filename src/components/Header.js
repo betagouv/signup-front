@@ -30,7 +30,7 @@ const Header = ({ user, logout }) => {
             Retour
           </Link>
         ) : (
-          <a className="navbar__home" href="https://api.gouv.fr/">
+          <a className="navbar__home" href="https://api.gouv.fr/?filter=signup">
             <img
               className="navbar__logo"
               src="/images/logo_api.svg"
