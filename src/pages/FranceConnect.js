@@ -82,31 +82,35 @@ const availableScopes = [
       "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
     mandatory: true,
   },
-  { name: 'gender', humanName: 'Sexe' },
   {
     name: 'birthdate',
     humanName: 'Date de naissance',
+    checkedByDefault: true,
   },
   {
-    name: 'birthcountry',
-    humanName: 'Pays de naissance',
+    name: 'given_name',
+    humanName: 'Prénoms',
+    checkedByDefault: true,
+  },
+  {
+    name: 'family_name',
+    humanName: 'Nom de naissance',
+    checkedByDefault: true,
+  },
+  {
+    name: 'email',
+    humanName: 'Adresse électronique',
+    checkedByDefault: true,
   },
   {
     name: 'birthplace',
     humanName: 'Ville de naissance',
   },
   {
-    name: 'given_name',
-    humanName: 'Prénoms',
+    name: 'birthcountry',
+    humanName: 'Pays de naissance',
   },
-  {
-    name: 'family_name',
-    humanName: 'Nom de naissance',
-  },
-  {
-    name: 'email',
-    humanName: 'Adresse électronique',
-  },
+  { name: 'gender', humanName: 'Sexe' },
   {
     name: 'preferred_username',
     humanName: "Nom d'usage (information renvoyée si disponible)",

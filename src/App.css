@@ -212,3 +212,9 @@ aside .contact-button-list > .button-outline + .button-outline {
     flex-direction: column-reverse;
   }
 }
+
+input[type='checkbox'][disabled]:checked {
+  background-color: var(--darker-grey);
+  border-color: var(--darker-grey);
+  cursor: not-allowed;
+}

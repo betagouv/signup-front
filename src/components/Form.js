@@ -66,7 +66,10 @@ class Form extends React.Component {
         id: null,
         scopes: zipObject(
           availableScopes.map(({ name }) => name),
-          availableScopes.map(({ mandatory }) => !!mandatory)
+          availableScopes.map(
+            ({ mandatory, checkedByDefault }) =>
+              !!mandatory || !!checkedByDefault
+          )
         ),
         siret: '',
         cgu_approved: false,
@@ -435,6 +438,7 @@ class Form extends React.Component {
                           className="label-inline"
                         >
                           {humanName}
+                          {mandatory && <i> (nécessaire)</i>}
                         </label>
                       </div>
                     ))}
