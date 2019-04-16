@@ -334,7 +334,7 @@ class Form extends React.Component {
                         Ce numéro peut être le numéro du secrétariat ou le
                         numéro direct de la personne concernée. Ce numéro nous
                         permettra de vous contacter lors d'incidents ou
-                        difficultées.
+                        difficultés.
                       </small>
                       <input
                         type="tel"
