@@ -1,6 +1,4 @@
-# France Connect + Api Particulier + Jeux de données disponibles et contractualisation
-
-:warning: This doc needs updates. Installation instructions can be found [here](https://gitlab.incubateur.net/beta.gouv.fr/signup-ansible).
+# Frontend de l'outils d'habilitation des API api.gouv.fr
 
 :warning: This project is not a standalone yet. For now, it needs the [private signup-ansible repository](https://gitlab.incubateur.net/beta.gouv.fr/signup-ansible) to work.
 
@@ -22,6 +20,18 @@ PIWIK_SITE_ID=''
 ```
 
 The usage of this project can be seen on [http://www.stats.data.gouv.fr](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
+
+## How to enroll a new API
+
+Here are the files you need to create :
+
+- src/pages/NameOfApi.js (describe all the information to generate the new form)
+
+Here are the files you need to update :
+
+- src/App.js (declare new route to access the api form)
+- src/pages/EnrollmentList.js (declare API Labels in enrollment list view)
+- (optional) src/lib/utils.js (L~38) (declare valid naf code)
 
 ## License
 
