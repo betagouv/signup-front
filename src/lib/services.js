@@ -59,7 +59,7 @@ export function getUserEnrollment(id) {
 export function getUserValidatedFranceconnectEnrollments() {
   return httpClient
     .get(
-      `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect`,
+      `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect&detailed=true`,
       {
         headers: {
           'Content-Type': 'application/json',
