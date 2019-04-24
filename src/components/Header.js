@@ -10,6 +10,7 @@ const Header = ({ user, logout }) => {
     window.location.pathname.startsWith('/api-entreprise') ||
     window.location.pathname.startsWith('/franceconnect') ||
     window.location.pathname.startsWith('/api-droits-cnam') ||
+    window.location.pathname.startsWith('/preuve-covoiturage') ||
     window.location.pathname.startsWith('/dgfip');
 
   return (
