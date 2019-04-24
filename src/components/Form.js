@@ -564,10 +564,10 @@ Form.propTypes = {
   title: PropTypes.string,
   DemarcheDescription: PropTypes.func.isRequired,
   isFranceConnected: PropTypes.bool,
-  CadreJuridiqueDescription: PropTypes.func.isRequired,
-  DonneesDescription: PropTypes.func.isRequired,
+  CadreJuridiqueDescription: PropTypes.func,
+  DonneesDescription: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
-  CguDescription: PropTypes.func.isRequired,
+  CguDescription: PropTypes.func,
   cguLink: PropTypes.string.isRequired,
   AdditionalRgpdAgreement: PropTypes.func,
   AdditionalDataContent: PropTypes.func,
@@ -581,10 +581,13 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isFranceConnected: false,
-  AdditionalRgpdAgreement: () => <React.Fragment />,
-  AdditionalDataContent: () => <React.Fragment />,
-  AdditionalContent: () => <React.Fragment />,
-  AdditionalCguContent: () => <React.Fragment />,
+  CadreJuridiqueDescription: () => <></>,
+  DonneesDescription: () => <></>,
+  CguDescription: () => <></>,
+  AdditionalRgpdAgreement: () => <></>,
+  AdditionalDataContent: () => <></>,
+  AdditionalContent: () => <></>,
+  AdditionalCguContent: () => <></>,
 };
 
 export default withRouter(Form);
