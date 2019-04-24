@@ -26,6 +26,7 @@ export const TARGET_API_LABELS = {
   api_droits_cnam: 'API Droits CNAM',
   dgfip: 'API Impot particulier',
   api_entreprise: 'API Entreprise',
+  preuve_covoiturage: 'Registre de Preuve de Covoiturage',
 };
 
 export const enrollmentListStyle = {
