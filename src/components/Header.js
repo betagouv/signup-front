@@ -5,18 +5,15 @@ import { withUser } from './UserContext';
 import ArrowBackIcon from './icons/arrowBack';
 
 const Header = ({ user, logout }) => {
-  const isOnDetailPage =
-    window.location.pathname.startsWith('/api-particulier') ||
-    window.location.pathname.startsWith('/api-entreprise') ||
-    window.location.pathname.startsWith('/franceconnect') ||
-    window.location.pathname.startsWith('/api-droits-cnam') ||
-    window.location.pathname.startsWith('/preuve-covoiturage') ||
-    window.location.pathname.startsWith('/dgfip');
+  const displayApiGouvIcon =
+    window.location.pathname === '/' ||
+    window.location.pathname === '/stats' ||
+    window.location.pathname.startsWith('/public');
 
   return (
     <header className="navbar">
       <div className="navbar__container">
-        {isOnDetailPage ? (
+        {!displayApiGouvIcon ? (
           <Link
             to="/"
             style={{
@@ -45,7 +42,7 @@ const Header = ({ user, logout }) => {
             <li className="nav__item">
               <a href="https://api.gouv.fr/apropos">À propos</a>
             </li>
-            {!isOnDetailPage && (
+            {displayApiGouvIcon && (
               <li className="nav__item">
                 <a href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
                   Nous contacter

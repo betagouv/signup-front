@@ -1,0 +1,26 @@
+section.stats-page {
+  padding: 2em 0;
+}
+
+.card .card_graph {
+  min-height: 200px;
+  margin: auto;
+  width: 100%;
+}
+
+.card .card_number {
+  font-size: 80px;
+  line-height: 80px;
+  color: #1a535c;
+  display: table;
+  padding: 0 0 50px 0;
+  margin: auto auto 0 auto;
+}
+
+.row > * {
+  max-width: inherit;
+}
+
+.row + .row {
+  margin-top: 2em;
+}
