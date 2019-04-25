@@ -31,7 +31,6 @@ Here are the files you need to update :
 
 - src/App.js (declare new route to access the api form)
 - src/pages/EnrollmentList.js (declare API Labels in enrollment list view)
-- src/components/Header.js (to display 'go back' link on your form page instead of the logo in the header)
 - (optional) src/lib/utils.js (L~38) (declare valid naf code)
 
 ## License

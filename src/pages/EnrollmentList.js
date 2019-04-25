@@ -13,7 +13,7 @@ import {
 import ScheduleIcon from '../components/icons/schedule';
 import { withUser } from '../components/UserContext';
 
-const STATUS_LABELS = {
+export const STATUS_LABELS = {
   pending: 'Brouillon',
   sent: 'À valider',
   validated: 'Validée',
