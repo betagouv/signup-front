@@ -67,7 +67,7 @@ export default () => {
               <div className="card__meta">(en jours)</div>
             </div>
             <div className="card__content card_number">
-              {data.average_processing_time_in_days}
+              {Math.round(data.average_processing_time_in_days * 100) / 100}
             </div>
           </div>
         </div>
