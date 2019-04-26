@@ -9,6 +9,7 @@ import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import DocumentUpload from './form/DocumentUpload';
 import ActivityFeed from './form/ActivityFeed';
+import Helper from './elements/Helper';
 
 class Form extends React.Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class Form extends React.Component {
           {
             id: 'dpo',
             heading: 'Délégué à la protection des données',
+            hint:
+              "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
             link: 'https://www.cnil.fr/fr/designation-dpo',
             nom: '',
             email: '',
@@ -37,6 +40,8 @@ class Form extends React.Component {
           {
             id: 'responsable_traitement',
             heading: 'Responsable de traitement',
+            hint:
+              "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
             link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
             nom: '',
             email: '',
@@ -292,13 +297,21 @@ class Form extends React.Component {
               ) => (
                 <div key={id} className="card">
                   <div className="card__content">
-                    <h3>{heading}</h3>
+                    <h3>
+                      {heading}
+                      {hint && <Helper title={hint} />}
+                    </h3>
                     {link && (
-                      <a className="card__meta" href={link}>
-                        {link}
+                      <a
+                        className="card__meta"
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {' '}
+                        (plus d&acute;infos)
                       </a>
                     )}
-                    {hint && <div className="card__meta">{hint}</div>}
                     <div className="form__group">
                       <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
                       <input
@@ -329,13 +342,14 @@ class Form extends React.Component {
                     <div className="form__group">
                       <label htmlFor={`person_${id}_phone_number`}>
                         Numéro de téléphone
+                        <Helper
+                          title={
+                            'Ce numéro peut être le numéro du secrétariat ou le numéro direct de ' +
+                            'la personne concernée. Ce numéro nous permettra de vous contacter ' +
+                            "lors d'incidents ou difficultés."
+                          }
+                        />
                       </label>
-                      <small className="card__meta">
-                        Ce numéro peut être le numéro du secrétariat ou le
-                        numéro direct de la personne concernée. Ce numéro nous
-                        permettra de vous contacter lors d'incidents ou
-                        difficultés.
-                      </small>
                       <input
                         type="tel"
                         onChange={this.handleChange}
@@ -477,7 +491,12 @@ class Form extends React.Component {
 
             <div className="form__group">
               <label htmlFor="data_retention_period">
-                Conservation des données <i>(en mois)</i>
+                Conservation des données
+                <Helper
+                  title={
+                    'en mois, à compter de la cessation de la relation contractuelle'
+                  }
+                />
               </label>
               <input
                 type="number"

@@ -15,11 +15,11 @@ const WarningIcon = ({ color }) => (
 );
 
 WarningIcon.propTypes = {
-  title: PropTypes.string,
+  color: PropTypes.string,
 };
 
 WarningIcon.defaultProps = {
-  title: 'none',
+  color: 'none',
 };
 
 export default WarningIcon;

@@ -218,3 +218,8 @@ input[type='checkbox'][disabled]:checked {
   border-color: var(--darker-grey);
   cursor: not-allowed;
 }
+
+/*tooltip is being cropped by template.beta.gouv rule*/
+.card {
+  overflow: inherit;
+}
