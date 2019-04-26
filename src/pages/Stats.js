@@ -56,6 +56,9 @@ export default () => {
           <div className="card">
             <div className="card__content">
               <h3>Demandes d'habilitation validées</h3>
+              <div className="card__meta">
+                (<a href="/public">voir la liste détaillée</a>)
+              </div>
             </div>
             <div className="card__content card_number">
               <div>{data.validated_enrollment_count}</div>
