@@ -133,7 +133,7 @@ export default () => {
                 <PieChart>
                   <Pie data={data.enrollment_by_status} dataKey="count" label>
                     {data.enrollment_by_status.map((entry, index) => (
-                      <Cell fill={COLORS[index % COLORS.length]} />
+                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
                   <Legend
