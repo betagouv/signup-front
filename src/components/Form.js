@@ -64,6 +64,7 @@ class Form extends React.Component {
         documents: [],
         documents_attributes: [],
         data_retention_period: '',
+        data_retention_comment: '',
         data_recipients: '',
         target_api: props.target_api,
         linked_franceconnect_enrollment_id: null,
@@ -184,6 +185,7 @@ class Form extends React.Component {
         documents_attributes,
         data_recipients,
         data_retention_period,
+        data_retention_comment,
         target_api,
         linked_franceconnect_enrollment_id,
         events,
@@ -510,10 +512,21 @@ class Form extends React.Component {
             </div>
             {data_retention_period > 36 && (
               <div className="form__group">
-                <div className="notification warning">
+                <label
+                  htmlFor="data_retention_comment"
+                  className="notification warning"
+                >
                   Cette durée excède la durée communément constatée (36 mois).
-                  Assurez vous que votre DPD est bien informé de votre demande.
-                </div>
+                  Veuillez justifier cette durée dans le champ ci-après:
+                </label>
+                <textarea
+                  rows="10"
+                  onChange={this.handleChange}
+                  name="data_retention_comment"
+                  id="data_retention_comment"
+                  disabled={disabledApplication}
+                  value={data_retention_comment}
+                />
               </div>
             )}
           </div>
