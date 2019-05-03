@@ -6,7 +6,7 @@ import {
   triggerEnrollment,
   updateEnrollmentContacts,
 } from '../../lib/services';
-import Prompt from '../Prompt';
+import Prompt from '../elements/Prompt';
 import { getErrorMessages } from '../../lib/utils';
 import Spinner from '../icons/spinner';
 
@@ -17,91 +17,95 @@ class ActionButtons extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      isLoadingSaveDraft: false,
       doShowPrompt: false,
-      promptMessage: '',
+      commentType: '',
     };
   }
 
   aclToDisplayInfo = {
-    send_application: {
-      label: 'Soumettre la demande',
-      cssClass: 'primary enrollment',
-    },
-    validate_application: {
-      label: 'Valider',
-      cssClass: 'primary enrollment',
-    },
-    review_application: {
-      label: 'Demander une modification',
+    update: {
+      label: 'Sauvegarder le brouillon',
       cssClass: 'secondary enrollment',
-    },
-    refuse_application: {
-      label: 'Refuser',
-      cssClass: 'warning enrollment',
     },
     update_contacts: {
       label: 'Mettre à jour les contacts',
       cssClass: 'primary enrollment',
     },
+    send_application: {
+      label: 'Soumettre la demande',
+      cssClass: 'primary enrollment',
+    },
+    refuse_application: {
+      label: 'Refuser',
+      cssClass: 'warning enrollment',
+    },
+    review_application: {
+      label: 'Demander une modification',
+      cssClass: 'secondary enrollment',
+    },
+    validate_application: {
+      label: 'Valider',
+      cssClass: 'primary enrollment',
+    },
   };
 
-  transformAclToActions = acl => {
-    return (
-      _(acl)
-        // {'send_application': true, 'review_application': false, 'create': true}
-        .pickBy((value, key) => value && this.aclToDisplayInfo[key])
-        // {'send_application': true}
-        .keys()
-        // ['send_application']
-        .map(acl => ({
-          id: acl,
-          label: this.aclToDisplayInfo[acl].label,
-          cssClass: this.aclToDisplayInfo[acl].cssClass,
-          trigger: this.handleSubmitFactory(acl),
-        }))
-        // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
-        .value()
-    );
-  };
+  transformAclToActions = acl =>
+    // acl = {'send_application': true, 'review_application': false, 'create': true}
+    _(this.aclToDisplayInfo)
+      .pickBy((value, key) => acl[key])
+      // {'send_application': {label: ..., cssClass: ...}}
+      .keys()
+      // ['send_application']
+      .map(acl => ({
+        id: acl,
+        label: this.aclToDisplayInfo[acl].label,
+        cssClass: this.aclToDisplayInfo[acl].cssClass,
+        trigger: this.handleSubmitFactory(acl),
+      }))
+      // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
+      .value();
 
   getActionMessage = action => {
-    const promptMessage = {
-      review_application:
-        'Précisez au demandeur les modifications à apporter à sa demande\xa0:',
-      refuse_application: 'Précisez au demandeur le motif de votre refus\xa0:',
-    }[action];
+    this.setState({ doShowPrompt: true, commentType: action });
 
-    this.setState({ doShowPrompt: true, promptMessage });
-
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.resolveActionMessagePromise = resolve;
+      this.rejectActionMessagePromise = reject;
     });
   };
 
   submitActionMessage = message => {
     this.resolveActionMessagePromise(message);
 
-    this.setState({ doShowPrompt: false, promptMessage: '' });
+    this.setState({ doShowPrompt: false, commentType: '' });
   };
 
   cancelActionMessage = () => {
-    this.resolveActionMessagePromise();
+    this.rejectActionMessagePromise();
 
-    this.setState({ doShowPrompt: false, promptMessage: '' });
+    this.setState({ doShowPrompt: false, commentType: '' });
   };
 
   triggerAction = async action => {
-    const resultMessages = { errorMessages: [], successMessages: [] };
+    const resultMessages = {
+      errorMessages: [],
+      successMessages: [],
+      redirectToHome: false,
+    };
 
     try {
       let comment = null;
 
-      if (['review_application', 'refuse_application'].includes(action)) {
-        comment = await this.getActionMessage(action);
-
-        if (!comment) {
-          // do not trigger action if no message is provided or when clicking on cancel
+      if (
+        [
+          'review_application',
+          'refuse_application',
+          'validate_application',
+        ].includes(action)
+      ) {
+        try {
+          comment = await this.getActionMessage(action);
+        } catch (e) {
           return resultMessages;
         }
       }
@@ -110,6 +114,10 @@ class ActionButtons extends React.Component {
         await updateEnrollmentContacts({
           enrollment: this.props.enrollment,
         });
+
+        resultMessages.successMessages.push(
+          'Vos changements ont été sauvegardée.'
+        );
 
         return resultMessages;
       }
@@ -126,11 +134,17 @@ class ActionButtons extends React.Component {
         resultMessages.successMessages.push('Votre demande a été sauvegardée.');
       }
 
+      if (action === 'update') {
+        return resultMessages;
+      }
+
       await triggerEnrollment({
         action,
         id: enrollmentId,
         comment,
       });
+
+      resultMessages.redirectToHome = true;
 
       return resultMessages;
     } catch (error) {
@@ -153,43 +167,14 @@ class ActionButtons extends React.Component {
     };
   };
 
-  handleSaveDraft = async event => {
-    event.preventDefault();
-    this.setState({ isLoadingSaveDraft: true });
-
-    await createOrUpdateEnrollment({ enrollment: this.props.enrollment })
-      .then(() => this.props.handleSubmit({}))
-      .catch(errors =>
-        this.props.handleSubmit({ errorMessages: getErrorMessages(errors) })
-      );
-
-    this.setState({ isLoadingSaveDraft: false });
-  };
-
   render() {
     const { acl, linked_token_manager_id } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
-    const {
-      isLoading,
-      isLoadingSaveDraft,
-      doShowPrompt,
-      promptMessage,
-    } = this.state;
+    const { isLoading, doShowPrompt, commentType } = this.state;
 
     return (
       <React.Fragment>
         <div className="button-list enrollment">
-          {acl.update && (
-            <button
-              className="button large secondary enrollment"
-              onClick={this.handleSaveDraft}
-              disabled={isLoading || isLoadingSaveDraft}
-            >
-              Sauvegarder le brouillon
-              {isLoadingSaveDraft && <Spinner inline={true} />}
-            </button>
-          )}
-
           {linked_token_manager_id && (
             <a
               className="button large secondary enrollment"
@@ -204,7 +189,7 @@ class ActionButtons extends React.Component {
               key={id}
               className={`button large ${cssClass}`}
               onClick={trigger}
-              disabled={isLoading || isLoadingSaveDraft}
+              disabled={isLoading}
             >
               {label}
               {isLoading && <Spinner inline={true} />}
@@ -216,7 +201,7 @@ class ActionButtons extends React.Component {
           <Prompt
             onAccept={this.submitActionMessage}
             onCancel={this.cancelActionMessage}
-            promptMessage={promptMessage}
+            commentType={commentType}
           />
         )}
       </React.Fragment>

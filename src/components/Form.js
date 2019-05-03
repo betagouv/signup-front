@@ -164,12 +164,16 @@ class Form extends React.Component {
     }));
   };
 
-  handleSubmit = ({ errorMessages = [], successMessages = [] }) => {
-    if (!isEmpty(errorMessages)) {
-      return this.setState({ errorMessages, successMessages });
+  handleSubmit = ({
+    errorMessages = [],
+    successMessages = [],
+    redirectToHome = false,
+  }) => {
+    if (redirectToHome) {
+      return this.props.history.push('/');
     }
 
-    return this.props.history.push('/');
+    return this.setState({ errorMessages, successMessages });
   };
 
   render() {
