@@ -9,7 +9,13 @@ const { REACT_APP_OAUTH_AUTHORIZE_URI: OAUTH_AUTHORIZE_URI } = process.env;
 const SaveCurrentPageAndRedirect = () => {
   saveCurrentPageForPostloginRedirect();
 
-  window.location.href = OAUTH_AUTHORIZE_URI;
+  // forward source page param to display a contextualised login page on api-auth
+  const urlParams = new URLSearchParams(window.location.search);
+  const sourceQueryParam = urlParams.has('source')
+    ? `?source=${urlParams.get('source')}`
+    : '';
+
+  window.location.href = `${OAUTH_AUTHORIZE_URI}${sourceQueryParam}`;
 
   return null;
 };
