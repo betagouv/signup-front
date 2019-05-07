@@ -475,7 +475,12 @@ class Form extends React.Component {
 
             <div className="form__group">
               <label htmlFor="data_recipients">
-                Destinataires{' '}
+                Destinataires
+                <Helper
+                  title={
+                    'description du service ou des personnes physiques qui consulteront ces données'
+                  }
+                />
                 <a
                   href="https://www.cnil.fr/fr/definition/destinataire"
                   target="_blank"
