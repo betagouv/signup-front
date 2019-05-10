@@ -1,32 +1,35 @@
-import { Link } from 'react-router-dom';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isObject } from 'lodash';
+import { withRouter } from 'react-router-dom';
 import { withUser } from './UserContext';
 import ArrowBackIcon from './icons/arrowBack';
+import './Header.css';
 
-const Header = ({ user, logout }) => {
+const Header = ({ user, logout, history }) => {
   const displayApiGouvIcon =
     window.location.pathname === '/' ||
     window.location.pathname === '/stats' ||
     window.location.pathname.startsWith('/public');
 
+  const goBack = e => {
+    if (isObject(history.location.state) && history.location.state.fromList) {
+      return history.goBack();
+    }
+
+    return history.push('/');
+  };
+
   return (
     <header className="navbar">
       <div className="navbar__container">
         {!displayApiGouvIcon ? (
-          <Link
-            to="/"
-            style={{
-              textDecoration: 'none',
-              fontSize: '1.5em',
-              margin: '0.11em 0',
-            }}
-          >
+          <button className="back-button" onClick={goBack}>
             <span style={{ verticalAlign: 'middle' }}>
               <ArrowBackIcon />
             </span>
             Retour
-          </Link>
+          </button>
         ) : (
           <a className="navbar__home" href="https://api.gouv.fr/?filter=signup">
             <img
@@ -71,10 +74,19 @@ const Header = ({ user, logout }) => {
 Header.propTypes = {
   user: PropTypes.object,
   logout: PropTypes.func.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.shape({
+        fromList: PropTypes.bool,
+      }),
+    }),
+  }),
 };
 
 Header.defaultProps = {
   user: null,
 };
 
-export default withUser(Header);
+export default withRouter(withUser(Header));

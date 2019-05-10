@@ -352,7 +352,7 @@ class EnrollmentList extends React.Component {
                         // metaKey is cmd on mac
                         window.open(targetUrl); // open in new tab
                       } else {
-                        history.push(targetUrl);
+                        history.push(targetUrl, { fromList: true });
                       }
                     }
 

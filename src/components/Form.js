@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { isEmpty, omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
+import {
+  isEmpty,
+  isObject,
+  omitBy,
+  merge,
+  zipObject,
+  zipObjectDeep,
+} from 'lodash';
 import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
@@ -170,6 +177,14 @@ class Form extends React.Component {
     successMessages = [],
     redirectToHome = false,
   }) => {
+    if (
+      redirectToHome &&
+      isObject(this.props.history.location.state) &&
+      this.props.history.location.state.fromList
+    ) {
+      return this.props.history.goBack();
+    }
+
     if (redirectToHome) {
       return this.props.history.push('/');
     }
@@ -617,6 +632,12 @@ Form.propTypes = {
   AdditionalCguContent: PropTypes.func,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
+    goBack: PropTypes.func.isRequired,
+    location: PropTypes.shape({
+      state: PropTypes.shape({
+        fromList: PropTypes.bool,
+      }),
+    }),
   }),
 };
 
