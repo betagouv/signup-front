@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { isEmpty, omitBy, merge, zipObject, zipObjectDeep } from 'lodash';
+import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
 import ValidatedFranceconnectEnrollmentsSelector from './form/ValidatedFranceconnectEnrollmentsSelector';
@@ -587,12 +588,12 @@ class Form extends React.Component {
 
         {successMessages.map(successMessage => (
           <div key={successMessage} className="notification success">
-            {successMessage}
+            <Linkify>{successMessage}</Linkify>
           </div>
         ))}
         {errorMessages.map(errorMessage => (
           <div key={errorMessage} className="notification error">
-            {errorMessage}
+            <Linkify>{errorMessage}</Linkify>
           </div>
         ))}
       </>
