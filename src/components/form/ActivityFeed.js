@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { last, sortBy } from 'lodash';
 import moment from 'moment';
+import Linkify from 'linkifyjs/react';
 import CheckCircleIcon from '../icons/check-circle';
 import ErrorOutlineIcon from '../icons/error-outline';
 import ErrorIcon from '../icons/error';
@@ -50,7 +51,11 @@ export const EventItem = ({ comment, name, updated_at, email }) => (
         </div>
         <div className="event-date">{moment(updated_at).calendar()}</div>
       </div>
-      {comment && <div className="event-comment">{comment}</div>}
+      {comment && (
+        <div className="event-comment">
+          <Linkify>{comment}</Linkify>
+        </div>
+      )}
     </div>
   </div>
 );
