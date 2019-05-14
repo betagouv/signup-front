@@ -1,6 +1,6 @@
 import nock from 'nock';
 import {
-  getUserEnrollments,
+  getUserPendingEnrollments,
   getResourceProviderService,
   getUserEnrollment,
   serializeEnrollment,
@@ -12,7 +12,7 @@ import SENT_ENROLLMENT from '../../../mock/enrollment-form/sent-enrollment';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-describe('getUserEnrollments', () => {
+describe('getUserPendingEnrollments', () => {
   describe('When there is a response', () => {
     nock(BACK_HOST, {
       reqheaders: {
@@ -23,7 +23,7 @@ describe('getUserEnrollments', () => {
       .get('/api/enrollments/')
       .reply(200, ENROLLMENTS);
     it('should return the data', () => {
-      return getUserEnrollments().then(response => {
+      return getUserPendingEnrollments().then(response => {
         expect(response).toEqual(ENROLLMENTS);
       });
     });
@@ -70,23 +70,23 @@ describe('serializeEnrollment', () => {
       expect(formData.getAll('enrollment[enrollment][status]')).toEqual([
         'pending',
       ]);
-      expect(
-        formData.getAll('enrollment[enrollment][fournisseur_de_service]')
-      ).toEqual(['Nom du fournisseur de service']);
-      expect(
-        formData.getAll('enrollment[enrollment][description_service]')
-      ).toEqual(['Description du service']);
+      expect(formData.getAll('enrollment[enrollment][intitule]')).toEqual([
+        'Nom du fournisseur de service',
+      ]);
+      expect(formData.getAll('enrollment[enrollment][description]')).toEqual([
+        'Description du service',
+      ]);
       expect(formData.getAll('enrollment[enrollment][cgu_approved]')).toEqual([
         'true',
       ]);
-      expect(
-        formData.getAll('enrollment[enrollment][scope_dgfip_avis_imposition]')
-      ).toEqual(['true']);
-      expect(
-        formData.getAll('enrollment[enrollment][scope_cnaf_attestation_droits]')
-      ).toEqual(['true']);
+      expect(formData.getAll('enrollment[enrollment][scopes][phone]')).toEqual([
+        'true',
+      ]);
+      expect(formData.getAll('enrollment[enrollment][scopes][gender]')).toEqual(
+        ['true']
+      );
       expect(formData.getAll('enrollment[enrollment][target_api]')).toEqual([
-        'api_particulier',
+        'franceconnect',
       ]);
       expect(formData.getAll('enrollment[enrollment][contacts][][id]')).toEqual(
         ['dpo']
@@ -96,10 +96,10 @@ describe('serializeEnrollment', () => {
       ).toEqual(['Délégué à la protection des données']);
       expect(
         formData.getAll('enrollment[enrollment][contacts][][nom]')
-      ).toEqual(['Raphaël Dubigny']);
+      ).toEqual(['user']);
       expect(
         formData.getAll('enrollment[enrollment][contacts][][email]')
-      ).toEqual(['rdubigny@gmail.com']);
+      ).toEqual(['user@test']);
     });
   });
 });
