@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { last, sortBy } from 'lodash';
+import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
 import Linkify from 'linkifyjs/react';
 import CheckCircleIcon from '../icons/check-circle';
@@ -8,6 +8,7 @@ import ErrorOutlineIcon from '../icons/error-outline';
 import ErrorIcon from '../icons/error';
 import WarningIcon from '../icons/warning';
 import './ActivityFeed.css';
+import { getChangelog } from '../../lib/utils';
 
 const eventNameToDisplayableContent = {
   asked_for_modification: {
@@ -40,35 +41,60 @@ const eventNameToDisplayableContent = {
   },
 };
 
-export const EventItem = ({ comment, name, updated_at, email }) => (
-  <div className="event-item">
-    <div className="event-icon">{eventNameToDisplayableContent[name].icon}</div>
-    <div className="event-content">
-      <div className="event-head">
-        <div>
-          <strong>{email} </strong>
-          {eventNameToDisplayableContent[name].label}
-        </div>
-        <div className="event-date">{moment(updated_at).calendar()}</div>
+export const EventItem = ({ comment, name, updated_at, email, diff }) => {
+  const [showDiff, setShowDiff] = useState(false);
+  const changelog = getChangelog(diff);
+
+  return (
+    <div className="event-item">
+      <div className="event-icon">
+        {eventNameToDisplayableContent[name].icon}
       </div>
-      {comment && (
-        <div className="event-comment">
-          <Linkify>{comment}</Linkify>
+      <div className="event-content">
+        <div className="event-head">
+          <div>
+            <strong>{email} </strong>
+            {eventNameToDisplayableContent[name].label}
+            {!isEmpty(diff) && (
+              <button
+                className="toogle-detail"
+                onClick={() => setShowDiff(!showDiff)}
+              >
+                (voir détails)
+              </button>
+            )}
+          </div>
+          <div className="event-date">{moment(updated_at).calendar()}</div>
         </div>
-      )}
+        {comment && (
+          <div className="event-comment">
+            <Linkify>{comment}</Linkify>
+          </div>
+        )}
+        {!isEmpty(diff) &&
+          showDiff && (
+            <div className="event-comment">
+              {changelog.map(log => (
+                <p key={log.slice(20)}>{log}</p>
+              ))}
+            </div>
+          )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 EventItem.propTypes = {
   comment: PropTypes.string,
   name: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
+  diff: PropTypes.object,
 };
 
 EventItem.defaultProps = {
   comment: '',
+  diff: {},
 };
 
 class ActivityFeed extends React.Component {
@@ -103,13 +129,14 @@ class ActivityFeed extends React.Component {
           </button>
         </div>
         {eventsToDisplay.map(
-          ({ id, comment, name, updated_at, user: { email } }) => (
+          ({ id, comment, name, updated_at, user: { email }, diff }) => (
             <EventItem
               key={id}
               comment={comment}
               name={name}
               updated_at={updated_at}
               email={email}
+              diff={diff}
             />
           )
         )}
