@@ -91,7 +91,7 @@ const diffFieldLabels = {
 };
 
 function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
-  if (typeof fullObjectDiff[0] !== 'object') {
+  if (!isObject(fullObjectDiff[0])) {
     accumulatorObject[objectKey] = fullObjectDiff;
 
     return accumulatorObject;
@@ -145,14 +145,21 @@ function changelogFormatTransformer(
 }
 
 export function getChangelog(diff) {
-  return (
-    _(diff)
-      // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
-      .omit(['updated_at'])
-      .transform(flattenDiffTransformer, {})
-      // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
-      .transform(changelogFormatTransformer, [])
-      // ['changement d'intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
-      .value()
-  );
+  try {
+    return (
+      _(diff)
+        // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
+        .omit(['updated_at'])
+        .transform(flattenDiffTransformer, {})
+        // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
+        .transform(changelogFormatTransformer, [])
+        // ['changement d'intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
+        .value()
+    );
+  } catch (e) {
+    // There is a lot of operation involve in this function.
+    // We rather fail silently than causing the entire page not to render.
+    console.error(e);
+    return [];
+  }
 }
