@@ -491,7 +491,7 @@ class Form extends React.Component {
 
             <div className="form__group">
               <label htmlFor="data_recipients">
-                Destinataires
+                Destinataires des données
                 <Helper
                   title={
                     'description du service ou des personnes physiques qui consulteront ces données'
@@ -518,10 +518,10 @@ class Form extends React.Component {
 
             <div className="form__group">
               <label htmlFor="data_retention_period">
-                Conservation des données
+                Durée de conservation des données en mois
                 <Helper
                   title={
-                    'en mois, à compter de la cessation de la relation contractuelle'
+                    'à compter de la cessation de la relation contractuelle'
                   }
                 />
               </label>
