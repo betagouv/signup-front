@@ -157,7 +157,7 @@ export function getChangelog(diff) {
         .value()
     );
   } catch (e) {
-    // There is a lot of operation involve in this function.
+    // There is a lot of operation involved in this function.
     // We rather fail silently than causing the entire page not to render.
     console.error(e);
     return [];

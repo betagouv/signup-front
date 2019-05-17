@@ -172,6 +172,17 @@ aside .contact-button-list > .button-outline + .button-outline {
   .row > .card + .card {
     margin-top: 2em;
   }
+
+  /*
+  cards and columns overlap on small screen on IE11.
+  https://makandracards.com/makandra/54644-do-not-use-flex-1-or-flex-basis-0-inside-flex-direction-column-when-you-need-to-support-ie11
+  */
+  .row > .column {
+    flex: 1 1 auto;
+  }
+  .row > .card {
+    flex: 1 1 auto;
+  }
 }
 
 @media (max-width: 550px) {
@@ -216,6 +227,10 @@ aside .contact-button-list > .button-outline + .button-outline {
 input[type='checkbox'][disabled]:checked {
   background-color: var(--darker-grey);
   border-color: var(--darker-grey);
+  cursor: not-allowed;
+}
+
+input[type='checkbox'][disabled] {
   cursor: not-allowed;
 }
 

@@ -1,5 +1,7 @@
 .modal.comment-action {
   max-width: 50em;
+  max-height: 90vh;
+  overflow-y: scroll;
 }
 
 .modal .event-item {
