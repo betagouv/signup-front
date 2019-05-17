@@ -457,7 +457,7 @@ class Form extends React.Component {
               <fieldset className="vertical">
                 <label>Sélectionnez vos jeux de données souhaités</label>
                 <div className="row">
-                  <div className="column" style={{ flex: 1 }}>
+                  <div className="column">
                     {availableScopes.map(({ name, humanName, mandatory }) => (
                       <div key={name}>
                         <input
