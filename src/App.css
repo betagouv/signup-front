@@ -230,6 +230,10 @@ input[type='checkbox'][disabled]:checked {
   cursor: not-allowed;
 }
 
+input[type='checkbox'][disabled] {
+  cursor: not-allowed;
+}
+
 /*tooltip is being cropped by template.beta.gouv rule*/
 .card {
   overflow: inherit;
