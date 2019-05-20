@@ -130,6 +130,11 @@ li.panel .button-list {
   color: #1c1c1c;
 }
 
+.nav__item .active_link:hover {
+  background: #c9d3df;
+  color: #1c1c1c;
+}
+
 .enrollment.button-list {
   display: flex;
   justify-content: flex-end;
