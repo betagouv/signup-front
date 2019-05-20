@@ -10,7 +10,7 @@ main {
 }
 
 section.enrollment-page {
-  padding: 1em 0;
+  padding: 2em 0 1em 0;
 }
 
 section.loader {
@@ -128,6 +128,15 @@ li.panel .button-list {
 .active_link {
   background: #c9d3df;
   color: #1c1c1c;
+}
+
+.nav__item .active_link:hover {
+  background: #c9d3df;
+  color: #1c1c1c;
+}
+
+.nav__links .nav__item {
+  line-height: 2em;
 }
 
 .enrollment.button-list {

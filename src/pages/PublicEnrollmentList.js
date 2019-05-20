@@ -134,15 +134,7 @@ class PublicEnrollmentList extends React.Component {
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h2>Liste des demandes validées</h2>
-              <ul
-                className="nav__links"
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-around',
-                  fill: 'currentColor',
-                  margin: '1.4em 0',
-                }}
-              >
+              <ul className="nav__links">
                 <li className="nav__item">
                   <NavLink activeClassName={'active_link'} exact to="/public">
                     Toutes les demandes
