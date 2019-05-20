@@ -31,7 +31,7 @@
     "react-table": "^6.8.0",
     "recharts": "^1.5.0",
     "serve": "^9.4.0",
-    "template.data.gouv.fr": "1.2.0"
+    "template.data.gouv.fr": "1.2.1"
   },
   "devDependencies": {
     "eslint-plugin-prettier": "^2.6.2",
