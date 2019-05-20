@@ -135,6 +135,10 @@ li.panel .button-list {
   color: #1c1c1c;
 }
 
+.nav__links .nav__item {
+  line-height: 2em;
+}
+
 .enrollment.button-list {
   display: flex;
   justify-content: flex-end;
