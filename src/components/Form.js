@@ -13,11 +13,11 @@ import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
 import ValidatedFranceconnectEnrollmentsSelector from './form/ValidatedFranceconnectEnrollmentsSelector';
-import Siret from './form/Siret';
 import ActionButtons from './form/ActionButtons';
 import DocumentUpload from './form/DocumentUpload';
 import ActivityFeed from './form/ActivityFeed';
 import Helper from './elements/Helper';
+import OrganizationSelector from './form/OrganizationSelector';
 
 class Form extends React.Component {
   constructor(props) {
@@ -85,7 +85,6 @@ class Form extends React.Component {
               !!mandatory || !!checkedByDefault
           )
         ),
-        siret: '',
         cgu_approved: false,
         linked_token_manager_id: null,
         additional_content: {},
@@ -144,6 +143,7 @@ class Form extends React.Component {
     linked_franceconnect_enrollment_id,
     intitule,
     description,
+    organization_id,
     siret,
     contacts,
   }) => {
@@ -153,14 +153,15 @@ class Form extends React.Component {
         intitule,
         description,
         linked_franceconnect_enrollment_id,
+        organization_id,
         siret,
       }),
     }));
   };
 
-  handleSiretChange = ({ siret }) => {
+  handleOrganizationChange = ({ organization_id, siret }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
-      enrollment: merge({}, prevEnrollment, { siret }),
+      enrollment: merge({}, prevEnrollment, { organization_id, siret }),
     }));
   };
 
@@ -210,7 +211,6 @@ class Form extends React.Component {
         linked_franceconnect_enrollment_id,
         events,
         scopes,
-        siret,
         cgu_approved,
         additional_content,
       },
@@ -300,11 +300,11 @@ class Form extends React.Component {
         <div className="panel">
           <h2 id="identite">Identité</h2>
           {!isUserEnrollmentLoading && (
-            <Siret
+            <OrganizationSelector
               disabled={isFranceConnected || disabledApplication}
-              siret={siret}
+              enrollment={this.state.enrollment}
               targetApi={target_api}
-              handleSiretChange={this.handleSiretChange}
+              handleOrganizationChange={this.handleOrganizationChange}
             />
           )}
         </div>
