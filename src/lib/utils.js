@@ -49,6 +49,7 @@ const validNAFCode = {
     '84', // SERVICES D’ADMINISTRATION PUBLIQUE ET DE DÉFENSE ; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE
     '85', // ENSEIGNEMENT
     '86', // ACTIVITÉS POUR LA SANTÉ HUMAINE
+    '88', // Action sociale sans hébergement
   ],
 };
 
