@@ -43,6 +43,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
           id: linked_franceconnect_enrollment_id,
           intitule,
           description,
+          organization_id,
           siret,
           contacts,
         } = enrollments[initialIndex];
@@ -51,6 +52,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
           linked_franceconnect_enrollment_id,
           intitule,
           description,
+          organization_id,
           siret,
           contacts,
         });
@@ -72,6 +74,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       id: linked_franceconnect_enrollment_id,
       intitule,
       description,
+      organization_id,
       siret,
       contacts,
     } = this.state.validatedFranceconnectEnrollments[
@@ -85,6 +88,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       linked_franceconnect_enrollment_id,
       intitule,
       description,
+      organization_id,
       siret,
       contacts,
     });
