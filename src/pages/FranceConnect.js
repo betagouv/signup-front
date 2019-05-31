@@ -113,15 +113,16 @@ const availableScopes = [
   { name: 'gender', humanName: 'Sexe' },
   {
     name: 'preferred_username',
-    humanName: "Nom d'usage (information renvoyée si disponible)",
+    humanName: "Nom d'usage (donnée non vérifiée et fournie si disponible)",
   },
   {
     name: 'address',
-    humanName: 'Adresse postale (information renvoyée si disponible)',
+    humanName: 'Adresse postale (donnée non vérifiée et fournie si disponible)',
   },
   {
     name: 'phone',
-    humanName: 'Numéro de téléphone (information renvoyée si disponible)',
+    humanName:
+      'Numéro de téléphone (donnée non vérifiée et fournie si disponible)',
   },
 ];
 
