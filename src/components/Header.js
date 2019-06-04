@@ -24,7 +24,7 @@ const Header = ({ user, logout, history }) => {
     <header className="navbar">
       <div className="navbar__container">
         {!displayApiGouvIcon ? (
-          <button className="back-button" onClick={goBack}>
+          <button className="light back-button" onClick={goBack}>
             <span style={{ verticalAlign: 'middle' }}>
               <ArrowBackIcon />
             </span>

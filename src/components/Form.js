@@ -248,10 +248,27 @@ class Form extends React.Component {
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
+        {/*TODO changer l'ordre de la nav*/}
+
         <div className="panel">
           <h2 id="demarche">{title}</h2>
           <DemarcheDescription />
-          <br />
+        </div>
+
+        <div className="panel">
+          <h2 id="demarche">Organisme demandeur</h2>
+          {!isUserEnrollmentLoading && (
+            <OrganizationSelector
+              disabled={isFranceConnected || disabledApplication}
+              enrollment={this.state.enrollment}
+              targetApi={target_api}
+              handleOrganizationChange={this.handleOrganizationChange}
+            />
+          )}
+        </div>
+
+        <div className="panel">
+          <h2 id="demarche">Description de la démarche</h2>
           {!isUserEnrollmentLoading &&
             !disabledApplication &&
             isFranceConnected && (
@@ -297,156 +314,9 @@ class Form extends React.Component {
           </div>
         </div>
 
-        <div className="panel">
-          <h2 id="identite">Identité</h2>
-          {!isUserEnrollmentLoading && (
-            <OrganizationSelector
-              disabled={isFranceConnected || disabledApplication}
-              enrollment={this.state.enrollment}
-              targetApi={target_api}
-              handleOrganizationChange={this.handleOrganizationChange}
-            />
-          )}
-        </div>
-
-        <div className="panel">
-          <h2 id="contacts">Contacts</h2>
-          <div className="row">
-            {contacts.map(
-              (
-                { id, heading, link, hint, nom, email, phone_number },
-                index
-              ) => (
-                <div key={id} className="card">
-                  <div className="card__content">
-                    <h3>
-                      {heading}
-                      {hint && <Helper title={hint} />}
-                    </h3>
-                    {link && (
-                      <a
-                        className="card__meta"
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {' '}
-                        (plus d&acute;infos)
-                      </a>
-                    )}
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].nom`}
-                        id={`person_${id}_nom`}
-                        disabled={isFranceConnected || disableContactInputs}
-                        value={nom}
-                      />
-                      {id === 'responsable_traitement' && (
-                        <small className="card__meta">
-                          <i>Cette information peut être rendue publique.</i>
-                        </small>
-                      )}
-                    </div>
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_email`}>Email</label>
-                      <input
-                        type="email"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].email`}
-                        id={`person_${id}_email`}
-                        disabled={isFranceConnected || disableContactInputs}
-                        value={email}
-                      />
-                    </div>
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_phone_number`}>
-                        Numéro de téléphone
-                        <Helper
-                          title={
-                            'Ce numéro peut être le numéro du secrétariat ou le numéro direct de ' +
-                            'la personne concernée. Ce numéro nous permettra de vous contacter ' +
-                            "lors d'incidents ou difficultés."
-                          }
-                        />
-                      </label>
-                      <input
-                        type="tel"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].phone_number`}
-                        id={`person_${id}_phone_number`}
-                        disabled={isFranceConnected || disableContactInputs}
-                        value={phone_number}
-                        pattern="[0-9]{10}"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-
-        <div className="panel">
-          <h2 id="cadre-juridique">Cadre juridique</h2>
-          <CadreJuridiqueDescription />
-          <br />
-          <div className="form__group">
-            <label htmlFor="fondement_juridique_title">
-              Référence du texte vous autorisant à récolter ces données
-            </label>
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="fondement_juridique_title"
-              id="fondement_juridique_title"
-              disabled={disabledApplication}
-              value={fondement_juridique_title}
-            />
-          </div>
-          <h3>Document associé</h3>
-          <div className="form__group">
-            <label htmlFor="fondement_juridique_url">
-              URL du texte{' '}
-              {fondement_juridique_url && (
-                <span>
-                  (
-                  <a
-                    href={fondement_juridique_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    accéder à cette URL
-                  </a>
-                  )
-                </span>
-              )}
-            </label>
-            <input
-              type="url"
-              onChange={this.handleChange}
-              name="fondement_juridique_url"
-              id="fondement_juridique_url"
-              disabled={disabledApplication}
-              value={fondement_juridique_url}
-            />
-          </div>
-          <h3>ou</h3>
-          <DocumentUpload
-            disabled={disabledApplication}
-            uploadedDocuments={documents}
-            documentsToUpload={documents_attributes}
-            documentType={'Document::LegalBasis'}
-            handleDocumentsChange={this.handleDocumentsChange}
-            label={'Pièce jointe'}
-          />
-        </div>
-
         {!isEmpty(availableScopes) && (
           <div className="panel">
-            <h2 id="donnees">Données</h2>
+            <h2 id="donnees">Les données dont vous avez besoin</h2>
             <DonneesDescription />
             <AdditionalRgpdAgreement
               disabled={disabledApplication}
@@ -455,7 +325,9 @@ class Form extends React.Component {
             />
             <div className="form__group">
               <fieldset className="vertical">
-                <label>Sélectionnez vos jeux de données souhaités</label>
+                <label>
+                  Sélectionnez les données nécessaires à votre démarche
+                </label>
                 <div className="row">
                   <div className="column">
                     {availableScopes.map(({ name, humanName, mandatory }) => (
@@ -556,6 +428,141 @@ class Form extends React.Component {
             )}
           </div>
         )}
+
+        <div className="panel">
+          <h2 id="cadre-juridique">Le cadre juridique</h2>
+          <CadreJuridiqueDescription />
+          <br />
+          <div className="form__group">
+            <label htmlFor="fondement_juridique_title">
+              Référence du texte vous autorisant à récolter ces données
+            </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="fondement_juridique_title"
+              id="fondement_juridique_title"
+              disabled={disabledApplication}
+              value={fondement_juridique_title}
+            />
+          </div>
+          <h3>Document associé</h3>
+          <div className="form__group">
+            <label htmlFor="fondement_juridique_url">
+              URL du texte{' '}
+              {fondement_juridique_url && (
+                <span>
+                  (
+                  <a
+                    href={fondement_juridique_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    accéder à cette URL
+                  </a>
+                  )
+                </span>
+              )}
+            </label>
+            <input
+              type="url"
+              onChange={this.handleChange}
+              name="fondement_juridique_url"
+              id="fondement_juridique_url"
+              disabled={disabledApplication}
+              value={fondement_juridique_url}
+            />
+          </div>
+          <h3>ou</h3>
+          <DocumentUpload
+            disabled={disabledApplication}
+            uploadedDocuments={documents}
+            documentsToUpload={documents_attributes}
+            documentType={'Document::LegalBasis'}
+            handleDocumentsChange={this.handleDocumentsChange}
+            label={'Pièce jointe'}
+          />
+        </div>
+
+        <div className="panel">
+          <h2 id="contacts">Les contacts associés</h2>
+          <div className="row">
+            {contacts.map(
+              (
+                { id, heading, link, hint, nom, email, phone_number },
+                index
+              ) => (
+                <div key={id} className="card">
+                  <div className="card__content">
+                    <h3>
+                      {heading}
+                      {hint && <Helper title={hint} />}
+                    </h3>
+                    {link && (
+                      <a
+                        className="card__meta"
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {' '}
+                        (plus d&acute;infos)
+                      </a>
+                    )}
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
+                      <input
+                        type="text"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].nom`}
+                        id={`person_${id}_nom`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={nom}
+                      />
+                      {id === 'responsable_traitement' && (
+                        <small className="card__meta">
+                          <i>Cette information peut être rendue publique.</i>
+                        </small>
+                      )}
+                    </div>
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_email`}>Email</label>
+                      <input
+                        type="email"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].email`}
+                        id={`person_${id}_email`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={email}
+                      />
+                    </div>
+                    <div className="form__group">
+                      <label htmlFor={`person_${id}_phone_number`}>
+                        Numéro de téléphone
+                        <Helper
+                          title={
+                            'Ce numéro peut être le numéro du secrétariat ou le numéro direct de ' +
+                            'la personne concernée. Ce numéro nous permettra de vous contacter ' +
+                            "lors d'incidents ou difficultés."
+                          }
+                        />
+                      </label>
+                      <input
+                        type="tel"
+                        onChange={this.handleChange}
+                        name={`contacts[${index}].phone_number`}
+                        id={`person_${id}_phone_number`}
+                        disabled={isFranceConnected || disableContactInputs}
+                        value={phone_number}
+                        pattern="[0-9]{10}"
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+        </div>
 
         <div className="panel">
           <h2 id="cgu">Modalités d&apos;utilisation</h2>

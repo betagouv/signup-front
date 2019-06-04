@@ -1,0 +1,21 @@
+.organization-title {
+  font-weight: bold;
+}
+
+.organization-subtitle {
+  color: var(--darker-grey);
+}
+
+.organization-selector-loader-container {
+  position: relative;
+  min-height: 120px;
+}
+
+button.light.inline-icon-button {
+  padding: 0 0.8em;
+  vertical-align: bottom;
+}
+
+button.light.inline-icon-button svg {
+  height: 1.5em;
+}
