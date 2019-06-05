@@ -49,27 +49,21 @@ const OrganizationSelector = ({
     }
   };
 
-  useEffect(
-    () => {
-      // initialize organization_id & siret if needed
-      if (!organization_id && !disabled) {
-        handleOrganizationChange({
-          organization_id: user.organizations[0].id,
-          siret: user.organizations[0].siret,
-        });
-      }
-    },
-    [organization_id, disabled, handleOrganizationChange, user]
-  );
+  useEffect(() => {
+    // initialize organization_id & siret if needed
+    if (!organization_id && !disabled) {
+      handleOrganizationChange({
+        organization_id: user.organizations[0].id,
+        siret: user.organizations[0].siret,
+      });
+    }
+  }, [organization_id, disabled, handleOrganizationChange, user]);
 
-  useEffect(
-    () => {
-      if (siret) {
-        fetchOrganizationInfo({ siret });
-      }
-    },
-    [siret]
-  );
+  useEffect(() => {
+    if (siret) {
+      fetchOrganizationInfo({ siret });
+    }
+  }, [siret]);
 
   const onOrganizationChange = new_organization_id => {
     setShowPrompt(false);
@@ -92,14 +86,13 @@ const OrganizationSelector = ({
 
   return (
     <>
-      {activite &&
-        !isValidNAFCode(targetApi, activite) && (
-          <div className="form__group">
-            <div className="notification warning">
-              Votre organisme ne semble pas être éligible
-            </div>
+      {activite && !isValidNAFCode(targetApi, activite) && (
+        <div className="form__group">
+          <div className="notification warning">
+            Votre organisme ne semble pas être éligible
           </div>
-        )}
+        </div>
+      )}
 
       <div className="organization-title">
         {title}
@@ -118,15 +111,13 @@ const OrganizationSelector = ({
       <div className="organization-subtitle">SIRET : {siret}</div>
       <div className="organization-subtitle">Code NAF : {activite}</div>
 
-      {!disabled &&
-        !isLoading &&
-        showPrompt && (
-          <OrganizationPrompt
-            selectedOrganizationId={organization_id}
-            onSelect={onOrganizationChange}
-            organizations={user.organizations}
-          />
-        )}
+      {!disabled && !isLoading && showPrompt && (
+        <OrganizationPrompt
+          selectedOrganizationId={organization_id}
+          onSelect={onOrganizationChange}
+          organizations={user.organizations}
+        />
+      )}
     </>
   );
 };

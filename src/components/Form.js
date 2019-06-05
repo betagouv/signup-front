@@ -239,12 +239,11 @@ class Form extends React.Component {
 
     return (
       <>
-        {!isUserEnrollmentLoading &&
-          acl.update && (
-            <div className="notification info">
-              Pensez à sauvegarder régulièrement votre demande en brouillon.
-            </div>
-          )}
+        {!isUserEnrollmentLoading && acl.update && (
+          <div className="notification info">
+            Pensez à sauvegarder régulièrement votre demande en brouillon.
+          </div>
+        )}
 
         {events.length > 0 && <ActivityFeed events={events} />}
 

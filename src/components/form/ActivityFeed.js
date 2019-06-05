@@ -71,14 +71,13 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
             <Linkify>{comment}</Linkify>
           </div>
         )}
-        {!isEmpty(changelog) &&
-          showDiff && (
-            <div className="event-comment">
-              {changelog.map(log => (
-                <p key={log.slice(20)}>{log}</p>
-              ))}
-            </div>
-          )}
+        {!isEmpty(changelog) && showDiff && (
+          <div className="event-comment">
+            {changelog.map(log => (
+              <p key={log.slice(20)}>{log}</p>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
