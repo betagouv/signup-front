@@ -10,8 +10,6 @@ const OrganizationPrompt = ({
 }) => {
   const handleChange = ({ target: { value } }) => onSelect(parseInt(value));
 
-  // TODO add a way to close the modal without selection
-
   return (
     <div
       className="modal__backdrop"

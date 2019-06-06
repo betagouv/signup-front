@@ -247,15 +247,13 @@ class Form extends React.Component {
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
-        {/*TODO changer l'ordre de la nav*/}
-
         <div className="panel">
-          <h2 id="demarche">{title}</h2>
+          <h2 id="head">{title}</h2>
           <DemarcheDescription />
         </div>
 
         <div className="panel">
-          <h2 id="demarche">Organisme demandeur</h2>
+          <h2 id="organisme">Organisme demandeur</h2>
           {!isUserEnrollmentLoading && (
             <OrganizationSelector
               disabled={isFranceConnected || disabledApplication}
@@ -267,7 +265,7 @@ class Form extends React.Component {
         </div>
 
         <div className="panel">
-          <h2 id="demarche">Description de la démarche</h2>
+          <h2 id="description">Description de votre cas d'usage</h2>
           {!isUserEnrollmentLoading &&
             !disabledApplication &&
             isFranceConnected && (
@@ -325,7 +323,7 @@ class Form extends React.Component {
             <div className="form__group">
               <fieldset className="vertical">
                 <label>
-                  Sélectionnez les données nécessaires à votre démarche
+                  Sélectionnez les données nécessaires à votre cas d'usage
                 </label>
                 <div className="row">
                   <div className="column">
@@ -429,7 +427,9 @@ class Form extends React.Component {
         )}
 
         <div className="panel">
-          <h2 id="cadre-juridique">Le cadre juridique</h2>
+          <h2 id="cadre-juridique">
+            Le cadre juridique vous autorisant à accéder aux données
+          </h2>
           <CadreJuridiqueDescription />
           <br />
           <div className="form__group">
