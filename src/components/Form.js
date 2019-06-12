@@ -397,6 +397,7 @@ class Form extends React.Component {
               <input
                 type="number"
                 min="0"
+                max="2147483647"
                 onChange={this.handleChange}
                 name="data_retention_period"
                 id="data_retention_period"
