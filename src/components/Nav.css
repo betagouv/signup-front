@@ -23,20 +23,17 @@ aside .form-nav-logo {
   width: 100%;
 }
 
-footer.footer {
-  z-index: 1;
-}
-
 @media (min-width: 750px) {
-  aside .side-menu-container {
-    position: fixed;
-    width: 270px;
+  .dashboard aside.side-menu {
+    position: sticky;
+    height: 100vh;
+    top: 0;
+    flex: 0 0 270px;
+    overflow-y: auto;
   }
 
-  aside.side-menu {
-    width: 270px;
-    min-width: 270px;
-    max-width: 270px;
+  .dashboard .main {
+    flex: 1;
   }
 }
 

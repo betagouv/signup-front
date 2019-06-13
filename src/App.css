@@ -222,19 +222,23 @@ input[type='checkbox'][disabled] {
   cursor: not-allowed;
 }
 
-/*tooltip is being cropped by template.beta.gouv rule*/
+/* fixes on template.beta.gouv stylesheet */
+/* fix: tooltip is being cropped */
 .card {
   overflow: inherit;
 }
 
-/* fix panel spacing */
-
+/* fix: panel spacing */
 .panel + .panel {
   margin-top: var(--space-m);
 }
 
-/* light button & link */
+/*fix: select makes container to grow*/
+select {
+  width: 100%;
+}
 
+/* light button & link */
 button.light,
 a.light {
   display: inline-block;
