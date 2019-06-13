@@ -151,26 +151,6 @@ li.panel .button-list {
   max-width: 40%;
 }
 
-aside .section {
-  padding: 1em 0;
-}
-
-aside .contact-button-list {
-  display: flex;
-  flex-direction: column;
-}
-
-aside .contact-button-list > .button-outline + .button-outline {
-  margin-left: 0;
-  margin-top: 1em;
-}
-
-.dashboard .side-menu a.button-outline {
-  color: var(--blue);
-  text-align: center;
-  padding: 0.5em 1em;
-}
-
 @media (max-width: 1300px) {
   .row {
     flex-direction: column;
@@ -229,9 +209,6 @@ aside .contact-button-list > .button-outline + .button-outline {
   }
   .enrollment.button + .enrollment.button {
     margin-left: 0;
-  }
-  .dashboard {
-    flex-direction: column-reverse;
   }
 }
 

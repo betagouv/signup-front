@@ -1,0 +1,51 @@
+aside .section {
+  padding: 1em 0;
+}
+
+aside .contact-button-list {
+  display: flex;
+  flex-direction: column;
+}
+
+aside .contact-button-list > .button-outline + .button-outline {
+  margin-left: 0;
+  margin-top: 1em;
+}
+
+.dashboard .side-menu a.button-outline {
+  color: var(--blue);
+  text-align: center;
+  padding: 0.5em 1em;
+}
+
+aside .form-nav-logo {
+  mix-blend-mode: multiply;
+  width: 100%;
+}
+
+footer.footer {
+  z-index: 1;
+}
+
+@media (min-width: 750px) {
+  aside .side-menu-container {
+    position: fixed;
+    width: 270px;
+  }
+
+  aside.side-menu {
+    width: 270px;
+    min-width: 270px;
+    max-width: 270px;
+  }
+}
+
+@media (max-width: 749px) {
+  aside .form-nav {
+    display: none;
+  }
+
+  .dashboard {
+    flex-direction: column-reverse;
+  }
+}
