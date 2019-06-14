@@ -18,6 +18,7 @@ import DocumentUpload from './form/DocumentUpload';
 import ActivityFeed from './form/ActivityFeed';
 import Helper from './elements/Helper';
 import OrganizationSelector from './form/OrganizationSelector';
+import { ScrollablePanel } from './elements/Scrollable';
 
 class Form extends React.Component {
   constructor(props) {
@@ -247,13 +248,13 @@ class Form extends React.Component {
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
-        <div className="panel">
-          <h2 id="head">{title}</h2>
+        <ScrollablePanel scrollableId="head">
+          <h2>{title}</h2>
           <DemarcheDescription />
-        </div>
+        </ScrollablePanel>
 
-        <div className="panel">
-          <h2 id="organisme">Organisme demandeur</h2>
+        <ScrollablePanel scrollableId="organisme">
+          <h2>Organisme demandeur</h2>
           {!isUserEnrollmentLoading && (
             <OrganizationSelector
               disabled={isFranceConnected || disabledApplication}
@@ -262,10 +263,10 @@ class Form extends React.Component {
               handleOrganizationChange={this.handleOrganizationChange}
             />
           )}
-        </div>
+        </ScrollablePanel>
 
-        <div className="panel">
-          <h2 id="description">Description de votre cas d'usage</h2>
+        <ScrollablePanel scrollableId="description">
+          <h2>Description de votre cas d'usage</h2>
           {!isUserEnrollmentLoading &&
             !disabledApplication &&
             isFranceConnected && (
@@ -309,11 +310,11 @@ class Form extends React.Component {
               placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
             />
           </div>
-        </div>
+        </ScrollablePanel>
 
         {!isEmpty(availableScopes) && (
-          <div className="panel">
-            <h2 id="donnees">Les données dont vous avez besoin</h2>
+          <ScrollablePanel scrollableId="donnees">
+            <h2>Les données dont vous avez besoin</h2>
             <DonneesDescription />
             <AdditionalRgpdAgreement
               disabled={disabledApplication}
@@ -424,13 +425,11 @@ class Form extends React.Component {
                 />
               </div>
             )}
-          </div>
+          </ScrollablePanel>
         )}
 
-        <div className="panel">
-          <h2 id="cadre-juridique">
-            Le cadre juridique vous autorisant à accéder aux données
-          </h2>
+        <ScrollablePanel scrollableId="cadre-juridique">
+          <h2>Le cadre juridique vous autorisant à accéder aux données</h2>
           <CadreJuridiqueDescription />
           <br />
           <div className="form__group">
@@ -482,10 +481,10 @@ class Form extends React.Component {
             handleDocumentsChange={this.handleDocumentsChange}
             label={'Pièce jointe'}
           />
-        </div>
+        </ScrollablePanel>
 
-        <div className="panel">
-          <h2 id="contacts">Les contacts associés</h2>
+        <ScrollablePanel scrollableId="contacts">
+          <h2>Les contacts associés</h2>
           <div className="row">
             {contacts.map(
               (
@@ -562,10 +561,10 @@ class Form extends React.Component {
               )
             )}
           </div>
-        </div>
+        </ScrollablePanel>
 
-        <div className="panel">
-          <h2 id="cgu">Modalités d&apos;utilisation</h2>
+        <ScrollablePanel scrollableId="cgu">
+          <h2>Modalités d&apos;utilisation</h2>
           <CguDescription />
           <div className="form__group">
             <input
@@ -591,7 +590,7 @@ class Form extends React.Component {
             onChange={this.handleChange}
             disabled={disabledApplication}
           />
-        </div>
+        </ScrollablePanel>
 
         <AdditionalContent
           additional_content={additional_content}
