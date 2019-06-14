@@ -4,6 +4,7 @@ import { isObject } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import './Nav.css';
 import ArrowBackIcon from './icons/arrowBack';
+import { ScrollableLink } from './elements/Scrollable';
 
 const Nav = ({
   logo,
@@ -43,17 +44,15 @@ const Nav = ({
             </li>
           )}
           {navLinksGeneral.map(({ id, label }) => (
-            <li key={id}>
-              <a href={`#${id}`}>{label}</a>
-            </li>
+            <ScrollableLink key={id} scrollableId={id}>
+              {label}
+            </ScrollableLink>
           ))}
           {titleAdditionalContent &&
             navLinksAdditionalContent.map(({ id, label }) => (
-              <li key={id}>
-                <a className="side-pane__link" href={`#${id}`}>
-                  {label}
-                </a>
-              </li>
+              <ScrollableLink key={id} scrollableId={id}>
+                {label}
+              </ScrollableLink>
             ))}
         </ul>
 

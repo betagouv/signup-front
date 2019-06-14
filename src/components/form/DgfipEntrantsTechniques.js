@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DocumentUpload from './DocumentUpload';
 import moment from 'moment';
+import { ScrollablePanel } from '../elements/Scrollable';
 
 const DgfipEntrantsTechniques = ({
   disabled,
@@ -38,8 +39,8 @@ const DgfipEntrantsTechniques = ({
 
   return (
     <>
-      <div className="panel">
-        <h2 id="homologation-securite">Homologation de sécurité</h2>
+      <ScrollablePanel scrollableId="homologation-securite">
+        <h2>Homologation de sécurité</h2>
         <div className="information-text">
           <p>
             Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche
@@ -114,10 +115,10 @@ const DgfipEntrantsTechniques = ({
           handleDocumentsChange={handleDocumentsChange}
           label={"Décision d'homologation"}
         />
-      </div>
+      </ScrollablePanel>
 
-      <div className="panel">
-        <h2 id="entrants-techniques">Entrants techniques</h2>
+      <ScrollablePanel scrollableId="entrants-techniques">
+        <h2>Entrants techniques</h2>
         <div className="information-text">
           <p>
             Afin de permettre la liaison technique entre votre SI et celui de la
@@ -176,9 +177,10 @@ const DgfipEntrantsTechniques = ({
             virgule (ex: 111.111.11.11, 111.111.11.12)
           </small>
         </div>
-      </div>
-      <div className="panel">
-        <h2 id="volumetrie">Volumétrie</h2>
+      </ScrollablePanel>
+
+      <ScrollablePanel scrollableId="volumetrie">
+        <h2>Volumétrie</h2>
         <div className="information-text">
           <p>
             Connaître les données relatives à la volumétrie et à la saisonnalité
@@ -250,10 +252,10 @@ const DgfipEntrantsTechniques = ({
             </div>
           </div>
         </div>
-      </div>
+      </ScrollablePanel>
 
-      <div className="panel">
-        <h2 id="recette-fonctionnelle">Recette fonctionnelle</h2>
+      <ScrollablePanel scrollableId="recette-fonctionnelle">
+        <h2>Recette fonctionnelle</h2>
         <div className="information-text">
           <p>
             Une API de test est mise à votre disposition pour vous permettre de
@@ -304,7 +306,7 @@ const DgfipEntrantsTechniques = ({
             </p>
           </div>
         )}
-      </div>
+      </ScrollablePanel>
     </>
   );
 };
