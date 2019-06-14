@@ -27,12 +27,16 @@ const Nav = ({
       <div className="side-menu-container">
         <ul>
           <li>
-            <a onClick={goBack} style={{ color: 'var(--theme-primary)' }}>
+            <button
+              className="light"
+              onClick={goBack}
+              style={{ color: 'var(--theme-primary)' }}
+            >
               <span style={{ verticalAlign: 'sub' }}>
                 <ArrowBackIcon color={'var(--theme-primary)'} size={20} />
               </span>
               Retour à mes demandes
-            </a>
+            </button>
           </li>
         </ul>
         <ul className="form-nav">

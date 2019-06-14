@@ -23,6 +23,13 @@ aside .form-nav-logo {
   width: 100%;
 }
 
+.dashboard .side-menu button {
+  padding: var(--space-s) var(--space-l);
+  font-size: 16px;
+  width: 100%;
+  color: var(--theme-primary);
+}
+
 @media (min-width: 750px) {
   .dashboard aside.side-menu {
     position: sticky;
@@ -34,6 +41,10 @@ aside .form-nav-logo {
 
   .dashboard .main {
     flex: 1;
+  }
+
+  .dashboard .side-menu button {
+    text-align: left;
   }
 }
 
