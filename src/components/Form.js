@@ -239,19 +239,33 @@ class Form extends React.Component {
 
     return (
       <>
-        {!isUserEnrollmentLoading &&
-          acl.update && (
-            <div className="notification info">
-              Pensez à sauvegarder régulièrement votre demande en brouillon.
-            </div>
-          )}
+        {!isUserEnrollmentLoading && acl.update && (
+          <div className="notification info">
+            Pensez à sauvegarder régulièrement votre demande en brouillon.
+          </div>
+        )}
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
         <div className="panel">
-          <h2 id="demarche">{title}</h2>
+          <h2 id="head">{title}</h2>
           <DemarcheDescription />
-          <br />
+        </div>
+
+        <div className="panel">
+          <h2 id="organisme">Organisme demandeur</h2>
+          {!isUserEnrollmentLoading && (
+            <OrganizationSelector
+              disabled={isFranceConnected || disabledApplication}
+              enrollment={this.state.enrollment}
+              targetApi={target_api}
+              handleOrganizationChange={this.handleOrganizationChange}
+            />
+          )}
+        </div>
+
+        <div className="panel">
+          <h2 id="description">Description de votre cas d'usage</h2>
           {!isUserEnrollmentLoading &&
             !disabledApplication &&
             isFranceConnected && (
@@ -297,20 +311,181 @@ class Form extends React.Component {
           </div>
         </div>
 
-        <div className="panel">
-          <h2 id="identite">Identité</h2>
-          {!isUserEnrollmentLoading && (
-            <OrganizationSelector
-              disabled={isFranceConnected || disabledApplication}
-              enrollment={this.state.enrollment}
-              targetApi={target_api}
-              handleOrganizationChange={this.handleOrganizationChange}
+        {!isEmpty(availableScopes) && (
+          <div className="panel">
+            <h2 id="donnees">Les données dont vous avez besoin</h2>
+            <DonneesDescription />
+            <AdditionalRgpdAgreement
+              disabled={disabledApplication}
+              onChange={this.handleChange}
+              additional_content={additional_content}
             />
-          )}
+            <div className="form__group">
+              <fieldset className="vertical">
+                <label>
+                  Sélectionnez les données nécessaires à votre cas d'usage
+                </label>
+                <div className="row">
+                  <div className="column">
+                    {availableScopes.map(({ name, humanName, mandatory }) => (
+                      <div key={name}>
+                        <input
+                          type="checkbox"
+                          className="scope__checkbox"
+                          onChange={this.handleChange}
+                          name={`scopes.${name}`}
+                          id={`checkbox-scope-${name}`}
+                          disabled={disabledApplication || mandatory}
+                          checked={scopes[name]}
+                        />
+                        <label
+                          htmlFor={`checkbox-scope-${name}`}
+                          className="label-inline"
+                        >
+                          {humanName}
+                          {mandatory && <i> (nécessaire)</i>}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+
+            <AdditionalDataContent
+              disabled={disabledApplication}
+              onChange={this.handleChange}
+              additional_content={additional_content}
+            />
+
+            <div className="form__group">
+              <label htmlFor="data_recipients">
+                Destinataires des données
+                <Helper
+                  title={
+                    'description du service ou des personnes physiques qui consulteront ces données'
+                  }
+                />
+                <a
+                  href="https://www.cnil.fr/fr/definition/destinataire"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  (plus d&acute;infos)
+                </a>
+              </label>
+              <input
+                type="text"
+                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
+                onChange={this.handleChange}
+                name="data_recipients"
+                id="data_recipients"
+                disabled={disabledApplication}
+                value={data_recipients}
+              />
+            </div>
+
+            <div className="form__group">
+              <label htmlFor="data_retention_period">
+                Durée de conservation des données en mois
+                <Helper
+                  title={
+                    'à compter de la cessation de la relation contractuelle'
+                  }
+                />
+              </label>
+              <input
+                type="number"
+                min="0"
+                max="2147483647"
+                onChange={this.handleChange}
+                name="data_retention_period"
+                id="data_retention_period"
+                disabled={disabledApplication}
+                value={data_retention_period}
+              />
+            </div>
+            {data_retention_period > 36 && (
+              <div className="form__group">
+                <label
+                  htmlFor="data_retention_comment"
+                  className="notification warning"
+                >
+                  Cette durée excède la durée communément constatée (36 mois).
+                  Veuillez justifier cette durée dans le champ ci-après:
+                </label>
+                <textarea
+                  rows="10"
+                  onChange={this.handleChange}
+                  name="data_retention_comment"
+                  id="data_retention_comment"
+                  disabled={disabledApplication}
+                  value={data_retention_comment}
+                />
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="panel">
+          <h2 id="cadre-juridique">
+            Le cadre juridique vous autorisant à accéder aux données
+          </h2>
+          <CadreJuridiqueDescription />
+          <br />
+          <div className="form__group">
+            <label htmlFor="fondement_juridique_title">
+              Référence du texte vous autorisant à récolter ces données
+            </label>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              name="fondement_juridique_title"
+              id="fondement_juridique_title"
+              disabled={disabledApplication}
+              value={fondement_juridique_title}
+            />
+          </div>
+          <h3>Document associé</h3>
+          <div className="form__group">
+            <label htmlFor="fondement_juridique_url">
+              URL du texte{' '}
+              {fondement_juridique_url && (
+                <span>
+                  (
+                  <a
+                    href={fondement_juridique_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    accéder à cette URL
+                  </a>
+                  )
+                </span>
+              )}
+            </label>
+            <input
+              type="url"
+              onChange={this.handleChange}
+              name="fondement_juridique_url"
+              id="fondement_juridique_url"
+              disabled={disabledApplication}
+              value={fondement_juridique_url}
+            />
+          </div>
+          <h3>ou</h3>
+          <DocumentUpload
+            disabled={disabledApplication}
+            uploadedDocuments={documents}
+            documentsToUpload={documents_attributes}
+            documentType={'Document::LegalBasis'}
+            handleDocumentsChange={this.handleDocumentsChange}
+            label={'Pièce jointe'}
+          />
         </div>
 
         <div className="panel">
-          <h2 id="contacts">Contacts</h2>
+          <h2 id="contacts">Les contacts associés</h2>
           <div className="row">
             {contacts.map(
               (
@@ -388,174 +563,6 @@ class Form extends React.Component {
             )}
           </div>
         </div>
-
-        <div className="panel">
-          <h2 id="cadre-juridique">Cadre juridique</h2>
-          <CadreJuridiqueDescription />
-          <br />
-          <div className="form__group">
-            <label htmlFor="fondement_juridique_title">
-              Référence du texte vous autorisant à récolter ces données
-            </label>
-            <input
-              type="text"
-              onChange={this.handleChange}
-              name="fondement_juridique_title"
-              id="fondement_juridique_title"
-              disabled={disabledApplication}
-              value={fondement_juridique_title}
-            />
-          </div>
-          <h3>Document associé</h3>
-          <div className="form__group">
-            <label htmlFor="fondement_juridique_url">
-              URL du texte{' '}
-              {fondement_juridique_url && (
-                <span>
-                  (
-                  <a
-                    href={fondement_juridique_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    accéder à cette URL
-                  </a>
-                  )
-                </span>
-              )}
-            </label>
-            <input
-              type="url"
-              onChange={this.handleChange}
-              name="fondement_juridique_url"
-              id="fondement_juridique_url"
-              disabled={disabledApplication}
-              value={fondement_juridique_url}
-            />
-          </div>
-          <h3>ou</h3>
-          <DocumentUpload
-            disabled={disabledApplication}
-            uploadedDocuments={documents}
-            documentsToUpload={documents_attributes}
-            documentType={'Document::LegalBasis'}
-            handleDocumentsChange={this.handleDocumentsChange}
-            label={'Pièce jointe'}
-          />
-        </div>
-
-        {!isEmpty(availableScopes) && (
-          <div className="panel">
-            <h2 id="donnees">Données</h2>
-            <DonneesDescription />
-            <AdditionalRgpdAgreement
-              disabled={disabledApplication}
-              onChange={this.handleChange}
-              additional_content={additional_content}
-            />
-            <div className="form__group">
-              <fieldset className="vertical">
-                <label>Sélectionnez vos jeux de données souhaités</label>
-                <div className="row">
-                  <div className="column">
-                    {availableScopes.map(({ name, humanName, mandatory }) => (
-                      <div key={name}>
-                        <input
-                          type="checkbox"
-                          className="scope__checkbox"
-                          onChange={this.handleChange}
-                          name={`scopes.${name}`}
-                          id={`checkbox-scope-${name}`}
-                          disabled={disabledApplication || mandatory}
-                          checked={scopes[name]}
-                        />
-                        <label
-                          htmlFor={`checkbox-scope-${name}`}
-                          className="label-inline"
-                        >
-                          {humanName}
-                          {mandatory && <i> (nécessaire)</i>}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-
-            <AdditionalDataContent
-              disabled={disabledApplication}
-              onChange={this.handleChange}
-              additional_content={additional_content}
-            />
-
-            <div className="form__group">
-              <label htmlFor="data_recipients">
-                Destinataires des données
-                <Helper
-                  title={
-                    'description du service ou des personnes physiques qui consulteront ces données'
-                  }
-                />
-                <a
-                  href="https://www.cnil.fr/fr/definition/destinataire"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  (plus d&acute;infos)
-                </a>
-              </label>
-              <input
-                type="text"
-                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
-                onChange={this.handleChange}
-                name="data_recipients"
-                id="data_recipients"
-                disabled={disabledApplication}
-                value={data_recipients}
-              />
-            </div>
-
-            <div className="form__group">
-              <label htmlFor="data_retention_period">
-                Durée de conservation des données en mois
-                <Helper
-                  title={
-                    'à compter de la cessation de la relation contractuelle'
-                  }
-                />
-              </label>
-              <input
-                type="number"
-                min="0"
-                onChange={this.handleChange}
-                name="data_retention_period"
-                id="data_retention_period"
-                disabled={disabledApplication}
-                value={data_retention_period}
-              />
-            </div>
-            {data_retention_period > 36 && (
-              <div className="form__group">
-                <label
-                  htmlFor="data_retention_comment"
-                  className="notification warning"
-                >
-                  Cette durée excède la durée communément constatée (36 mois).
-                  Veuillez justifier cette durée dans le champ ci-après:
-                </label>
-                <textarea
-                  rows="10"
-                  onChange={this.handleChange}
-                  name="data_retention_comment"
-                  id="data_retention_comment"
-                  disabled={disabledApplication}
-                  value={data_retention_comment}
-                />
-              </div>
-            )}
-          </div>
-        )}
 
         <div className="panel">
           <h2 id="cgu">Modalités d&apos;utilisation</h2>

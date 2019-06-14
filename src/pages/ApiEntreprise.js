@@ -147,10 +147,9 @@ const ApiEntreprise = ({
   <div className="dashboard">
     <Nav
       navLinksGeneral={[
-        { id: 'demarche', label: 'Démarche' },
-        { id: 'identite', label: 'Identité' },
-        { id: 'contacts', label: 'Contacts' },
+        { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'contacts', label: 'Contacts' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[

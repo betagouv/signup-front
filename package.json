@@ -11,13 +11,13 @@
     "test": "npm run lint && CI=true REACT_APP_BACK_HOST=http://localhost REACT_APP_OAUTH_HOST=http://localhost react-scripts test && npm audit",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "prettier --list-different src/**/*.js"
+    "lint": "prettier --list-different src/*.js src/**/*.js src/**/**/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "flat": "^4.1.0",
     "linkifyjs": "^2.1.8",
     "lodash": "^4.17.11",

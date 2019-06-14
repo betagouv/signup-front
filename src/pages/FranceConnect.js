@@ -63,7 +63,7 @@ const CadreJuridiqueDescription = () => (
           l'arrêté du 8 novembre 2018
         </a>
         . N'oubliez pas de justifier la nécessité d'identification de la
-        personne dans le champs de description de votre démarche.{' '}
+        personne dans le champs de description de votre cas d'usage.{' '}
       </li>
       <li>
         Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
@@ -138,11 +138,10 @@ const FranceConnect = ({
   <div className="dashboard">
     <Nav
       navLinksGeneral={[
-        { id: 'demarche', label: 'Démarche' },
-        { id: 'identite', label: 'Identité' },
-        { id: 'contacts', label: 'Contacts' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
+        { id: 'contacts', label: 'Contacts' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[

@@ -1,3 +1,4 @@
+import { mapValues } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -127,7 +128,7 @@ export function getResourceProviderService() {
     .then(response => response.data);
 }
 
-export function getSiretInformation(siret) {
+export function getOrganizationInformation(siret) {
   return httpClient
     .get(`https://sirene.entreprise.api.gouv.fr/v1/siret/${siret}`)
     .then(
@@ -137,6 +138,7 @@ export function getSiretInformation(siret) {
             enseigne,
             nom_raison_sociale,
             activite_principale,
+            libelle_activite_principale,
             l2_normalisee,
             l3_normalisee,
             l4_normalisee,
@@ -151,18 +153,21 @@ export function getSiretInformation(siret) {
           l3_normalisee,
           l4_normalisee,
           l5_normalisee,
-          l6_normalisee,
-          l7_normalisee,
         ]
           .filter(e => e)
           .join(', ');
 
-        return {
-          enseigne,
-          nom_raison_sociale,
-          activite_principale,
-          adresse,
-        };
+        const ville = [l6_normalisee, l7_normalisee].filter(e => e).join(', ');
+
+        return mapValues(
+          {
+            title: `${nom_raison_sociale}${enseigne ? ' - ' + enseigne : ''}`,
+            activite: `${activite_principale} - ${libelle_activite_principale}`,
+            adresse,
+            ville,
+          },
+          v => (v ? v : 'Non renseigné')
+        );
       }
     );
 }
