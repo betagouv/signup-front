@@ -1,4 +1,4 @@
-import { getChangelog, isValidNAFCode } from '../utils';
+import { getChangelog, hashToQueryParams, isValidNAFCode } from '../utils';
 
 describe('utils', () => {
   describe('isValidNAFCode', () => {
@@ -126,6 +126,32 @@ describe('utils', () => {
     });
     it('should return changelog for scopes', () => {
       expect(getChangelog(diff)).toEqual(changelog);
+    });
+  });
+
+  describe('hashToQueryParams', () => {
+    it('should return a query params string', () => {
+      expect(hashToQueryParams({ a: 1, b: true, c: false, d: [] })).toBe(
+        '?a=1&b=true'
+      );
+    });
+
+    it('should return a query params string with one argument', () => {
+      expect(hashToQueryParams({ a: 1 })).toBe('?a=1');
+    });
+
+    it('should return an empty query params string', () => {
+      expect(hashToQueryParams({})).toBe('');
+    });
+
+    it('should return an empty query params string', () => {
+      expect(hashToQueryParams(null)).toBe('');
+    });
+
+    it('should return an serialized json object', () => {
+      expect(hashToQueryParams({ o: [{ id: 'a', value: 'b' }] })).toBe(
+        '?o=%5B%7B%22id%22%3A%22a%22%2C%22value%22%3A%22b%22%7D%5D'
+      );
     });
   });
 });

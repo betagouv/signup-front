@@ -1,18 +1,16 @@
 import nock from 'nock';
 import {
-  getUserPendingEnrollments,
-  getResourceProviderService,
+  getUserEnrollments,
   getUserEnrollment,
   serializeEnrollment,
 } from '../../lib/services';
 import FIRST_ENROLLMENT_1 from '../../../mock/enrollment-form/first-form-enrollment';
 import ENROLLMENTS from '../../../mock/api/get-user-enrollments-response';
-import RESOURCE_PROVIDERS from '../../../mock/data/resource-providers';
 import SENT_ENROLLMENT from '../../../mock/enrollment-form/sent-enrollment';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-describe('getUserPendingEnrollments', () => {
+describe('getUserEnrollments', () => {
   describe('When there is a response', () => {
     nock(BACK_HOST, {
       reqheaders: {
@@ -23,22 +21,8 @@ describe('getUserPendingEnrollments', () => {
       .get('/api/enrollments/')
       .reply(200, ENROLLMENTS);
     it('should return the data', () => {
-      return getUserPendingEnrollments().then(response => {
+      return getUserEnrollments({}).then(response => {
         expect(response).toEqual(ENROLLMENTS);
-      });
-    });
-  });
-});
-
-describe('getResourceProviderService', () => {
-  describe('When the user is authorized', () => {
-    nock(BACK_HOST)
-      .get('/api/resource_providers')
-      .reply(200, RESOURCE_PROVIDERS, { 'content-type': 'application/json' });
-
-    it('should return a 200 code', () => {
-      return getResourceProviderService().then(response => {
-        expect(response).toEqual(RESOURCE_PROVIDERS);
       });
     });
   });

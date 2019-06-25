@@ -3,15 +3,12 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import _ from 'lodash';
+import _, { debounce } from 'lodash';
 import moment from 'moment';
 
-import {
-  getUserArchivedEnrollments,
-  getUserPendingEnrollments,
-} from '../lib/services';
+import { getUserEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
-import { withUser } from '../components/UserContext';
+import './EnrollmentList.css';
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
@@ -35,6 +32,9 @@ export const enrollmentListStyle = {
   },
   thead: {
     boxShadow: 'none',
+  },
+  filterThead: {
+    padding: '0',
   },
   header: {
     padding: '1em',
@@ -71,18 +71,18 @@ class EnrollmentList extends React.Component {
       errors: [],
       loading: true,
       page: 0,
+      totalPages: 0,
       sorted: [
         {
           id: 'updated_at',
           desc: !!this.props.showArchived,
         },
       ],
+      filtered: [],
     };
   }
 
   async componentDidMount() {
-    let enrollments = null;
-
     const urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('page')) {
@@ -104,18 +104,19 @@ class EnrollmentList extends React.Component {
       this.setState({ sorted });
     }
 
-    if (this.props.showArchived === true) {
-      enrollments = await getUserArchivedEnrollments();
-    } else {
-      enrollments = await getUserPendingEnrollments();
-    }
+    if (urlParams.has('filtered')) {
+      const sortedQueryParams = urlParams.getAll('filtered');
+      const filtered = [];
 
-    this.setState({
-      enrollments: enrollments.map(enrollment => {
-        return enrollment;
-      }),
-      loading: false,
-    });
+      sortedQueryParams.forEach(value => {
+        filtered.push({
+          id: value.split(':')[0],
+          value: value.split(':')[1],
+        });
+      });
+
+      this.setState({ filtered });
+    }
   }
 
   availableAction = new Set([
@@ -130,113 +131,90 @@ class EnrollmentList extends React.Component {
       _.pickBy(acl, (value, key) => value && this.availableAction.has(key))
     );
 
-  getColumnConfiguration = user => {
-    const configuration = [
-      {
-        Header: () => <ScheduleIcon title="date de dernière mise à jour" />,
-        accessor: 'updated_at',
-        headerStyle: {
-          ...enrollmentListStyle.header,
-          ...enrollmentListStyle.updateAtHeader,
-        },
-        style: {
-          ...enrollmentListStyle.cell,
-          ...enrollmentListStyle.centeredCell,
-        },
-        width: 50,
-        Cell: ({ value: updatedAt }) => {
-          if (this.props.showArchived) {
-            return <small>{moment(updatedAt).format('D/M')}</small>;
-          }
+  getColumnConfiguration = () => [
+    {
+      Header: () => <ScheduleIcon title="date de dernière mise à jour" />,
+      accessor: 'updated_at',
+      headerStyle: {
+        ...enrollmentListStyle.header,
+        ...enrollmentListStyle.updateAtHeader,
+      },
+      style: {
+        ...enrollmentListStyle.cell,
+        ...enrollmentListStyle.centeredCell,
+      },
+      width: 50,
+      sortable: true,
+      Cell: ({ value: updatedAt }) => {
+        if (this.props.showArchived) {
+          return <small>{moment(updatedAt).format('D/M')}</small>;
+        }
 
-          const daysFromToday = moment().diff(updatedAt, 'days');
-          const color =
-            daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
-          return <span style={{ color }}>{daysFromToday}j</span>;
-        },
+        const daysFromToday = moment().diff(updatedAt, 'days');
+        const color =
+          daysFromToday > 5 ? 'red' : daysFromToday > 4 ? 'orange' : 'green';
+        return <span style={{ color }}>{daysFromToday}j</span>;
       },
-      {
-        Header: 'Intitulé',
-        accessor: ({ id, intitule }) => ({ id, intitule }),
-        id: 'intitule',
-        headerStyle: enrollmentListStyle.header,
-        style: enrollmentListStyle.cell,
-        Cell: ({ value: { id, intitule } }) => `${id} - ${intitule}`,
-        sortMethod: ({ id: firstMemberId }, { id: secondMemberId }) => {
-          if (firstMemberId > secondMemberId) {
-            return 1;
-          }
-          if (firstMemberId < secondMemberId) {
-            return -1;
-          }
-          // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
-          return 0;
-        },
+    },
+    {
+      Header: 'N°',
+      accessor: 'id',
+      headerStyle: enrollmentListStyle.header,
+      style: {
+        ...enrollmentListStyle.cell,
+        ...enrollmentListStyle.centeredCell,
       },
-      {
-        Header: 'Demandeur',
-        accessor: 'user.email',
-        headerStyle: enrollmentListStyle.header,
-        style: enrollmentListStyle.cell,
+      width: 60,
+      filterable: true,
+    },
+    {
+      Header: 'Raison sociale',
+      accessor: 'nom_raison_sociale',
+      headerStyle: enrollmentListStyle.header,
+      style: enrollmentListStyle.cell,
+      filterable: true,
+      Placeholder: 'Filtrer par raison sociale',
+    },
+    {
+      Header: 'Demandeur',
+      accessor: 'user.email',
+      headerStyle: enrollmentListStyle.header,
+      style: enrollmentListStyle.cell,
+    },
+    {
+      Header: 'Fournisseur',
+      accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
+      id: 'target_api',
+      headerStyle: enrollmentListStyle.header,
+      style: {
+        ...enrollmentListStyle.cell,
+        ...enrollmentListStyle.centeredCell,
       },
-      {
-        Header: 'Fournisseur',
-        accessor: ({ target_api }) => TARGET_API_LABELS[target_api],
-        id: 'target_api',
-        headerStyle: enrollmentListStyle.header,
-        style: {
-          ...enrollmentListStyle.cell,
-          ...enrollmentListStyle.centeredCell,
-        },
-        width: 130,
+      width: 130,
+      filterable: true,
+    },
+    {
+      Header: 'Statut',
+      accessor: ({ status, acl }) => ({
+        statusLabel: STATUS_LABELS[status],
+        acl,
+      }),
+      id: 'status',
+      headerStyle: enrollmentListStyle.header,
+      style: {
+        ...enrollmentListStyle.cell,
+        ...enrollmentListStyle.centeredCell,
       },
-      {
-        Header: 'Statut',
-        accessor: ({ status, acl }) => ({
-          statusLabel: STATUS_LABELS[status],
-          acl,
-        }),
-        id: 'status',
-        headerStyle: enrollmentListStyle.header,
-        style: {
-          ...enrollmentListStyle.cell,
-          ...enrollmentListStyle.centeredCell,
-        },
-        width: 100,
-        Cell: ({ value: { statusLabel, acl } }) => {
-          if (!this.hasTriggerableActions({ acl })) {
-            return statusLabel;
-          }
+      width: 100,
+      Cell: ({ value: { statusLabel, acl } }) => {
+        if (!this.hasTriggerableActions({ acl })) {
+          return statusLabel;
+        }
 
-          return (
-            <button className="button warning small">{statusLabel}</button>
-          );
-        },
-        sortMethod: (firstMember, secondMember) => {
-          if (firstMember.statusLabel > secondMember.statusLabel) {
-            return 1;
-          }
-          if (firstMember.statusLabel < secondMember.statusLabel) {
-            return -1;
-          }
-          // Returning 0 or undefined will use any subsequent column sorting methods or the row index as a tiebreaker
-          return 0;
-        },
+        return <button className="button warning small">{statusLabel}</button>;
       },
-    ];
-
-    if (user.account_type === 'dgfip') {
-      // insert this column before the last one
-      configuration.splice(configuration.length - 1, 0, {
-        Header: 'Fin homologation',
-        accessor: 'date_fin_homologation',
-        headerStyle: enrollmentListStyle.header,
-        style: enrollmentListStyle.cell,
-      });
-    }
-
-    return configuration;
-  };
+    },
+  ];
 
   getTitle = ({ column, rowInfo }) => {
     if (!rowInfo) {
@@ -245,10 +223,6 @@ class EnrollmentList extends React.Component {
 
     // The idea here is to display content as tooltip in case the cell is not large enough to display its whole content
     const cellValue = rowInfo.row[column.id];
-
-    if (column.id === 'intitule') {
-      return cellValue.intitule;
-    }
 
     if (column.id === 'status') {
       return cellValue.statusLabel;
@@ -261,10 +235,10 @@ class EnrollmentList extends React.Component {
     return cellValue;
   };
 
-  onPageChange = pageIndex => {
+  onPageChange = newPage => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    urlParams.set('page', pageIndex);
+    urlParams.set('page', newPage);
 
     const newQueryString = urlParams.toString();
 
@@ -273,7 +247,7 @@ class EnrollmentList extends React.Component {
       '',
       `${window.location.pathname}?${newQueryString}`
     );
-    this.setState({ page: pageIndex });
+    this.setState({ page: newPage });
   };
 
   onSortedChange = newSorted => {
@@ -295,10 +269,66 @@ class EnrollmentList extends React.Component {
     this.setState({ sorted: newSorted });
   };
 
-  render() {
-    const { history, showArchived, user } = this.props;
-    const { enrollments, errors, loading, page, sorted } = this.state;
+  onFilteredChange = newFiltered => {
+    const urlParams = new URLSearchParams(window.location.search);
 
+    urlParams.delete('filtered');
+
+    newFiltered.forEach(({ id, value }) => {
+      urlParams.append('filtered', `${id}:${value}`);
+    });
+
+    urlParams.set('page', '0');
+
+    const newQueryString = urlParams.toString();
+
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}?${newQueryString}`
+    );
+    this.setState({ filtered: newFiltered, page: 0 });
+  };
+
+  onFetchData = async () => {
+    this.setState({ loading: true });
+    // Read the state from this.state and not from internally computed react table state
+    // (passed as param of this function) as react table will reset page count to zero
+    // on filter update. This breaks page selection on page load.
+    const { page, sorted, filtered } = this.state;
+
+    const {
+      enrollments,
+      meta: { total_pages: totalPages },
+    } = await getUserEnrollments({
+      page,
+      sortBy: sorted,
+      filter: filtered,
+      archived: this.props.showArchived,
+    });
+
+    this.setState({
+      enrollments,
+      totalPages,
+      loading: false,
+    });
+  };
+
+  // this is a workaround for a react-table issue
+  // see https://github.com/tannerlinsley/react-table/issues/1333#issuecomment-504046261
+  debouncedFetchData = debounce(this.onFetchData, 100);
+
+  render() {
+    const { history, showArchived } = this.props;
+    const {
+      enrollments,
+      errors,
+      loading,
+      page,
+      sorted,
+      filtered,
+      totalPages,
+    } = this.state;
     return (
       <section className="section-grey enrollment-page">
         <div className="container">
@@ -327,8 +357,10 @@ class EnrollmentList extends React.Component {
                 </div>
               ))}
               <ReactTable
+                manual
                 data={enrollments}
-                columns={this.getColumnConfiguration(user)}
+                pages={totalPages}
+                columns={this.getColumnConfiguration()}
                 getTdProps={(state, rowInfo, column) => ({
                   onClick: (e, handleOriginal) => {
                     if (rowInfo) {
@@ -355,6 +387,9 @@ class EnrollmentList extends React.Component {
                   title: this.getTitle({ column, rowInfo }),
                 })}
                 getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+                getTheadFilterThProps={() => ({
+                  style: enrollmentListStyle.filterThead,
+                })}
                 getPaginationProps={() => ({
                   style: enrollmentListStyle.pagination,
                 })}
@@ -362,11 +397,15 @@ class EnrollmentList extends React.Component {
                 className="-highlight"
                 loading={loading}
                 showPageSizeOptions={false}
-                page={page}
                 pageSize={10}
+                page={page}
                 onPageChange={this.onPageChange}
+                sortable={false}
                 sorted={sorted}
                 onSortedChange={this.onSortedChange}
+                filtered={filtered}
+                onFilteredChange={this.onFilteredChange}
+                onFetchData={this.debouncedFetchData}
                 resizable={false}
                 previousText="Précédent"
                 nextText="Suivant"
@@ -400,12 +439,10 @@ EnrollmentList.propTypes = {
     push: PropTypes.func.isRequired,
   }),
   showArchived: PropTypes.bool,
-  user: PropTypes.object,
 };
 
 EnrollmentList.defaultProps = {
   showArchived: false,
-  user: null,
 };
 
-export default withUser(EnrollmentList);
+export default EnrollmentList;

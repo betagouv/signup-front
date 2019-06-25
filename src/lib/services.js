@@ -1,6 +1,7 @@
 import { mapValues } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
+import { hashToQueryParams } from './utils';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export function serializeEnrollment(enrollment) {
@@ -71,10 +72,10 @@ export function getUserValidatedFranceconnectEnrollments() {
 }
 
 export function getPublicValidatedEnrollments(targetApi) {
-  const filterParams = targetApi ? `?target_api=${targetApi}` : '';
+  const queryParam = hashToQueryParams({ target_api: targetApi });
 
   return httpClient
-    .get(`${BACK_HOST}/api/enrollments/public${filterParams}`, {
+    .get(`${BACK_HOST}/api/enrollments/public${queryParam}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -82,19 +83,27 @@ export function getPublicValidatedEnrollments(targetApi) {
     .then(({ data }) => data);
 }
 
-export function getUserPendingEnrollments() {
-  return httpClient
-    .get(`${BACK_HOST}/api/enrollments/`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(({ data }) => data);
-}
+export function getUserEnrollments({
+  page = null,
+  archived = null,
+  sortBy = [],
+  filter = [],
+}) {
+  const formatedSortBy = sortBy.map(({ id, desc }) => ({
+    [id]: desc ? 'desc' : 'asc',
+  }));
+  const formatedFilter = filter.map(({ id, value }) => ({
+    [id]: value,
+  }));
+  const queryParam = hashToQueryParams({
+    page,
+    archived,
+    sortedBy: formatedSortBy,
+    filter: formatedFilter,
+  });
 
-export function getUserArchivedEnrollments() {
   return httpClient
-    .get(`${BACK_HOST}/api/enrollments/?archived=true`, {
+    .get(`${BACK_HOST}/api/enrollments/${queryParam}`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -120,12 +129,6 @@ export function triggerEnrollment({ action, id, comment }) {
       },
     }
   );
-}
-
-export function getResourceProviderService() {
-  return httpClient
-    .get(`${BACK_HOST}/api/resource_providers`)
-    .then(response => response.data);
 }
 
 export function getOrganizationInformation(siret) {

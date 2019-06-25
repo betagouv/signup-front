@@ -233,6 +233,16 @@ input[type='checkbox'][disabled] {
   margin-top: var(--space-m);
 }
 
+/* fix: panel spacing on small screens */
+@media (max-width: 550px) {
+  .dashboard .main {
+    padding: 0;
+  }
+  .panel {
+    padding: var(--space-l);
+  }
+}
+
 /*fix: select makes container to grow*/
 select {
   width: 100%;

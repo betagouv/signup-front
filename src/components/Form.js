@@ -119,6 +119,17 @@ class Form extends React.Component {
   }
 
   updateEnrollment = enrollment => {
+    if (!this.state.enrollment.id && enrollment.id) {
+      console.log(enrollment.id, 'enrollment.id');
+      window.history.replaceState(
+        window.history.state,
+        '',
+        `${window.location.pathname}${
+          window.location.pathname.endsWith('/') ? '' : '/'
+        }${enrollment.id}`
+      );
+    }
+
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge(
         {},
