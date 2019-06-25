@@ -167,8 +167,8 @@ export function getChangelog(diff) {
 
 export function hashToQueryParams(hash) {
   const queryParams = _(hash)
-    // { a: 1, b: true, c: false }
-    .omitBy(e => !e)
+    // { a: 1, b: true, c: false, d: [] }
+    .omitBy(e => (isObject(e) ? isEmpty(e) : !e))
     // { a: 1, b: true }
     .toPairs()
     // [[ 'a', 1 ], [ 'b', true ]]

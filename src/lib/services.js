@@ -131,12 +131,6 @@ export function triggerEnrollment({ action, id, comment }) {
   );
 }
 
-export function getResourceProviderService() {
-  return httpClient
-    .get(`${BACK_HOST}/api/resource_providers`)
-    .then(response => response.data);
-}
-
 export function getOrganizationInformation(siret) {
   return httpClient
     .get(`https://sirene.entreprise.api.gouv.fr/v1/siret/${siret}`)
