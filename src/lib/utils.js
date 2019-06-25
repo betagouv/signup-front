@@ -164,3 +164,23 @@ export function getChangelog(diff) {
     return [];
   }
 }
+
+export function hashToQueryParams(hash) {
+  const queryParams = _(hash)
+    // { a: 1, b: true, c: false }
+    .omitBy(e => !e)
+    // { a: 1, b: true }
+    .toPairs()
+    // [[ 'a', 1 ], [ 'b', true ]]
+    .map(
+      ([key, value]) =>
+        `${key}=${
+          isObject(value) ? encodeURIComponent(JSON.stringify(value)) : value
+        }`
+    )
+    // [ 'a=1', 'b=true' ]
+    .value();
+
+  // '?a=1&b=true'
+  return isEmpty(queryParams) ? '' : `?${queryParams.join('&')}`;
+}

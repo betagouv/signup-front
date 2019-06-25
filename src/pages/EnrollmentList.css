@@ -1,0 +1,15 @@
+.enrollment-page .container {
+  max-width: inherit;
+}
+
+@media (min-width: 550px) {
+  .enrollment-page .container {
+    width: inherit;
+  }
+}
+
+@media (min-width: 400px) {
+  .enrollment-page .container {
+    width: inherit;
+  }
+}
