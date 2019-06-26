@@ -71,6 +71,14 @@ fieldset div {
   font-weight: bold;
 }
 
+input:read-only {
+  background-color: var(--theme-background-grey);
+}
+
+textarea:read-only {
+  background-color: var(--theme-background-grey);
+}
+
 textarea:disabled {
   background-color: #ebeff3;
 }

@@ -297,7 +297,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="intitule"
               id="intitule"
-              disabled={isFranceConnected || disabledApplication}
+              readOnly={isFranceConnected || disabledApplication}
               value={intitule}
             />
             <small className="card__meta">
@@ -316,7 +316,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="description"
               id="description"
-              disabled={isFranceConnected || disabledApplication}
+              readOnly={isFranceConnected || disabledApplication}
               value={description}
               placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
             />
@@ -392,7 +392,7 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 name="data_recipients"
                 id="data_recipients"
-                disabled={disabledApplication}
+                readOnly={disabledApplication}
                 value={data_recipients}
               />
             </div>
@@ -431,7 +431,7 @@ class Form extends React.Component {
                   onChange={this.handleChange}
                   name="data_retention_comment"
                   id="data_retention_comment"
-                  disabled={disabledApplication}
+                  readOnly={disabledApplication}
                   value={data_retention_comment}
                 />
               </div>
@@ -452,7 +452,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="fondement_juridique_title"
               id="fondement_juridique_title"
-              disabled={disabledApplication}
+              readOnly={disabledApplication}
               value={fondement_juridique_title}
             />
           </div>
@@ -479,7 +479,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="fondement_juridique_url"
               id="fondement_juridique_url"
-              disabled={disabledApplication}
+              readOnly={disabledApplication}
               value={fondement_juridique_url}
             />
           </div>
@@ -526,7 +526,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].nom`}
                         id={`person_${id}_nom`}
-                        disabled={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disableContactInputs}
                         value={nom}
                       />
                       {id === 'responsable_traitement' && (
@@ -542,7 +542,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].email`}
                         id={`person_${id}_email`}
-                        disabled={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disableContactInputs}
                         value={email}
                       />
                     </div>
@@ -562,7 +562,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].phone_number`}
                         id={`person_${id}_phone_number`}
-                        disabled={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disableContactInputs}
                         value={phone_number}
                         pattern="[0-9]{10}"
                       />

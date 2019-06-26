@@ -63,7 +63,7 @@ const DgfipEntrantsTechniques = ({
             onChange={onChange}
             name="additional_content.autorite_homologation_nom"
             id="autorite_homologation_nom"
-            disabled={disabled}
+            readOnly={disabled}
             value={autorite_homologation_nom}
           />
         </div>
@@ -76,7 +76,7 @@ const DgfipEntrantsTechniques = ({
             onChange={onChange}
             name="additional_content.autorite_homologation_fonction"
             id="autorite_homologation_fonction"
-            disabled={disabled}
+            readOnly={disabled}
             value={autorite_homologation_fonction}
           />
         </div>
@@ -158,7 +158,7 @@ const DgfipEntrantsTechniques = ({
             onChange={onChange}
             name="additional_content.autorite_certification"
             id="autorite_certification"
-            disabled={disabled}
+            readOnly={disabled}
             value={autorite_certification}
           />
         </div>
@@ -169,7 +169,7 @@ const DgfipEntrantsTechniques = ({
             onChange={onChange}
             name="additional_content.ips_de_production"
             id="ips_de_production"
-            disabled={disabled}
+            readOnly={disabled}
             value={ips_de_production}
           />
           <small className="card__meta">
