@@ -52,7 +52,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <script type="text/javascript">
-      window.onerror = function() {
+      window.onerror = function(e) {
         document.write(
           '<div>' +
             'Une erreur est survenue. ' +
@@ -64,7 +64,11 @@
             '<div>' +
             "N'hésitez pas à nous signaler cette erreur à " +
             '<a href="mailto:contact@api.gouv.fr?subject=Erreur%20sur%20signup.api.gouv.fr">contact@api.gouv.fr</a>.' +
-            '</div>'
+            '</div>' +
+            "<div>Voici le détail de l'erreur :</div>" +
+            '<pre>' +
+            JSON.stringify(e, null, 2) +
+            '</pre>'
         );
       };
     </script>
