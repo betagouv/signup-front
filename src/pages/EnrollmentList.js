@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import _, { debounce } from 'lodash';
+import _, { debounce, toPairs } from 'lodash';
 import moment from 'moment';
 
 import { getUserEnrollments } from '../lib/services';
@@ -192,6 +192,19 @@ class EnrollmentList extends React.Component {
       },
       width: 130,
       filterable: true,
+      Filter: ({ filter, onChange }) => (
+        <select
+          onChange={event => onChange(event.target.value)}
+          value={filter ? filter.value : ''}
+        >
+          <option value="">Tous</option>
+          {toPairs(TARGET_API_LABELS).map(([key, label]) => (
+            <option key={key} value={key}>
+              {label}
+            </option>
+          ))}
+        </select>
+      ),
     },
     {
       Header: 'Statut',
@@ -206,6 +219,7 @@ class EnrollmentList extends React.Component {
         ...enrollmentListStyle.centeredCell,
       },
       width: 100,
+      filterable: true,
       Cell: ({ value: { statusLabel, acl } }) => {
         if (!this.hasTriggerableActions({ acl })) {
           return statusLabel;
@@ -213,6 +227,19 @@ class EnrollmentList extends React.Component {
 
         return <button className="button warning small">{statusLabel}</button>;
       },
+      Filter: ({ filter, onChange }) => (
+        <select
+          onChange={event => onChange(event.target.value)}
+          value={filter ? filter.value : ''}
+        >
+          <option value="">Tous</option>
+          {toPairs(STATUS_LABELS).map(([key, label]) => (
+            <option key={key} value={key}>
+              {label}
+            </option>
+          ))}
+        </select>
+      ),
     },
   ];
 
