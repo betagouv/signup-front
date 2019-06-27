@@ -2,6 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EventItem } from './../form/ActivityFeed';
 import './Prompt.css';
+import { getMostUsedComments } from '../../lib/services';
+
+const commentTypeToEventName = {
+  review_application: 'asked_for_modification',
+  refuse_application: 'refused',
+  validate_application: 'validated',
+};
 
 export default class Prompt extends React.Component {
   constructor(props) {
@@ -9,7 +16,18 @@ export default class Prompt extends React.Component {
 
     this.state = {
       input: '',
+      selectedTemplateIndex: '',
+      templates: [],
     };
+  }
+
+  async componentDidMount() {
+    const comments = await getMostUsedComments({
+      eventName: commentTypeToEventName[this.props.commentType],
+      targetApi: this.props.targetApi,
+    });
+
+    this.setState({ templates: comments });
   }
 
   handleInputChange = event => {
@@ -30,15 +48,22 @@ export default class Prompt extends React.Component {
     this.props.onCancel();
   };
 
-  render() {
-    const { commentType } = this.props;
-    const { input } = this.state;
+  handleTemplateChange = event => {
+    event.preventDefault();
 
-    const eventName = {
-      review_application: 'asked_for_modification',
-      refuse_application: 'refused',
-      validate_application: 'validated',
-    }[commentType];
+    const selectedTemplateIndex = event.target.value;
+    const input = this.state.templates[selectedTemplateIndex];
+
+    if (selectedTemplateIndex !== '') {
+      this.setState({ selectedTemplateIndex, input });
+    }
+  };
+
+  render() {
+    const { commentType, targetApi } = this.props;
+    const { input, templates, selectedTemplateIndex } = this.state;
+
+    const eventName = commentTypeToEventName[commentType];
 
     const promptMessage = {
       review_application:
@@ -59,6 +84,15 @@ export default class Prompt extends React.Component {
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès.',
     }[commentType];
 
+    const teamName = {
+      franceconnect: 'FranceConnect',
+      dgfip: 'API « impôt particulier »',
+      api_particulier: 'API Particulier',
+      api_droits_cnam: 'API CNAM',
+      api_entreprise: 'API Entreprise',
+      preuve_covoiturage: 'Registre de preuve de covoiturage',
+    }[targetApi];
+
     const mailContent = `Bonjour,
 
 ${emailContent}
@@ -69,13 +103,26 @@ Pour consulter cette demande, cliquer sur le lien suivant ${
       window.location.href
     } .
 
-L'équipe FranceConnect
+L'équipe ${teamName}
 `;
 
     return (
       <div className="modal__backdrop" id="modal" style={{ display: 'flex' }}>
         <div className="modal comment-action">
           <p>{promptMessage}</p>
+          {templates.length > 0 && (
+            <select
+              value={selectedTemplateIndex}
+              onChange={this.handleTemplateChange}
+            >
+              <option value="">Choisir un template</option>
+              {templates.map((template, index) => (
+                <option key={index} value={index}>
+                  {template.substring(0, 100)}
+                </option>
+              ))}
+            </select>
+          )}
           <textarea
             cols="80"
             rows="5"
@@ -115,4 +162,5 @@ Prompt.propTypes = {
   onAccept: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
   commentType: PropTypes.string.isRequired,
+  targetApi: PropTypes.string.isRequired,
 };

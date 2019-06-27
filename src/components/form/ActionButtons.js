@@ -168,7 +168,7 @@ class ActionButtons extends React.Component {
   };
 
   render() {
-    const { acl, linked_token_manager_id } = this.props.enrollment;
+    const { acl, linked_token_manager_id, target_api } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
     const { isLoading, doShowPrompt, commentType } = this.state;
 
@@ -202,6 +202,7 @@ class ActionButtons extends React.Component {
             onAccept={this.submitActionMessage}
             onCancel={this.cancelActionMessage}
             commentType={commentType}
+            targetApi={target_api}
           />
         )}
       </React.Fragment>

@@ -174,3 +174,16 @@ export function getOrganizationInformation(siret) {
       }
     );
 }
+
+export function getMostUsedComments({ eventName, targetApi } = {}) {
+  const queryParam = hashToQueryParams({
+    event: eventName,
+    target_api: targetApi,
+  });
+
+  return httpClient
+    .get(`${BACK_HOST}/api/events/most-used-comments${queryParam}`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data.map(({ comment }) => comment));
+}
