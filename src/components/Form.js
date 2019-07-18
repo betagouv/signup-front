@@ -8,6 +8,7 @@ import {
   merge,
   zipObject,
   zipObjectDeep,
+  unionBy,
 } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
@@ -24,7 +25,41 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    const availableScopes = props.availableScopes;
+    const { availableScopes, target_api, additionalContacts } = props;
+
+    const defaultContacts = [
+      {
+        id: 'dpo',
+        heading: 'Délégué à la protection des données',
+        hint:
+          "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
+        link: 'https://www.cnil.fr/fr/designation-dpo',
+        nom: '',
+        email: '',
+        phone_number: '',
+      },
+      {
+        id: 'responsable_traitement',
+        heading: 'Responsable de traitement',
+        hint:
+          "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
+        link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
+        nom: '',
+        email: '',
+        phone_number: '',
+      },
+      {
+        id: 'technique',
+        heading: 'Responsable technique',
+        hint:
+          'Cette personne recevra les accès techniques. Le responsable technique peut être le contact technique de votre prestataire.',
+        nom: '',
+        email: '',
+        phone_number: '',
+      },
+    ];
+
+    const contacts = unionBy(additionalContacts, defaultContacts, 'id');
 
     this.state = {
       errorMessages: [],
@@ -35,37 +70,7 @@ class Form extends React.Component {
           update: true,
           send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
         },
-        contacts: [
-          {
-            id: 'dpo',
-            heading: 'Délégué à la protection des données',
-            hint:
-              "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
-            link: 'https://www.cnil.fr/fr/designation-dpo',
-            nom: '',
-            email: '',
-            phone_number: '',
-          },
-          {
-            id: 'responsable_traitement',
-            heading: 'Responsable de traitement',
-            hint:
-              "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
-            link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
-            nom: '',
-            email: '',
-            phone_number: '',
-          },
-          {
-            id: 'technique',
-            heading: 'Responsable technique',
-            hint:
-              'Cette personne recevra les accès techniques. Le responsable technique peut être le contact technique de votre prestataire.',
-            nom: '',
-            email: '',
-            phone_number: '',
-          },
-        ],
+        contacts,
         intitule: '',
         description: '',
         fondement_juridique_title: '',
@@ -75,7 +80,7 @@ class Form extends React.Component {
         data_retention_period: '',
         data_retention_comment: '',
         data_recipients: '',
-        target_api: props.target_api,
+        target_api,
         linked_franceconnect_enrollment_id: null,
         events: [],
         id: null,
@@ -307,9 +312,8 @@ class Form extends React.Component {
           <div className="form__group">
             <label htmlFor="description">
               Décrivez brièvement la raison pour laquelle vous collectez des
-              données à caractère personnel relatives, c'est à dire
-              l&apos;objectif qui est poursuivi par le traitement que vous
-              mettez en place.
+              données à caractère personnel, c'est à dire l&apos;objectif qui
+              est poursuivi par le traitement que vous mettez en place.
             </label>
             <textarea
               rows="10"
@@ -638,6 +642,7 @@ Form.propTypes = {
   title: PropTypes.string,
   DemarcheDescription: PropTypes.func.isRequired,
   isFranceConnected: PropTypes.bool,
+  additionalContacts: PropTypes.array,
   CadreJuridiqueDescription: PropTypes.func,
   DonneesDescription: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
@@ -661,6 +666,7 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isFranceConnected: false,
+  additionalContacts: [],
   CadreJuridiqueDescription: () => <></>,
   DonneesDescription: () => <></>,
   CguDescription: () => <></>,
