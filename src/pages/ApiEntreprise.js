@@ -25,6 +25,23 @@ const DemarcheDescription = () => (
 );
 const isFranceConnected = false;
 
+const additionalContacts = [
+  {
+    id: 'technique',
+    heading: 'Contact technique',
+    nom: '',
+    email: '',
+    phone_number: '',
+  },
+  {
+    id: 'metier',
+    heading: 'Contact métier',
+    nom: '',
+    email: '',
+    phone_number: '',
+  },
+];
+
 // Le demandeur doit donner le SIRET de son organisme
 // TODO : Nom du département, bureau ou service
 // Le demandeur doit indiquer ses contacts
@@ -104,6 +121,10 @@ const availableScopes = [
     humanName: 'Certificat Qualibat',
   },
   {
+    name: 'certificat_rge_ademe',
+    humanName: 'Certificat RGE ADEME',
+  },
+  {
     name: 'document_association',
     humanName: 'Document association',
   },
@@ -167,6 +188,7 @@ const ApiEntreprise = ({
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
+        additionalContacts={additionalContacts}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
         availableScopes={availableScopes}
