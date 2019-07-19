@@ -1,8 +1,10 @@
 import _, {
+  assign,
   isBoolean,
   isEmpty,
   isObject,
   isString,
+  map,
   mapKeys,
   mergeWith,
   omitBy,
@@ -183,4 +185,26 @@ export function hashToQueryParams(hash) {
 
   // '?a=1&b=true'
   return isEmpty(queryParams) ? '' : `?${queryParams.join('&')}`;
+}
+
+/**
+ * copied from https://stackoverflow.com/questions/39127565/merge-array-of-objects-by-property-using-lodash
+ * Inspired from lodash#unionBy doc:
+ * This method is like `_.union` except that it accepts `iteratee` which is
+ * invoked for each element of each `arrays` to generate the criterion by
+ * which uniqueness is computed. Result values are chosen from the *second*
+ * array in which the value occurs. The iteratee is invoked with one argument:
+ * (value).
+ *
+ * @param leftArray
+ * @param rightArray
+ * @param comparator
+ * @returns {Array}
+ */
+export function rightUnionBy(leftArray, rightArray, comparator) {
+  return map(
+    assign(
+      ...[leftArray, rightArray].map(coll => mapKeys(coll, v => v[comparator]))
+    )
+  );
 }

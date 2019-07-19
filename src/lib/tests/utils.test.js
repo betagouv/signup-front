@@ -1,4 +1,9 @@
-import { getChangelog, hashToQueryParams, isValidNAFCode } from '../utils';
+import {
+  getChangelog,
+  hashToQueryParams,
+  isValidNAFCode,
+  rightUnionBy,
+} from '../utils';
 
 describe('utils', () => {
   describe('isValidNAFCode', () => {
@@ -152,6 +157,19 @@ describe('utils', () => {
       expect(hashToQueryParams({ o: [{ id: 'a', value: 'b' }] })).toBe(
         '?o=%5B%7B%22id%22%3A%22a%22%2C%22value%22%3A%22b%22%7D%5D'
       );
+    });
+  });
+
+  describe('rightUnionBy', () => {
+    it('return non modified array if second array is empty', () => {
+      const array = [{ x: 2, y: 2 }, { x: 3, y: 3 }];
+      expect(rightUnionBy(array, [], 'x')).toStrictEqual(array);
+    });
+
+    it('return the union on an array of object', () => {
+      expect(
+        rightUnionBy([{ x: 1, y: 1 }], [{ x: 2, y: 2 }, { x: 1, y: 3 }], 'x')
+      ).toStrictEqual([{ x: 1, y: 3 }, { x: 2, y: 2 }]);
     });
   });
 });

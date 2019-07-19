@@ -8,7 +8,6 @@ import {
   merge,
   zipObject,
   zipObjectDeep,
-  unionBy,
 } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
@@ -20,6 +19,7 @@ import ActivityFeed from './form/ActivityFeed';
 import Helper from './elements/Helper';
 import OrganizationSelector from './form/OrganizationSelector';
 import { ScrollablePanel } from './elements/Scrollable';
+import { rightUnionBy } from '../lib/utils';
 
 class Form extends React.Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class Form extends React.Component {
       },
     ];
 
-    const contacts = unionBy(additionalContacts, defaultContacts, 'id');
+    const contacts = rightUnionBy(defaultContacts, additionalContacts, 'id');
 
     this.state = {
       errorMessages: [],
