@@ -133,7 +133,7 @@ export function triggerEnrollment({ action, id, comment }) {
 
 export function getOrganizationInformation(siret) {
   return httpClient
-    .get(`https://sirene.entreprise.api.gouv.fr/v1/siret/${siret}`)
+    .get(`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${siret}`)
     .then(
       ({
         data: {
