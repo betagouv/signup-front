@@ -1,4 +1,4 @@
-# Frontend de l'outils d'habilitation des API api.gouv.fr
+# Frontend de l'outil d'habilitation des API api.gouv.fr
 
 :warning: This project is not a standalone yet. For now, it needs the [private signup-ansible repository](https://gitlab.incubateur.net/beta.gouv.fr/signup-ansible) to work.
 
