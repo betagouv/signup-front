@@ -8,23 +8,6 @@ export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });
 }
 
-export function updateEnrollmentContacts({ enrollment }) {
-  const serializedEnrollment = serializeEnrollment(enrollment);
-  const config = {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  };
-
-  return httpClient
-    .patch(
-      `${BACK_HOST}/api/enrollments/${enrollment.id}/update_contacts`,
-      serializedEnrollment,
-      config
-    )
-    .then(({ data }) => data);
-}
-
 export function createOrUpdateEnrollment({ enrollment }) {
   const serializedEnrollment = serializeEnrollment(enrollment);
   const config = {

@@ -125,7 +125,6 @@ class Form extends React.Component {
 
   updateEnrollment = enrollment => {
     if (!this.state.enrollment.id && enrollment.id) {
-      console.log(enrollment.id, 'enrollment.id');
       window.history.replaceState(
         window.history.state,
         '',
@@ -252,7 +251,6 @@ class Form extends React.Component {
     } = this.props;
 
     const disabledApplication = !acl.send_application;
-    const disableContactInputs = !(acl.update_contacts || acl.send_application);
 
     return (
       <>
@@ -530,7 +528,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].nom`}
                         id={`person_${id}_nom`}
-                        readOnly={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disabledApplication}
                         value={nom}
                       />
                       {id === 'responsable_traitement' && (
@@ -546,7 +544,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].email`}
                         id={`person_${id}_email`}
-                        readOnly={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disabledApplication}
                         value={email}
                       />
                     </div>
@@ -566,7 +564,7 @@ class Form extends React.Component {
                         onChange={this.handleChange}
                         name={`contacts[${index}].phone_number`}
                         id={`person_${id}_phone_number`}
-                        readOnly={isFranceConnected || disableContactInputs}
+                        readOnly={isFranceConnected || disabledApplication}
                         value={phone_number}
                         pattern="[0-9]{10}"
                       />

@@ -27,6 +27,8 @@ const eventNameToDisplayableContent = {
     icon: <CheckCircleIcon color={'var(--green)'} />,
     label: 'a validé la demande',
   },
+  // This action is not available anymore but we keep this to display remaining
+  // updated_contacts events in the activity feed
   updated_contacts: {
     icon: <ErrorOutlineIcon color={'var(--blue)'} />,
     label: 'a mis à jour les contacts',
