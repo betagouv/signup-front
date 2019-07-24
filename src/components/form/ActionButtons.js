@@ -4,7 +4,6 @@ import _ from 'lodash';
 import {
   createOrUpdateEnrollment,
   triggerEnrollment,
-  updateEnrollmentContacts,
 } from '../../lib/services';
 import Prompt from '../elements/Prompt';
 import { getErrorMessages } from '../../lib/utils';
@@ -26,10 +25,6 @@ class ActionButtons extends React.Component {
     update: {
       label: 'Sauvegarder le brouillon',
       cssClass: 'secondary enrollment',
-    },
-    update_contacts: {
-      label: 'Mettre à jour les contacts',
-      cssClass: 'primary enrollment',
     },
     send_application: {
       label: 'Soumettre la demande',
@@ -108,18 +103,6 @@ class ActionButtons extends React.Component {
         } catch (e) {
           return resultMessages;
         }
-      }
-
-      if (action === 'update_contacts') {
-        await updateEnrollmentContacts({
-          enrollment: this.props.enrollment,
-        });
-
-        resultMessages.successMessages.push(
-          'Vos changements ont été sauvegardée.'
-        );
-
-        return resultMessages;
       }
 
       let enrollmentId = this.props.enrollment.id;
