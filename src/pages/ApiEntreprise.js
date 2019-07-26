@@ -75,29 +75,30 @@ const DonneesDescription = () => (
     </b>
   </div>
 );
+
 const availableScopes = [
   {
-    name: 'association',
+    name: 'associations',
     humanName: 'Association',
   },
   {
-    name: 'attestation_agefiph',
+    name: 'attestations_agefiph',
     humanName: 'Attestation AGEFIPH',
   },
   {
-    name: 'attestation_fiscale',
+    name: 'attestations_fiscales',
     humanName: 'Attestation Fiscale',
   },
   {
-    name: 'attestation_sociale',
+    name: 'attestations_sociales',
     humanName: 'Attestation Sociale',
   },
   {
-    name: 'bilans_entreprises_bdf',
+    name: 'bilans_entreprise_bdf',
     humanName: 'Bilans Entreprises BDF',
   },
   {
-    name: 'carte_pro_fntp',
+    name: 'fntp_carte_pro',
     humanName: 'Carte Pro FNTP',
   },
   {
@@ -105,7 +106,7 @@ const availableScopes = [
     humanName: 'Certificat CNETP',
   },
   {
-    name: 'cotisation_msa',
+    name: 'msa_cotisations',
     humanName: 'Cotisation MSA',
   },
   {
@@ -113,39 +114,39 @@ const availableScopes = [
     humanName: 'Certificat OPQIBI',
   },
   {
-    name: 'certificat_probtp',
+    name: 'probtp',
     humanName: 'Certificat PROBTP',
   },
   {
-    name: 'certificat_qualibat',
+    name: 'qualibat',
     humanName: 'Certificat Qualibat',
   },
   {
     name: 'certificat_rge_ademe',
-    humanName: 'Certificat RGE ADEME',
+    humanName: 'Certificats RGE (ADEME)',
   },
   {
-    name: 'document_association',
+    name: 'documents_association',
     humanName: 'Document association',
   },
   {
-    name: 'exercice',
+    name: 'exercices',
     humanName: 'Exercice',
   },
   {
-    name: 'extrait_inpi',
+    name: 'extrait_court_inpi',
     humanName: 'Extrait INPI',
   },
   {
-    name: 'extrait_rcs',
+    name: 'extraits_rcs',
     humanName: 'Extrait RCS',
   },
   {
-    name: 'insee_entreprise',
+    name: 'entreprises',
     humanName: 'INSEE Entreprise',
   },
   {
-    name: 'insee_etablissement',
+    name: 'etablissements',
     humanName: 'INSEE Etablissement',
   },
   {
