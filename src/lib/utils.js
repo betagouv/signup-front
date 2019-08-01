@@ -1,10 +1,8 @@
 import _, {
-  assign,
   isBoolean,
   isEmpty,
   isObject,
   isString,
-  map,
   mapKeys,
   mergeWith,
   omitBy,
@@ -187,24 +185,26 @@ export function hashToQueryParams(hash) {
   return isEmpty(queryParams) ? '' : `?${queryParams.join('&')}`;
 }
 
-/**
- * copied from https://stackoverflow.com/questions/39127565/merge-array-of-objects-by-property-using-lodash
- * Inspired from lodash#unionBy doc:
- * This method is like `_.union` except that it accepts `iteratee` which is
- * invoked for each element of each `arrays` to generate the criterion by
- * which uniqueness is computed. Result values are chosen from the *second*
- * array in which the value occurs. The iteratee is invoked with one argument:
- * (value).
- *
- * @param leftArray
- * @param rightArray
- * @param comparator
- * @returns {Array}
- */
-export function rightUnionBy(leftArray, rightArray, comparator) {
-  return map(
-    assign(
-      ...[leftArray, rightArray].map(coll => mapKeys(coll, v => v[comparator]))
-    )
+export function collectionWithKeyToObject(collection) {
+  return (
+    _(collection)
+      // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
+      .map(({ id, ...attributes }) => [id, attributes])
+      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
+      .fromPairs()
+      // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
+      .value()
+  );
+}
+
+export function objectToCollectionWithKey(object) {
+  return (
+    _(object)
+      // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
+      .toPairs()
+      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
+      .map(([id, attributes]) => ({ id, ...attributes }))
+      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
+      .value()
   );
 }

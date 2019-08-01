@@ -19,47 +19,29 @@ import ActivityFeed from './form/ActivityFeed';
 import Helper from './elements/Helper';
 import OrganizationSelector from './form/OrganizationSelector';
 import { ScrollablePanel } from './elements/Scrollable';
-import { rightUnionBy } from '../lib/utils';
+import { RgpdContact } from './form/RgpdContact';
+import { Contact } from './form/Contact';
 
 class Form extends React.Component {
   constructor(props) {
     super(props);
 
-    const { availableScopes, target_api, additionalContacts } = props;
+    const { availableScopes, target_api, contacts } = props;
 
-    const defaultContacts = [
-      {
-        id: 'dpo',
-        heading: 'Délégué à la protection des données',
-        hint:
-          "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
-        link: 'https://www.cnil.fr/fr/designation-dpo',
-        nom: '',
-        email: '',
-        phone_number: '',
-      },
-      {
-        id: 'responsable_traitement',
-        heading: 'Responsable de traitement',
-        hint:
-          "Seule une personne appartenant à l'organisme demandeur peut être renseigné",
-        link: 'https://www.cnil.fr/fr/definition/responsable-de-traitement',
-        nom: '',
-        email: '',
-        phone_number: '',
-      },
-      {
-        id: 'technique',
+    const defaultContacts = {
+      technique: {
         heading: 'Responsable technique',
-        hint:
-          'Cette personne recevra les accès techniques. Le responsable technique peut être le contact technique de votre prestataire.',
-        nom: '',
+        description: () => (
+          <p>
+            Cette personne recevra les accès techniques par mail. Le responsable
+            technique peut être le contact technique de votre prestataire.
+          </p>
+        ),
         email: '',
-        phone_number: '',
       },
-    ];
+    };
 
-    const contacts = rightUnionBy(defaultContacts, additionalContacts, 'id');
+    const initialContacts = !isEmpty(contacts) ? contacts : defaultContacts;
 
     this.state = {
       errorMessages: [],
@@ -91,9 +73,15 @@ class Form extends React.Component {
               !!mandatory || !!checkedByDefault
           )
         ),
-        cgu_approved: false,
+        cgu_approved: true,
         linked_token_manager_id: null,
         additional_content: {},
+        dpo_label: '',
+        dpo_email: '',
+        dpo_phone_number: '',
+        responsable_traitement_label: '',
+        responsable_traitement_email: '',
+        responsable_traitement_phone_number: '',
       },
     };
   }
@@ -162,15 +150,27 @@ class Form extends React.Component {
     organization_id,
     siret,
     contacts,
+    dpo_label,
+    dpo_email,
+    dpo_phone_number,
+    responsable_traitement_label,
+    responsable_traitement_email,
+    responsable_traitement_phone_number,
   }) => {
     this.setState(({ enrollment: prevEnrollment }) => ({
       enrollment: merge({}, prevEnrollment, {
-        contacts,
+        linked_franceconnect_enrollment_id,
         intitule,
         description,
-        linked_franceconnect_enrollment_id,
         organization_id,
         siret,
+        contacts,
+        dpo_label,
+        dpo_email,
+        dpo_phone_number,
+        responsable_traitement_label,
+        responsable_traitement_email,
+        responsable_traitement_phone_number,
       }),
     }));
   };
@@ -229,6 +229,12 @@ class Form extends React.Component {
         scopes,
         cgu_approved,
         additional_content,
+        dpo_label,
+        dpo_email,
+        dpo_phone_number,
+        responsable_traitement_label,
+        responsable_traitement_email,
+        responsable_traitement_phone_number,
       },
       errorMessages,
       successMessages,
@@ -371,73 +377,6 @@ class Form extends React.Component {
               onChange={this.handleChange}
               additional_content={additional_content}
             />
-
-            <div className="form__group">
-              <label htmlFor="data_recipients">
-                Destinataires des données
-                <Helper
-                  title={
-                    'description du service ou des personnes physiques qui consulteront ces données'
-                  }
-                />
-                <a
-                  href="https://www.cnil.fr/fr/definition/destinataire"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  (plus d&acute;infos)
-                </a>
-              </label>
-              <input
-                type="text"
-                placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
-                onChange={this.handleChange}
-                name="data_recipients"
-                id="data_recipients"
-                readOnly={disabledApplication}
-                value={data_recipients}
-              />
-            </div>
-
-            <div className="form__group">
-              <label htmlFor="data_retention_period">
-                Durée de conservation des données en mois
-                <Helper
-                  title={
-                    'à compter de la cessation de la relation contractuelle'
-                  }
-                />
-              </label>
-              <input
-                type="number"
-                min="0"
-                max="2147483647"
-                onChange={this.handleChange}
-                name="data_retention_period"
-                id="data_retention_period"
-                disabled={disabledApplication}
-                value={data_retention_period}
-              />
-            </div>
-            {data_retention_period > 36 && (
-              <div className="form__group">
-                <label
-                  htmlFor="data_retention_comment"
-                  className="notification warning"
-                >
-                  Cette durée excède la durée communément constatée (36 mois).
-                  Veuillez justifier cette durée dans le champ ci-après:
-                </label>
-                <textarea
-                  rows="10"
-                  onChange={this.handleChange}
-                  name="data_retention_comment"
-                  id="data_retention_comment"
-                  readOnly={disabledApplication}
-                  value={data_retention_comment}
-                />
-              </div>
-            )}
           </ScrollablePanel>
         )}
 
@@ -496,82 +435,119 @@ class Form extends React.Component {
           />
         </ScrollablePanel>
 
-        <ScrollablePanel scrollableId="contacts">
-          <h2>Les contacts associés</h2>
+        <ScrollablePanel scrollableId="donnees-personnelles">
+          <h2>Le traitement de données à caractère personnel</h2>
+
+          <div className="form__group">
+            <label htmlFor="data_recipients">
+              Destinataires des données
+              <Helper
+                title={
+                  'description du service ou des personnes physiques qui consulteront ces données'
+                }
+              />
+              <a
+                href="https://www.cnil.fr/fr/definition/destinataire"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                (plus d&acute;infos)
+              </a>
+            </label>
+            <input
+              type="text"
+              placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
+              onChange={this.handleChange}
+              name="data_recipients"
+              id="data_recipients"
+              readOnly={disabledApplication}
+              value={data_recipients}
+            />
+          </div>
+
+          <div className="form__group">
+            <label htmlFor="data_retention_period">
+              Durée de conservation des données en mois
+              <Helper
+                title={'à compter de la cessation de la relation contractuelle'}
+              />
+            </label>
+            <input
+              type="number"
+              min="0"
+              max="2147483647"
+              onChange={this.handleChange}
+              name="data_retention_period"
+              id="data_retention_period"
+              disabled={disabledApplication}
+              value={data_retention_period}
+            />
+          </div>
+          {data_retention_period > 36 && (
+            <div className="form__group">
+              <label
+                htmlFor="data_retention_comment"
+                className="notification warning"
+              >
+                Cette durée excède la durée communément constatée (36 mois).
+                Veuillez justifier cette durée dans le champ ci-après:
+              </label>
+              <textarea
+                rows="10"
+                onChange={this.handleChange}
+                name="data_retention_comment"
+                id="data_retention_comment"
+                readOnly={disabledApplication}
+                value={data_retention_comment}
+              />
+            </div>
+          )}
+          <div className="form__group">
+            <div className="row">
+              <RgpdContact
+                type={'responsable_traitement'}
+                label={responsable_traitement_label}
+                email={responsable_traitement_email}
+                phone_number={responsable_traitement_phone_number}
+                disabled={isFranceConnected || disabledApplication}
+                handleChange={this.handleChange}
+              />
+              <RgpdContact
+                type={'dpo'}
+                label={dpo_label}
+                email={dpo_email}
+                phone_number={dpo_phone_number}
+                disabled={isFranceConnected || disabledApplication}
+                handleChange={this.handleChange}
+              />
+            </div>
+          </div>
+        </ScrollablePanel>
+        <ScrollablePanel scrollableId="contacts-moe">
+          <h2>La mise en œuvre du service</h2>
+          <div className="text-quote">
+            <p>
+              Afin de fluidifier la suite de votre demande merci de renseigner
+              les contacts suivants.
+            </p>
+          </div>
+          <br />
           <div className="row">
-            {contacts.map(
-              (
-                { id, heading, link, hint, nom, email, phone_number },
-                index
-              ) => (
-                <div key={id} className="card">
-                  <div className="card__content">
-                    <h3>
-                      {heading}
-                      {hint && <Helper title={hint} />}
-                    </h3>
-                    {link && (
-                      <a
-                        className="card__meta"
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {' '}
-                        (plus d&acute;infos)
-                      </a>
-                    )}
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_nom`}>Nom et Prénom</label>
-                      <input
-                        type="text"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].nom`}
-                        id={`person_${id}_nom`}
-                        readOnly={isFranceConnected || disabledApplication}
-                        value={nom}
-                      />
-                      {id === 'responsable_traitement' && (
-                        <small className="card__meta">
-                          <i>Cette information peut être rendue publique.</i>
-                        </small>
-                      )}
-                    </div>
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_email`}>Email</label>
-                      <input
-                        type="email"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].email`}
-                        id={`person_${id}_email`}
-                        readOnly={isFranceConnected || disabledApplication}
-                        value={email}
-                      />
-                    </div>
-                    <div className="form__group">
-                      <label htmlFor={`person_${id}_phone_number`}>
-                        Numéro de téléphone
-                        <Helper
-                          title={
-                            'Ce numéro peut être le numéro du secrétariat ou le numéro direct de ' +
-                            'la personne concernée. Ce numéro nous permettra de vous contacter ' +
-                            "lors d'incidents ou difficultés."
-                          }
-                        />
-                      </label>
-                      <input
-                        type="tel"
-                        onChange={this.handleChange}
-                        name={`contacts[${index}].phone_number`}
-                        id={`person_${id}_phone_number`}
-                        readOnly={isFranceConnected || disabledApplication}
-                        value={phone_number}
-                        pattern="[0-9]{10}"
-                      />
-                    </div>
-                  </div>
-                </div>
-              )
+            {!isEmpty(contacts.technique) && (
+              <Contact
+                id={'technique'}
+                {...contacts.technique}
+                disabled={isFranceConnected || disabledApplication}
+                handleChange={this.handleChange}
+              />
+            )}
+            {!isEmpty(contacts.metier) && (
+              <Contact
+                id={'metier'}
+                {...contacts.metier}
+                disabled={isFranceConnected || disabledApplication}
+                handleChange={this.handleChange}
+              />
             )}
           </div>
         </ScrollablePanel>
@@ -640,7 +616,20 @@ Form.propTypes = {
   title: PropTypes.string,
   DemarcheDescription: PropTypes.func.isRequired,
   isFranceConnected: PropTypes.bool,
-  additionalContacts: PropTypes.array,
+  contacts: PropTypes.shape({
+    technique: PropTypes.shape({
+      heading: PropTypes.string,
+      description: PropTypes.func,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+    }),
+    metier: PropTypes.shape({
+      heading: PropTypes.string,
+      description: PropTypes.func,
+      email: PropTypes.string,
+      phone_number: PropTypes.string,
+    }),
+  }),
   CadreJuridiqueDescription: PropTypes.func,
   DonneesDescription: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
@@ -664,7 +653,7 @@ Form.propTypes = {
 Form.defaultProps = {
   enrollmentId: null,
   isFranceConnected: false,
-  additionalContacts: [],
+  contacts: {},
   CadreJuridiqueDescription: () => <></>,
   DonneesDescription: () => <></>,
   CguDescription: () => <></>,
