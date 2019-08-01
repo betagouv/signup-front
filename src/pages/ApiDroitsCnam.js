@@ -60,7 +60,8 @@ const ApiDroitsCnam = ({
       navLinksGeneral={[
         { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'contacts', label: 'Contacts' },
+        { id: 'donnees-personnelles', label: 'Données personnelles' },
+        { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[

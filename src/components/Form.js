@@ -435,7 +435,7 @@ class Form extends React.Component {
           />
         </ScrollablePanel>
 
-        <ScrollablePanel scrollableId="contacts">
+        <ScrollablePanel scrollableId="donnees-personnelles">
           <h2>Le traitement de données à caractère personnel</h2>
 
           <div className="form__group">
@@ -523,9 +523,7 @@ class Form extends React.Component {
             </div>
           </div>
         </ScrollablePanel>
-
-        {/*TODO trouver un autre scrollableId*/}
-        <ScrollablePanel scrollableId="contacts-autre">
+        <ScrollablePanel scrollableId="contacts-moe">
           <h2>La mise en œuvre du service</h2>
           <div className="text-quote">
             <p>
