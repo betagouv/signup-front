@@ -52,7 +52,7 @@ class Form extends React.Component {
           update: true,
           send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
         },
-        contacts,
+        contacts: initialContacts,
         intitule: '',
         description: '',
         fondement_juridique_title: '',
