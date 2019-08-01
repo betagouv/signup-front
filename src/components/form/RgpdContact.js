@@ -43,7 +43,9 @@ export const RgpdContact = ({
   <div className="card">
     <div className="card__content">
       <h3>{descriptions[type].heading}</h3>
-      <div className="text-quote">{descriptions[type].hint()}</div>
+      <div className="form__group">
+        <div className="text-quote">{descriptions[type].hint()}</div>
+      </div>
       <div className="form__group">
         <label htmlFor={`${type}_label`}>Nom et Prénom</label>
         <input

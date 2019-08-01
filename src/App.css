@@ -256,6 +256,14 @@ select {
   width: 100%;
 }
 
+/*
+fix: rules on '.card__content :last-child' propagates within children instead of
+targeting the last_child like so '.card__content > :last-child'
+*/
+.card__content p:last-child {
+  margin-bottom: 1em;
+}
+
 /* light button & link */
 button.light,
 a.light {

@@ -69,18 +69,21 @@ const CadreJuridiqueDescription = () => (
 // La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
 const DonneesDescription = () => (
   <div className="text-quote">
-    <b>
-      Sélectionner ci-dessous les API qui sont strictement nécessaires pour
-      cette démarche
-    </b>
     <p>
-      Vous pouvez trouver une description détaillée de chaque API ici :
-      https://doc.entreprise.api.gouv.fr/
+      Sélectionner ci-dessous les API qui sont strictement nécessaires pour
+      cette démarche.
     </p>
-    <b>
+    <p>
+      Vous pouvez trouver une description détaillée de chaque API sur{' '}
+      <a href="https://doc.entreprise.api.gouv.fr/">
+        doc.entreprise.api.gouv.fr
+      </a>
+      .
+    </p>
+    <p>
       Pour mémoire, seuls les agents dûment habilités pour traiter cette
       démarche doivent pouvoir accéder aux données transmises.
-    </b>
+    </p>
   </div>
 );
 

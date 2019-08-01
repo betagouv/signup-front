@@ -13,7 +13,9 @@ export const Contact = ({
   <div className="card">
     <div className="card__content">
       <h3>{heading}</h3>
-      <div className="text-quote">{description()}</div>
+      <div className="form__group">
+        <div className="text-quote">{description()}</div>
+      </div>
       <div className="form__group">
         <label htmlFor={`person_${id}_email`}>Email</label>
         <input

@@ -533,6 +533,7 @@ class Form extends React.Component {
               les contacts suivants.
             </p>
           </div>
+          <br />
           <div className="row">
             {!isEmpty(contacts.technique) && (
               <Contact
