@@ -1,8 +1,9 @@
 import {
+  collectionWithKeyToObject,
   getChangelog,
   hashToQueryParams,
   isValidNAFCode,
-  rightUnionBy,
+  objectToCollectionWithKey,
 } from '../utils';
 
 describe('utils', () => {
@@ -160,16 +161,67 @@ describe('utils', () => {
     });
   });
 
-  describe('rightUnionBy', () => {
-    it('return non modified array if second array is empty', () => {
-      const array = [{ x: 2, y: 2 }, { x: 3, y: 3 }];
-      expect(rightUnionBy(array, [], 'x')).toStrictEqual(array);
+  describe('collectionWithKeyToObject', () => {
+    it('should return empty object for empty array', () => {
+      expect(collectionWithKeyToObject([])).toStrictEqual({});
     });
 
-    it('return the union on an array of object', () => {
+    it('should return empty object for undefined', () => {
+      expect(collectionWithKeyToObject(undefined)).toStrictEqual({});
+    });
+
+    it('should turn collection with key into object', () => {
+      const collectionWithKey = [
+        { id: 'a', attr1: 'a1', attr2: 'a2' },
+        { id: 'b', attr1: 'b1', attr2: 'b2' },
+      ];
+      expect(collectionWithKeyToObject(collectionWithKey)).toStrictEqual({
+        a: { attr1: 'a1', attr2: 'a2' },
+        b: { attr1: 'b1', attr2: 'b2' },
+      });
+    });
+  });
+
+  describe('collectionWithKeyToObject', () => {
+    it('should return empty object for empty array', () => {
+      expect(objectToCollectionWithKey({})).toStrictEqual([]);
+    });
+
+    it('should return empty object for undefined', () => {
+      expect(objectToCollectionWithKey(undefined)).toStrictEqual([]);
+    });
+
+    it('should turn collection with key into object', () => {
+      const object = {
+        a: { attr1: 'a1', attr2: 'a2' },
+        b: { attr1: 'b1', attr2: 'b2' },
+      };
+      expect(objectToCollectionWithKey(object)).toStrictEqual([
+        { id: 'a', attr1: 'a1', attr2: 'a2' },
+        { id: 'b', attr1: 'b1', attr2: 'b2' },
+      ]);
+    });
+
+    it('should be inverse of collectionWithKeyToObject', () => {
       expect(
-        rightUnionBy([{ x: 1, y: 1 }], [{ x: 2, y: 2 }, { x: 1, y: 3 }], 'x')
-      ).toStrictEqual([{ x: 1, y: 3 }, { x: 2, y: 2 }]);
+        objectToCollectionWithKey(collectionWithKeyToObject([]))
+      ).toStrictEqual([]);
+    });
+
+    it('should return array even for unexpected undefined in input', () => {
+      expect(
+        objectToCollectionWithKey(collectionWithKeyToObject(undefined))
+      ).toStrictEqual([]);
+    });
+
+    it('should be inverse of collectionWithKeyToObject', () => {
+      const collectionWithKey = [
+        { id: 'a', attr1: 'a1', attr2: 'a2' },
+        { id: 'b', attr1: 'b1', attr2: 'b2' },
+      ];
+      expect(
+        objectToCollectionWithKey(collectionWithKeyToObject(collectionWithKey))
+      ).toStrictEqual(collectionWithKey);
     });
   });
 });

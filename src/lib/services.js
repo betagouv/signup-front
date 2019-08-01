@@ -1,7 +1,11 @@
 import { mapValues } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
-import { hashToQueryParams } from './utils';
+import {
+  collectionWithKeyToObject,
+  hashToQueryParams,
+  objectToCollectionWithKey,
+} from './utils';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export function serializeEnrollment(enrollment) {
@@ -9,7 +13,11 @@ export function serializeEnrollment(enrollment) {
 }
 
 export function createOrUpdateEnrollment({ enrollment }) {
-  const serializedEnrollment = serializeEnrollment(enrollment);
+  const formatedEnrollment = {
+    ...enrollment,
+    contacts: objectToCollectionWithKey(enrollment.contacts),
+  };
+  const serializedEnrollment = serializeEnrollment(formatedEnrollment);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -17,41 +25,71 @@ export function createOrUpdateEnrollment({ enrollment }) {
   };
 
   if (enrollment.id) {
-    return httpClient
-      .patch(
-        `${BACK_HOST}/api/enrollments/${enrollment.id}`,
-        serializedEnrollment,
-        config
-      )
-      .then(({ data }) => data);
+    return (
+      httpClient
+        .patch(
+          `${BACK_HOST}/api/enrollments/${enrollment.id}`,
+          serializedEnrollment,
+          config
+        )
+        // format contact to a more usable structure
+        // the backend should be able to use this structure to in the future
+        .then(({ data: enrollment }) => ({
+          ...enrollment,
+          contacts: collectionWithKeyToObject(enrollment.contacts),
+        }))
+    );
   }
 
-  return httpClient
-    .post(`${BACK_HOST}/api/enrollments/`, serializedEnrollment, config)
-    .then(({ data }) => data);
+  return (
+    httpClient
+      .post(`${BACK_HOST}/api/enrollments/`, serializedEnrollment, config)
+      // format contact to a more usable structure
+      // the backend should be able to use this structure to in the future
+      .then(({ data: enrollment }) => ({
+        ...enrollment,
+        contacts: collectionWithKeyToObject(enrollment.contacts),
+      }))
+  );
 }
 
 export function getUserEnrollment(id) {
-  return httpClient
-    .get(`${BACK_HOST}/api/enrollments/${id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-    .then(({ data }) => data);
-}
-
-export function getUserValidatedFranceconnectEnrollments() {
-  return httpClient
-    .get(
-      `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect&detailed=true`,
-      {
+  return (
+    httpClient
+      .get(`${BACK_HOST}/api/enrollments/${id}`, {
         headers: {
           'Content-Type': 'application/json',
         },
-      }
-    )
-    .then(({ data }) => data);
+      })
+      // format contact to a more usable structure
+      // the backend should be able to use this structure to in the future
+      .then(({ data: enrollment }) => ({
+        ...enrollment,
+        contacts: collectionWithKeyToObject(enrollment.contacts),
+      }))
+  );
+}
+
+export function getUserValidatedFranceconnectEnrollments() {
+  return (
+    httpClient
+      .get(
+        `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect&detailed=true`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      )
+      // format contact to a more usable structure
+      // the backend should be able to use this structure to in the future
+      .then(({ data }) =>
+        data.map(e => ({
+          ...e,
+          contacts: collectionWithKeyToObject(e.contacts),
+        }))
+      )
+  );
 }
 
 export function getPublicValidatedEnrollments(targetApi) {

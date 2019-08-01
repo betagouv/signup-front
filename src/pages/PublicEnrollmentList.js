@@ -93,7 +93,7 @@ class PublicEnrollmentList extends React.Component {
     },
     {
       Header: 'Responsable traitement',
-      accessor: 'email_responsable_traitement',
+      accessor: 'responsable_traitement_label',
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
     },

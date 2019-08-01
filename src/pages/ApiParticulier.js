@@ -31,6 +31,22 @@ const DemarcheDescription = () => (
 );
 const isFranceConnected = false;
 
+const contacts = {
+  technique: {
+    heading: 'Responsable technique',
+    description: () => (
+      <p>
+        Cette personne recevra les accès techniques par mail. Le numéro de
+        téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
+        envoyer un code d'accès. Le responsable technique peut être le contact
+        technique de votre prestataire.
+      </p>
+    ),
+    email: '',
+    phone_number: '',
+  },
+};
+
 // Le demandeur doit donner le SIRET de son organisme
 // Le demandeur doit indiquer ses contacts
 // Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
@@ -131,6 +147,7 @@ const ApiParticulier = ({
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
+        contacts={contacts}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
         availableScopes={availableScopes}

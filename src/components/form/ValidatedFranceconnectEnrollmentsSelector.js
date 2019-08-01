@@ -46,6 +46,12 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
           organization_id,
           siret,
           contacts,
+          dpo_label,
+          dpo_email,
+          dpo_phone_number,
+          responsable_traitement_label,
+          responsable_traitement_email,
+          responsable_traitement_phone_number,
         } = enrollments[initialIndex];
 
         this.props.onValidatedFranceconnectEnrollment({
@@ -55,6 +61,12 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
           organization_id,
           siret,
           contacts,
+          dpo_label,
+          dpo_email,
+          dpo_phone_number,
+          responsable_traitement_label,
+          responsable_traitement_email,
+          responsable_traitement_phone_number,
         });
 
         return this.setState({
@@ -77,6 +89,12 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       organization_id,
       siret,
       contacts,
+      dpo_label,
+      dpo_email,
+      dpo_phone_number,
+      responsable_traitement_label,
+      responsable_traitement_email,
+      responsable_traitement_phone_number,
     } = this.state.validatedFranceconnectEnrollments[
       validatedFranceconnectEnrollmentIndex
     ];
@@ -91,6 +109,12 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       organization_id,
       siret,
       contacts,
+      dpo_label,
+      dpo_email,
+      dpo_phone_number,
+      responsable_traitement_label,
+      responsable_traitement_email,
+      responsable_traitement_phone_number,
     });
   }
 

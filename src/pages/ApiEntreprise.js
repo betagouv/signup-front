@@ -25,22 +25,30 @@ const DemarcheDescription = () => (
 );
 const isFranceConnected = false;
 
-const additionalContacts = [
-  {
-    id: 'technique',
-    heading: 'Contact technique',
-    nom: '',
-    email: '',
-    phone_number: '',
-  },
-  {
-    id: 'metier',
+const contacts = {
+  metier: {
     heading: 'Contact métier',
-    nom: '',
+    description: () => (
+      <p>
+        Cette personne sera contactée en cas de problème fonctionnel sur votre
+        service.
+      </p>
+    ),
     email: '',
     phone_number: '',
   },
-];
+  technique: {
+    heading: 'Contact technique',
+    description: () => (
+      <p>
+        Cette personne sera contactée en cas de problème technique sur votre
+        service.
+      </p>
+    ),
+    email: '',
+    phone_number: '',
+  },
+};
 
 // Le demandeur doit donner le SIRET de son organisme
 // TODO : Nom du département, bureau ou service
@@ -155,12 +163,10 @@ const availableScopes = [
   },
 ];
 
-// TODO : Je certifie que le Délégué à la Protection des Données de mon organisme est informé de ma demande *
 // Le demandeur valide les modalités d'utilisation
 const CguDescription = () => <React.Fragment />;
 const cguLink = 'https://entreprise.api.gouv.fr/cgu/';
 
-//TODO Informations complémentaires : Toute information susceptible de faciliter l'instruction de votre demande (volumétrie provisionnelle, saisonnalité, etc)
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -170,6 +176,7 @@ const ApiEntreprise = ({
     <Nav
       navLinksGeneral={[
         { id: 'description', label: 'Description' },
+        { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'contacts', label: 'Contacts' },
         { id: 'cgu', label: "Modalités d'utilisation" },
@@ -189,7 +196,7 @@ const ApiEntreprise = ({
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
-        additionalContacts={additionalContacts}
+        contacts={contacts}
         CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
         availableScopes={availableScopes}
