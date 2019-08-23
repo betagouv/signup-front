@@ -187,7 +187,7 @@ const ApiEntreprise = ({
       ]}
       contactInformation={[
         {
-          email: 'contact@api.gouv.fr',
+          email: 'tech@entreprise.api.gouv.fr',
           label: 'Nous contacter',
           subject: 'Contact%20via%20signup.api.gouv.fr%20-%20API%20Entreprise',
         },
