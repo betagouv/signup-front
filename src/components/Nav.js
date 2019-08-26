@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import './Nav.css';
 import ArrowBackIcon from './icons/arrowBack';
 import { ScrollableLink } from './elements/Scrollable';
+import LocalPhoneIcon from './icons/local-phone';
 
 const Nav = ({
   logo,
@@ -66,14 +67,28 @@ const Nav = ({
               <h3>Une question&nbsp;?</h3>
 
               <div className="contact-button-list">
-                {contactInformation.map(({ email, label, subject }) => (
-                  <a
-                    key={label}
-                    className="button-outline primary"
-                    href={`mailto:${email}?subject=${subject}`}
-                  >
-                    {label}
-                  </a>
+                {contactInformation.map(({ email, tel, label, subject }) => (
+                  <>
+                    {email && (
+                      <a
+                        key={label}
+                        className="button-outline primary"
+                        href={`mailto:${email}?subject=${subject}`}
+                      >
+                        {label}
+                      </a>
+                    )}
+                    {tel && (
+                      <a
+                        key={label}
+                        className="button-outline primary"
+                        href={`tel:${tel}`}
+                      >
+                        <LocalPhoneIcon color="var(--blue)" />
+                        {tel}
+                      </a>
+                    )}
+                  </>
                 ))}
               </div>
             </div>
