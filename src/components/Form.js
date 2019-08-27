@@ -73,7 +73,7 @@ class Form extends React.Component {
               !!mandatory || !!checkedByDefault
           )
         ),
-        cgu_approved: true,
+        cgu_approved: false,
         linked_token_manager_id: null,
         additional_content: {},
         dpo_label: '',
