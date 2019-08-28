@@ -30,7 +30,7 @@ export function getErrorMessages(error) {
 
   const errorMessageEnd =
     'Merci de réessayer ultérieurement. ' +
-    'Vous pouvez également nous signaler cette erreur par mail à contact@particulier.api.gouv.fr.';
+    'Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.';
 
   if (!isEmpty(error.response)) {
     return [

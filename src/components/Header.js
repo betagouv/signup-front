@@ -26,7 +26,7 @@ const Header = ({ user, logout }) => {
             </li>
             {displayContactLink && (
               <li className="nav__item">
-                <a href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
+                <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
                   Nous contacter
                 </a>
               </li>

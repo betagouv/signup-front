@@ -31,7 +31,7 @@ const Footer = () => (
           </li>
           <li>
             <a
-              href="mailto:contact@particulier.api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr"
+              href="mailto:contact@api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr"
               title="Nous écrire un mail"
             >
               <img
