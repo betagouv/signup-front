@@ -12,6 +12,7 @@ import './EnrollmentList.css';
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
+  modification_pending: 'Retour',
   sent: 'À valider',
   validated: 'Validée',
   refused: 'Refusée',
@@ -209,7 +210,7 @@ class EnrollmentList extends React.Component {
     {
       Header: 'Statut',
       accessor: ({ status, acl }) => ({
-        statusLabel: STATUS_LABELS[status],
+        statusLabel: STATUS_LABELS[status] || null,
         acl,
       }),
       id: 'status',
