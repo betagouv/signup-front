@@ -12,6 +12,7 @@ import './EnrollmentList.css';
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
+  modification_pending: 'Retour',
   sent: 'À valider',
   validated: 'Validée',
   refused: 'Refusée',
