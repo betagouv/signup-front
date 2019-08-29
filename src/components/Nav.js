@@ -67,29 +67,26 @@ const Nav = ({
               <h3>Une question&nbsp;?</h3>
 
               <div className="contact-button-list">
-                {contactInformation.map(({ email, tel, label, subject }) => (
-                  <>
-                    {email && (
-                      <a
-                        key={label}
-                        className="button-outline primary"
-                        href={`mailto:${email}?subject=${subject}`}
-                      >
-                        {label}
-                      </a>
-                    )}
-                    {tel && (
-                      <a
-                        key={label}
-                        className="button-outline primary"
-                        href={`tel:${tel}`}
-                      >
-                        <LocalPhoneIcon color="var(--blue)" />
-                        {tel}
-                      </a>
-                    )}
-                  </>
-                ))}
+                {contactInformation.map(({ tel, email, label, subject }) =>
+                  tel ? (
+                    <a
+                      key={tel}
+                      className="button-outline primary"
+                      href={`tel:${tel}`}
+                    >
+                      <LocalPhoneIcon color="var(--blue)" />
+                      {tel}
+                    </a>
+                  ) : (
+                    <a
+                      key={label}
+                      className="button-outline primary"
+                      href={`mailto:${email}?subject=${subject}`}
+                    >
+                      {label}
+                    </a>
+                  )
+                )}
               </div>
             </div>
           </div>
