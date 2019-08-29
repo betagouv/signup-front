@@ -210,7 +210,7 @@ class EnrollmentList extends React.Component {
     {
       Header: 'Statut',
       accessor: ({ status, acl }) => ({
-        statusLabel: STATUS_LABELS[status],
+        statusLabel: STATUS_LABELS[status] || null,
         acl,
       }),
       id: 'status',
