@@ -5,6 +5,7 @@ import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
 
 const commentTypeToEventName = {
+  notify: 'notified',
   review_application: 'asked_for_modification',
   refuse_application: 'refused',
   validate_application: 'validated',
@@ -66,6 +67,7 @@ export default class Prompt extends React.Component {
     const eventName = commentTypeToEventName[commentType];
 
     const promptMessage = {
+      notify: 'Votre message\xa0:',
       review_application:
         'Précisez au demandeur les modifications à apporter à sa demande\xa0:',
       refuse_application: 'Précisez au demandeur le motif de votre refus\xa0:',
@@ -76,6 +78,7 @@ export default class Prompt extends React.Component {
     // emailContent should be kept synced with back-end email template
     // https://github.com/betagouv/signup-back/tree/master/app/views/enrollment_mailer
     const emailContent = {
+      notify: 'Vous avez un nouveau message concernant votre demande :',
       review_application:
         'Votre demande est incomplète et requiert les modifications suivantes :',
       refuse_application:

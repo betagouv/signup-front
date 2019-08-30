@@ -22,6 +22,10 @@ class ActionButtons extends React.Component {
   }
 
   aclToDisplayInfo = {
+    notify: {
+      label: 'Envoyer un message',
+      cssClass: 'secondary enrollment',
+    },
     update: {
       label: 'Sauvegarder le brouillon',
       cssClass: 'secondary enrollment',
@@ -93,6 +97,7 @@ class ActionButtons extends React.Component {
 
       if (
         [
+          'notify',
           'review_application',
           'refuse_application',
           'validate_application',

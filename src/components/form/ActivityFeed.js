@@ -7,6 +7,7 @@ import CheckCircleIcon from '../icons/check-circle';
 import ErrorOutlineIcon from '../icons/error-outline';
 import ErrorIcon from '../icons/error';
 import WarningIcon from '../icons/warning';
+import NotificationsIcon from '../icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../lib/utils';
 
@@ -14,6 +15,10 @@ const eventNameToDisplayableContent = {
   asked_for_modification: {
     icon: <WarningIcon color={'var(--orange)'} />,
     label: 'a demandé des modifications',
+  },
+  notified: {
+    icon: <NotificationsIcon color={'var(--orange)'} />,
+    label: 'a écrit',
   },
   created: {
     icon: <ErrorOutlineIcon color={'var(--blue)'} />,
