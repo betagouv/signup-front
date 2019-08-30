@@ -116,7 +116,7 @@ describe('utils', () => {
         '2017." en "Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - ' +
         'Contrat de service pris en application de la convention d\'accès à "Mon Compte ' +
         'Partenaire" (mode gestion déléguée) signés le 11 mai 2017".',
-      'Changement du nom du DPD de "Raphaël Dubigny2" en "Raphaël Dubigny".',
+      'Changement du nom du contact 1 de "Raphaël Dubigny2" en "Raphaël Dubigny".',
       'Changement du champ scopes.phone de "décoché" en "coché".',
       'Changement du champ scopes.preferred_username de "coché" en "décoché".',
     ];

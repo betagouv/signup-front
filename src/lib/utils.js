@@ -79,16 +79,19 @@ const diffFieldLabels = {
   fondement_juridique_title: 'de la référence du cadre juridique',
   fondement_juridique_url: "de l'url du cadre juridique",
   intitule: "de l'intitulé",
-  'contacts.0.nom': 'du nom du DPD',
-  'contacts.0.email': "de l'email du DPD",
-  'contacts.0.phone_number': 'du numéro de téléphone du DPD',
-  'contacts.1.nom': 'du nom du responsable de traitement',
-  'contacts.1.email': "de l'email du responsable de traitement",
-  'contacts.1.phone_number':
+  dpo_label: 'du nom du DPD',
+  dpo_id: "de l'identifiant du DPD",
+  dpo_phone_number: 'du numéro de téléphone du DPD',
+  responsable_traitement_label: 'du nom du responsable de traitement',
+  responsable_traitement_id: "de l'identifiant du responsable de traitement",
+  responsable_traitement_phone_number:
     'du numéro de téléphone du responsable de traitement',
-  'contacts.2.nom': 'du nom du responsable technique',
-  'contacts.2.email': "de l'email du responsable technique",
-  'contacts.2.phone_number': 'du numéro de téléphone du responsable technique',
+  'contacts.0.nom': 'du nom du contact 1',
+  'contacts.0.email': "de l'email du contact 1",
+  'contacts.0.phone_number': 'du numéro de téléphone du contact 1',
+  'contacts.1.nom': 'du nom du contact 2',
+  'contacts.1.email': "de l'email du contact 2",
+  'contacts.1.phone_number': 'du numéro de téléphone du contact 2',
 };
 
 function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
