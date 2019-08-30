@@ -4,9 +4,10 @@ import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
 import Linkify from 'linkifyjs/react';
 import CheckCircleIcon from '../icons/check-circle';
-import ErrorOutlineIcon from '../icons/error-outline';
+import InfoIcon from '../icons/info';
 import ErrorIcon from '../icons/error';
 import WarningIcon from '../icons/warning';
+import NotificationsIcon from '../icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../lib/utils';
 
@@ -15,12 +16,16 @@ const eventNameToDisplayableContent = {
     icon: <WarningIcon color={'var(--orange)'} />,
     label: 'a demandé des modifications',
   },
+  notified: {
+    icon: <NotificationsIcon color={'var(--orange)'} />,
+    label: 'a écrit',
+  },
   created: {
-    icon: <ErrorOutlineIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} />,
     label: 'a créé la demande',
   },
   submitted: {
-    icon: <ErrorOutlineIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} />,
     label: 'a soumis la demande',
   },
   validated: {
@@ -30,11 +35,11 @@ const eventNameToDisplayableContent = {
   // This action is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   updated_contacts: {
-    icon: <ErrorOutlineIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} />,
     label: 'a mis à jour les contacts',
   },
   updated: {
-    icon: <ErrorOutlineIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} />,
     label: 'a mis à jour la demande',
   },
   refused: {
