@@ -35,7 +35,7 @@ const Header = ({ user, logout }) => {
               <li className="nav__item">
                 <div className="dropdown">
                   {user.email}
-                  <div className="dropdown-content" style={{ top: '1.8em' }}>
+                  <div className="dropdown-content" style={{ top: '2.8em' }}>
                     <a onClick={logout} href="#logout">
                       Se déconnecter
                     </a>

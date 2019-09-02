@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import httpClient from '../lib/http-client';
-const { REACT_APP_OAUTH_ME_URI: OAUTH_ME_URI } = process.env;
+const {
+  REACT_APP_OAUTH_ME_URI: OAUTH_ME_URI,
+  REACT_APP_OAUTH_HOST: OAUTH_HOST,
+} = process.env;
 
 export const UserContext = React.createContext();
 
@@ -50,7 +53,7 @@ export class UserStore extends React.Component {
 
   logout = () => {
     localStorage.removeItem('token');
-    window.location.href = '/'; // will empty user from state by reloading the entire app
+    window.location.href = `${OAUTH_HOST}/oauth/logout`; // will also empty user from state by reloading the entire app
   };
 
   render() {

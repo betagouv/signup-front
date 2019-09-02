@@ -130,9 +130,9 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       return (
         <div className="form__group">
           <h4 id="franceconnect-enrollment">
-            Association à votre demande Franceconnect
+            Association à votre demande FranceConnect
           </h4>
-          <p>Chargement de vos demandes Franceconnect...</p>
+          <p>Chargement de vos demandes FranceConnect...</p>
         </div>
       );
     }
@@ -142,7 +142,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
         {validatedFranceconnectEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
-              Vos demandes Franceconnect validées
+              Vos demandes FranceConnect validées
             </label>
             <select
               onChange={this.handleValidatedFranceconnectEnrollmentChange}
@@ -163,13 +163,13 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
           <div className="form__group">
             <div className="notification error">
               <p>
-                Pour demander l'accès à l'API « impôt particulier », vous devez
-                avoir préalablement obtenu un accès à Franceconnect.
+                Pour demander l'accès à une API FranceConnectée, vous devez
+                avoir préalablement obtenu un accès à FranceConnect.
               </p>
               <p>
                 Veuillez{' '}
                 <Link to={'/franceconnect'}>
-                  demander votre accès à Franceconnect
+                  demander votre accès à FranceConnect
                 </Link>{' '}
                 avant de continuer cette demande.
               </p>
