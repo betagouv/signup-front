@@ -52,8 +52,11 @@ export class UserStore extends React.Component {
   };
 
   logout = () => {
+    const token = localStorage.getItem('token');
     localStorage.removeItem('token');
-    window.location.href = `${OAUTH_HOST}/oauth/logout`; // will also empty user from state by reloading the entire app
+    window.location.href = `${OAUTH_HOST}/oauth/logout?post_logout_redirect_uri=${
+      window.location
+    }&id_token_hint=${token}`; // will also empty user from state by reloading the entire app
   };
 
   render() {
