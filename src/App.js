@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
-import OauthCallback from './pages/OauthCallback';
 import EnrollmentList from './pages/EnrollmentList';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import Stats from './pages/Stats';
@@ -47,7 +46,6 @@ const App = () => (
                     component={PublicEnrollmentList}
                   />
                   <Route path="/stats" component={Stats} />
-                  <Route path="/oauth-callback" component={OauthCallback} />
                   <PrivateRoute exact path="/" component={EnrollmentList} />
                   <PrivateRoute
                     exact

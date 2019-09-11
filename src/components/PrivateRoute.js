@@ -2,20 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { withUser } from './UserContext';
-import { saveCurrentPageForPostloginRedirect } from '../pages/OauthCallback';
+import { hashToQueryParams } from '../lib/utils';
 
-const { REACT_APP_OAUTH_AUTHORIZE_URI: OAUTH_AUTHORIZE_URI } = process.env;
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-const SaveCurrentPageAndRedirect = () => {
-  saveCurrentPageForPostloginRedirect();
-
+export const SaveCurrentPageAndRedirect = () => {
   // forward source page param to display a contextualised login page on api-auth
   const urlParams = new URLSearchParams(window.location.search);
-  const sourceQueryParam = urlParams.has('source')
-    ? `?source=${urlParams.get('source')}`
-    : '';
+  const source = urlParams.get('source');
 
-  window.location.href = `${OAUTH_AUTHORIZE_URI}${sourceQueryParam}`;
+  const returnUrl = window.location.pathname;
+  const queryParam = hashToQueryParams({
+    returnUrl,
+    source,
+  });
+
+  window.location.href = `${BACK_HOST}/users/auth/api_gouv${queryParam}`;
 
   return null;
 };
