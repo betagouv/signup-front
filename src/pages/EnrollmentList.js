@@ -346,6 +346,10 @@ class EnrollmentList extends React.Component {
   // see https://github.com/tannerlinsley/react-table/issues/1333#issuecomment-504046261
   debouncedFetchData = debounce(this.onFetchData, 100);
 
+  componentWillUnmount() {
+    this.debouncedFetchData.cancel();
+  }
+
   render() {
     const { history, showArchived } = this.props;
     const {
