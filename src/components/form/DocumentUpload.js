@@ -64,7 +64,6 @@ class DocumentUpload extends React.Component {
   };
 
   render() {
-    const token = localStorage.getItem('token');
     const { documentsTooLargeError } = this.state;
     const { disabled, uploadedDocuments, documentType, label } = this.props;
     const uploadedDocument = uploadedDocuments.filter(
@@ -78,10 +77,7 @@ class DocumentUpload extends React.Component {
           {uploadedDocument && (
             <span>
               (
-              <a
-                href={`${BACK_HOST +
-                  uploadedDocument.attachment.url}?token=${token}`}
-              >
+              <a href={`${BACK_HOST + uploadedDocument.attachment.url}`}>
                 télécharger la pièce jointe actuellement associée
               </a>
               )

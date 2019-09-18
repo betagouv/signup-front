@@ -33,6 +33,7 @@ export class ScrollablePanel extends Component {
   }
 
   componentWillUnmount() {
+    this.handleScroll.cancel();
     return window.removeEventListener('scroll', this.handleScroll);
   }
 
@@ -79,6 +80,7 @@ export class ScrollableLink extends Component {
   }
 
   componentWillUnmount() {
+    this.handleScroll.cancel();
     return window.removeEventListener('scroll', this.handleScroll);
   }
 

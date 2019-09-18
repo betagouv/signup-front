@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import httpClient from '../lib/http-client';
-const {
-  REACT_APP_OAUTH_ME_URI: OAUTH_ME_URI,
-  REACT_APP_OAUTH_HOST: OAUTH_HOST,
-} = process.env;
+
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export const UserContext = React.createContext();
 
@@ -16,9 +14,31 @@ export function withUser(Component) {
   );
 }
 
+/**
+ * Do not try this at home: trying to modify a state of a component outside react is not recommended!
+ * We needed a convenient way to expire frontend session when the backend session expire.
+ * (frontend session = user property in this state)
+ * At page load, the state of the backend session is synced with a call to /users/me:
+ * if we get a 401 their is no active session, if not the user is connected.
+ * But when the session expire in the backend, while the app has been loaded some time ago,
+ * the frontend need a way to know it.
+ * A convenient way to do it is to detect when a call to the backend result in a 401 error.
+ * We use axios interceptors to detect this.
+ * At this moment we need to remove the front end session (ie. delete user property in
+ * this state). The only react way to do it is to use components.
+ * The problem is, it's hard to have a function which is an axios interceptor and a
+ * component at the same time.
+ * The solution we found is to expose a reference of the setState function of this component.
+ *
+ * @returns {*}
+ */
+export let resetUserContext = () => void 0;
+
 export class UserStore extends React.Component {
   constructor(props) {
     super(props);
+
+    resetUserContext = () => this.setState({ user: null, isLoading: false });
 
     this.state = {
       user: null,
@@ -32,31 +52,14 @@ export class UserStore extends React.Component {
 
   login = () => {
     this.setState({ isLoading: true });
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return this.setState({ isLoading: false });
-    }
-
-    return httpClient
-      .get(OAUTH_ME_URI)
-      .then(response => {
-        this.setState({ user: response.data, isLoading: false });
-
-        return response.data;
-      })
-      .catch(error => {
-        this.setState({ isLoading: false });
-
-        throw error;
-      });
+    return httpClient.get(`${BACK_HOST}/api/users/me`).then(response => {
+      this.setState({ user: response.data, isLoading: false });
+    });
   };
 
   logout = () => {
-    const token = localStorage.getItem('token');
-    localStorage.removeItem('token');
-    window.location.href = `${OAUTH_HOST}/oauth/logout?post_logout_redirect_uri=${
-      window.location
-    }&id_token_hint=${token}`; // will also empty user from state by reloading the entire app
+    // will also empty user from state by reloading the entire app
+    window.location.href = `${BACK_HOST}/api/users/sign_out`;
   };
 
   render() {

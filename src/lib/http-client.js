@@ -1,17 +1,14 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
+import { resetUserContext } from '../components/UserContext';
 
-const {
-  REACT_APP_BACK_HOST: BACK_HOST,
-  REACT_APP_OAUTH_HOST: OAUTH_HOST,
-} = process.env;
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 axios.defaults.adapter = httpAdapter;
 
 axios.interceptors.request.use(config => {
-  const token = localStorage.getItem('token');
-  if ([OAUTH_HOST, BACK_HOST].includes(new URL(config.url).origin)) {
-    config.headers.Authorization = token ? `Bearer ${token}` : '';
+  if (new URL(config.url).origin === BACK_HOST) {
+    config.withCredentials = true;
   }
 
   return config;
@@ -23,10 +20,10 @@ axios.interceptors.response.use(
     if (
       error.response &&
       error.response.status === 401 &&
-      [OAUTH_HOST, BACK_HOST].includes(new URL(error.config.url).origin)
+      new URL(error.config.url).origin === BACK_HOST
     ) {
-      localStorage.removeItem('token');
-      window.location.reload(); // will generate new state from scratch, hence emptying user in UserContext
+      // This is bad. Find out why in this function doc !
+      resetUserContext();
     }
 
     return Promise.reject(error);
