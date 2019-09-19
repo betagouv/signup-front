@@ -241,6 +241,10 @@ input[type='checkbox'][disabled] {
   margin-top: var(--space-m);
 }
 
+.panel + .notification {
+  margin-top: var(--space-m);
+}
+
 /* fix: panel spacing on small screens */
 @media (max-width: 550px) {
   .dashboard .main {
