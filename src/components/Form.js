@@ -600,12 +600,6 @@ class Form extends React.Component {
           documents_attributes={documents_attributes}
         />
 
-        <ActionButtons
-          enrollment={this.state.enrollment}
-          updateEnrollment={this.updateEnrollment}
-          handleSubmit={this.handleSubmit}
-        />
-
         {successMessages.map(successMessage => (
           <div key={successMessage} className="notification success">
             <Linkify>{successMessage}</Linkify>
@@ -616,6 +610,12 @@ class Form extends React.Component {
             <Linkify>{errorMessage}</Linkify>
           </div>
         ))}
+
+        <ActionButtons
+          enrollment={this.state.enrollment}
+          updateEnrollment={this.updateEnrollment}
+          handleSubmit={this.handleSubmit}
+        />
       </>
     );
   }

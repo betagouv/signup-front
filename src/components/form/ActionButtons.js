@@ -8,6 +8,7 @@ import {
 import Prompt from '../elements/Prompt';
 import { getErrorMessages } from '../../lib/utils';
 import Spinner from '../icons/spinner';
+import DoneIcon from '../icons/done';
 
 const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
 
@@ -32,6 +33,7 @@ class ActionButtons extends React.Component {
     },
     send_application: {
       label: 'Soumettre la demande',
+      icon: <DoneIcon color="white" />,
       cssClass: 'primary enrollment',
     },
     refuse_application: {
@@ -58,6 +60,7 @@ class ActionButtons extends React.Component {
       .map(acl => ({
         id: acl,
         label: this.aclToDisplayInfo[acl].label,
+        icon: this.aclToDisplayInfo[acl].icon,
         cssClass: this.aclToDisplayInfo[acl].cssClass,
         trigger: this.handleSubmitFactory(acl),
       }))
@@ -172,13 +175,14 @@ class ActionButtons extends React.Component {
             </a>
           )}
 
-          {actions.map(({ cssClass, id, label, trigger }) => (
+          {actions.map(({ cssClass, icon, id, label, trigger }) => (
             <button
               key={id}
               className={`button large ${cssClass}`}
               onClick={trigger}
               disabled={isLoading}
             >
+              <span style={{ verticalAlign: 'sub' }}>{icon}</span>
               {label}
               {isLoading && <Spinner inline={true} />}
             </button>
