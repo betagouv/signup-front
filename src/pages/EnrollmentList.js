@@ -87,7 +87,7 @@ class EnrollmentList extends React.Component {
     const urlParams = new URLSearchParams(window.location.search);
 
     if (urlParams.has('page')) {
-      const page = parseInt(urlParams.get('page'));
+      const page = parseInt(urlParams.get('page')) || 0;
       this.setState({ page });
     }
 
