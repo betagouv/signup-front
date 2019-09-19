@@ -273,6 +273,28 @@ class Form extends React.Component {
           <DemarcheDescription />
         </ScrollablePanel>
 
+        {!isUserEnrollmentLoading && !disabledApplication && isFranceConnected && (
+          <ScrollablePanel scrollableId="franceconnect">
+            <h2>Demande FranceConnect associée</h2>
+            <div className="text-quote">
+              <p>
+                Afin de pouvoir utiliser votre bouton FranceConnect pour
+                récupérer les données de la DGFiP, merci de renseigner la
+                demande FranceConnect à associer à cette demande.
+              </p>
+            </div>
+            <br />
+            <ValidatedFranceconnectEnrollmentsSelector
+              onValidatedFranceconnectEnrollment={
+                this.handleLinkedFranceconnectEnrollmentChange
+              }
+              linked_franceconnect_enrollment_id={
+                linked_franceconnect_enrollment_id
+              }
+            />
+          </ScrollablePanel>
+        )}
+
         <ScrollablePanel scrollableId="organisme">
           <h2>Organisme demandeur</h2>
           {!isUserEnrollmentLoading && (
@@ -287,18 +309,6 @@ class Form extends React.Component {
 
         <ScrollablePanel scrollableId="description">
           <h2>Description de votre cas d'usage</h2>
-          {!isUserEnrollmentLoading &&
-            !disabledApplication &&
-            isFranceConnected && (
-              <ValidatedFranceconnectEnrollmentsSelector
-                onValidatedFranceconnectEnrollment={
-                  this.handleLinkedFranceconnectEnrollmentChange
-                }
-                linked_franceconnect_enrollment_id={
-                  linked_franceconnect_enrollment_id
-                }
-              />
-            )}
           <div className="form__group">
             <label htmlFor="intitule">Intitulé</label>
             <input
@@ -306,7 +316,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="intitule"
               id="intitule"
-              readOnly={isFranceConnected || disabledApplication}
+              readOnly={disabledApplication}
               value={intitule}
             />
             <small className="card__meta">
@@ -324,7 +334,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="description"
               id="description"
-              readOnly={isFranceConnected || disabledApplication}
+              readOnly={disabledApplication}
               value={description}
               placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
             />
@@ -509,7 +519,7 @@ class Form extends React.Component {
                 label={responsable_traitement_label}
                 email={responsable_traitement_email}
                 phone_number={responsable_traitement_phone_number}
-                disabled={isFranceConnected || disabledApplication}
+                disabled={disabledApplication}
                 handleChange={this.handleChange}
               />
               <RgpdContact
@@ -517,7 +527,7 @@ class Form extends React.Component {
                 label={dpo_label}
                 email={dpo_email}
                 phone_number={dpo_phone_number}
-                disabled={isFranceConnected || disabledApplication}
+                disabled={disabledApplication}
                 handleChange={this.handleChange}
               />
             </div>
@@ -537,7 +547,7 @@ class Form extends React.Component {
               <Contact
                 id={'technique'}
                 {...contacts.technique}
-                disabled={isFranceConnected || disabledApplication}
+                disabled={disabledApplication}
                 handleChange={this.handleChange}
               />
             )}
@@ -545,7 +555,7 @@ class Form extends React.Component {
               <Contact
                 id={'metier'}
                 {...contacts.metier}
-                disabled={isFranceConnected || disabledApplication}
+                disabled={disabledApplication}
                 handleChange={this.handleChange}
               />
             )}
