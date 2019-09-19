@@ -87,6 +87,7 @@ const DonneesDescription = () => (
   </div>
 );
 
+// NB: this list is manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
 const availableScopes = [
   {
     name: 'associations',
@@ -163,6 +164,10 @@ const availableScopes = [
   {
     name: 'liasse_fiscale',
     humanName: 'Liasse fiscale',
+  },
+  {
+    name: 'actes_bilans_inpi',
+    humanName: 'Actes et Bilans INPI',
   },
 ];
 
