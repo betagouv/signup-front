@@ -19,7 +19,7 @@ const OrganizationSelector = ({
   const [ville, setVille] = useState('');
   const [activite, setActivite] = useState('');
   const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] = useState(
-    true
+    false
   );
   const [showPrompt, setShowPrompt] = useState(false);
 
