@@ -16,6 +16,9 @@ const DemarcheDescription = () => (
       données à caractère personnel, il doit vous être demandé de préciser le
       cadre juridique dans lequel vous souhaitez accéder à ces données.
     </p>
+  <p>
+      <B>Attention, pour toute demande relative aux marchés publics, merci de contacter le support (<a href="mailto:support@entreprise.api.gouv.fr">support@entreprise.api.gouv.fr</a>) avant de soumettre votre demande</B>
+    </p>
     <p>
       Décrivez brièvement votre service ainsi que l‘utilisation prévue des
       données transmises. C'est la raison pour laquelle vous traitez ces données
@@ -89,12 +92,20 @@ const DonneesDescription = () => (
 
 const availableScopes = [
   {
+    name: 'entreprises',
+    humanName: 'INSEE Entreprise',
+  },
+  {
+    name: 'etablissements',
+    humanName: 'INSEE Etablissement',
+  },
+  {
     name: 'associations',
     humanName: 'Association',
   },
   {
-    name: 'attestations_agefiph',
-    humanName: 'Attestation AGEFIPH',
+    name: 'documents_association',
+    humanName: 'Document association',
   },
   {
     name: 'attestations_fiscales',
@@ -103,6 +114,14 @@ const availableScopes = [
   {
     name: 'attestations_sociales',
     humanName: 'Attestation Sociale',
+  },
+  {
+    name: 'msa_cotisations',
+    humanName: 'Cotisation MSA',
+  },
+  {
+    name: 'attestations_agefiph',
+    humanName: 'Attestation AGEFIPH',
   },
   {
     name: 'bilans_entreprise_bdf',
@@ -115,10 +134,6 @@ const availableScopes = [
   {
     name: 'certificat_cnetp',
     humanName: 'Certificat CNETP',
-  },
-  {
-    name: 'msa_cotisations',
-    humanName: 'Cotisation MSA',
   },
   {
     name: 'certificat_opqibi',
@@ -137,14 +152,6 @@ const availableScopes = [
     humanName: 'Certificats RGE (ADEME)',
   },
   {
-    name: 'documents_association',
-    humanName: 'Document association',
-  },
-  {
-    name: 'exercices',
-    humanName: 'Exercice',
-  },
-  {
     name: 'extrait_court_inpi',
     humanName: 'Extrait INPI',
   },
@@ -152,17 +159,17 @@ const availableScopes = [
     name: 'extraits_rcs',
     humanName: 'Extrait RCS',
   },
-  {
-    name: 'entreprises',
-    humanName: 'INSEE Entreprise',
-  },
-  {
-    name: 'etablissements',
-    humanName: 'INSEE Etablissement',
+  { 
+    name :'actes_bilans_inpi',
+    humanName :'Actes et Bilans INPI',
   },
   {
     name: 'liasse_fiscale',
     humanName: 'Liasse fiscale',
+  },
+  {
+    name: 'exercices',
+    humanName: 'Exercice',
   },
 ];
 
@@ -187,7 +194,7 @@ const ApiEntreprise = ({
       ]}
       contactInformation={[
         {
-          email: 'tech@entreprise.api.gouv.fr',
+          email: 'support@entreprise.api.gouv.fr',
           label: 'Contact mail',
           subject: 'Contact%20via%20signup.api.gouv.fr%20-%20API%20Entreprise',
         },
