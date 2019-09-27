@@ -16,8 +16,15 @@ const DemarcheDescription = () => (
       données à caractère personnel, il doit vous être demandé de préciser le
       cadre juridique dans lequel vous souhaitez accéder à ces données.
     </p>
-  <p>
-      <B>Attention, pour toute demande relative aux marchés publics, merci de contacter le support (<a href="mailto:support@entreprise.api.gouv.fr">support@entreprise.api.gouv.fr</a>) avant de soumettre votre demande</B>
+    <p>
+      <b>
+        Attention, pour toute demande relative aux marchés publics, merci de
+        contacter le support (
+        <a href="mailto:support@entreprise.api.gouv.fr">
+          support@entreprise.api.gouv.fr
+        </a>
+        ) avant de soumettre votre demande.
+      </b>
     </p>
     <p>
       Décrivez brièvement votre service ainsi que l‘utilisation prévue des
@@ -90,6 +97,7 @@ const DonneesDescription = () => (
   </div>
 );
 
+// NB: this list is manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
 const availableScopes = [
   {
     name: 'entreprises',
@@ -159,9 +167,9 @@ const availableScopes = [
     name: 'extraits_rcs',
     humanName: 'Extrait RCS',
   },
-  { 
-    name :'actes_bilans_inpi',
-    humanName :'Actes et Bilans INPI',
+  {
+    name: 'actes_bilans_inpi',
+    humanName: 'Actes et Bilans INPI',
   },
   {
     name: 'liasse_fiscale',
