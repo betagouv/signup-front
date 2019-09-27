@@ -89,7 +89,7 @@ export default class Prompt extends React.Component {
 
     const teamName = {
       franceconnect: 'FranceConnect',
-      dgfip: 'API « impôt particulier »',
+      dgfip: 'API « Impôt particulier »',
       api_particulier: 'API Particulier',
       api_droits_cnam: 'API CNAM',
       api_entreprise: 'API Entreprise',

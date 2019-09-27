@@ -41,7 +41,7 @@ const DgfipEntrantsTechniques = ({
     <>
       <ScrollablePanel scrollableId="homologation-securite">
         <h2>Homologation de sécurité</h2>
-        <div className="information-text">
+        <div className="text-quote">
           <p>
             Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche
             d’homologation obligatoire pour les SI relatifs aux échanges entre
@@ -119,7 +119,7 @@ const DgfipEntrantsTechniques = ({
 
       <ScrollablePanel scrollableId="entrants-techniques">
         <h2>Entrants techniques</h2>
-        <div className="information-text">
+        <div className="text-quote">
           <p>
             Afin de permettre la liaison technique entre votre SI et celui de la
             DGFiP, vous devez fournir les entrants techniques suivants :
@@ -181,7 +181,7 @@ const DgfipEntrantsTechniques = ({
 
       <ScrollablePanel scrollableId="volumetrie">
         <h2>Volumétrie</h2>
-        <div className="information-text">
+        <div className="text-quote">
           <p>
             Connaître les données relatives à la volumétrie et à la saisonnalité
             de votre téléservice nous permet de vous offrir la meilleure qualité
@@ -225,7 +225,7 @@ const DgfipEntrantsTechniques = ({
         </div>
         <div className="form__group">
           <label>
-            Quel est la répartition de la charge (en nombre de demandes par
+            Quelle est la répartition de la charge (en nombre de demandes par
             mois, 0 si le service est fermé)&nbsp;?
           </label>
           <div className="form__group">
@@ -256,27 +256,42 @@ const DgfipEntrantsTechniques = ({
 
       <ScrollablePanel scrollableId="recette-fonctionnelle">
         <h2>Recette fonctionnelle</h2>
-        <div className="information-text">
+        <div className="text-quote">
           <p>
-            Une API de test est mise à votre disposition pour vous permettre de
-            qualifier votre applicatif. Elle vous permet de visualiser les
-            données retournées par l'API « impôt particulier ».
+            La qualification de votre téléservice est obligatoire tant pour
+            votre homologation de sécurité ou vos obligations RGPD que pour
+            demander l'entrée en production auprès de la DGFiP.
           </p>
           <p>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://github.com/france-connect/service-provider-example"
-            >
-              Accèder à l'API de test
-            </a>
+            Pour vous accompagner dans vos travaux, un environnement de test est
+            mis à votre disposition sur le portail des API de la DGFiP.
           </p>
           <p>
-            Cette qualification est obligatoire tant pour votre homologation de
-            sécurité ou vos obligations RGPD que pour demander l'entrée en
-            production auprès de la DGFiP.
+            L'accès à cet environnement de test est subordonné à une
+            pré-validation de votre demande de souscription par la DGFiP.
+          </p>
+          <p>
+            Le périmètre des réponses de cet environnement de test est
+            fonctionnellement identique à l'environnement de production.
+          </p>
+          <p>
+            Un jeu de données fictives avec plusieurs cas nominaux vous permet
+            de valider l'intégration de quelques cas fonctionnels dans votre
+            téléservice. L'environnement de test proposé par la DGFiP n'a donc
+            pas vocation à recetter toutes les fonctionnalités du téléservice,
+            qui doivent faire l'objet d'une recette interne.
+          </p>
+          <p>
+            Après pré validation de votre demande, les modalités d'accès à cet
+            environnement sont adressées par courriel à votre responsable
+            technique.
+          </p>
+          <p>
+            A l'issue de vos travaux, veuillez attester de la qualification de
+            votre téléservice.
           </p>
         </div>
+        <br />
         <div className="form__group">
           <input
             onChange={onChange}
@@ -290,11 +305,16 @@ const DgfipEntrantsTechniques = ({
             htmlFor="checkbox-recette_fonctionnelle"
             className="label-inline"
           >
-            J&apos;atteste avoir réalisé une recette fonctionnelle
+            J&apos;atteste avoir réalisé une recette fonctionnelle et qualifié
+            mon téléservice.
           </label>
         </div>
-        {!disabled && (
-          <div className="notification form__group">
+      </ScrollablePanel>
+
+      {!disabled && (
+        <ScrollablePanel scrollableId="entree-en-production">
+          <h2>Entrée en production</h2>
+          <div className="text-quote">
             <p>
               La demande d’entrée en production revêt un caractère définitif et
               entraîne le transfert de vos entrants techniques vers les
@@ -305,8 +325,8 @@ const DgfipEntrantsTechniques = ({
               entrants techniques de production.
             </p>
           </div>
-        )}
-      </ScrollablePanel>
+        </ScrollablePanel>
+      )}
     </>
   );
 };

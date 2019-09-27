@@ -60,20 +60,6 @@ const contacts = {
   },
 };
 
-// Le demandeur doit donner le SIRET de son organisme
-// TODO : Nom du département, bureau ou service
-// Le demandeur doit indiquer ses contacts
-// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
-const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
-    <p>
-      Indiquez la référence ou l'URL du du fondement légal de votre droit à
-      demander ces informations (délibération du conseil municipal, décret…). En
-      cas de besoin, vous pouvez aussi joindre le document lui-même.
-    </p>
-  </div>
-);
-
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 // Les perimètres de données ne sont pas disponibles
 // La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
@@ -219,7 +205,6 @@ const ApiEntreprise = ({
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
         contacts={contacts}
-        CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
         availableScopes={availableScopes}
         CguDescription={CguDescription}

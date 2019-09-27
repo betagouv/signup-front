@@ -35,11 +35,6 @@ const DemarcheDescription = () => (
 );
 const isFranceConnected = true;
 
-// Le demandeur doit donner le SIRET de son organisme
-// Le demandeur doit indiquer ses contacts
-// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
-const CadreJuridiqueDescription = () => <React.Fragment />;
-
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 // Les perimètres de données ne sont pas disponibles
 // La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
@@ -79,7 +74,6 @@ const ApiDroitsCnam = ({
         title={title}
         DemarcheDescription={DemarcheDescription}
         isFranceConnected={isFranceConnected}
-        CadreJuridiqueDescription={CadreJuridiqueDescription}
         DonneesDescription={DonneesDescription}
         availableScopes={availableScopes}
         CguDescription={CguDescription}

@@ -279,8 +279,8 @@ class Form extends React.Component {
             <div className="text-quote">
               <p>
                 Afin de pouvoir utiliser votre bouton FranceConnect pour
-                récupérer les données de la DGFiP, merci de renseigner la
-                demande FranceConnect à associer à cette demande.
+                récupérer les données, merci de renseigner la demande
+                FranceConnect à associer à cette demande.
               </p>
             </div>
             <br />
@@ -295,8 +295,8 @@ class Form extends React.Component {
           </ScrollablePanel>
         )}
 
-        <ScrollablePanel scrollableId="organisme">
-          <h2>Organisme demandeur</h2>
+        <ScrollablePanel scrollableId="organisation">
+          <h2>Organisation à l'origine de la demande</h2>
           {!isUserEnrollmentLoading && (
             <OrganizationSelector
               disabled={isFranceConnected || disabledApplication}
@@ -326,7 +326,7 @@ class Form extends React.Component {
           <div className="form__group">
             <label htmlFor="description">
               Décrivez brièvement la raison pour laquelle vous collectez des
-              données à caractère personnel, c'est à dire l&apos;objectif qui
+              données à caractère personnel, c'est-à-dire l&apos;objectif qui
               est poursuivi par le traitement que vous mettez en place.
             </label>
             <textarea
@@ -391,26 +391,27 @@ class Form extends React.Component {
         )}
 
         <ScrollablePanel scrollableId="cadre-juridique">
-          <h2>Le cadre juridique vous autorisant à accéder aux données</h2>
+          <h2>Le cadre juridique vous autorisant à traiter les données</h2>
           <CadreJuridiqueDescription />
           <br />
           <div className="form__group">
             <label htmlFor="fondement_juridique_title">
-              Référence du texte vous autorisant à récolter ces données
+              Précisez la nature et, le cas échéant, les références du texte
+              vous autorisant à traiter les données
             </label>
-            <input
-              type="text"
+            <textarea
+              rows="1"
               onChange={this.handleChange}
               name="fondement_juridique_title"
               id="fondement_juridique_title"
               readOnly={disabledApplication}
               value={fondement_juridique_title}
+              placeholder="« loi », « décret », « délibération », etc."
             />
           </div>
-          <h3>Document associé</h3>
           <div className="form__group">
             <label htmlFor="fondement_juridique_url">
-              URL du texte{' '}
+              Si possible, joindre l'URL du texte relatif au traitement{' '}
               {fondement_juridique_url && (
                 <span>
                   (
@@ -434,14 +435,13 @@ class Form extends React.Component {
               value={fondement_juridique_url}
             />
           </div>
-          <h3>ou</h3>
           <DocumentUpload
+            label="Sinon, joindre le document lui même"
             disabled={disabledApplication}
             uploadedDocuments={documents}
             documentsToUpload={documents_attributes}
             documentType={'Document::LegalBasis'}
             handleDocumentsChange={this.handleDocumentsChange}
-            label={'Pièce jointe'}
           />
         </ScrollablePanel>
 
@@ -579,7 +579,7 @@ class Form extends React.Component {
               <a href={cguLink} target="_blank" rel="noreferrer noopener">
                 modalités d&apos;utilisation
               </a>{' '}
-              et je les valide. Je confirme que le DPD de mon organisme est
+              et je les valide. Je confirme que le DPD de mon organisation est
               informé de ma demande.
             </label>
           </div>

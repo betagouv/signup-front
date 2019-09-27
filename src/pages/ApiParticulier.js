@@ -47,21 +47,13 @@ const contacts = {
   },
 };
 
-// Le demandeur doit donner le SIRET de son organisme
-// Le demandeur doit indiquer ses contacts
-// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DINSIC de transmettre des données fiscales à votre entité
+      la DINSIC de transmettre des données personnelles à votre entité
       administrative.
-    </p>
-    <p>
-      Il vous est donc demandé de préciser les références du fondement légal de
-      votre droit à demander ces informations (délibération du conseil
-      municipal, décret …).
     </p>
   </div>
 );
