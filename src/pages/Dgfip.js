@@ -9,21 +9,21 @@ import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
 // Description du contexte
 const target_api = 'dgfip';
 
-const title = "Demande d'accès à l'API « impôt particulier »";
+const title = "Demande d'accès à l'API « Impôt particulier »";
 
 // Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l'API « impôt particulier »
+      les démarches administratives des usagers, l'API « Impôt particulier »
       permet l’échange d’informations fiscales entre la DGFiP et une
       administration ou collectivité dans le cadre d'un téléservice. L'usager
       FranceConnecté n'a plus besoin de transmettre son avis d'imposition.
     </p>
     <p>
       Ce portail vous permet en qualité de fournisseur de service de demander le
-      raccordement de votre téléservice à l'API « impôt particulier ».
+      raccordement de votre téléservice à l'API « Impôt particulier ».
     </p>
     <p>
       Pour cela, il vous est demandé de compléter le plus précisément possible
@@ -36,7 +36,7 @@ const DemarcheDescription = () => (
       <li>la volumétrie de sollicitation de l'API.</li>
     </ul>
     <p>
-      Pour faciliter votre raccordement à l'API « impôt particulier », une{' '}
+      Pour faciliter votre raccordement à l'API « Impôt particulier », une{' '}
       <a
         href="https://github.com/france-connect/service-provider-example/"
         target="_blank"
@@ -50,22 +50,29 @@ const DemarcheDescription = () => (
 );
 const isFranceConnected = true;
 
-// Le demandeur doit donner le SIRET de son organisme
-// Le demandeur doit indiquer ses contacts
-// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
-      Pour pouvoir bénéficier du raccordement à l‘API « impôt particulier », le
+      Pour pouvoir bénéficier du raccordement à l‘API « Impôt particulier », le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFIP de transmettre des données fiscales à votre entité
+      la DGFiP de transmettre des données fiscales à votre entité
       administrative.
     </p>
     <p>
-      Il vous est donc demandé de préciser les références du fondement légal de
-      votre droit à demander ces informations (délibération du conseil
-      municipal, décret …).
+      Conformément au Code des relations entre le public et l'administration,
+      l'échange de données s'impose aux administrations dès lors que :
     </p>
+    <ul>
+      <li>
+        ces données sont nécessaires au traitement d'une demande présentée par
+        un usager ;
+      </li>
+      <li>
+        l'administration destinataire est habilitée à connaître ces données dans
+        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
+        n°2016-1321 du 7 octobre 2016 - art. 91 )
+      </li>
+    </ul>
   </div>
 );
 
@@ -98,29 +105,41 @@ const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
+    <p>
+      Des précisions sur les données proposées par l'API impôt particulier sont
+      disponibles sur{' '}
+      <a
+        href="/docs/Description_des_donnees_de_l_API_impot_particulier.pdf"
+        target="_blank"
+        rel="noreferrer noopener"
+      >
+        ce document
+      </a>
+      .
+    </p>
   </div>
 );
 
 const availableScopes = [
   {
     name: 'dgfip_rfr',
-    humanName: 'DGFIP - Revenu fiscal de référence (RFR)',
+    humanName: 'DGFiP - Revenu fiscal de référence (ou RFR)',
   },
   {
     name: 'dgfip_nbpart',
-    humanName: 'DGFIP - nombre de parts',
+    humanName: 'DGFiP - nombre de parts',
   },
   {
     name: 'dgfip_sitfam',
-    humanName: 'DGFIP - situation de famille',
+    humanName: 'DGFiP - situation de famille',
   },
   {
     name: 'dgfip_pac',
-    humanName: 'DGFIP - composition du foyer fiscal',
+    humanName: 'DGFiP - composition du foyer fiscal',
   },
   {
     name: 'dgfip_aft',
-    humanName: 'DGFIP - adresse fiscale de taxation au 1er janvier',
+    humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
   },
 ];
 
@@ -128,8 +147,8 @@ const availableScopes = [
 const CguDescription = () => (
   <div className="text-quote">
     <p>
-      Votre raccordement à l‘API « impôt particulier » nécessite l‘acceptation
-      de la convention d‘adhésion fixant vos engagements et ceux de la DGFIP et
+      Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
+      de la convention d‘adhésion fixant vos engagements et ceux de la DGFiP et
       la DINSIC. Les liens ci-dessous vous permettront de visualiser la
       convention type ainsi que ses annexes.
     </p>
@@ -168,7 +187,7 @@ const Dgfip = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20DGFIP',
+          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20DGFiP',
         },
       ]}
     />

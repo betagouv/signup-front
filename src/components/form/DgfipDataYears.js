@@ -25,41 +25,6 @@ const DgfipDataYears = ({
 
   return (
     <>
-      <div className="information-text">
-        <p>
-          L'API « impôt particulier » restitue des années de revenus différentes
-          selon que la demande soit formulée avant ou après la taxation des
-          revenus.
-        </p>
-        <p>Exemple :</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Date de la demande</th>
-              <th>dernière année de revenu</th>
-              <th>avant-dernière année de revenu</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Février 2018</td>
-              <td>Revenus 2016</td>
-              <td>Revenus 2015</td>
-            </tr>
-            <tr>
-              <td colSpan="3" style={{ textAlign: 'center' }}>
-                Taxation des revenus à compter du mois d'août
-              </td>
-            </tr>
-            <tr>
-              <td>Novembre 2018</td>
-              <td>Revenus 2017</td>
-              <td>Revenus 2016</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
       <div className="form__group">
         <fieldset className="vertical">
           <label>Sélectionnez les années de revenus souhaitées</label>

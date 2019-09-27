@@ -46,9 +46,6 @@ const DemarcheDescription = () => (
 
 const isFranceConnected = false;
 
-// Le demandeur doit donner le SIRET de son organisme
-// Le demandeur doit indiquer ses contacts
-// Le demandeur doit donner le cadre juridique qui lui donne le droit d'accès à l'API
 const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
