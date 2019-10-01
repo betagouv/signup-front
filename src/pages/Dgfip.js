@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import DgfipDataYears from '../components/form/DgfipDataYears';
 import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
 import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
 
@@ -120,6 +119,8 @@ const DonneesDescription = () => (
   </div>
 );
 
+const groupTitle = 'Sélectionnez les années de revenus souhaitées';
+
 const availableScopes = [
   {
     name: 'dgfip_rfr',
@@ -140,6 +141,16 @@ const availableScopes = [
   {
     name: 'dgfip_aft',
     humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
+  },
+  {
+    name: 'dgfip_data_years_n_moins_1',
+    humanName: 'Dernière année de revenu',
+    groupTitle,
+  },
+  {
+    name: 'dgfip_data_years_n_moins_2',
+    humanName: 'Avant-dernière année de revenu',
+    groupTitle,
   },
 ];
 
@@ -205,7 +216,6 @@ const Dgfip = ({
         cguLink={cguLink}
         // Le demandeur peut remplir des contenus supplémentaires
         AdditionalRgpdAgreement={DgfipRgpdAgreement}
-        AdditionalDataContent={DgfipDataYears}
         AdditionalContent={DgfipEntrantsTechniques}
       />
     </div>
