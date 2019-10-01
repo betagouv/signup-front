@@ -14,6 +14,7 @@ import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
+import ApiImpotParticulier from './pages/ApiImpotParticulier';
 import { UserStore, UserContext } from './components/UserContext';
 import { createBrowserHistory } from 'history';
 import PiwikReactRouter from 'piwik-react-router';
@@ -61,6 +62,10 @@ const App = () => (
                   <PrivateRoute
                     path="/dgfip/:enrollmentId?"
                     component={Dgfip}
+                  />
+                  <PrivateRoute
+                    path="/api-impot-particulier/:enrollmentId?"
+                    component={ApiImpotParticulier}
                   />
                   <PrivateRoute
                     path="/franceconnect/:enrollmentId?"

@@ -23,6 +23,7 @@ export const TARGET_API_LABELS = {
   franceconnect: 'FranceConnect',
   api_droits_cnam: 'API Droits CNAM',
   dgfip: 'API Impot particulier',
+  api_impot_particulier: 'API Impot particulier 1/2',
   api_entreprise: 'API Entreprise',
   preuve_covoiturage: 'Registre de Preuve de Covoiturage',
 };

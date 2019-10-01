@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isObject } from 'lodash';
+import { isEmpty, isObject } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import './Nav.css';
 import ArrowBackIcon from './icons/arrow-back';
@@ -10,7 +10,6 @@ import LocalPhoneIcon from './icons/local-phone';
 const Nav = ({
   logo,
   navLinksGeneral,
-  titleAdditionalContent,
   navLinksAdditionalContent,
   contactInformation,
   history,
@@ -53,7 +52,7 @@ const Nav = ({
               {label}
             </ScrollableLink>
           ))}
-          {titleAdditionalContent &&
+          {!isEmpty(navLinksAdditionalContent) &&
             navLinksAdditionalContent.map(({ id, label }) => (
               <ScrollableLink key={id} scrollableId={id}>
                 {label}
@@ -99,7 +98,6 @@ const Nav = ({
 Nav.propTypes = {
   logo: PropTypes.object,
   navLinksGeneral: PropTypes.array.isRequired,
-  titleAdditionalContent: PropTypes.string,
   navLinksAdditionalContent: PropTypes.array,
   contactInformation: PropTypes.array,
   history: PropTypes.shape({

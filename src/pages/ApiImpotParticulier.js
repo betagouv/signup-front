@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import DgfipEntrantsTechniques from '../components/form/DgfipEntrantsTechniques';
 import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
+import DgfipDataYears from '../components/form/DgfipDataYears';
 
-// Description du contexte
-const target_api = 'dgfip';
+const target_api = 'api_impot_particulier';
 
 const title = "Demande d'accès à l'API « Impôt particulier »";
 
-// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -75,7 +73,6 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
-// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
   <div className="text-quote">
     <p>
@@ -119,8 +116,6 @@ const DonneesDescription = () => (
   </div>
 );
 
-const groupTitle = 'Sélectionnez les années de revenus souhaitées';
-
 const availableScopes = [
   {
     name: 'dgfip_rfr',
@@ -142,16 +137,6 @@ const availableScopes = [
     name: 'dgfip_aft',
     humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
   },
-  {
-    name: 'dgfip_data_years_n_moins_1',
-    humanName: 'Dernière année de revenu',
-    groupTitle,
-  },
-  {
-    name: 'dgfip_data_years_n_moins_2',
-    humanName: 'Avant-dernière année de revenu',
-    groupTitle,
-  },
 ];
 
 // Le demandeur valide les modalités d'utilisation
@@ -168,7 +153,7 @@ const CguDescription = () => (
 const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
-const Dgfip = ({
+const ApiImpotParticulier = ({
   match: {
     params: { enrollmentId },
   },
@@ -187,17 +172,12 @@ const Dgfip = ({
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
-      navLinksAdditionalContent={[
-        { id: 'homologation-securite', label: 'Homologation de sécurité' },
-        { id: 'entrants-techniques', label: 'Entrants techniques' },
-        { id: 'volumetrie', label: 'Volumétrie' },
-        { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
-      ]}
       contactInformation={[
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20DGFiP',
+          subject:
+            'Contact%20via%20signup.api.gouv.fr%20-%20API%20Impôt%20particulier',
         },
       ]}
     />
@@ -215,13 +195,13 @@ const Dgfip = ({
         cguLink={cguLink}
         // Le demandeur peut remplir des contenus supplémentaires
         AdditionalRgpdAgreement={DgfipRgpdAgreement}
-        AdditionalContent={DgfipEntrantsTechniques}
+        AdditionalDataContent={DgfipDataYears}
       />
     </div>
   </div>
 );
 
-Dgfip.propTypes = {
+ApiImpotParticulier.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -229,7 +209,7 @@ Dgfip.propTypes = {
   }),
 };
 
-Dgfip.defaultProps = {
+ApiImpotParticulier.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -237,4 +217,4 @@ Dgfip.defaultProps = {
   },
 };
 
-export default Dgfip;
+export default ApiImpotParticulier;
