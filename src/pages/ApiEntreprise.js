@@ -178,7 +178,7 @@ const ApiEntreprise = ({
 }) => (
   <div className="dashboard">
     <Nav
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },

@@ -52,7 +52,7 @@ const ApiDroitsCnam = ({
 }) => (
   <div className="dashboard">
     <Nav
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },

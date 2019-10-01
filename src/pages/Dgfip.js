@@ -179,15 +179,13 @@ const Dgfip = ({
         src: '/images/logo-dgfip.png',
         alt: 'Direction générale des finances publiques',
       }}
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'cgu', label: "Modalités d'utilisation" },
-      ]}
-      navLinksAdditionalContent={[
         { id: 'homologation-securite', label: 'Homologation de sécurité' },
         { id: 'entrants-techniques', label: 'Entrants techniques' },
         { id: 'volumetrie', label: 'Volumétrie' },

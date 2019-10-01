@@ -7,7 +7,7 @@ import DgfipDataYears from '../components/form/DgfipDataYears';
 
 const target_api = 'api_impot_particulier';
 
-const title = "Demande d'accès à l'API « Impôt particulier »";
+const title = "Demande d'accès à l'API « Impôt particulier » - étape 1 sur 2";
 
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -164,7 +164,7 @@ const ApiImpotParticulier = ({
         src: '/images/logo-dgfip.png',
         alt: 'Direction générale des finances publiques',
       }}
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
