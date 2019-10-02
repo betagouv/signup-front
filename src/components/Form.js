@@ -259,10 +259,9 @@ class Form extends React.Component {
 
     const disabledApplication = !acl.send_application;
 
-    const groupTitleScopes = availableScopes.filter(scope => scope.groupTitle);
     const groupTitleScopesGroup = groupBy(
-      groupTitleScopes,
-      scope => scope.groupTitle
+      availableScopes,
+      e => e.groupTitle || 'default'
     );
 
     return (
@@ -358,18 +357,14 @@ class Form extends React.Component {
               additional_content={additional_content}
             />
 
-            <Scopes
-              title="Sélectionnez les données nécessaires à votre cas d’usage"
-              scopes={availableScopes.filter(scope => !scope.groupTitle)}
-              selectedScopes={scopes}
-              disabledApplication={disabledApplication}
-              handleChange={this.handleChange}
-            />
-
             {Object.keys(groupTitleScopesGroup).map(group => (
               <Scopes
                 key={group}
-                title={group}
+                title={
+                  group === 'default'
+                    ? 'Sélectionnez les données nécessaires à votre cas d’usage'
+                    : group
+                }
                 scopes={groupTitleScopesGroup[group]}
                 selectedScopes={scopes}
                 disabledApplication={disabledApplication}
