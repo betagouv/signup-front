@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ScopeInput from './ScopeInput';
-
 const Scopes = ({
   title,
   scopes,
@@ -16,15 +14,24 @@ const Scopes = ({
       <div className="row">
         <div className="column">
           {scopes.map(({ name, humanName, mandatory }) => (
-            <ScopeInput
-              key={name}
-              name={name}
-              humanName={humanName}
-              mandatory={mandatory}
-              disabled={disabledApplication}
-              checked={selectedScopes[name]}
-              handleChange={handleChange}
-            />
+            <div key={name}>
+              <input
+                type="checkbox"
+                className="scope__checkbox"
+                onChange={handleChange}
+                name={`scopes.${name}`}
+                id={`checkbox-scope-${name}`}
+                disabled={disabledApplication || mandatory}
+                checked={selectedScopes[name]}
+              />
+              <label
+                htmlFor={`checkbox-scope-${name}`}
+                className="label-inline"
+              >
+                {humanName}
+                {mandatory && <i> (nécessaire)</i>}
+              </label>
+            </div>
           ))}
         </div>
       </div>
