@@ -315,6 +315,12 @@ class Form extends React.Component {
 
         <ScrollablePanel scrollableId="description">
           <h2>Description de votre cas d'usage</h2>
+          <div className="text-quote">
+            Décrivez brièvement la raison pour laquelle vous collectez des
+            données à caractère personnel, c'est-à-dire l&apos;objectif qui est
+            est poursuivi par le traitement que vous mettez en place.
+          </div>
+          <br />
           <div className="form__group">
             <label htmlFor="intitule">Intitulé</label>
             <input
@@ -322,6 +328,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               name="intitule"
               id="intitule"
+              placeholder="« Se connecter au portail famille de ma ville »"
               readOnly={disabledApplication}
               value={intitule}
             />
@@ -330,19 +337,15 @@ class Form extends React.Component {
             </small>
           </div>
           <div className="form__group">
-            <label htmlFor="description">
-              Décrivez brièvement la raison pour laquelle vous collectez des
-              données à caractère personnel, c'est-à-dire l&apos;objectif qui
-              est poursuivi par le traitement que vous mettez en place.
-            </label>
+            <label htmlFor="intitule">Description détailée</label>
             <textarea
               rows="10"
               onChange={this.handleChange}
               name="description"
               id="description"
+              placeholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagés »"
               readOnly={disabledApplication}
               value={description}
-              placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
             />
           </div>
         </ScrollablePanel>
@@ -356,6 +359,7 @@ class Form extends React.Component {
               onChange={this.handleChange}
               additional_content={additional_content}
             />
+            <br />
 
             {Object.keys(groupTitleScopesGroup).map(group => (
               <Scopes
