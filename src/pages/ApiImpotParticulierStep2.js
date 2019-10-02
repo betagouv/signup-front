@@ -10,7 +10,7 @@ import RecetteFonctionnelleSection from '../components/form-sections/dgfip/Recet
 
 const target_api = 'api_impot_particulier_step_2';
 
-const title = "Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2";
+const title = "Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2";
 
 export const RecetteFonctionnelleDescription = () => (
   <div className="text-quote">
