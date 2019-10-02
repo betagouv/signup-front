@@ -72,6 +72,9 @@ const CadreJuridiqueDescription = () => (
 
 // Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => <React.Fragment />;
+
+const groupTitle =
+  'Attention, les données ci-dessous ne sont pas vérifiées et ne seront fournies que si elles sont disponibles';
 const availableScopes = [
   {
     name: 'openid',
@@ -110,16 +113,18 @@ const availableScopes = [
   { name: 'gender', humanName: 'Sexe' },
   {
     name: 'preferred_username',
-    humanName: "Nom d'usage (donnée non vérifiée et fournie si disponible)",
+    humanName: "Nom d'usage",
+    groupTitle,
   },
   {
     name: 'address',
-    humanName: 'Adresse postale (donnée non vérifiée et fournie si disponible)',
+    humanName: 'Adresse postale',
+    groupTitle,
   },
   {
     name: 'phone',
-    humanName:
-      'Numéro de téléphone (donnée non vérifiée et fournie si disponible)',
+    humanName: 'Numéro de téléphone',
+    groupTitle,
   },
 ];
 

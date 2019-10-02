@@ -656,7 +656,7 @@ Form.defaultProps = {
   DonneesDescription: () => <></>,
   CguDescription: () => <></>,
   AdditionalRgpdAgreement: () => <></>,
-  AdditionalDataContent: () => <></>,
+  AdditionalContent: () => <></>,
   AdditionalCguContent: () => <></>,
 };
 
