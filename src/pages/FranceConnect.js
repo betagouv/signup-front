@@ -74,7 +74,7 @@ const CadreJuridiqueDescription = () => (
 const DonneesDescription = () => <React.Fragment />;
 
 const groupTitle =
-  'Attention, les données ci-dessous ne sont pas vérifiées et ne seront fournies que si elles sont disponibles';
+  'Les données ci-dessous ne sont pas vérifiées et ne seront fournies que si elles sont disponibles';
 const availableScopes = [
   {
     name: 'openid',
