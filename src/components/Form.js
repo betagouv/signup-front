@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import {
+  groupBy,
   isEmpty,
   isObject,
   omitBy,
@@ -21,6 +22,7 @@ import OrganizationSelector from './form/OrganizationSelector';
 import { ScrollablePanel } from './elements/Scrollable';
 import { RgpdContact } from './form/RgpdContact';
 import { Contact } from './form/Contact';
+import Scopes from './form/Scopes';
 
 class Form extends React.Component {
   constructor(props) {
@@ -251,12 +253,16 @@ class Form extends React.Component {
       DonneesDescription,
       availableScopes,
       AdditionalRgpdAgreement,
-      AdditionalDataContent,
       AdditionalCguContent,
       AdditionalContent,
     } = this.props;
 
     const disabledApplication = !acl.send_application;
+
+    const groupTitleScopesGroup = groupBy(
+      availableScopes,
+      e => e.groupTitle || 'default'
+    );
 
     return (
       <>
@@ -350,43 +356,21 @@ class Form extends React.Component {
               onChange={this.handleChange}
               additional_content={additional_content}
             />
-            <div className="form__group">
-              <fieldset className="vertical">
-                <label>
-                  Sélectionnez les données nécessaires à votre cas d'usage
-                </label>
-                <div className="row">
-                  <div className="column">
-                    {availableScopes.map(({ name, humanName, mandatory }) => (
-                      <div key={name}>
-                        <input
-                          type="checkbox"
-                          className="scope__checkbox"
-                          onChange={this.handleChange}
-                          name={`scopes.${name}`}
-                          id={`checkbox-scope-${name}`}
-                          disabled={disabledApplication || mandatory}
-                          checked={scopes[name]}
-                        />
-                        <label
-                          htmlFor={`checkbox-scope-${name}`}
-                          className="label-inline"
-                        >
-                          {humanName}
-                          {mandatory && <i> (nécessaire)</i>}
-                        </label>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </fieldset>
-            </div>
 
-            <AdditionalDataContent
-              disabled={disabledApplication}
-              onChange={this.handleChange}
-              additional_content={additional_content}
-            />
+            {Object.keys(groupTitleScopesGroup).map(group => (
+              <Scopes
+                key={group}
+                title={
+                  group === 'default'
+                    ? 'Sélectionnez les données nécessaires à votre cas d’usage'
+                    : group
+                }
+                scopes={groupTitleScopesGroup[group]}
+                selectedScopes={scopes}
+                disabledApplication={disabledApplication}
+                handleChange={this.handleChange}
+              />
+            ))}
           </ScrollablePanel>
         )}
 
@@ -646,7 +630,6 @@ Form.propTypes = {
   CguDescription: PropTypes.func,
   cguLink: PropTypes.string.isRequired,
   AdditionalRgpdAgreement: PropTypes.func,
-  AdditionalDataContent: PropTypes.func,
   AdditionalContent: PropTypes.func,
   AdditionalCguContent: PropTypes.func,
   history: PropTypes.shape({
@@ -668,7 +651,6 @@ Form.defaultProps = {
   DonneesDescription: () => <></>,
   CguDescription: () => <></>,
   AdditionalRgpdAgreement: () => <></>,
-  AdditionalDataContent: () => <></>,
   AdditionalContent: () => <></>,
   AdditionalCguContent: () => <></>,
 };
