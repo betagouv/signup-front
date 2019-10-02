@@ -332,8 +332,8 @@ class Form extends React.Component {
           <div className="form__group">
             <label htmlFor="description">
               Décrivez brièvement la raison pour laquelle vous collectez des
-              données à caractère personnel, c'est-à-dire l&apos;objectif qui
-              est poursuivi par le traitement que vous mettez en place.
+              données à caractère personnel, c'est-à-dire l’objectif qui est
+              poursuivi par le traitement que vous mettez en place.
             </label>
             <textarea
               rows="10"
@@ -547,7 +547,7 @@ class Form extends React.Component {
         </ScrollablePanel>
 
         <ScrollablePanel scrollableId="cgu">
-          <h2>Modalités d&apos;utilisation</h2>
+          <h2>Modalités d’utilisation</h2>
           <CguDescription />
           <div className="form__group">
             <input
@@ -561,7 +561,7 @@ class Form extends React.Component {
             <label htmlFor="cgu_approved" className="label-inline">
               J'ai pris connaissance des{' '}
               <a href={cguLink} target="_blank" rel="noreferrer noopener">
-                modalités d&apos;utilisation
+                modalités d’utilisation
               </a>{' '}
               et je les valide. Je confirme que le DPD de mon organisation est
               informé de ma demande.
