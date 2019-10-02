@@ -22,7 +22,7 @@ import OrganizationSelector from './form/OrganizationSelector';
 import { ScrollablePanel } from './elements/Scrollable';
 import { RgpdContact } from './form/RgpdContact';
 import { Contact } from './form/Contact';
-import ScopesForm from './form/ScopesForm';
+import Scopes from './form/Scopes';
 
 class Form extends React.Component {
   constructor(props) {
@@ -358,7 +358,7 @@ class Form extends React.Component {
               additional_content={additional_content}
             />
 
-            <ScopesForm
+            <Scopes
               title="Sélectionnez les données nécessaires à votre cas d’usage"
               scopes={availableScopes.filter(scope => !scope.groupTitle)}
               selectedScopes={scopes}
@@ -367,7 +367,7 @@ class Form extends React.Component {
             />
 
             {Object.keys(groupTitleScopesGroup).map(group => (
-              <ScopesForm
+              <Scopes
                 key={group}
                 title={group}
                 scopes={groupTitleScopesGroup[group]}

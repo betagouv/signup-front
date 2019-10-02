@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import ScopeInput from './ScopeInput';
 
-const ScopesForm = ({
+const Scopes = ({
   title,
   scopes,
   selectedScopes,
@@ -32,11 +32,11 @@ const ScopesForm = ({
   </div>
 );
 
-ScopesForm.defaultProps = {
+Scopes.defaultProps = {
   disabledApplication: false,
 };
 
-ScopesForm.propTypes = {
+Scopes.propTypes = {
   title: PropTypes.string.isRequired,
   scopes: PropTypes.array.isRequired,
   selectedScopes: PropTypes.object.isRequired,
@@ -44,4 +44,4 @@ ScopesForm.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export default ScopesForm;
+export default Scopes;
