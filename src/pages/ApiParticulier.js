@@ -2,12 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import TextSection from '../components/form-sections/TextSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/form-sections/CguSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
-// Description du contexte
 const target_api = 'api_particulier';
 const title = "Demande d'accès à API Particulier";
 
-// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -29,7 +35,6 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
-const isFranceConnected = false;
 
 const contacts = {
   technique: {
@@ -58,7 +63,6 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
-// Le demandeur doit séléctionner les données auxquelles il demande l'accès
 const DonneesDescription = () => (
   <div className="text-quote">
     <p>
@@ -106,8 +110,6 @@ const availableScopes = [
   },
 ];
 
-// Le demandeur valide les modalités d'utilisation
-const CguDescription = () => <React.Fragment />;
 const cguLink = 'https://particulier.api.gouv.fr/API_Particulier_modalites.pdf';
 
 const ApiParticulier = ({
@@ -134,19 +136,21 @@ const ApiParticulier = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        contacts={contacts}
-        CadreJuridiqueDescription={CadreJuridiqueDescription}
-        DonneesDescription={DonneesDescription}
-        availableScopes={availableScopes}
-        CguDescription={CguDescription}
-        cguLink={cguLink}
-      />
+      <Form enrollmentId={enrollmentId} target_api={target_api}>
+        <TextSection title={title} Description={DemarcheDescription} />
+        <OrganisationSection />
+        <DescriptionSection />
+        <DonneesSection
+          availableScopes={availableScopes}
+          DonneesDescription={DonneesDescription}
+        />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection initialContacts={contacts} />
+        <CguSection cguLink={cguLink} />
+      </Form>
     </div>
   </div>
 );

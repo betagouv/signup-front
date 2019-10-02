@@ -9,6 +9,7 @@ import EnrollmentList from './pages/EnrollmentList';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import Stats from './pages/Stats';
 import ApiParticulier from './pages/ApiParticulier';
+import ApiImpotParticulierStep2 from './pages/ApiImpotParticulierStep2';
 import Dgfip from './pages/Dgfip';
 import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
@@ -66,6 +67,10 @@ const App = () => (
                   <PrivateRoute
                     path="/api-impot-particulier/:enrollmentId?"
                     component={ApiImpotParticulier}
+                  />
+                  <PrivateRoute
+                    path="/api-impot-particulier-step-2/:enrollmentId?"
+                    component={ApiImpotParticulierStep2}
                   />
                   <PrivateRoute
                     path="/franceconnect/:enrollmentId?"

@@ -3,13 +3,21 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
-import DgfipDataYears from '../components/form/DgfipDataYears';
+import TextSection from '../components/form-sections/TextSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import FranceconnectSection from '../components/form-sections/FranceconnectSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
+import CguSection from '../components/form-sections/CguSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
 const target_api = 'api_impot_particulier';
 
 const title = "Demande d'accès à l'API « Impôt particulier » - étape 1 sur 2";
 
-const DemarcheDescription = () => (
+export const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
@@ -45,9 +53,8 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
-const isFranceConnected = true;
 
-const CadreJuridiqueDescription = () => (
+export const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API « Impôt particulier », le
@@ -73,7 +80,7 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
-const DonneesDescription = () => (
+export const DonneesDescription = () => (
   <div className="text-quote">
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
@@ -116,7 +123,9 @@ const DonneesDescription = () => (
   </div>
 );
 
-const availableScopes = [
+const groupTitle = 'Sélectionnez les années de revenus souhaitées';
+
+export const availableScopes = [
   {
     name: 'dgfip_rfr',
     humanName: 'DGFiP - Revenu fiscal de référence (ou RFR)',
@@ -137,10 +146,19 @@ const availableScopes = [
     name: 'dgfip_aft',
     humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
   },
+  {
+    name: 'dgfip_data_years_n_moins_1',
+    humanName: 'Dernière année de revenu',
+    groupTitle,
+  },
+  {
+    name: 'dgfip_data_years_n_moins_2',
+    humanName: 'Avant-dernière année de revenu',
+    groupTitle,
+  },
 ];
 
-// Le demandeur valide les modalités d'utilisation
-const CguDescription = () => (
+export const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
@@ -150,7 +168,7 @@ const CguDescription = () => (
     </p>
   </div>
 );
-const cguLink =
+export const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
 const ApiImpotParticulier = ({
@@ -182,21 +200,23 @@ const ApiImpotParticulier = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        CadreJuridiqueDescription={CadreJuridiqueDescription}
-        DonneesDescription={DonneesDescription}
-        availableScopes={availableScopes}
-        CguDescription={CguDescription}
-        cguLink={cguLink}
-        // Le demandeur peut remplir des contenus supplémentaires
-        AdditionalRgpdAgreement={DgfipRgpdAgreement}
-        AdditionalDataContent={DgfipDataYears}
-      />
+      <Form enrollmentId={enrollmentId} target_api={target_api}>
+        <TextSection title={title} Description={DemarcheDescription} />
+        <FranceconnectSection />
+        <OrganisationSection />
+        <DescriptionSection />
+        <DonneesSection
+          availableScopes={availableScopes}
+          AdditionalRgpdAgreement={DgfipRgpdAgreement}
+          DonneesDescription={DonneesDescription}
+        />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection />
+        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+      </Form>
     </div>
   </div>
 );

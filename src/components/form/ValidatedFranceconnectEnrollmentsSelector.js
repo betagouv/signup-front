@@ -39,34 +39,15 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
             ? validatedFranceconnectEnrollmentIndex
             : 0;
 
-        const {
-          id: linked_franceconnect_enrollment_id,
-          intitule,
-          description,
-          organization_id,
-          siret,
-          contacts,
-          dpo_label,
-          dpo_email,
-          dpo_phone_number,
-          responsable_traitement_label,
-          responsable_traitement_email,
-          responsable_traitement_phone_number,
-        } = enrollments[initialIndex];
+        const { id: linked_franceconnect_enrollment_id } = enrollments[
+          initialIndex
+        ];
 
         this.props.onValidatedFranceconnectEnrollment({
-          linked_franceconnect_enrollment_id,
-          intitule,
-          description,
-          organization_id,
-          siret,
-          contacts,
-          dpo_label,
-          dpo_email,
-          dpo_phone_number,
-          responsable_traitement_label,
-          responsable_traitement_email,
-          responsable_traitement_phone_number,
+          target: {
+            name: 'linked_franceconnect_enrollment_id',
+            value: linked_franceconnect_enrollment_id,
+          },
         });
 
         return this.setState({
@@ -84,17 +65,6 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
     const {
       id: linked_franceconnect_enrollment_id,
-      intitule,
-      description,
-      organization_id,
-      siret,
-      contacts,
-      dpo_label,
-      dpo_email,
-      dpo_phone_number,
-      responsable_traitement_label,
-      responsable_traitement_email,
-      responsable_traitement_phone_number,
     } = this.state.validatedFranceconnectEnrollments[
       validatedFranceconnectEnrollmentIndex
     ];
@@ -103,18 +73,10 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
       validatedFranceconnectEnrollmentsSelectedIndex: validatedFranceconnectEnrollmentIndex,
     });
     this.props.onValidatedFranceconnectEnrollment({
-      linked_franceconnect_enrollment_id,
-      intitule,
-      description,
-      organization_id,
-      siret,
-      contacts,
-      dpo_label,
-      dpo_email,
-      dpo_phone_number,
-      responsable_traitement_label,
-      responsable_traitement_email,
-      responsable_traitement_phone_number,
+      target: {
+        name: 'linked_franceconnect_enrollment_id',
+        value: linked_franceconnect_enrollment_id,
+      },
     });
   }
 

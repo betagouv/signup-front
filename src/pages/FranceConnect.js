@@ -3,10 +3,18 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAlternativeAuthenticationMethod';
+import TextSection from '../components/form-sections/TextSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/form-sections/CguSection';
 
-// Description du contexte
 const target_api = 'franceconnect';
 const title = "Demande d'habilitation juridique à FranceConnect";
+
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -44,8 +52,6 @@ const DemarcheDescription = () => (
   </div>
 );
 
-const isFranceConnected = false;
-
 const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
@@ -70,11 +76,9 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
-// Le demandeur doit séléctionner les données auxquelles il demande l'accès
-const DonneesDescription = () => <React.Fragment />;
-
 const groupTitle =
   'Les données ci-dessous ne sont pas vérifiées et ne seront fournies que si elles sont disponibles';
+
 const availableScopes = [
   {
     name: 'openid',
@@ -128,8 +132,6 @@ const availableScopes = [
   },
 ];
 
-// Le demandeur valide les modalités d'utilisation
-const CguDescription = () => <React.Fragment />;
 const cguLink = 'https://partenaires.franceconnect.gouv.fr/cgu';
 
 const FranceConnect = ({
@@ -166,19 +168,21 @@ const FranceConnect = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        CadreJuridiqueDescription={CadreJuridiqueDescription}
-        DonneesDescription={DonneesDescription}
-        availableScopes={availableScopes}
-        CguDescription={CguDescription}
-        cguLink={cguLink}
-        AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
-      />
+      <Form enrollmentId={enrollmentId} target_api={target_api}>
+        <TextSection title={title} Description={DemarcheDescription} />
+        <OrganisationSection />
+        <DescriptionSection />
+        <DonneesSection availableScopes={availableScopes} />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection />
+        <CguSection
+          cguLink={cguLink}
+          AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
+        />
+      </Form>
     </div>
   </div>
 );
