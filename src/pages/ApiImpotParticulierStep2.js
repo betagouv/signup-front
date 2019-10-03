@@ -8,6 +8,7 @@ import EntrantsTechniquesSection from '../components/form-sections/dgfip/Entrant
 import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
 import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
 import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
 
 export const RecetteFonctionnelleDescription = () => (
   <div className="text-quote">
@@ -58,6 +59,7 @@ const ApiImpotParticulier = ({
           title="Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2"
         />
         <PreviousEnrollmentSection previousTargetApi="api_impot_particulier" />
+        <OrganisationSection />
         <HomologationSecuriteSection />
         <EntrantsTechniquesSection />
         <VolumetrieSection />
