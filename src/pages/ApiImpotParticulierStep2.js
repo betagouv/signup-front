@@ -10,6 +10,28 @@ import RecetteFonctionnelleSection from '../components/form-sections/dgfip/Recet
 import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 
+const DemarcheDescription = () => (
+  <div className="text-quote">
+    <p>
+      Demande d'accès à l'API Impot particulier étape 2/2 : Votre demande
+      d'habilitation pour accéder à l'API Impôt Particulier a été acceptée, vous
+      pouvez maintenant construire votre démarche/téléservice en utilisant l'API
+      exposée dans un environnement bac à sable. Parallèlement au développement,
+      vous devez remplir les informations ci-dessous. Elles sont nécessaires
+      pour obtenir l'habilitation de l'accès à l'API de production.l
+    </p>
+  </div>
+);
+
+const PreviousEnrollmentDescription = () => (
+  <div className="text-quote">
+    <p>
+      Vous devez tout d'abord sélectionner la demande que vous souhaitez
+      poursuivre parmi les demandes acceptées du formulaire 1/2.
+    </p>
+  </div>
+);
+
 export const RecetteFonctionnelleDescription = () => (
   <div className="text-quote">
     <p>
@@ -58,7 +80,10 @@ const ApiImpotParticulier = ({
           Description={() => null}
           title="Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2"
         />
-        <PreviousEnrollmentSection previousTargetApi="api_impot_particulier" />
+        <PreviousEnrollmentSection
+          previousTargetApi="api_impot_particulier"
+          Description={PreviousEnrollmentDescription}
+        />
         <OrganisationSection />
         <HomologationSecuriteSection />
         <EntrantsTechniquesSection />

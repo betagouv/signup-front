@@ -165,6 +165,49 @@ export const CguDescription = () => (
   </div>
 );
 
+export const SuiteDescription = () => (
+  <div className="text-quote">
+    <p>
+      Pour pouvoir soumettre la demande, l'ensemble des champs obligatoires doit
+      être renseigné. Compléter les champs facultatifs permet souvent une
+      instruction plus rapide. Après avoir cliqué sur "Soumettre la demande",
+      les prochaines étapes sont :
+    </p>
+    <ol>
+      <li>
+        le producteur de l'API va instruire la demande, le délai moyen
+        d'instruction est de %Tmoy%
+      </li>
+      <li>
+        En cours d'instruction, le producteur pourra vous demander des
+        informations supplémentaires, vous recevrez alors un mail d'alerte.
+      </li>
+      <li>
+        Après l'instruction, la demande peut être soit refusée, soit acceptée.
+        Vous recevrez un mail vous en informant.
+      </li>
+    </ol>
+    <p>En cas d'acceptation de votre demande :</p>
+    <ul>
+      <li>
+        le contact technique recevra par mail les informations nécessaires pour
+        accéder à l'API dans un environnement 'bac à sable'
+      </li>
+      <li>
+        vous (le demandeur) recevrez par mail un lien vers un deuxième
+        formulaire à remplir pour accéder à l'environnement 'production' de
+        l'API.
+      </li>
+    </ul>
+    <p>
+      Veuillez également noter qu'un mail est envoyé aux personnes que vous avez
+      désigné comme responsable de traitement et comme délégué à la protection
+      des données. Ce mail les informe qu'une demande les concernant a été
+      faite.
+    </p>
+  </div>
+);
+
 export const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
@@ -216,6 +259,7 @@ const ApiImpotParticulier = ({
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
         <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <TextSection Description={SuiteDescription} title="" />
       </Form>
     </div>
   </div>

@@ -13,6 +13,7 @@ const CguSection = ({
   <ScrollablePanel scrollableId="cgu">
     <h2>Modalités d&apos;utilisation</h2>
     <CguDescription />
+    <br />
     <div className="form__group">
       <input
         onChange={onChange}

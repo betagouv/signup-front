@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getUserValidatedEnrollments } from '../../lib/services';
+import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
 
 class ValidatedEnrollmentsSelector extends React.Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
   }
 
   componentDidMount() {
-    getUserValidatedEnrollments(this.props.targetApi)
+    getUserValidatedEnrollments(this.props.linkedTargetApi)
       .then(enrollments => {
         this.setState({
           validatedEnrollments: enrollments,
@@ -82,13 +83,19 @@ class ValidatedEnrollmentsSelector extends React.Component {
       isValidatedEnrollmentsLoading,
     } = this.state;
 
+    const { linkedTargetApi, enrollmentTargetApi } = this.props;
+
     if (isValidatedEnrollmentsLoading) {
       return (
         <div className="form__group">
           <h4 id="franceconnect-enrollment">
-            Association à votre demande FranceConnect
+            Association à votre demande{' '}
+            <b>{TARGET_API_LABELS[linkedTargetApi]}</b>
           </h4>
-          <p>Chargement de vos demandes FranceConnect...</p>
+          <p>
+            Chargement de vos demandes{' '}
+            <b>{TARGET_API_LABELS[linkedTargetApi]}</b>...
+          </p>
         </div>
       );
     }
@@ -98,7 +105,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
         {validatedEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
-              Vos demandes FranceConnect validées
+              Vos demandes <b>{TARGET_API_LABELS[linkedTargetApi]}</b> validées
             </label>
             <select
               onChange={this.handleValidatedEnrollmentChange}
@@ -119,13 +126,16 @@ class ValidatedEnrollmentsSelector extends React.Component {
           <div className="form__group">
             <div className="notification error">
               <p>
-                Pour demander l'accès à une API FranceConnectée, vous devez
-                avoir préalablement obtenu un accès à FranceConnect.
+                Pour demander l'accès à{' '}
+                <b>{TARGET_API_LABELS[enrollmentTargetApi]}</b>, vous devez
+                avoir préalablement obtenu un accès à{' '}
+                <b>{TARGET_API_LABELS[linkedTargetApi]}</b>.
               </p>
               <p>
                 Veuillez{' '}
-                <Link to={'/franceconnect'}>
-                  demander votre accès à FranceConnect
+                <Link to={`/${linkedTargetApi.replace(/_/g, '-')}`}>
+                  demander votre accès à{' '}
+                  <b>{TARGET_API_LABELS[linkedTargetApi]}</b>
                 </Link>{' '}
                 avant de continuer cette demande.
               </p>
@@ -140,7 +150,8 @@ class ValidatedEnrollmentsSelector extends React.Component {
 ValidatedEnrollmentsSelector.propTypes = {
   onValidatedEnrollment: PropTypes.func.isRequired,
   linked_franceconnect_enrollment_id: PropTypes.number,
-  targetApi: PropTypes.string,
+  linkedTargetApi: PropTypes.string,
+  enrollmentTargetApi: PropTypes.string,
 };
 
 ValidatedEnrollmentsSelector.defaultProps = {

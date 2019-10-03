@@ -2,16 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
 import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
+import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
 
 const PreviousEnrollmentSection = ({
   previousTargetApi = 'franceconnect',
-  isUserEnrollmentLoading = true,
-  disabled = false,
-  onChange = () => null,
-  enrollment: { linked_franceconnect_enrollment_id = null },
-}) => (
-  <ScrollablePanel scrollableId="franceconnect">
-    <h2>Demande FranceConnect associée</h2>
+  Description = () => (
     <div className="text-quote">
       <p>
         Afin de pouvoir utiliser votre bouton FranceConnect pour récupérer les
@@ -19,11 +14,21 @@ const PreviousEnrollmentSection = ({
         demande.
       </p>
     </div>
+  ),
+  isUserEnrollmentLoading = true,
+  disabled = false,
+  onChange = () => null,
+  enrollment: { linked_franceconnect_enrollment_id = null, target_api },
+}) => (
+  <ScrollablePanel scrollableId="franceconnect">
+    <h2>Demande {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+    <Description />
     <br />
     {!isUserEnrollmentLoading && !disabled && (
       <ValidatedEnrollmentsSelector
         onValidatedEnrollment={onChange}
-        targetApi={previousTargetApi}
+        linkedTargetApi={previousTargetApi}
+        enrollmentTargetApi={target_api}
         linked_franceconnect_enrollment_id={linked_franceconnect_enrollment_id}
       />
     )}
@@ -42,6 +47,7 @@ const PreviousEnrollmentSection = ({
 
 PreviousEnrollmentSection.propTypes = {
   previousTargetApi: PropTypes.string,
+  Description: PropTypes.func,
   isUserEnrollmentLoading: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
