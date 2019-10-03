@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import TextSection from '../components/form-sections/TextSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/form-sections/CguSection';
 
-// Description du contexte
-const target_api = 'api_entreprise';
-const title = "Demande d'accès à l'API Entreprise";
-
-// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -33,7 +36,6 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
-const isFranceConnected = false;
 
 const contacts = {
   metier: {
@@ -60,9 +62,6 @@ const contacts = {
   },
 };
 
-// Le demandeur doit séléctionner les données auxquelles il demande l'accès
-// Les perimètres de données ne sont pas disponibles
-// La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
 const DonneesDescription = () => (
   <div className="text-quote">
     <p>
@@ -167,10 +166,6 @@ const availableScopes = [
   },
 ];
 
-// Le demandeur valide les modalités d'utilisation
-const CguDescription = () => <React.Fragment />;
-const cguLink = 'https://entreprise.api.gouv.fr/cgu/';
-
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -178,7 +173,7 @@ const ApiEntreprise = ({
 }) => (
   <div className="dashboard">
     <Nav
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -198,18 +193,22 @@ const ApiEntreprise = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        contacts={contacts}
-        DonneesDescription={DonneesDescription}
-        availableScopes={availableScopes}
-        CguDescription={CguDescription}
-        cguLink={cguLink}
-      />
+      <Form enrollmentId={enrollmentId} target_api="api_entreprise">
+        <TextSection
+          title="Demande d'accès à l'API Entreprise"
+          Description={DemarcheDescription}
+        />
+        <OrganisationSection />
+        <DescriptionSection />
+        <DonneesSection
+          availableScopes={availableScopes}
+          DonneesDescription={DonneesDescription}
+        />
+        <CadreJuridiqueSection />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection initialContacts={contacts} />
+        <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
+      </Form>
     </div>
   </div>
 );

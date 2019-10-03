@@ -7,14 +7,7 @@ import ArrowBackIcon from './icons/arrow-back';
 import { ScrollableLink } from './elements/Scrollable';
 import LocalPhoneIcon from './icons/local-phone';
 
-const Nav = ({
-  logo,
-  navLinksGeneral,
-  titleAdditionalContent,
-  navLinksAdditionalContent,
-  contactInformation,
-  history,
-}) => {
+const Nav = ({ logo, navLinks, contactInformation, history }) => {
   const goBack = e => {
     if (isObject(history.location.state) && history.location.state.fromList) {
       return history.goBack();
@@ -48,17 +41,11 @@ const Nav = ({
               </a>
             </li>
           )}
-          {navLinksGeneral.map(({ id, label }) => (
+          {navLinks.map(({ id, label }) => (
             <ScrollableLink key={id} scrollableId={id}>
               {label}
             </ScrollableLink>
           ))}
-          {titleAdditionalContent &&
-            navLinksAdditionalContent.map(({ id, label }) => (
-              <ScrollableLink key={id} scrollableId={id}>
-                {label}
-              </ScrollableLink>
-            ))}
         </ul>
 
         {contactInformation && (
@@ -98,9 +85,7 @@ const Nav = ({
 
 Nav.propTypes = {
   logo: PropTypes.object,
-  navLinksGeneral: PropTypes.array.isRequired,
-  titleAdditionalContent: PropTypes.string,
-  navLinksAdditionalContent: PropTypes.array,
+  navLinks: PropTypes.array.isRequired,
   contactInformation: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

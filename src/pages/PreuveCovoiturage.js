@@ -2,9 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-
-const target_api = 'preuve_covoiturage';
-const title = "Demande d'accès au Registre de preuve de covoiturage";
+import TextSection from '../components/form-sections/TextSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/form-sections/CguSection';
 
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -20,7 +25,6 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
-const isFranceConnected = false;
 
 const availableScopes = [
   {
@@ -33,8 +37,6 @@ const availableScopes = [
   },
 ];
 
-const cguLink = 'https://registre-preuve-de-covoiturage.gitbook.io/produit/cgu';
-
 const PreuveCovoiturage = ({
   match: {
     params: { enrollmentId },
@@ -42,7 +44,7 @@ const PreuveCovoiturage = ({
 }) => (
   <div className="dashboard">
     <Nav
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -59,15 +61,19 @@ const PreuveCovoiturage = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        availableScopes={availableScopes}
-        cguLink={cguLink}
-      />
+      <Form enrollmentId={enrollmentId} target_api="preuve_covoiturage">
+        <TextSection
+          title="Demande d'accès au Registre de preuve de covoiturage"
+          Description={DemarcheDescription}
+        />
+        <OrganisationSection />
+        <DescriptionSection />
+        <DonneesSection availableScopes={availableScopes} />
+        <CadreJuridiqueSection />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection />
+        <CguSection cguLink="https://registre-preuve-de-covoiturage.gitbook.io/produit/cgu" />
+      </Form>
     </div>
   </div>
 );

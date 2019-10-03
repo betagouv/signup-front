@@ -70,13 +70,13 @@ export function getUserEnrollment(id) {
   );
 }
 
-export function getUserValidatedFranceconnectEnrollments() {
+export function getUserValidatedEnrollments(targetApi) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
   return (
     httpClient
       .get(
-        `${BACK_HOST}/api/enrollments/?status=validated&target_api=franceconnect&detailed=true&size=100`,
+        `${BACK_HOST}/api/enrollments/?status=validated&target_api=${targetApi}&detailed=true&size=100`,
         {
           headers: {
             'Content-Type': 'application/json',

@@ -1,0 +1,150 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { getUserValidatedEnrollments } from '../../lib/services';
+
+class ValidatedEnrollmentsSelector extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      validatedEnrollments: [],
+      validatedEnrollmentsSelectedIndex: '',
+      noValidatedEnrollments: false,
+      isValidatedEnrollmentsLoading: true,
+    };
+
+    this.handleValidatedEnrollmentChange = this.handleValidatedEnrollmentChange.bind(
+      this
+    );
+  }
+
+  componentDidMount() {
+    getUserValidatedEnrollments(this.props.targetApi)
+      .then(enrollments => {
+        this.setState({
+          validatedEnrollments: enrollments,
+          isValidatedEnrollmentsLoading: false,
+        });
+
+        if (enrollments.length === 0) {
+          return this.setState({ noValidatedEnrollments: true });
+        }
+
+        const validatedEnrollmentIndex = enrollments.findIndex(
+          ({ id }) => this.props.linked_franceconnect_enrollment_id === id
+        );
+        const initialIndex =
+          validatedEnrollmentIndex >= 0 ? validatedEnrollmentIndex : 0;
+
+        const { id: linked_franceconnect_enrollment_id } = enrollments[
+          initialIndex
+        ];
+
+        this.props.onValidatedEnrollment({
+          target: {
+            name: 'linked_franceconnect_enrollment_id',
+            value: linked_franceconnect_enrollment_id,
+          },
+        });
+
+        return this.setState({
+          validatedEnrollmentsSelectedIndex: initialIndex,
+          noValidatedEnrollments: false,
+        });
+      })
+      .catch(() => this.setState({ isValidatedEnrollmentsLoading: false }));
+  }
+
+  handleValidatedEnrollmentChange(event) {
+    const validatedEnrollmentIndex = event.target.value;
+
+    const {
+      id: linked_franceconnect_enrollment_id,
+    } = this.state.validatedEnrollments[validatedEnrollmentIndex];
+
+    this.setState({
+      validatedEnrollmentsSelectedIndex: validatedEnrollmentIndex,
+    });
+    this.props.onValidatedEnrollment({
+      target: {
+        name: 'linked_franceconnect_enrollment_id',
+        value: linked_franceconnect_enrollment_id,
+      },
+    });
+  }
+
+  render() {
+    const {
+      validatedEnrollments,
+      validatedEnrollmentsSelectedIndex,
+      noValidatedEnrollments,
+      isValidatedEnrollmentsLoading,
+    } = this.state;
+
+    if (isValidatedEnrollmentsLoading) {
+      return (
+        <div className="form__group">
+          <h4 id="franceconnect-enrollment">
+            Association à votre demande FranceConnect
+          </h4>
+          <p>Chargement de vos demandes FranceConnect...</p>
+        </div>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        {validatedEnrollments.length > 0 && (
+          <div className="form__group">
+            <label htmlFor="validated_franceconnect_enrollments">
+              Vos demandes FranceConnect validées
+            </label>
+            <select
+              onChange={this.handleValidatedEnrollmentChange}
+              id="validated_franceconnect_enrollments"
+              value={validatedEnrollmentsSelectedIndex}
+            >
+              {validatedEnrollments.map(
+                ({ intitule: name, id: key }, index) => (
+                  <option key={key} value={index}>
+                    {name}
+                  </option>
+                )
+              )}
+            </select>
+          </div>
+        )}
+        {noValidatedEnrollments && (
+          <div className="form__group">
+            <div className="notification error">
+              <p>
+                Pour demander l'accès à une API FranceConnectée, vous devez
+                avoir préalablement obtenu un accès à FranceConnect.
+              </p>
+              <p>
+                Veuillez{' '}
+                <Link to={'/franceconnect'}>
+                  demander votre accès à FranceConnect
+                </Link>{' '}
+                avant de continuer cette demande.
+              </p>
+            </div>
+          </div>
+        )}
+      </React.Fragment>
+    );
+  }
+}
+
+ValidatedEnrollmentsSelector.propTypes = {
+  onValidatedEnrollment: PropTypes.func.isRequired,
+  linked_franceconnect_enrollment_id: PropTypes.number,
+  targetApi: PropTypes.string,
+};
+
+ValidatedEnrollmentsSelector.defaultProps = {
+  linked_franceconnect_enrollment_id: null,
+};
+
+export default ValidatedEnrollmentsSelector;

@@ -44,13 +44,16 @@ export function getErrorMessages(error) {
   return [`Une erreur inconnue est survenue. ${errorMessageEnd}`];
 }
 
+const publicServicesNAFCodes = [
+  '84', // SERVICES D’ADMINISTRATION PUBLIQUE ET DE DÉFENSE ; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE
+  '85', // ENSEIGNEMENT
+  '86', // ACTIVITÉS POUR LA SANTÉ HUMAINE
+  '88', // Action sociale sans hébergement
+];
+
 const validNAFCode = {
-  api_particulier: [
-    '84', // SERVICES D’ADMINISTRATION PUBLIQUE ET DE DÉFENSE ; SERVICES DE SÉCURITÉ SOCIALE OBLIGATOIRE
-    '85', // ENSEIGNEMENT
-    '86', // ACTIVITÉS POUR LA SANTÉ HUMAINE
-    '88', // Action sociale sans hébergement
-  ],
+  api_particulier: publicServicesNAFCodes,
+  api_impot_particulier: publicServicesNAFCodes,
 };
 
 export function isValidNAFCode(provider, NAFcode) {

@@ -2,12 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
+import TextSection from '../components/form-sections/TextSection';
+import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
+import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DescriptionSection from '../components/form-sections/DescriptionSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/form-sections/CguSection';
 
-// Description du contexte
-const target_api = 'api_droits_cnam';
-const title = "Demande d'accès à l'API Droits CNAM";
-
-// Le demandeur doit décrire le contexte d'usage de l'API
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -33,17 +36,6 @@ const DemarcheDescription = () => (
     </p>
   </div>
 );
-const isFranceConnected = true;
-
-// Le demandeur doit séléctionner les données auxquelles il demande l'accès
-// Les perimètres de données ne sont pas disponibles
-// La ligne a été supprimée de la navigatrion {id: "#donnees", text: "Données"},
-const DonneesDescription = () => <React.Fragment />;
-const availableScopes = [];
-
-// Le demandeur valide les modalités d'utilisation
-const CguDescription = () => <React.Fragment />;
-const cguLink = '/docs/API_Droits_CNAM_CGU_20181210.pdf';
 
 const ApiDroitsCnam = ({
   match: {
@@ -52,7 +44,7 @@ const ApiDroitsCnam = ({
 }) => (
   <div className="dashboard">
     <Nav
-      navLinksGeneral={[
+      navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
@@ -68,17 +60,19 @@ const ApiDroitsCnam = ({
       ]}
     />
     <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={title}
-        DemarcheDescription={DemarcheDescription}
-        isFranceConnected={isFranceConnected}
-        DonneesDescription={DonneesDescription}
-        availableScopes={availableScopes}
-        CguDescription={CguDescription}
-        cguLink={cguLink}
-      />
+      <Form enrollmentId={enrollmentId} target_api="api_droits_cnam">
+        <TextSection
+          title="Demande d'accès à l'API Droits CNAM"
+          Description={DemarcheDescription}
+        />
+        <PreviousEnrollmentSection />
+        <OrganisationSection />
+        <DescriptionSection />
+        <CadreJuridiqueSection />
+        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection />
+        <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
+      </Form>
     </div>
   </div>
 );
