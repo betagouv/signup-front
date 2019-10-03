@@ -12,9 +12,6 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 
-const target_api = 'franceconnect';
-const title = "Demande d'habilitation juridique à FranceConnect";
-
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -132,8 +129,6 @@ const availableScopes = [
   },
 ];
 
-const cguLink = 'https://partenaires.franceconnect.gouv.fr/cgu';
-
 const FranceConnect = ({
   match: {
     params: { enrollmentId },
@@ -168,8 +163,11 @@ const FranceConnect = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="franceconnect">
+        <TextSection
+          title="Demande d'habilitation juridique à FranceConnect"
+          Description={DemarcheDescription}
+        />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} />
@@ -179,7 +177,7 @@ const FranceConnect = ({
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
         <CguSection
-          cguLink={cguLink}
+          cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
           AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
         />
       </Form>

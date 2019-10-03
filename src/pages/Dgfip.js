@@ -28,10 +28,6 @@ import {
 
 import { RecetteFonctionnelleDescription } from './ApiImpotParticulierStep2';
 
-const target_api = 'dgfip';
-
-const title = "Demande d'accès à l'API « Impôt particulier »";
-
 const Dgfip = ({
   match: {
     params: { enrollmentId },
@@ -64,8 +60,11 @@ const Dgfip = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="dgfip">
+        <TextSection
+          title="Demande d'accès à l'API « Impôt particulier »"
+          Description={DemarcheDescription}
+        />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />

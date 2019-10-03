@@ -13,10 +13,6 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
-const target_api = 'api_impot_particulier';
-
-const title = "Demande d'accès à l'API « Impôt particulier » - étape 1 sur 2";
-
 export const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -168,6 +164,7 @@ export const CguDescription = () => (
     </p>
   </div>
 );
+
 export const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
 
@@ -200,8 +197,11 @@ const ApiImpotParticulier = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="api_impot_particulier">
+        <TextSection
+          title="Demande d'accès à l'API « Impôt particulier » - étape 1 sur 2"
+          Description={DemarcheDescription}
+        />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />

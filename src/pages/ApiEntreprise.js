@@ -11,9 +11,6 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 
-const target_api = 'api_entreprise';
-const title = "Demande d'accès à l'API Entreprise";
-
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -169,8 +166,6 @@ const availableScopes = [
   },
 ];
 
-const cguLink = 'https://entreprise.api.gouv.fr/cgu/';
-
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -198,8 +193,11 @@ const ApiEntreprise = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="api_entreprise">
+        <TextSection
+          title="Demande d'accès à l'API Entreprise"
+          Description={DemarcheDescription}
+        />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection
@@ -209,7 +207,7 @@ const ApiEntreprise = ({
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
       </Form>
     </div>
   </div>

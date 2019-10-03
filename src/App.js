@@ -69,7 +69,7 @@ const App = () => (
                     component={ApiImpotParticulier}
                   />
                   <PrivateRoute
-                    path="/api-impot-particulier-step-2/:enrollmentId?"
+                    path="/api-impot-particulier-step2/:enrollmentId?"
                     component={ApiImpotParticulierStep2}
                   />
                   <PrivateRoute

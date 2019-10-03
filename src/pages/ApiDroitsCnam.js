@@ -11,9 +11,6 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 
-const target_api = 'api_droits_cnam';
-const title = "Demande d'accès à l'API Droits CNAM";
-
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -40,8 +37,6 @@ const DemarcheDescription = () => (
   </div>
 );
 
-const cguLink = '/docs/API_Droits_CNAM_CGU_20181210.pdf';
-
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -65,15 +60,18 @@ const ApiDroitsCnam = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="api_droits_cnam">
+        <TextSection
+          title="Demande d'accès à l'API Droits CNAM"
+          Description={DemarcheDescription}
+        />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
       </Form>
     </div>
   </div>

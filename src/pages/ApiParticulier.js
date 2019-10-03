@@ -11,9 +11,6 @@ import CguSection from '../components/form-sections/CguSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
-const target_api = 'api_particulier';
-const title = "Demande d'accès à API Particulier";
-
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -110,8 +107,6 @@ const availableScopes = [
   },
 ];
 
-const cguLink = 'https://particulier.api.gouv.fr/API_Particulier_modalites.pdf';
-
 const ApiParticulier = ({
   match: {
     params: { enrollmentId },
@@ -136,8 +131,11 @@ const ApiParticulier = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="api_particulier">
+        <TextSection
+          title="Demande d'accès à API Particulier"
+          Description={DemarcheDescription}
+        />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection
@@ -149,7 +147,7 @@ const ApiParticulier = ({
         />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="https://particulier.api.gouv.fr/API_Particulier_modalites.pdf" />
       </Form>
     </div>
   </div>

@@ -11,9 +11,6 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 
-const target_api = 'preuve_covoiturage';
-const title = "Demande d'accès au Registre de preuve de covoiturage";
-
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
@@ -40,8 +37,6 @@ const availableScopes = [
   },
 ];
 
-const cguLink = 'https://registre-preuve-de-covoiturage.gitbook.io/produit/cgu';
-
 const PreuveCovoiturage = ({
   match: {
     params: { enrollmentId },
@@ -66,15 +61,18 @@ const PreuveCovoiturage = ({
       ]}
     />
     <div className="main">
-      <Form enrollmentId={enrollmentId} target_api={target_api}>
-        <TextSection title={title} Description={DemarcheDescription} />
+      <Form enrollmentId={enrollmentId} target_api="preuve_covoiturage">
+        <TextSection
+          title="Demande d'accès au Registre de preuve de covoiturage"
+          Description={DemarcheDescription}
+        />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="https://registre-preuve-de-covoiturage.gitbook.io/produit/cgu" />
       </Form>
     </div>
   </div>
