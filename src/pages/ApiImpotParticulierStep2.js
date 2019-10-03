@@ -18,7 +18,7 @@ const DemarcheDescription = () => (
       pouvez maintenant construire votre démarche/téléservice en utilisant l'API
       exposée dans un environnement bac à sable. Parallèlement au développement,
       vous devez remplir les informations ci-dessous. Elles sont nécessaires
-      pour obtenir l'habilitation de l'accès à l'API de production.l
+      pour obtenir l'habilitation de l'accès à l'API de production.
     </p>
   </div>
 );
@@ -77,7 +77,7 @@ const ApiImpotParticulier = ({
         target_api="api_impot_particulier_step2"
       >
         <TextSection
-          Description={() => null}
+          Description={DemarcheDescription}
           title="Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2"
         />
         <PreviousEnrollmentSection
