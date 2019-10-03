@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import TextSection from '../components/form-sections/TextSection';
-import FranceconnectSection from '../components/form-sections/FranceconnectSection';
+import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
@@ -67,7 +67,7 @@ const ApiDroitsCnam = ({
     <div className="main">
       <Form enrollmentId={enrollmentId} target_api={target_api}>
         <TextSection title={title} Description={DemarcheDescription} />
-        <FranceconnectSection />
+        <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
         <CadreJuridiqueSection />

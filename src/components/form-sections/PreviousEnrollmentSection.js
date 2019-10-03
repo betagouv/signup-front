@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
-import ValidatedFranceconnectEnrollmentsSelector from '../form/ValidatedFranceconnectEnrollmentsSelector';
+import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
 
-// TODO make this component more generic and being able to link to any previously validated enrollments
-const FranceconnectSection = ({
+const PreviousEnrollmentSection = ({
+  previousTargetApi = 'franceconnect',
   isUserEnrollmentLoading = true,
   disabled = false,
   onChange = () => null,
-  enrollment: { linked_franceconnect_enrollment_id = null, target_api },
+  enrollment: { linked_franceconnect_enrollment_id = null },
 }) => (
   <ScrollablePanel scrollableId="franceconnect">
     <h2>Demande FranceConnect associée</h2>
@@ -21,8 +21,9 @@ const FranceconnectSection = ({
     </div>
     <br />
     {!isUserEnrollmentLoading && !disabled && (
-      <ValidatedFranceconnectEnrollmentsSelector
-        onValidatedFranceconnectEnrollment={onChange}
+      <ValidatedEnrollmentsSelector
+        onValidatedEnrollment={onChange}
+        targetApi={previousTargetApi}
         linked_franceconnect_enrollment_id={linked_franceconnect_enrollment_id}
       />
     )}
@@ -39,7 +40,8 @@ const FranceconnectSection = ({
   </ScrollablePanel>
 );
 
-FranceconnectSection.propTypes = {
+PreviousEnrollmentSection.propTypes = {
+  previousTargetApi: PropTypes.string,
   isUserEnrollmentLoading: PropTypes.bool,
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
@@ -49,4 +51,4 @@ FranceconnectSection.propTypes = {
   }),
 };
 
-export default FranceconnectSection;
+export default PreviousEnrollmentSection;

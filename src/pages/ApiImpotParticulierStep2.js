@@ -7,6 +7,7 @@ import HomologationSecuriteSection from '../components/form-sections/dgfip/Homol
 import EntrantsTechniquesSection from '../components/form-sections/dgfip/EntrantsTechniquesSection';
 import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
 import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
+import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 
 const target_api = 'api_impot_particulier_step_2';
 
@@ -54,6 +55,7 @@ const ApiImpotParticulier = ({
     <div className="main">
       <Form enrollmentId={enrollmentId} target_api={target_api}>
         <TextSection Description={() => null} title={title} />
+        <PreviousEnrollmentSection previousTargetApi="api_impot_particulier" />
         <HomologationSecuriteSection />
         <EntrantsTechniquesSection />
         <VolumetrieSection />

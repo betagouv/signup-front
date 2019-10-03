@@ -1,49 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { getUserValidatedFranceconnectEnrollments } from '../../lib/services';
+import { getUserValidatedEnrollments } from '../../lib/services';
 
-class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
+class ValidatedEnrollmentsSelector extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      validatedFranceconnectEnrollments: [],
-      validatedFranceconnectEnrollmentsSelectedIndex: '',
-      noValidatedFranceconnectEnrollments: false,
-      isValidatedFranceconnectEnrollmentsLoading: true,
+      validatedEnrollments: [],
+      validatedEnrollmentsSelectedIndex: '',
+      noValidatedEnrollments: false,
+      isValidatedEnrollmentsLoading: true,
     };
 
-    this.handleValidatedFranceconnectEnrollmentChange = this.handleValidatedFranceconnectEnrollmentChange.bind(
+    this.handleValidatedEnrollmentChange = this.handleValidatedEnrollmentChange.bind(
       this
     );
   }
 
   componentDidMount() {
-    getUserValidatedFranceconnectEnrollments()
+    getUserValidatedEnrollments(this.props.targetApi)
       .then(enrollments => {
         this.setState({
-          validatedFranceconnectEnrollments: enrollments,
-          isValidatedFranceconnectEnrollmentsLoading: false,
+          validatedEnrollments: enrollments,
+          isValidatedEnrollmentsLoading: false,
         });
 
         if (enrollments.length === 0) {
-          return this.setState({ noValidatedFranceconnectEnrollments: true });
+          return this.setState({ noValidatedEnrollments: true });
         }
 
-        const validatedFranceconnectEnrollmentIndex = enrollments.findIndex(
+        const validatedEnrollmentIndex = enrollments.findIndex(
           ({ id }) => this.props.linked_franceconnect_enrollment_id === id
         );
         const initialIndex =
-          validatedFranceconnectEnrollmentIndex >= 0
-            ? validatedFranceconnectEnrollmentIndex
-            : 0;
+          validatedEnrollmentIndex >= 0 ? validatedEnrollmentIndex : 0;
 
         const { id: linked_franceconnect_enrollment_id } = enrollments[
           initialIndex
         ];
 
-        this.props.onValidatedFranceconnectEnrollment({
+        this.props.onValidatedEnrollment({
           target: {
             name: 'linked_franceconnect_enrollment_id',
             value: linked_franceconnect_enrollment_id,
@@ -51,28 +49,24 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
         });
 
         return this.setState({
-          validatedFranceconnectEnrollmentsSelectedIndex: initialIndex,
-          noValidatedFranceconnectEnrollments: false,
+          validatedEnrollmentsSelectedIndex: initialIndex,
+          noValidatedEnrollments: false,
         });
       })
-      .catch(() =>
-        this.setState({ isValidatedFranceconnectEnrollmentsLoading: false })
-      );
+      .catch(() => this.setState({ isValidatedEnrollmentsLoading: false }));
   }
 
-  handleValidatedFranceconnectEnrollmentChange(event) {
-    const validatedFranceconnectEnrollmentIndex = event.target.value;
+  handleValidatedEnrollmentChange(event) {
+    const validatedEnrollmentIndex = event.target.value;
 
     const {
       id: linked_franceconnect_enrollment_id,
-    } = this.state.validatedFranceconnectEnrollments[
-      validatedFranceconnectEnrollmentIndex
-    ];
+    } = this.state.validatedEnrollments[validatedEnrollmentIndex];
 
     this.setState({
-      validatedFranceconnectEnrollmentsSelectedIndex: validatedFranceconnectEnrollmentIndex,
+      validatedEnrollmentsSelectedIndex: validatedEnrollmentIndex,
     });
-    this.props.onValidatedFranceconnectEnrollment({
+    this.props.onValidatedEnrollment({
       target: {
         name: 'linked_franceconnect_enrollment_id',
         value: linked_franceconnect_enrollment_id,
@@ -82,13 +76,13 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
   render() {
     const {
-      validatedFranceconnectEnrollments,
-      validatedFranceconnectEnrollmentsSelectedIndex,
-      noValidatedFranceconnectEnrollments,
-      isValidatedFranceconnectEnrollmentsLoading,
+      validatedEnrollments,
+      validatedEnrollmentsSelectedIndex,
+      noValidatedEnrollments,
+      isValidatedEnrollmentsLoading,
     } = this.state;
 
-    if (isValidatedFranceconnectEnrollmentsLoading) {
+    if (isValidatedEnrollmentsLoading) {
       return (
         <div className="form__group">
           <h4 id="franceconnect-enrollment">
@@ -101,17 +95,17 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
 
     return (
       <React.Fragment>
-        {validatedFranceconnectEnrollments.length > 0 && (
+        {validatedEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
               Vos demandes FranceConnect validées
             </label>
             <select
-              onChange={this.handleValidatedFranceconnectEnrollmentChange}
+              onChange={this.handleValidatedEnrollmentChange}
               id="validated_franceconnect_enrollments"
-              value={validatedFranceconnectEnrollmentsSelectedIndex}
+              value={validatedEnrollmentsSelectedIndex}
             >
-              {validatedFranceconnectEnrollments.map(
+              {validatedEnrollments.map(
                 ({ intitule: name, id: key }, index) => (
                   <option key={key} value={index}>
                     {name}
@@ -121,7 +115,7 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
             </select>
           </div>
         )}
-        {noValidatedFranceconnectEnrollments && (
+        {noValidatedEnrollments && (
           <div className="form__group">
             <div className="notification error">
               <p>
@@ -143,13 +137,14 @@ class ValidatedFranceconnectEnrollmentsSelector extends React.Component {
   }
 }
 
-ValidatedFranceconnectEnrollmentsSelector.propTypes = {
-  onValidatedFranceconnectEnrollment: PropTypes.func.isRequired,
+ValidatedEnrollmentsSelector.propTypes = {
+  onValidatedEnrollment: PropTypes.func.isRequired,
   linked_franceconnect_enrollment_id: PropTypes.number,
+  targetApi: PropTypes.string,
 };
 
-ValidatedFranceconnectEnrollmentsSelector.defaultProps = {
+ValidatedEnrollmentsSelector.defaultProps = {
   linked_franceconnect_enrollment_id: null,
 };
 
-export default ValidatedFranceconnectEnrollmentsSelector;
+export default ValidatedEnrollmentsSelector;
