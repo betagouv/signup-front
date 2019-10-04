@@ -9,6 +9,14 @@ const DescriptionSection = ({
 }) => (
   <ScrollablePanel scrollableId="description">
     <h2>Description de votre cas d'usage</h2>
+    <div className="text-quote">
+      <p>
+        Décrivez brièvement la raison pour laquelle vous collectez des données à
+        caractère personnel, c'est-à-dire l&apos;objectif qui est est poursuivi
+        par le traitement que vous mettez en place.
+      </p>
+    </div>
+    <br />
     <div className="form__group">
       <label htmlFor="intitule">Intitulé</label>
       <input
@@ -16,6 +24,7 @@ const DescriptionSection = ({
         onChange={onChange}
         name="intitule"
         id="intitule"
+        placeholder="« Se connecter au portail famille de ma ville »"
         readOnly={disabled}
         value={intitule}
       />
@@ -24,11 +33,7 @@ const DescriptionSection = ({
       </small>
     </div>
     <div className="form__group">
-      <label htmlFor="description">
-        Décrivez brièvement la raison pour laquelle vous collectez des données à
-        caractère personnel, c'est-à-dire l&apos;objectif qui est poursuivi par
-        le traitement que vous mettez en place.
-      </label>
+      <label htmlFor="intitule">Description détaillée</label>
       <textarea
         rows="10"
         onChange={onChange}
@@ -36,7 +41,7 @@ const DescriptionSection = ({
         id="description"
         readOnly={disabled}
         value={description}
-        placeholder="« se connecter au portail famille de ma ville », « accèder à son compte personnel de mutuelle », etc."
+        placeholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagés »"
       />
     </div>
   </ScrollablePanel>
