@@ -52,9 +52,6 @@ const DonneesPersonnellesSection = ({
     <div className="form__group">
       <label htmlFor="data_retention_period">
         Durée de conservation des données en mois
-        <Helper
-          title={'à compter de la cessation de la relation contractuelle'}
-        />
       </label>
       <input
         type="number"
