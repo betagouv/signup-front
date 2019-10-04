@@ -17,14 +17,14 @@ export const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l'API « Impôt particulier »
+      les démarches administratives des usagers, l’API « Impôt particulier »
       permet l’échange d’informations fiscales entre la DGFiP et une
-      administration ou collectivité dans le cadre d'un téléservice. L'usager
-      FranceConnecté n'a plus besoin de transmettre son avis d'imposition.
+      administration ou collectivité dans le cadre d’un téléservice. L’usager
+      FranceConnecté n'a plus besoin de transmettre son avis d’imposition.
     </p>
     <p>
       Ce portail vous permet en qualité de fournisseur de service de demander le
-      raccordement de votre téléservice à l'API « Impôt particulier ».
+      raccordement de votre téléservice à l’API « Impôt particulier ».
     </p>
     <p>
       Pour cela, il vous est demandé de compléter le plus précisément possible
@@ -34,10 +34,10 @@ export const DemarcheDescription = () => (
       <li>le fondement juridique ;</li>
       <li>les données nécessaires à la démarche administrative ;</li>
       <li>la protection des données personnelles ;</li>
-      <li>la volumétrie de sollicitation de l'API.</li>
+      <li>la volumétrie de sollicitation de l’API.</li>
     </ul>
     <p>
-      Pour faciliter votre raccordement à l'API « Impôt particulier », une{' '}
+      Pour faciliter votre raccordement à l’API « Impôt particulier », une{' '}
       <a
         href="https://github.com/france-connect/service-provider-example/"
         target="_blank"
@@ -59,16 +59,16 @@ export const CadreJuridiqueDescription = () => (
       administrative.
     </p>
     <p>
-      Conformément au Code des relations entre le public et l'administration,
-      l'échange de données s'impose aux administrations dès lors que :
+      Conformément au Code des relations entre le public et l’administration,
+      l’échange de données s’impose aux administrations dès lors que :
     </p>
     <ul>
       <li>
-        ces données sont nécessaires au traitement d'une demande présentée par
+        ces données sont nécessaires au traitement d’une demande présentée par
         un usager ;
       </li>
       <li>
-        l'administration destinataire est habilitée à connaître ces données dans
+        l’administration destinataire est habilitée à connaître ces données dans
         le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
         n°2016-1321 du 7 octobre 2016 - art. 91 )
       </li>
@@ -105,7 +105,7 @@ export const DonneesDescription = () => (
       CNIL.
     </p>
     <p>
-      Des précisions sur les données proposées par l'API impôt particulier sont
+      Des précisions sur les données proposées par l’API impôt particulier sont
       disponibles sur{' '}
       <a
         href="/docs/Description_des_donnees_de_l_API_impot_particulier.pdf"
@@ -168,35 +168,35 @@ export const CguDescription = () => (
 export const SuiteDescription = () => (
   <div className="text-quote">
     <p>
-      Pour pouvoir soumettre la demande, l'ensemble des champs obligatoires doit
+      Pour pouvoir soumettre la demande, l’ensemble des champs obligatoires doit
       être renseigné. Compléter les champs facultatifs permet souvent une
-      instruction plus rapide. Après avoir cliqué sur "Soumettre la demande",
+      instruction plus rapide. Après avoir cliqué sur « Soumettre la demande »,
       les prochaines étapes sont :
     </p>
     <ol>
       <li>
-        Le fournisseur de données de l'API va instruire la demande, le délai
-        d'instruction est de 15 jours ouvrés.
+        Le fournisseur de données de l’API va instruire la demande, le délai
+        d’instruction est de 15 jours ouvrés.
       </li>
       <li>
-        En cours d'instruction, le fournisseur de données pourra vous demander
-        des informations supplémentaires, vous recevrez alors un mail d'alerte.
+        En cours d’instruction, le fournisseur de données pourra vous demander
+        des informations supplémentaires, vous recevrez alors un mail d’alerte.
       </li>
       <li>
-        Après l'instruction, la demande peut être soit refusée, soit acceptée.
+        Après l’instruction, la demande peut être soit refusée, soit acceptée.
         Vous recevrez un mail vous en informant.
       </li>
     </ol>
-    <p>En cas d'acceptation de votre demande :</p>
+    <p>En cas d’acceptation de votre demande :</p>
     <ul>
       <li>
         Le contact technique recevra par mail les informations nécessaires pour
-        accéder à l'API dans un environnement 'bac à sable'
+        accéder à l’API dans un environnement « bac à sable »
       </li>
       <li>
         Vous (le demandeur) recevrez par mail un lien vers un deuxième
-        formulaire à remplir pour accéder à l'environnement 'production' de
-        l'API.
+        formulaire à remplir pour accéder à l’environnement « production », de
+        l’API.
       </li>
     </ul>
     <p>
@@ -228,7 +228,7 @@ const ApiImpotParticulier = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -242,7 +242,7 @@ const ApiImpotParticulier = ({
     <div className="main">
       <Form enrollmentId={enrollmentId} target_api="api_impot_particulier">
         <TextSection
-          title="Demande d'accès à l'API « Impôt particulier » - étape 1 sur 2"
+          title="Demande d’accès à l’API « Impôt particulier » - étape 1 sur 2"
           Description={DemarcheDescription}
         />
         <PreviousEnrollmentSection />
