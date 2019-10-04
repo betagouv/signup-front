@@ -176,7 +176,7 @@ export const SuiteDescription = () => (
     <ol>
       <li>
         Le fournisseur de données de l'API va instruire la demande, le délai
-        d'instruction est de %Tmoy%
+        d'instruction est de 15 jours ouvrés.
       </li>
       <li>
         En cours d'instruction, le fournisseur de données pourra vous demander
