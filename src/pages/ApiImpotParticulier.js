@@ -105,8 +105,8 @@ export const DonneesDescription = () => (
       CNIL.
     </p>
     <p>
-      Des précisions sur les données proposées par l’API impôt particulier sont
-      disponibles sur{' '}
+      Des précisions sur les données proposées par l’API « Impôt
+      particulier » sont disponibles sur{' '}
       <a
         href="/docs/Description_des_donnees_de_l_API_impot_particulier.pdf"
         target="_blank"
