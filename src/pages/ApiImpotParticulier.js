@@ -175,12 +175,12 @@ export const SuiteDescription = () => (
     </p>
     <ol>
       <li>
-        le producteur de l'API va instruire la demande, le délai moyen
+        Le fournisseur de données de l'API va instruire la demande, le délai
         d'instruction est de %Tmoy%
       </li>
       <li>
-        En cours d'instruction, le producteur pourra vous demander des
-        informations supplémentaires, vous recevrez alors un mail d'alerte.
+        En cours d'instruction, le fournisseur de données pourra vous demander
+        des informations supplémentaires, vous recevrez alors un mail d'alerte.
       </li>
       <li>
         Après l'instruction, la demande peut être soit refusée, soit acceptée.
@@ -190,11 +190,11 @@ export const SuiteDescription = () => (
     <p>En cas d'acceptation de votre demande :</p>
     <ul>
       <li>
-        le contact technique recevra par mail les informations nécessaires pour
+        Le contact technique recevra par mail les informations nécessaires pour
         accéder à l'API dans un environnement 'bac à sable'
       </li>
       <li>
-        vous (le demandeur) recevrez par mail un lien vers un deuxième
+        Vous (le demandeur) recevrez par mail un lien vers un deuxième
         formulaire à remplir pour accéder à l'environnement 'production' de
         l'API.
       </li>
