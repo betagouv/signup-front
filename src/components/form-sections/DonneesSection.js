@@ -43,6 +43,7 @@ const DonneesSection = ({
         onChange={onChange}
         additional_content={additional_content}
       />
+      <br />
       {Object.keys(groupTitleScopesGroup).map(group => (
         <Scopes
           key={group}
