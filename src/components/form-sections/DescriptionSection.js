@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
+import Helper from '../elements/Helper';
 
 const DescriptionSection = ({
   disabled = false,
@@ -10,7 +11,10 @@ const DescriptionSection = ({
   <ScrollablePanel scrollableId="description">
     <h2>Description de votre cas d'usage</h2>
     <div className="form__group">
-      <label htmlFor="intitule">Intitulé</label>
+      <label htmlFor="intitule">
+        Nom du service
+        <Helper title="Il doit permettre de facilité l’identification de votre service auprès du fournisseur de données" />
+      </label>
       <input
         type="text"
         onChange={onChange}
