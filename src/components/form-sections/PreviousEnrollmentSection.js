@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
 import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
 import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
-import { hasAccessToEnrollment } from '../../lib/services';
+import useAccessToEnrollment from '../hooks/useAccessToEnrollment';
 
 const PreviousEnrollmentSection = ({
   previousTargetApi = 'franceconnect',
@@ -21,24 +21,9 @@ const PreviousEnrollmentSection = ({
   onChange = () => null,
   enrollment: { linked_franceconnect_enrollment_id = null, target_api },
 }) => {
-  const [
-    hasAccessToPreviousEnrollment,
-    setHasAccessToPreviousEnrollment,
-  ] = useState(false);
-
-  useEffect(() => {
-    async function fetchHasAccessToEnrollment() {
-      if (!linked_franceconnect_enrollment_id) return null;
-
-      const result = await hasAccessToEnrollment(
-        linked_franceconnect_enrollment_id
-      );
-
-      setHasAccessToPreviousEnrollment(result);
-    }
-
-    fetchHasAccessToEnrollment();
-  }, [linked_franceconnect_enrollment_id]);
+  const hasAccessToPreviousEnrollment = useAccessToEnrollment(
+    linked_franceconnect_enrollment_id
+  );
 
   return (
     <ScrollablePanel scrollableId="franceconnect">
