@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { Contact } from '../form/Contact';
 import { ScrollablePanel } from '../elements/Scrollable';
+import { FormContext } from '../Form';
 
-const MiseEnOeuvreSection = ({
-  initialContacts = {},
-  disabled = false,
-  onChange = () => null,
-  enrollment: { contacts },
-}) => {
+const MiseEnOeuvreSection = ({ initialContacts = {} }) => {
+  const {
+    disabled,
+    onChange,
+    enrollment: { contacts },
+  } = useContext(FormContext);
+
   // initialize contacts
   if (isEmpty(contacts)) {
     const defaultContacts = {

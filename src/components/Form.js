@@ -8,6 +8,8 @@ import { getUserEnrollment } from '../lib/services';
 import ActionButtons from './form/ActionButtons';
 import ActivityFeed from './form/ActivityFeed';
 
+export const FormContext = React.createContext();
+
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -119,22 +121,13 @@ class Form extends React.Component {
 
   render() {
     const {
-      enrollment: { acl, events },
+      enrollment,
       errorMessages,
       successMessages,
       isUserEnrollmentLoading,
     } = this.state;
 
-    let formSections = React.Children.toArray(this.props.children);
-    formSections = formSections.map(formSection =>
-      React.cloneElement(formSection, {
-        disabled: !acl.send_application,
-        onChange: this.handleChange,
-        onDocumentsChange: this.handleDocumentsChange,
-        enrollment: this.state.enrollment,
-        isUserEnrollmentLoading: this.state.isUserEnrollmentLoading,
-      })
-    );
+    const { acl, events } = enrollment;
 
     return (
       <>
@@ -146,7 +139,17 @@ class Form extends React.Component {
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
-        {formSections}
+        <FormContext.Provider
+          value={{
+            disabled: !acl.send_application,
+            onChange: this.handleChange,
+            onDocumentsChange: this.handleDocumentsChange,
+            enrollment,
+            isUserEnrollmentLoading,
+          }}
+        >
+          {this.props.children}
+        </FormContext.Provider>
 
         {successMessages.map(successMessage => (
           <div key={successMessage} className="notification success">

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
 import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
 import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
 import useAccessToEnrollment from '../hooks/useAccessToEnrollment';
+import { FormContext } from '../Form';
 
 const PreviousEnrollmentSection = ({
   previousTargetApi = 'franceconnect',
@@ -16,11 +17,14 @@ const PreviousEnrollmentSection = ({
       </p>
     </div>
   ),
-  isUserEnrollmentLoading = true,
-  disabled = false,
-  onChange = () => null,
-  enrollment: { linked_franceconnect_enrollment_id = null, target_api },
 }) => {
+  const {
+    isUserEnrollmentLoading,
+    disabled,
+    onChange,
+    enrollment: { linked_franceconnect_enrollment_id = null, target_api },
+  } = useContext(FormContext);
+
   const hasAccessToPreviousEnrollment = useAccessToEnrollment(
     linked_franceconnect_enrollment_id
   );

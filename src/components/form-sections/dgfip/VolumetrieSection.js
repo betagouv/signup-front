@@ -1,19 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { ScrollablePanel } from '../../elements/Scrollable';
+import { FormContext } from '../../Form';
 
-const VolumetrieSection = ({
-  disabled = false,
-  onChange = () => null,
-  enrollment: {
-    additional_content: {
-      nombre_demandes_annuelle = '',
-      pic_demandes_par_seconde = '',
-      nombre_demandes_mensuelles,
+const VolumetrieSection = () => {
+  const {
+    disabled,
+    onChange,
+    enrollment: {
+      additional_content: {
+        nombre_demandes_annuelle = '',
+        pic_demandes_par_seconde = '',
+        nombre_demandes_mensuelles,
+      },
     },
-  },
-}) => {
+  } = useContext(FormContext);
+
   if (!nombre_demandes_mensuelles) {
     onChange({
       target: {
