@@ -28,8 +28,8 @@ const CguSection = ({
         <a href={cguLink} target="_blank" rel="noreferrer noopener">
           modalités d&apos;utilisation
         </a>{' '}
-        et je les valide. Je confirme que le DPD de mon organisation est informé
-        de ma demande.
+        et je les valide. Je confirme que le Délégué à la protection des données
+        de mon organisation est informé de ma demande.
       </label>
     </div>
 

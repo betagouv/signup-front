@@ -27,7 +27,7 @@ const PreviousEnrollmentSection = ({
 
   return (
     <ScrollablePanel scrollableId="franceconnect">
-      <h2>Demande {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+      <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
       <Description />
       <br />
       {!isUserEnrollmentLoading && !disabled && (

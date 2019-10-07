@@ -20,8 +20,8 @@ const DescriptionSection = ({
     <br />
     <div className="form__group">
       <label htmlFor="intitule">
-        Nom du service
-        <Helper title="Il doit permettre de faciliter l’identification de votre service auprès du fournisseur de données" />
+        Nom de la démarche
+        <Helper title="Il doit permettre de faciliter l’identification de votre service, téléservice ou traitement" />
       </label>
       <input
         type="text"
@@ -45,7 +45,7 @@ const DescriptionSection = ({
         id="description"
         readOnly={disabled}
         value={description}
-        placeholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagés »"
+        placeholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
       />
     </div>
   </ScrollablePanel>

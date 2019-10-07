@@ -28,11 +28,12 @@ const HomologationSecuriteSection = ({
         administratives.
       </p>
       <p>
-        Si vous l'avez déjà fait, complétez les informations relatives à
-        l'homologation et déposez la décision formelle d’homologation (également
-        appelée attestation formelle).
+        Complétez les informations relatives à l'homologation et déposez la
+        décision formelle d’homologation (également appelée attestation
+        formelle).
       </p>
     </div>
+    <br />
     <div className="form__group">
       <label htmlFor="autorite_homologation_nom">
         Nom de l&apos;autorité d&apos;homologation

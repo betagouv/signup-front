@@ -105,7 +105,8 @@ class ValidatedEnrollmentsSelector extends React.Component {
         {validatedEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
-              Vos demandes <b>{TARGET_API_LABELS[linkedTargetApi]}</b> validées
+              Nom de la démarche <b>{TARGET_API_LABELS[linkedTargetApi]}</b>
+              &nbsp;:
             </label>
             <select
               onChange={this.handleValidatedEnrollmentChange}
