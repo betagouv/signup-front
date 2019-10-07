@@ -70,6 +70,12 @@ export function getUserEnrollment(id) {
   );
 }
 
+export function hasAccessToEnrollment(id) {
+  return getUserEnrollment(id)
+    .then(() => true)
+    .catch(() => false);
+}
+
 export function getUserValidatedEnrollments(targetApi) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
