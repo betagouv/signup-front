@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DocumentUpload from '../../form/DocumentUpload';
 import { ScrollablePanel } from '../../elements/Scrollable';
 
 const EntrantsTechniquesSection = ({
   disabled = false,
   onChange = () => null,
-  onDocumentsChange = () => null,
   enrollment: {
-    documents = [],
-    documents_attributes = [],
-    additional_content: { autorite_certification = '', ips_de_production = '' },
+    additional_content: { ips_de_production = '' },
   },
 }) => (
   <ScrollablePanel scrollableId="entrants-techniques">
@@ -29,26 +25,6 @@ const EntrantsTechniquesSection = ({
     </div>
     <br />
 
-    <DocumentUpload
-      disabled={disabled}
-      uploadedDocuments={documents}
-      documentsToUpload={documents_attributes}
-      documentType={'Document::ProductionCertificatePublicKey'}
-      handleDocumentsChange={onDocumentsChange}
-      label={'Certificat de production'}
-    />
-
-    <div className="form__group">
-      <label htmlFor="autorite_certification">Autorité de certification</label>
-      <input
-        type="text"
-        onChange={onChange}
-        name="additional_content.autorite_certification"
-        id="autorite_certification"
-        readOnly={disabled}
-        value={autorite_certification}
-      />
-    </div>
     <div className="form__group">
       <label htmlFor="ips_de_production">IPs de production</label>
       <input
@@ -70,10 +46,7 @@ const EntrantsTechniquesSection = ({
 EntrantsTechniquesSection.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  onDocumentsChange: PropTypes.func,
   enrollment: PropTypes.shape({
-    documents: PropTypes.array,
-    documents_attributes: PropTypes.array,
     additional_content: PropTypes.object,
   }),
 };
