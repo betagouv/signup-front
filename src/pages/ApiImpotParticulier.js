@@ -151,9 +151,8 @@ export const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
-      de la convention d‘adhésion fixant vos engagements et ceux de la DGFiP et
-      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
-      convention type ainsi que ses annexes.
+      des modalités d’utilisation fixant vos engagements et ceux de la DGFiP et
+      la DINSIC.
     </p>
   </div>
 );
@@ -231,7 +230,7 @@ const ApiImpotParticulier = ({
     <div className="main">
       <Form enrollmentId={enrollmentId} target_api="api_impot_particulier">
         <TextSection
-          title="Demande d’accès à l’API « Impôt particulier » - étape 1 sur 2"
+          title="Demande d’accès à l’API Impôt particulier - étape 1 sur 2"
           Description={DemarcheDescription}
         />
         <PreviousEnrollmentSection />

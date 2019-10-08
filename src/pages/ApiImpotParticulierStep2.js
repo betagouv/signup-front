@@ -13,12 +13,12 @@ import OrganisationSection from '../components/form-sections/OrganisationSection
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
-      Votre demande d'habilitation pour accéder à l'API « Impôt particulier » a
-      été acceptée, vous pouvez maintenant construire votre démarche/téléservice
-      en utilisant l'API exposée dans un environnement bac à sable.
-      Parallèlement au développement, vous devez remplir les informations
-      ci-dessous. Elles sont nécessaires pour obtenir l'habilitation de l'accès
-      à l'API de production.
+      Votre demande d'habilitation pour accéder à l'API Impôt particulier a été
+      acceptée, vous pouvez maintenant construire votre démarche/téléservice en
+      utilisant l'API exposée dans un environnement bac à sable. Parallèlement
+      au développement, vous devez remplir les informations ci-dessous. Elles
+      sont nécessaires pour obtenir l'habilitation de l'accès à l'API de
+      production.
     </p>
   </div>
 );
@@ -78,7 +78,7 @@ const ApiImpotParticulier = ({
       >
         <TextSection
           Description={DemarcheDescription}
-          title="Demande d'accès à l'API « Impôt particulier » - étape 2 sur 2"
+          title="Demande d'accès à l'API Impôt particulier - étape 2 sur 2"
         />
         <PreviousEnrollmentSection
           previousTargetApi="api_impot_particulier"

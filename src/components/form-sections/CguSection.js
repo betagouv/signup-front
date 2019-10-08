@@ -11,7 +11,7 @@ const CguSection = ({
   enrollment: { cgu_approved = false, additional_content = {} },
 }) => (
   <ScrollablePanel scrollableId="cgu">
-    <h2>Modalités d&apos;utilisation</h2>
+    <h2>Modalités d’utilisation</h2>
     <CguDescription />
     <br />
     <div className="form__group">
@@ -26,7 +26,7 @@ const CguSection = ({
       <label htmlFor="cgu_approved" className="label-inline">
         J'ai pris connaissance des{' '}
         <a href={cguLink} target="_blank" rel="noreferrer noopener">
-          modalités d&apos;utilisation
+          modalités d’utilisation
         </a>{' '}
         et je les valide. Je confirme que le délégué à la protection des données
         de mon organisation est informé de ma demande.

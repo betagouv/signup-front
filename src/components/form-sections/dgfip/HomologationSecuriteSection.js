@@ -36,7 +36,7 @@ const HomologationSecuriteSection = ({
     <br />
     <div className="form__group">
       <label htmlFor="autorite_homologation_nom">
-        Nom de l&apos;autorité d&apos;homologation
+        Nom de l’autorité d’homologation
       </label>
       <input
         type="text"
@@ -49,7 +49,7 @@ const HomologationSecuriteSection = ({
     </div>
     <div className="form__group">
       <label htmlFor="autorite_homologation_fonction">
-        Fonction de l&apos;autorité d&apos;homologation
+        Fonction de l’autorité d’homologation
       </label>
       <input
         type="text"
@@ -62,7 +62,7 @@ const HomologationSecuriteSection = ({
     </div>
     <div className="form__group">
       <label htmlFor="date_homologation">
-        Date de début l&apos;homologation
+        Date de début l’homologation
       </label>
       <input
         type="date"
@@ -75,7 +75,7 @@ const HomologationSecuriteSection = ({
     </div>
     <div className="form__group">
       <label htmlFor="date_fin_homologation">
-        Date de fin de l&apos;homologation
+        Date de fin de l’homologation
       </label>
       <input
         type="date"

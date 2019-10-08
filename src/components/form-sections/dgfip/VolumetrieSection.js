@@ -36,7 +36,7 @@ const VolumetrieSection = ({
           de vos données pour prévenir les pics de charges .
         </p>
         <p>
-          Conformément à la convention d'adhésion, nous nous réservons le droit
+          Conformément aux modalités d’utilisation, nous nous réservons le droit
           de réduire ou couper les appels autorisés au fournisseur de service.
         </p>
       </div>

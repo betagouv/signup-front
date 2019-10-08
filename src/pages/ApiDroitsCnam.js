@@ -15,13 +15,13 @@ const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l&apos;API Droits CNAM permet
-      de récupérer des informations d'assurance maladie des usagers de façon à
-      leur éviter la transmission d'information papier.
+      les démarches administratives des usagers, l’API Droits CNAM permet de
+      récupérer des informations d'assurance maladie des usagers de façon à leur
+      éviter la transmission d'information papier.
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
-      fournisseurs de service à l&apos;API Droits CNAM.
+      fournisseurs de service à l’API Droits CNAM.
     </p>
     <p>
       Pour faciliter votre racordement à l'API Droits CNAM, une{' '}
