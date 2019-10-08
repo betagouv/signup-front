@@ -151,9 +151,8 @@ export const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
-      de la convention d‘adhésion fixant vos engagements et ceux de la DGFiP et
-      la DINSIC. Les liens ci-dessous vous permettront de visualiser la
-      convention type ainsi que ses annexes.
+      des modalités d’utilisation fixant vos engagements et ceux de la DGFiP et
+      la DINSIC.
     </p>
   </div>
 );
