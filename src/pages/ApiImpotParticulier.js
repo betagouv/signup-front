@@ -17,14 +17,14 @@ export const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
-      les démarches administratives des usagers, l’API « Impôt particulier »
-      permet l’échange d’informations fiscales entre la DGFiP et une
-      administration ou collectivité dans le cadre d’un téléservice. L’usager
-      FranceConnecté n'a plus besoin de transmettre son avis d’imposition.
+      les démarches administratives des usagers, l’API Impôt particulier permet
+      l’échange d’informations fiscales entre la DGFiP et une administration ou
+      collectivité dans le cadre d’un téléservice. L’usager FranceConnecté n'a
+      plus besoin de transmettre son avis d’imposition.
     </p>
     <p>
       Ce portail vous permet en qualité de fournisseur de service de demander le
-      raccordement de votre téléservice à l’API « Impôt particulier ».
+      raccordement de votre téléservice à l’API Impôt particulier.
     </p>
     <p>
       Pour cela, il vous est demandé de compléter le plus précisément possible
@@ -37,8 +37,8 @@ export const DemarcheDescription = () => (
       <li>la volumétrie de sollicitation de l’API.</li>
     </ul>
     <p>
-      Pour faciliter votre raccordement à l’API « Impôt particulier », une API
-      de test vous sera proposée après validation de cette première étape.
+      Pour faciliter votre raccordement à l’API Impôt particulier, une API de
+      test vous sera proposée après validation de cette première étape.
     </p>
   </div>
 );
@@ -46,7 +46,7 @@ export const DemarcheDescription = () => (
 export const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
-      Pour pouvoir bénéficier du raccordement à l‘API « Impôt particulier », le
+      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
       la DGFiP de transmettre des données fiscales à votre entité
       administrative.
@@ -98,8 +98,8 @@ export const DonneesDescription = () => (
       CNIL.
     </p>
     <p>
-      Des précisions sur les données proposées par l’API « Impôt
-      particulier » sont disponibles sur{' '}
+      Des précisions sur les données proposées par l’API Impôt particulier sont
+      disponibles sur{' '}
       <a
         href="/docs/Description_des_donnees_de_l_API_impot_particulier.pdf"
         target="_blank"
@@ -150,8 +150,8 @@ export const availableScopes = [
 export const CguDescription = () => (
   <div className="text-quote">
     <p>
-      Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
-      des modalités d’utilisation.
+      Votre raccordement à l‘API Impôt particulier nécessite l‘acceptation des
+      modalités d’utilisation.
     </p>
   </div>
 );

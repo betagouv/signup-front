@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { EventItem } from './../form/ActivityFeed';
 import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
+import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
 
 const commentTypeToEventName = {
   notify: 'notified',
@@ -87,14 +88,7 @@ export default class Prompt extends React.Component {
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès.',
     }[commentType];
 
-    const teamName = {
-      franceconnect: 'FranceConnect',
-      dgfip: 'API Impôt particulier',
-      api_particulier: 'API Particulier',
-      api_droits_cnam: 'API CNAM',
-      api_entreprise: 'API Entreprise',
-      preuve_covoiturage: 'Registre de preuve de covoiturage',
-    }[targetApi];
+    const teamName = TARGET_API_LABELS[targetApi];
 
     const mailContent = `Bonjour,
 
