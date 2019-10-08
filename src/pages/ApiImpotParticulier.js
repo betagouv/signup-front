@@ -124,16 +124,12 @@ export const availableScopes = [
     humanName: 'DGFiP - nombre de parts',
   },
   {
-    name: 'dgfip_sitfam',
-    humanName: 'DGFiP - situation de famille',
-  },
-  {
-    name: 'dgfip_pac',
-    humanName: 'DGFiP - composition du foyer fiscal',
-  },
-  {
     name: 'dgfip_aft',
     humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
+  },
+  {
+    name: 'dgfip_locaux_th',
+    humanName: 'DGFiP - Données du local',
   },
   {
     name: 'dgfip_data_years_n_moins_1',
