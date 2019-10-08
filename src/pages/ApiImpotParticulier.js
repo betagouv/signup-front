@@ -151,8 +151,7 @@ export const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API « Impôt particulier » nécessite l‘acceptation
-      des modalités d’utilisation fixant vos engagements et ceux de la DGFiP et
-      la DINSIC.
+      des modalités d’utilisation.
     </p>
   </div>
 );
