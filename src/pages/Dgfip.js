@@ -62,7 +62,7 @@ const Dgfip = ({
     <div className="main">
       <Form enrollmentId={enrollmentId} target_api="dgfip">
         <TextSection
-          title="Demande d'accès à l'API « Impôt particulier »"
+          title="Demande d'accès à l'API Impôt particulier"
           Description={DemarcheDescription}
         />
         <PreviousEnrollmentSection />
