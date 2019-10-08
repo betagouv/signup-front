@@ -48,7 +48,7 @@ const RecetteFonctionnelleSection = ({
         disabled={disabled}
       />
       <label htmlFor="checkbox-recette_fonctionnelle" className="label-inline">
-        J&apos;atteste avoir réalisé une recette fonctionnelle et qualifié mon
+        J’atteste avoir réalisé une recette fonctionnelle et qualifié mon
         téléservice.
       </label>
     </div>

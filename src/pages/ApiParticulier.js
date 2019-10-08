@@ -14,14 +14,14 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
-      Pour avoir accès à l&apos;API Particulier, diffusant des données
-      personnelles, vous devez obtenir un agrément. L&apos;accès à cette API
-      n&apos;est pour l&apos;instant disponible que si vous êtes:
+      Pour avoir accès à l’API Particulier, diffusant des données
+      personnelles, vous devez obtenir un agrément. L’accès à cette API
+      n’est pour l’instant disponible que si vous êtes:
     </p>
     <ul>
       <li>une administration</li>
       <li>
-        une entreprise prestataire d&apos;une administration ou ayant une
+        une entreprise prestataire d’une administration ou ayant une
         délégation de service public
       </li>
     </ul>
