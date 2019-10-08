@@ -15,7 +15,7 @@ const EntrantsTechniquesSection = ({
       <p>
         Afin de permettre la liaison technique entre votre SI et celui de la
         DGFiP, vous devez fournir les adresses IP des serveurs qui vont
-        communiquer avec l'API « Impôt particulier ».
+        communiquer avec l'API Impôt particulier.
       </p>
       <p>
         Afin de permettre votre mise en production dans les meilleures
