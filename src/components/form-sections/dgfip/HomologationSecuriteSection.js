@@ -28,7 +28,7 @@ const HomologationSecuriteSection = ({
         administratives.
       </p>
       <p>
-        Complétez les informations relatives à l'homologation et déposez la
+        Complétez les informations relatives à l’homologation et déposez la
         décision formelle d’homologation (également appelée attestation
         formelle).
       </p>
