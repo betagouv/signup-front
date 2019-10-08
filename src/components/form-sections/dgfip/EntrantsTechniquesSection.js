@@ -18,24 +18,17 @@ const EntrantsTechniquesSection = ({
     <div className="text-quote">
       <p>
         Afin de permettre la liaison technique entre votre SI et celui de la
-        DGFiP, vous devez fournir les entrants techniques suivants :
+        DGFiP, vous devez fournir les adresses IP des serveurs qui vont
+        communiquer avec l'API « Impôt particulier ».
       </p>
-      <ul>
-        <li>
-          adresses IP des serveurs qui vont communiquer avec l'API « impôt
-          particulier »
-        </li>
-        <li>
-          partie publique d’un certificat client RGS V2.0 en cours de validité
-          avec son autorité de certification émettrice
-        </li>
-      </ul>
       <p>
         Afin de permettre votre mise en production dans les meilleures
         conditions possibles, veuillez vous assurer de la qualité de ces
         livrables techniques.
       </p>
     </div>
+    <br />
+
     <DocumentUpload
       disabled={disabled}
       uploadedDocuments={documents}

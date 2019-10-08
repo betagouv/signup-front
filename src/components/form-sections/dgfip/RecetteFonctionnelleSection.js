@@ -22,10 +22,6 @@ const RecetteFonctionnelleSection = ({
         à votre disposition sur le portail des API de la DGFiP.
       </p>
       <p>
-        L'accès à cet environnement de test est subordonné à une pré-validation
-        de votre demande de souscription par la DGFiP.
-      </p>
-      <p>
         Le périmètre des réponses de cet environnement de test est
         fonctionnellement identique à l'environnement de production.
       </p>
@@ -35,10 +31,6 @@ const RecetteFonctionnelleSection = ({
         téléservice. L'environnement de test proposé par la DGFiP n'a donc pas
         vocation à recetter toutes les fonctionnalités du téléservice, qui
         doivent faire l'objet d'une recette interne.
-      </p>
-      <p>
-        Après pré validation de votre demande, les modalités d'accès à cet
-        environnement sont adressées par courriel à votre responsable technique.
       </p>
       <p>
         A l'issue de vos travaux, veuillez attester de la qualification de votre

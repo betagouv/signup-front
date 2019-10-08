@@ -26,8 +26,8 @@ const DemarcheDescription = () => (
 const PreviousEnrollmentDescription = () => (
   <div className="text-quote">
     <p>
-      Vous devez tout d'abord sélectionner la demande que vous souhaitez
-      poursuivre parmi les demandes acceptées du formulaire 1/2.
+      Vous devez tout d'abord sélectionner la démarche que vous souhaitez
+      poursuivre.
     </p>
   </div>
 );
@@ -57,10 +57,10 @@ const ApiImpotParticulier = ({
         alt: 'Direction générale des finances publiques',
       }}
       navLinks={[
+        { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
         { id: 'homologation-securite', label: 'Homologation de sécurité' },
         { id: 'entrants-techniques', label: 'Entrants techniques' },
         { id: 'volumetrie', label: 'Volumétrie' },
-        { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
       ]}
       contactInformation={[
         {
@@ -85,10 +85,10 @@ const ApiImpotParticulier = ({
           Description={PreviousEnrollmentDescription}
         />
         <OrganisationSection />
+        <RecetteFonctionnelleSection />
         <HomologationSecuriteSection />
         <EntrantsTechniquesSection />
         <VolumetrieSection />
-        <RecetteFonctionnelleSection />
         <TextSection
           id="entree-en-production"
           title="Entrée en production"

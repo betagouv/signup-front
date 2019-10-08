@@ -71,7 +71,7 @@ const DonneesPersonnellesSection = ({
           className="notification warning"
         >
           Cette durée excède la durée communément constatée (36 mois). Veuillez
-          justifier cette durée dans le champ ci-après:
+          justifier cette durée dans le champ ci-après&nbsp;:
         </label>
         <textarea
           rows="10"

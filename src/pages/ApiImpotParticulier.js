@@ -37,15 +37,8 @@ export const DemarcheDescription = () => (
       <li>la volumétrie de sollicitation de l’API.</li>
     </ul>
     <p>
-      Pour faciliter votre raccordement à l’API « Impôt particulier », une{' '}
-      <a
-        href="https://github.com/france-connect/service-provider-example/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        API de test
-      </a>{' '}
-      est à votre disposition.
+      Pour faciliter votre raccordement à l’API « Impôt particulier », une API
+      de test vous sera proposée après validation de cette première étape.
     </p>
   </div>
 );
@@ -174,29 +167,25 @@ export const SuiteDescription = () => (
       les prochaines étapes sont :
     </p>
     <ol>
-      <li>
-        Le fournisseur de données de l’API va instruire la demande, le délai
-        d’instruction est de 15 jours ouvrés.
-      </li>
+      <li>Le fournisseur de données de l’API va instruire la demande.</li>
       <li>
         En cours d’instruction, le fournisseur de données pourra vous demander
-        des informations supplémentaires, vous recevrez alors un mail d’alerte.
+        par courriel des informations supplémentaires.
       </li>
       <li>
-        Après l’instruction, la demande peut être soit refusée, soit acceptée.
-        Vous recevrez un mail vous en informant.
+        Après instruction, vous serez informé par courriel de l’acceptation ou
+        du refus de votre demande.
       </li>
     </ol>
     <p>En cas d’acceptation de votre demande :</p>
     <ul>
       <li>
         Le contact technique recevra par mail les informations nécessaires pour
-        accéder à l’API dans un environnement « bac à sable »
+        accéder à l’API de test.
       </li>
       <li>
-        Vous (le demandeur) recevrez par mail un lien vers un deuxième
-        formulaire à remplir pour accéder à l’environnement « production », de
-        l’API.
+        Vous recevrez par mail un lien vers un deuxième formulaire à remplir
+        pour accéder à l’API de production.
       </li>
     </ul>
     <p>
