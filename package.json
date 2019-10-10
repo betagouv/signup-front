@@ -27,7 +27,7 @@
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^3.0.1",
+    "react-scripts": "^3.2.0",
     "react-table": "^6.10.0",
     "recharts": "^1.6.2",
     "serve": "^11.0.2",
