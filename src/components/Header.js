@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withUser } from './UserContext';
+import { TARGET_API_LABELS } from '../pages/EnrollmentList';
 
 const Header = ({ user, logout }) => {
-  const displayContactLink =
-    window.location.pathname === '/' ||
-    window.location.pathname === '/stats' ||
-    window.location.pathname.startsWith('/public');
+  // Form page already has contact button, no need to display this one.
+  const displayContactLink = !Object.keys(TARGET_API_LABELS).some(target_api =>
+    window.location.pathname.startsWith(`/${target_api.replace(/_/g, '-')}`)
+  );
 
   return (
     <header className="navbar">
