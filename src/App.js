@@ -47,7 +47,7 @@ const App = () => (
                     path="/public/:targetApi?"
                     component={PublicEnrollmentList}
                   />
-                  <Route path="/stats" component={Stats} />
+                  <Route path="/stats/:targetApi?" component={Stats} />
                   <PrivateRoute exact path="/" component={EnrollmentList} />
                   <PrivateRoute
                     exact

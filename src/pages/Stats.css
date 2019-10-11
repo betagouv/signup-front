@@ -1,5 +1,5 @@
 section.stats-page {
-  padding: 2em 0;
+  padding-bottom: 2em;
 }
 
 .card .card_graph {
@@ -23,4 +23,14 @@ section.stats-page {
 
 .row + .row {
   margin-top: 2em;
+}
+
+/* tab-container */
+.tab-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab-container .nav__item {
+  padding: 1em 0;
 }

@@ -1,5 +1,5 @@
 // Source https://github.com/hyperatom/json-form-data/blob/fd7aee85de913ffed4702ffb23dedda4921026cd/src/jsonToFormData.js
-/* eslint-disable capitalized-comments,guard-for-in,max-depth,no-implicit-coercion,no-multi-assign,no-multi-spaces,no-prototype-builtins,no-return-assign,no-undef,no-unused-vars,no-var,padded-blocks,prefer-arrow-callback,semi,space-before-function-paren,space-infix-ops,unicorn/no-abusive-eslint-disable,wrap-iife */
+/* eslint-disable capitalized-comments,guard-for-in,max-depth,no-implicit-coercion,no-multi-assign,no-multi-spaces,no-prototype-builtins,no-return-assign,no-undef,no-unused-vars,no-var,padded-blocks,prefer-arrow-callback,semi,space-before-function-paren,space-infix-ops,wrap-iife */
 
 function isArray(val) {
   var toString = {}.toString;

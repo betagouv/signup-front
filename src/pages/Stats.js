@@ -16,22 +16,30 @@ import './Stats.css';
 import Spinner from '../components/icons/spinner';
 import moment from 'moment';
 import { TARGET_API_LABELS, STATUS_LABELS } from './EnrollmentList';
+import { NavLink } from 'react-router-dom';
+import { hashToQueryParams } from '../lib/utils';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
 const COLORS = ['#1A535C', '#4ECDC4', '#FF6B6B', '#FFE66D', '#50514F'];
 
-export default () => {
+export default ({
+  match: {
+    params: { targetApi },
+  },
+}) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
-      const result = await axios(`${BACK_HOST}/api/stats`);
+      const result = await axios(
+        `${BACK_HOST}/api/stats${hashToQueryParams({ target_api: targetApi })}`
+      );
       setData(result.data);
     }
 
     fetchData();
-  }, []);
+  }, [targetApi]);
 
   if (!data) {
     return (
@@ -44,6 +52,42 @@ export default () => {
   return (
     <section className="section-grey stats-page">
       <div className="container">
+        <div className="tab-container">
+          <ul className="nav__links">
+            <li className="nav__item">
+              <NavLink activeClassName={'active_link'} exact to="/stats">
+                Toutes les APIs
+              </NavLink>
+            </li>
+            <li className="nav__item">
+              <NavLink
+                activeClassName={'active_link'}
+                exact
+                to="/stats/franceconnect"
+              >
+                FranceConnect
+              </NavLink>
+            </li>
+            <li className="nav__item">
+              <NavLink
+                activeClassName={'active_link'}
+                exact
+                to="/stats/api_particulier"
+              >
+                API Particulier
+              </NavLink>
+            </li>
+            <li className="nav__item">
+              <NavLink
+                activeClassName={'active_link'}
+                exact
+                to="/stats/api_entreprise"
+              >
+                API Entreprise
+              </NavLink>
+            </li>
+          </ul>
+        </div>
         <div className="row">
           <div className="card">
             <div className="card__content">
