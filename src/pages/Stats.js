@@ -16,8 +16,10 @@ import './Stats.css';
 import Spinner from '../components/icons/spinner';
 import moment from 'moment';
 import { TARGET_API_LABELS, STATUS_LABELS } from './EnrollmentList';
+import { TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV } from './PublicEnrollmentList';
 import { NavLink } from 'react-router-dom';
 import { hashToQueryParams } from '../lib/utils';
+import Helper from '../components/elements/Helper';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
@@ -59,33 +61,17 @@ export default ({
                 Toutes les APIs
               </NavLink>
             </li>
-            <li className="nav__item">
-              <NavLink
-                activeClassName={'active_link'}
-                exact
-                to="/stats/franceconnect"
-              >
-                FranceConnect
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink
-                activeClassName={'active_link'}
-                exact
-                to="/stats/api_particulier"
-              >
-                API Particulier
-              </NavLink>
-            </li>
-            <li className="nav__item">
-              <NavLink
-                activeClassName={'active_link'}
-                exact
-                to="/stats/api_entreprise"
-              >
-                API Entreprise
-              </NavLink>
-            </li>
+            {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(targetApi => (
+              <li className="nav__item">
+                <NavLink
+                  activeClassName={'active_link'}
+                  exact
+                  to={`/stats/${targetApi}`}
+                >
+                  {TARGET_API_LABELS[targetApi]}
+                </NavLink>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="row">
@@ -110,7 +96,10 @@ export default ({
           </div>
           <div className="card">
             <div className="card__content">
-              <h3>Temps moyen de traitement des demandes</h3>
+              <h3>
+                Temps moyen de traitement des demandes
+                <Helper title="temps moyen entre la première soumission d'une demande jusqu'à sa validation ou son refus" />
+              </h3>
               <div className="card__meta">(en jours)</div>
             </div>
             <div className="card__content card_number">

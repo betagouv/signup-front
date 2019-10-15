@@ -9,6 +9,13 @@ import { getPublicValidatedEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
 import { enrollmentListStyle, TARGET_API_LABELS } from './EnrollmentList';
 
+export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
+  'franceconnect',
+  'api_particulier',
+  'api_entreprise',
+  'api_impot_particulier',
+];
+
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
@@ -140,24 +147,19 @@ class PublicEnrollmentList extends React.Component {
                     Toutes les demandes
                   </NavLink>
                 </li>
-                <li className="nav__item">
-                  <NavLink
-                    activeClassName={'active_link'}
-                    exact
-                    to="/public/franceconnect"
-                  >
-                    Demandes FranceConnect
-                  </NavLink>
-                </li>
-                <li className="nav__item">
-                  <NavLink
-                    activeClassName={'active_link'}
-                    exact
-                    to="/public/api_particulier"
-                  >
-                    Demandes API Particulier
-                  </NavLink>
-                </li>
+                {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
+                  targetApi => (
+                    <li className="nav__item">
+                      <NavLink
+                        activeClassName={'active_link'}
+                        exact
+                        to={`/public/${targetApi}`}
+                      >
+                        {TARGET_API_LABELS[targetApi]}
+                      </NavLink>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
