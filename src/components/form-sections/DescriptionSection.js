@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
 import Helper from '../elements/Helper';
 import { FormContext } from '../Form';
@@ -54,15 +53,6 @@ const DescriptionSection = () => {
       </div>
     </ScrollablePanel>
   );
-};
-
-DescriptionSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    intitule: PropTypes.string,
-    description: PropTypes.string,
-  }),
 };
 
 export default DescriptionSection;

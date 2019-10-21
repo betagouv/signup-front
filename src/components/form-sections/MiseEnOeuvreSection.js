@@ -93,12 +93,7 @@ const contactPropTypesShape = {
 
 MiseEnOeuvreSection.propTypes = {
   AdditionalMiseEnOeuvreContent: PropTypes.func,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
-  enrollment: PropTypes.shape({
-    contacts: PropTypes.shape(contactPropTypesShape),
-  }),
 };
 
 export default MiseEnOeuvreSection;

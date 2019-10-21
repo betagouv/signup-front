@@ -70,12 +70,6 @@ DonneesSection.propTypes = {
   DonneesDescription: PropTypes.func,
   AdditionalRgpdAgreement: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    additional_content: PropTypes.object,
-    scopes: PropTypes.object,
-  }),
 };
 
 export default DonneesSection;

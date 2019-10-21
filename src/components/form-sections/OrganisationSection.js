@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import { UserContext } from '../UserContext';
 import { getOrganizationInformation } from '../../lib/services';
 import { isValidNAFCode } from '../../lib/utils';
@@ -144,16 +143,6 @@ const OrganisationSection = () => {
       )}
     </ScrollablePanel>
   );
-};
-
-OrganisationSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    target_api: PropTypes.string,
-    organization_id: PropTypes.number,
-    siret: PropTypes.string,
-  }),
 };
 
 export default OrganisationSection;

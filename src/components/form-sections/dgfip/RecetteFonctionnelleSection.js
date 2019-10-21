@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../../elements/Scrollable';
 import { FormContext } from '../../Form';
 
@@ -61,14 +60,6 @@ const RecetteFonctionnelleSection = () => {
       </div>
     </ScrollablePanel>
   );
-};
-
-RecetteFonctionnelleSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    additional_content: PropTypes.object,
-  }),
 };
 
 export default RecetteFonctionnelleSection;
