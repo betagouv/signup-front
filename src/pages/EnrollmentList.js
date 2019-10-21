@@ -22,7 +22,6 @@ export const TARGET_API_LABELS = {
   api_particulier: 'API Particulier',
   franceconnect: 'FranceConnect',
   api_droits_cnam: 'API Droits CNAM',
-  dgfip: 'API Impôt particulier',
   api_impot_particulier: 'Impôt particulier',
   api_impot_particulier_step2: 'Impôt particulier 2/2',
   api_entreprise: 'API Entreprise',
