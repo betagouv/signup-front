@@ -8,13 +8,16 @@ import OrganizationPrompt from '../elements/OrganizationPrompt';
 import EditIcon from '../icons/edit';
 import Spinner from '../icons/spinner';
 import { ScrollablePanel } from '../elements/Scrollable';
+import { FormContext } from '../Form';
 
-const OrganisationSection = ({
-  isUserEnrollmentLoading = true,
-  disabled = false,
-  onChange = () => null,
-  enrollment: { organization_id = null, siret = '', target_api },
-}) => {
+const OrganisationSection = () => {
+  const {
+    disabled,
+    isUserEnrollmentLoading,
+    onChange,
+    enrollment: { organization_id = null, siret = '', target_api },
+  } = useContext(FormContext);
+
   const [title, setTitle] = useState('');
   const [adresse, setAdresse] = useState('');
   const [ville, setVille] = useState('');

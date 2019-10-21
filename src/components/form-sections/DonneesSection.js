@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../elements/Scrollable';
 import Scopes from '../form/Scopes';
+import { FormContext } from '../Form';
 
 const DonneesSection = ({
   DonneesDescription = () => null,
   AdditionalRgpdAgreement = () => null,
   availableScopes,
-  disabled = false,
-  onChange = () => null,
-  enrollment: { additional_content = {}, scopes = {} },
 }) => {
+  const {
+    disabled,
+    onChange,
+    enrollment: { additional_content = {}, scopes = {} },
+  } = useContext(FormContext);
+
   if (isEmpty(scopes)) {
     onChange({
       target: {
