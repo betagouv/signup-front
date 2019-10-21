@@ -13,7 +13,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
-export const DemarcheDescription = () => (
+const DemarcheDescription = () => (
   <div className="text-quote">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
@@ -43,7 +43,7 @@ export const DemarcheDescription = () => (
   </div>
 );
 
-export const CadreJuridiqueDescription = () => (
+const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
@@ -69,7 +69,7 @@ export const CadreJuridiqueDescription = () => (
   </div>
 );
 
-export const DonneesDescription = () => (
+const DonneesDescription = () => (
   <div className="text-quote">
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
@@ -112,9 +112,38 @@ export const DonneesDescription = () => (
   </div>
 );
 
+const DgfipProductionDate = ({
+  disabled,
+  onChange,
+  additional_content: { production_date = '' },
+}) => (
+  <div className="row">
+    <div className="form__group">
+      <label htmlFor="production_date">
+        Date souhaitée pour le raccordement à l'API Impôt particulier en
+        production
+      </label>
+      <input
+        type="date"
+        onChange={onChange}
+        disabled={disabled}
+        value={production_date}
+        name="additional_content.production_date"
+        id="production_date"
+      />
+    </div>
+  </div>
+);
+
+DgfipRgpdAgreement.propTypes = {
+  additional_content: PropTypes.object.isRequired,
+  onChange: PropTypes.func.isRequired,
+  disabled: PropTypes.bool.isRequired,
+};
+
 const groupTitle = 'Sélectionnez les années de revenus souhaitées';
 
-export const availableScopes = [
+const availableScopes = [
   {
     name: 'dgfip_rfr',
     humanName: 'DGFiP - Revenu fiscal de référence (ou RFR)',
@@ -143,7 +172,7 @@ export const availableScopes = [
   },
 ];
 
-export const CguDescription = () => (
+const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API Impôt particulier nécessite l‘acceptation des
@@ -152,7 +181,7 @@ export const CguDescription = () => (
   </div>
 );
 
-export const SuiteDescription = () => (
+const SuiteDescription = () => (
   <div className="text-quote">
     <p>
       Pour pouvoir soumettre la demande, l’ensemble des champs obligatoires doit
@@ -191,8 +220,24 @@ export const SuiteDescription = () => (
   </div>
 );
 
-export const cguLink =
+const cguLink =
   '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
+
+const contacts = {
+  technique: {
+    heading: 'Responsable technique',
+    description: () => (
+      <p>
+        Cette personne recevra les accès techniques par mail. Elle pourra
+        également être contactée par téléphone pour faciliter le raccordement à
+        l'API. Le responsable technique peut être le contact technique de votre
+        prestataire.
+      </p>
+    ),
+    email: '',
+    phone_number: '',
+  },
+};
 
 const ApiImpotParticulier = ({
   match: {
@@ -240,7 +285,10 @@ const ApiImpotParticulier = ({
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection />
+        <MiseEnOeuvreSection
+          initialContacts={contacts}
+          AdditionalMiseEnOeuvreContent={DgfipProductionDate}
+        />
         <CguSection cguLink={cguLink} CguDescription={CguDescription} />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
