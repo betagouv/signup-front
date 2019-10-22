@@ -140,6 +140,16 @@ export function getUserEnrollments({
     .then(({ data }) => data);
 }
 
+export function getUserEnrollmentsBis() {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/user`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data }) => data);
+}
+
 export function triggerEnrollment({ action, id, comment }) {
   const options = {
     event: action,

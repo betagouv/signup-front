@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
 import EnrollmentList from './pages/EnrollmentList';
+import UserEnrollments from './pages/UserEnrollments';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import Stats from './pages/Stats';
 import ApiParticulier from './pages/ApiParticulier';
@@ -54,6 +55,11 @@ const App = () => (
                     component={props => (
                       <EnrollmentList {...props} showArchived />
                     )}
+                  />
+                  <PrivateRoute
+                    exact
+                    path="/user-enrollments"
+                    component={props => <UserEnrollments {...props} />}
                   />
                   <PrivateRoute
                     path="/api-particulier/:enrollmentId?"

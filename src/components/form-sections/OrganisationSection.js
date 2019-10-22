@@ -123,7 +123,7 @@ const OrganisationSection = () => {
                 className="light inline-icon-button"
                 onClick={() => setShowPrompt(true)}
               >
-                <EditIcon />
+                <EditIcon color="#000" />
               </button>
             )}
           </div>

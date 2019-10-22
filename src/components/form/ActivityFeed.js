@@ -126,7 +126,6 @@ class ActivityFeed extends React.Component {
     return (
       <>
         <div className="event-head">
-          <h4>Activité</h4>
           <button
             className="toogle-detail"
             onClick={() => this.setState({ showDetails: !showDetails })}
