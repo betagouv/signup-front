@@ -11,7 +11,7 @@ const VolumetrieSection = () => {
     enrollment: {
       additional_content: {
         nombre_demandes_annuelle = '',
-        pic_demandes_par_seconde = '',
+        pic_demandes_par_heure = '',
         nombre_demandes_mensuelles,
       },
     },
@@ -59,17 +59,17 @@ const VolumetrieSection = () => {
         />
       </div>
       <div className="form__group">
-        <label htmlFor="pic_demandes_par_seconde">
+        <label htmlFor="pic_demandes_par_heure">
           Quel est le pic de charge (en nombre de demandes par heure)&nbsp;?
         </label>
         <input
           type="number"
           min="0"
           onChange={onChange}
-          name="additional_content.pic_demandes_par_seconde"
-          id="pic_demandes_par_seconde"
+          name="additional_content.pic_demandes_par_heure"
+          id="pic_demandes_par_heure"
           disabled={disabled}
-          value={pic_demandes_par_seconde}
+          value={pic_demandes_par_heure}
         />
       </div>
       <div className="form__group">
