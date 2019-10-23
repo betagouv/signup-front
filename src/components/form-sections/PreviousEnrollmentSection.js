@@ -69,13 +69,6 @@ const PreviousEnrollmentSection = ({
 PreviousEnrollmentSection.propTypes = {
   previousTargetApi: PropTypes.string,
   Description: PropTypes.func,
-  isUserEnrollmentLoading: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    target_api: PropTypes.string,
-    linked_franceconnect_enrollment_id: PropTypes.number,
-  }),
 };
 
 export default PreviousEnrollmentSection;

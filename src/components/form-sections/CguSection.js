@@ -51,12 +51,6 @@ CguSection.propTypes = {
   CguDescription: PropTypes.func,
   cguLink: PropTypes.string.isRequired,
   AdditionalCguContent: PropTypes.func,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    cgu_approved: PropTypes.bool,
-    additional_content: PropTypes.object,
-  }),
 };
 
 export default CguSection;

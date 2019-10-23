@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import Helper from '../elements/Helper';
 import { RgpdContact } from '../form/RgpdContact';
 import { ScrollablePanel } from '../elements/Scrollable';
@@ -109,22 +108,6 @@ const DonneesPersonnellesSection = () => {
       </div>
     </ScrollablePanel>
   );
-};
-
-DonneesPersonnellesSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    data_recipients: PropTypes.string,
-    data_retention_period: PropTypes.string,
-    data_retention_comment: PropTypes.string,
-    responsable_traitement_label: PropTypes.string,
-    responsable_traitement_email: PropTypes.string,
-    responsable_traitement_phone_number: PropTypes.string,
-    dpo_label: PropTypes.string,
-    dpo_email: PropTypes.string,
-    dpo_phone_number: PropTypes.string,
-  }),
 };
 
 export default DonneesPersonnellesSection;

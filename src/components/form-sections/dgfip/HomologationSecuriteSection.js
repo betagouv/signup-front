@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import DocumentUpload from '../../form/DocumentUpload';
 import { ScrollablePanel } from '../../elements/Scrollable';
 import { FormContext } from '../../Form';
@@ -101,17 +100,6 @@ const HomologationSecuriteSection = () => {
       />
     </ScrollablePanel>
   );
-};
-
-HomologationSecuriteSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  onDocumentsChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    documents: PropTypes.array,
-    documents_attributes: PropTypes.array,
-    additional_content: PropTypes.object,
-  }),
 };
 
 export default HomologationSecuriteSection;

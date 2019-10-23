@@ -5,11 +5,14 @@ import { Contact } from '../form/Contact';
 import { ScrollablePanel } from '../elements/Scrollable';
 import { FormContext } from '../Form';
 
-const MiseEnOeuvreSection = ({ initialContacts = {} }) => {
+const MiseEnOeuvreSection = ({
+  initialContacts = {},
+  AdditionalMiseEnOeuvreContent = () => null,
+}) => {
   const {
     disabled,
     onChange,
-    enrollment: { contacts },
+    enrollment: { contacts, additional_content = {} },
   } = useContext(FormContext);
 
   // initialize contacts
@@ -42,10 +45,15 @@ const MiseEnOeuvreSection = ({ initialContacts = {} }) => {
       <div className="text-quote">
         <p>
           Afin de fluidifier la suite de votre demande merci de renseigner les
-          contacts suivants.
+          informations suivantes.
         </p>
       </div>
       <br />
+      <AdditionalMiseEnOeuvreContent
+        disabled={disabled}
+        onChange={onChange}
+        additional_content={additional_content}
+      />
       <div className="row">
         {!isEmpty(contacts.technique) && (
           <Contact
@@ -84,12 +92,8 @@ const contactPropTypesShape = {
 };
 
 MiseEnOeuvreSection.propTypes = {
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
+  AdditionalMiseEnOeuvreContent: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
-  enrollment: PropTypes.shape({
-    contacts: PropTypes.shape(contactPropTypesShape),
-  }),
 };
 
 export default MiseEnOeuvreSection;

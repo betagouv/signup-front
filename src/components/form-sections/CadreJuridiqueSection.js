@@ -77,15 +77,6 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
 
 CadreJuridiqueSection.propTypes = {
   CadreJuridiqueDescription: PropTypes.func,
-  disabled: PropTypes.bool,
-  onChange: PropTypes.func,
-  onDocumentsChange: PropTypes.func,
-  enrollment: PropTypes.shape({
-    fondement_juridique_title: PropTypes.string,
-    fondement_juridique_url: PropTypes.string,
-    documents: PropTypes.array,
-    documents_attributes: PropTypes.array,
-  }),
 };
 
 export default CadreJuridiqueSection;
