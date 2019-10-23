@@ -65,7 +65,9 @@ const HomologationSecuriteSection = () => {
         />
       </div>
       <div className="form__group">
-        <label htmlFor="date_homologation">Date de début l’homologation</label>
+        <label htmlFor="date_homologation">
+          Date de début de l’homologation
+        </label>
         <input
           type="date"
           onChange={onChange}
