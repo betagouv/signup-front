@@ -19,6 +19,13 @@ export const STATUS_LABELS = {
   refused: 'Refusée',
 };
 
+export const API_ICONS = {
+  franceconnect: 'logo-fc.png',
+  api_droits_cnam: 'logo-cnam.jpg',
+  api_impot_particulier: 'logo-dgfip.png',
+  api_impot_particulier_step2: 'logo-dgfip.png',
+};
+
 const Enrollment = ({
   id,
   user,
@@ -53,7 +60,17 @@ const Enrollment = ({
   return (
     <div className="enrollment">
       <div className="enrollment-header">
-        <div className="fs">{TARGET_API_LABELS[target_api]}</div>
+        <div className="fs">
+          {TARGET_API_LABELS[target_api]}{' '}
+          {API_ICONS[target_api] && (
+            <div>
+              <img
+                src={`/images/${API_ICONS[target_api]}`}
+                alt={`logo ${TARGET_API_LABELS[target_api]}`}
+              />
+            </div>
+          )}
+        </div>
         <div className={`tag ${status}-tag`}>{STATUS_LABELS[status]}</div>
       </div>
 

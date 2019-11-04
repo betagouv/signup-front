@@ -14,9 +14,15 @@
 }
 
 .enrollment-header .fs {
+  display: flex;
+  align-items: center;
   font-size: 1.25em;
   font-weight: 600;
-  width: 80%;
+}
+
+.enrollment-header .fs img {
+  height: 40px;
+  margin: 0 0.5em;
 }
 
 .title {
