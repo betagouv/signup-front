@@ -6,7 +6,6 @@ import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
 import ActionButtons from './form/ActionButtons';
-import ActivityFeed from './form/ActivityFeed';
 
 export const FormContext = React.createContext();
 
@@ -25,7 +24,6 @@ class Form extends React.Component {
           update: true,
           send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
         },
-        events: [],
         target_api,
         additional_content: {},
       },
@@ -127,7 +125,7 @@ class Form extends React.Component {
       isUserEnrollmentLoading,
     } = this.state;
 
-    const { acl, events } = enrollment;
+    const { acl } = enrollment;
 
     return (
       <>
@@ -136,8 +134,6 @@ class Form extends React.Component {
             Pensez à sauvegarder régulièrement votre demande en brouillon.
           </div>
         )}
-
-        {events.length > 0 && <ActivityFeed events={events} />}
 
         <FormContext.Provider
           value={{
