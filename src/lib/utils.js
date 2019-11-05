@@ -40,6 +40,15 @@ export function getErrorMessages(error) {
     ];
   }
 
+  if (error.message === 'Network Error') {
+    return [
+      'Une erreur de connection est survenue. ' +
+        'Merci de vérifier que vous êtes bien connecté à internet. ' +
+        'Si le problème persiste, vous pouvez nous signaler cette erreur par mail à ' +
+        'contact@api.gouv.fr.',
+    ];
+  }
+
   console.error(error);
   return [`Une erreur inconnue est survenue. ${errorMessageEnd}`];
 }
