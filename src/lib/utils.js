@@ -42,9 +42,11 @@ export function getErrorMessages(error) {
 
   if (error.message === 'Network Error') {
     return [
-      'Une erreur de connection est survenue. ' +
+      'Une erreur de connection au serveur est survenue. ' +
         'Merci de vérifier que vous êtes bien connecté à internet. ' +
-        'Si le problème persiste, vous pouvez nous signaler cette erreur par mail à ' +
+        "Si vous utilisez un réseau d'entreprise, merci de signaler cette erreur à " +
+        "l'administrateur de votre réseau informatique. " +
+        'Si le problème persiste, vous pouvez nous contacter par mail à ' +
         'contact@api.gouv.fr.',
     ];
   }
