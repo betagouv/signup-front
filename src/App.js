@@ -1,5 +1,7 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
+import { isEmpty } from 'lodash';
+
 import './App.css';
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -34,21 +36,30 @@ const App = () => (
         <Header />
 
         <UserContext.Consumer>
-          {({ isLoading }) => (
+          {({ user, isLoading }) => (
             <main>
-              {isLoading && (
+              {isLoading ? (
                 <section className="section-grey loader">
                   <Spinner />
                 </section>
-              )}
-              {!isLoading && (
+              ) : (
                 <>
                   <Route
                     path="/public/:targetApi?"
                     component={PublicEnrollmentList}
                   />
                   <Route path="/stats/:targetApi?" component={Stats} />
-                  <PrivateRoute exact path="/" component={EnrollmentList} />
+
+                  <PrivateRoute
+                    exact
+                    path="/"
+                    component={
+                      user && isEmpty(user.roles)
+                        ? props => <UserEnrollments {...props} />
+                        : EnrollmentList
+                    }
+                  />
+
                   <PrivateRoute
                     exact
                     path="/archive"
@@ -56,11 +67,7 @@ const App = () => (
                       <EnrollmentList {...props} showArchived />
                     )}
                   />
-                  <PrivateRoute
-                    exact
-                    path="/user-enrollments"
-                    component={props => <UserEnrollments {...props} />}
-                  />
+
                   <PrivateRoute
                     path="/api-particulier/:enrollmentId?"
                     component={ApiParticulier}
