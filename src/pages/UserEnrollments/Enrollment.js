@@ -73,7 +73,7 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <div className={`tag ${status}-tag`}>{STATUS_LABELS[status]}</div>
+        <div className={`status ${status}`}>{STATUS_LABELS[status]}</div>
       </div>
 
       <div className="enrollment-body">

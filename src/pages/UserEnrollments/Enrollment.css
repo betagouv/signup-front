@@ -48,30 +48,30 @@
   margin-top: 2em;
 }
 
-.tag {
+.status {
   padding: 0.5em 1em;
   text-align: center;
   border-radius: 8px;
   color: var(--white);
 }
 
-.tag.pending-tag {
+.status.pending {
   background-color: var(--light-grey);
   color: var(--black);
 }
 
-.tag.sent-tag {
+.status.sent {
   background-color: var(--light-blue);
 }
 
-.tag.validated-tag {
+.status.validated {
   background-color: var(--green);
 }
 
-.tag.modification_pending-tag {
+.status.modification_pending {
   background-color: var(--orange);
 }
 
-.tag.refused-tag {
+.status.refused {
   background-color: var(--red);
 }
