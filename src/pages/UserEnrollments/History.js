@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 
 import ActivityFeed from '../../components/form/ActivityFeed';
 
-const History = ({ avProcesTime, status, events, updated_at }) => {
+const History = ({
+  averageProcessingTimeInDays,
+  status,
+  events,
+  updated_at,
+}) => {
   if (status === 'modification_pending') {
     return (
       <div className="notification warning">
@@ -16,10 +21,11 @@ const History = ({ avProcesTime, status, events, updated_at }) => {
     );
   }
 
-  if (status === 'sent' && avProcesTime > 0) {
+  if (status === 'sent' && averageProcessingTimeInDays > 0) {
     return (
       <div className="notification">
-        Le temps traitement moyen constaté est de <b>{avProcesTime} jours</b>.
+        Le temps traitement moyen constaté est de{' '}
+        <b>{averageProcessingTimeInDays} jours</b>.
       </div>
     );
   }
@@ -40,7 +46,7 @@ const History = ({ avProcesTime, status, events, updated_at }) => {
 };
 
 History.propTypes = {
-  avProcesTime: PropTypes.number.isRequired,
+  averageProcessingTimeInDays: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
 };
 

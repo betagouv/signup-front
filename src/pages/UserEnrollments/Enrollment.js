@@ -88,7 +88,7 @@ const Enrollment = ({
 
         {data && (
           <History
-            avProcesTime={
+            averageProcessingTimeInDays={
               Math.round(data.average_processing_time_in_days * 100) / 100
             }
             status={status}
