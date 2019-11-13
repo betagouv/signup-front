@@ -3,12 +3,7 @@ import PropTypes from 'prop-types';
 
 import ActivityFeed from '../../components/form/ActivityFeed';
 
-const History = ({
-  averageProcessingTimeInDays,
-  status,
-  events,
-  updated_at,
-}) => {
+const History = ({ averageProcessingTimeInDays, status, events }) => {
   if (status === 'modification_pending') {
     return (
       <div className="notification warning">
@@ -48,6 +43,7 @@ const History = ({
 History.propTypes = {
   averageProcessingTimeInDays: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
+  events: PropTypes.array.isRequired,
 };
 
 export default History;
