@@ -2,12 +2,14 @@ import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import moment from 'moment';
+
+import './Enrollment.css';
+
 import { hashToQueryParams } from '../../lib/utils';
 
 import { TARGET_API_LABELS } from '../EnrollmentList';
-import History from './History';
 
-import './Enrollment.css';
+import History from './History';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

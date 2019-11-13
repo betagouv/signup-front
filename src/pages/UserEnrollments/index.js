@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { groupBy } from 'lodash';
 
 import AddIcon from '../../components/icons/add';
-
 import Spinner from '../../components/icons/spinner';
 
 import Enrollment from './Enrollment';

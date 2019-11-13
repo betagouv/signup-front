@@ -1,12 +1,17 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { isEmpty } from 'lodash';
+import { createBrowserHistory } from 'history';
+import PiwikReactRouter from 'piwik-react-router';
 
 import './App.css';
+
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
+import { UserStore, UserContext } from './components/UserContext';
+
 import EnrollmentList from './pages/EnrollmentList';
 import UserEnrollments from './pages/UserEnrollments';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
@@ -18,9 +23,6 @@ import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import ApiImpotParticulier from './pages/ApiImpotParticulier';
-import { UserStore, UserContext } from './components/UserContext';
-import { createBrowserHistory } from 'history';
-import PiwikReactRouter from 'piwik-react-router';
 
 const history = createBrowserHistory();
 
