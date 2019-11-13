@@ -20,10 +20,7 @@ const UserEnrollments = ({ history }) => {
       setIsLoading(true);
       const enrollments = await getUserEnrollmentsBis();
 
-      const enrollmentsByOrganization = groupBy(
-        enrollments,
-        e => e.nom_raison_sociale
-      );
+      const enrollmentsByOrganization = groupBy(enrollments, e => e.siret);
 
       setEnrollmentsByOrganization(enrollmentsByOrganization);
       setIsLoading(false);
@@ -69,7 +66,9 @@ const UserEnrollments = ({ history }) => {
               <>
                 {Object.keys(enrollmentsByOrganization).map(group => (
                   <div key={group}>
-                    <div className="organisation">{group}</div>
+                    <div className="organisation">
+                      {enrollmentsByOrganization[group][0].nom_raison_sociale}
+                    </div>
                     <div className="enrollments-list">
                       {enrollmentsByOrganization[group].map(enrollment => (
                         <Enrollment
