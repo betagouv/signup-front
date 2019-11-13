@@ -9,7 +9,7 @@ import Enrollment from './Enrollment';
 
 import './UserEnrollments.css';
 
-import { getUserEnrollmentsBis } from '../../lib/services';
+import { getUserEnrollments } from '../../lib/services';
 
 const UserEnrollments = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,7 +18,7 @@ const UserEnrollments = ({ history }) => {
   useEffect(() => {
     const onFetchData = async () => {
       setIsLoading(true);
-      const enrollments = await getUserEnrollmentsBis();
+      const enrollments = await getUserEnrollments();
 
       const enrollmentsByOrganization = groupBy(enrollments, e => e.siret);
 

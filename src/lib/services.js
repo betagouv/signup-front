@@ -112,7 +112,7 @@ export function getPublicValidatedEnrollments(targetApi) {
     .then(({ data }) => data);
 }
 
-export function getUserEnrollments({
+export function getEnrollments({
   page = null,
   archived = null,
   sortBy = [],
@@ -140,7 +140,7 @@ export function getUserEnrollments({
     .then(({ data }) => data);
 }
 
-export function getUserEnrollmentsBis() {
+export function getUserEnrollments() {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/user`, {
       headers: {

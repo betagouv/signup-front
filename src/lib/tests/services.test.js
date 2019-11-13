@@ -1,6 +1,6 @@
 import nock from 'nock';
 import {
-  getUserEnrollments,
+  getEnrollments,
   getUserEnrollment,
   serializeEnrollment,
 } from '../../lib/services';
@@ -11,7 +11,7 @@ import SENT_ENROLLMENT from '../../../mock/enrollment-form/sent-enrollment';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-describe('getUserEnrollments', () => {
+describe('getEnrollments', () => {
   describe('When there is a response', () => {
     nock(BACK_HOST, {
       reqheaders: {
@@ -23,7 +23,7 @@ describe('getUserEnrollments', () => {
     UserContext.resetUserContext = jest.fn();
 
     it('should return the data', () => {
-      return getUserEnrollments({}).then(response => {
+      return getEnrollments({}).then(response => {
         expect(response).toEqual(ENROLLMENTS);
       });
     });

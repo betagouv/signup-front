@@ -6,7 +6,7 @@ import ReactTable from 'react-table';
 import _, { debounce, toPairs } from 'lodash';
 import moment from 'moment';
 
-import { getUserEnrollments } from '../lib/services';
+import { getEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
 import './EnrollmentList.css';
 
@@ -326,7 +326,7 @@ class EnrollmentList extends React.Component {
     const {
       enrollments,
       meta: { total_pages: totalPages },
-    } = await getUserEnrollments({
+    } = await getEnrollments({
       page,
       sortBy: sorted,
       filter: filtered,
