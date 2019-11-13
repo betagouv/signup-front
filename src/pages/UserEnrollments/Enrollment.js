@@ -15,7 +15,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
-  modification_pending: 'Modifications demandés',
+  modification_pending: 'Modifications demandées',
   sent: 'En cours de validation',
   validated: 'Validée',
   refused: 'Refusée',
