@@ -8,10 +8,10 @@ const History = ({ avProcesTime, status, events, updated_at }) => {
     return (
       <div className="notification warning">
         Votre demande ne peut être validée en l’état.
-        <p>
+        <div style={{ margin: '1em 0' }}>
           Merci d’effectuer les modifications demandés :
           {events.length > 0 && <ActivityFeed events={events} />}
-        </p>
+        </div>
       </div>
     );
   }
