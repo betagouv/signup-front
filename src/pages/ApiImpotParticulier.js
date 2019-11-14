@@ -252,6 +252,7 @@ const ApiImpotParticulier = ({
       logo={{
         src: `/images/${API_ICONS.api_impot_particulier}`,
         alt: 'Direction générale des finances publiques',
+        url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
         { id: 'description', label: 'Description' },

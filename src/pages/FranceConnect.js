@@ -142,6 +142,7 @@ const FranceConnect = ({
       logo={{
         src: `/images/${API_ICONS.franceconnect}`,
         alt: 'FranceConnect',
+        url: 'https://franceconnect.gouv.fr/',
       }}
       navLinks={[
         { id: 'description', label: 'Description' },

@@ -50,6 +50,7 @@ const ApiDroitsCnam = ({
       logo={{
         src: `/images/${API_ICONS.api_droits_cnam}`,
         alt: 'Caisse Nationale d’Assurance Maladie',
+        url: 'https://www.ameli.fr/',
       }}
       navLinks={[
         { id: 'description', label: 'Description' },
