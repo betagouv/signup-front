@@ -83,11 +83,9 @@ const Enrollment = ({
           <div>
             <b>N° {id}</b>
           </div>
-          {status !== 'refused' && (
-            <button className="button large" onClick={handleClick}>
-              Consulter
-            </button>
-          )}
+          <button className="button large" onClick={handleClick}>
+            Consulter
+          </button>
         </div>
       </div>
     </div>
