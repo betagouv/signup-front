@@ -57,7 +57,7 @@ const App = () => (
                     path="/"
                     component={
                       user && isEmpty(user.roles)
-                        ? props => <UserEnrollments {...props} />
+                        ? UserEnrollments
                         : EnrollmentList
                     }
                   />
