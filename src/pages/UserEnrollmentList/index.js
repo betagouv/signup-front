@@ -43,7 +43,7 @@ const UserEnrollmentList = ({ history }) => {
           <button className="button large" name="nouvelle-demande">
             Nouvelle Demande
             <div className="button-icon">
-              <AddIcon color="#fff" />
+              <AddIcon color="white" />
             </div>
           </button>
         </a>
