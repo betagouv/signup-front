@@ -6,9 +6,12 @@ import ReactTable from 'react-table';
 import _, { debounce, toPairs } from 'lodash';
 import moment from 'moment';
 
-import { getEnrollments } from '../lib/services';
-import ScheduleIcon from '../components/icons/schedule';
 import './AdminEnrollmentList.css';
+
+import { getEnrollments } from '../lib/services';
+
+import ScheduleIcon from '../components/icons/schedule';
+import AddIcon from '../components/icons/add';
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
@@ -450,10 +453,13 @@ class AdminEnrollmentList extends React.Component {
                 rowsText="lignes"
               />
             </div>
-            <p className="text-right">
+            <p className="align-right">
               <a href="https://api.gouv.fr/?filter=signup">
                 <button className="button large" name="nouvelle-demande">
                   Nouvelle Demande
+                  <div className="button-icon">
+                    <AddIcon color="#fff" />
+                  </div>
                 </button>
               </a>
             </p>

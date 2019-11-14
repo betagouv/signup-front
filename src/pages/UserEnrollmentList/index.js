@@ -45,12 +45,11 @@ const UserEnrollmentList = ({ history }) => {
       <div className="container header">
         <h2>Mes demandes</h2>
         <a href="https://api.gouv.fr/?filter=signup">
-          <button
-            className="button large"
-            style={{ display: 'flex' }}
-            name="nouvelle-demande"
-          >
-            Nouvelle Demande <AddIcon color="#fff" />
+          <button className="button large" name="nouvelle-demande">
+            Nouvelle Demande
+            <div className="button-icon">
+              <AddIcon color="#fff" />
+            </div>
           </button>
         </a>
       </div>
