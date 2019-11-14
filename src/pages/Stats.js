@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
 import moment from 'moment';
 import {
   Bar,
@@ -18,7 +17,7 @@ import {
 import './Stats.css';
 
 import { USER_STATUS_LABELS } from '../lib/enrollment';
-import { hashToQueryParams } from '../lib/utils';
+import { getAPIStats } from '../lib/services';
 import {
   TARGET_API_LABELS,
   TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
@@ -27,7 +26,6 @@ import {
 import Helper from '../components/elements/Helper';
 import Spinner from '../components/icons/spinner';
 
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
 const COLORS = ['#1A535C', '#4ECDC4', '#FF6B6B', '#FFE66D', '#50514F'];
 
@@ -36,20 +34,18 @@ export default ({
     params: { targetApi },
   },
 }) => {
-  const [data, setData] = useState(null);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
-      const result = await axios(
-        `${BACK_HOST}/api/stats${hashToQueryParams({ target_api: targetApi })}`
-      );
-      setData(result.data);
+    async function fetchStats() {
+      const result = await getAPIStats(targetApi);
+      setStats(result.data);
     }
 
-    fetchData();
+    fetchStats();
   }, [targetApi]);
 
-  if (!data) {
+  if (!stats) {
     return (
       <section className="section-grey loader">
         <Spinner />
@@ -86,7 +82,7 @@ export default ({
               <h3>Demandes d'habilitation déposées</h3>
             </div>
             <div className="card__content card_number">
-              {data.enrollment_count}
+              {stats.enrollment_count}
             </div>
           </div>
           <div className="card">
@@ -97,7 +93,7 @@ export default ({
               </div>
             </div>
             <div className="card__content card_number">
-              <div>{data.validated_enrollment_count}</div>
+              <div>{stats.validated_enrollment_count}</div>
             </div>
           </div>
           <div className="card">
@@ -109,7 +105,7 @@ export default ({
               <div className="card__meta">(en jours)</div>
             </div>
             <div className="card__content card_number">
-              {Math.round(data.average_processing_time_in_days * 100) / 100}
+              {Math.round(stats.average_processing_time_in_days * 100) / 100}
             </div>
           </div>
         </div>
@@ -121,7 +117,7 @@ export default ({
             <div className="card__content card_graph">
               <ResponsiveContainer width={'100%'} height={250}>
                 <BarChart
-                  data={data.monthly_enrollment_count.map(item => ({
+                  data={stats.monthly_enrollment_count.map(item => ({
                     ...item,
                     month: moment(item.month).format('MMM YY'),
                   }))}
@@ -145,11 +141,11 @@ export default ({
               <ResponsiveContainer width={'100%'} height={250}>
                 <PieChart>
                   <Pie
-                    data={data.enrollment_by_target_api}
+                    data={stats.enrollment_by_target_api}
                     dataKey="count"
                     label
                   >
-                    {data.enrollment_by_status.map((entry, index) => (
+                    {stats.enrollment_by_status.map((entry, index) => (
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>
@@ -170,8 +166,8 @@ export default ({
             <div className="card__content card_graph">
               <ResponsiveContainer width={'100%'} height={250}>
                 <PieChart>
-                  <Pie data={data.enrollment_by_status} dataKey="count" label>
-                    {data.enrollment_by_status.map((entry, index) => (
+                  <Pie data={stats.enrollment_by_status} dataKey="count" label>
+                    {stats.enrollment_by_status.map((entry, index) => (
                       <Cell key={index} fill={COLORS[index % COLORS.length]} />
                     ))}
                   </Pie>

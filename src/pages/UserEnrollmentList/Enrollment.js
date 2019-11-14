@@ -1,17 +1,14 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import moment from 'moment';
 
 import './Enrollment.css';
 
-import { hashToQueryParams } from '../../lib/utils';
 import { TARGET_API_LABELS, API_ICONS } from '../../lib/api';
 import { USER_STATUS_LABELS } from '../../lib/enrollment';
 
 import ActivityFeedWrapper from './ActivityFeedWrapper';
-
-const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+import { getAPIStats } from '../../lib/services';
 
 const Enrollment = ({
   id,
@@ -28,9 +25,7 @@ const Enrollment = ({
 
   useEffect(() => {
     async function fetchStats() {
-      const result = await axios(
-        `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`
-      );
+      const result = await getAPIStats(target_api);
       setStats(result.data);
     }
 

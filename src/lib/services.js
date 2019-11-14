@@ -1,6 +1,8 @@
 import { mapValues } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
+import axios from 'axios';
+
 import {
   collectionWithKeyToObject,
   hashToQueryParams,
@@ -225,4 +227,12 @@ export function getMostUsedComments({ eventName, targetApi } = {}) {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data.map(({ comment }) => comment));
+}
+
+export async function getAPIStats(target_api) {
+  const result = await axios(
+    `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`
+  );
+
+  return result;
 }
