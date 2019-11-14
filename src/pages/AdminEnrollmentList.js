@@ -8,7 +8,7 @@ import moment from 'moment';
 
 import { getEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
-import './EnrollmentList.css';
+import './AdminEnrollmentList.css';
 
 export const STATUS_LABELS = {
   pending: 'Brouillon',
@@ -64,7 +64,7 @@ export const enrollmentListStyle = {
   },
 };
 
-class EnrollmentList extends React.Component {
+class AdminEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
 
@@ -464,15 +464,15 @@ class EnrollmentList extends React.Component {
   }
 }
 
-EnrollmentList.propTypes = {
+AdminEnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
   showArchived: PropTypes.bool,
 };
 
-EnrollmentList.defaultProps = {
+AdminEnrollmentList.defaultProps = {
   showArchived: false,
 };
 
-export default EnrollmentList;
+export default AdminEnrollmentList;

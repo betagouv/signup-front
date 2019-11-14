@@ -7,7 +7,7 @@ import moment from 'moment';
 
 import { getPublicValidatedEnrollments } from '../lib/services';
 import ScheduleIcon from '../components/icons/schedule';
-import { enrollmentListStyle, TARGET_API_LABELS } from './EnrollmentList';
+import { enrollmentListStyle, TARGET_API_LABELS } from './AdminEnrollmentList';
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'franceconnect',

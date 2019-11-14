@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../elements/Scrollable';
 import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
-import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
+import { TARGET_API_LABELS } from '../../pages/AdminEnrollmentList';
 import useAccessToEnrollment from '../hooks/useAccessToEnrollment';
 import { FormContext } from '../Form';
 

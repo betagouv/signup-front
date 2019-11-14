@@ -30,7 +30,7 @@ Here are the files you need to create :
 Here are the files you need to update :
 
 - src/App.js (declare new route to access the api form)
-- src/pages/EnrollmentList.js (declare API Labels in enrollment list view)
+- src/pages/AdminEnrollmentList.js (declare API Labels in enrollment list view)
 - (optional) src/lib/utils.js (L~38) (declare valid naf code)
 
 ## License

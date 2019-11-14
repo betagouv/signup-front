@@ -15,7 +15,7 @@ import {
 import './Stats.css';
 import Spinner from '../components/icons/spinner';
 import moment from 'moment';
-import { TARGET_API_LABELS, STATUS_LABELS } from './EnrollmentList';
+import { TARGET_API_LABELS, STATUS_LABELS } from './AdminEnrollmentList';
 import { TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV } from './PublicEnrollmentList';
 import { NavLink } from 'react-router-dom';
 import { hashToQueryParams } from '../lib/utils';

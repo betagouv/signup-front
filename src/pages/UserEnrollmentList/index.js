@@ -11,7 +11,7 @@ import './UserEnrollments.css';
 
 import { getUserEnrollments } from '../../lib/services';
 
-const UserEnrollments = ({ history }) => {
+const UserEnrollmentList = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
 
@@ -91,10 +91,10 @@ const UserEnrollments = ({ history }) => {
   );
 };
 
-UserEnrollments.propTypes = {
+UserEnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
 };
 
-export default UserEnrollments;
+export default UserEnrollmentList;

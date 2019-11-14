@@ -12,8 +12,8 @@ import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
 import { UserStore, UserContext } from './components/UserContext';
 
-import EnrollmentList from './pages/EnrollmentList';
-import UserEnrollments from './pages/UserEnrollments';
+import AdminEnrollmentList from './pages/AdminEnrollmentList';
+import UserEnrollmentList from './pages/UserEnrollmentList';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import Stats from './pages/Stats';
 import ApiParticulier from './pages/ApiParticulier';
@@ -50,6 +50,7 @@ const App = () => (
                     path="/public/:targetApi?"
                     component={PublicEnrollmentList}
                   />
+
                   <Route path="/stats/:targetApi?" component={Stats} />
 
                   <PrivateRoute
@@ -57,8 +58,8 @@ const App = () => (
                     path="/"
                     component={
                       user && isEmpty(user.roles)
-                        ? UserEnrollments
-                        : EnrollmentList
+                        ? UserEnrollmentList
+                        : AdminEnrollmentList
                     }
                   />
 
@@ -66,7 +67,7 @@ const App = () => (
                     exact
                     path="/archive"
                     component={props => (
-                      <EnrollmentList {...props} showArchived />
+                      <AdminEnrollmentList {...props} showArchived />
                     )}
                   />
 
@@ -74,26 +75,32 @@ const App = () => (
                     path="/api-particulier/:enrollmentId?"
                     component={ApiParticulier}
                   />
+
                   <PrivateRoute
                     path="/api-impot-particulier/:enrollmentId?"
                     component={ApiImpotParticulier}
                   />
+
                   <PrivateRoute
                     path="/api-impot-particulier-step2/:enrollmentId?"
                     component={ApiImpotParticulierStep2}
                   />
+
                   <PrivateRoute
                     path="/franceconnect/:enrollmentId?"
                     component={FranceConnect}
                   />
+
                   <PrivateRoute
                     path="/api-droits-cnam/:enrollmentId?"
                     component={ApiDroitsCnam}
                   />
+
                   <PrivateRoute
                     path="/api-entreprise/:enrollmentId?"
                     component={ApiEntreprise}
                   />
+
                   <PrivateRoute
                     path="/preuve-covoiturage/:enrollmentId?"
                     component={PreuveCovoiturage}

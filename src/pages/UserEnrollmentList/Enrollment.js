@@ -7,7 +7,7 @@ import './Enrollment.css';
 
 import { hashToQueryParams } from '../../lib/utils';
 
-import { TARGET_API_LABELS } from '../EnrollmentList';
+import { TARGET_API_LABELS } from '../AdminEnrollmentList';
 
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 
