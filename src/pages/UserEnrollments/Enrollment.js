@@ -39,17 +39,17 @@ const Enrollment = ({
   updated_at,
   onSelect,
 }) => {
-  const [data, setData] = useState(null);
+  const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchStats() {
       const result = await axios(
         `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`
       );
-      setData(result.data);
+      setStats(result.data);
     }
 
-    fetchData();
+    fetchStats();
   }, [target_api]);
 
   const handleClick = useCallback(
@@ -86,10 +86,10 @@ const Enrollment = ({
         </div>
         {<p>{description || 'Aucune description'}</p>}
 
-        {data && (
+        {stats && (
           <ActivityFeedWrapper
             averageProcessingTimeInDays={
-              Math.round(data.average_processing_time_in_days * 100) / 100
+              Math.round(stats.average_processing_time_in_days * 100) / 100
             }
             status={status}
             events={events}
