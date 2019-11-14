@@ -34,8 +34,10 @@ const Enrollment = ({
       setStats(result.data);
     }
 
-    fetchStats();
-  }, [target_api]);
+    if (status === 'sent') {
+      fetchStats();
+    }
+  }, [status, target_api]);
 
   const handleClick = useCallback(
     e => {
@@ -71,16 +73,16 @@ const Enrollment = ({
         </div>
         {<p>{description || 'Aucune description'}</p>}
 
-        {stats && (
-          <ActivityFeedWrapper
-            averageProcessingTimeInDays={
-              Math.round(stats.average_processing_time_in_days * 100) / 100
-            }
-            status={status}
-            events={events}
-            updated_at={updated_at}
-          />
-        )}
+        <ActivityFeedWrapper
+          averageProcessingTimeInDays={
+            stats
+              ? Math.round(stats.average_processing_time_in_days * 100) / 100
+              : 0
+          }
+          status={status}
+          events={events}
+          updated_at={updated_at}
+        />
 
         <div className="enrollment-footer">
           <div>

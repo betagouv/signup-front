@@ -20,7 +20,7 @@ const ActivityFeedWrapper = ({
     );
   }
 
-  if (status === 'sent' && averageProcessingTimeInDays > 0) {
+  if (averageProcessingTimeInDays > 0) {
     return (
       <div className="notification">
         Le temps traitement moyen constaté est de{' '}
