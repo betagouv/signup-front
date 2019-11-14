@@ -1,3 +1,9 @@
+.activity-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .event-item {
   display: flex;
   flex-direction: row;
@@ -19,8 +25,7 @@
 
 .event-head {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
 }
 
 .event-date {
@@ -41,6 +46,7 @@ button.toogle-detail {
   display: inline-block;
   background-color: #00000000;
   color: var(--theme-dark-text);
+  padding: 0;
 }
 
 button.toogle-detail:focus {

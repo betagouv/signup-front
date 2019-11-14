@@ -9,7 +9,7 @@ import { hashToQueryParams } from '../../lib/utils';
 
 import { TARGET_API_LABELS } from '../EnrollmentList';
 
-import History from './History';
+import ActivityFeedWrapper from './ActivityFeedWrapper';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -87,7 +87,7 @@ const Enrollment = ({
         {<p>{description || 'Aucune description'}</p>}
 
         {data && (
-          <History
+          <ActivityFeedWrapper
             averageProcessingTimeInDays={
               Math.round(data.average_processing_time_in_days * 100) / 100
             }
