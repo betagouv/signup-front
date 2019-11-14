@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { API_ICONS } from '../lib/api';
+
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import TextSection from '../components/form-sections/TextSection';
@@ -53,7 +56,7 @@ const ApiImpotParticulier = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: '/images/logo-dgfip.png',
+        src: `/images/${API_ICONS.api_impot_particulier}`,
         alt: 'Direction générale des finances publiques',
       }}
       navLinks={[

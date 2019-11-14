@@ -214,3 +214,12 @@ export function objectToCollectionWithKey(object) {
       .value()
   );
 }
+
+export function openLink(e, history, targetUrl) {
+  if (e.ctrlKey || e.metaKey) {
+    // metaKey is cmd on mac
+    window.open(targetUrl); // open in new tab
+  } else {
+    history.push(targetUrl, { fromList: true });
+  }
+}

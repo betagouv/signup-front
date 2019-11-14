@@ -6,15 +6,13 @@ import ReactTable from 'react-table';
 import moment from 'moment';
 
 import { getPublicValidatedEnrollments } from '../lib/services';
-import ScheduleIcon from '../components/icons/schedule';
-import { enrollmentListStyle, TARGET_API_LABELS } from './AdminEnrollmentList';
+import { enrollmentListStyle } from '../lib/enrollment';
+import {
+  TARGET_API_LABELS,
+  TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+} from '../lib/api';
 
-export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
-  'franceconnect',
-  'api_particulier',
-  'api_entreprise',
-  'api_impot_particulier',
-];
+import ScheduleIcon from '../components/icons/schedule';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {

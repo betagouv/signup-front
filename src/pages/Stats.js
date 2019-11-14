@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import moment from 'moment';
 import {
   Bar,
   BarChart,
@@ -12,14 +14,18 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
+
 import './Stats.css';
-import Spinner from '../components/icons/spinner';
-import moment from 'moment';
-import { TARGET_API_LABELS, STATUS_LABELS } from './AdminEnrollmentList';
-import { TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV } from './PublicEnrollmentList';
-import { NavLink } from 'react-router-dom';
+
+import { USER_STATUS_LABELS } from '../lib/enrollment';
 import { hashToQueryParams } from '../lib/utils';
+import {
+  TARGET_API_LABELS,
+  TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+} from '../lib/api';
+
 import Helper from '../components/elements/Helper';
+import Spinner from '../components/icons/spinner';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
@@ -173,7 +179,7 @@ export default ({
                     layout={'vertical'}
                     align={'right'}
                     verticalAlign={'middle'}
-                    formatter={value => STATUS_LABELS[value]}
+                    formatter={value => USER_STATUS_LABELS[value]}
                   />
                 </PieChart>
               </ResponsiveContainer>

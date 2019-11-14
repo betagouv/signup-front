@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import { getUserValidatedEnrollments } from '../../lib/services';
-import { TARGET_API_LABELS } from '../../pages/AdminEnrollmentList';
+import { TARGET_API_LABELS } from '../../lib/api';
 
 class ValidatedEnrollmentsSelector extends React.Component {
   constructor(props) {

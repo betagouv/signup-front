@@ -8,64 +8,13 @@ import moment from 'moment';
 
 import './AdminEnrollmentList.css';
 
+import { openLink } from '../lib/utils';
 import { getEnrollments } from '../lib/services';
+import { TARGET_API_LABELS } from '../lib/api';
+import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../lib/enrollment';
 
 import ScheduleIcon from '../components/icons/schedule';
 import AddIcon from '../components/icons/add';
-
-export const STATUS_LABELS = {
-  pending: 'Brouillon',
-  modification_pending: 'Retour',
-  sent: 'À valider',
-  validated: 'Validée',
-  refused: 'Refusée',
-};
-
-export const TARGET_API_LABELS = {
-  api_particulier: 'API Particulier',
-  franceconnect: 'FranceConnect',
-  api_droits_cnam: 'API Droits CNAM',
-  api_impot_particulier: 'Impôt particulier',
-  api_impot_particulier_step2: 'Impôt particulier 2/2',
-  api_entreprise: 'API Entreprise',
-  preuve_covoiturage: 'Registre de Preuve de Covoiturage',
-};
-
-export const enrollmentListStyle = {
-  table: {
-    border: 'none',
-  },
-  thead: {
-    boxShadow: 'none',
-  },
-  filterThead: {
-    padding: '0',
-  },
-  header: {
-    padding: '1em',
-    backgroundColor: '#ebeff3',
-    fontWeight: 'bold',
-    borderRight: 'none',
-    outline: '0',
-  },
-  updateAtHeader: {
-    padding: '0.7em 0',
-  },
-  footer: {},
-  cell: {
-    cursor: 'pointer',
-    padding: '1em 0.5em',
-    borderRight: 'none',
-    overflow: 'hidden',
-  },
-  centeredCell: {
-    textAlign: 'center',
-  },
-  pagination: {
-    boxShadow: 'none',
-    borderTop: '1px solid rgba(0,0,0,0.1)',
-  },
-};
 
 class AdminEnrollmentList extends React.Component {
   constructor(props) {
@@ -211,7 +160,7 @@ class AdminEnrollmentList extends React.Component {
     {
       Header: 'Statut',
       accessor: ({ status, acl }) => ({
-        statusLabel: STATUS_LABELS[status] || null,
+        statusLabel: ADMIN_STATUS_LABELS[status] || null,
         acl,
       }),
       id: 'status',
@@ -235,7 +184,7 @@ class AdminEnrollmentList extends React.Component {
           value={filter ? filter.value : ''}
         >
           <option value="">Tous</option>
-          {toPairs(STATUS_LABELS).map(([key, label]) => (
+          {toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => (
             <option key={key} value={key}>
               {label}
             </option>
@@ -405,12 +354,7 @@ class AdminEnrollmentList extends React.Component {
                         '-'
                       )}/${id}`;
 
-                      if (e.ctrlKey || e.metaKey) {
-                        // metaKey is cmd on mac
-                        window.open(targetUrl); // open in new tab
-                      } else {
-                        history.push(targetUrl, { fromList: true });
-                      }
+                      openLink(e, history, targetUrl)
                     }
 
                     if (handleOriginal) {

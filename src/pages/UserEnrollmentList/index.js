@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { groupBy } from 'lodash';
 
+import './UserEnrollments.css';
+
+import { openLink } from '../../lib/utils';
+import { getUserEnrollments } from '../../lib/services';
+
 import AddIcon from '../../components/icons/add';
 import Spinner from '../../components/icons/spinner';
 
 import Enrollment from './Enrollment';
-
-import './UserEnrollments.css';
-
-import { getUserEnrollments } from '../../lib/services';
 
 const UserEnrollmentList = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,13 +32,7 @@ const UserEnrollmentList = ({ history }) => {
 
   const handleSelectEnrollment = (e, id, target_api) => {
     const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
-
-    if (e.ctrlKey || e.metaKey) {
-      // metaKey is cmd on mac
-      window.open(targetUrl); // open in new tab
-    } else {
-      history.push(targetUrl, { fromList: true });
-    }
+    openLink(e, history, targetUrl);
   };
 
   return (

@@ -6,27 +6,12 @@ import moment from 'moment';
 import './Enrollment.css';
 
 import { hashToQueryParams } from '../../lib/utils';
-
-import { TARGET_API_LABELS } from '../AdminEnrollmentList';
+import { TARGET_API_LABELS, API_ICONS } from '../../lib/api';
+import { USER_STATUS_LABELS } from '../../lib/enrollment';
 
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
-
-export const STATUS_LABELS = {
-  pending: 'Brouillon',
-  modification_pending: 'Modifications demandées',
-  sent: 'En cours de validation',
-  validated: 'Validée',
-  refused: 'Refusée',
-};
-
-export const API_ICONS = {
-  franceconnect: 'logo-fc.png',
-  api_droits_cnam: 'logo-cnam.jpg',
-  api_impot_particulier: 'logo-dgfip.png',
-  api_impot_particulier_step2: 'logo-dgfip.png',
-};
 
 const Enrollment = ({
   id,
@@ -73,7 +58,7 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <div className={`status ${status}`}>{STATUS_LABELS[status]}</div>
+        <div className={`status ${status}`}>{USER_STATUS_LABELS[status]}</div>
       </div>
 
       <div className="enrollment-body">

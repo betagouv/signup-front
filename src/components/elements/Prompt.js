@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { EventItem } from './../form/ActivityFeed';
 import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
-import { TARGET_API_LABELS } from '../../pages/AdminEnrollmentList';
+import { TARGET_API_LABELS } from '../../lib/api';
 
 const commentTypeToEventName = {
   notify: 'notified',
