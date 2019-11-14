@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Source: https://material.io/tools/icons/?icon=arrow_back&style=baseline https://material.io/tools/icons/static/icons/baseline-arrow_back-24px.svg
+// Source: https://material.io/resources/icons/?icon=add&style=baseline
 const AddIcon = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

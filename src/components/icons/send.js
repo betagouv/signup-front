@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Source: https://material.io/tools/icons/static/icons/send-24px.svg
+// Source: https://material.io/resources/icons/?icon=send&style=baseline
 const SendIcon = ({ color, size }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
