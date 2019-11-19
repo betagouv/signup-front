@@ -272,7 +272,7 @@ targeting the last_child like so '.card__content > :last-child'
 .modal {
   max-width: 50em;
   max-height: 90vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /* light button & link */
