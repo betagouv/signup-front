@@ -1,4 +1,4 @@
-import { mapValues } from 'lodash';
+import { mapValues, memoize } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
 import axios from 'axios';
@@ -236,3 +236,17 @@ export async function getAPIStats(target_api) {
 
   return result;
 }
+
+export async function getAPIAverageProcessingTimeInDays(target_api) {
+  const result = await axios(
+    `${BACK_HOST}/api/stats/average_processing_time_in_days${hashToQueryParams({
+      target_api,
+    })}`
+  );
+
+  return result;
+}
+
+export const getCachedAPIAverageProcessingTimeInDays = memoize(
+  getAPIAverageProcessingTimeInDays
+);

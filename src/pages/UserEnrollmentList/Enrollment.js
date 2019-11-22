@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 
@@ -8,7 +8,6 @@ import { TARGET_API_LABELS, API_ICONS } from '../../lib/api';
 import { USER_STATUS_LABELS } from '../../lib/enrollment';
 
 import ActivityFeedWrapper from './ActivityFeedWrapper';
-import { getAPIStats } from '../../lib/services';
 
 const Enrollment = ({
   id,
@@ -21,19 +20,6 @@ const Enrollment = ({
   updated_at,
   onSelect,
 }) => {
-  const [stats, setStats] = useState(null);
-
-  useEffect(() => {
-    async function fetchStats() {
-      const result = await getAPIStats(target_api);
-      setStats(result.data);
-    }
-
-    if (status === 'sent') {
-      fetchStats();
-    }
-  }, [status, target_api]);
-
   const handleClick = useCallback(
     e => {
       onSelect(e, id, target_api);
@@ -69,14 +55,9 @@ const Enrollment = ({
         {<p>{description || 'Aucune description'}</p>}
 
         <ActivityFeedWrapper
-          averageProcessingTimeInDays={
-            stats
-              ? Math.round(stats.average_processing_time_in_days * 100) / 100
-              : 0
-          }
-          status={status}
           events={events}
-          updated_at={updated_at}
+          status={status}
+          target_api={target_api}
         />
 
         <div className="enrollment-footer">
