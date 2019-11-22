@@ -57,7 +57,9 @@ const App = () => (
                     exact
                     path="/"
                     component={
-                      user && isEmpty(user.roles)
+                      user &&
+                      isEmpty(user.roles) &&
+                      user.organizations.length < 5
                         ? UserEnrollmentList
                         : AdminEnrollmentList
                     }
