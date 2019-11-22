@@ -354,7 +354,7 @@ class AdminEnrollmentList extends React.Component {
                         '-'
                       )}/${id}`;
 
-                      openLink(e, history, targetUrl)
+                      openLink(e, history, targetUrl);
                     }
 
                     if (handleOriginal) {
