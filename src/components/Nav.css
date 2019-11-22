@@ -19,8 +19,11 @@ aside .contact-button-list > .button-outline + .button-outline {
 }
 
 aside .form-nav-logo {
-  mix-blend-mode: multiply;
+  display: flex;
+  margin: 0 auto;
   width: 100%;
+  max-width: 150px;
+  mix-blend-mode: multiply;
 }
 
 .dashboard .side-menu button {

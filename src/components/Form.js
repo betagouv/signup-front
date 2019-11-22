@@ -5,6 +5,7 @@ import { isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
+
 import ActionButtons from './form/ActionButtons';
 import ActivityFeed from './form/ActivityFeed';
 
@@ -137,7 +138,12 @@ class Form extends React.Component {
           </div>
         )}
 
-        {events.length > 0 && <ActivityFeed events={events} />}
+        {events.length > 0 && (
+          <>
+            <h4>Activité</h4>
+            <ActivityFeed events={events} />
+          </>
+        )}
 
         <FormContext.Provider
           value={{

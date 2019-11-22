@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollablePanel } from '../elements/Scrollable';
-import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
-import { TARGET_API_LABELS } from '../../pages/EnrollmentList';
+
+import { TARGET_API_LABELS } from '../../lib/api';
+
 import useAccessToEnrollment from '../hooks/useAccessToEnrollment';
+
+import { ScrollablePanel } from '../elements/Scrollable';
+
+import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
+
 import { FormContext } from '../Form';
 
 const PreviousEnrollmentSection = ({

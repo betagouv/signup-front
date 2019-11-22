@@ -1,6 +1,8 @@
-import { mapValues } from 'lodash';
+import { mapValues, memoize } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
+import axios from 'axios';
+
 import {
   collectionWithKeyToObject,
   hashToQueryParams,
@@ -112,7 +114,7 @@ export function getPublicValidatedEnrollments(targetApi) {
     .then(({ data }) => data);
 }
 
-export function getUserEnrollments({
+export function getEnrollments({
   page = null,
   archived = null,
   sortBy = [],
@@ -133,6 +135,16 @@ export function getUserEnrollments({
 
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/${queryParam}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data }) => data);
+}
+
+export function getUserEnrollments() {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/user`, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -216,3 +228,25 @@ export function getMostUsedComments({ eventName, targetApi } = {}) {
     })
     .then(({ data }) => data.map(({ comment }) => comment));
 }
+
+export async function getAPIStats(target_api) {
+  const result = await axios(
+    `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`
+  );
+
+  return result;
+}
+
+export async function getAPIAverageProcessingTimeInDays(target_api) {
+  const result = await axios(
+    `${BACK_HOST}/api/stats/average_processing_time_in_days${hashToQueryParams({
+      target_api,
+    })}`
+  );
+
+  return result;
+}
+
+export const getCachedAPIAverageProcessingTimeInDays = memoize(
+  getAPIAverageProcessingTimeInDays
+);

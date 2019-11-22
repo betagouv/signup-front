@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { API_ICONS } from '../lib/api';
+
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAlternativeAuthenticationMethod';
@@ -136,6 +139,11 @@ const FranceConnect = ({
 }) => (
   <div className="dashboard">
     <Nav
+      logo={{
+        src: `/images/${API_ICONS.franceconnect}`,
+        alt: 'FranceConnect',
+        url: 'https://franceconnect.gouv.fr/',
+      }}
       navLinks={[
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },

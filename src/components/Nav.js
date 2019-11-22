@@ -36,7 +36,7 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
         <ul className="form-nav">
           {logo && (
             <li>
-              <a href="https://www.impots.gouv.fr/">
+              <a href={logo.url}>
                 <img alt={logo.alt} src={logo.src} className="form-nav-logo" />
               </a>
             </li>
@@ -84,9 +84,13 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
 };
 
 Nav.propTypes = {
-  logo: PropTypes.object,
   navLinks: PropTypes.array.isRequired,
   contactInformation: PropTypes.array,
+  logo: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+    alt: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+  }),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

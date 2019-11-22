@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { TARGET_API_LABELS } from '../lib/api';
+
 import { withUser } from './UserContext';
-import { TARGET_API_LABELS } from '../pages/EnrollmentList';
 
 const Header = ({ user, logout }) => {
   // Form page already has contact button, no need to display this one.

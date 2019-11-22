@@ -40,6 +40,12 @@ div.loader {
   margin: 0 auto;
 }
 
+button.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .button.button-secondary,
 a.button.button-secondary,
 .button.button-secondary:focus,
@@ -149,14 +155,19 @@ li.panel .button-list {
   line-height: 2em;
 }
 
-.enrollment.button-list {
+.action.button-list {
   display: flex;
   justify-content: flex-end;
 }
 
-.enrollment.button {
-  min-width: 20%;
-  max-width: 40%;
+.button .button-icon {
+  display: flex;
+  margin: 0 0.2em;
+}
+
+.button-list .button {
+  flex-flow: nowrap;
+  width: 40%;
 }
 
 @media (max-width: 1300px) {
@@ -205,18 +216,13 @@ li.panel .button-list {
   .card__content {
     padding: 0;
   }
-  .enrollment.button-list {
+  .action.button-list {
     flex-direction: column;
     align-items: center;
   }
-  .enrollment.button {
-    min-width: 80%;
-    max-width: 80%;
-    margin-bottom: 1em;
-    padding: 1em 2em;
-  }
-  .enrollment.button + .enrollment.button {
-    margin-left: 0;
+  .action .button {
+    width: 90%;
+    margin: 0.5em 0;
   }
 }
 

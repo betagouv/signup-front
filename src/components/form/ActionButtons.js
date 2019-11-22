@@ -165,10 +165,10 @@ class ActionButtons extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="button-list enrollment">
+        <div className="button-list action">
           {linked_token_manager_id && (
             <a
-              className="button large secondary enrollment"
+              className="button large secondary action"
               href={`${API_PARTICULIER_HOST}/admin/token/${linked_token_manager_id}`}
             >
               Gérer l'accès à l'API
@@ -182,9 +182,11 @@ class ActionButtons extends React.Component {
               onClick={trigger}
               disabled={isLoading}
             >
-              <span style={{ verticalAlign: 'sub' }}>{icon}</span>
-              {label}
-              {isLoading && <Spinner inline={true} />}
+              <div className="button-icon">{icon}</div>
+              <div>
+                {label}
+                {isLoading && <Spinner inline={true} />}
+              </div>
             </button>
           ))}
         </div>

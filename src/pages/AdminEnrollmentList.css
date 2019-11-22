@@ -2,6 +2,11 @@
   max-width: inherit;
 }
 
+.align-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 @media (min-width: 550px) {
   .enrollment-page .container {
     width: inherit;
