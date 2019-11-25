@@ -20,6 +20,7 @@ export default class Prompt extends React.Component {
       input: '',
       selectedTemplateIndex: '',
       templates: [],
+      showTemplates: false,
     };
   }
 
@@ -61,9 +62,18 @@ export default class Prompt extends React.Component {
     }
   };
 
+  toggleShowTemplates = () => {
+    this.setState({ showTemplates: !this.state.showTemplates });
+  };
+
   render() {
     const { commentType, targetApi } = this.props;
-    const { input, templates, selectedTemplateIndex } = this.state;
+    const {
+      input,
+      templates,
+      selectedTemplateIndex,
+      showTemplates,
+    } = this.state;
 
     const eventName = commentTypeToEventName[commentType];
 
@@ -126,28 +136,46 @@ L'équipe ${teamName}
             value={input}
             onChange={this.handleInputChange}
           />
-          <p>Aperçu de l'email qui sera envoyé :</p>
-          <textarea cols="80" rows="10" value={mailContent} disabled={true} />
-          <p>Aperçu de la notification :</p>
-          <hr />
-          <EventItem
-            email={'example@email.com'}
-            updated_at={new Date().toISOString()}
-            name={eventName}
-            comment={input}
-          />
-          <hr />
-          <div className="form__group button__group">
-            <a
-              className="button secondary"
-              href="#cancel"
-              onClick={this.handleCancel}
-            >
+          {!showTemplates && (
+            <div className="form__group button__group">
+              <button
+                className="button-outline secondary"
+                onClick={this.toggleShowTemplates}
+              >
+                Voir un aperçu du mail qui sera envoyé
+              </button>
+            </div>
+          )}
+          {showTemplates && (
+            <>
+              <p>Aperçu de l'email qui sera envoyé :</p>
+              <textarea
+                cols="80"
+                rows="10"
+                value={mailContent}
+                disabled={true}
+              />
+              <p>Aperçu de la notification :</p>
+              <hr />
+              <EventItem
+                email={'example@email.com'}
+                updated_at={new Date().toISOString()}
+                name={eventName}
+                comment={input}
+              />
+              <hr />
+            </>
+          )}
+          <div
+            className="form__group button__group"
+            style={{ justifyContent: 'flex-end' }}
+          >
+            <button className="button secondary" onClick={this.handleCancel}>
               Annuler
-            </a>
-            <a className="button" href="#validate" onClick={this.handleAccept}>
+            </button>
+            <button className="button" onClick={this.handleAccept}>
               Valider
-            </a>
+            </button>
           </div>
         </div>
       </div>
