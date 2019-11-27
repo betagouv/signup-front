@@ -224,7 +224,7 @@ const SuiteDescription = () => (
 );
 
 const cguLink =
-  '/docs/API_impots_particulier_template_corps_juridique_avec_annexes.pdf';
+  '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
 
 const contacts = {
   technique: {
