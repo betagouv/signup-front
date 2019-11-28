@@ -47,12 +47,13 @@ const Enrollment = ({
       <div className="enrollment-body">
         <div className="title">
           <div className="intitule">{intitule || 'Aucun intitulé'}</div>
-          <div>
+          <div className="creation">
             Demande effectuée le <b>{moment(updated_at).format('L')}</b> par{' '}
             <b>{user.email}</b>
           </div>
         </div>
-        {<p>{description || 'Aucune description'}</p>}
+
+        <p className="description">{description || 'Aucune description'}</p>
 
         <ActivityFeedWrapper
           events={events}

@@ -35,6 +35,15 @@
 .intitule {
   font-weight: 600;
   font-size: large;
+  margin-right: 1em;
+}
+
+.creation {
+  font-size: small;
+}
+
+.description {
+  font-style: italic;
 }
 
 .enrollment-body {
