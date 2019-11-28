@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
+import { isEmpty } from 'lodash';
 import { UserContext } from '../UserContext';
 import { getOrganizationInformation } from '../../lib/services';
 import { isValidNAFCode } from '../../lib/utils';
@@ -69,7 +70,7 @@ const OrganisationSection = () => {
 
   useEffect(() => {
     // initialize organization_id & siret if needed
-    if (!organization_id && !disabled) {
+    if (!organization_id && !disabled && !isEmpty(user.organizations)) {
       updateOrganizationInfo({
         organization_id: user.organizations[0].id,
         siret: user.organizations[0].siret,
@@ -86,10 +87,12 @@ const OrganisationSection = () => {
   const onOrganizationChange = new_organization_id => {
     setShowPrompt(false);
 
-    updateOrganizationInfo({
-      organization_id: new_organization_id,
-      siret: user.organizations.find(o => o.id === new_organization_id).siret,
-    });
+    if (!isEmpty(user.organizations)) {
+      updateOrganizationInfo({
+        organization_id: new_organization_id,
+        siret: user.organizations.find(o => o.id === new_organization_id).siret,
+      });
+    }
   };
 
   if (isOrganizationInfoLoading) {
