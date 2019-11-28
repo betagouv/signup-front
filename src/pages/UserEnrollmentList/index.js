@@ -76,7 +76,14 @@ const UserEnrollmentList = ({ history }) => {
                 ))}
               </>
             ) : (
-              <div style={{ flex: '1' }}>Vous n’avez pas de demande</div>
+              <div className="notification">
+                <p>
+                  Vous n’avez aucune demande en cours.{' '}
+                  <a href="https://api.gouv.fr/?filter=signup">
+                    Faire ma première demande
+                  </a>
+                </p>
+              </div>
             )}
           </div>
         )}
