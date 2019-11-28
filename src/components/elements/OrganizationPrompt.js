@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const { REACT_APP_OAUTH_HOST: OAUTH_HOST } = process.env;
+const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 const OrganizationPrompt = ({
   selectedOrganizationId,
@@ -44,7 +44,7 @@ const OrganizationPrompt = ({
             ))}
           </fieldset>
           <div>
-            <a href={`${OAUTH_HOST}/users/join-organization`}>
+            <a href={`${BACK_HOST}/api/users/join-organization`}>
               Faire une demande pour une autre organisation
             </a>
           </div>
