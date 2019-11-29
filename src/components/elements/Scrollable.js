@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { throttle } from 'lodash';
 import PropTypes from 'prop-types';
 
+import Spinner from '../icons/spinner';
+
 export class ScrollablePanel extends Component {
   constructor(props) {
     super(props);
@@ -38,21 +40,31 @@ export class ScrollablePanel extends Component {
   }
 
   render() {
-    const { scrollableId, children } = this.props;
+    const { scrollableId, isLoading, children } = this.props;
     return (
       <div className="panel" id={scrollableId} ref={this.panelRef}>
-        {children}
+        {isLoading ? (
+          <div style={{ height: '150px' }}>
+            <div className="loader">
+              <Spinner />
+            </div>
+          </div>
+        ) : (
+          children
+        )}
       </div>
     );
   }
 }
 
 ScrollablePanel.propTypes = {
+  isLoading: PropTypes.bool,
   children: PropTypes.node,
   scrollableId: PropTypes.string.isRequired,
 };
 
 ScrollablePanel.defaultProps = {
+  isLoading: false,
   children: null,
 };
 

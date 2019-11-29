@@ -1,11 +1,22 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex: 1;
+  height: 100%;
+}
+
 .page {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
 }
 
 main {
-  position: relative;
   flex-grow: 1;
 }
 
@@ -18,19 +29,8 @@ div.loader {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 6em auto;
-}
-
-@media (min-width: 1000px) {
-  section.loader,
-  div.loader {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-  }
+  position: relative;
+  height: 100%;
 }
 
 .container {

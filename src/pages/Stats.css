@@ -17,12 +17,15 @@ section.stats-page {
   margin: auto auto 0 auto;
 }
 
-.row > * {
-  max-width: inherit;
+.column-grid,
+.row-grid {
+  display: grid;
+  grid-gap: var(--space-s);
 }
 
-.row + .row {
-  margin-top: 2em;
+.row-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  justify-items: stretch;
 }
 
 /* tab-container */

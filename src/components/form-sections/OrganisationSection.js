@@ -6,7 +6,6 @@ import { isValidNAFCode } from '../../lib/utils';
 import './OrganisationSection.css';
 import OrganizationPrompt from '../elements/OrganizationPrompt';
 import EditIcon from '../icons/edit';
-import Spinner from '../icons/spinner';
 import { ScrollablePanel } from '../elements/Scrollable';
 import { FormContext } from '../Form';
 
@@ -95,54 +94,43 @@ const OrganisationSection = () => {
     }
   };
 
-  if (isOrganizationInfoLoading) {
-    return (
-      <div className="organization-selector-loader-container">
-        <div className="loader">
-          <Spinner />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <ScrollablePanel scrollableId="organisation">
+    <ScrollablePanel
+      isLoading={isUserEnrollmentLoading || isOrganizationInfoLoading}
+      scrollableId="organisation"
+    >
       <h2>Organisation à l'origine de la demande</h2>
-      {!isUserEnrollmentLoading && (
-        <>
-          {activite && !isValidNAFCode(target_api, activite) && (
-            <div className="form__group">
-              <div className="notification warning">
-                Votre organisme ne semble pas être éligible
-              </div>
-            </div>
-          )}
-
-          <div className="organization-title">
-            {title}
-            {!disabled && (
-              <button
-                title="faire une demande pour une autre organisation"
-                className="light inline-icon-button"
-                onClick={() => setShowPrompt(true)}
-              >
-                <EditIcon color="black" />
-              </button>
-            )}
+      {activite && !isValidNAFCode(target_api, activite) && (
+        <div className="form__group">
+          <div className="notification warning">
+            Votre organisme ne semble pas être éligible
           </div>
-          <div className="organization-subtitle">{adresse}</div>
-          <div className="organization-subtitle">{ville}</div>
-          <div className="organization-subtitle">SIRET : {siret}</div>
-          <div className="organization-subtitle">Code NAF : {activite}</div>
+        </div>
+      )}
 
-          {!disabled && !isLoading && showPrompt && (
-            <OrganizationPrompt
-              selectedOrganizationId={organization_id}
-              onSelect={onOrganizationChange}
-              organizations={user.organizations}
-            />
-          )}
-        </>
+      <div className="organization-title">
+        {title}
+        {!disabled && (
+          <button
+            title="faire une demande pour une autre organisation"
+            className="light inline-icon-button"
+            onClick={() => setShowPrompt(true)}
+          >
+            <EditIcon color="black" />
+          </button>
+        )}
+      </div>
+      <div className="organization-subtitle">{adresse}</div>
+      <div className="organization-subtitle">{ville}</div>
+      <div className="organization-subtitle">SIRET : {siret}</div>
+      <div className="organization-subtitle">Code NAF : {activite}</div>
+
+      {!disabled && !isLoading && showPrompt && (
+        <OrganizationPrompt
+          selectedOrganizationId={organization_id}
+          onSelect={onOrganizationChange}
+          organizations={user.organizations}
+        />
       )}
     </ScrollablePanel>
   );

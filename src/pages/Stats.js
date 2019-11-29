@@ -76,109 +76,121 @@ export default ({
             ))}
           </ul>
         </div>
-        <div className="row">
-          <div className="card">
-            <div className="card__content">
-              <h3>Demandes d'habilitation déposées</h3>
-            </div>
-            <div className="card__content card_number">
-              {stats.enrollment_count}
-            </div>
-          </div>
-          <div className="card">
-            <div className="card__content">
-              <h3>Demandes d'habilitation validées</h3>
-              <div className="card__meta">
-                (<a href="/public">voir la liste détaillée</a>)
+        <div className="column-grid">
+          <div className="row-grid">
+            <div className="card">
+              <div className="card__content">
+                <h3>Demandes d'habilitation déposées</h3>
+              </div>
+              <div className="card__content card_number">
+                {stats.enrollment_count}
               </div>
             </div>
-            <div className="card__content card_number">
-              <div>{stats.validated_enrollment_count}</div>
+            <div className="card">
+              <div className="card__content">
+                <h3>Demandes d'habilitation validées</h3>
+                <div className="card__meta">
+                  (<a href="/public">voir la liste détaillée</a>)
+                </div>
+              </div>
+              <div className="card__content card_number">
+                <div>{stats.validated_enrollment_count}</div>
+              </div>
+            </div>
+            <div className="card">
+              <div className="card__content">
+                <h3>
+                  Temps moyen de traitement des demandes
+                  <Helper title="temps moyen entre la première soumission d'une demande jusqu'à sa validation ou son refus" />
+                </h3>
+                <div className="card__meta">(en jours)</div>
+              </div>
+              <div className="card__content card_number">
+                {stats.average_processing_time_in_days}
+              </div>
             </div>
           </div>
-          <div className="card">
-            <div className="card__content">
-              <h3>
-                Temps moyen de traitement des demandes
-                <Helper title="temps moyen entre la première soumission d'une demande jusqu'à sa validation ou son refus" />
-              </h3>
-              <div className="card__meta">(en jours)</div>
-            </div>
-            <div className="card__content card_number">
-              {stats.average_processing_time_in_days}
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="card">
-            <div className="card__content">
-              <h3>Demandes d'habilitation déposées</h3>
-            </div>
-            <div className="card__content card_graph">
-              <ResponsiveContainer width={'100%'} height={250}>
-                <BarChart
-                  data={stats.monthly_enrollment_count.map(item => ({
-                    ...item,
-                    month: moment(item.month).format('MMM YY'),
-                  }))}
-                >
-                  <XAxis dataKey="month" />
-                  <YAxis dataKey="count" />
-                  <Bar dataKey="count" fill={COLORS[3]}>
-                    <LabelList dataKey="count" position="top" />
-                  </Bar>
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="card">
-            <div className="card__content">
-              <h3>Répartition des demandes par API</h3>
-            </div>
-            <div className="card__content card_graph">
-              <ResponsiveContainer width={'100%'} height={250}>
-                <PieChart>
-                  <Pie
-                    data={stats.enrollment_by_target_api}
-                    dataKey="count"
-                    label
+          <div className="row-grid">
+            <div className="card">
+              <div className="card__content">
+                <h3>Demandes d'habilitation déposées</h3>
+              </div>
+              <div className="card__content card_graph">
+                <ResponsiveContainer width={'100%'} height={250}>
+                  <BarChart
+                    data={stats.monthly_enrollment_count.map(item => ({
+                      ...item,
+                      month: moment(item.month).format('MMM YY'),
+                    }))}
                   >
-                    {stats.enrollment_by_status.map((entry, index) => (
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Legend
-                    layout={'vertical'}
-                    align={'right'}
-                    verticalAlign={'middle'}
-                    formatter={value => TARGET_API_LABELS[value]}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
+                    <XAxis dataKey="month" />
+                    <YAxis dataKey="count" />
+                    <Bar dataKey="count" fill={COLORS[3]}>
+                      <LabelList dataKey="count" position="top" />
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
-          <div className="card">
-            <div className="card__content">
-              <h3>Répartition des demandes par statut</h3>
+          <div className="row-grid">
+            <div className="card">
+              <div className="card__content">
+                <h3>Répartition des demandes par API</h3>
+              </div>
+              <div className="card__content card_graph">
+                <ResponsiveContainer width={'100%'} height={250}>
+                  <PieChart>
+                    <Pie
+                      data={stats.enrollment_by_target_api}
+                      dataKey="count"
+                      label
+                    >
+                      {stats.enrollment_by_status.map((entry, index) => (
+                        <Cell
+                          key={index}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Legend
+                      layout={'vertical'}
+                      align={'right'}
+                      verticalAlign={'middle'}
+                      formatter={value => TARGET_API_LABELS[value]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
-            <div className="card__content card_graph">
-              <ResponsiveContainer width={'100%'} height={250}>
-                <PieChart>
-                  <Pie data={stats.enrollment_by_status} dataKey="count" label>
-                    {stats.enrollment_by_status.map((entry, index) => (
-                      <Cell key={index} fill={COLORS[index % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Legend
-                    layout={'vertical'}
-                    align={'right'}
-                    verticalAlign={'middle'}
-                    formatter={value => USER_STATUS_LABELS[value]}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
+            <div className="card">
+              <div className="card__content">
+                <h3>Répartition des demandes par statut</h3>
+              </div>
+              <div className="card__content card_graph">
+                <ResponsiveContainer width={'100%'} height={250}>
+                  <PieChart>
+                    <Pie
+                      data={stats.enrollment_by_status}
+                      dataKey="count"
+                      label
+                    >
+                      {stats.enrollment_by_status.map((entry, index) => (
+                        <Cell
+                          key={index}
+                          fill={COLORS[index % COLORS.length]}
+                        />
+                      ))}
+                    </Pie>
+                    <Legend
+                      layout={'vertical'}
+                      align={'right'}
+                      verticalAlign={'middle'}
+                      formatter={value => USER_STATUS_LABELS[value]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
             </div>
           </div>
         </div>
