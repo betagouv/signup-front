@@ -40,7 +40,10 @@ div.loader {
   margin: 0 auto;
 }
 
-button.button {
+button.button,
+button.button:focus,
+button.button:active,
+button.button:visited {
   display: flex;
   align-items: center;
   justify-content: center;

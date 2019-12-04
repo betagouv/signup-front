@@ -38,7 +38,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   if (status === 'sent' && averageProcessingTimeInDays > 0) {
     return (
       <div className="notification">
-        Le temps traitement moyen constaté est de{' '}
+        Le temps de traitement moyen constaté est de{' '}
         <b>{averageProcessingTimeInDays} jours</b>.
       </div>
     );
@@ -49,7 +49,7 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
       <div className="notification warning">
         Votre demande ne peut être validée en l’état.
         <div style={{ margin: '1em 0' }}>
-          Merci d’effectuer les modifications demandés :
+          Merci d’effectuer les modifications demandées :
           {events.length > 0 && <ActivityFeed events={events} />}
         </div>
       </div>
