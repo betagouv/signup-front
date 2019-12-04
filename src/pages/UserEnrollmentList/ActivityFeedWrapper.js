@@ -26,10 +26,10 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   if (status === 'pending') {
     return (
       <div className="notification">
-        <p>Votre demande est actuellement en cours d’édition.</p>
         <p>
-          Vous pouvez soumettre cette demande à tout moment en cliquant sur le
-          bouton "Soumettre la demande" en bas du formulaire.
+          Votre demande est actuellement en cours d’édition. Notre service
+          juridique pourra la consulter lorsque vous cliquerez sur "Soumettre la
+          demande".
         </p>
       </div>
     );
@@ -47,9 +47,8 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
   if (status === 'modification_pending') {
     return (
       <div className="notification warning">
-        Votre demande ne peut être validée en l’état.
+        Votre demande est incomplète et requiert les modifications suivantes :
         <div style={{ margin: '1em 0' }}>
-          Merci d’effectuer les modifications demandées :
           {events.length > 0 && <ActivityFeed events={events} />}
         </div>
       </div>
