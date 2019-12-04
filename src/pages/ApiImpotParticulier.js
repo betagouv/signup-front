@@ -164,12 +164,12 @@ const availableScopes = [
     humanName: 'DGFiP - Données du local',
   },
   {
-    name: 'dgfip_data_years_n_moins_1',
+    name: 'dgfip_annee_n_moins_1',
     humanName: 'Dernière année de revenu',
     groupTitle,
   },
   {
-    name: 'dgfip_data_years_n_moins_2',
+    name: 'dgfip_annee_n_moins_2',
     humanName: 'Avant-dernière année de revenu',
     groupTitle,
   },
