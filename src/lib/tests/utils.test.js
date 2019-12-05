@@ -1,6 +1,7 @@
 import {
   collectionWithKeyToObject,
   getChangelog,
+  getTokenUrl,
   hashToQueryParams,
   isValidNAFCode,
   objectToCollectionWithKey,
@@ -222,6 +223,39 @@ describe('utils', () => {
       expect(
         objectToCollectionWithKey(collectionWithKeyToObject(collectionWithKey))
       ).toStrictEqual(collectionWithKey);
+    });
+  });
+
+  describe('getTokenUrl', () => {
+    it('should return API Particulier URL', () => {
+      expect(
+        getTokenUrl({
+          targetApi: 'api_particulier',
+          id: 'abcdef1234567890abcdef12',
+        })
+      ).toEqual(
+        'https://particulier-development.api.gouv.fr/admin/token/abcdef1234567890abcdef12'
+      );
+    });
+
+    it('should return API Entreprise URL', () => {
+      expect(
+        getTokenUrl({
+          targetApi: 'api_entreprise',
+          id: 'abcd1234-1234-1234-1234-1234567890ab',
+        })
+      ).toEqual(
+        'https://sandbox.dashboard.entreprise.api.gouv.fr/admin/users/abcd1234-1234-1234-1234-1234567890ab/tokens/'
+      );
+    });
+
+    it('should return null for other target API', () => {
+      expect(
+        getTokenUrl({
+          targetApi: 'franceconnect',
+          id: 'abcd1234-1234-1234-1234-1234567890ab',
+        })
+      ).toEqual(null);
     });
   });
 });
