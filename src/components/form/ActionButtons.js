@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
   createOrUpdateEnrollment,
+  deleteEnrollment,
   triggerEnrollment,
 } from '../../lib/services';
 import Prompt from '../elements/Prompt';
@@ -26,6 +27,10 @@ class ActionButtons extends React.Component {
     notify: {
       label: 'Envoyer un message',
       cssClass: 'secondary enrollment',
+    },
+    delete: {
+      label: 'Supprimer la demande',
+      cssClass: 'warning enrollment',
     },
     update: {
       label: 'Sauvegarder le brouillon',
@@ -129,11 +134,25 @@ class ActionButtons extends React.Component {
         return resultMessages;
       }
 
-      await triggerEnrollment({
-        action,
-        id: enrollmentId,
-        comment,
-      });
+      if (action === 'delete') {
+        await deleteEnrollment({ id: enrollmentId });
+      }
+
+      if (
+        [
+          'notify',
+          'review_application',
+          'refuse_application',
+          'validate_application',
+          'send_application',
+        ].includes(action)
+      ) {
+        await triggerEnrollment({
+          action,
+          id: enrollmentId,
+          comment,
+        });
+      }
 
       resultMessages.redirectToHome = true;
 

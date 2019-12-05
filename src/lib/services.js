@@ -172,6 +172,14 @@ export function triggerEnrollment({ action, id, comment }) {
   );
 }
 
+export function deleteEnrollment({ id }) {
+  return httpClient.delete(`${BACK_HOST}/api/enrollments/${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+}
+
 export function getOrganizationInformation(siret) {
   return httpClient
     .get(`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${siret}`)
