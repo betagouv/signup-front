@@ -51,7 +51,7 @@ const Footer = () => (
           <a href="http://beta.gouv.fr/">Une réalisation de beta.gouv.fr</a>
         </li>
         <li>
-          <a href="http://modernisation.gouv.fr/">Une mission de la DINSIC</a>
+          <a href="https://numerique.gouv.fr/">Une mission de la DINUM</a>
         </li>
         <li>
           <a href="http://etatplateforme.modernisation.gouv.fr/">
