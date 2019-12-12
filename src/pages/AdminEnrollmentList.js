@@ -73,6 +73,18 @@ class AdminEnrollmentList extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.totalPages === 0 &&
+      this.state.totalPages > prevState.totalPages
+    ) {
+      const pageMax = this.state.totalPages - 1;
+      if (pageMax < this.state.page) {
+        this.onPageChange(pageMax);
+      }
+    }
+  }
+
   availableAction = new Set([
     'validate_application',
     'review_application',
