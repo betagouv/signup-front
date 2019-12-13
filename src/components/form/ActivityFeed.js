@@ -71,7 +71,9 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
               </button>
             )}
           </div>
-          <div className="event-date">{moment(updated_at).calendar()}</div>
+          <div title={moment(updated_at).format('LLLL')} className="event-date">
+            {moment(updated_at).calendar()}
+          </div>
         </div>
         {comment && (
           <div className="event-comment">

@@ -55,6 +55,10 @@ const MiseEnOeuvreSection = ({
         additional_content={additional_content}
       />
       <div className="row">
+        {/*
+          mind that there might be other legacy contact type present in production database that we
+          do not want to display here
+        */}
         {!isEmpty(contacts.technique) && (
           <Contact
             id={'technique'}

@@ -9,10 +9,7 @@ import _, {
 } from 'lodash';
 import flatten from 'flat';
 
-const {
-  REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST,
-  REACT_APP_API_ENTREPRISE_HOST: API_ENTREPRISE_HOST,
-} = process.env;
+const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
 
 export function getErrorMessages(error) {
   if (
@@ -243,10 +240,6 @@ export function openLink(e, history, targetUrl) {
 export function getTokenUrl({ targetApi, id }) {
   if (targetApi === 'api_particulier') {
     return `${API_PARTICULIER_HOST}/admin/token/${id}`;
-  }
-
-  if (targetApi === 'api_entreprise') {
-    return `${API_ENTREPRISE_HOST}/admin/users/${id}/tokens/`;
   }
 
   return null;
