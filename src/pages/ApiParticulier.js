@@ -54,7 +54,7 @@ const CadreJuridiqueDescription = () => (
     <p>
       Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DINSIC de transmettre des données personnelles à votre entité
+      la DINUM de transmettre des données personnelles à votre entité
       administrative.
     </p>
   </div>
