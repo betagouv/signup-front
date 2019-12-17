@@ -163,7 +163,11 @@ class Form extends React.Component {
           </div>
         ))}
         {errorMessages.map(errorMessage => (
-          <div key={errorMessage} className="notification error">
+          <div
+            key={errorMessage}
+            className="notification error"
+            style={{ whiteSpace: 'pre-line' }}
+          >
             <Linkify>{errorMessage}</Linkify>
           </div>
         ))}
