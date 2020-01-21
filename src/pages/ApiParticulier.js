@@ -105,6 +105,10 @@ const availableScopes = [
     name: 'cnaf_attestation_droits',
     humanName: 'CNAF - Attestation de droits',
   },
+  {
+    name: 'mesri_statut_etudiant',
+    humanName: 'MESRI - Statut étudiant',
+  },
 ];
 
 const ApiParticulier = ({
