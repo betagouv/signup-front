@@ -10,6 +10,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
+import { sample } from 'lodash';
 
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -166,6 +167,12 @@ const availableScopes = [
   },
 ];
 
+const intitulePlaceholder = sample([
+  '« Pré-remplissage du formulaire de création de compte des entreprise »',
+  '« Simplification des demandes de subvention de la région »',
+  "« Déclaration d'installation classée pour la protection de l'environnement »",
+]);
+
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -199,7 +206,7 @@ const ApiEntreprise = ({
           Description={DemarcheDescription}
         />
         <OrganisationSection />
-        <DescriptionSection />
+        <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
         <DonneesSection
           availableScopes={availableScopes}
           DonneesDescription={DonneesDescription}

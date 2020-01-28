@@ -2,8 +2,12 @@ import React, { useContext } from 'react';
 import { ScrollablePanel } from '../elements/Scrollable';
 import Helper from '../elements/Helper';
 import { FormContext } from '../Form';
+import PropTypes from 'prop-types';
 
-const DescriptionSection = () => {
+const DescriptionSection = ({
+  intitulePlaceholder = '',
+  descriptionPlaceholder = '',
+}) => {
   const {
     disabled,
     onChange,
@@ -24,14 +28,14 @@ const DescriptionSection = () => {
       <div className="form__group">
         <label htmlFor="intitule">
           Nom de la démarche
-          <Helper title="Il doit permettre de faciliter l’identification de votre service, téléservice ou traitement" />
+          <Helper title="Il doit permettre de faciliter l’identification de votre démarche. Cette information pouvant être rendue publique, il convient d'être synthétique et précis." />
         </label>
         <input
           type="text"
           onChange={onChange}
           name="intitule"
           id="intitule"
-          placeholder="« Se connecter au portail famille de ma ville »"
+          placeholder={intitulePlaceholder}
           readOnly={disabled}
           value={intitule}
         />
@@ -48,11 +52,16 @@ const DescriptionSection = () => {
           id="description"
           readOnly={disabled}
           value={description}
-          placeholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
+          placeholder={descriptionPlaceholder}
         />
       </div>
     </ScrollablePanel>
   );
+};
+
+DescriptionSection.propTypes = {
+  intitulePlaceholder: PropTypes.string,
+  descriptionPlaceholder: PropTypes.string,
 };
 
 export default DescriptionSection;

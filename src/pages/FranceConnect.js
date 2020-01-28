@@ -177,7 +177,10 @@ const FranceConnect = ({
           Description={DemarcheDescription}
         />
         <OrganisationSection />
-        <DescriptionSection />
+        <DescriptionSection
+          intitulePlaceholder="« Se connecter au portail famille de ma ville »"
+          descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
+        />
         <DonneesSection availableScopes={availableScopes} />
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}

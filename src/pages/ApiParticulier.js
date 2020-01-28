@@ -137,7 +137,11 @@ const ApiParticulier = ({
           Description={DemarcheDescription}
         />
         <OrganisationSection />
-        <DescriptionSection />
+        <DescriptionSection
+          intitulePlaceholder={
+            '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
+          }
+        />
         <DonneesSection
           availableScopes={availableScopes}
           DonneesDescription={DonneesDescription}
