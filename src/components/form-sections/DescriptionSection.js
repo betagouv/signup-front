@@ -19,9 +19,9 @@ const DescriptionSection = ({
       <h2>Description de votre cas d'usage</h2>
       <div className="text-quote">
         <p>
-          Décrivez brièvement la raison pour laquelle vous collectez des données
-          à caractère personnel, c'est-à-dire l’objectif qui est est poursuivi
-          par le traitement que vous mettez en place.
+          Décrivez la raison pour laquelle vous collectez des données à
+          caractère personnel, c'est-à-dire l’objectif qui est est poursuivi par
+          le traitement que vous mettez en place.
         </p>
       </div>
       <br />
