@@ -97,7 +97,7 @@ export const RgpdContact = ({
           id={`${type}_phone_number`}
           readOnly={disabled}
           value={phone_number}
-          pattern="[0-9]{10}"
+          pattern="\+?(?:[0-9][ -]?){6,14}[0-9]"
         />
       </div>
     </div>
