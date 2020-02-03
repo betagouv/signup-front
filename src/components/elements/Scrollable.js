@@ -11,8 +11,7 @@ export class ScrollablePanel extends Component {
   }
 
   handleScroll = throttle(() => {
-    const averageHeaderHeight = 76;
-    const offsetTop = this.panelRef.current.offsetTop + averageHeaderHeight;
+    const offsetTop = this.panelRef.current.offsetTop;
     const offsetBottom = offsetTop + this.panelRef.current.offsetHeight;
     const hash = window.location.hash ? window.location.hash.substr(1) : null;
 
