@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { throttle } from 'lodash';
+import { delay, throttle } from 'lodash';
 import PropTypes from 'prop-types';
 
 import Spinner from '../icons/spinner';
@@ -90,6 +90,19 @@ export class ScrollableLink extends Component {
   }, 16 * 8);
 
   componentDidMount() {
+    // Hackish way to trigger initial scroll.
+    // As it's difficult to determine when all ScrollablePanels are fully rendered,
+    // we suppose that after 500ms this is the case to avoid complex implementation.
+    // Then we simply trigger the link by clicking on it.
+    delay(() => {
+      const hash = getWindowHash();
+      if (!this.state.selected && this.props.scrollableId === hash) {
+        document
+          .querySelector(`.side-menu a[href="#${this.props.scrollableId}"]`)
+          .click();
+      }
+    }, 500);
+
     return window.addEventListener('scroll', this.handleScroll);
   }
 
