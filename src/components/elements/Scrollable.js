@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 
 import Spinner from '../icons/spinner';
 
+const getWindowHash = () =>
+  window.location.hash ? window.location.hash.substr(1) : null;
+
 export class ScrollablePanel extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +16,7 @@ export class ScrollablePanel extends Component {
   handleScroll = throttle(() => {
     const offsetTop = this.panelRef.current.offsetTop;
     const offsetBottom = offsetTop + this.panelRef.current.offsetHeight;
-    const hash = window.location.hash ? window.location.hash.substr(1) : null;
+    const hash = getWindowHash();
 
     if (
       hash !== this.props.scrollableId &&
@@ -76,7 +79,7 @@ export class ScrollableLink extends Component {
   }
 
   handleScroll = throttle(() => {
-    const hash = window.location.hash ? window.location.hash.substr(1) : null;
+    const hash = getWindowHash();
     if (!this.state.selected && this.props.scrollableId === hash) {
       this.setState({ selected: true });
     }
