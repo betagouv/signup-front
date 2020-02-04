@@ -24,6 +24,13 @@ const OrganisationSection = () => {
   const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] = useState(
     false
   );
+  const [
+    showOrganizationInfoNotFound,
+    setShowOrganizationInfoNotFound,
+  ] = useState(false);
+  const [showOrganizationInfoError, setShowOrganizationInfoError] = useState(
+    false
+  );
   const [showPrompt, setShowPrompt] = useState(false);
 
   const { user, isLoading } = useContext(UserContext);
@@ -43,12 +50,21 @@ const OrganisationSection = () => {
       setVille(ville);
       setActivite(activite);
       setIsOrganizationInfoLoading(false);
+      setShowOrganizationInfoNotFound(false);
+      setShowOrganizationInfoError(false);
     } catch (e) {
       setTitle('');
       setAdresse('');
       setVille('');
       setActivite('');
       setIsOrganizationInfoLoading(false);
+      setShowOrganizationInfoNotFound(false);
+      setShowOrganizationInfoError(false);
+      if (e.response && e.response.status === 404) {
+        setShowOrganizationInfoNotFound(true);
+      } else {
+        setShowOrganizationInfoError(true);
+      }
     }
   };
 
@@ -69,13 +85,24 @@ const OrganisationSection = () => {
 
   useEffect(() => {
     // initialize organization_id & siret if needed
-    if (!organization_id && !disabled && !isEmpty(user.organizations)) {
+    if (
+      !isUserEnrollmentLoading &&
+      !disabled &&
+      !organization_id &&
+      !isEmpty(user.organizations)
+    ) {
       updateOrganizationInfo({
         organization_id: user.organizations[0].id,
         siret: user.organizations[0].siret,
       });
     }
-  }, [organization_id, disabled, updateOrganizationInfo, user]);
+  }, [
+    isUserEnrollmentLoading,
+    organization_id,
+    disabled,
+    updateOrganizationInfo,
+    user,
+  ]);
 
   useEffect(() => {
     if (siret) {
@@ -104,6 +131,21 @@ const OrganisationSection = () => {
         <div className="form__group">
           <div className="notification warning">
             Votre organisme ne semble pas être éligible
+          </div>
+        </div>
+      )}
+      {!showOrganizationInfoNotFound && (
+        <div className="form__group">
+          <div className="notification warning">
+            Cet établissement est fermé ou le SIRET est invalide.
+          </div>
+        </div>
+      )}
+      {!showOrganizationInfoError && (
+        <div className="form__group">
+          <div className="notification error">
+            Erreur inconnue lors de la récupération des informations de cet
+            établissement.
           </div>
         </div>
       )}
