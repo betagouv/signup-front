@@ -238,17 +238,6 @@ describe('utils', () => {
       );
     });
 
-    it('should return API Entreprise URL', () => {
-      expect(
-        getTokenUrl({
-          targetApi: 'api_entreprise',
-          id: 'abcd1234-1234-1234-1234-1234567890ab',
-        })
-      ).toEqual(
-        'https://sandbox.dashboard.entreprise.api.gouv.fr/admin/users/abcd1234-1234-1234-1234-1234567890ab/tokens/'
-      );
-    });
-
     it('should return null for other target API', () => {
       expect(
         getTokenUrl({

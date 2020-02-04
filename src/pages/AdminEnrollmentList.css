@@ -7,6 +7,10 @@
   justify-content: flex-end;
 }
 
+.rt-tr .selected {
+  background: rgba(0,0,0,0.08);
+}
+
 @media (min-width: 550px) {
   .enrollment-page .container {
     width: inherit;
