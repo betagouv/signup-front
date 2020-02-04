@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import _, { debounce, toPairs } from 'lodash';
+import { debounce, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 
 import './AdminEnrollmentList.css';
 
-import { openLink } from '../lib/utils';
+import {
+  getStateFromUrlParams,
+  openLink,
+  setUrlParamsFromState,
+} from '../lib/utils';
 import { getEnrollments } from '../lib/services';
 import { TARGET_API_LABELS } from '../lib/api';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../lib/enrollment';
@@ -24,8 +28,8 @@ class AdminEnrollmentList extends React.Component {
       enrollments: [],
       errors: [],
       loading: true,
-      page: 0,
       totalPages: 0,
+      page: 0,
       sorted: [
         {
           id: 'updated_at',
@@ -33,53 +37,21 @@ class AdminEnrollmentList extends React.Component {
         },
       ],
       filtered: [],
-      previouslySelectedEnrollmentId: null,
+      previouslySelectedEnrollmentId: 0,
     };
   }
 
   async componentDidMount() {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    if (urlParams.has('page')) {
-      const page = parseInt(urlParams.get('page')) || 0;
-      this.setState({ page });
-    }
-
-    if (urlParams.has('sorted')) {
-      const sortedQueryParams = urlParams.getAll('sorted');
-      const sorted = [];
-
-      sortedQueryParams.forEach(value => {
-        sorted.push({
-          id: value.split(':')[0],
-          desc: value.split(':')[1] === 'desc',
-        });
-      });
-
-      this.setState({ sorted });
-    }
-
-    if (urlParams.has('filtered')) {
-      const sortedQueryParams = urlParams.getAll('filtered');
-      const filtered = [];
-
-      sortedQueryParams.forEach(value => {
-        filtered.push({
-          id: value.split(':')[0],
-          value: value.split(':')[1],
-        });
-      });
-
-      this.setState({ filtered });
-    }
-
-    if (urlParams.has('previouslySelectedEnrollmentId')) {
-      const previouslySelectedEnrollmentId = parseInt(
-        urlParams.get('previouslySelectedEnrollmentId')
-      );
-
-      this.setState({ previouslySelectedEnrollmentId });
-    }
+    this.setState(
+      getStateFromUrlParams(
+        pick(this.state, [
+          'page',
+          'sorted',
+          'filtered',
+          'previouslySelectedEnrollmentId',
+        ])
+      )
+    );
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -102,8 +74,8 @@ class AdminEnrollmentList extends React.Component {
   ]);
 
   hasTriggerableActions = ({ acl }) =>
-    !_.isEmpty(
-      _.pickBy(acl, (value, key) => value && this.availableAction.has(key))
+    !isEmpty(
+      pickBy(acl, (value, key) => value && this.availableAction.has(key))
     );
 
   getColumnConfiguration = () => [
@@ -235,72 +207,23 @@ class AdminEnrollmentList extends React.Component {
   };
 
   onPageChange = newPage => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    urlParams.set('page', newPage);
-
-    const newQueryString = urlParams.toString();
-
-    window.history.replaceState(
-      window.history.state,
-      '',
-      `${window.location.pathname}?${newQueryString}`
-    );
+    setUrlParamsFromState({ page: newPage });
     this.setState({ page: newPage });
   };
 
   onSortedChange = newSorted => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    urlParams.delete('sorted');
-
-    newSorted.forEach(({ id, desc }) => {
-      urlParams.append('sorted', `${id}:${desc ? 'desc' : 'asc'}`);
-    });
-
-    const newQueryString = urlParams.toString();
-
-    window.history.replaceState(
-      window.history.state,
-      '',
-      `${window.location.pathname}?${newQueryString}`
-    );
+    setUrlParamsFromState({ sorted: newSorted });
     this.setState({ sorted: newSorted });
   };
 
   onFilteredChange = newFiltered => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    urlParams.delete('filtered');
-
-    newFiltered.forEach(({ id, value }) => {
-      urlParams.append('filtered', `${id}:${value}`);
-    });
-
-    urlParams.set('page', '0');
-
-    const newQueryString = urlParams.toString();
-
-    window.history.replaceState(
-      window.history.state,
-      '',
-      `${window.location.pathname}?${newQueryString}`
-    );
+    setUrlParamsFromState({ filtered: newFiltered, page: 0 });
     this.setState({ filtered: newFiltered, page: 0 });
   };
 
   savePreviouslySelectedEnrollmentId = id => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    urlParams.set('previouslySelectedEnrollmentId', id);
-
-    const newQueryString = urlParams.toString();
-
-    window.history.replaceState(
-      window.history.state,
-      '',
-      `${window.location.pathname}?${newQueryString}`
-    );
+    setUrlParamsFromState({ previouslySelectedEnrollmentId: id });
+    this.setState({ previouslySelectedEnrollmentId: id });
   };
 
   onFetchData = async () => {

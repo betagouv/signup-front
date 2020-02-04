@@ -1,11 +1,15 @@
 import _, {
   isBoolean,
+  isArray,
   isEmpty,
+  isInteger,
   isObject,
   isString,
   mapKeys,
+  mapValues,
   mergeWith,
   omitBy,
+  forOwn,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -244,3 +248,62 @@ export function getTokenUrl({ targetApi, id }) {
 
   return null;
 }
+
+export const getStateFromUrlParams = (defaultState = {}) => {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  return mapValues(defaultState, (value, key) => {
+    if (!urlParams.has(key)) {
+      return value;
+    }
+
+    const param = urlParams.getAll(key);
+
+    if (isArray(value)) {
+      return param.map(itemAsString => {
+        const k = itemAsString.split(':')[0];
+        const v = itemAsString.split(':')[1];
+
+        if (['asc', 'desc'].includes(v)) {
+          return { id: k, desc: v === 'desc' };
+        }
+
+        return { id: k, value: v };
+      });
+    }
+
+    if (isInteger(value)) {
+      return parseInt(param[0]) || 0;
+    }
+
+    return param[0];
+  });
+};
+
+export const setUrlParamsFromState = (newState = {}) => {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  forOwn(newState, (value, key) => {
+    if (isArray(value)) {
+      urlParams.delete(key);
+
+      return value.forEach(({ id: k, value: v, desc }) => {
+        if (desc !== undefined) {
+          return urlParams.append(key, `${k}:${desc ? 'desc' : 'asc'}`);
+        }
+
+        return urlParams.append(key, `${k}:${v}`);
+      });
+    }
+
+    return urlParams.set(key, value);
+  });
+
+  const newQueryString = urlParams.toString();
+
+  window.history.replaceState(
+    window.history.state,
+    '',
+    `${window.location.pathname}?${newQueryString}`
+  );
+};
