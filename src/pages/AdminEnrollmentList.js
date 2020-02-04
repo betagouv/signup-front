@@ -33,6 +33,7 @@ class AdminEnrollmentList extends React.Component {
         },
       ],
       filtered: [],
+      previouslySelectedEnrollmentId: null,
     };
   }
 
@@ -70,6 +71,14 @@ class AdminEnrollmentList extends React.Component {
       });
 
       this.setState({ filtered });
+    }
+
+    if (urlParams.has('previouslySelectedEnrollmentId')) {
+      const previouslySelectedEnrollmentId = parseInt(
+        urlParams.get('previouslySelectedEnrollmentId')
+      );
+
+      this.setState({ previouslySelectedEnrollmentId });
     }
   }
 
@@ -280,6 +289,20 @@ class AdminEnrollmentList extends React.Component {
     this.setState({ filtered: newFiltered, page: 0 });
   };
 
+  savePreviouslySelectedEnrollmentId = id => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    urlParams.set('previouslySelectedEnrollmentId', id);
+
+    const newQueryString = urlParams.toString();
+
+    window.history.replaceState(
+      window.history.state,
+      '',
+      `${window.location.pathname}?${newQueryString}`
+    );
+  };
+
   onFetchData = async () => {
     this.setState({ loading: true });
     // Read the state from this.state and not from internally computed react table state
@@ -321,6 +344,7 @@ class AdminEnrollmentList extends React.Component {
       page,
       sorted,
       filtered,
+      previouslySelectedEnrollmentId,
       totalPages,
     } = this.state;
     return (
@@ -366,6 +390,8 @@ class AdminEnrollmentList extends React.Component {
                         '-'
                       )}/${id}`;
 
+                      this.savePreviouslySelectedEnrollmentId(id);
+
                       openLink(e, history, targetUrl);
                     }
 
@@ -374,6 +400,11 @@ class AdminEnrollmentList extends React.Component {
                     }
                   },
                   title: this.getTitle({ column, rowInfo }),
+                  className:
+                    rowInfo &&
+                    rowInfo.original.id === previouslySelectedEnrollmentId
+                      ? 'selected'
+                      : null,
                 })}
                 getTheadProps={() => ({ style: enrollmentListStyle.thead })}
                 getTheadFilterThProps={() => ({
