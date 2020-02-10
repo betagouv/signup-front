@@ -242,6 +242,10 @@ export function openLink(e, history, targetUrl) {
 }
 
 export function getTokenUrl({ targetApi, id }) {
+  if (!targetApi || !id) {
+    return null;
+  }
+
   if (targetApi === 'api_particulier') {
     return `${API_PARTICULIER_HOST}/admin/token/${id}`;
   }

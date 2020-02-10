@@ -2,14 +2,25 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty, last, sortBy } from 'lodash';
 import moment from 'moment';
+import * as linkify from 'linkifyjs';
+import ticketPlugin from 'linkifyjs/plugins/ticket';
 import Linkify from 'linkifyjs/react';
+
 import CheckCircleIcon from '../icons/check-circle';
 import InfoIcon from '../icons/info';
 import ErrorIcon from '../icons/error';
+import FileCopyIcon from '../icons/file_copy';
 import WarningIcon from '../icons/warning';
 import NotificationsIcon from '../icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../lib/utils';
+
+ticketPlugin(linkify);
+const linkifyOptions = {
+  formatHref: {
+    ticket: href => '/authorization-request/' + href.substring(1),
+  },
+};
 
 const eventNameToDisplayableContent = {
   asked_for_modification: {
@@ -46,6 +57,10 @@ const eventNameToDisplayableContent = {
     icon: <ErrorIcon color={'var(--red)'} />,
     label: 'a refusé la demande',
   },
+  copied: {
+    icon: <FileCopyIcon color={'var(--blue)'} />,
+    label: 'a copié la demande',
+  },
 };
 
 export const EventItem = ({ comment, name, updated_at, email, diff }) => {
@@ -77,7 +92,7 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
         </div>
         {comment && (
           <div className="event-comment">
-            <Linkify>{comment}</Linkify>
+            <Linkify options={linkifyOptions}>{comment}</Linkify>
           </div>
         )}
         {!isEmpty(changelog) && showDiff && (

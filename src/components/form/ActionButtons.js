@@ -179,18 +179,16 @@ class ActionButtons extends React.Component {
     const { acl, linked_token_manager_id, target_api } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
     const { isLoading, doShowPrompt, commentType } = this.state;
+    const tokenUrl = getTokenUrl({
+      targetApi: target_api,
+      id: linked_token_manager_id,
+    });
 
     return (
       <React.Fragment>
         <div className="button-list action">
-          {linked_token_manager_id && (
-            <a
-              className="button large secondary action"
-              href={getTokenUrl({
-                targetApi: target_api,
-                id: linked_token_manager_id,
-              })}
-            >
+          {tokenUrl && (
+            <a className="button large secondary action" href={tokenUrl}>
               Gérer l'accès à l'API
             </a>
           )}
