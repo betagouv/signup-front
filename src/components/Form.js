@@ -136,8 +136,8 @@ class Form extends React.Component {
       <>
         {get(location, 'state.source') === 'copy-authorization-request' && (
           <div className="notification info">
-            Veuillez trouver ci dessous une copie de votre demande initiale.
-            Merci de vérifier que ces informations sont à jour puis cliquez sur
+            Vous trouverez ci dessous une copie de votre demande initiale. Merci
+            de vérifier que ces informations sont à jour puis cliquez sur
             "Soumettre la demande".
           </div>
         )}
