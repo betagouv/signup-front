@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { isObject, omitBy, merge, zipObjectDeep } from 'lodash';
+import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../lib/services';
@@ -128,10 +128,19 @@ class Form extends React.Component {
       isUserEnrollmentLoading,
     } = this.state;
 
+    const { location } = this.props;
+
     const { acl, events } = enrollment;
 
     return (
       <>
+        {get(location, 'state.source') === 'copy-authorization-request' && (
+          <div className="notification info">
+            Vous trouverez ci dessous une copie de votre demande initiale. Merci
+            de vérifier que ces informations sont à jour puis cliquez sur
+            "Soumettre la demande".
+          </div>
+        )}
         {!isUserEnrollmentLoading && acl.update && (
           <div className="notification info">
             Pensez à sauvegarder régulièrement votre demande en brouillon.

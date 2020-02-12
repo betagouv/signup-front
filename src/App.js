@@ -23,6 +23,8 @@ import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import ApiImpotParticulier from './pages/ApiImpotParticulier';
+import CopyEnrollment from './pages/CopyEnrollment';
+import Enrollment from './pages/Enrollment';
 
 const history = createBrowserHistory();
 
@@ -106,6 +108,16 @@ const App = () => (
                   <PrivateRoute
                     path="/preuve-covoiturage/:enrollmentId?"
                     component={PreuveCovoiturage}
+                  />
+
+                  <PrivateRoute
+                    path="/copy-authorization-request/:enrollmentId"
+                    component={CopyEnrollment}
+                  />
+
+                  <PrivateRoute
+                    path="/authorization-request/:enrollmentId"
+                    component={Enrollment}
                   />
                 </>
               )}

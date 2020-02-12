@@ -18,11 +18,11 @@ const InfoIcon = ({ color }) => (
 );
 
 InfoIcon.propTypes = {
-  title: PropTypes.string,
+  color: PropTypes.string,
 };
 
 InfoIcon.defaultProps = {
-  title: 'none',
+  color: 'none',
 };
 
 export default InfoIcon;

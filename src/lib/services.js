@@ -258,3 +258,11 @@ export async function getAPIAverageProcessingTimeInDays(target_api) {
 export const getCachedAPIAverageProcessingTimeInDays = memoize(
   getAPIAverageProcessingTimeInDays
 );
+
+export function copyEnrollment({ id }) {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/${id}/copy`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data);
+}
