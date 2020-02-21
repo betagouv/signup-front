@@ -19,6 +19,7 @@ import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../lib/enrollment';
 
 import ScheduleIcon from '../components/icons/schedule';
 import AddIcon from '../components/icons/add';
+import AutorenewIcon from '../components/icons/autorenew';
 
 class AdminEnrollmentList extends React.Component {
   constructor(props) {
@@ -152,9 +153,10 @@ class AdminEnrollmentList extends React.Component {
     },
     {
       Header: 'Statut',
-      accessor: ({ status, acl }) => ({
+      accessor: ({ status, acl, is_renewal }) => ({
         statusLabel: ADMIN_STATUS_LABELS[status] || null,
         acl,
+        isRenewal: is_renewal,
       }),
       id: 'status',
       headerStyle: enrollmentListStyle.header,
@@ -164,12 +166,22 @@ class AdminEnrollmentList extends React.Component {
       },
       width: 100,
       filterable: true,
-      Cell: ({ value: { statusLabel, acl } }) => {
+      Cell: ({ value: { statusLabel, acl, isRenewal } }) => {
         if (!this.hasTriggerableActions({ acl })) {
-          return statusLabel;
+          return (
+            <span className="status-label">
+              {statusLabel}
+              {isRenewal ? <AutorenewIcon size={16} /> : ''}
+            </span>
+          );
         }
 
-        return <button className="button warning small">{statusLabel}</button>;
+        return (
+          <button className="button warning small">
+            {statusLabel}
+            {isRenewal ? <AutorenewIcon color="white" size={14} /> : ''}
+          </button>
+        );
       },
       Filter: ({ filter, onChange }) => (
         <select
@@ -196,7 +208,7 @@ class AdminEnrollmentList extends React.Component {
     const cellValue = rowInfo.row[column.id];
 
     if (column.id === 'status') {
-      return cellValue.statusLabel;
+      return cellValue.statusLabel + (cellValue.isRenewal ? ' (copie)' : '');
     }
 
     if (column.id === 'updated_at') {

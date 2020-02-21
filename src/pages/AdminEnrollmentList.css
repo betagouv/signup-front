@@ -2,6 +2,12 @@
   max-width: inherit;
 }
 
+.enrollment-page .status-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .align-right {
   display: flex;
   justify-content: flex-end;
