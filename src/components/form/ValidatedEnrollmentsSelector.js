@@ -34,19 +34,19 @@ class ValidatedEnrollmentsSelector extends React.Component {
         }
 
         const validatedEnrollmentIndex = enrollments.findIndex(
-          ({ id }) => this.props.linked_franceconnect_enrollment_id === id
+          ({ id }) => this.props.previous_enrollment_id === id
         );
         const initialIndex =
           validatedEnrollmentIndex >= 0 ? validatedEnrollmentIndex : 0;
 
-        const { id: linked_franceconnect_enrollment_id } = enrollments[
+        const { id: previous_enrollment_id } = enrollments[
           initialIndex
         ];
 
         this.props.onValidatedEnrollment({
           target: {
-            name: 'linked_franceconnect_enrollment_id',
-            value: linked_franceconnect_enrollment_id,
+            name: 'previous_enrollment_id',
+            value: previous_enrollment_id,
           },
         });
 
@@ -62,7 +62,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
     const validatedEnrollmentIndex = event.target.value;
 
     const {
-      id: linked_franceconnect_enrollment_id,
+      id: previous_enrollment_id,
     } = this.state.validatedEnrollments[validatedEnrollmentIndex];
 
     this.setState({
@@ -70,8 +70,8 @@ class ValidatedEnrollmentsSelector extends React.Component {
     });
     this.props.onValidatedEnrollment({
       target: {
-        name: 'linked_franceconnect_enrollment_id',
-        value: linked_franceconnect_enrollment_id,
+        name: 'previous_enrollment_id',
+        value: previous_enrollment_id,
       },
     });
   }
@@ -151,13 +151,13 @@ class ValidatedEnrollmentsSelector extends React.Component {
 
 ValidatedEnrollmentsSelector.propTypes = {
   onValidatedEnrollment: PropTypes.func.isRequired,
-  linked_franceconnect_enrollment_id: PropTypes.number,
+  previous_enrollment_id: PropTypes.number,
   linkedTargetApi: PropTypes.string,
   enrollmentTargetApi: PropTypes.string,
 };
 
 ValidatedEnrollmentsSelector.defaultProps = {
-  linked_franceconnect_enrollment_id: null,
+  previous_enrollment_id: null,
 };
 
 export default ValidatedEnrollmentsSelector;
