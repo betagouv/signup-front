@@ -39,9 +39,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
         const initialIndex =
           validatedEnrollmentIndex >= 0 ? validatedEnrollmentIndex : 0;
 
-        const { id: previous_enrollment_id } = enrollments[
-          initialIndex
-        ];
+        const { id: previous_enrollment_id } = enrollments[initialIndex];
 
         this.props.onValidatedEnrollment({
           target: {
@@ -61,9 +59,9 @@ class ValidatedEnrollmentsSelector extends React.Component {
   handleValidatedEnrollmentChange(event) {
     const validatedEnrollmentIndex = event.target.value;
 
-    const {
-      id: previous_enrollment_id,
-    } = this.state.validatedEnrollments[validatedEnrollmentIndex];
+    const { id: previous_enrollment_id } = this.state.validatedEnrollments[
+      validatedEnrollmentIndex
+    ];
 
     this.setState({
       validatedEnrollmentsSelectedIndex: validatedEnrollmentIndex,
