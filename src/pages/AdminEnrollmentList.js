@@ -128,6 +128,8 @@ class AdminEnrollmentList extends React.Component {
       accessor: 'user.email',
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
+      filterable: true,
+      Placeholder: 'Filtrer par email',
     },
     {
       Header: 'Fournisseur',
