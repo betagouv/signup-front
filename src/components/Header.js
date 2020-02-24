@@ -14,7 +14,10 @@ const Header = ({ user, logout }) => {
   return (
     <header className="navbar">
       <div className="navbar__container">
-        <a className="navbar__home" href="https://api.gouv.fr/?filter=signup">
+        <a
+          className="navbar__home"
+          href="https://api.gouv.fr/rechercher-api?filter=signup"
+        >
           <img
             className="navbar__logo"
             src="/images/logo_api.svg"

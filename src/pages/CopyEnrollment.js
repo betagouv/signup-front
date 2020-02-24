@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../components/icons/spinner';
 import { copyEnrollment } from '../lib/services';
 import { Redirect } from 'react-router-dom';
+import { getErrorMessages } from '../lib/utils';
 
 const CopyEnrollment = ({
   match: {
@@ -11,12 +12,14 @@ const CopyEnrollment = ({
   },
 }) => {
   const [copyError, setCopyError] = useState(false);
+  const [alreadyCopiedError, setAlreadyCopiedError] = useState(false);
   const [copiedEnrollmentId, setCopiedEnrollmentId] = useState(null);
   const [copiedTargetApi, setCopiedTargetApi] = useState(null);
 
   const triggerEnrollmentCopy = async ({ enrollmentId }) => {
     try {
       setCopyError(false);
+      setAlreadyCopiedError(false);
       const { id, target_api } = await copyEnrollment({
         id: enrollmentId,
       });
@@ -24,7 +27,15 @@ const CopyEnrollment = ({
       setCopiedEnrollmentId(id);
       setCopiedTargetApi(target_api);
     } catch (e) {
-      setCopyError(true);
+      if (
+        getErrorMessages(e)[0].includes(
+          "Copied from enrollment n'est pas disponible"
+        )
+      ) {
+        setAlreadyCopiedError(true);
+      } else {
+        setCopyError(true);
+      }
     }
   };
 
@@ -53,6 +64,17 @@ const CopyEnrollment = ({
       <section className="section-grey loader">
         <div className="notification error">
           Erreur inconnue lors de la copie de la demande d'habilitation.
+        </div>
+      </section>
+    );
+  }
+
+  if (alreadyCopiedError) {
+    return (
+      <section className="section-grey loader">
+        <div className="notification error">
+          Copie impossible : une copie de cette demande d'habilitation existe
+          déjà.
         </div>
       </section>
     );

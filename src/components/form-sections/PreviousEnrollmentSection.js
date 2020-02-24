@@ -27,11 +27,11 @@ const PreviousEnrollmentSection = ({
     isUserEnrollmentLoading,
     disabled,
     onChange,
-    enrollment: { linked_franceconnect_enrollment_id = null, target_api },
+    enrollment: { previous_enrollment_id = null, target_api },
   } = useContext(FormContext);
 
   const hasAccessToPreviousEnrollment = useAccessToEnrollment(
-    linked_franceconnect_enrollment_id
+    previous_enrollment_id
   );
 
   return (
@@ -44,26 +44,20 @@ const PreviousEnrollmentSection = ({
           onValidatedEnrollment={onChange}
           linkedTargetApi={previousTargetApi}
           enrollmentTargetApi={target_api}
-          linked_franceconnect_enrollment_id={
-            linked_franceconnect_enrollment_id
-          }
+          previous_enrollment_id={previous_enrollment_id}
         />
       )}
       {disabled && (
         <div className="button-list enrollment">
           {hasAccessToPreviousEnrollment ? (
             <a
-              href={`/franceconnect/${linked_franceconnect_enrollment_id}`}
+              href={`/franceconnect/${previous_enrollment_id}`}
               className="light"
             >
-              Numéro de la demande associée :{' '}
-              {linked_franceconnect_enrollment_id}
+              Numéro de la demande associée : {previous_enrollment_id}
             </a>
           ) : (
-            <>
-              Numéro de la demande associée :{' '}
-              {linked_franceconnect_enrollment_id}
-            </>
+            <>Numéro de la demande associée : {previous_enrollment_id}</>
           )}
         </div>
       )}
