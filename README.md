@@ -21,18 +21,6 @@ PIWIK_SITE_ID=''
 
 The usage of this project can be seen on [http://www.stats.data.gouv.fr](http://stats.data.gouv.fr/index.php?module=CoreHome&action=index&idSite=53&period=range&date=previous30#?module=Dashboard&action=embeddedIndex&idSite=53&period=range&date=previous30&idDashboard=1)
 
-## How to enroll a new API
-
-Here are the files you need to create :
-
-- src/pages/NameOfApi.js (describe all the information to generate the new form)
-
-Here are the files you need to update :
-
-- src/App.js (declare new route to access the api form)
-- src/lib/api.js (declare API Labels in TARGET_API_LABELS)
-- (optional) src/lib/utils.js (L~38) (declare valid naf code)
-
 ## License
 
 MIT
