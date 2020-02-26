@@ -86,84 +86,84 @@ const DonneesDescription = () => (
 // NB: this list is manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
 const availableScopes = [
   {
-    name: 'entreprises',
-    humanName: 'INSEE Entreprise',
+    value: 'entreprises',
+    label: 'INSEE Entreprise',
   },
   {
-    name: 'etablissements',
-    humanName: 'INSEE Etablissement',
+    value: 'etablissements',
+    label: 'INSEE Etablissement',
   },
   {
-    name: 'associations',
-    humanName: 'Association',
+    value: 'associations',
+    label: 'Association',
   },
   {
-    name: 'documents_association',
-    humanName: 'Document association',
+    value: 'documents_association',
+    label: 'Document association',
   },
   {
-    name: 'attestations_fiscales',
-    humanName: 'Attestation Fiscale',
+    value: 'attestations_fiscales',
+    label: 'Attestation Fiscale',
   },
   {
-    name: 'attestations_sociales',
-    humanName: 'Attestation Sociale',
+    value: 'attestations_sociales',
+    label: 'Attestation Sociale',
   },
   {
-    name: 'msa_cotisations',
-    humanName: 'Cotisation MSA',
+    value: 'msa_cotisations',
+    label: 'Cotisation MSA',
   },
   {
-    name: 'attestations_agefiph',
-    humanName: 'Attestation AGEFIPH',
+    value: 'attestations_agefiph',
+    label: 'Attestation AGEFIPH',
   },
   {
-    name: 'bilans_entreprise_bdf',
-    humanName: 'Bilans Entreprises BDF',
+    value: 'bilans_entreprise_bdf',
+    label: 'Bilans Entreprises BDF',
   },
   {
-    name: 'fntp_carte_pro',
-    humanName: 'Carte Pro FNTP',
+    value: 'fntp_carte_pro',
+    label: 'Carte Pro FNTP',
   },
   {
-    name: 'certificat_cnetp',
-    humanName: 'Certificat CNETP',
+    value: 'certificat_cnetp',
+    label: 'Certificat CNETP',
   },
   {
-    name: 'certificat_opqibi',
-    humanName: 'Certificat OPQIBI',
+    value: 'certificat_opqibi',
+    label: 'Certificat OPQIBI',
   },
   {
-    name: 'probtp',
-    humanName: 'Certificat PROBTP',
+    value: 'probtp',
+    label: 'Certificat PROBTP',
   },
   {
-    name: 'qualibat',
-    humanName: 'Certificat Qualibat',
+    value: 'qualibat',
+    label: 'Certificat Qualibat',
   },
   {
-    name: 'certificat_rge_ademe',
-    humanName: 'Certificats RGE (ADEME)',
+    value: 'certificat_rge_ademe',
+    label: 'Certificats RGE (ADEME)',
   },
   {
-    name: 'extrait_court_inpi',
-    humanName: 'Extrait INPI',
+    value: 'extrait_court_inpi',
+    label: 'Extrait INPI',
   },
   {
-    name: 'extraits_rcs',
-    humanName: 'Extrait RCS',
+    value: 'extraits_rcs',
+    label: 'Extrait RCS',
   },
   {
-    name: 'actes_bilans_inpi',
-    humanName: 'Actes et Bilans INPI',
+    value: 'actes_bilans_inpi',
+    label: 'Actes et Bilans INPI',
   },
   {
-    name: 'liasse_fiscale',
-    humanName: 'Liasse fiscale',
+    value: 'liasse_fiscale',
+    label: 'Liasse fiscale',
   },
   {
-    name: 'exercices',
-    humanName: 'Exercice',
+    value: 'exercices',
+    label: 'Exercice',
   },
 ];
 

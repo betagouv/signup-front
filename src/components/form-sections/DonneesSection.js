@@ -21,7 +21,7 @@ const DonneesSection = ({
       target: {
         name: 'scopes',
         value: zipObject(
-          availableScopes.map(({ name }) => name),
+          availableScopes.map(({ value }) => value),
           availableScopes.map(
             ({ mandatory, checkedByDefault }) =>
               !!mandatory || !!checkedByDefault

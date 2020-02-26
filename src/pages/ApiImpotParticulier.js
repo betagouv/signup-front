@@ -148,29 +148,29 @@ const groupTitle = 'Sélectionnez les années de revenus souhaitées';
 
 const availableScopes = [
   {
-    name: 'dgfip_rfr',
-    humanName: 'DGFiP - Revenu fiscal de référence (ou RFR)',
+    value: 'dgfip_rfr',
+    label: 'DGFiP - Revenu fiscal de référence (ou RFR)',
   },
   {
-    name: 'dgfip_nbpart',
-    humanName: 'DGFiP - nombre de parts',
+    value: 'dgfip_nbpart',
+    label: 'DGFiP - nombre de parts',
   },
   {
-    name: 'dgfip_aft',
-    humanName: 'DGFiP - adresse fiscale de taxation au 1er janvier',
+    value: 'dgfip_aft',
+    label: 'DGFiP - adresse fiscale de taxation au 1er janvier',
   },
   {
-    name: 'dgfip_locaux_th',
-    humanName: 'DGFiP - Données du local',
+    value: 'dgfip_locaux_th',
+    label: 'DGFiP - Données du local',
   },
   {
-    name: 'dgfip_annee_n_moins_1',
-    humanName: 'Dernière année de revenu',
+    value: 'dgfip_annee_n_moins_1',
+    label: 'Dernière année de revenu',
     groupTitle,
   },
   {
-    name: 'dgfip_annee_n_moins_2',
-    humanName: 'Avant-dernière année de revenu',
+    value: 'dgfip_annee_n_moins_2',
+    label: 'Avant-dernière année de revenu',
     groupTitle,
   },
 ];

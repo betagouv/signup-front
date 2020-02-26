@@ -13,22 +13,22 @@ const Scopes = ({
       <label>{title}</label>
       <div className="row">
         <div className="column">
-          {scopes.map(({ name, humanName, mandatory }) => (
-            <div key={name}>
+          {scopes.map(({ value, label, mandatory }) => (
+            <div key={value}>
               <input
                 type="checkbox"
                 className="scope__checkbox"
                 onChange={handleChange}
-                name={`scopes.${name}`}
-                id={`checkbox-scope-${name}`}
+                name={`scopes.${value}`}
+                id={`checkbox-scope-${value}`}
                 disabled={disabledApplication || mandatory}
-                checked={selectedScopes[name]}
+                checked={selectedScopes[value]}
               />
               <label
-                htmlFor={`checkbox-scope-${name}`}
+                htmlFor={`checkbox-scope-${value}`}
                 className="label-inline"
               >
-                {humanName}
+                {label}
                 {mandatory && <i> (nécessaire)</i>}
               </label>
             </div>

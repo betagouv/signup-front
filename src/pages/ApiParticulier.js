@@ -102,20 +102,20 @@ const DonneesDescription = () => (
 
 const availableScopes = [
   {
-    name: 'dgfip_avis_imposition',
-    humanName: "DGFIP - Avis d'imposition",
+    value: 'dgfip_avis_imposition',
+    label: "DGFIP - Avis d'imposition",
   },
   {
-    name: 'dgfip_adresse',
-    humanName: 'DGFIP - Adresse',
+    value: 'dgfip_adresse',
+    label: 'DGFIP - Adresse',
   },
   {
-    name: 'cnaf_quotient_familial',
-    humanName: 'CNAF - Quotient familial',
+    value: 'cnaf_quotient_familial',
+    label: 'CNAF - Quotient familial',
   },
   {
-    name: 'cnaf_attestation_droits',
-    humanName: 'CNAF - Attestation de droits',
+    value: 'cnaf_attestation_droits',
+    label: 'CNAF - Attestation de droits',
   },
 ];
 
