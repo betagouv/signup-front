@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
 }
@@ -229,17 +230,29 @@ li.panel .button-list {
   }
 }
 
+/* fixes on template.beta.gouv stylesheet */
+/* fix: missing style for disabled inputs */
 input[type='checkbox'][disabled]:checked {
   background-color: var(--darker-grey);
   border-color: var(--darker-grey);
   cursor: not-allowed;
 }
 
-input[type='checkbox'][disabled] {
+input[type='radio'][disabled]:checked {
+  background-color: var(--theme-background-grey);
+  border-color: var(--darker-grey);
   cursor: not-allowed;
 }
 
-/* fixes on template.beta.gouv stylesheet */
+input[type='radio'][disabled]:checked::before {
+  background-color: var(--darker-grey);
+}
+
+input[type='checkbox'][disabled],
+input[type='radio'][disabled] {
+  cursor: not-allowed;
+}
+
 /* fix: tooltip is being cropped */
 .card {
   overflow: inherit;

@@ -13,6 +13,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
+import DonneesSection from '../components/form-sections/DonneesSection';
 
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -40,6 +41,56 @@ const DemarcheDescription = () => (
   </div>
 );
 
+const availableScopes = [
+  {
+    value: 'cnam_ayant_droits',
+    label: 'Liste des ayant-droits (enfants)',
+  },
+  {
+    value: 'cnam_caisse_gestionnaire',
+    label: 'Caisse gestionnaire',
+  },
+  {
+    value: 'cnam_droits',
+    label: 'Droits',
+  },
+  {
+    value: 'cnam_exonerations',
+    label:
+      'Exonérations éventuelles (CMUC,ACS, maternité, au titre d’une invalidité ou  d’une affection longue durée)',
+  },
+  {
+    value: 'cnam_medecin_traitant',
+    label: 'Votre médecin traitant',
+  },
+  {
+    value: 'cnam_presence_medecin_traitant',
+    label: "Présence d'un médecin traitant",
+  },
+];
+
+const useCases = [
+  {
+    label: 'Établissement de soin',
+    scopes: [
+      'cnam_ayant_droits',
+      'cnam_caisse_gestionnaire',
+      'cnam_droits',
+      'cnam_exonerations',
+      'cnam_medecin_traitant',
+    ],
+  },
+  {
+    label: 'Organisme complémentaire',
+    scopes: [
+      'cnam_ayant_droits',
+      'cnam_caisse_gestionnaire',
+      'cnam_droits',
+      'cnam_presence_medecin_traitant',
+    ],
+  },
+];
+
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -54,6 +105,7 @@ const ApiDroitsCnam = ({
       }}
       navLinks={[
         { id: 'description', label: 'Description' },
+        { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
@@ -76,6 +128,7 @@ const ApiDroitsCnam = ({
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
+        <DonneesSection availableScopes={availableScopes} useCases={useCases} />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />

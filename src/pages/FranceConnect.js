@@ -116,11 +116,6 @@ const availableScopes = [
     checkedByDefault: true,
   },
   {
-    value: 'email',
-    label: 'Adresse électronique',
-    checkedByDefault: true,
-  },
-  {
     value: 'birthplace',
     label: 'Ville de naissance',
   },
@@ -129,6 +124,10 @@ const availableScopes = [
     label: 'Pays de naissance',
   },
   { value: 'gender', label: 'Sexe' },
+  {
+    value: 'email',
+    label: 'Adresse électronique',
+  },
 ];
 
 const FranceConnect = ({
