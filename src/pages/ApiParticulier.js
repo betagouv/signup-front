@@ -34,6 +34,17 @@ const DemarcheDescription = () => (
 );
 
 const contacts = {
+  metier: {
+    heading: 'Contact métier',
+    description: () => (
+      <p>
+        Cette personne sera contactée en cas de problème fonctionnel sur votre
+        service.
+      </p>
+    ),
+    email: '',
+    phone_number: '',
+  },
   technique: {
     heading: 'Responsable technique',
     description: () => (
@@ -46,6 +57,7 @@ const contacts = {
     ),
     email: '',
     phone_number: '',
+    display_mobile_phone_label: true,
   },
 };
 

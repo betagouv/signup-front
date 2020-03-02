@@ -52,6 +52,23 @@ const DemarcheDescription = () => (
   </div>
 );
 
+const contacts = {
+  technique: {
+    heading: 'Responsable technique',
+    description: () => (
+      <p>
+        Cette personne recevra les accès techniques par mail. Le numéro de
+        téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
+        envoyer un code d'accès. Le responsable technique peut être le contact
+        technique de votre prestataire.
+      </p>
+    ),
+    email: '',
+    phone_number: '',
+    display_mobile_phone_label: true,
+  },
+};
+
 const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
@@ -186,7 +203,7 @@ const FranceConnect = ({
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection />
+        <MiseEnOeuvreSection initialContacts={contacts} />
         <CguSection
           cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
           AdditionalCguContent={FcHasAlternativeAuthenticationMethod}

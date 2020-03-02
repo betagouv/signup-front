@@ -7,6 +7,7 @@ export const Contact = ({
   description,
   email,
   phone_number,
+  display_mobile_phone_label = false,
   disabled,
   handleChange,
 }) => (
@@ -30,7 +31,9 @@ export const Contact = ({
       {typeof phone_number !== 'undefined' && (
         <div className="form__group">
           <label htmlFor={`person_${id}_phone_number`}>
-            Numéro de téléphone
+            {display_mobile_phone_label
+              ? 'Numéro de téléphone mobile'
+              : 'Numéro de téléphone'}
           </label>
           <input
             type="tel"
