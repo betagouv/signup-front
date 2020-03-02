@@ -93,9 +93,6 @@ const CadreJuridiqueDescription = () => (
   </div>
 );
 
-const groupTitle =
-  'Les données ci-dessous ne sont pas vérifiées et ne seront fournies que si elles sont disponibles';
-
 const availableScopes = [
   {
     name: 'openid',
@@ -132,21 +129,6 @@ const availableScopes = [
     humanName: 'Pays de naissance',
   },
   { name: 'gender', humanName: 'Sexe' },
-  {
-    name: 'preferred_username',
-    humanName: "Nom d'usage",
-    groupTitle,
-  },
-  {
-    name: 'address',
-    humanName: 'Adresse postale',
-    groupTitle,
-  },
-  {
-    name: 'phone',
-    humanName: 'Numéro de téléphone',
-    groupTitle,
-  },
 ];
 
 const FranceConnect = ({

@@ -8,16 +8,13 @@
     "cgu_approved": true,
     "scopes": {
       "email": false,
-      "phone": true,
       "gender": true,
       "openid": true,
-      "address": true,
       "birthdate": false,
       "birthplace": false,
       "given_name": false,
       "family_name": false,
-      "birthcountry": false,
-      "preferred_username": true
+      "birthcountry": true
     },
     "contacts": [
       {

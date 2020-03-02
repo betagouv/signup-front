@@ -66,9 +66,9 @@ describe('serializeEnrollment', () => {
       expect(formData.getAll('enrollment[enrollment][cgu_approved]')).toEqual([
         'true',
       ]);
-      expect(formData.getAll('enrollment[enrollment][scopes][phone]')).toEqual([
-        'true',
-      ]);
+      expect(
+        formData.getAll('enrollment[enrollment][scopes][birthcountry]')
+      ).toEqual(['true']);
       expect(formData.getAll('enrollment[enrollment][scopes][gender]')).toEqual(
         ['true']
       );
