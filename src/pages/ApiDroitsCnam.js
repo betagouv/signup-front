@@ -13,7 +13,6 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
 
 const DemarcheDescription = () => (
   <div className="text-quote">
@@ -41,61 +40,6 @@ const DemarcheDescription = () => (
   </div>
 );
 
-const availableScopes = [
-  {
-    value: 'cnam_beneficiaires',
-    label: 'Liste des ayant-droits',
-    comment: 'enfants',
-  },
-  {
-    value: 'cnam_caisse',
-    label: 'Caisse gestionnaire',
-    comment:
-      "détail de l'organisme de rattachement, régime, caisse, centre de gestion, adresse postale de la caisse",
-  },
-  {
-    value: 'cnam_contrats',
-    label: 'Droits',
-    comment: 'liste des contrats de base (AMO) et complémentaires (AMC)',
-  },
-  {
-    value: 'cnam_exonerations',
-    label: 'Exonérations éventuelles',
-    comment:
-      'CMUC, ACS, maternité, au titre d’une invalidité ou  d’une affection longue durée',
-  },
-  {
-    value: 'cnam_medecin_traitant',
-    label: 'Identité du médecin traitant',
-  },
-  {
-    value: 'cnam_presence_medecin_traitant',
-    label: "Présence d'un médecin traitant",
-  },
-];
-
-const useCases = [
-  {
-    label: 'Établissement de soin',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_exonerations',
-      'cnam_medecin_traitant',
-    ],
-  },
-  {
-    label: 'Organisme complémentaire',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_presence_medecin_traitant',
-    ],
-  },
-];
-
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -110,7 +54,6 @@ const ApiDroitsCnam = ({
       }}
       navLinks={[
         { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
@@ -133,7 +76,6 @@ const ApiDroitsCnam = ({
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
-        <DonneesSection availableScopes={availableScopes} useCases={useCases} />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
