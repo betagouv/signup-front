@@ -96,9 +96,9 @@ const CadreJuridiqueDescription = () => (
 const availableScopes = [
   {
     value: 'openid',
-    label:
-      "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
+    label: 'Identifiant technique',
     mandatory: true,
+    comment: '"sub" de l\'utilisateur au format OpenIDConnect',
   },
   {
     value: 'birthdate',

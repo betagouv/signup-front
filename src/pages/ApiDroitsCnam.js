@@ -43,25 +43,30 @@ const DemarcheDescription = () => (
 
 const availableScopes = [
   {
-    value: 'cnam_ayant_droits',
-    label: 'Liste des ayant-droits (enfants)',
+    value: 'cnam_beneficiaires',
+    label: 'Liste des ayant-droits',
+    comment: 'enfants',
   },
   {
-    value: 'cnam_caisse_gestionnaire',
+    value: 'cnam_caisse',
     label: 'Caisse gestionnaire',
+    comment:
+      "détail de l'organisme de rattachement, régime, caisse, centre de gestion, adresse postale de la caisse",
   },
   {
-    value: 'cnam_droits',
+    value: 'cnam_contrats',
     label: 'Droits',
+    comment: 'liste des contrats de base (AMO) et complémentaires (AMC)',
   },
   {
     value: 'cnam_exonerations',
-    label:
-      'Exonérations éventuelles (CMUC,ACS, maternité, au titre d’une invalidité ou  d’une affection longue durée)',
+    label: 'Exonérations éventuelles',
+    comment:
+      'CMUC, ACS, maternité, au titre d’une invalidité ou  d’une affection longue durée',
   },
   {
     value: 'cnam_medecin_traitant',
-    label: 'Votre médecin traitant',
+    label: 'Identité du médecin traitant',
   },
   {
     value: 'cnam_presence_medecin_traitant',
@@ -73,9 +78,9 @@ const useCases = [
   {
     label: 'Établissement de soin',
     scopes: [
-      'cnam_ayant_droits',
-      'cnam_caisse_gestionnaire',
-      'cnam_droits',
+      'cnam_beneficiaires',
+      'cnam_caisse',
+      'cnam_contrats',
       'cnam_exonerations',
       'cnam_medecin_traitant',
     ],
@@ -83,9 +88,9 @@ const useCases = [
   {
     label: 'Organisme complémentaire',
     scopes: [
-      'cnam_ayant_droits',
-      'cnam_caisse_gestionnaire',
-      'cnam_droits',
+      'cnam_beneficiaires',
+      'cnam_caisse',
+      'cnam_contrats',
       'cnam_presence_medecin_traitant',
     ],
   },
