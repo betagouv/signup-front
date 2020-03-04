@@ -95,38 +95,38 @@ const CadreJuridiqueDescription = () => (
 
 const availableScopes = [
   {
-    name: 'openid',
-    humanName:
-      "Identifiant technique (sub) de l'utilisateur au format OpenIDConnect",
+    value: 'openid',
+    label: 'Identifiant technique',
     mandatory: true,
+    comment: '"sub" de l\'utilisateur au format OpenIDConnect',
   },
   {
-    name: 'birthdate',
-    humanName: 'Date de naissance',
+    value: 'birthdate',
+    label: 'Date de naissance',
     checkedByDefault: true,
   },
   {
-    name: 'given_name',
-    humanName: 'Prénoms',
+    value: 'given_name',
+    label: 'Prénoms',
     checkedByDefault: true,
   },
   {
-    name: 'family_name',
-    humanName: 'Nom de naissance',
+    value: 'family_name',
+    label: 'Nom de naissance',
     checkedByDefault: true,
   },
   {
-    name: 'birthplace',
-    humanName: 'Ville de naissance',
+    value: 'birthplace',
+    label: 'Ville de naissance',
   },
   {
-    name: 'birthcountry',
-    humanName: 'Pays de naissance',
+    value: 'birthcountry',
+    label: 'Pays de naissance',
   },
-  { name: 'gender', humanName: 'Sexe' },
+  { value: 'gender', label: 'Sexe' },
   {
-    name: 'email',
-    humanName: 'Adresse électronique',
+    value: 'email',
+    label: 'Adresse électronique',
   },
 ];
 

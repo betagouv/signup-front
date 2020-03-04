@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Scopes.css';
+
 const Scopes = ({
   title,
   scopes,
@@ -9,31 +11,26 @@ const Scopes = ({
   handleChange,
 }) => (
   <div className="form__group">
-    <fieldset className="vertical">
+    <fieldset>
       <label>{title}</label>
-      <div className="row">
-        <div className="column">
-          {scopes.map(({ name, humanName, mandatory }) => (
-            <div key={name}>
-              <input
-                type="checkbox"
-                className="scope__checkbox"
-                onChange={handleChange}
-                name={`scopes.${name}`}
-                id={`checkbox-scope-${name}`}
-                disabled={disabledApplication || mandatory}
-                checked={selectedScopes[name]}
-              />
-              <label
-                htmlFor={`checkbox-scope-${name}`}
-                className="label-inline"
-              >
-                {humanName}
-                {mandatory && <i> (nécessaire)</i>}
-              </label>
-            </div>
-          ))}
-        </div>
+      <div className="scope_container">
+        {scopes.map(({ value, label, mandatory, comment }) => (
+          <div className="scope_item" key={value}>
+            <input
+              type="checkbox"
+              onChange={handleChange}
+              name={`scopes.${value}`}
+              id={`checkbox-scope-${value}`}
+              disabled={disabledApplication || mandatory}
+              checked={selectedScopes[value]}
+            />
+            <label htmlFor={`checkbox-scope-${value}`} className="label-inline">
+              {label}
+              {mandatory && <i> (nécessaire)</i>}
+            </label>
+            {comment && <div className="scope_comment">{comment}</div>}
+          </div>
+        ))}
       </div>
     </fieldset>
   </div>

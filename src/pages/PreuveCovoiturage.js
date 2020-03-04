@@ -28,12 +28,12 @@ const DemarcheDescription = () => (
 
 const availableScopes = [
   {
-    name: 'operator',
-    humanName: 'Opérateur de covoiturage',
+    value: 'operator',
+    label: 'Opérateur de covoiturage',
   },
   {
-    name: 'territory',
-    humanName: 'Autorités organisatrices de mobilité (AOM)',
+    value: 'territory',
+    label: 'Autorités organisatrices de mobilité (AOM)',
   },
 ];
 
