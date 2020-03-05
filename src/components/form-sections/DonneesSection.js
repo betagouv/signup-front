@@ -111,7 +111,7 @@ const DonneesSection = ({
       {!isEmpty(useCases) && (
         <>
           <fieldset className="vertical">
-            <legend>Sélectionnez votre cas d'usage</legend>
+            <legend>Sélectionnez votre cas d'usage :</legend>
             <div className="row">
               <div className="column">
                 {useCases.map(({ label }) => (
@@ -145,17 +145,17 @@ const DonneesSection = ({
               </div>
             </div>
           </fieldset>
-          <br />
         </>
       )}
+      <p>
+        {isEmpty(useCases)
+          ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
+          : 'Liste des données correspondantes :'}
+      </p>
       {Object.keys(groupTitleScopesGroup).map(group => (
         <Scopes
           key={group}
-          title={
-            group === 'default'
-              ? 'Sélectionnez les données nécessaires à votre cas d’usage'
-              : group
-          }
+          title={group === 'default' ? null : group}
           scopes={groupTitleScopesGroup[group]}
           selectedScopes={scopes}
           disabledApplication={disabled}

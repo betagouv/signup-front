@@ -185,7 +185,7 @@ class ActionButtons extends React.Component {
     });
 
     return (
-      <React.Fragment>
+      <>
         <div className="button-list action">
           {tokenUrl && (
             <a className="button large secondary action" href={tokenUrl}>
@@ -217,7 +217,7 @@ class ActionButtons extends React.Component {
             targetApi={target_api}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }

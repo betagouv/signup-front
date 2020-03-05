@@ -144,7 +144,7 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const groupTitle = 'Sélectionnez les années de revenus souhaitées';
+const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
 
 const availableScopes = [
   {
