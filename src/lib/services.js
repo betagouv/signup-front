@@ -7,7 +7,7 @@ import {
   collectionWithKeyToObject,
   hashToQueryParams,
   objectToCollectionWithKey,
-} from './utils';
+} from './index';
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 export function serializeEnrollment(enrollment) {

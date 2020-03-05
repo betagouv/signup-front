@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollablePanel } from '../elements/Scrollable';
+import { ScrollablePanel } from '../Scrollable';
 
 const TextSection = ({ id = 'head', title, Description }) => (
   <ScrollablePanel scrollableId={id}>

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Helper from '../elements/Helper';
+import Helper from '../../Helper';
 
 const descriptions = {
   responsable_traitement: {
@@ -32,7 +32,7 @@ const descriptions = {
   },
 };
 
-export const RgpdContact = ({
+const RgpdContact = ({
   type,
   label,
   email,
@@ -112,3 +112,5 @@ RgpdContact.propTypes = {
   disabled: PropTypes.bool,
   handleChange: PropTypes.func,
 };
+
+export default RgpdContact;

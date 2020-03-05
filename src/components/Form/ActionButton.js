@@ -6,12 +6,12 @@ import {
   deleteEnrollment,
   triggerEnrollment,
 } from '../../lib/services';
-import Prompt from '../elements/Prompt';
-import { getErrorMessages, getTokenUrl } from '../../lib/utils';
+import Prompt from './Prompt';
+import { getErrorMessages, getTokenUrl } from '../../lib';
 import Spinner from '../icons/spinner';
 import DoneIcon from '../icons/done';
 
-class ActionButtons extends React.Component {
+class ActionButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -185,7 +185,7 @@ class ActionButtons extends React.Component {
     });
 
     return (
-      <React.Fragment>
+      <>
         <div className="button-list action">
           {tokenUrl && (
             <a className="button large secondary action" href={tokenUrl}>
@@ -217,15 +217,15 @@ class ActionButtons extends React.Component {
             targetApi={target_api}
           />
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
 
-ActionButtons.propTypes = {
+ActionButton.propTypes = {
   enrollment: PropTypes.object.isRequired,
   updateEnrollment: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default ActionButtons;
+export default ActionButton;

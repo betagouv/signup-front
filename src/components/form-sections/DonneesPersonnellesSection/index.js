@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import Helper from '../elements/Helper';
-import { RgpdContact } from '../form/RgpdContact';
-import { ScrollablePanel } from '../elements/Scrollable';
-import { FormContext } from '../Form';
+import Helper from '../../Helper';
+import RgpdContact from './RgpdContact';
+import { ScrollablePanel } from '../../Scrollable';
+import { FormContext } from '../../Form';
 
-const DonneesPersonnellesSection = () => {
+const Index = () => {
   const {
     disabled,
     onChange,
@@ -110,4 +110,4 @@ const DonneesPersonnellesSection = () => {
   );
 };
 
-export default DonneesPersonnellesSection;
+export default Index;

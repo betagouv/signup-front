@@ -23,7 +23,7 @@ import {
   TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
 } from '../lib/api';
 
-import Helper from '../components/elements/Helper';
+import Helper from '../components/Helper';
 import Spinner from '../components/icons/spinner';
 
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
@@ -64,7 +64,7 @@ export default ({
               </NavLink>
             </li>
             {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(targetApi => (
-              <li className="nav__item">
+              <li key={targetApi} className="nav__item">
                 <NavLink
                   activeClassName={'active_link'}
                   exact

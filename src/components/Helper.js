@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './Helper.css';
-import HelpIcon from '../icons/help';
+import HelpIcon from './icons/help';
 
 const Helper = ({ title }) => (
   <span tooltip={title} className="helper">

@@ -13,7 +13,7 @@ import FileCopyIcon from '../icons/file_copy';
 import WarningIcon from '../icons/warning';
 import NotificationsIcon from '../icons/notifications';
 import './ActivityFeed.css';
-import { getChangelog } from '../../lib/utils';
+import { getChangelog } from '../../lib';
 
 ticketPlugin(linkify);
 const linkifyOptions = {

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollablePanel } from '../elements/Scrollable';
-import { FormContext } from '../Form';
+import { ScrollablePanel } from '../../Scrollable';
+import { FormContext } from '../../Form';
 
-const CguSection = ({
+const Index = ({
   CguDescription = () => null,
   cguLink,
   AdditionalCguContent = () => null,
@@ -47,10 +47,10 @@ const CguSection = ({
   );
 };
 
-CguSection.propTypes = {
+Index.propTypes = {
   CguDescription: PropTypes.func,
   cguLink: PropTypes.string.isRequired,
   AdditionalCguContent: PropTypes.func,
 };
 
-export default CguSection;
+export default Index;

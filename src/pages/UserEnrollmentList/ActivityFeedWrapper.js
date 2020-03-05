@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import ActivityFeed from '../../components/form/ActivityFeed';
+import ActivityFeed from '../../components/Form/ActivityFeed';
 import { getCachedAPIAverageProcessingTimeInDays } from '../../lib/services';
 
 const ActivityFeedWrapper = ({ events, status, target_api }) => {

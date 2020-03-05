@@ -8,11 +8,7 @@ import moment from 'moment';
 
 import './AdminEnrollmentList.css';
 
-import {
-  getStateFromUrlParams,
-  openLink,
-  setUrlParamsFromState,
-} from '../lib/utils';
+import { getStateFromUrlParams, openLink, setUrlParamsFromState } from '../lib';
 import { getEnrollments } from '../lib/services';
 import { TARGET_API_LABELS } from '../lib/api';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../lib/enrollment';

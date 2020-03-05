@@ -4,7 +4,7 @@ import { isObject } from 'lodash';
 import { withRouter } from 'react-router-dom';
 import './Nav.css';
 import ArrowBackIcon from './icons/arrow-back';
-import { ScrollableLink } from './elements/Scrollable';
+import { ScrollableLink } from './Scrollable';
 import LocalPhoneIcon from './icons/local-phone';
 
 const Nav = ({ logo, navLinks, contactInformation, history }) => {

@@ -5,7 +5,7 @@ import { API_ICONS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import DgfipRgpdAgreement from '../components/form/DgfipRgpdAgreement';
+import DgfipRgpdAgreement from '../components/form-sections/DonneesSection/DgfipRgpdAgreement';
 import TextSection from '../components/form-sections/TextSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
@@ -144,7 +144,7 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const groupTitle = 'Sélectionnez les années de revenus souhaitées';
+const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
 
 const availableScopes = [
   {

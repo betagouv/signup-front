@@ -1,17 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { TARGET_API_LABELS } from '../../lib/api';
+import { TARGET_API_LABELS } from '../../../lib/api';
+import useAccessToEnrollment from './useAccessToEnrollment';
+import { ScrollablePanel } from '../../Scrollable';
+import ValidatedEnrollmentsSelector from './ValidatedEnrollmentsSelector';
+import { FormContext } from '../../Form';
 
-import useAccessToEnrollment from '../hooks/useAccessToEnrollment';
-
-import { ScrollablePanel } from '../elements/Scrollable';
-
-import ValidatedEnrollmentsSelector from '../form/ValidatedEnrollmentsSelector';
-
-import { FormContext } from '../Form';
-
-const PreviousEnrollmentSection = ({
+const Index = ({
   previousTargetApi = 'franceconnect',
   Description = () => (
     <div className="text-quote">
@@ -65,9 +61,9 @@ const PreviousEnrollmentSection = ({
   );
 };
 
-PreviousEnrollmentSection.propTypes = {
+Index.propTypes = {
   previousTargetApi: PropTypes.string,
   Description: PropTypes.func,
 };
 
-export default PreviousEnrollmentSection;
+export default Index;

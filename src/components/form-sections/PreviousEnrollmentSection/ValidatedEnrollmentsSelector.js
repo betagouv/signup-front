@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import { getUserValidatedEnrollments } from '../../lib/services';
-import { TARGET_API_LABELS } from '../../lib/api';
+import { getUserValidatedEnrollments } from '../../../lib/services';
+import { TARGET_API_LABELS } from '../../../lib/api';
 
 class ValidatedEnrollmentsSelector extends React.Component {
   constructor(props) {
@@ -100,7 +100,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {validatedEnrollments.length > 0 && (
           <div className="form__group">
             <label htmlFor="validated_franceconnect_enrollments">
@@ -142,7 +142,7 @@ class ValidatedEnrollmentsSelector extends React.Component {
             </div>
           </div>
         )}
-      </React.Fragment>
+      </>
     );
   }
 }
