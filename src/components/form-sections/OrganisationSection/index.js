@@ -1,15 +1,15 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash';
-import { UserContext } from '../UserContext';
-import { getOrganizationInformation } from '../../lib/services';
-import { isValidNAFCode } from '../../lib/utils';
-import './OrganisationSection.css';
-import OrganizationPrompt from '../elements/OrganizationPrompt';
-import EditIcon from '../icons/edit';
-import { ScrollablePanel } from '../elements/Scrollable';
-import { FormContext } from '../Form';
+import { UserContext } from '../../UserContext';
+import { getOrganizationInformation } from '../../../lib/services';
+import { isValidNAFCode } from '../../../lib';
+import './index.css';
+import OrganizationPrompt from './OrganizationPrompt';
+import EditIcon from '../../icons/edit';
+import { ScrollablePanel } from '../../Scrollable';
+import { FormContext } from '../../Form';
 
-const OrganisationSection = () => {
+const Index = () => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -178,4 +178,4 @@ const OrganisationSection = () => {
   );
 };
 
-export default OrganisationSection;
+export default Index;

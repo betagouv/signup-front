@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
-import { Contact } from '../form/Contact';
-import { ScrollablePanel } from '../elements/Scrollable';
-import { FormContext } from '../Form';
+import { Contact } from './Contact';
+import { ScrollablePanel } from '../../Scrollable';
+import { FormContext } from '../../Form';
 
-const MiseEnOeuvreSection = ({
+const Index = ({
   initialContacts = {},
   AdditionalMiseEnOeuvreContent = () => null,
 }) => {
@@ -95,9 +95,9 @@ const contactPropTypesShape = {
   }),
 };
 
-MiseEnOeuvreSection.propTypes = {
+Index.propTypes = {
   AdditionalMiseEnOeuvreContent: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
 };
 
-export default MiseEnOeuvreSection;
+export default Index;

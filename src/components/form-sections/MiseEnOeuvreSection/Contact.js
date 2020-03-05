@@ -61,3 +61,5 @@ Contact.propTypes = {
   disabled: PropTypes.bool,
   handleChange: PropTypes.func,
 };
+
+export default Contact;

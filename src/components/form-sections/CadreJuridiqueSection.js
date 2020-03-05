@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import DocumentUpload from '../form/DocumentUpload';
-import { ScrollablePanel } from '../elements/Scrollable';
+import DocumentUpload from '../DocumentUpload';
+import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
 
 const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Spinner from '../components/icons/spinner';
 import { copyEnrollment } from '../lib/services';
 import { Redirect } from 'react-router-dom';
-import { getErrorMessages } from '../lib/utils';
+import { getErrorMessages } from '../lib';
 
 const CopyEnrollment = ({
   match: {

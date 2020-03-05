@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EventItem } from './../form/ActivityFeed';
+import { EventItem } from './ActivityFeed';
 import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
 import { TARGET_API_LABELS } from '../../lib/api';
@@ -12,7 +12,7 @@ const commentTypeToEventName = {
   validate_application: 'validated',
 };
 
-export default class Prompt extends React.Component {
+class Prompt extends React.Component {
   constructor(props) {
     super(props);
 
@@ -189,3 +189,5 @@ Prompt.propTypes = {
   commentType: PropTypes.string.isRequired,
   targetApi: PropTypes.string.isRequired,
 };
+
+export default Prompt;

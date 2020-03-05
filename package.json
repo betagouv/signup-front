@@ -11,7 +11,7 @@
     "test": "npm run lint && CI=true REACT_APP_BACK_HOST=http://localhost REACT_APP_API_PARTICULIER_HOST=https://particulier-development.api.gouv.fr REACT_APP_API_ENTREPRISE_HOST=https://sandbox.dashboard.entreprise.api.gouv.fr react-scripts test && npm audit",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "prettier --list-different src/*.js src/**/*.js src/**/**/*.js"
+    "lint": "prettier --list-different src/*.js src/**/*.js src/**/**/*.js src/**/**/**/*.js"
   },
   "keywords": [],
   "author": "",

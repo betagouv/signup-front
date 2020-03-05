@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { hasAccessToEnrollment } from '../../lib/services';
+import { hasAccessToEnrollment } from '../../../lib/services';
 
 const useAccessToEnrollment = enrollmentId => {
   const [

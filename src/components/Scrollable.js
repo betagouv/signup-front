@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { delay, throttle } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Spinner from '../icons/spinner';
+import Spinner from './icons/spinner';
 
 const getWindowHash = () =>
   window.location.hash ? window.location.hash.substr(1) : null;

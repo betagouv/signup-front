@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { ScrollablePanel } from '../elements/Scrollable';
-import Helper from '../elements/Helper';
+import { ScrollablePanel } from '../Scrollable';
+import Helper from '../Helper';
 import { FormContext } from '../Form';
 import PropTypes from 'prop-types';
 

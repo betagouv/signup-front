@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { withUser } from './UserContext';
-import { hashToQueryParams } from '../lib/utils';
+import { hashToQueryParams } from '../lib';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

@@ -4,14 +4,13 @@ import { withRouter } from 'react-router-dom';
 import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
-import { getUserEnrollment } from '../lib/services';
-
-import ActionButtons from './form/ActionButtons';
-import ActivityFeed from './form/ActivityFeed';
+import { getUserEnrollment } from '../../lib/services';
+import ActionButton from './ActionButton';
+import ActivityFeed from './ActivityFeed';
 
 export const FormContext = React.createContext();
 
-class Form extends React.Component {
+class Index extends React.Component {
   constructor(props) {
     super(props);
 
@@ -181,7 +180,7 @@ class Form extends React.Component {
           </div>
         ))}
 
-        <ActionButtons
+        <ActionButton
           enrollment={this.state.enrollment}
           updateEnrollment={this.updateEnrollment}
           handleSubmit={this.handleSubmit}
@@ -191,7 +190,7 @@ class Form extends React.Component {
   }
 }
 
-Form.propTypes = {
+Index.propTypes = {
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
   history: PropTypes.shape({
@@ -205,8 +204,8 @@ Form.propTypes = {
   }),
 };
 
-Form.defaultProps = {
+Index.defaultProps = {
   enrollmentId: null,
 };
 
-export default withRouter(Form);
+export default withRouter(Index);

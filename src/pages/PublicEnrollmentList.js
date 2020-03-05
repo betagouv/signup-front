@@ -147,7 +147,7 @@ class PublicEnrollmentList extends React.Component {
                 </li>
                 {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
                   targetApi => (
-                    <li className="nav__item">
+                    <li key={targetApi} className="nav__item">
                       <NavLink
                         activeClassName={'active_link'}
                         exact

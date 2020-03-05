@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ScrollablePanel } from '../../elements/Scrollable';
+import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
 const EntrantsTechniquesSection = () => {

@@ -5,7 +5,7 @@ import { API_ICONS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import FcHasAlternativeAuthenticationMethod from '../components/form/FcHasAlternativeAuthenticationMethod';
+import FcHasAlternativeAuthenticationMethod from '../components/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import TextSection from '../components/form-sections/TextSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';

@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import _, { groupBy, isEmpty, isString, xor, zipObject } from 'lodash';
-import { ScrollablePanel } from '../elements/Scrollable';
-import Scopes from '../form/Scopes';
-import { FormContext } from '../Form';
+import { ScrollablePanel } from '../../Scrollable';
+import Scopes from './Scopes';
+import { FormContext } from '../../Form';
 
 const CUSTOM_USE_CASE_LABEL = 'Autre';
 
-const DonneesSection = ({
+const Index = ({
   DonneesDescription = () => null,
   AdditionalRgpdAgreement = () => null,
   availableScopes,
@@ -166,10 +166,10 @@ const DonneesSection = ({
   );
 };
 
-DonneesSection.propTypes = {
+Index.propTypes = {
   DonneesDescription: PropTypes.func,
   AdditionalRgpdAgreement: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
 };
 
-export default DonneesSection;
+export default Index;
