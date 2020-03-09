@@ -5,7 +5,7 @@ import {
   hashToQueryParams,
   isValidNAFCode,
   objectToCollectionWithKey,
-} from '../index';
+} from './index';
 
 describe('utils', () => {
   describe('isValidNAFCode', () => {
