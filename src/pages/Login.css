@@ -1,0 +1,20 @@
+.panel > .login-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4em auto;
+}
+
+.panel > .login-title {
+  margin-top: 2em;
+}
+
+@media (max-width: 550px) {
+  .panel > .login-buttons {
+    flex-direction: column;
+  }
+}
+
+.login-buttons-or {
+  margin: 1em;
+}

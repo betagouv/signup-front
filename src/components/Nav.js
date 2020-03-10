@@ -37,7 +37,12 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
           {logo && (
             <li>
               <a href={logo.url}>
-                <img alt={logo.alt} src={logo.src} className="form-nav-logo" />
+                <img
+                  alt={logo.alt}
+                  src={logo.src}
+                  className="form-nav-logo"
+                  height="90"
+                />
               </a>
             </li>
           )}

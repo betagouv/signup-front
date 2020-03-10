@@ -25,8 +25,8 @@ section.enrollment-page {
   padding: 2em 0 1em 0;
 }
 
-section.loader,
-div.loader {
+section.section-full-page,
+div.section-full-page {
   display: flex;
   justify-content: center;
   align-items: center;

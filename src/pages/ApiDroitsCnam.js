@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
@@ -99,7 +99,7 @@ const ApiDroitsCnam = ({
     <Nav
       logo={{
         src: `/images/${API_ICONS.api_droits_cnam}`,
-        alt: 'Caisse Nationale d’Assurance Maladie',
+        alt: `Logo ${TARGET_API_LABELS.api_droits_cnam}`,
         url: 'https://www.ameli.fr/',
       }}
       navLinks={[

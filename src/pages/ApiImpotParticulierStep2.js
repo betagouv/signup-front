@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
@@ -57,7 +57,7 @@ const ApiImpotParticulier = ({
     <Nav
       logo={{
         src: `/images/${API_ICONS.api_impot_particulier}`,
-        alt: 'Direction générale des finances publiques',
+        alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
