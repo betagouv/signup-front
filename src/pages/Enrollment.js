@@ -48,7 +48,7 @@ const Enrollment = ({
 
   if (fetchEnrollmentNotFound) {
     return (
-      <section className="section-grey loader">
+      <section className="section-grey section-full-page">
         <div className="notification error">
           Nous n'avons pas trouvé votre demande d'habilitation.
         </div>
@@ -58,7 +58,7 @@ const Enrollment = ({
 
   if (fetchEnrollmentError) {
     return (
-      <section className="section-grey loader">
+      <section className="section-grey section-full-page">
         <div className="notification error">
           Erreur inconnue lors de la récupération de la demande d'habilitation.
         </div>
@@ -67,7 +67,7 @@ const Enrollment = ({
   }
 
   return (
-    <section className="section-grey loader">
+    <section className="section-grey section-full-page">
       <Spinner />
     </section>
   );

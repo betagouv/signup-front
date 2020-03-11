@@ -47,7 +47,7 @@ export class ScrollablePanel extends Component {
       <div className="panel" id={scrollableId} ref={this.panelRef}>
         {isLoading ? (
           <div style={{ height: '150px' }}>
-            <div className="loader">
+            <div className="section-full-page">
               <Spinner />
             </div>
           </div>

@@ -51,7 +51,7 @@ const UserEnrollmentList = ({ history }) => {
 
       <section className="section-grey enrollments-section">
         {isLoading ? (
-          <div className="loader">
+          <div className="section-full-page">
             <Spinner />
           </div>
         ) : (

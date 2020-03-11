@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
@@ -152,7 +152,7 @@ const FranceConnect = ({
     <Nav
       logo={{
         src: `/images/${API_ICONS.franceconnect}`,
-        alt: 'FranceConnect',
+        alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
         url: 'https://franceconnect.gouv.fr/',
       }}
       navLinks={[

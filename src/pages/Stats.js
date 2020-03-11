@@ -47,7 +47,7 @@ export default ({
 
   if (!stats) {
     return (
-      <section className="section-grey loader">
+      <section className="section-grey section-full-page">
         <Spinner />
       </section>
     );

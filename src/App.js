@@ -43,7 +43,7 @@ const App = () => (
           {({ user, isLoading }) => (
             <main>
               {isLoading ? (
-                <section className="section-grey loader">
+                <section className="section-grey section-full-page">
                   <Spinner />
                 </section>
               ) : (
