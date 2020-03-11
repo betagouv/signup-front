@@ -95,7 +95,7 @@ export class ScrollableLink extends Component {
     // we suppose that after 500ms this is the case to avoid complex implementation.
     // Then we simply trigger the link by clicking on it.
     delay(() => {
-      const hash = getWindowHash();
+      const hash = getWindowHash() || 'head';
       if (!this.state.selected && this.props.scrollableId === hash) {
         document
           .querySelector(`.side-menu a[href="#${this.props.scrollableId}"]`)
@@ -112,13 +112,14 @@ export class ScrollableLink extends Component {
   }
 
   render() {
-    const { scrollableId, children } = this.props;
+    const { scrollableId, children, style } = this.props;
 
     return (
       <li>
         <a
           className={`side-pane__link${this.state.selected ? ' active' : ''}`}
           href={`#${scrollableId}`}
+          style={style}
         >
           {children}
         </a>
@@ -130,4 +131,5 @@ export class ScrollableLink extends Component {
 ScrollableLink.propTypes = {
   scrollableId: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
+  style: PropTypes.object,
 };

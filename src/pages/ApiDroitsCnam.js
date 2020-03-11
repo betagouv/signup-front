@@ -5,7 +5,6 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import TextSection from '../components/form-sections/TextSection';
 import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
@@ -16,7 +15,7 @@ import CguSection from '../components/form-sections/CguSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l’API Droits CNAM permet de
@@ -103,6 +102,8 @@ const ApiDroitsCnam = ({
         url: 'https://www.ameli.fr/',
       }}
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -119,11 +120,9 @@ const ApiDroitsCnam = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">Demande d'accès à l'API Droits CNAM</h2>
       <Form enrollmentId={enrollmentId} target_api="api_droits_cnam">
-        <TextSection
-          title="Demande d'accès à l'API Droits CNAM"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />

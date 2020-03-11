@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import TextSection from '../components/form-sections/TextSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
@@ -12,7 +12,7 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       L'accès au Registre de preuve de covoiturage est disponible pour les
       opérateurs de covoiturage et les autorités organisatrices de mobilité
@@ -45,6 +45,8 @@ const PreuveCovoiturage = ({
   <div className="dashboard">
     <Nav
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -61,11 +63,9 @@ const PreuveCovoiturage = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">Demande d'accès au Registre de preuve de covoiturage</h2>
       <Form enrollmentId={enrollmentId} target_api="preuve_covoiturage">
-        <TextSection
-          title="Demande d'accès au Registre de preuve de covoiturage"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} />

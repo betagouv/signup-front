@@ -14,7 +14,7 @@ import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrol
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       Votre demande d'habilitation pour accéder à l'API Impôt particulier a été
       acceptée, vous pouvez maintenant construire votre démarche/téléservice en
@@ -61,6 +61,8 @@ const ApiImpotParticulier = ({
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
         { id: 'homologation-securite', label: 'Homologation de sécurité' },
         { id: 'entrants-techniques', label: 'Entrants techniques' },
@@ -76,14 +78,14 @@ const ApiImpotParticulier = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">
+        Demande d'accès à l'API Impôt particulier - étape 2 sur 2
+      </h2>
       <Form
         enrollmentId={enrollmentId}
         target_api="api_impot_particulier_step2"
       >
-        <TextSection
-          Description={DemarcheDescription}
-          title="Demande d'accès à l'API Impôt particulier - étape 2 sur 2"
-        />
+        <DemarcheDescription />
         <PreviousEnrollmentSection
           previousTargetApi="api_impot_particulier"
           Description={PreviousEnrollmentDescription}

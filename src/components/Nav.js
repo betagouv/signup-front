@@ -29,7 +29,7 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
               <span style={{ verticalAlign: 'sub' }}>
                 <ArrowBackIcon color={'var(--theme-primary)'} size={20} />
               </span>
-              Retour à mes demandes
+              Mes demandes
             </button>
           </li>
         </ul>
@@ -46,8 +46,8 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
               </a>
             </li>
           )}
-          {navLinks.map(({ id, label }) => (
-            <ScrollableLink key={id} scrollableId={id}>
+          {navLinks.map(({ id, label, style = {} }) => (
+            <ScrollableLink key={id} scrollableId={id} style={style}>
               {label}
             </ScrollableLink>
           ))}

@@ -11,7 +11,11 @@ const descriptions = {
         morale qui, seul ou conjointement avec d’autres, détermine les finalités
         et les moyens du traitement des données à caractère personnel. Seule une
         personne appartenant à l'organisme demandeur peut être renseignée. (
-        <a href={'https://www.cnil.fr/fr/definition/responsable-de-traitement'}>
+        <a
+          href={'https://www.cnil.fr/fr/definition/responsable-de-traitement'}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           plus d'info
         </a>
         )
@@ -26,7 +30,14 @@ const descriptions = {
         les données à caractère personnel, conformément à la législation en
         vigueur. C'est généralement une personne appartenant à l'organisme
         demandeur. (
-        <a href={'https://www.cnil.fr/fr/designation-dpo'}>plus d'info</a>)
+        <a
+          href={'https://www.cnil.fr/fr/designation-dpo'}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          plus d'info
+        </a>
+        )
       </p>
     ),
   },

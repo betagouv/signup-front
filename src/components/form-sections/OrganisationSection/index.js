@@ -158,7 +158,7 @@ const Index = () => {
             className="light inline-icon-button"
             onClick={() => setShowPrompt(true)}
           >
-            <EditIcon color="black" />
+            <EditIcon color="var(--grey)" />
           </button>
         )}
       </div>

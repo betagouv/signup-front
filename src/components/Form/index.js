@@ -146,12 +146,7 @@ class Index extends React.Component {
           </div>
         )}
 
-        {events.length > 0 && (
-          <>
-            <h4>Activité</h4>
-            <ActivityFeed events={events} />
-          </>
-        )}
+        {events.length > 0 && <ActivityFeed events={events} />}
 
         <FormContext.Provider
           value={{

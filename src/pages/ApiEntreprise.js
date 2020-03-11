@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import TextSection from '../components/form-sections/TextSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
@@ -13,28 +13,17 @@ import CguSection from '../components/form-sections/CguSection';
 import { sample } from 'lodash';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
-    <p>
-      L'accès à l'API Entreprise n'est pour l'instant disponible que si vous
-      êtes une administration. Pour accéder à l'API Entreprise, qui diffuse des
-      données à caractère personnel, il doit vous être demandé de préciser le
-      cadre juridique dans lequel vous souhaitez accéder à ces données.
-    </p>
-    <p>
-      <b>
-        Attention, pour toute demande relative aux marchés publics, merci de
-        contacter le support (
-        <a href="mailto:support@entreprise.api.gouv.fr">
-          support@entreprise.api.gouv.fr
-        </a>
-        ) avant de soumettre votre demande.
-      </b>
-    </p>
-    <p>
-      Décrivez brièvement votre service ainsi que l‘utilisation prévue des
-      données transmises. C'est la raison pour laquelle vous traitez ces données
-      qui peuvent inclure des données à caractère personnel.
-    </p>
+  <div className="notification warning">
+    Attention, pour toute demande relative aux <b>marchés publics</b>, merci de
+    contacter le support (
+    <a
+      href="mailto:support@entreprise.api.gouv.fr"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      support@entreprise.api.gouv.fr
+    </a>
+    ) avant de soumettre votre demande.
   </div>
 );
 
@@ -71,7 +60,11 @@ const DonneesDescription = () => (
     </p>
     <p>
       Vous pouvez trouver une description détaillée de chaque API sur{' '}
-      <a href="https://doc.entreprise.api.gouv.fr/">
+      <a
+        href="https://doc.entreprise.api.gouv.fr/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         doc.entreprise.api.gouv.fr
       </a>
       .
@@ -181,6 +174,8 @@ const ApiEntreprise = ({
   <div className="dashboard">
     <Nav
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -200,11 +195,9 @@ const ApiEntreprise = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">Demande d'accès à l'API Entreprise</h2>
       <Form enrollmentId={enrollmentId} target_api="api_entreprise">
-        <TextSection
-          title="Demande d'accès à l'API Entreprise"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
         <DonneesSection

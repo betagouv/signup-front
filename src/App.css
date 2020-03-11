@@ -111,6 +111,14 @@ input[type='tel']::placeholder {
   background-color: #e8e8e8;
 }
 
+.panel > h2 {
+  font-weight: normal;
+}
+
+.card > .card__content > h3 {
+  font-weight: normal;
+}
+
 section + section {
   padding-top: 0;
 }
@@ -228,6 +236,12 @@ li.panel .button-list {
     width: 90%;
     margin: 0.5em 0;
   }
+}
+
+/* add grey notification */
+.notification.grey {
+  background-color: #e6ecf3;
+  border-color: #748191;
 }
 
 /* fixes on template.beta.gouv stylesheet */

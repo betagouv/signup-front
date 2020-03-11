@@ -6,7 +6,6 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
-import TextSection from '../components/form-sections/TextSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
@@ -16,7 +15,7 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
       une habilitation. L’accès à ce service n’est pour l’instant disponible que
@@ -79,7 +78,11 @@ const CadreJuridiqueDescription = () => (
     <ul>
       <li>
         Si vous êtes une <b>administration</b>, vous pouvez citer ici{' '}
-        <a href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037611479&categorieLien=id">
+        <a
+          href="https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000037611479&categorieLien=id"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           l'arrêté du 8 novembre 2018
         </a>
         . N'oubliez pas de justifier la nécessité d'identification de la
@@ -156,6 +159,8 @@ const FranceConnect = ({
         url: 'https://franceconnect.gouv.fr/',
       }}
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -182,11 +187,9 @@ const FranceConnect = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">Demande d'habilitation juridique à FranceConnect</h2>
       <Form enrollmentId={enrollmentId} target_api="franceconnect">
-        <TextSection
-          title="Demande d'habilitation juridique à FranceConnect"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection
           intitulePlaceholder="« Se connecter au portail famille de ma ville »"

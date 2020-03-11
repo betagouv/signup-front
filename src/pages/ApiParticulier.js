@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import TextSection from '../components/form-sections/TextSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
@@ -12,11 +12,11 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       Pour avoir accès à l’API Particulier, diffusant des données personnelles,
       vous devez obtenir un agrément. L’accès à cette API n’est pour l’instant
-      disponible que si vous êtes:
+      disponible que si vous êtes&nbsp;:
     </p>
     <ul>
       <li>une administration</li>
@@ -127,6 +127,8 @@ const ApiParticulier = ({
   <div className="dashboard">
     <Nav
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -143,11 +145,9 @@ const ApiParticulier = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">Demande d'accès à API Particulier</h2>
       <Form enrollmentId={enrollmentId} target_api="api_particulier">
-        <TextSection
-          title="Demande d'accès à API Particulier"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection
           intitulePlaceholder={

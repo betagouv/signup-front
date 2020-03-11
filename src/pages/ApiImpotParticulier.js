@@ -17,7 +17,7 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 
 const DemarcheDescription = () => (
-  <div className="text-quote">
+  <div className="notification grey">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l’API Impôt particulier permet
@@ -255,6 +255,8 @@ const ApiImpotParticulier = ({
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
+        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
+        { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -272,11 +274,11 @@ const ApiImpotParticulier = ({
       ]}
     />
     <div className="main">
+      <h2 id="head">
+        Demande d’accès à l’API Impôt particulier - étape 1 sur 2
+      </h2>
       <Form enrollmentId={enrollmentId} target_api="api_impot_particulier">
-        <TextSection
-          title="Demande d’accès à l’API Impôt particulier - étape 1 sur 2"
-          Description={DemarcheDescription}
-        />
+        <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
