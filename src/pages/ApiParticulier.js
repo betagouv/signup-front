@@ -138,9 +138,9 @@ const ApiParticulier = ({
       ]}
       contactInformation={[
         {
-          email: 'contact@api.gouv.fr',
+          email: 'contact@particulier.api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20API%20Particulier',
+          subject: 'Contact%20via%20signup.api.gouv.fr',
         },
       ]}
     />
