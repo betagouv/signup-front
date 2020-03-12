@@ -274,10 +274,11 @@ const ApiImpotParticulier = ({
       ]}
     />
     <div className="main">
-      <h2 id="head">
-        Demande d’accès à l’API Impôt particulier - étape 1 sur 2
-      </h2>
-      <Form enrollmentId={enrollmentId} target_api="api_impot_particulier">
+      <Form
+        enrollmentId={enrollmentId}
+        target_api="api_impot_particulier"
+        title="Demande d’accès à l’API Impôt particulier - étape 1 sur 2"
+      >
         <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />

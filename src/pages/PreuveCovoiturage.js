@@ -63,8 +63,11 @@ const PreuveCovoiturage = ({
       ]}
     />
     <div className="main">
-      <h2 id="head">Demande d'accès au Registre de preuve de covoiturage</h2>
-      <Form enrollmentId={enrollmentId} target_api="preuve_covoiturage">
+      <Form
+        enrollmentId={enrollmentId}
+        target_api="preuve_covoiturage"
+        title="Demande d'accès au Registre de preuve de covoiturage"
+      >
         <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection />

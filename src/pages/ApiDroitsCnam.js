@@ -120,8 +120,11 @@ const ApiDroitsCnam = ({
       ]}
     />
     <div className="main">
-      <h2 id="head">Demande d'accès à l'API Droits CNAM</h2>
-      <Form enrollmentId={enrollmentId} target_api="api_droits_cnam">
+      <Form
+        enrollmentId={enrollmentId}
+        target_api="api_droits_cnam"
+        title="Demande d'accès à l'API Droits CNAM"
+      >
         <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />

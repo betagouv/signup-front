@@ -187,8 +187,11 @@ const FranceConnect = ({
       ]}
     />
     <div className="main">
-      <h2 id="head">Demande d'habilitation juridique à FranceConnect</h2>
-      <Form enrollmentId={enrollmentId} target_api="franceconnect">
+      <Form
+        enrollmentId={enrollmentId}
+        target_api="franceconnect"
+        title="Demande d'habilitation juridique à FranceConnect"
+      >
         <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection

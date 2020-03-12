@@ -127,12 +127,16 @@ class Index extends React.Component {
       isUserEnrollmentLoading,
     } = this.state;
 
-    const { location } = this.props;
+    const { title, location } = this.props;
 
     const { acl, events } = enrollment;
 
     return (
       <>
+        <h2 id="head">
+          {title}
+          {enrollment.id ? ` n°${enrollment.id}` : ''}
+        </h2>
         {get(location, 'state.source') === 'copy-authorization-request' && (
           <div className="notification warning">
             Vous trouverez ci dessous une copie de votre demande initiale. Merci
@@ -186,6 +190,7 @@ class Index extends React.Component {
 }
 
 Index.propTypes = {
+  title: PropTypes.string.isRequired,
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
   history: PropTypes.shape({
