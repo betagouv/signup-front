@@ -199,8 +199,8 @@ const ApiEntreprise = ({
         enrollmentId={enrollmentId}
         target_api="api_entreprise"
         title="Demande d'accès à l'API Entreprise"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
         <DonneesSection

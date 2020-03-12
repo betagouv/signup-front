@@ -67,8 +67,8 @@ const PreuveCovoiturage = ({
         enrollmentId={enrollmentId}
         target_api="preuve_covoiturage"
         title="Demande d'accès au Registre de preuve de covoiturage"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} />

@@ -278,8 +278,8 @@ const ApiImpotParticulier = ({
         enrollmentId={enrollmentId}
         target_api="api_impot_particulier"
         title="Demande d’accès à l’API Impôt particulier - étape 1 sur 2"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />

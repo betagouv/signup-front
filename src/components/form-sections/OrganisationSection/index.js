@@ -8,6 +8,7 @@ import OrganizationPrompt from './OrganizationPrompt';
 import EditIcon from '../../icons/edit';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
+import Spinner from '../../icons/spinner';
 
 const Index = () => {
   const {
@@ -121,11 +122,20 @@ const Index = () => {
     }
   };
 
+  if (isUserEnrollmentLoading || isOrganizationInfoLoading) {
+    return (
+      <ScrollablePanel scrollableId="organisation">
+        <div style={{ height: '150px' }}>
+          <div className="section-full-page">
+            <Spinner />
+          </div>
+        </div>
+      </ScrollablePanel>
+    );
+  }
+
   return (
-    <ScrollablePanel
-      isLoading={isUserEnrollmentLoading || isOrganizationInfoLoading}
-      scrollableId="organisation"
-    >
+    <ScrollablePanel scrollableId="organisation">
       <h2>Organisation à l'origine de la demande</h2>
       {activite && !isValidNAFCode(target_api, activite) && (
         <div className="form__group">

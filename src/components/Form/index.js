@@ -7,6 +7,7 @@ import Linkify from 'linkifyjs/react';
 import { getUserEnrollment } from '../../lib/services';
 import ActionButton from './ActionButton';
 import ActivityFeed from './ActivityFeed';
+import { ScrollablePanel } from '../Scrollable';
 
 export const FormContext = React.createContext();
 
@@ -127,28 +128,31 @@ class Index extends React.Component {
       isUserEnrollmentLoading,
     } = this.state;
 
-    const { title, location } = this.props;
+    const { title, DemarcheDescription, location } = this.props;
 
     const { acl, events } = enrollment;
 
     return (
       <>
-        <h2 id="head">
-          {title}
-          {enrollment.id ? ` n°${enrollment.id}` : ''}
-        </h2>
-        {get(location, 'state.source') === 'copy-authorization-request' && (
-          <div className="notification warning">
-            Vous trouverez ci dessous une copie de votre demande initiale. Merci
-            de vérifier que ces informations sont à jour puis cliquez sur
-            "Soumettre la demande".
-          </div>
-        )}
-        {!isUserEnrollmentLoading && acl.update && (
-          <div className="notification info">
-            Pensez à sauvegarder régulièrement votre demande en brouillon.
-          </div>
-        )}
+        <ScrollablePanel scrollableId="head" className={null}>
+          <h2 id="head">
+            {title}
+            {enrollment.id ? ` n°${enrollment.id}` : ''}
+          </h2>
+          {get(location, 'state.source') === 'copy-authorization-request' && (
+            <div className="notification warning">
+              Vous trouverez ci dessous une copie de votre demande initiale.
+              Merci de vérifier que ces informations sont à jour puis cliquez
+              sur "Soumettre la demande".
+            </div>
+          )}
+          {!isUserEnrollmentLoading && acl.update && (
+            <div className="notification info">
+              Pensez à sauvegarder régulièrement votre demande en brouillon.
+            </div>
+          )}
+          <DemarcheDescription />
+        </ScrollablePanel>
 
         {events.length > 0 && <ActivityFeed events={events} />}
 
@@ -191,6 +195,7 @@ class Index extends React.Component {
 
 Index.propTypes = {
   title: PropTypes.string.isRequired,
+  DemarcheDescription: PropTypes.func,
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
   history: PropTypes.shape({
@@ -206,6 +211,7 @@ Index.propTypes = {
 
 Index.defaultProps = {
   enrollmentId: null,
+  DemarcheDescription: () => null,
 };
 
 export default withRouter(Index);

@@ -149,8 +149,8 @@ const ApiParticulier = ({
         enrollmentId={enrollmentId}
         target_api="api_particulier"
         title="Demande d'accès à API Particulier"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection
           intitulePlaceholder={

@@ -191,8 +191,8 @@ const FranceConnect = ({
         enrollmentId={enrollmentId}
         target_api="franceconnect"
         title="Demande d'habilitation juridique à FranceConnect"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <OrganisationSection />
         <DescriptionSection
           intitulePlaceholder="« Se connecter au portail famille de ma ville »"

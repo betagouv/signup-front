@@ -124,8 +124,8 @@ const ApiDroitsCnam = ({
         enrollmentId={enrollmentId}
         target_api="api_droits_cnam"
         title="Demande d'accès à l'API Droits CNAM"
+        DemarcheDescription={DemarcheDescription}
       >
-        <DemarcheDescription />
         <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />

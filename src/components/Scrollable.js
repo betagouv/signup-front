@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { delay, throttle } from 'lodash';
 import PropTypes from 'prop-types';
 
-import Spinner from './icons/spinner';
-
 const getWindowHash = () =>
   window.location.hash ? window.location.hash.substr(1) : null;
 
@@ -42,32 +40,24 @@ export class ScrollablePanel extends Component {
   }
 
   render() {
-    const { scrollableId, isLoading, children } = this.props;
+    const { scrollableId, children, className } = this.props;
     return (
-      <div className="panel" id={scrollableId} ref={this.panelRef}>
-        {isLoading ? (
-          <div style={{ height: '150px' }}>
-            <div className="section-full-page">
-              <Spinner />
-            </div>
-          </div>
-        ) : (
-          children
-        )}
+      <div className={className} id={scrollableId} ref={this.panelRef}>
+        {children}
       </div>
     );
   }
 }
 
 ScrollablePanel.propTypes = {
-  isLoading: PropTypes.bool,
+  className: PropTypes.string,
   children: PropTypes.node,
   scrollableId: PropTypes.string.isRequired,
 };
 
 ScrollablePanel.defaultProps = {
-  isLoading: false,
   children: null,
+  className: 'panel',
 };
 
 export class ScrollableLink extends Component {
@@ -95,7 +85,7 @@ export class ScrollableLink extends Component {
     // we suppose that after 500ms this is the case to avoid complex implementation.
     // Then we simply trigger the link by clicking on it.
     delay(() => {
-      const hash = getWindowHash() || 'head';
+      const hash = getWindowHash();
       if (!this.state.selected && this.props.scrollableId === hash) {
         document
           .querySelector(`.side-menu a[href="#${this.props.scrollableId}"]`)
