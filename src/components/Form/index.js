@@ -147,11 +147,13 @@ class Index extends React.Component {
             </div>
           )}
           {!isUserEnrollmentLoading && acl.update && (
-            <div className="notification info">
-              Pensez à sauvegarder régulièrement votre demande en brouillon.
-            </div>
+            <>
+              <div className="notification info">
+                Pensez à sauvegarder régulièrement votre demande en brouillon.
+              </div>
+              <DemarcheDescription />
+            </>
           )}
-          <DemarcheDescription />
         </ScrollablePanel>
 
         {events.length > 0 && <ActivityFeed events={events} />}
