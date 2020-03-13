@@ -30,7 +30,7 @@
     "react-scripts": "^3.3.1",
     "react-table": "^6.10.0",
     "recharts": "^1.6.2",
-    "serve": "^11.0.2",
+    "serve": "^11.3.0",
     "template.data.gouv.fr": "1.2.1"
   },
   "devDependencies": {
