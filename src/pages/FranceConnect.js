@@ -132,7 +132,7 @@ const availableScopes = [
     groupTitle: 'Identité pivot :',
   },
   {
-    value: 'prefered_username',
+    value: 'preferred_username',
     label: "Nom d'usage",
     triggerWarning: true,
     warningType: 'fc_incomplete',
