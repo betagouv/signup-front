@@ -132,10 +132,17 @@ const availableScopes = [
     groupTitle: 'Identité pivot :',
   },
   {
+    value: 'prefered_username',
+    label: "Nom d'usage",
+    triggerWarning: true,
+    warningType: 'fc_incomplete',
+    groupTitle: 'Autres données :',
+  },
+  {
     value: 'email',
     label: 'Adresse électronique',
     triggerWarning: true,
-    groupTitle: 'Donnée de contact :',
+    groupTitle: 'Autres données :',
   },
   {
     value: 'openid',

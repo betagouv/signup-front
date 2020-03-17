@@ -311,6 +311,20 @@ targeting the last_child like so '.card__content > :last-child'
   overflow-y: auto;
 }
 
+/* fix: add modal closing cross */
+.modal.with_closing_cross {
+  position: absolute;
+}
+
+.modal.with_closing_cross:before {
+  content: '×';
+  font-size: 1.5em;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 5px;
+}
+
 /* light button & link */
 button.light,
 a.light {

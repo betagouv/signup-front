@@ -2,6 +2,25 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Scopes.css';
+import WarningModal from './WarningModal';
+
+const ModalContent = {
+  rgpd: {
+    title:
+      'Assurez vous de ne pas demander une ou plusieurs données non utiles à vos traitements',
+    body:
+      'Afin de respecter le principe RGPD de minimisation de la circulation des ' +
+      'données personnelles, nous effectuons un contrôle de cohérence entre les ' +
+      'données demandées et l’usage décrit. Une demande non conforme fera ' +
+      "l'objet d'un retour pour rectification, et donc d'un délai " +
+      'supplémentaire.',
+  },
+  fc_incomplete: {
+    title: "Cette donnée n'est pas vérifiée",
+    body:
+      "Elle ne ne sera transmise que si elle est disponible chez le fournisseur d'identité.",
+  },
+};
 
 const Scopes = ({
   title,
@@ -11,6 +30,7 @@ const Scopes = ({
   handleChange,
 }) => {
   const [warningModalScope, setWarningModalScope] = useState(null);
+  const [warningType, setWarningType] = useState('rgpd');
 
   const handleWarningModalClose = () => {
     handleChange({
@@ -21,6 +41,7 @@ const Scopes = ({
       },
     });
     setWarningModalScope(null);
+    setWarningType('rgpd');
   };
 
   return (
@@ -29,13 +50,23 @@ const Scopes = ({
         {title && <label className="typography__caption label">{title}</label>}
         <div className="scope_container">
           {scopes.map(
-            ({ value, label, mandatory, comment, triggerWarning }) => (
+            ({
+              value,
+              label,
+              mandatory,
+              comment,
+              triggerWarning,
+              warningType,
+            }) => (
               <div className="scope_item" key={value}>
                 <input
                   type="checkbox"
                   onChange={
                     triggerWarning && !selectedScopes[value]
-                      ? () => setWarningModalScope(value)
+                      ? () => {
+                          setWarningType(warningType || 'rgpd');
+                          setWarningModalScope(value);
+                        }
                       : handleChange
                   }
                   name={`scopes.${value}`}
@@ -57,36 +88,15 @@ const Scopes = ({
         </div>
       </fieldset>
       {warningModalScope && (
-        <div
-          className="modal__backdrop"
-          id="modal"
-          style={{ display: 'flex' }}
-          onClick={() => setWarningModalScope(null)}
-        >
-          <div className="modal">
-            <h3>
-              Assurez vous de ne pas demander une ou plusieurs données non
-              utiles à vos traitements
-            </h3>
-            <p>
-              Afin de respecter le principe RGPD de minimisation de la
-              circulation des données personnelles, nous effectuons un contrôle
-              de cohérence entre les données demandées et l’usage décrit. Une
-              demande non conforme fera l'objet d'un retour pour rectification,
-              et donc d'un délai supplémentaire.
-            </p>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <button
-                className="button large warning"
-                onClick={handleWarningModalClose}
-              >
-                Demander la donnée «{' '}
-                {scopes.find(({ value }) => value === warningModalScope).label}{' '}
-                »
-              </button>
-            </div>
-          </div>
-        </div>
+        <WarningModal
+          handleCancel={() => setWarningModalScope(null)}
+          handleValidate={handleWarningModalClose}
+          scopeLabel={
+            scopes.find(({ value }) => value === warningModalScope).label
+          }
+          title={ModalContent[warningType].title}
+          body={ModalContent[warningType].body}
+        />
       )}
     </div>
   );
