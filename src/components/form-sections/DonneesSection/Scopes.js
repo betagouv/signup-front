@@ -18,7 +18,7 @@ const ModalContent = {
   fc_incomplete: {
     title: "Cette donnée n'est pas vérifiée",
     body:
-      "Elle ne ne sera transmise que si elle est disponible chez le fournisseur d'identité.",
+      "Elle ne sera transmise que si elle est disponible chez le fournisseur d'identité.",
   },
 };
 
