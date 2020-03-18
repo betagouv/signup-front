@@ -23,11 +23,11 @@ const EnrollmentHasCopiesNotification = ({ enrollmentId }) => {
 
   return (
     <div className="notification warning">
-      La demande{' '}
+      Il existe une copie plus récente de cette demande : la{' '}
       <a href={`/authorization-request/${enrollmentCopyId}`}>
         #{enrollmentCopyId}
-      </a>{' '}
-      est une copie plus récente de cette demande.
+      </a>
+      .
     </div>
   );
 };
