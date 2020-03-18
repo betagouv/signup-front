@@ -78,6 +78,16 @@ export function hasAccessToEnrollment(id) {
     .catch(() => false);
 }
 
+export function getEnrollmentCopies(id) {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/${id}/copies`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(({ data: { enrollments: data } }) => data);
+}
+
 export function getUserValidatedEnrollments(targetApi) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
@@ -92,7 +102,7 @@ export function getUserValidatedEnrollments(targetApi) {
         }
       )
       // format contact to a more usable structure
-      // the backend should be able to use this structure to in the future
+      // the backend should be able to use this structure too in the future
       .then(({ data: { enrollments: data } }) =>
         data.map(e => ({
           ...e,
@@ -261,7 +271,7 @@ export const getCachedAPIAverageProcessingTimeInDays = memoize(
 
 export function copyEnrollment({ id }) {
   return httpClient
-    .get(`${BACK_HOST}/api/enrollments/${id}/copy`, {
+    .post(`${BACK_HOST}/api/enrollments/${id}/copy`, {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data);

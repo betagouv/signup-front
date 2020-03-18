@@ -8,6 +8,7 @@ import { getUserEnrollment } from '../../lib/services';
 import ActionButton from './ActionButton';
 import ActivityFeed from './ActivityFeed';
 import { ScrollablePanel } from '../Scrollable';
+import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 
 export const FormContext = React.createContext();
 
@@ -146,6 +147,7 @@ class Index extends React.Component {
               sur "Soumettre la demande".
             </div>
           )}
+          {<EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />}
           {!isUserEnrollmentLoading && acl.update && (
             <>
               <div className="notification info">
