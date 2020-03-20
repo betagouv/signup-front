@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { groupBy, isEmpty, zipObject } from 'lodash';
+import _, { difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../Form';
@@ -40,6 +40,14 @@ const DonneesSection = ({
     e => e.groupTitle || 'default'
   );
 
+  // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
+  const scopesAsArray = _(scopes)
+    .omitBy(e => !e)
+    .keys()
+    .value();
+  const availableScopesAsArray = availableScopes.map(({ value }) => value);
+  const outdatedScopes = difference(scopesAsArray, availableScopesAsArray);
+
   return (
     <ScrollablePanel scrollableId="donnees">
       <h2>Les données dont vous avez besoin</h2>
@@ -68,6 +76,18 @@ const DonneesSection = ({
           handleChange={onChange}
         />
       ))}
+      {disabled && !isEmpty(outdatedScopes) && (
+        <Scopes
+          title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
+          scopes={outdatedScopes.map(value => ({ value, label: value }))}
+          selectedScopes={zipObject(
+            outdatedScopes,
+            Array(outdatedScopes.length).fill(true)
+          )}
+          disabledApplication={true}
+          handleChange={() => null}
+        />
+      )}
     </ScrollablePanel>
   );
 };
