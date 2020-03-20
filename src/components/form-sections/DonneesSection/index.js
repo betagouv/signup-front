@@ -1,13 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import _, { groupBy, isEmpty, isString, xor, zipObject } from 'lodash';
+import _, { difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../Form';
+import UseCase from './UseCases';
 
-const CUSTOM_USE_CASE_LABEL = 'Autre';
-
-const Index = ({
+const DonneesSection = ({
   DonneesDescription = () => null,
   AdditionalRgpdAgreement = () => null,
   availableScopes,
@@ -18,63 +17,6 @@ const Index = ({
     onChange,
     enrollment: { additional_content = {}, scopes = {} },
   } = useContext(FormContext);
-
-  const [selectedUseCase, selectUseCase] = useState(null);
-
-  const handleUseCaseChange = useCaseToBeSelected => {
-    if (isEmpty(useCases)) {
-      return null;
-    }
-
-    if (
-      isString(useCaseToBeSelected) &&
-      useCaseToBeSelected !== CUSTOM_USE_CASE_LABEL
-    ) {
-      availableScopes.forEach(({ value: scopeValue }) =>
-        onChange({
-          target: {
-            type: 'checkbox',
-            checked: useCases
-              .find(e => e.label === useCaseToBeSelected)
-              .scopes.includes(scopeValue),
-            name: `scopes.${scopeValue}`,
-          },
-        })
-      );
-
-      return null;
-    }
-
-    availableScopes.forEach(({ value: scopeValue }) =>
-      onChange({
-        target: {
-          type: 'checkbox',
-          checked: false,
-          name: `scopes.${scopeValue}`,
-        },
-      })
-    );
-  };
-
-  useEffect(() => {
-    if (isEmpty(useCases)) {
-      return undefined;
-    }
-
-    // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
-    const selectedScopesAsArray = _(scopes)
-      .omitBy(e => !e)
-      .keys()
-      .value();
-
-    const useCaseToSelect = useCases.find(({ scopes: useCaseScopes }) =>
-      isEmpty(xor(selectedScopesAsArray, useCaseScopes))
-    );
-
-    selectUseCase(
-      isEmpty(useCaseToSelect) ? CUSTOM_USE_CASE_LABEL : useCaseToSelect.label
-    );
-  }, [scopes, useCases]);
 
   if (isEmpty(scopes)) {
     onChange({
@@ -98,6 +40,14 @@ const Index = ({
     e => e.groupTitle || 'default'
   );
 
+  // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
+  const scopesAsArray = _(scopes)
+    .omitBy(e => !e)
+    .keys()
+    .value();
+  const availableScopesAsArray = availableScopes.map(({ value }) => value);
+  const outdatedScopes = difference(scopesAsArray, availableScopesAsArray);
+
   return (
     <ScrollablePanel scrollableId="donnees">
       <h2>Les données dont vous avez besoin</h2>
@@ -109,43 +59,7 @@ const Index = ({
       />
       <br />
       {!isEmpty(useCases) && (
-        <>
-          <fieldset className="vertical">
-            <legend>Sélectionnez votre cas d'usage :</legend>
-            <div className="row">
-              <div className="column">
-                {useCases.map(({ label }) => (
-                  <div key={label}>
-                    <input
-                      type="radio"
-                      name="radio"
-                      id={label}
-                      checked={selectedUseCase === label}
-                      onChange={() => handleUseCaseChange(label)}
-                      disabled={disabled}
-                    />
-                    <label htmlFor={label} className="label-inline">
-                      {label}
-                    </label>
-                  </div>
-                ))}
-                <div>
-                  <input
-                    type="radio"
-                    name="radio"
-                    id="radio-other"
-                    checked={selectedUseCase === CUSTOM_USE_CASE_LABEL}
-                    onChange={() => handleUseCaseChange(CUSTOM_USE_CASE_LABEL)}
-                    disabled={disabled}
-                  />
-                  <label htmlFor="radio-other" className="label-inline">
-                    {CUSTOM_USE_CASE_LABEL}
-                  </label>
-                </div>
-              </div>
-            </div>
-          </fieldset>
-        </>
+        <UseCase availableScopes={availableScopes} useCases={useCases} />
       )}
       <p>
         {isEmpty(useCases)
@@ -162,14 +76,26 @@ const Index = ({
           handleChange={onChange}
         />
       ))}
+      {disabled && !isEmpty(outdatedScopes) && (
+        <Scopes
+          title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
+          scopes={outdatedScopes.map(value => ({ value, label: value }))}
+          selectedScopes={zipObject(
+            outdatedScopes,
+            Array(outdatedScopes.length).fill(true)
+          )}
+          disabledApplication={true}
+          handleChange={() => null}
+        />
+      )}
     </ScrollablePanel>
   );
 };
 
-Index.propTypes = {
+DonneesSection.propTypes = {
   DonneesDescription: PropTypes.func,
   AdditionalRgpdAgreement: PropTypes.func,
   availableScopes: PropTypes.array.isRequired,
 };
 
-export default Index;
+export default DonneesSection;
