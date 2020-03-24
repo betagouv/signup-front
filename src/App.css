@@ -295,6 +295,12 @@ input[type='button']:visited {
   background-color: var(--dark-grey);
 }
 
+/* fix: steps form style */
+.steps-form li::after {
+  top: 24px;
+  height: 7px;
+}
+
 /* fix: steps form spacing */
 .steps-form > li > div {
   padding: 0 1em;
