@@ -10,7 +10,6 @@ import HomologationSecuriteSection from '../components/form-sections/dgfip/Homol
 import EntrantsTechniquesSection from '../components/form-sections/dgfip/EntrantsTechniquesSection';
 import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
 import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
-import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 
 const DemarcheDescription = () => (
@@ -81,13 +80,15 @@ const ApiImpotParticulier = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_impot_particulier_step2"
-        title="Demande d'accès à l'API Impôt particulier - étape 2 sur 2"
+        steps={[
+          'franceconnect',
+          'api_impot_particulier',
+          'api_impot_particulier_step2',
+        ]}
+        PreviousEnrollmentDescription={PreviousEnrollmentDescription}
+        title="Demande d'accès à la production API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
       >
-        <PreviousEnrollmentSection
-          previousTargetApi="api_impot_particulier"
-          Description={PreviousEnrollmentDescription}
-        />
         <OrganisationSection />
         <RecetteFonctionnelleSection />
         <HomologationSecuriteSection />

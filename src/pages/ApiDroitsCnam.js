@@ -5,7 +5,6 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
@@ -123,10 +122,10 @@ const ApiDroitsCnam = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_droits_cnam"
+        steps={['franceconnect', 'api_droits_cnam']}
         title="Demande d'accès à l'API Droits CNAM"
         DemarcheDescription={DemarcheDescription}
       >
-        <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} useCases={useCases} />
