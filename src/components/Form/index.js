@@ -148,7 +148,7 @@ class Form extends React.Component {
             {title}
             {enrollment.id ? ` n°${enrollment.id}` : ''}
           </h2>
-          {get(location, 'state.fromAPIFranceConnect') ===
+          {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
             <>
               <p>
@@ -160,7 +160,7 @@ class Form extends React.Component {
               />
             </>
           )}
-          {get(location, 'state.fromAPIFranceConnect') ===
+          {get(location, 'state.fromFranceConnectedAPI') ===
             'api_impot_particulier' && (
             <>
               <p>
