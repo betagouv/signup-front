@@ -128,7 +128,7 @@ const PreviousEnrollmentSection = ({
                 <Link
                   to={{
                     pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
-                    state: { fromAPIFranceConnect: target_api },
+                    state: { fromFranceConnectedAPI: target_api },
                   }}
                 >
                   demander votre accès à{' '}
@@ -147,7 +147,7 @@ const PreviousEnrollmentSection = ({
           !isUserEnrollmentLoading &&
           isValidatedEnrollmentsLoading && (
             <div className="form__group">
-              <h4 id="franceconnect-enrollment">
+              <h4>
                 Association à votre demande{' '}
                 <b>{TARGET_API_LABELS[previousTargetApi]}</b>
               </h4>
@@ -171,13 +171,13 @@ const PreviousEnrollmentSection = ({
           !isValidatedEnrollmentsLoading &&
           validatedEnrollments.length > 0 && (
             <div className="form__group">
-              <label htmlFor="validated_franceconnect_enrollments">
+              <label htmlFor="validated_enrollments">
                 Nom de la démarche <b>{TARGET_API_LABELS[previousTargetApi]}</b>
                 &nbsp;:
               </label>
               <select
                 onChange={handleValidatedEnrollmentChange}
-                id="validated_franceconnect_enrollments"
+                id="validated_enrollments"
                 value={previous_enrollment_id}
               >
                 {validatedEnrollments.map(({ intitule: name, id }) => (
@@ -192,7 +192,10 @@ const PreviousEnrollmentSection = ({
           <div className="button-list enrollment">
             {hasAccessToPreviousEnrollment ? (
               <a
-                href={`/franceconnect/${previous_enrollment_id}`}
+                href={`/${previousTargetApi.replace(
+                  /_/g,
+                  '-'
+                )}/${previous_enrollment_id}`}
                 className="light"
               >
                 Numéro de la demande associée : {previous_enrollment_id}
