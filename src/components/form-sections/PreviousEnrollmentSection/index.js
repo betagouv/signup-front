@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import { TARGET_API_LABELS } from '../../../lib/api';
 import useAccessToEnrollment from './useAccessToEnrollment';
-import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 import { getUserValidatedEnrollments } from '../../../lib/services';
 import { Link } from 'react-router-dom';
@@ -140,7 +139,7 @@ const PreviousEnrollmentSection = ({
             </div>
           </div>
         )}
-      <ScrollablePanel scrollableId="franceconnect">
+      <div className="panel">
         <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
         <Description />
         <br />
@@ -203,7 +202,7 @@ const PreviousEnrollmentSection = ({
             )}
           </div>
         )}
-      </ScrollablePanel>
+      </div>
     </>
   );
 };

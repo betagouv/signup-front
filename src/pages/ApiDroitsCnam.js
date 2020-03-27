@@ -88,6 +88,8 @@ const useCases = [
   },
 ];
 
+const steps = ['franceconnect', 'api_droits_cnam'];
+
 const ApiDroitsCnam = ({
   match: {
     params: { enrollmentId },
@@ -122,7 +124,7 @@ const ApiDroitsCnam = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_droits_cnam"
-        steps={['franceconnect', 'api_droits_cnam']}
+        steps={steps}
         title="Demande d'accès à l'API Droits CNAM"
         DemarcheDescription={DemarcheDescription}
       >

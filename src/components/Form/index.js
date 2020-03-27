@@ -142,27 +142,12 @@ class Form extends React.Component {
     const { acl, events } = enrollment;
 
     return (
-      <FormContext.Provider
-        value={{
-          disabled: !acl.send_application,
-          onChange: this.handleChange,
-          onDocumentsChange: this.handleDocumentsChange,
-          enrollment,
-          isUserEnrollmentLoading,
-        }}
-      >
+      <>
         <ScrollablePanel scrollableId="head" className={null}>
           <h2 id="head">
             {title}
             {enrollment.id ? ` n°${enrollment.id}` : ''}
           </h2>
-          {get(location, 'state.source') === 'copy-authorization-request' && (
-            <div className="notification warning">
-              Vous trouverez ci dessous une copie de votre demande initiale.
-              Merci de vérifier que ces informations sont à jour puis cliquez
-              sur "Soumettre la demande".
-            </div>
-          )}
           {get(location, 'state.fromAPIFranceConnect') ===
             'api_droits_cnam' && (
             <>
@@ -191,12 +176,28 @@ class Form extends React.Component {
               />
             </>
           )}
-
           {steps && (
-            <PreviousEnrollmentSection
-              steps={steps}
-              Description={PreviousEnrollmentDescription}
-            />
+            <FormContext.Provider
+              value={{
+                disabled: !acl.send_application,
+                onChange: this.handleChange,
+                onDocumentsChange: this.handleDocumentsChange,
+                enrollment,
+                isUserEnrollmentLoading,
+              }}
+            >
+              <PreviousEnrollmentSection
+                steps={steps}
+                Description={PreviousEnrollmentDescription}
+              />
+            </FormContext.Provider>
+          )}
+          {get(location, 'state.source') === 'copy-authorization-request' && (
+            <div className="notification warning">
+              Vous trouverez ci dessous une copie de votre demande initiale.
+              Merci de vérifier que ces informations sont à jour puis cliquez
+              sur "Soumettre la demande".
+            </div>
           )}
 
           <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
@@ -212,9 +213,17 @@ class Form extends React.Component {
         </ScrollablePanel>
 
         {events.length > 0 && <ActivityFeed events={events} />}
-
-        {this.props.children}
-
+        <FormContext.Provider
+          value={{
+            disabled: !acl.send_application,
+            onChange: this.handleChange,
+            onDocumentsChange: this.handleDocumentsChange,
+            enrollment,
+            isUserEnrollmentLoading,
+          }}
+        >
+          {this.props.children}
+        </FormContext.Provider>
         {successMessages.map(successMessage => (
           <div key={successMessage} className="notification success">
             <Linkify>{successMessage}</Linkify>
@@ -235,7 +244,7 @@ class Form extends React.Component {
           updateEnrollment={this.updateEnrollment}
           handleSubmit={this.handleSubmit}
         />
-      </FormContext.Provider>
+      </>
     );
   }
 }

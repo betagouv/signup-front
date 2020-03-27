@@ -47,6 +47,12 @@ export const RecetteFonctionnelleDescription = () => (
   </div>
 );
 
+const steps = [
+  'franceconnect',
+  'api_impot_particulier',
+  'api_impot_particulier_step2',
+];
+
 const ApiImpotParticulier = ({
   match: {
     params: { enrollmentId },
@@ -80,11 +86,7 @@ const ApiImpotParticulier = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_impot_particulier_step2"
-        steps={[
-          'franceconnect',
-          'api_impot_particulier',
-          'api_impot_particulier_step2',
-        ]}
+        steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
         title="Demande d'accès à la production API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
