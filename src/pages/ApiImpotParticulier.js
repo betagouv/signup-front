@@ -8,7 +8,6 @@ import Nav from '../components/Nav';
 import DgfipRgpdAgreement from '../components/form-sections/DonneesSection/DgfipRgpdAgreement';
 import TextSection from '../components/form-sections/TextSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
-import PreviousEnrollmentSection from '../components/form-sections/PreviousEnrollmentSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 import CguSection from '../components/form-sections/CguSection';
@@ -242,6 +241,12 @@ const contacts = {
   },
 };
 
+const steps = [
+  'franceconnect',
+  'api_impot_particulier',
+  'api_impot_particulier_step2',
+];
+
 const ApiImpotParticulier = ({
   match: {
     params: { enrollmentId },
@@ -277,10 +282,10 @@ const ApiImpotParticulier = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_impot_particulier"
-        title="Demande d’accès à l’API Impôt particulier - étape 1 sur 2"
+        steps={steps}
+        title="Demande d’accès au bac à sable API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
       >
-        <PreviousEnrollmentSection />
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection

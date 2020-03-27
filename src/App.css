@@ -264,6 +264,27 @@ li.panel .button-list {
   font-weight: bold;
 }
 
+/* customise steps-form spacing */
+.steps-form {
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+/* add warning in steps-form */
+.steps-form li.warning::before {
+  border-color: var(--orange);
+  color: var(--white);
+  background-color: var(--orange);
+}
+.steps-form li.warning.active::before {
+  border-color: var(--orange);
+  color: var(--orange);
+  background-color: var(--white);
+}
+.steps-form li.warning::after {
+  background-color: var(--orange);
+}
+
 /* fixes on template.beta.gouv stylesheet */
 /* fix: strange margins on buttons */
 a.button,
@@ -302,6 +323,10 @@ input[type='button']:visited {
 }
 
 /* fix: steps form spacing */
+.steps-form {
+  padding-left: 0;
+}
+
 .steps-form > li > div {
   padding: 0 1em;
 }
@@ -318,6 +343,15 @@ input[type='button']:visited {
     margin: auto;
     width: 80%;
   }
+}
+
+/* fix: missing selector for done step-form */
+.steps-form li.done::before {
+  border-color: var(--blue);
+}
+
+.steps-form li.done::after {
+  background-color: var(--blue);
 }
 
 /* fix: missing style for disabled inputs */

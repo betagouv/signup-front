@@ -1,25 +1,19 @@
 import React from 'react';
 
 import './ApiImpotParticulierWelcomeMessage.css';
+import Stepper from '../../components/form-sections/PreviousEnrollmentSection/Stepper';
 
 const ApiImpotParticulierWelcomeMessage = () => (
   <>
     <h3>Demande d'accès à « API Impôt particulier »</h3>
     <p>La procédure consiste en 3 demandes d'accès distinctes&nbsp;:</p>
-    <ul className="steps-form">
-      <li>
-        <div>FranceConnect</div>
-      </li>
-      <li>
-        <div>Bac à sable API Impôt particulier</div>
-      </li>
-      <li>
-        <div>Production API Impôt particulier</div>
-      </li>
-      <li className="check-mark">
-        <div>Vous pouvez ouvrir votre service&nbsp;!</div>
-      </li>
-    </ul>
+    <Stepper
+      steps={[
+        'franceconnect',
+        'api_impot_particulier',
+        'api_impot_particulier_step2',
+      ]}
+    />
     <ol className="steps-form-description">
       <li>
         L'équipe FranceConnect de la{' '}

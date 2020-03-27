@@ -9,10 +9,12 @@ import ActionButton from './ActionButton';
 import ActivityFeed from './ActivityFeed';
 import { ScrollablePanel } from '../Scrollable';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
+import PreviousEnrollmentSection from '../form-sections/PreviousEnrollmentSection';
+import Stepper from '../form-sections/PreviousEnrollmentSection/Stepper';
 
 export const FormContext = React.createContext();
 
-class Index extends React.Component {
+class Form extends React.Component {
   constructor(props) {
     super(props);
 
@@ -129,7 +131,13 @@ class Index extends React.Component {
       isUserEnrollmentLoading,
     } = this.state;
 
-    const { title, DemarcheDescription, location } = this.props;
+    const {
+      title,
+      DemarcheDescription,
+      location,
+      steps,
+      PreviousEnrollmentDescription,
+    } = this.props;
 
     const { acl, events } = enrollment;
 
@@ -140,6 +148,50 @@ class Index extends React.Component {
             {title}
             {enrollment.id ? ` n°${enrollment.id}` : ''}
           </h2>
+          {get(location, 'state.fromAPIFranceConnect') ===
+            'api_droits_cnam' && (
+            <>
+              <p>
+                La procédure consiste en 2 demandes d'accès distinctes&nbsp;:
+              </p>
+              <Stepper
+                steps={['franceconnect', 'api_droits_cnam']}
+                currentStep="franceconnect"
+              />
+            </>
+          )}
+          {get(location, 'state.fromAPIFranceConnect') ===
+            'api_impot_particulier' && (
+            <>
+              <p>
+                La procédure consiste en 3 demandes d'accès distinctes&nbsp;:
+              </p>
+              <Stepper
+                steps={[
+                  'franceconnect',
+                  'api_impot_particulier',
+                  'api_impot_particulier_step2',
+                ]}
+                currentStep="franceconnect"
+              />
+            </>
+          )}
+          {steps && (
+            <FormContext.Provider
+              value={{
+                disabled: !acl.send_application,
+                onChange: this.handleChange,
+                onDocumentsChange: this.handleDocumentsChange,
+                enrollment,
+                isUserEnrollmentLoading,
+              }}
+            >
+              <PreviousEnrollmentSection
+                steps={steps}
+                Description={PreviousEnrollmentDescription}
+              />
+            </FormContext.Provider>
+          )}
           {get(location, 'state.source') === 'copy-authorization-request' && (
             <div className="notification warning">
               Vous trouverez ci dessous une copie de votre demande initiale.
@@ -147,7 +199,9 @@ class Index extends React.Component {
               sur "Soumettre la demande".
             </div>
           )}
-          {<EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />}
+
+          <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
+
           {!isUserEnrollmentLoading && acl.update && (
             <>
               <div className="notification info">
@@ -159,7 +213,6 @@ class Index extends React.Component {
         </ScrollablePanel>
 
         {events.length > 0 && <ActivityFeed events={events} />}
-
         <FormContext.Provider
           value={{
             disabled: !acl.send_application,
@@ -171,7 +224,6 @@ class Index extends React.Component {
         >
           {this.props.children}
         </FormContext.Provider>
-
         {successMessages.map(successMessage => (
           <div key={successMessage} className="notification success">
             <Linkify>{successMessage}</Linkify>
@@ -197,11 +249,12 @@ class Index extends React.Component {
   }
 }
 
-Index.propTypes = {
+Form.propTypes = {
   title: PropTypes.string.isRequired,
   DemarcheDescription: PropTypes.func,
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
+  steps: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,
@@ -213,9 +266,10 @@ Index.propTypes = {
   }),
 };
 
-Index.defaultProps = {
+Form.defaultProps = {
   enrollmentId: null,
+  steps: undefined,
   DemarcheDescription: () => null,
 };
 
-export default withRouter(Index);
+export default withRouter(Form);

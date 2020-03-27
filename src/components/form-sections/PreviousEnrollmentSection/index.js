@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { TARGET_API_LABELS } from '../../../lib/api';
 import useAccessToEnrollment from './useAccessToEnrollment';
-import { ScrollablePanel } from '../../Scrollable';
-import ValidatedEnrollmentsSelector from './ValidatedEnrollmentsSelector';
 import { FormContext } from '../../Form';
+import { getUserValidatedEnrollments } from '../../../lib/services';
+import { Link } from 'react-router-dom';
+import Stepper from './Stepper';
 
-const Index = ({
-  previousTargetApi = 'franceconnect',
+const PreviousEnrollmentSection = ({
+  steps,
   Description = () => (
     <div className="text-quote">
       <p>
@@ -26,44 +27,189 @@ const Index = ({
     enrollment: { previous_enrollment_id = null, target_api },
   } = useContext(FormContext);
 
+  // disable fetch if not disabled or is loading
   const hasAccessToPreviousEnrollment = useAccessToEnrollment(
-    previous_enrollment_id
+    disabled && !isUserEnrollmentLoading && previous_enrollment_id
   );
 
+  const [validatedEnrollments, setValidatedEnrollments] = useState([]);
+  const [
+    isValidatedEnrollmentsLoading,
+    setIsValidatedEnrollmentsLoading,
+  ] = useState(true);
+  const [validatedEnrollmentsError, setValidatedEnrollmentsError] = useState(
+    false
+  );
+
+  useEffect(() => {
+    const fetchUserValidatedEnrollments = async () => {
+      try {
+        setIsValidatedEnrollmentsLoading(true);
+        setValidatedEnrollmentsError(false);
+        const previousTargetApi =
+          steps[steps.findIndex(e => e === target_api) - 1];
+        const enrollments = await getUserValidatedEnrollments(
+          previousTargetApi
+        );
+        setValidatedEnrollments(enrollments);
+        setIsValidatedEnrollmentsLoading(false);
+      } catch (e) {
+        setValidatedEnrollmentsError(true);
+        setIsValidatedEnrollmentsLoading(false);
+      }
+    };
+
+    if (!disabled && !isUserEnrollmentLoading) {
+      fetchUserValidatedEnrollments();
+    }
+  }, [steps, target_api, isUserEnrollmentLoading, disabled]);
+
+  // initialize previous_enrollment_id if needed
+  useEffect(() => {
+    if (
+      !disabled &&
+      !isUserEnrollmentLoading &&
+      !previous_enrollment_id &&
+      validatedEnrollments.length > 0
+    ) {
+      onChange({
+        target: {
+          name: 'previous_enrollment_id',
+          value: validatedEnrollments[0].id,
+        },
+      });
+    }
+  });
+
+  const handleValidatedEnrollmentChange = event => {
+    const id = event.target.value;
+
+    onChange({
+      target: {
+        name: 'previous_enrollment_id',
+        value: id,
+      },
+    });
+  };
+
+  const previousTargetApi = steps[steps.findIndex(e => e === target_api) - 1];
+
   return (
-    <ScrollablePanel scrollableId="franceconnect">
-      <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
-      <Description />
-      <br />
-      {!isUserEnrollmentLoading && !disabled && (
-        <ValidatedEnrollmentsSelector
-          onValidatedEnrollment={onChange}
-          linkedTargetApi={previousTargetApi}
-          enrollmentTargetApi={target_api}
-          previous_enrollment_id={previous_enrollment_id}
-        />
+    <>
+      {!disabled && !isUserEnrollmentLoading && (
+        <>
+          <p>
+            La procédure consiste en {steps.length} demandes d'accès
+            distinctes&nbsp;:
+          </p>
+          <Stepper
+            steps={steps}
+            currentStep={!isValidatedEnrollmentsLoading && target_api}
+            previousStepNotCompleted={
+              !isValidatedEnrollmentsLoading &&
+              validatedEnrollments.length === 0
+            }
+          />
+        </>
       )}
-      {disabled && (
-        <div className="button-list enrollment">
-          {hasAccessToPreviousEnrollment ? (
-            <a
-              href={`/franceconnect/${previous_enrollment_id}`}
-              className="light"
-            >
-              Numéro de la demande associée : {previous_enrollment_id}
-            </a>
-          ) : (
-            <>Numéro de la demande associée : {previous_enrollment_id}</>
+      {!disabled &&
+        !isUserEnrollmentLoading &&
+        !isValidatedEnrollmentsLoading &&
+        validatedEnrollments.length === 0 && (
+          <div className="form__group">
+            <div className="notification warning">
+              <p>
+                Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>,
+                vous devez avoir préalablement obtenu un accès à{' '}
+                <b>{TARGET_API_LABELS[previousTargetApi]}</b>.
+              </p>
+              <p>
+                Veuillez{' '}
+                <Link
+                  to={{
+                    pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
+                    state: { fromAPIFranceConnect: target_api },
+                  }}
+                >
+                  demander votre accès à{' '}
+                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                </Link>{' '}
+                avant de continuer cette demande.
+              </p>
+            </div>
+          </div>
+        )}
+      <div className="panel">
+        <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+        <Description />
+        <br />
+        {!disabled &&
+          !isUserEnrollmentLoading &&
+          isValidatedEnrollmentsLoading && (
+            <div className="form__group">
+              <h4 id="franceconnect-enrollment">
+                Association à votre demande{' '}
+                <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+              </h4>
+              <p>
+                Chargement de vos demandes{' '}
+                <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                ...
+              </p>
+            </div>
           )}
-        </div>
-      )}
-    </ScrollablePanel>
+        {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
+          <div className="form__group">
+            <div className="notification error">
+              Erreur inconnue lors de la récupération de vos demandes{' '}
+              {TARGET_API_LABELS[previousTargetApi]}.
+            </div>
+          </div>
+        )}
+        {!disabled &&
+          !isUserEnrollmentLoading &&
+          !isValidatedEnrollmentsLoading &&
+          validatedEnrollments.length > 0 && (
+            <div className="form__group">
+              <label htmlFor="validated_franceconnect_enrollments">
+                Nom de la démarche <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                &nbsp;:
+              </label>
+              <select
+                onChange={handleValidatedEnrollmentChange}
+                id="validated_franceconnect_enrollments"
+                value={previous_enrollment_id}
+              >
+                {validatedEnrollments.map(({ intitule: name, id }) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+        {disabled && !isUserEnrollmentLoading && (
+          <div className="button-list enrollment">
+            {hasAccessToPreviousEnrollment ? (
+              <a
+                href={`/franceconnect/${previous_enrollment_id}`}
+                className="light"
+              >
+                Numéro de la demande associée : {previous_enrollment_id}
+              </a>
+            ) : (
+              <>Numéro de la demande associée : {previous_enrollment_id}</>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
-Index.propTypes = {
+PreviousEnrollmentSection.propTypes = {
   previousTargetApi: PropTypes.string,
   Description: PropTypes.func,
 };
 
-export default Index;
+export default PreviousEnrollmentSection;
