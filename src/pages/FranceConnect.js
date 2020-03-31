@@ -59,7 +59,8 @@ const contacts = {
         Cette personne recevra les accès techniques par mail. Le numéro de
         téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
         envoyer un code d'accès. Le responsable technique peut être le contact
-        technique de votre prestataire.
+        technique de votre prestataire. Attention, ce courrier peut parfois
+        passer en «&nbsp;courriers indésirables&nbsp;».
       </p>
     ),
     email: '',
