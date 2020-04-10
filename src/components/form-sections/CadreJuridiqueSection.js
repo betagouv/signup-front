@@ -8,7 +8,6 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   const {
     disabled,
     onChange,
-    onDocumentsChange,
     enrollment: {
       fondement_juridique_title = '',
       fondement_juridique_url = '',
@@ -69,7 +68,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::LegalBasis'}
-        handleDocumentsChange={onDocumentsChange}
+        handleChange={onChange}
       />
     </ScrollablePanel>
   );

@@ -36,11 +36,7 @@ class DocumentUpload extends React.Component {
   };
 
   onChange = ({ target: { files, name } }) => {
-    const {
-      documentsToUpload,
-      documentType,
-      handleDocumentsChange,
-    } = this.props;
+    const { documentsToUpload, documentType, handleChange } = this.props;
 
     const documentsWithoutThisDocument = documentsToUpload.filter(
       ({ type }) => type !== documentType
@@ -56,7 +52,12 @@ class DocumentUpload extends React.Component {
 
     // note that if files is an empty array (ie. file selection as been canceled)
     // this will result in unchanged documents_attributes
-    return handleDocumentsChange(updatedDocumentsToUpload);
+    return handleChange({
+      target: {
+        name: 'documents_attributes',
+        value: updatedDocumentsToUpload,
+      },
+    });
   };
 
   render() {
@@ -110,7 +111,7 @@ DocumentUpload.propTypes = {
     })
   ).isRequired,
   documentType: PropTypes.string.isRequired,
-  handleDocumentsChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
 };
 

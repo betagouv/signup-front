@@ -95,14 +95,6 @@ class Form extends React.Component {
     }));
   };
 
-  handleDocumentsChange = documentsToUpload => {
-    this.setState(({ enrollment: prevEnrollment }) => ({
-      enrollment: merge({}, prevEnrollment, {
-        documents_attributes: documentsToUpload,
-      }),
-    }));
-  };
-
   handleSubmit = ({
     errorMessages = [],
     successMessages = [],
@@ -181,7 +173,6 @@ class Form extends React.Component {
               value={{
                 disabled: !acl.send_application,
                 onChange: this.handleChange,
-                onDocumentsChange: this.handleDocumentsChange,
                 enrollment,
                 isUserEnrollmentLoading,
               }}
@@ -217,7 +208,6 @@ class Form extends React.Component {
           value={{
             disabled: !acl.send_application,
             onChange: this.handleChange,
-            onDocumentsChange: this.handleDocumentsChange,
             enrollment,
             isUserEnrollmentLoading,
           }}
