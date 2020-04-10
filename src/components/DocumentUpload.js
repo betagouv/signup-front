@@ -54,12 +54,8 @@ class DocumentUpload extends React.Component {
       },
     ];
 
-    this.setState({
-      documentsTooLargeError: this.areDocumentsTooLarge(
-        updatedDocumentsToUpload
-      ),
-    });
-
+    // note that if files is an empty array (ie. file selection as been canceled)
+    // this will result in unchanged documents_attributes
     return handleDocumentsChange(updatedDocumentsToUpload);
   };
 
