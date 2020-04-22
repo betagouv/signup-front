@@ -11,6 +11,7 @@ import { ScrollablePanel } from '../Scrollable';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import PreviousEnrollmentSection from '../form-sections/PreviousEnrollmentSection';
 import Stepper from '../form-sections/PreviousEnrollmentSection/Stepper';
+import { TARGET_API_LABELS } from '../../lib/api';
 
 export const FormContext = React.createContext();
 
@@ -38,6 +39,7 @@ class Form extends React.Component {
 
   componentDidMount() {
     const id = this.props.enrollmentId;
+    document.title = `${TARGET_API_LABELS[this.props.target_api]}`;
 
     if (!id) {
       return this.setState({ isUserEnrollmentLoading: false });
@@ -45,6 +47,7 @@ class Form extends React.Component {
 
     getUserEnrollment(id)
       .then(enrollment => {
+        document.title = `${enrollment.id} - ${enrollment.intitule}`;
         this.setState(({ enrollment: prevEnrollment }) => ({
           isUserEnrollmentLoading: false,
           enrollment: merge(
