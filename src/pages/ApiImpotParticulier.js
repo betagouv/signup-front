@@ -11,9 +11,8 @@ import DescriptionSection from '../components/form-sections/DescriptionSection';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 import CguSection from '../components/form-sections/CguSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -33,41 +32,13 @@ const DemarcheDescription = () => (
       les informations, en particulier pour ce qui concerne :
     </p>
     <ul>
-      <li>le fondement juridique ;</li>
       <li>les données nécessaires à la démarche administrative ;</li>
-      <li>la protection des données personnelles ;</li>
       <li>la volumétrie de sollicitation de l’API.</li>
     </ul>
     <p>
       Pour faciliter votre raccordement à l’API Impôt particulier, une API de
       test vous sera proposée après validation de cette première étape.
     </p>
-  </div>
-);
-
-const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
-    <p>
-      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
-    </p>
-    <p>
-      Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
-    </p>
-    <ul>
-      <li>
-        ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
-      </li>
-      <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
-      </li>
-    </ul>
   </div>
 );
 
@@ -114,29 +85,6 @@ const DonneesDescription = () => (
   </div>
 );
 
-const DgfipProductionDate = ({
-  disabled,
-  onChange,
-  additional_content: { production_date = '' },
-}) => (
-  <div className="row">
-    <div className="form__group">
-      <label htmlFor="production_date">
-        Date souhaitée pour le raccordement à l'API Impôt particulier en
-        production
-      </label>
-      <input
-        type="date"
-        onChange={onChange}
-        disabled={disabled}
-        value={production_date}
-        name="additional_content.production_date"
-        id="production_date"
-      />
-    </div>
-  </div>
-);
-
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -174,7 +122,7 @@ const availableScopes = [
   },
 ];
 
-const CguDescription = () => (
+export const CguDescription = () => (
   <div className="text-quote">
     <p>
       Votre raccordement à l‘API Impôt particulier nécessite l‘acceptation des
@@ -182,6 +130,9 @@ const CguDescription = () => (
     </p>
   </div>
 );
+
+export const cguLink =
+  '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
 
 const SuiteDescription = () => (
   <div className="text-quote">
@@ -213,17 +164,8 @@ const SuiteDescription = () => (
         pour accéder à l’API de production.
       </li>
     </ul>
-    <p>
-      Veuillez également noter qu'un mail est envoyé aux personnes que vous avez
-      désigné comme responsable de traitement et comme délégué à la protection
-      des données. Ce mail les informe qu'une demande les concernant a été
-      faite.
-    </p>
   </div>
 );
-
-const cguLink =
-  '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
 
 const contacts = {
   technique: {
@@ -263,10 +205,9 @@ const ApiImpotParticulier = ({
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
+        { id: 'volumetrie', label: 'Volumétrie' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
+        { id: 'donnees', label: 'Données' },
         { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
@@ -288,18 +229,12 @@ const ApiImpotParticulier = ({
       >
         <OrganisationSection />
         <DescriptionSection />
+        <VolumetrieSection />
+        <MiseEnOeuvreSection initialContacts={contacts} />
         <DonneesSection
           availableScopes={availableScopes}
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
-        />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection
-          initialContacts={contacts}
-          AdditionalMiseEnOeuvreContent={DgfipProductionDate}
         />
         <CguSection cguLink={cguLink} CguDescription={CguDescription} />
         <TextSection Description={SuiteDescription} title="" />
