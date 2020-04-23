@@ -7,6 +7,7 @@ import { FormContext } from '../../Form';
 import { getUserValidatedEnrollments } from '../../../lib/services';
 import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
+import Helper from '../../Helper';
 
 const PreviousEnrollmentSection = ({
   steps,
@@ -24,7 +25,7 @@ const PreviousEnrollmentSection = ({
     isUserEnrollmentLoading,
     disabled,
     onChange,
-    enrollment: { previous_enrollment_id = null, target_api },
+    enrollment: { previous_enrollment_id = '', target_api },
   } = useContext(FormContext);
 
   // disable fetch if not disabled or is loading
@@ -64,23 +65,6 @@ const PreviousEnrollmentSection = ({
     }
   }, [steps, target_api, isUserEnrollmentLoading, disabled]);
 
-  // initialize previous_enrollment_id if needed
-  useEffect(() => {
-    if (
-      !disabled &&
-      !isUserEnrollmentLoading &&
-      !previous_enrollment_id &&
-      validatedEnrollments.length > 0
-    ) {
-      onChange({
-        target: {
-          name: 'previous_enrollment_id',
-          value: validatedEnrollments[0].id,
-        },
-      });
-    }
-  });
-
   const handleValidatedEnrollmentChange = event => {
     const id = event.target.value;
 
@@ -119,8 +103,11 @@ const PreviousEnrollmentSection = ({
           <div className="form__group">
             <div className="notification warning">
               <p>
-                Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>,
-                vous devez avoir préalablement obtenu un accès à{' '}
+                Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>
+                {target_api === 'api_impot_particulier' && (
+                  <span> en mode FranceConnecté</span>
+                )}
+                , vous devez avoir préalablement obtenu un accès à{' '}
                 <b>{TARGET_API_LABELS[previousTargetApi]}</b>.
               </p>
               <p>
@@ -168,18 +155,24 @@ const PreviousEnrollmentSection = ({
         )}
         {!disabled &&
           !isUserEnrollmentLoading &&
-          !isValidatedEnrollmentsLoading &&
-          validatedEnrollments.length > 0 && (
+          !isValidatedEnrollmentsLoading && (
             <div className="form__group">
               <label htmlFor="validated_enrollments">
                 Nom de la démarche <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                &nbsp;:
+                {target_api === 'api_impot_particulier' && (
+                  <Helper
+                    title={
+                      'Sélectionnez "aucune démarche" si vous souhaitez accéder à l\'API sans FranceConnect'
+                    }
+                  />
+                )}
               </label>
               <select
                 onChange={handleValidatedEnrollmentChange}
                 id="validated_enrollments"
                 value={previous_enrollment_id}
               >
+                <option value={''}>aucune démarche</option>
                 {validatedEnrollments.map(({ intitule: name, id }) => (
                   <option key={id} value={id}>
                     {name}

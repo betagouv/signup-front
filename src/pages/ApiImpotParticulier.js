@@ -20,8 +20,8 @@ const DemarcheDescription = () => (
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l’API Impôt particulier permet
       l’échange d’informations fiscales entre la DGFiP et une administration ou
-      collectivité dans le cadre d’un téléservice. L’usager FranceConnecté n'a
-      plus besoin de transmettre son avis d’imposition.
+      collectivité dans le cadre d’un téléservice. L’usager n'a plus besoin de
+      transmettre son avis d’imposition.
     </p>
     <p>
       Ce portail vous permet en qualité de fournisseur de service de demander le
