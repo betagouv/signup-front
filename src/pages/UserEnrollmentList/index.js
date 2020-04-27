@@ -39,7 +39,7 @@ const UserEnrollmentList = ({ history }) => {
     <div className="user-enrollments-page">
       <div className="container header">
         <h2>Mes demandes</h2>
-        <a href="https://api.gouv.fr/rechercher-api?filter=signup">
+        <a href="https://api.gouv.fr/signup/api">
           <button className="button large" name="nouvelle-demande">
             Nouvelle Demande
             <div className="button-icon">
@@ -79,7 +79,7 @@ const UserEnrollmentList = ({ history }) => {
               <div className="notification">
                 <p>
                   Vous n’avez aucune demande en cours.{' '}
-                  <a href="https://api.gouv.fr/rechercher-api?filter=signup">
+                  <a href="https://api.gouv.fr/signup/api">
                     Faire ma première demande
                   </a>
                 </p>

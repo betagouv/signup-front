@@ -16,7 +16,7 @@ const Header = ({ user, logout }) => {
       <div className="navbar__container">
         <a
           className="navbar__home"
-          href="https://api.gouv.fr/rechercher-api?filter=signup"
+          href="https://api.gouv.fr/signup/api"
         >
           <img
             className="navbar__logo"

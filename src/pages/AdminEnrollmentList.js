@@ -374,7 +374,7 @@ class AdminEnrollmentList extends React.Component {
               />
             </div>
             <p className="align-right">
-              <a href="https://api.gouv.fr/rechercher-api?filter=signup">
+              <a href="https://api.gouv.fr/signup/api">
                 <button className="button large" name="nouvelle-demande">
                   Nouvelle Demande
                   <div className="button-icon">
