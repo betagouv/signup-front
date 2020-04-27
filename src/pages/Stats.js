@@ -4,12 +4,14 @@ import moment from 'moment';
 import {
   Bar,
   BarChart,
+  CartesianGrid,
   Cell,
   LabelList,
   Legend,
   Pie,
   PieChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from 'recharts';
@@ -28,6 +30,14 @@ import Spinner from '../components/icons/spinner';
 
 // inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
 const COLORS = ['#1A535C', '#4ECDC4', '#FF6B6B', '#FFE66D', '#50514F'];
+
+const USER_STATUS_COLORS = {
+  pending: '#50514F',
+  modification_pending: '#1A535C',
+  sent: '#4ECDC4',
+  validated: '#FFE66D',
+  refused: '#FF6B6B',
+};
 
 export default ({
   match: {
@@ -117,16 +127,50 @@ export default ({
               </div>
               <div className="card__content card_graph">
                 <ResponsiveContainer width={'100%'} height={250}>
-                  <BarChart
-                    data={stats.monthly_enrollment_count.map(item => ({
-                      ...item,
-                      month: moment(item.month).format('MMM YY'),
-                    }))}
-                  >
-                    <XAxis dataKey="month" />
-                    <YAxis dataKey="count" />
-                    <Bar dataKey="count" fill={COLORS[3]}>
-                      <LabelList dataKey="count" position="top" />
+                  <BarChart data={stats.monthly_enrollment_count}>
+                    <XAxis
+                      dataKey="month"
+                      tickFormatter={value => moment(value).format('MMM YY')}
+                    />
+                    <YAxis />
+                    <Tooltip
+                      formatter={(value, name, props) => [
+                        value,
+                        USER_STATUS_LABELS[name],
+                        props,
+                      ]}
+                      labelFormatter={value =>
+                        moment(value).format('MMMM YYYY')
+                      }
+                    />
+                    <Legend formatter={value => USER_STATUS_LABELS[value]} />
+                    <CartesianGrid vertical={false} />
+                    <Bar
+                      stackId="count"
+                      dataKey="pending"
+                      fill={USER_STATUS_COLORS['pending']}
+                    />
+                    <Bar
+                      stackId="count"
+                      dataKey="modification_pending"
+                      fill={USER_STATUS_COLORS['modification_pending']}
+                    />
+                    <Bar
+                      stackId="count"
+                      dataKey="sent"
+                      fill={USER_STATUS_COLORS['sent']}
+                    />
+                    <Bar
+                      stackId="count"
+                      dataKey="validated"
+                      fill={USER_STATUS_COLORS['validated']}
+                    />
+                    <Bar
+                      stackId="count"
+                      dataKey="refused"
+                      fill={USER_STATUS_COLORS['refused']}
+                    >
+                      <LabelList dataKey="total" position="top" />
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
@@ -178,7 +222,7 @@ export default ({
                       {stats.enrollment_by_status.map((entry, index) => (
                         <Cell
                           key={index}
-                          fill={COLORS[index % COLORS.length]}
+                          fill={USER_STATUS_COLORS[entry.name]}
                         />
                       ))}
                     </Pie>
