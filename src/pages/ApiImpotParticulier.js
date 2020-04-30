@@ -176,6 +176,8 @@ const contacts = {
         prestataire.
       </p>
     ),
+    family_name: '',
+    given_name: '',
     email: '',
     phone_number: '',
   },
