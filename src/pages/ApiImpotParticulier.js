@@ -137,10 +137,8 @@ export const cguLink =
 const SuiteDescription = () => (
   <div className="text-quote">
     <p>
-      Pour pouvoir soumettre la demande, l’ensemble des champs obligatoires doit
-      être renseigné. Compléter les champs facultatifs permet souvent une
-      instruction plus rapide. Après avoir cliqué sur « Soumettre la demande »,
-      les prochaines étapes sont :
+      Après avoir cliqué sur « Soumettre la demande », les prochaines étapes
+      sont :
     </p>
     <ol>
       <li>Le fournisseur de données de l’API va instruire la demande.</li>
