@@ -61,6 +61,10 @@ const eventNameToDisplayableContent = {
     icon: <FileCopyIcon color={'var(--blue)'} />,
     label: 'a copié la demande',
   },
+  imported: {
+    icon: <InfoIcon color={'var(--blue)'} />,
+    label: 'a importé la demande',
+  },
 };
 
 export const EventItem = ({ comment, name, updated_at, email, diff }) => {
