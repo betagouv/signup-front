@@ -12,6 +12,8 @@ import Spinner from '../../components/icons/spinner';
 
 import Enrollment from './Enrollment';
 
+const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+
 const UserEnrollmentList = ({ history }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [enrollmentsByOrganization, setEnrollmentsByOrganization] = useState();
@@ -39,7 +41,7 @@ const UserEnrollmentList = ({ history }) => {
     <div className="user-enrollments-page">
       <div className="container header">
         <h2>Mes demandes</h2>
-        <a href="https://api.gouv.fr/signup/api">
+        <a href={`${API_GOUV_HOST}/signup/api`}>
           <button className="button large" name="nouvelle-demande">
             Nouvelle Demande
             <div className="button-icon">
@@ -79,7 +81,7 @@ const UserEnrollmentList = ({ history }) => {
               <div className="notification">
                 <p>
                   Vous n’avez aucune demande en cours.{' '}
-                  <a href="https://api.gouv.fr/signup/api">
+                  <a href={`${API_GOUV_HOST}/signup/api`}>
                     Faire ma première demande
                   </a>
                 </p>

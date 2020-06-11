@@ -17,6 +17,8 @@ import ScheduleIcon from '../components/icons/schedule';
 import AddIcon from '../components/icons/add';
 import AutorenewIcon from '../components/icons/autorenew';
 
+const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+
 class AdminEnrollmentList extends React.Component {
   constructor(props) {
     super(props);
@@ -374,7 +376,7 @@ class AdminEnrollmentList extends React.Component {
               />
             </div>
             <p className="align-right">
-              <a href="https://api.gouv.fr/signup/api">
+              <a href={`${API_GOUV_HOST}/signup/api`}>
                 <button className="button large" name="nouvelle-demande">
                   Nouvelle Demande
                   <div className="button-icon">

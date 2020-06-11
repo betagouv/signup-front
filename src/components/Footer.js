@@ -1,10 +1,12 @@
 import React from 'react';
 
+const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+
 const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="footer__logo">
-        <a href="https://api.gouv.fr/signup/api">
+        <a href={`${API_GOUV_HOST}/signup/api`}>
           <img
             src="/images/logo-api.gouv.fr-white.png"
             alt="Logo api.gouv.fr"
@@ -59,12 +61,12 @@ const Footer = () => (
           </a>
         </li>
         <li>
-          <a href="https://api.gouv.fr/apropos#quest-ce-quune-api">
+          <a href={`${API_GOUV_HOST}/apropos#quest-ce-quune-api`}>
             Qu'est ce qu'une API ?
           </a>
         </li>
         <li>
-          <a href="https://api.gouv.fr/apropos#mentions-légales">
+          <a href={`${API_GOUV_HOST}/apropos#mentions-légales`}>
             Mentions légales
           </a>
         </li>

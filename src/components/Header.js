@@ -5,6 +5,8 @@ import { TARGET_API_LABELS } from '../lib/api';
 
 import { withUser } from './UserContext';
 
+const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+
 const Header = ({ user, logout }) => {
   // Form page already has contact button, no need to display this one.
   const displayContactLink = !Object.keys(TARGET_API_LABELS).some(target_api =>
@@ -14,10 +16,7 @@ const Header = ({ user, logout }) => {
   return (
     <header className="navbar">
       <div className="navbar__container">
-        <a
-          className="navbar__home"
-          href="https://api.gouv.fr/signup/api"
-        >
+        <a className="navbar__home" href={`${API_GOUV_HOST}/signup/api`}>
           <img
             className="navbar__logo"
             src="/images/logo_api.svg"
@@ -28,7 +27,7 @@ const Header = ({ user, logout }) => {
         <nav>
           <ul className="nav__links">
             <li className="nav__item">
-              <a href="https://api.gouv.fr/apropos">À propos</a>
+              <a href={`${API_GOUV_HOST}/apropos`}>À propos</a>
             </li>
             {displayContactLink && (
               <li className="nav__item">
