@@ -13,6 +13,8 @@ import DonneesSection from '../components/form-sections/DonneesSection';
 import CguSection from '../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import { CadreJuridiqueDescription } from './ApiImpotParticulierStep2';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -208,6 +210,7 @@ const ApiImpotParticulier = ({
         { id: 'volumetrie', label: 'Volumétrie' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'donnees', label: 'Données' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
@@ -235,6 +238,9 @@ const ApiImpotParticulier = ({
           availableScopes={availableScopes}
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
+        />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <CguSection cguLink={cguLink} CguDescription={CguDescription} />
         <TextSection Description={SuiteDescription} title="" />

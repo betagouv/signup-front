@@ -34,7 +34,7 @@ const PreviousEnrollmentDescription = () => (
   </div>
 );
 
-const CadreJuridiqueDescription = () => (
+export const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
