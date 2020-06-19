@@ -107,16 +107,30 @@ export default ({
                 <div>{stats.validated_enrollment_count}</div>
               </div>
             </div>
+          </div>
+          <div className="row-grid">
             <div className="card">
               <div className="card__content">
                 <h3>
                   Temps moyen de traitement des demandes
-                  <Helper title="temps moyen entre la dernière soumission d'une demande jusqu'à sa validation ou son refus" />
+                  <Helper title="temps moyen entre la dernière soumission d'une demande jusqu'à sa validation ou son refus sur les 6 derniers mois" />
                 </h3>
                 <div className="card__meta">(en jours)</div>
               </div>
               <div className="card__content card_number">
                 {stats.average_processing_time_in_days}
+              </div>
+            </div>
+            <div className="card">
+              <div className="card__content">
+                <h3>
+                  Pourcentage de demandes nécessitant un aller retour
+                  <Helper title="sur les 6 derniers mois" />
+                </h3>
+                <div className="card__meta">(en % des demandes totales)</div>
+              </div>
+              <div className="card__content card_number">
+                {stats.go_back_ratio}
               </div>
             </div>
           </div>
