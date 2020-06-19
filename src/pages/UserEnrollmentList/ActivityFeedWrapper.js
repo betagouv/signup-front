@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ActivityFeed from '../../components/Form/ActivityFeed';
-import { getCachedAPIAverageProcessingTimeInDays } from '../../lib/services';
+import { getCachedMajorityPercentileProcessingTimeInDays } from '../../lib/services';
 
 const ActivityFeedWrapper = ({ events, status, target_api }) => {
   const [
-    averageProcessingTimeInDays,
-    setAverageProcessingTimeInDays,
+    majorityPercentileProcessingTimeInDays,
+    setMajorityPercentileTimeInDays,
   ] = useState(0);
 
   useEffect(() => {
     async function fetchStats() {
       const {
-        data: { average_processing_time_in_days },
-      } = await getCachedAPIAverageProcessingTimeInDays(target_api);
-      setAverageProcessingTimeInDays(average_processing_time_in_days);
+        data: { majority_percentile_processing_time_in_days },
+      } = await getCachedMajorityPercentileProcessingTimeInDays(target_api);
+      setMajorityPercentileTimeInDays(
+        majority_percentile_processing_time_in_days
+      );
     }
 
     if (status === 'sent') {
@@ -35,11 +37,11 @@ const ActivityFeedWrapper = ({ events, status, target_api }) => {
     );
   }
 
-  if (status === 'sent' && averageProcessingTimeInDays > 0) {
+  if (status === 'sent' && majorityPercentileProcessingTimeInDays > 0) {
     return (
       <div className="notification">
-        Le temps de traitement moyen constaté est de{' '}
-        <b>{averageProcessingTimeInDays} jours</b>.
+        La majorité des demandes des 6 derniers mois sont traitées en moins de{' '}
+        <b>{majorityPercentileProcessingTimeInDays} jours</b>.
       </div>
     );
   }

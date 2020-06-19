@@ -255,18 +255,20 @@ export async function getAPIStats(target_api) {
   return result;
 }
 
-export async function getAPIAverageProcessingTimeInDays(target_api) {
+export async function getMajorityPercentileProcessingTimeInDays(target_api) {
   const result = await axios(
-    `${BACK_HOST}/api/stats/average_processing_time_in_days${hashToQueryParams({
-      target_api,
-    })}`
+    `${BACK_HOST}/api/stats/majority_percentile_processing_time_in_days${hashToQueryParams(
+      {
+        target_api,
+      }
+    )}`
   );
 
   return result;
 }
 
-export const getCachedAPIAverageProcessingTimeInDays = memoize(
-  getAPIAverageProcessingTimeInDays
+export const getCachedMajorityPercentileProcessingTimeInDays = memoize(
+  getMajorityPercentileProcessingTimeInDays
 );
 
 export function copyEnrollment({ id }) {

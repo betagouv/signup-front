@@ -111,7 +111,7 @@ export default ({
               <div className="card__content">
                 <h3>
                   Temps moyen de traitement des demandes
-                  <Helper title="temps moyen entre la première soumission d'une demande jusqu'à sa validation ou son refus" />
+                  <Helper title="temps moyen entre la dernière soumission d'une demande jusqu'à sa validation ou son refus" />
                 </h3>
                 <div className="card__meta">(en jours)</div>
               </div>
