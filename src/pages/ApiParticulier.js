@@ -114,8 +114,16 @@ const availableScopes = [
     label: 'CNAF - Quotient familial',
   },
   {
-    value: 'cnaf_attestation_droits',
-    label: 'CNAF - Attestation de droits',
+    value: 'cnaf_allocataires',
+    label: 'CNAF - Allocataires',
+  },
+  {
+    value: 'cnaf_enfants',
+    label: 'CNAF - Enfants',
+  },
+  {
+    value: 'cnaf_adresse',
+    label: 'CNAF - Adresse',
   },
 ];
 
