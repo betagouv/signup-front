@@ -44,7 +44,7 @@ const DescriptionSection = ({
         </small>
       </div>
       <div className="form__group">
-        <label htmlFor="intitule">Description détaillée</label>
+        <label htmlFor="description">Description détaillée</label>
         <textarea
           rows="10"
           onChange={onChange}

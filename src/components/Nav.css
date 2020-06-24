@@ -58,3 +58,16 @@ aside .form-nav-logo {
     flex-direction: column-reverse;
   }
 }
+
+.help-links-header {
+  line-height: 1.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  margin-top: 0;
+  font-family: "Evolventa", "Trebuchet MS", sans-serif;
+}

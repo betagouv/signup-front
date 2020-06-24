@@ -49,6 +49,13 @@ const OrganizationPrompt = ({
             </a>
           </div>
         </div>
+        <button
+          className="closing_cross"
+          onClick={() => onSelect(selectedOrganizationId)}
+          aria-label="Conserver l'organisation actuelle"
+        >
+          ×
+        </button>
       </div>
     </div>
   );

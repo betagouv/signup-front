@@ -19,44 +19,46 @@ const Nav = ({ logo, navLinks, contactInformation, history }) => {
   return (
     <aside className="side-menu" role="navigation">
       <div className="side-menu-container">
-        <ul>
-          <li>
-            <button
-              className="light"
-              onClick={goBack}
-              style={{ color: 'var(--theme-primary)' }}
-            >
-              <span style={{ verticalAlign: 'sub' }}>
-                <ArrowBackIcon color={'var(--theme-primary)'} size={20} />
-              </span>
-              Mes demandes
-            </button>
-          </li>
-        </ul>
-        <ul className="form-nav">
-          {logo && (
+        <nav>
+          <ul>
             <li>
-              <a href={logo.url}>
-                <img
-                  alt={logo.alt}
-                  src={logo.src}
-                  className="form-nav-logo"
-                  height="90"
-                />
-              </a>
+              <button
+                className="light"
+                onClick={goBack}
+                style={{ color: 'var(--theme-primary)' }}
+              >
+                <span style={{ verticalAlign: 'sub' }}>
+                  <ArrowBackIcon color={'var(--theme-primary)'} size={20} />
+                </span>
+                Mes demandes
+              </button>
             </li>
-          )}
-          {navLinks.map(({ id, label, style = {} }) => (
-            <ScrollableLink key={id} scrollableId={id} style={style}>
-              {label}
-            </ScrollableLink>
-          ))}
-        </ul>
+          </ul>
+          <ul className="form-nav">
+            {logo && (
+              <li>
+                <a href={logo.url}>
+                  <img
+                    alt={logo.alt}
+                    src={logo.src}
+                    className="form-nav-logo"
+                    height="90"
+                  />
+                </a>
+              </li>
+            )}
+            {navLinks.map(({ id, label, style = {} }) => (
+              <ScrollableLink key={id} scrollableId={id} style={style}>
+                {label}
+              </ScrollableLink>
+            ))}
+          </ul>
+        </nav>
 
         {contactInformation && (
-          <div className="section section-grey help-links">
+          <div className="section section-grey">
             <div className="container">
-              <h3>Une question&nbsp;?</h3>
+              <div className="help-links-header">Une question&nbsp;?</div>
 
               <div className="contact-button-list">
                 {contactInformation.map(({ tel, email, label, subject }) =>

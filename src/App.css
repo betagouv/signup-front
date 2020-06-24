@@ -422,17 +422,21 @@ targeting the last_child like so '.card__content > :last-child'
 }
 
 /* fix: add modal closing cross */
-.modal.with_closing_cross {
-  position: absolute;
+.modal__backdrop {
+  margin: 0;
 }
 
-.modal.with_closing_cross:before {
-  content: '×';
+.modal {
+  position: relative;
+}
+
+.modal button.closing_cross {
   font-size: 1.5em;
-  cursor: pointer;
   position: absolute;
   right: 10px;
   top: 5px;
+  border: none;
+  background-color: transparent;
 }
 
 /* light button & link */

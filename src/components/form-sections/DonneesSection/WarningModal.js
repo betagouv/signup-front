@@ -13,9 +13,16 @@ const WarningModal = ({
     style={{ display: 'flex' }}
     onClick={handleCancel}
   >
-    <div className="modal with_closing_cross">
+    <div className="modal">
       <h3>{title}</h3>
       <p>{body}</p>
+      <button
+        className="closing_cross"
+        onClick={handleCancel}
+        aria-label={`Ne pas demander la donnée « ${scopeLabel} »`}
+      >
+        ×
+      </button>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <button className="button large warning" onClick={handleValidate}>
           Demander la donnée « {scopeLabel} »

@@ -139,10 +139,10 @@ class Form extends React.Component {
     return (
       <>
         <ScrollablePanel scrollableId="head" className={null}>
-          <h2 id="head">
+          <h1 style={{ fontSize: '1.75em' }}>
             {title}
             {enrollment.id ? ` n°${enrollment.id}` : ''}
-          </h2>
+          </h1>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
             <>

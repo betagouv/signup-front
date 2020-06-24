@@ -1,4 +1,5 @@
 import React from 'react';
+import './Footer.css'
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -46,9 +47,7 @@ const Footer = () => (
         </ul>
       </div>
       <ul className="footer__links">
-        <li>
-          <h2>api.gouv.fr</h2>
-        </li>
+        <li className="footer__links_header">api.gouv.fr</li>
         <li>
           <a href="http://beta.gouv.fr/">Une réalisation de beta.gouv.fr</a>
         </li>

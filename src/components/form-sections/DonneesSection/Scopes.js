@@ -30,7 +30,6 @@ const Scopes = ({
   handleChange,
 }) => {
   const [warningModalScope, setWarningModalScope] = useState(null);
-  const [warningType, setWarningType] = useState('rgpd');
 
   const handleWarningModalClose = () => {
     handleChange({
@@ -41,7 +40,6 @@ const Scopes = ({
       },
     });
     setWarningModalScope(null);
-    setWarningType('rgpd');
   };
 
   return (
@@ -64,7 +62,6 @@ const Scopes = ({
                   onChange={
                     triggerWarning && !selectedScopes[value]
                       ? () => {
-                          setWarningType(warningType || 'rgpd');
                           setWarningModalScope(value);
                         }
                       : handleChange
@@ -82,22 +79,23 @@ const Scopes = ({
                   {mandatory && <i> (nécessaire)</i>}
                 </label>
                 {comment && <div className="scope_comment">{comment}</div>}
+                {value === warningModalScope && (
+                  <WarningModal
+                    handleCancel={() => setWarningModalScope(null)}
+                    handleValidate={handleWarningModalClose}
+                    scopeLabel={
+                      scopes.find(({ value }) => value === warningModalScope)
+                        .label
+                    }
+                    title={ModalContent[warningType || 'rgpd'].title}
+                    body={ModalContent[warningType || 'rgpd'].body}
+                  />
+                )}
               </div>
             )
           )}
         </div>
       </fieldset>
-      {warningModalScope && (
-        <WarningModal
-          handleCancel={() => setWarningModalScope(null)}
-          handleValidate={handleWarningModalClose}
-          scopeLabel={
-            scopes.find(({ value }) => value === warningModalScope).label
-          }
-          title={ModalContent[warningType].title}
-          body={ModalContent[warningType].body}
-        />
-      )}
     </div>
   );
 };
