@@ -44,12 +44,12 @@ const DescriptionSection = ({
         </small>
       </div>
       <div className="form__group">
-        <label htmlFor="description">Description détaillée</label>
+        <label htmlFor="detailed-description">Description détaillée</label>
         <textarea
           rows="10"
           onChange={onChange}
           name="description"
-          id="description"
+          id="detailed-description"
           readOnly={disabled}
           value={description}
           placeholder={descriptionPlaceholder}
