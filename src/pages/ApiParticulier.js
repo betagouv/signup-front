@@ -56,7 +56,6 @@ const contacts = {
     ),
     email: '',
     phone_number: '',
-    display_mobile_phone_label: true,
   },
 };
 
