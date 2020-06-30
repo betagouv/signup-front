@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Contact.css';
+
 export const Contact = ({
   id,
   heading,
   description,
+  given_name,
+  family_name,
   email,
   phone_number,
   display_mobile_phone_label = false,
@@ -17,6 +21,34 @@ export const Contact = ({
       <div className="form__group">
         <div className="text-quote">{description()}</div>
       </div>
+      {typeof given_name !== 'undefined' && typeof family_name !== 'undefined' && (
+        <div className="form-row">
+          <div className="form-col">
+            <label htmlFor={`person_${id}_given_name`}>Prénom</label>
+            <input
+              className="form-control"
+              type="text"
+              onChange={handleChange}
+              name={`contacts.${id}.given_name`}
+              id={`person_${id}_given_name`}
+              readOnly={disabled}
+              value={given_name}
+            />
+          </div>
+          <div className="form-col">
+            <label htmlFor={`person_${id}_family_name`}>Nom de famille</label>
+            <input
+              className="form-control"
+              type="text"
+              onChange={handleChange}
+              name={`contacts.${id}.family_name`}
+              id={`person_${id}_family_name`}
+              readOnly={disabled}
+              value={family_name}
+            />
+          </div>
+        </div>
+      )}
       <div className="form__group">
         <label htmlFor={`person_${id}_email`}>Email</label>
         <input

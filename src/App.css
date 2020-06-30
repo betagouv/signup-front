@@ -285,6 +285,13 @@ li.panel .button-list {
   background-color: var(--orange);
 }
 
+/* add dashed step-forms */
+.steps-form li.optional::after {
+  background-color: initial;
+  height: 0;
+  border: 4px dashed var(--dark-grey);
+}
+
 /* fixes on template.beta.gouv stylesheet */
 /* fix: strange margins on buttons */
 a.button,

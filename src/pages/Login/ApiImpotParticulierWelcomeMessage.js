@@ -16,7 +16,8 @@ const ApiImpotParticulierWelcomeMessage = () => (
     />
     <ol className="steps-form-description">
       <li>
-        L'équipe FranceConnect de la{' '}
+        Dans le cas d'une utilisation FranceConnectée de l'API Impôt
+        particulier, l'équipe FranceConnect de la{' '}
         <abbr title="Direction Interministérielle du Numérique">DINUM</abbr>{' '}
         valide votre accès à <b>l'espace partenaire FranceConnect</b> vous
         permettant de procéder à la configuration technique du bouton

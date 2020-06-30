@@ -39,7 +39,8 @@ class Form extends React.Component {
 
   componentDidMount() {
     const id = this.props.enrollmentId;
-    document.title = `${TARGET_API_LABELS[this.props.target_api]}`;
+    const targetApiLabel = `${TARGET_API_LABELS[this.props.target_api]}`;
+    document.title = targetApiLabel;
 
     if (!id) {
       return this.setState({ isUserEnrollmentLoading: false });
@@ -47,7 +48,8 @@ class Form extends React.Component {
 
     getUserEnrollment(id)
       .then(enrollment => {
-        document.title = `${enrollment.id} - ${enrollment.intitule}`;
+        document.title = `${enrollment.id} - ${enrollment.intitule ||
+          targetApiLabel}`;
         this.setState(({ enrollment: prevEnrollment }) => ({
           isUserEnrollmentLoading: false,
           enrollment: merge(

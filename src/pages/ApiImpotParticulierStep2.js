@@ -5,12 +5,12 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/Form';
 import Nav from '../components/Nav';
-import TextSection from '../components/form-sections/TextSection';
 import HomologationSecuriteSection from '../components/form-sections/dgfip/HomologationSecuriteSection';
-import EntrantsTechniquesSection from '../components/form-sections/dgfip/EntrantsTechniquesSection';
-import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
 import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
+import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
+import CguSection from '../components/form-sections/CguSection';
+import { CguDescription, cguLink } from './ApiImpotParticulier';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -34,16 +34,29 @@ const PreviousEnrollmentDescription = () => (
   </div>
 );
 
-export const RecetteFonctionnelleDescription = () => (
+export const CadreJuridiqueDescription = () => (
   <div className="text-quote">
     <p>
-      La demande d’entrée en production revêt un caractère définitif et entraîne
-      le transfert de vos entrants techniques vers les exploitants informatiques
-      de la DGFiP. Merci de vous assurer de la bonne valorisation de l'ensemble
-      des informations demandées avant de procéder à cette demande. Votre entrée
-      en production se fera lors du premier créneau disponible à compter de
-      l'envoi des entrants techniques de production.
+      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
+      cadre légal et réglementaire des fournisseurs de service doit permettre à
+      la DGFiP de transmettre des données fiscales à votre entité
+      administrative.
     </p>
+    <p>
+      Conformément au Code des relations entre le public et l’administration,
+      l’échange de données s’impose aux administrations dès lors que :
+    </p>
+    <ul>
+      <li>
+        ces données sont nécessaires au traitement d’une demande présentée par
+        un usager ;
+      </li>
+      <li>
+        l’administration destinataire est habilitée à connaître ces données dans
+        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
+        n°2016-1321 du 7 octobre 2016 - art. 91 )
+      </li>
+    </ul>
   </div>
 );
 
@@ -67,11 +80,11 @@ const ApiImpotParticulier = ({
       }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
         { id: 'recette-fonctionnelle', label: 'Recette fonctionnelle' },
+        { id: 'donnees-personnelles', label: 'Données personnelles' },
+        { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'homologation-securite', label: 'Homologation de sécurité' },
-        { id: 'entrants-techniques', label: 'Entrants techniques' },
-        { id: 'volumetrie', label: 'Volumétrie' },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -91,16 +104,13 @@ const ApiImpotParticulier = ({
         title="Demande d'accès à la production API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
       >
-        <OrganisationSection />
         <RecetteFonctionnelleSection />
-        <HomologationSecuriteSection />
-        <EntrantsTechniquesSection />
-        <VolumetrieSection />
-        <TextSection
-          id="entree-en-production"
-          title="Entrée en production"
-          Description={RecetteFonctionnelleDescription}
+        <DonneesPersonnellesSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
+        <HomologationSecuriteSection />
+        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
       </Form>
     </div>
   </div>
