@@ -15,8 +15,9 @@ const descriptions = {
           href={'https://www.cnil.fr/fr/definition/responsable-de-traitement'}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Voir la définition CNIL du responsable de traitement"
         >
-          plus d'info
+          plus d’infos
         </a>
         )
       </p>
@@ -34,8 +35,9 @@ const descriptions = {
           href={'https://www.cnil.fr/fr/designation-dpo'}
           target="_blank"
           rel="noopener noreferrer"
+          aria-label="Voir la définition CNIL du délégué à la protection des données"
         >
-          plus d'info
+          plus d’infos
         </a>
         )
       </p>
@@ -66,6 +68,7 @@ const RgpdContact = ({
           id={`${type}_label`}
           readOnly={disabled}
           value={label}
+          aria-label={`Nom et Prénom du ${descriptions[type].heading}`}
         />
         {type === 'responsable_traitement' && (
           <small className="card__meta">
@@ -82,6 +85,7 @@ const RgpdContact = ({
           id={`${type}_email`}
           readOnly={disabled}
           value={email}
+          aria-label={`Email du ${descriptions[type].heading}`}
         />
         <small className="card__meta">
           <i>
@@ -109,6 +113,7 @@ const RgpdContact = ({
           readOnly={disabled}
           value={phone_number}
           pattern="\+?(?:[0-9][ -]?){6,14}[0-9]"
+          aria-label={`Numéro de téléphone du ${descriptions[type].heading}`}
         />
       </div>
     </div>

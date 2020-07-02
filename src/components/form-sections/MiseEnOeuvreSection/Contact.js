@@ -33,6 +33,7 @@ export const Contact = ({
               id={`person_${id}_given_name`}
               readOnly={disabled}
               value={given_name}
+              aria-label={`Prénom du ${heading}`}
             />
           </div>
           <div className="form-col">
@@ -45,6 +46,7 @@ export const Contact = ({
               id={`person_${id}_family_name`}
               readOnly={disabled}
               value={family_name}
+              aria-label={`Nom de famille du ${heading}`}
             />
           </div>
         </div>
@@ -58,6 +60,7 @@ export const Contact = ({
           id={`person_${id}_email`}
           readOnly={disabled}
           value={email}
+          aria-label={`Email du ${heading}`}
         />
       </div>
       {typeof phone_number !== 'undefined' && (
@@ -75,6 +78,9 @@ export const Contact = ({
             readOnly={disabled}
             value={phone_number}
             pattern="\+?(?:[0-9][ -]?){6,14}[0-9]"
+            aria-label={`Numéro de téléphone ${
+              display_mobile_phone_label ? 'mobile' : ''
+            } du ${heading}`}
           />
         </div>
       )}

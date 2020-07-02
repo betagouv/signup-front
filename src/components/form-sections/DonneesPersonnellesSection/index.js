@@ -33,13 +33,6 @@ const Index = () => {
               'description du service ou des personnes physiques qui consulteront ces données'
             }
           />
-          <a
-            href="https://www.cnil.fr/fr/definition/destinataire"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            (plus d&acute;infos)
-          </a>
         </label>
         <input
           type="text"
@@ -50,6 +43,18 @@ const Index = () => {
           readOnly={disabled}
           value={data_recipients}
         />
+        <small className="card__meta">
+          <i>
+            <a
+              href="https://www.cnil.fr/fr/definition/destinataire"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Voir la définition CNIL du destinataire des données"
+            >
+              Plus d’infos
+            </a>
+          </i>
+        </small>
       </div>
 
       <div className="form__group">
