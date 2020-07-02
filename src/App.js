@@ -25,6 +25,7 @@ import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import ApiImpotParticulier from './pages/ApiImpotParticulier';
 import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
+import Accessibilite from './pages/Accessibilite';
 
 const history = createBrowserHistory();
 
@@ -54,6 +55,8 @@ const App = () => (
                   />
 
                   <Route path="/stats/:targetApi?" component={Stats} />
+
+                  <Route path="/accessibilite" component={Accessibilite} />
 
                   <PrivateRoute
                     exact

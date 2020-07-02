@@ -1,5 +1,6 @@
 import React from 'react';
-import './Footer.css'
+import './Footer.css';
+import { NavLink } from 'react-router-dom';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -68,6 +69,11 @@ const Footer = () => (
           <a href={`${API_GOUV_HOST}/apropos#mentions-légales`}>
             Mentions légales
           </a>
+        </li>
+        <li>
+          <NavLink exact to={`/accessibilite`}>
+            Déclaration d'accessibilité
+          </NavLink>
         </li>
       </ul>
     </div>
