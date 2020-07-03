@@ -77,6 +77,7 @@ const Scopes = ({
                 <label
                   htmlFor={`checkbox-scope-${value}`}
                   className="label-inline"
+                  aria-label={`Périmètre de données « ${label} »`}
                 >
                   {label}
                   {mandatory && <i> (nécessaire)</i>}

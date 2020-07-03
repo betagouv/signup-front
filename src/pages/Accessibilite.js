@@ -8,12 +8,12 @@ const Accessibilite = () => (
       <p>
         Dans la suite, nous parlons d'interface utilisable lorsqu'un utilisateur
         a la possibilité de soumettre une demande d'habilitation via Data Pass
-        mais l'affichage de certaines fonctionnalités non essentielles à la
-        soumission d’une demande peuvent être dégradées ou inaccessibles.
+        bien que l'affichage de certaines fonctionnalités non essentielles à la
+        soumission d’une demande puissent être dégradées ou inaccessibles.
       </p>
       <p>
         Nous parlons d'interface optimisée lorsque toutes les fonctionnalités du
-        site sont utilisable à leur plein potentiel.
+        site sont utilisables à leur plein potentiel.
       </p>
       <h2>Couleurs et images</h2>
       <p>
@@ -78,13 +78,13 @@ const Accessibilite = () => (
         <li>Data Pass ne véhicule pas d'information par la couleur</li>
       </ul>
       <p>
-        L'équipe organise tous les ans un test avec une personne non voyante
-        pour valider que Data Pass est utilisable pour les personnes ayant des
-        troubles visuels.
+        L'équipe organise tous les ans un test utilisateur avec une personne non
+        voyante pour valider que Data Pass est utilisable pour les personnes
+        ayant des troubles visuels.
       </p>
       <h2>Problèmes d’accessibilité</h2>
       <p>
-        Malgrés tous les contrôles d’accessibilité que nous nous efforçons de
+        Malgré tous les contrôles d’accessibilité que nous nous efforçons de
         mettre en place, il se peut que vous ou vos collaborateurs rencontriez
         des problèmes d’accessibilité. Vous pouvez nous signaler ces problèmes
         via notre adresse email de contact.
