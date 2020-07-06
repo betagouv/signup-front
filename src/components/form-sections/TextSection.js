@@ -4,7 +4,7 @@ import { ScrollablePanel } from '../Scrollable';
 
 const TextSection = ({ id = 'head', title, Description }) => (
   <ScrollablePanel scrollableId={id}>
-    <h2>{title}</h2>
+    {title && <h2>{title}</h2>}
     <Description />
   </ScrollablePanel>
 );
