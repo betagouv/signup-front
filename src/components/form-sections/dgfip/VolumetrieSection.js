@@ -1,15 +1,37 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
 const VolumetrieSection = () => {
   const {
     disabled,
+    isUserEnrollmentLoading,
     onChange,
     enrollment: {
       additional_content: { volumetrie_appels_par_minute = '' },
     },
   } = useContext(FormContext);
+
+  useEffect(() => {
+    // initialize volumetrie_appels_par_minute if needed
+    if (
+      !isUserEnrollmentLoading &&
+      !disabled &&
+      !volumetrie_appels_par_minute
+    ) {
+      onChange({
+        target: {
+          name: 'additional_content.volumetrie_appels_par_minute',
+          value: 50,
+        },
+      });
+    }
+  }, [
+    isUserEnrollmentLoading,
+    volumetrie_appels_par_minute,
+    disabled,
+    onChange,
+  ]);
 
   return (
     <ScrollablePanel scrollableId="volumetrie">
