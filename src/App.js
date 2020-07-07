@@ -22,6 +22,7 @@ import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
+import LeTaxi from './pages/LeTaxi';
 import ApiImpotParticulier from './pages/ApiImpotParticulier';
 import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
@@ -106,6 +107,11 @@ const App = () => (
                   <PrivateRoute
                     path="/api-entreprise/:enrollmentId?"
                     component={ApiEntreprise}
+                  />
+
+                  <PrivateRoute
+                    path="/le-taxi/:enrollmentId?"
+                    component={LeTaxi}
                   />
 
                   <PrivateRoute

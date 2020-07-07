@@ -3,6 +3,7 @@ export const TARGET_API_LABELS = {
   franceconnect: 'FranceConnect',
   api_entreprise: 'API Entreprise',
   preuve_covoiturage: 'Registre de Preuve de Covoiturage',
+  le_taxi: 'le.Taxi',
   api_impot_particulier: 'API Impôt particulier (Bac à sable)',
   api_impot_particulier_step2: 'API Impôt particulier (Production)',
   api_droits_cnam: 'API Droits CNAM',
