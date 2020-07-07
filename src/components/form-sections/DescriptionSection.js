@@ -16,7 +16,7 @@ const DescriptionSection = ({
 
   return (
     <ScrollablePanel scrollableId="description">
-      <h2>Description de votre cas d'usage</h2>
+      <h2>Description de votre service</h2>
       <div className="text-quote">
         <p>
           Décrivez la raison pour laquelle vous collectez des données à
@@ -27,8 +27,8 @@ const DescriptionSection = ({
       <br />
       <div className="form__group">
         <label htmlFor="intitule">
-          Nom de la démarche
-          <Helper title="Il doit permettre de faciliter l’identification de votre démarche. Cette information pouvant être rendue publique, il convient d'être synthétique et précis." />
+          Nom du service
+          <Helper title="Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue publique, il convient d'être synthétique et précis." />
         </label>
         <input
           type="text"
