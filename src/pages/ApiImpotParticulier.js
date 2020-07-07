@@ -44,7 +44,7 @@ const DemarcheDescription = () => (
   </div>
 );
 
-const DonneesDescription = () => (
+export const DonneesDescription = () => (
   <div className="text-quote">
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
@@ -72,26 +72,26 @@ const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-    <p>
+  </div>
+);
+
+const DonneesFootnote = () => (
+  <small className="card__meta">
+    <i>
       Des précisions sur les données proposées par l’API Impôt particulier sont
       disponibles sur{' '}
       <a
         href="/docs/Description_des_donnees_de_l_API_impot_particulier_081019.pdf"
         target="_blank"
         rel="noreferrer noopener"
+        aria-label="Document pdf précisant les données proposées"
       >
         ce document
       </a>
       .
-    </p>
-  </div>
+    </i>
+  </small>
 );
-
-DgfipRgpdAgreement.propTypes = {
-  additional_content: PropTypes.object.isRequired,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool.isRequired,
-};
 
 const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
 
@@ -238,6 +238,7 @@ const ApiImpotParticulier = ({
           availableScopes={availableScopes}
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
+          DonneesFootnote={DonneesFootnote}
         />
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}

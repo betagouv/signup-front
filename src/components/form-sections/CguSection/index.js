@@ -31,7 +31,7 @@ const Index = ({
         <label htmlFor="cgu_approved" className="label-inline">
           J'ai pris connaissance des{' '}
           <a href={cguLink} target="_blank" rel="noreferrer noopener">
-            modalités d&apos;utilisation
+            conditions générales d'utilisation
           </a>{' '}
           et je les valide. Je confirme que le DPD de mon organisation est
           informé de ma demande.

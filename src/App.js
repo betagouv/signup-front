@@ -17,13 +17,15 @@ import UserEnrollmentList from './pages/UserEnrollmentList';
 import PublicEnrollmentList from './pages/PublicEnrollmentList';
 import Stats from './pages/Stats';
 import ApiParticulier from './pages/ApiParticulier';
-import ApiImpotParticulierStep2 from './pages/ApiImpotParticulierStep2';
 import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import LeTaxi from './pages/LeTaxi';
 import ApiImpotParticulier from './pages/ApiImpotParticulier';
+import ApiImpotParticulierStep2 from './pages/ApiImpotParticulierStep2';
+import ApiR2PSandbox from './pages/ApiR2PSandbox';
+import ApiR2PProduction from './pages/ApiR2PProduction';
 import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
 import Accessibilite from './pages/Accessibilite';
@@ -92,6 +94,16 @@ const App = () => (
                   <PrivateRoute
                     path="/api-impot-particulier-step2/:enrollmentId?"
                     component={ApiImpotParticulierStep2}
+                  />
+
+                  <PrivateRoute
+                    path="/api-r2p-sandbox/:enrollmentId?"
+                    component={ApiR2PSandbox}
+                  />
+
+                  <PrivateRoute
+                    path="/api-r2p-production/:enrollmentId?"
+                    component={ApiR2PProduction}
                   />
 
                   <PrivateRoute

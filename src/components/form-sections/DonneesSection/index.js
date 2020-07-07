@@ -9,6 +9,7 @@ import UseCase from './UseCases';
 const DonneesSection = ({
   DonneesDescription = () => null,
   AdditionalRgpdAgreement = () => null,
+  DonneesFootnote = () => null,
   scopesLabel,
   availableScopes,
   useCases = [],
@@ -63,10 +64,10 @@ const DonneesSection = ({
         <UseCase availableScopes={availableScopes} useCases={useCases} />
       )}
       <p>
-        {isEmpty(useCases)
+        {scopesLabel
           ? scopesLabel
-            ? scopesLabel
-            : 'Sélectionnez les données nécessaires à votre cas d’usage :'
+          : isEmpty(useCases)
+          ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
           : 'Liste des données correspondantes :'}
       </p>
       {Object.keys(groupTitleScopesGroup).map(group => (
@@ -91,6 +92,7 @@ const DonneesSection = ({
           handleChange={() => null}
         />
       )}
+      <DonneesFootnote />
     </ScrollablePanel>
   );
 };
@@ -98,6 +100,7 @@ const DonneesSection = ({
 DonneesSection.propTypes = {
   DonneesDescription: PropTypes.func,
   AdditionalRgpdAgreement: PropTypes.func,
+  DonneesFootnote: PropTypes.func,
   scopesLabel: PropTypes.string,
   availableScopes: PropTypes.array.isRequired,
 };
