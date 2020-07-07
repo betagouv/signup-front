@@ -24,4 +24,5 @@ export const API_ICONS = {
   api_impot_particulier: 'logo-dgfip-with-label.png',
   api_impot_particulier_step2: 'logo-dgfip-with-label.png',
   api_droits_cnam: 'logo-cnam.jpg',
+  le_taxi: 'logo-le.taxi.svg',
 };

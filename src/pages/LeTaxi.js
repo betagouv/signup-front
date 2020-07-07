@@ -10,6 +10,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
+import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -47,6 +48,11 @@ const LeTaxi = ({
 }) => (
   <div className="dashboard">
     <Nav
+      logo={{
+        src: `/images/${API_ICONS.le_taxi}`,
+        alt: `Logo ${TARGET_API_LABELS.le_taxi}`,
+        url: 'https://www.impots.gouv.fr/',
+      }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
