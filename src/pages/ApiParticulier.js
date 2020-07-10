@@ -50,8 +50,8 @@ const contacts = {
     description: () => (
       <p>
         Cette personne sera contactée en cas de problème technique sur votre
-        service. Le responsable technique peut être le contact
-        technique de votre prestataire.
+        service. Le responsable technique peut être le contact technique de
+        votre prestataire.
       </p>
     ),
     email: '',
