@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
-const VolumetrieSection = () => {
+const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -22,11 +22,12 @@ const VolumetrieSection = () => {
       onChange({
         target: {
           name: 'additional_content.volumetrie_appels_par_minute',
-          value: 50,
+          value: options[0],
         },
       });
     }
   }, [
+    options,
     isUserEnrollmentLoading,
     volumetrie_appels_par_minute,
     disabled,
@@ -60,9 +61,11 @@ const VolumetrieSection = () => {
           value={volumetrie_appels_par_minute}
           disabled={disabled}
         >
-          <option value={50}>50 appels / minute</option>
-          <option value={200}>200 appels / minute</option>
-          <option value={1000}>1000 appels / minute</option>
+          {options.map(appelsParMinute => (
+            <option key={appelsParMinute} value={appelsParMinute}>
+              {appelsParMinute} appels / minute
+            </option>
+          ))}
         </select>
       </div>
     </ScrollablePanel>

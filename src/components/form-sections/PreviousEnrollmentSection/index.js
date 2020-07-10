@@ -41,14 +41,19 @@ const PreviousEnrollmentSection = ({
   const [validatedEnrollmentsError, setValidatedEnrollmentsError] = useState(
     false
   );
+  const [previousTargetApi, setPreviousTargetApi] = useState(null);
+
+  useEffect(() => {
+    setPreviousTargetApi(
+      steps[steps.findIndex(e => e === target_api) - 1] || null
+    );
+  }, [steps, target_api]);
 
   useEffect(() => {
     const fetchUserValidatedEnrollments = async () => {
       try {
         setIsValidatedEnrollmentsLoading(true);
         setValidatedEnrollmentsError(false);
-        const previousTargetApi =
-          steps[steps.findIndex(e => e === target_api) - 1];
         const enrollments = await getUserValidatedEnrollments(
           previousTargetApi
         );
@@ -60,10 +65,10 @@ const PreviousEnrollmentSection = ({
       }
     };
 
-    if (!disabled && !isUserEnrollmentLoading) {
+    if (!disabled && !isUserEnrollmentLoading && previousTargetApi) {
       fetchUserValidatedEnrollments();
     }
-  }, [steps, target_api, isUserEnrollmentLoading, disabled]);
+  }, [isUserEnrollmentLoading, disabled, previousTargetApi]);
 
   const handleValidatedEnrollmentChange = event => {
     const id = event.target.value;
@@ -75,8 +80,6 @@ const PreviousEnrollmentSection = ({
       },
     });
   };
-
-  const previousTargetApi = steps[steps.findIndex(e => e === target_api) - 1];
 
   return (
     <>
@@ -91,6 +94,7 @@ const PreviousEnrollmentSection = ({
             currentStep={!isValidatedEnrollmentsLoading && target_api}
             previousStepNotCompleted={
               !isValidatedEnrollmentsLoading &&
+              previousTargetApi &&
               validatedEnrollments.length === 0
             }
           />
@@ -99,6 +103,7 @@ const PreviousEnrollmentSection = ({
       {!disabled &&
         !isUserEnrollmentLoading &&
         !isValidatedEnrollmentsLoading &&
+        previousTargetApi &&
         validatedEnrollments.length === 0 && (
           <div className="form__group">
             <div className="notification warning">
@@ -126,79 +131,82 @@ const PreviousEnrollmentSection = ({
             </div>
           </div>
         )}
-      <div className="panel">
-        <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
-        <Description />
-        <br />
-        {!disabled &&
-          !isUserEnrollmentLoading &&
-          isValidatedEnrollmentsLoading && (
-            <div className="form__group">
-              <h4>
-                Association à votre demande{' '}
-                <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-              </h4>
-              <p>
-                Chargement de vos demandes{' '}
-                <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                ...
-              </p>
-            </div>
-          )}
-        {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
-          <div className="form__group">
-            <div className="notification error">
-              Erreur inconnue lors de la récupération de vos demandes{' '}
-              {TARGET_API_LABELS[previousTargetApi]}.
-            </div>
-          </div>
-        )}
-        {!disabled &&
-          !isUserEnrollmentLoading &&
-          !isValidatedEnrollmentsLoading && (
-            <div className="form__group">
-              <label htmlFor="validated_enrollments">
-                Nom de la démarche <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                {target_api === 'api_impot_particulier' && (
-                  <Helper
-                    title={
-                      'Sélectionnez "aucune démarche" si vous souhaitez accéder à l\'API sans FranceConnect'
-                    }
-                  />
-                )}
-              </label>
-              <select
-                onChange={handleValidatedEnrollmentChange}
-                id="validated_enrollments"
-                value={previous_enrollment_id}
-              >
-                <option value={''}>aucune démarche</option>
-                {validatedEnrollments.map(({ intitule: name, id }) => (
-                  <option key={id} value={id}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          )}
-        {disabled && !isUserEnrollmentLoading && (
-          <div className="button-list enrollment">
-            {hasAccessToPreviousEnrollment ? (
-              <a
-                href={`/${previousTargetApi.replace(
-                  /_/g,
-                  '-'
-                )}/${previous_enrollment_id}`}
-                className="light"
-              >
-                Numéro de la demande associée : {previous_enrollment_id}
-              </a>
-            ) : (
-              <>Numéro de la demande associée : {previous_enrollment_id}</>
+      {previousTargetApi && (
+        <div className="panel">
+          <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+          <Description />
+          <br />
+          {!disabled &&
+            !isUserEnrollmentLoading &&
+            isValidatedEnrollmentsLoading && (
+              <div className="form__group">
+                <h4>
+                  Association à votre demande{' '}
+                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                </h4>
+                <p>
+                  Chargement de vos demandes{' '}
+                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                  ...
+                </p>
+              </div>
             )}
-          </div>
-        )}
-      </div>
+          {!disabled && !isUserEnrollmentLoading && validatedEnrollmentsError && (
+            <div className="form__group">
+              <div className="notification error">
+                Erreur inconnue lors de la récupération de vos demandes{' '}
+                {TARGET_API_LABELS[previousTargetApi]}.
+              </div>
+            </div>
+          )}
+          {!disabled &&
+            !isUserEnrollmentLoading &&
+            !isValidatedEnrollmentsLoading && (
+              <div className="form__group">
+                <label htmlFor="validated_enrollments">
+                  Nom de la démarche{' '}
+                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                  {target_api === 'api_impot_particulier' && (
+                    <Helper
+                      title={
+                        'Sélectionnez "aucune démarche" si vous souhaitez accéder à l\'API sans FranceConnect'
+                      }
+                    />
+                  )}
+                </label>
+                <select
+                  onChange={handleValidatedEnrollmentChange}
+                  id="validated_enrollments"
+                  value={previous_enrollment_id}
+                >
+                  <option value={''}>aucune démarche</option>
+                  {validatedEnrollments.map(({ intitule: name, id }) => (
+                    <option key={id} value={id}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          {disabled && !isUserEnrollmentLoading && (
+            <div className="button-list enrollment">
+              {hasAccessToPreviousEnrollment ? (
+                <a
+                  href={`/${previousTargetApi.replace(
+                    /_/g,
+                    '-'
+                  )}/${previous_enrollment_id}`}
+                  className="light"
+                >
+                  Numéro de la demande associée : {previous_enrollment_id}
+                </a>
+              ) : (
+                <>Numéro de la demande associée : {previous_enrollment_id}</>
+              )}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };

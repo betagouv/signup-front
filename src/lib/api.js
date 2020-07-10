@@ -3,10 +3,12 @@ export const TARGET_API_LABELS = {
   franceconnect: 'FranceConnect',
   api_entreprise: 'API Entreprise',
   preuve_covoiturage: 'Registre de Preuve de Covoiturage',
-  le_taxi: 'le.Taxi',
   api_impot_particulier: 'API Impôt particulier (Bac à sable)',
   api_impot_particulier_step2: 'API Impôt particulier (Production)',
+  api_r2p_sandbox: 'API R2P (Bac à sable)',
+  api_r2p_production: 'API R2P (Production)',
   api_droits_cnam: 'API Droits CNAM',
+  le_taxi: 'le.Taxi',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -23,6 +25,8 @@ export const API_ICONS = {
   api_entreprise: 'logo-beta-gouv.svg',
   api_impot_particulier: 'logo-dgfip-with-label.png',
   api_impot_particulier_step2: 'logo-dgfip-with-label.png',
+  api_r2p_sandbox: 'logo-dgfip-with-label.png',
+  api_r2p_production: 'logo-dgfip-with-label.png',
   api_droits_cnam: 'logo-cnam.jpg',
   le_taxi: 'logo-le.taxi.svg',
 };

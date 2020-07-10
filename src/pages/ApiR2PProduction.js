@@ -10,12 +10,12 @@ import RecetteFonctionnelleSection from '../components/form-sections/dgfip/Recet
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import CguSection from '../components/form-sections/CguSection';
-import { CguDescription, cguLink } from './ApiImpotParticulier';
+import { cguLink } from './ApiImpotParticulier';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
-      Votre demande d'habilitation pour accéder à l'API Impôt particulier a été
+      Votre demande d'habilitation pour accéder à l'API « bac à sable » a été
       acceptée, vous pouvez maintenant construire votre démarche/téléservice en
       utilisant l'API exposée dans un environnement bac à sable. Parallèlement
       au développement, vous devez remplir les informations ci-dessous. Elles
@@ -34,39 +34,9 @@ const PreviousEnrollmentDescription = () => (
   </div>
 );
 
-export const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
-    <p>
-      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
-    </p>
-    <p>
-      Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
-    </p>
-    <ul>
-      <li>
-        ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
-      </li>
-      <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
-      </li>
-    </ul>
-  </div>
-);
+const steps = ['api_r2p_sandbox', 'api_r2p_production'];
 
-const steps = [
-  'franceconnect',
-  'api_impot_particulier',
-  'api_impot_particulier_step2',
-];
-
-const ApiImpotParticulier = ({
+const ApiR2PProduction = ({
   match: {
     params: { enrollmentId },
   },
@@ -74,8 +44,8 @@ const ApiImpotParticulier = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_impot_particulier}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier}`,
+        src: `/images/${API_ICONS.api_r2p_production}`,
+        alt: `Logo ${TARGET_API_LABELS.api_r2p_production}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -98,25 +68,23 @@ const ApiImpotParticulier = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_impot_particulier_step2"
+        target_api="api_r2p_production"
         steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
-        title="Demande d'accès à la production API Impôt particulier"
+        title="Demande d'accès à la production API R2P"
         DemarcheDescription={DemarcheDescription}
       >
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
+        <CadreJuridiqueSection />
         <HomologationSecuriteSection />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <CguSection cguLink={cguLink} />
       </Form>
     </div>
   </div>
 );
 
-ApiImpotParticulier.propTypes = {
+ApiR2PProduction.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -124,7 +92,7 @@ ApiImpotParticulier.propTypes = {
   }),
 };
 
-ApiImpotParticulier.defaultProps = {
+ApiR2PProduction.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -132,4 +100,4 @@ ApiImpotParticulier.defaultProps = {
   },
 };
 
-export default ApiImpotParticulier;
+export default ApiR2PProduction;
