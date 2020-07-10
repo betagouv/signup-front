@@ -61,13 +61,11 @@ const Footer = () => (
           </a>
         </li>
         <li>
-          <a href={`${API_GOUV_HOST}/apropos#quest-ce-quune-api`}>
-            Qu'est ce qu'une API ?
-          </a>
+          <a href={`${API_GOUV_HOST}/apropos`}>Qu'est ce qu'une API ?</a>
         </li>
         <li>
-          <a href={`${API_GOUV_HOST}/apropos#mentions-légales`}>
-            Mentions légales
+          <a href={`/docs/cgu_datapass.pdf`}>
+            Conditions générales d'utilisation
           </a>
         </li>
         <li>
