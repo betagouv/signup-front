@@ -47,13 +47,20 @@ export class UserStore extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.login();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   login = () => {
     this.setState({ isLoading: true });
     return httpClient.get(`${BACK_HOST}/api/users/me`).then(response => {
-      this.setState({ user: response.data, isLoading: false });
+      if (this._isMounted) {
+        this.setState({ user: response.data, isLoading: false });
+      }
     });
   };
 
