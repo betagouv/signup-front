@@ -276,8 +276,12 @@ export const getStateFromUrlParams = (defaultState = {}) => {
       });
     }
 
+    if (isObject(value)) {
+      return JSON.parse(param[0]);
+    }
+
     if (isInteger(value)) {
-      return parseInt(param[0]) || 0;
+      return parseInt(param[0]) || value;
     }
 
     return param[0];

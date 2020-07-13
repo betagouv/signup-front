@@ -12,6 +12,7 @@ import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import PreviousEnrollmentSection from '../form-sections/PreviousEnrollmentSection';
 import Stepper from '../form-sections/PreviousEnrollmentSection/Stepper';
 import { TARGET_API_LABELS } from '../../lib/api';
+import { getStateFromUrlParams } from '../../lib';
 
 export const FormContext = React.createContext();
 
@@ -43,7 +44,19 @@ class Form extends React.Component {
     document.title = targetApiLabel;
 
     if (!id) {
-      return this.setState({ isUserEnrollmentLoading: false });
+      const enrollmentFromUrlParams = getStateFromUrlParams({
+        fondement_juridique_title: '',
+        fondement_juridique_url: '',
+        scopes: {},
+      });
+      return this.setState(({ enrollment: prevEnrollment }) => ({
+        isUserEnrollmentLoading: false,
+        enrollment: merge(
+          {},
+          prevEnrollment,
+          omitBy(enrollmentFromUrlParams, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+        ),
+      }));
     }
 
     getUserEnrollment(id)
