@@ -1,11 +1,13 @@
 import {
   collectionWithKeyToObject,
   getChangelog,
+  getStateFromUrlParams,
   getTokenUrl,
   hashToQueryParams,
   isValidNAFCode,
   objectToCollectionWithKey,
 } from './index';
+import { act } from 'react-dom/test-utils';
 
 describe('utils', () => {
   describe('isValidNAFCode', () => {
@@ -239,6 +241,87 @@ describe('utils', () => {
           id: 'abcd1234-1234-1234-1234-1234567890ab',
         })
       ).toEqual(null);
+    });
+  });
+
+  describe('getStateFromUrlParams', () => {
+    let location = null;
+
+    beforeEach(() => {
+      location = global.window.location;
+      delete global.window.location;
+      global.window = Object.create(window);
+      global.window.location = {
+        protocol: 'http:',
+        hostname: 'localhost',
+      };
+    });
+
+    afterEach(() => {
+      global.window.location = location;
+      location = null;
+    });
+
+    it('should return a hash from filtered enrollment list url', () => {
+      global.window.location.search =
+        '?page=0' +
+        '&sorted=updated_at%3Adesc' +
+        '&filtered=nom_raison_sociale%3Ate' +
+        '&filtered=user.email%3Afrance' +
+        '&filtered=target_api%3Afranceconnect';
+
+      const expectedResult = {
+        page: 0,
+        sorted: [{ id: 'updated_at', desc: true }],
+        filtered: [
+          { id: 'nom_raison_sociale', value: 'te' },
+          { id: 'user.email', value: 'france' },
+          { id: 'target_api', value: 'franceconnect' },
+        ],
+      };
+
+      expect(
+        getStateFromUrlParams({ page: 0, sorted: [], filtered: [] })
+      ).toEqual(expectedResult);
+    });
+
+    it('should ignore null value', () => {
+      global.window.location.search = '?a=&b&d=1';
+
+      const expectedResult = { a: '', b: '', c: '' };
+
+      expect(getStateFromUrlParams({ a: '', b: '', c: '' })).toEqual(
+        expectedResult
+      );
+    });
+
+    it('should return a hash from preset enrollment form url', () => {
+      global.window.location.search =
+        '?fondement_juridique_title=Article%20L114-8%20du%20CRPA' +
+        '&fondement_juridique_url=https%3A%2F%2Fwww.legifrance.gouv.fr%2FaffichCodeArticle.do%3FidArticle%3DLEGIARTI000033219997%26cidTexte%3DLEGITEXT000031366350%26dateTexte%3D20161009' +
+        '&scopes=%7B%22cnaf_adresse%22%3A%20true%2C%22cnaf_allocataires%22%3A%20true%2C%22cnaf_enfants%22%3A%20true%2C%22cnaf_quotient_familial%22%3A%20true%2C%22dgfip_adresse%22%3A%20true%2C%22dgfip_avis_imposition%22%3A%20true%7D';
+
+      const expectedResult = {
+        fondement_juridique_title: 'Article L114-8 du CRPA',
+        fondement_juridique_url:
+          'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033219997&cidTexte=LEGITEXT000031366350&dateTexte=20161009',
+        scopes: {
+          cnaf_adresse: true,
+          cnaf_allocataires: true,
+          cnaf_enfants: true,
+          cnaf_quotient_familial: true,
+          dgfip_adresse: true,
+          dgfip_avis_imposition: true,
+        },
+      };
+
+      expect(
+        getStateFromUrlParams({
+          fondement_juridique_title: '',
+          fondement_juridique_url: '',
+          scopes: {},
+        })
+      ).toEqual(expectedResult);
     });
   });
 });
