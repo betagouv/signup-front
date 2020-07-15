@@ -65,7 +65,7 @@ const LeTaxi = ({
       ]}
       contactInformation={[
         {
-          email: 'contact@api.gouv.fr',
+          email: 'equipe@le.taxi',
           label: 'Nous contacter',
           subject: 'Contact%20via%20signup.api.gouv.fr',
         },

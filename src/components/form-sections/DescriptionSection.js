@@ -17,14 +17,6 @@ const DescriptionSection = ({
   return (
     <ScrollablePanel scrollableId="description">
       <h2>Description de votre service</h2>
-      <div className="text-quote">
-        <p>
-          Décrivez la raison pour laquelle vous collectez des données à
-          caractère personnel en précisant l’objectif du traitement que vous
-          mettez en place.
-        </p>
-      </div>
-      <br />
       <div className="form__group">
         <label htmlFor="intitule">
           Nom du service
@@ -44,7 +36,10 @@ const DescriptionSection = ({
         </small>
       </div>
       <div className="form__group">
-        <label htmlFor="detailed-description">Description détaillée</label>
+        <label htmlFor="detailed-description">
+          Description détaillée
+          <Helper title="À quoi sert le service numérique qui consommera la donnée&nbsp;?" />
+        </label>
         <textarea
           rows="10"
           onChange={onChange}
