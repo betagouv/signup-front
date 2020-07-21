@@ -22,13 +22,15 @@ import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import LeTaxi from './pages/LeTaxi';
-import ApiImpotParticulier from './pages/ApiImpotParticulier';
-import ApiImpotParticulierStep2 from './pages/ApiImpotParticulierStep2';
-import ApiR2PSandbox from './pages/ApiR2PSandbox';
-import ApiR2PProduction from './pages/ApiR2PProduction';
+import ApiImpotParticulierFcSandbox from './pages/DgfipPages/ApiImpotParticulierFcSandbox';
+import ApiImpotParticulierFcProduction from './pages/DgfipPages/ApiImpotParticulierFcProduction';
+import ApiImpotParticulierSandbox from './pages/DgfipPages/ApiImpotParticulierSandbox';
+import ApiR2PSandbox from './pages/DgfipPages/ApiR2PSandbox';
+import ApiR2PProduction from './pages/DgfipPages/ApiR2PProduction';
 import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
 import Accessibilite from './pages/Accessibilite';
+import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
 
 const history = createBrowserHistory();
 
@@ -87,13 +89,23 @@ const App = () => (
                   />
 
                   <PrivateRoute
-                    path="/api-impot-particulier/:enrollmentId?"
-                    component={ApiImpotParticulier}
+                    path="/api-impot-particulier-sandbox/:enrollmentId?"
+                    component={ApiImpotParticulierSandbox}
                   />
 
                   <PrivateRoute
-                    path="/api-impot-particulier-step2/:enrollmentId?"
-                    component={ApiImpotParticulierStep2}
+                    path="/api-impot-particulier-production/:enrollmentId?"
+                    component={ApiImpotParticulierProduction}
+                  />
+
+                  <PrivateRoute
+                    path="/api-impot-particulier-fc-sandbox/:enrollmentId?"
+                    component={ApiImpotParticulierFcSandbox}
+                  />
+
+                  <PrivateRoute
+                    path="/api-impot-particulier-fc-production/:enrollmentId?"
+                    component={ApiImpotParticulierFcProduction}
                   />
 
                   <PrivateRoute

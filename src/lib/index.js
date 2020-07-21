@@ -70,7 +70,6 @@ const publicServicesNAFCodes = [
 
 const validNAFCode = {
   api_particulier: publicServicesNAFCodes,
-  api_impot_particulier: publicServicesNAFCodes,
 };
 
 export function isValidNAFCode(provider, NAFcode) {

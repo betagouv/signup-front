@@ -171,7 +171,7 @@ class Form extends React.Component {
             </>
           )}
           {get(location, 'state.fromFranceConnectedAPI') ===
-            'api_impot_particulier' && (
+            'api_impot_particulier_fc_sandbox' && (
             <>
               <p>
                 La procédure consiste en 3 demandes d'accès distinctes&nbsp;:
@@ -179,8 +179,8 @@ class Form extends React.Component {
               <Stepper
                 steps={[
                   'franceconnect',
-                  'api_impot_particulier',
-                  'api_impot_particulier_step2',
+                  'api_impot_particulier_fc_sandbox',
+                  'api_impot_particulier_fc_production',
                 ]}
                 currentStep="franceconnect"
               />

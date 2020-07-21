@@ -1,20 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import DgfipRgpdAgreement from '../components/form-sections/DonneesSection/DgfipRgpdAgreement';
-import TextSection from '../components/form-sections/TextSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
-import CguSection from '../components/form-sections/CguSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import { DonneesDescription } from './ApiImpotParticulier';
+import Form from '../../components/Form';
+import Nav from '../../components/Nav';
+import DgfipRgpdAgreement from '../../components/form-sections/DonneesSection/DgfipRgpdAgreement';
+import TextSection from '../../components/form-sections/TextSection';
+import DescriptionSection from '../../components/form-sections/DescriptionSection';
+import OrganisationSection from '../../components/form-sections/OrganisationSection';
+import DonneesSection from '../../components/form-sections/DonneesSection';
+import CguSection from '../../components/form-sections/CguSection';
+import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
+import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
+import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import { DonneesDescription } from './api-impot-particulier-common';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -24,15 +24,15 @@ DgfipRgpdAgreement.propTypes = {
 
 const availableScopes = [
   {
-    value: 'spi',
+    value: 'dgfip_acces_spi',
     label: 'Numéro fiscal (SPI)',
   },
   {
-    value: 'etat_civil',
+    value: 'dgfip_acces_etat_civil',
     label: 'État civil',
   },
   {
-    value: 'adresse',
+    value: 'dgfip_acces_adresse',
     label: 'Adresse',
   },
 ];

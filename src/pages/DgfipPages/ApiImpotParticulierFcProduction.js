@@ -1,21 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import HomologationSecuriteSection from '../components/form-sections/dgfip/HomologationSecuriteSection';
-import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import CguSection from '../components/form-sections/CguSection';
-import { cguLink } from './ApiImpotParticulier';
+import Form from '../../components/Form';
+import Nav from '../../components/Nav';
+import HomologationSecuriteSection from '../../components/form-sections/dgfip-sections/HomologationSecuriteSection';
+import RecetteFonctionnelleSection from '../../components/form-sections/dgfip-sections/RecetteFonctionnelleSection';
+import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
+import CguSection from '../../components/form-sections/CguSection';
+import {
+  CadreJuridiqueDescription,
+  CguDescription,
+  cguLink,
+} from './api-impot-particulier-common';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
-      Votre demande d'habilitation pour accéder à l'API « bac à sable » a été
+      Votre demande d'habilitation pour accéder à l'API Impôt particulier a été
       acceptée, vous pouvez maintenant construire votre démarche/téléservice en
       utilisant l'API exposée dans un environnement bac à sable. Parallèlement
       au développement, vous devez remplir les informations ci-dessous. Elles
@@ -34,9 +38,13 @@ const PreviousEnrollmentDescription = () => (
   </div>
 );
 
-const steps = ['api_r2p_sandbox', 'api_r2p_production'];
+const steps = [
+  'franceconnect',
+  'api_impot_particulier_fc_sandbox',
+  'api_impot_particulier_fc_production',
+];
 
-const ApiR2PProduction = ({
+const ApiImpotParticulierFcProduction = ({
   match: {
     params: { enrollmentId },
   },
@@ -44,8 +52,8 @@ const ApiR2PProduction = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_r2p_production}`,
-        alt: `Logo ${TARGET_API_LABELS.api_r2p_production}`,
+        src: `/images/${API_ICONS.api_impot_particulier_fc_production}`,
+        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier_fc_production}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -68,23 +76,25 @@ const ApiR2PProduction = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_r2p_production"
+        target_api="api_impot_particulier_fc_production"
         steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
-        title="Demande d'accès à la production API R2P"
+        title="Demande d'accès à la production API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
       >
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
-        <CadreJuridiqueSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
         <HomologationSecuriteSection />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
       </Form>
     </div>
   </div>
 );
 
-ApiR2PProduction.propTypes = {
+ApiImpotParticulierFcProduction.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -92,7 +102,7 @@ ApiR2PProduction.propTypes = {
   }),
 };
 
-ApiR2PProduction.defaultProps = {
+ApiImpotParticulierFcProduction.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -100,4 +110,4 @@ ApiR2PProduction.defaultProps = {
   },
 };
 
-export default ApiR2PProduction;
+export default ApiImpotParticulierFcProduction;

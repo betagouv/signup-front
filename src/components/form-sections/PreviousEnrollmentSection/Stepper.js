@@ -7,13 +7,13 @@ const Stepper = ({
   currentStep = null,
   previousStepNotCompleted = false,
 }) => {
+  console.log(steps, 'steps');
+  console.log(currentStep, 'currentStep');
+  console.log(previousStepNotCompleted, 'previousStepNotCompleted');
   const currentStepIndex = steps.findIndex(e => e === currentStep);
 
-  const getStepCssClass = (index, step) => {
+  const getStepCssClass = index => {
     if (!currentStep) {
-      if (step === 'api_impot_particulier') {
-        return 'optional';
-      }
       return '';
     }
     if (previousStepNotCompleted) {
@@ -22,9 +22,6 @@ const Stepper = ({
       }
       if (index === currentStepIndex - 1) {
         return 'warning active';
-      }
-      if (step === 'api_impot_particulier') {
-        return 'optional';
       }
       return '';
     }
@@ -40,7 +37,7 @@ const Stepper = ({
   return (
     <ul className="steps-form">
       {steps.map((e, i) => (
-        <li key={e} className={getStepCssClass(i, e)}>
+        <li key={e} className={getStepCssClass(i)}>
           <div>{TARGET_API_LABELS[e]}</div>
         </li>
       ))}
