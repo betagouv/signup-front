@@ -229,9 +229,7 @@ describe('utils', () => {
           targetApi: 'api_particulier',
           id: 'abcdef1234567890abcdef12',
         })
-      ).toEqual(
-        'https://particulier-development.api.gouv.fr/admin/token/abcdef1234567890abcdef12'
-      );
+      ).toEqual('https://particulier-development.api.gouv.fr/dashboard');
     });
 
     it('should return null for other target API', () => {

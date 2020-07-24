@@ -247,7 +247,7 @@ export function getTokenUrl({ targetApi, id }) {
   }
 
   if (targetApi === 'api_particulier') {
-    return `${API_PARTICULIER_HOST}/admin/token/${id}`;
+    return `${API_PARTICULIER_HOST}/dashboard`;
   }
 
   return null;
