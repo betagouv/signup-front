@@ -37,7 +37,7 @@ const PreviousEnrollmentSection = ({
   const [
     isValidatedEnrollmentsLoading,
     setIsValidatedEnrollmentsLoading,
-  ] = useState(true);
+  ] = useState(false);
   const [validatedEnrollmentsError, setValidatedEnrollmentsError] = useState(
     false
   );
@@ -109,7 +109,7 @@ const PreviousEnrollmentSection = ({
             <div className="notification warning">
               <p>
                 Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>
-                {target_api === 'api_impot_particulier' && (
+                {target_api === 'api_impot_particulier_fc_sandbox' && (
                   <span> en mode FranceConnecté</span>
                 )}
                 , vous devez avoir préalablement obtenu un accès à{' '}
@@ -128,6 +128,15 @@ const PreviousEnrollmentSection = ({
                 </Link>{' '}
                 avant de continuer cette demande.
               </p>
+              {previousTargetApi === 'franceconnect' && (
+                <p>
+                  Vous avez déjà accès à FranceConnect mais vous ne retrouvez
+                  pas la demande correspondante ? Vos accès datent probablement
+                  d'avant la mise en place de ce dispositif. Merci de remplir
+                  une nouvelle demande d'accès à FranceConnect. Cette nouvelle
+                  demande n'interférera pas avec vos accès précédents.
+                </p>
+              )}
             </div>
           </div>
         )}
@@ -166,7 +175,7 @@ const PreviousEnrollmentSection = ({
                 <label htmlFor="validated_enrollments">
                   Nom de la démarche{' '}
                   <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                  {target_api === 'api_impot_particulier' && (
+                  {target_api === 'api_impot_particulier_fc_sandbox' && (
                     <Helper
                       title={
                         'Sélectionnez "aucune démarche" si vous souhaitez accéder à l\'API sans FranceConnect'

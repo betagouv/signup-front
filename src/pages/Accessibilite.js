@@ -90,7 +90,7 @@ const Accessibilite = () => (
         via notre adresse email de contact.
       </p>
 
-      <a href="mailto:signup@api.gouv.fr?subject=Probl%C3%A8me%20d%27accessibilit%C3%A9">
+      <a href="mailto:datapass@api.gouv.fr?subject=Probl%C3%A8me%20d%27accessibilit%C3%A9">
         <button className="button large">
           Signaler un problème d'accessibilité par email
         </button>

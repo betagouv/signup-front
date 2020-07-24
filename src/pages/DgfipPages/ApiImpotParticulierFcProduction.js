@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import HomologationSecuriteSection from '../components/form-sections/dgfip/HomologationSecuriteSection';
-import RecetteFonctionnelleSection from '../components/form-sections/dgfip/RecetteFonctionnelleSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import CguSection from '../components/form-sections/CguSection';
-import { CguDescription, cguLink } from './ApiImpotParticulier';
+import Form from '../../components/Form';
+import Nav from '../../components/Nav';
+import HomologationSecuriteSection from '../../components/form-sections/dgfip-sections/HomologationSecuriteSection';
+import RecetteFonctionnelleSection from '../../components/form-sections/dgfip-sections/RecetteFonctionnelleSection';
+import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
+import CguSection from '../../components/form-sections/CguSection';
+import {
+  CadreJuridiqueDescription,
+  CguDescription,
+  cguLink,
+} from './api-impot-particulier-common';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -34,39 +38,13 @@ const PreviousEnrollmentDescription = () => (
   </div>
 );
 
-export const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
-    <p>
-      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
-    </p>
-    <p>
-      Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
-    </p>
-    <ul>
-      <li>
-        ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
-      </li>
-      <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
-      </li>
-    </ul>
-  </div>
-);
-
 const steps = [
   'franceconnect',
-  'api_impot_particulier',
-  'api_impot_particulier_step2',
+  'api_impot_particulier_fc_sandbox',
+  'api_impot_particulier_fc_production',
 ];
 
-const ApiImpotParticulier = ({
+const ApiImpotParticulierFcProduction = ({
   match: {
     params: { enrollmentId },
   },
@@ -74,8 +52,8 @@ const ApiImpotParticulier = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_impot_particulier}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier}`,
+        src: `/images/${API_ICONS.api_impot_particulier_fc_production}`,
+        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier_fc_production}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -91,14 +69,14 @@ const ApiImpotParticulier = ({
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
           subject:
-            'Contact%20via%20signup.api.gouv.fr%20-%20API%20Impôt%20particulier',
+            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Impôt%20particulier%20FC%20production',
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_impot_particulier_step2"
+        target_api="api_impot_particulier_fc_production"
         steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
         title="Demande d'accès à la production API Impôt particulier"
@@ -116,7 +94,7 @@ const ApiImpotParticulier = ({
   </div>
 );
 
-ApiImpotParticulier.propTypes = {
+ApiImpotParticulierFcProduction.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -124,7 +102,7 @@ ApiImpotParticulier.propTypes = {
   }),
 };
 
-ApiImpotParticulier.defaultProps = {
+ApiImpotParticulierFcProduction.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -132,4 +110,4 @@ ApiImpotParticulier.defaultProps = {
   },
 };
 
-export default ApiImpotParticulier;
+export default ApiImpotParticulierFcProduction;

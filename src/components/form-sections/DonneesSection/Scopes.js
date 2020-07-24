@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Scopes.css';
 import WarningModal from './WarningModal';
+import Helper from '../../Helper';
 
 const ModalContent = {
   rgpd: {
@@ -53,6 +54,7 @@ const Scopes = ({
             ({
               value,
               label,
+              helper,
               mandatory,
               comment,
               triggerWarning,
@@ -81,6 +83,7 @@ const Scopes = ({
                 >
                   {label}
                   {mandatory && <i> (nécessaire)</i>}
+                  {helper && <Helper title={helper} />}
                 </label>
                 {comment && <div className="scope_comment">{comment}</div>}
               </div>

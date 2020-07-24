@@ -58,7 +58,7 @@ const PreuveCovoiturage = ({
         {
           email: 'contact@covoiturage.beta.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr',
+          subject: 'Contact%20via%20datapass.api.gouv.fr',
         },
       ]}
     />

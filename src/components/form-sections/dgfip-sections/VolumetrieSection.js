@@ -49,6 +49,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
           de réduire ou couper les appels autorisés au fournisseur de service.
         </p>
       </div>
+      <br />
       <div className="form__group">
         <label htmlFor="nombre_demandes_annuelle">
           Quel est la limitation de debit que vous souhaitez pour votre

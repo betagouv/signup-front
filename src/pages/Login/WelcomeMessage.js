@@ -32,15 +32,21 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
 
   return (
     <>
-      <h3>Bienvenue sur Data Pass !</h3>
-      <p>
-        Vous cherchez à accéder à des données à caractère personnel pour
-        construire un service en ligne innovant. Data Pass remplace les
-        conventions et vous délivre un passe vers la donnée.{' '}
-        <a href="https://github.com/betagouv/datapass#data-pass-anciennement-signup">
-          En savoir plus
-        </a>
-      </p>
+      {isOnNewEnrollmentPage ? (
+        <h3>Bienvenue !</h3>
+      ) : (
+        <>
+          <h3>Bienvenue sur Data Pass !</h3>
+          <p>
+            Vous cherchez à accéder à des données protégées pour construire un
+            service en ligne innovant, Data Pass remplace les conventions et
+            vous délivre un passe vers la donnée.{' '}
+            <a href="https://github.com/betagouv/datapass#data-pass-anciennement-signup">
+              En savoir plus
+            </a>
+          </p>
+        </>
+      )}
       <p className="call-to-action">
         {welcomeMessage}
         {isOnNewEnrollmentPage

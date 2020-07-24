@@ -116,7 +116,7 @@ const ApiDroitsCnam = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20signup.api.gouv.fr%20-%20CNAM',
+          subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20CNAM',
         },
       ]}
     />

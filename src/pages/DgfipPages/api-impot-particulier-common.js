@@ -1,22 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import DgfipRgpdAgreement from '../components/form-sections/DonneesSection/DgfipRgpdAgreement';
-import TextSection from '../components/form-sections/TextSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
-import CguSection from '../components/form-sections/CguSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import VolumetrieSection from '../components/form-sections/dgfip/VolumetrieSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import { CadreJuridiqueDescription } from './ApiImpotParticulierStep2';
-
-const DemarcheDescription = () => (
+export const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
@@ -26,7 +10,7 @@ const DemarcheDescription = () => (
       transmettre son avis d’imposition.
     </p>
     <p>
-      Ce portail vous permet en qualité de fournisseur de service de demander le
+      Ce portail vous permet en qualité de fournisseur de service de demander le
       raccordement de votre téléservice à l’API Impôt particulier.
     </p>
     <p>
@@ -34,7 +18,7 @@ const DemarcheDescription = () => (
       les informations, en particulier pour ce qui concerne :
     </p>
     <ul>
-      <li>les données nécessaires à la démarche administrative ;</li>
+      <li>les données nécessaires à la démarche administrative ;</li>
       <li>la volumétrie de sollicitation de l’API.</li>
     </ul>
     <p>
@@ -75,10 +59,10 @@ export const DonneesDescription = () => (
   </div>
 );
 
-const DonneesFootnote = () => (
+export const DonneesFootnote = () => (
   <small className="card__meta">
     <i>
-      Des précisions sur les données proposées par l’API Impôt particulier sont
+      Des précisions sur les données proposées par l’API Impôt particulier sont
       disponibles sur{' '}
       <a
         href="/docs/Description_des_donnees_de_l_API_impot_particulier_081019.pdf"
@@ -93,24 +77,28 @@ const DonneesFootnote = () => (
   </small>
 );
 
-const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
+export const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
 
-const availableScopes = [
+export const availableScopes = [
   {
     value: 'dgfip_rfr',
-    label: 'DGFiP - Revenu fiscal de référence (ou RFR)',
+    label: 'Revenu fiscal de référence (ou RFR)',
   },
   {
     value: 'dgfip_nbpart',
-    label: 'DGFiP - nombre de parts',
+    label: 'Nombre de parts',
   },
   {
     value: 'dgfip_aft',
-    label: 'DGFiP - adresse fiscale de taxation au 1er janvier',
+    label: 'Adresse fiscale de taxation au 1er janvier',
   },
   {
     value: 'dgfip_locaux_th',
-    label: 'DGFiP - Données du local',
+    label: 'Données du local',
+  },
+  {
+    value: 'dgfip_eligibilite_lep',
+    label: "Indicateur d'éligibilité au Livret d'Épargne Populaire",
   },
   {
     value: 'dgfip_annee_n_moins_1',
@@ -124,6 +112,32 @@ const availableScopes = [
   },
 ];
 
+export const CadreJuridiqueDescription = () => (
+  <div className="text-quote">
+    <p>
+      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
+      cadre légal et réglementaire des fournisseurs de service doit permettre à
+      la DGFiP de transmettre des données fiscales à votre entité
+      administrative.
+    </p>
+    <p>
+      Conformément au Code des relations entre le public et l’administration,
+      l’échange de données s’impose aux administrations dès lors que :
+    </p>
+    <ul>
+      <li>
+        ces données sont nécessaires au traitement d’une demande présentée par
+        un usager ;
+      </li>
+      <li>
+        l’administration destinataire est habilitée à connaître ces données dans
+        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
+        n°2016-1321 du 7 octobre 2016 - art. 91 )
+      </li>
+    </ul>
+  </div>
+);
+
 export const CguDescription = () => (
   <div className="text-quote">
     <p>
@@ -136,7 +150,7 @@ export const CguDescription = () => (
 export const cguLink =
   '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
 
-const SuiteDescription = () => (
+export const SuiteDescription = () => (
   <div className="text-quote">
     <p>
       Après avoir cliqué sur « Soumettre la demande », les prochaines étapes
@@ -167,7 +181,7 @@ const SuiteDescription = () => (
   </div>
 );
 
-const contacts = {
+export const contacts = {
   technique: {
     heading: 'Responsable technique',
     description: () => (
@@ -184,86 +198,3 @@ const contacts = {
     phone_number: '',
   },
 };
-
-const steps = [
-  'franceconnect',
-  'api_impot_particulier',
-  'api_impot_particulier_step2',
-];
-
-const ApiImpotParticulier = ({
-  match: {
-    params: { enrollmentId },
-  },
-}) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS.api_impot_particulier}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier}`,
-        url: 'https://www.impots.gouv.fr/',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'description', label: 'Description' },
-        { id: 'volumetrie', label: 'Volumétrie' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'contact@api.gouv.fr',
-          label: 'Nous contacter',
-          subject:
-            'Contact%20via%20signup.api.gouv.fr%20-%20API%20Impôt%20particulier',
-        },
-      ]}
-    />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="api_impot_particulier"
-        steps={steps}
-        title="Demande d’accès au bac à sable API Impôt particulier"
-        DemarcheDescription={DemarcheDescription}
-      >
-        <OrganisationSection />
-        <DescriptionSection />
-        <VolumetrieSection />
-        <MiseEnOeuvreSection initialContacts={contacts} />
-        <DonneesSection
-          availableScopes={availableScopes}
-          AdditionalRgpdAgreement={DgfipRgpdAgreement}
-          DonneesDescription={DonneesDescription}
-          DonneesFootnote={DonneesFootnote}
-        />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
-        <TextSection Description={SuiteDescription} title="" />
-      </Form>
-    </div>
-  </div>
-);
-
-ApiImpotParticulier.propTypes = {
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      enrollmentId: PropTypes.string,
-    }),
-  }),
-};
-
-ApiImpotParticulier.defaultProps = {
-  match: {
-    params: {
-      enrollmentId: null,
-    },
-  },
-};
-
-export default ApiImpotParticulier;

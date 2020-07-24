@@ -3,7 +3,8 @@ import { hashToQueryParams } from '../../lib';
 import './index.css';
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import WelcomeMessage from './WelcomeMessage';
-import ApiImpotParticulierWelcomeMessage from './ApiImpotParticulierWelcomeMessage';
+import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
+import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -36,9 +37,15 @@ export const Login = () => {
               height="90"
             />
           )}
-          {isOnNewEnrollmentPage && targetApi === 'api_impot_particulier' ? (
-            <ApiImpotParticulierWelcomeMessage />
-          ) : (
+          {(isOnNewEnrollmentPage &&
+            {
+              api_impot_particulier_fc_sandbox: (
+                <ApiImpotParticulierFcSandboxWelcomeMessage />
+              ),
+              api_impot_particulier_sandbox: (
+                <ApiImpotParticulierSandboxWelcomeMessage />
+              ),
+            }[targetApi]) || (
             <WelcomeMessage
               isOnNewEnrollmentPage={isOnNewEnrollmentPage}
               targetApi={targetApi}
