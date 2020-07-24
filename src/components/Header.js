@@ -20,7 +20,7 @@ const Header = ({ user, logout }) => {
           <img
             className="navbar__logo"
             src="/images/logo_api.svg"
-            alt="Accueil de signup.api.gouv.fr"
+            alt="Accueil de datapass.api.gouv.fr"
           />
         </a>
 
@@ -31,7 +31,7 @@ const Header = ({ user, logout }) => {
             </li>
             {displayContactLink && (
               <li className="nav__item">
-                <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20signup.api.gouv.fr">
+                <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20datapass.api.gouv.fr">
                   Nous contacter
                 </a>
               </li>

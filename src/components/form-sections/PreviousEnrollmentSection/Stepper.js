@@ -7,9 +7,6 @@ const Stepper = ({
   currentStep = null,
   previousStepNotCompleted = false,
 }) => {
-  console.log(steps, 'steps');
-  console.log(currentStep, 'currentStep');
-  console.log(previousStepNotCompleted, 'previousStepNotCompleted');
   const currentStepIndex = steps.findIndex(e => e === currentStep);
 
   const getStepCssClass = index => {
