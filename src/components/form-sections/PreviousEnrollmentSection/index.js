@@ -128,6 +128,15 @@ const PreviousEnrollmentSection = ({
                 </Link>{' '}
                 avant de continuer cette demande.
               </p>
+              {previousTargetApi === 'franceconnect' && (
+                <p>
+                  Vous avez déjà accès à FranceConnect mais vous ne retrouvez
+                  pas la demande correspondante ? Vos accès datent probablement
+                  d'avant la mise en place de ce dispositif. Merci de remplir
+                  une nouvelle demande d'accès à FranceConnect. Cette nouvelle
+                  demande n'interférera pas avec vos accès précédents.
+                </p>
+              )}
             </div>
           </div>
         )}
