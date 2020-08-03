@@ -6,7 +6,6 @@ import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
@@ -58,7 +57,6 @@ const LeTaxi = ({
         { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'cgu', label: "Modalités d'utilisation" },
@@ -85,7 +83,6 @@ const LeTaxi = ({
           DonneesDescription={DonneesDescription}
           availableScopes={availableScopes}
         />
-        <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
         <CguSection cguLink="https://le.taxi/assets/documents/CGU.pdf" />
