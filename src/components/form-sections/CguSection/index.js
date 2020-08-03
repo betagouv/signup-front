@@ -33,8 +33,8 @@ const Index = ({
           <a href={cguLink} target="_blank" rel="noreferrer noopener">
             conditions générales d'utilisation
           </a>{' '}
-          et je les valide. Je confirme que le DPD de mon organisation est
-          informé de ma demande.
+          et je les valide. Je confirme que le délégué à la protection des
+          données de mon organisation est informé de ma demande.
         </label>
       </div>
 
