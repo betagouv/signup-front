@@ -40,11 +40,11 @@ const availableScopes = [
 const useCases = [
   {
     label: 'Établissement bancaire',
-    scopes: ['spi'],
+    scopes: ['dgfip_acces_spi'],
   },
   {
     label: 'Ordonnateur',
-    scopes: ['spi', 'etat_civil', 'adresse'],
+    scopes: ['dgfip_acces_spi', 'dgfip_acces_etat_civil', 'dgfip_acces_adresse'],
   },
 ];
 
