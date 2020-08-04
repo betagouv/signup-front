@@ -28,12 +28,8 @@ const availableScopes = [
     label: 'Numéro fiscal (SPI)',
   },
   {
-    value: 'dgfip_acces_etat_civil',
-    label: 'État civil',
-  },
-  {
-    value: 'dgfip_acces_adresse',
-    label: 'Adresse',
+    value: 'dgfip_acces_etat_civil_et_adresse',
+    label: 'État civil et Adresse',
   },
 ];
 
@@ -44,7 +40,7 @@ const useCases = [
   },
   {
     label: 'Ordonnateur',
-    scopes: ['dgfip_acces_spi', 'dgfip_acces_etat_civil', 'dgfip_acces_adresse'],
+    scopes: ['dgfip_acces_spi', 'dgfip_acces_etat_civil_et_adresse'],
   },
 ];
 
