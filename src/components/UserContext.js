@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import httpClient from '../lib/http-client';
+import { getErrorMessages } from '../lib';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -38,11 +39,13 @@ export class UserStore extends React.Component {
   constructor(props) {
     super(props);
 
-    resetUserContext = () => this.setState({ user: null, isLoading: false });
+    resetUserContext = () =>
+      this.setState({ user: null, isLoading: false, connectionError: false });
 
     this.state = {
       user: null,
       isLoading: true,
+      connectionError: false,
     };
   }
 
@@ -57,11 +60,22 @@ export class UserStore extends React.Component {
 
   login = () => {
     this.setState({ isLoading: true });
-    return httpClient.get(`${BACK_HOST}/api/users/me`).then(response => {
-      if (this._isMounted) {
-        this.setState({ user: response.data, isLoading: false });
-      }
-    });
+    return httpClient
+      .get(`${BACK_HOST}/api/users/me`)
+      .then(response => {
+        if (this._isMounted) {
+          this.setState({ user: response.data, isLoading: false });
+        }
+      })
+      .catch(e => {
+        if (this._isMounted && !(e.response && e.response.status === 401)) {
+          this.setState({
+            user: null,
+            isLoading: false,
+            connectionError: getErrorMessages(e).join(' '),
+          });
+        }
+      });
   };
 
   logout = () => {
@@ -71,11 +85,17 @@ export class UserStore extends React.Component {
 
   render() {
     const { children } = this.props;
-    const { user, isLoading } = this.state;
+    const { user, isLoading, connectionError } = this.state;
 
     return (
       <UserContext.Provider
-        value={{ user, isLoading, login: this.login, logout: this.logout }}
+        value={{
+          user,
+          isLoading,
+          connectionError,
+          login: this.login,
+          logout: this.logout,
+        }}
       >
         {children}
       </UserContext.Provider>

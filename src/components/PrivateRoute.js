@@ -4,11 +4,12 @@ import { Route } from 'react-router-dom';
 import { withUser } from './UserContext';
 import { Login } from '../pages/Login';
 
-// We do not use isLoading, login, logout but we do not want these properties to be forwarded downward as there are added ia the withUser HOC
+// We do not use isLoading, connectionError, login, logout but we do not want these properties to be forwarded downward as there are added ia the withUser HOC
 const PrivateRoute = ({
   component: Component,
   user,
   isLoading,
+  connectionError,
   login,
   logout,
   ...rest

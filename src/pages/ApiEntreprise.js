@@ -187,7 +187,8 @@ const ApiEntreprise = ({
         {
           email: 'support@entreprise.api.gouv.fr',
           label: 'Contact mail',
-          subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
+          subject:
+            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
         },
         {
           tel: '+33622814166',

@@ -1,15 +1,116 @@
 import {
   collectionWithKeyToObject,
   getChangelog,
+  getErrorMessages,
   getStateFromUrlParams,
   getTokenUrl,
   hashToQueryParams,
   isValidNAFCode,
   objectToCollectionWithKey,
 } from './index';
-import { act } from 'react-dom/test-utils';
 
 describe('utils', () => {
+  describe('getErrorMessages', () => {
+    it('should return proper error message for error from nginx', () => {
+      const errorObject = {
+        response: {
+          data:
+            '<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body bgcolor="white">\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.10.3 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n',
+          status: 502,
+          statusText: 'Bad Gateway',
+        },
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        "Une erreur est survenue. Le code de l'erreur est 502 (Bad Gateway). Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.",
+      ]);
+    });
+
+    it('should return proper error message for 422 error from backend', () => {
+      const errorObject = {
+        response: {
+          data: {
+            description: [
+              'Vous devez renseigner la description de la démarche avant de continuer',
+            ],
+            contacts: [
+              'Vous devez renseigner un prénom pour le contact technique avant de continuer',
+              'Vous devez renseigner un nom pour le contact technique avant de continuer',
+            ],
+          },
+          status: 422,
+          statusText: 'Unprocessable Entity',
+        },
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        'Vous devez renseigner la description de la démarche avant de continuer',
+        'Vous devez renseigner un prénom pour le contact technique avant de continuer',
+        'Vous devez renseigner un nom pour le contact technique avant de continuer',
+      ]);
+    });
+
+    it('should return proper message for network error', () => {
+      const errorObject = {
+        message: 'Network Error',
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        "Une erreur de connection au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d'entreprise, merci de signaler cette erreur à l'administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à contact@api.gouv.fr.",
+      ]);
+    });
+
+    it('should return proper error message for copying error from backend', () => {
+      const errorObject = {
+        response: {
+          data: {
+            message:
+              "La validation a échoué : Copied from enrollment n'est pas disponible",
+          },
+          status: 422,
+          statusText: 'Unprocessable Entity',
+        },
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        "La validation a échoué : Copied from enrollment n'est pas disponible",
+      ]);
+    });
+
+    it('should return proper error message for 403 error from backend', () => {
+      const errorObject = {
+        response: {
+          data: {
+            message: "Vous n'êtes pas autorisé à modifier cette ressource",
+          },
+          status: 403,
+          statusText: 'Forbidden',
+        },
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        "Vous n'êtes pas autorisé à modifier cette ressource",
+      ]);
+    });
+
+    it('should return proper error message for 401 error from backend', () => {
+      const errorObject = {
+        response: {
+          data: {
+            message:
+              'Vous devez vous connecter ou vous inscrire pour continuer.',
+          },
+          status: 401,
+          statusText: 'Unauthorized',
+        },
+      };
+
+      expect(getErrorMessages(errorObject)).toEqual([
+        'Vous devez vous connecter ou vous inscrire pour continuer.',
+      ]);
+    });
+  });
+
   describe('isValidNAFCode', () => {
     it('should return true for COMMUNE D HEM', () => {
       expect(isValidNAFCode('api_particulier', '8411Z')).toBe(true);

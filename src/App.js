@@ -46,13 +46,19 @@ const App = () => (
         <Header />
 
         <UserContext.Consumer>
-          {({ user, isLoading }) => (
+          {({ user, isLoading, connectionError }) => (
             <main>
-              {isLoading ? (
+              {isLoading && (
                 <section className="section-grey section-full-page">
                   <Spinner />
                 </section>
-              ) : (
+              )}
+              {!isLoading && connectionError && (
+                <section className="section-grey section-full-page">
+                  <div className="notification error">{connectionError}</div>
+                </section>
+              )}
+              {!isLoading && !connectionError && (
                 <>
                   <Route
                     path="/public/:targetApi?"

@@ -16,17 +16,6 @@ import flatten from 'flat';
 const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
 
 export function getErrorMessages(error) {
-  if (
-    !isEmpty(error.response) &&
-    isObject(error.response.data) &&
-    error.response.status === 422
-  ) {
-    return _(error.response.data)
-      .values()
-      .flatten()
-      .value();
-  }
-
   if (!isEmpty(error.response) && isObject(error.response.data)) {
     return _(error.response.data)
       .values()
