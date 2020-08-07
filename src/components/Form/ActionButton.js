@@ -7,7 +7,7 @@ import {
   triggerEnrollment,
 } from '../../lib/services';
 import Prompt from './Prompt';
-import { getErrorMessages, getTokenUrl } from '../../lib';
+import { getErrorMessages } from '../../lib';
 import Spinner from '../icons/spinner';
 import DoneIcon from '../icons/done';
 
@@ -176,23 +176,13 @@ class ActionButton extends React.Component {
   };
 
   render() {
-    const { acl, linked_token_manager_id, target_api } = this.props.enrollment;
+    const { acl, target_api } = this.props.enrollment;
     const actions = this.transformAclToActions(acl);
     const { isLoading, doShowPrompt, commentType } = this.state;
-    const tokenUrl = getTokenUrl({
-      targetApi: target_api,
-      id: linked_token_manager_id,
-    });
 
     return (
       <>
         <div className="button-list action">
-          {tokenUrl && (
-            <a className="button large secondary action" href={tokenUrl}>
-              Gérer l'accès à l'API
-            </a>
-          )}
-
           {actions.map(({ cssClass, icon, id, label, trigger }) => (
             <button
               key={id}

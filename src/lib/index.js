@@ -13,8 +13,6 @@ import _, {
 } from 'lodash';
 import flatten from 'flat';
 
-const { REACT_APP_API_PARTICULIER_HOST: API_PARTICULIER_HOST } = process.env;
-
 export function getErrorMessages(error) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
     return _(error.response.data)
@@ -227,18 +225,6 @@ export function openLink(e, history, targetUrl) {
   } else {
     history.push(targetUrl, { fromList: true });
   }
-}
-
-export function getTokenUrl({ targetApi, id }) {
-  if (!targetApi || !id) {
-    return null;
-  }
-
-  if (targetApi === 'api_particulier') {
-    return `${API_PARTICULIER_HOST}/dashboard`;
-  }
-
-  return null;
 }
 
 export const getStateFromUrlParams = (defaultState = {}) => {
