@@ -18,10 +18,10 @@ const DgfipRgpdAgreement = ({
           id="rgpd_general_agreement"
         />
         <label className="label-inline" htmlFor="rgpd_general_agreement">
-          J'atteste respecter les principes fondamentaux de la protection des
-          données et avoir réalisé l'étude d'impact associée avant la mise en
-          production de mon téléservice, conformément au règlement général sur
-          la protection des données (RGPD) en vigueur depuis le 25 mai 2018.
+          J'atteste que mon organisation devra déclarer à la DGFiP
+          l'accomplissement des formalités en matière de protection des données
+          à caractère personnel et qu'elle veillera à procéder à l'homologation
+          de sécurité de son service.
         </label>
       </b>
     </p>
