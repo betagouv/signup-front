@@ -41,7 +41,7 @@ const UserEnrollmentList = ({ history }) => {
     <div className="user-enrollments-page">
       <div className="container header">
         <h2>Mes demandes</h2>
-        <a href={`${API_GOUV_HOST}/signup/api`}>
+        <a href={`${API_GOUV_HOST}/datapass/api`}>
           <button className="button large" name="nouvelle-demande">
             Nouvelle Demande
             <div className="button-icon">
@@ -81,7 +81,7 @@ const UserEnrollmentList = ({ history }) => {
               <div className="notification">
                 <p>
                   Vous n’avez aucune demande en cours.{' '}
-                  <a href={`${API_GOUV_HOST}/signup/api`}>
+                  <a href={`${API_GOUV_HOST}/datapass/api`}>
                     Faire ma première demande
                   </a>
                 </p>

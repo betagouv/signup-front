@@ -16,7 +16,7 @@ const Header = ({ user, logout }) => {
   return (
     <header className="navbar">
       <div className="navbar__container">
-        <a className="navbar__home" href={`${API_GOUV_HOST}/signup/api`}>
+        <a className="navbar__home" href="/">
           <img
             className="navbar__logo"
             src="/images/logo_api.svg"

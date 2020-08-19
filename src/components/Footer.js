@@ -8,7 +8,7 @@ const Footer = () => (
   <footer className="footer">
     <div className="container">
       <div className="footer__logo">
-        <a href={`${API_GOUV_HOST}/signup/api`}>
+        <a href={`${API_GOUV_HOST}/datapass/api`}>
           <img
             src="/images/logo-api.gouv.fr-white.png"
             alt="Logo api.gouv.fr"
