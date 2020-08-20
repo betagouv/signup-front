@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Scopes.css';
-import WarningModal from './WarningModal';
+import WarningModal from '../../WarningModal';
 import Helper from '../../Helper';
 
 const ModalContent = {
@@ -95,9 +95,12 @@ const Scopes = ({
         <WarningModal
           handleCancel={() => setWarningModalScope(null)}
           handleValidate={handleWarningModalClose}
-          scopeLabel={
+          okLabel={`Demander la donnée « ${
             scopes.find(({ value }) => value === warningModalScope).label
-          }
+          } »`}
+          koLabel={`Ne pas demander la donnée « ${
+            scopes.find(({ value }) => value === warningModalScope).label
+          } »`}
           title={ModalContent[warningType].title}
           body={ModalContent[warningType].body}
         />

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import DescriptionIcon from './icons/description';
 import './DocumentUpload.css';
+import WarningModal from './WarningModal';
+import httpClient from '../lib/http-client';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -21,6 +23,7 @@ const DocumentUpload = ({
     false
   );
   const [uploadedDocument, setUploadedDocument] = useState(null);
+  const [showWarningModal, setShowWarningModal] = useState(false);
 
   const areDocumentsTooLarge = documentsToUpload => {
     const documentsSizeInMB = documentsToUpload.reduce(
@@ -77,6 +80,21 @@ const DocumentUpload = ({
     setShowDocumentDownloadLink(false);
   };
 
+  const download = () => {
+    setShowWarningModal(false);
+    httpClient
+      .get(`${BACK_HOST}${uploadedDocument.attachment.url}`)
+      .then(response => {
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', uploadedDocument.filename);
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      });
+  };
+
   return (
     <div className="form__group">
       {showDocumentDownloadLink ? (
@@ -85,7 +103,7 @@ const DocumentUpload = ({
           <div className="file-input">
             <button
               className="button download-button"
-              // href={`${BACK_HOST + uploadedDocument.attachment.url}`}
+              onClick={() => setShowWarningModal(true)}
             >
               <div className="download-button-icon">
                 <DescriptionIcon color="var(--theme-primary)" />
@@ -124,6 +142,16 @@ const DocumentUpload = ({
             </div>
           )}
         </>
+      )}
+      {showWarningModal && (
+        <WarningModal
+          title="Fichier non vérifié"
+          body="Ce fichier provient d'une source extérieure et n'a pas été vérifié. Merci de l'analyser avec votre antivirus avant de l'ouvrir."
+          handleCancel={() => setShowWarningModal(false)}
+          handleValidate={download}
+          koLabel={`Ne pas télécharger le fichier`}
+          okLabel={`Télécharger ${uploadedDocument.filename}`}
+        />
       )}
     </div>
   );
