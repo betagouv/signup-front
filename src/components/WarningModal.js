@@ -4,7 +4,8 @@ import AriaModal from 'react-aria-modal';
 const WarningModal = ({
   handleCancel,
   handleValidate,
-  scopeLabel,
+  okLabel,
+  koLabel,
   title,
   body,
 }) => (
@@ -29,13 +30,13 @@ const WarningModal = ({
           id="close-warning-modal"
           className="closing_cross"
           onClick={handleCancel}
-          aria-label={`Ne pas demander la donnée « ${scopeLabel} »`}
+          aria-label={koLabel}
         >
           ×
         </button>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button className="button large warning" onClick={handleValidate}>
-            Demander la donnée « {scopeLabel} »
+            {okLabel}
           </button>
         </div>
       </div>
