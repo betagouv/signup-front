@@ -44,7 +44,11 @@ div.section-full-page {
 button.button,
 button.button:focus,
 button.button:active,
-button.button:visited {
+button.button:visited,
+a.button,
+a.button:focus,
+a.button:active,
+a.button:visited {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import fileDownload from 'js-file-download';
 import DescriptionIcon from './icons/description';
 import './DocumentUpload.css';
 import WarningModal from './WarningModal';
@@ -84,13 +85,7 @@ const DocumentUpload = ({
     httpClient
       .get(`${BACK_HOST}${uploadedDocument.attachment.url}`)
       .then(response => {
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', uploadedDocument.filename);
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+        fileDownload(response.data, uploadedDocument.filename);
       });
   };
 
@@ -100,11 +95,12 @@ const DocumentUpload = ({
         <>
           <div>{label}</div>
           <div className="file-input">
-            <button
+            <a
               className="button download-button"
-              onClick={() => setShowWarningModal(true)}
+              // onClick={() => setShowWarningModal(true)}
               title="Télécharger le document"
               aria-label="Télécharger le document"
+              href={`${BACK_HOST}${uploadedDocument.attachment.url}`}
             >
               <div className="download-button-icon">
                 <DescriptionIcon color="var(--theme-primary)" />
@@ -112,7 +108,7 @@ const DocumentUpload = ({
               <div className="download-button-label">
                 {uploadedDocument.filename}
               </div>
-            </button>
+            </a>
             {!disabled && (
               <button
                 className="button replace-file-button"

@@ -11,7 +11,7 @@
   border-bottom-right-radius: 0;
 }
 
-.file-input .button:last-of-type {
+.file-input .button:last-child {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
