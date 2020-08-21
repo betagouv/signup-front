@@ -16,62 +16,62 @@ class ActionButton extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      doShowPrompt: false,
-      commentType: '',
+      showPrompt: false,
+      selectedAction: '',
     };
   }
 
-  aclToDisplayInfo = {
+  actionToDisplayInfo = {
     notify: {
       label: 'Envoyer un message',
-      cssClass: 'secondary enrollment',
+      cssClass: 'secondary',
     },
     delete: {
       label: 'Supprimer la demande',
-      cssClass: 'warning enrollment',
+      cssClass: 'warning',
     },
     update: {
       label: 'Sauvegarder le brouillon',
-      cssClass: 'secondary enrollment',
+      cssClass: 'secondary',
     },
     send_application: {
       label: 'Soumettre la demande',
       icon: <DoneIcon color="white" />,
-      cssClass: 'primary enrollment',
+      cssClass: 'primary',
     },
     refuse_application: {
       label: 'Refuser',
-      cssClass: 'warning enrollment',
+      cssClass: 'warning',
     },
     review_application: {
       label: 'Demander une modification',
-      cssClass: 'secondary enrollment',
+      cssClass: 'secondary',
     },
     validate_application: {
       label: 'Valider',
-      cssClass: 'primary enrollment',
+      cssClass: 'primary',
     },
   };
 
-  transformAclToActions = acl =>
+  transformAclToButtonsParams = acl =>
     // acl = {'send_application': true, 'review_application': false, 'create': true}
-    _(this.aclToDisplayInfo)
+    _(this.actionToDisplayInfo)
       .pickBy((value, key) => acl[key])
       // {'send_application': {label: ..., cssClass: ...}}
       .keys()
       // ['send_application']
-      .map(acl => ({
-        id: acl,
-        label: this.aclToDisplayInfo[acl].label,
-        icon: this.aclToDisplayInfo[acl].icon,
-        cssClass: this.aclToDisplayInfo[acl].cssClass,
-        trigger: this.handleSubmitFactory(acl),
+      .map(action => ({
+        id: action,
+        label: this.actionToDisplayInfo[action].label,
+        icon: this.actionToDisplayInfo[action].icon,
+        cssClass: this.actionToDisplayInfo[action].cssClass,
+        trigger: this.handleSubmitFactory(action),
       }))
       // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
       .value();
 
   getActionMessage = action => {
-    this.setState({ doShowPrompt: true, commentType: action });
+    this.setState({ showPrompt: true, selectedAction: action });
 
     return new Promise((resolve, reject) => {
       this.resolveActionMessagePromise = resolve;
@@ -82,13 +82,13 @@ class ActionButton extends React.Component {
   submitActionMessage = message => {
     this.resolveActionMessagePromise(message);
 
-    this.setState({ doShowPrompt: false, commentType: '' });
+    this.setState({ showPrompt: false, selectedAction: '' });
   };
 
   cancelActionMessage = () => {
     this.rejectActionMessagePromise();
 
-    this.setState({ doShowPrompt: false, commentType: '' });
+    this.setState({ showPrompt: false, selectedAction: '' });
   };
 
   triggerAction = async action => {
@@ -177,33 +177,37 @@ class ActionButton extends React.Component {
 
   render() {
     const { acl, target_api } = this.props.enrollment;
-    const actions = this.transformAclToActions(acl);
-    const { isLoading, doShowPrompt, commentType } = this.state;
+    const buttonsParams = this.transformAclToButtonsParams(acl);
+    const { isLoading, showPrompt, selectedAction } = this.state;
 
     return (
       <>
         <div className="button-list action">
-          {actions.map(({ cssClass, icon, id, label, trigger }) => (
+          {buttonsParams.map(({ cssClass, icon, id, label, trigger }) => (
             <button
               key={id}
-              className={`button large ${cssClass}`}
+              className={`button large enrollment ${cssClass}`}
               onClick={trigger}
               disabled={isLoading}
             >
               <div className="button-icon">{icon}</div>
               <div>
                 {label}
-                {isLoading && <Spinner inline={true} />}
+                {isLoading && selectedAction === id && (
+                  <Spinner inline={true} />
+                )}
               </div>
             </button>
           ))}
         </div>
 
-        {doShowPrompt && (
+        {showPrompt && (
           <Prompt
             onAccept={this.submitActionMessage}
             onCancel={this.cancelActionMessage}
-            commentType={commentType}
+            acceptLabel={this.actionToDisplayInfo[selectedAction].label}
+            acceptCssClass={this.actionToDisplayInfo[selectedAction].cssClass}
+            selectedAction={selectedAction}
             targetApi={target_api}
           />
         )}

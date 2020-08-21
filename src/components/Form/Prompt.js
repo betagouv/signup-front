@@ -5,7 +5,7 @@ import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
 import { TARGET_API_LABELS } from '../../lib/api';
 
-const commentTypeToEventName = {
+const actionToEventName = {
   notify: 'notified',
   review_application: 'asked_for_modification',
   refuse_application: 'refused',
@@ -26,7 +26,7 @@ class Prompt extends React.Component {
 
   async componentDidMount() {
     const comments = await getMostUsedComments({
-      eventName: commentTypeToEventName[this.props.commentType],
+      eventName: actionToEventName[this.props.selectedAction],
       targetApi: this.props.targetApi,
     });
 
@@ -67,7 +67,12 @@ class Prompt extends React.Component {
   };
 
   render() {
-    const { commentType, targetApi } = this.props;
+    const {
+      acceptCssClass,
+      acceptLabel,
+      selectedAction,
+      targetApi,
+    } = this.props;
     const {
       input,
       templates,
@@ -75,7 +80,7 @@ class Prompt extends React.Component {
       showTemplates,
     } = this.state;
 
-    const eventName = commentTypeToEventName[commentType];
+    const eventName = actionToEventName[selectedAction];
 
     const promptMessage = {
       notify: 'Votre message\xa0:',
@@ -84,7 +89,7 @@ class Prompt extends React.Component {
       refuse_application: 'Précisez au demandeur le motif de votre refus\xa0:',
       validate_application:
         'Vous pouvez ajouter un commentaire (optionnel)\xa0:',
-    }[commentType];
+    }[selectedAction];
 
     // emailContent should be kept synced with back-end email template
     // https://github.com/betagouv/signup-back/tree/master/app/views/enrollment_mailer
@@ -96,7 +101,7 @@ class Prompt extends React.Component {
         'Votre demande a été refusée pour la raison suivante :',
       validate_application:
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès.',
-    }[commentType];
+    }[selectedAction];
 
     const teamName = TARGET_API_LABELS[targetApi];
 
@@ -114,69 +119,67 @@ L'équipe ${teamName}
 `;
 
     return (
-      <div className="modal__backdrop" id="modal" style={{ display: 'flex' }}>
-        <div className="modal comment-action">
-          <p>{promptMessage}</p>
-          {templates.length > 0 && (
-            <select
-              value={selectedTemplateIndex}
-              onChange={this.handleTemplateChange}
-            >
-              <option value="">Choisir un template</option>
-              {templates.map((template, index) => (
-                <option key={index} value={index}>
-                  {template.substring(0, 100)}
-                </option>
-              ))}
-            </select>
-          )}
-          <textarea
-            cols="80"
-            rows="5"
-            value={input}
-            onChange={this.handleInputChange}
-          />
-          {!showTemplates && (
-            <div className="form__group button__group">
-              <button
-                className="button-outline secondary"
-                onClick={this.toggleShowTemplates}
-              >
-                Voir un aperçu du mail qui sera envoyé
-              </button>
-            </div>
-          )}
-          {showTemplates && (
-            <>
-              <p>Aperçu de l'email qui sera envoyé :</p>
-              <textarea
-                cols="80"
-                rows="10"
-                value={mailContent}
-                disabled={true}
-              />
-              <p>Aperçu de la notification :</p>
-              <hr />
-              <EventItem
-                email={'example@email.com'}
-                updated_at={new Date().toISOString()}
-                name={eventName}
-                comment={input}
-              />
-              <hr />
-            </>
-          )}
-          <div
-            className="form__group button__group"
-            style={{ justifyContent: 'flex-end' }}
+      // <div className="modal__backdrop" id="modal" style={{ display: 'flex' }}>
+      //   <div className="modal comment-action">
+      <div className="panel">
+        <p>{promptMessage}</p>
+        {templates.length > 0 && (
+          <select
+            value={selectedTemplateIndex}
+            onChange={this.handleTemplateChange}
           >
-            <button className="button secondary" onClick={this.handleCancel}>
-              Annuler
-            </button>
-            <button className="button" onClick={this.handleAccept}>
-              Valider
+            <option value="">Choisir un template</option>
+            {templates.map((template, index) => (
+              <option key={index} value={index}>
+                {template.substring(0, 100)}
+              </option>
+            ))}
+          </select>
+        )}
+        <textarea
+          cols="80"
+          rows="5"
+          value={input}
+          onChange={this.handleInputChange}
+        />
+        {!showTemplates && (
+          <div className="form__group button__group">
+            <button
+              className="button-outline secondary"
+              onClick={this.toggleShowTemplates}
+            >
+              Voir un aperçu du mail qui sera envoyé
             </button>
           </div>
+        )}
+        {showTemplates && (
+          <>
+            <p>Aperçu de l'email qui sera envoyé :</p>
+            <textarea cols="80" rows="10" value={mailContent} disabled={true} />
+            <p>Aperçu de la notification :</p>
+            <hr />
+            <EventItem
+              email={'example@email.com'}
+              updated_at={new Date().toISOString()}
+              name={eventName}
+              comment={input}
+            />
+            <hr />
+          </>
+        )}
+        <div className="button-list action">
+          <button
+            className="button-outline large secondary"
+            onClick={this.handleCancel}
+          >
+            Annuler
+          </button>
+          <button
+            className={`button large ${acceptCssClass}`}
+            onClick={this.handleAccept}
+          >
+            {acceptLabel}
+          </button>
         </div>
       </div>
     );
@@ -186,7 +189,9 @@ L'équipe ${teamName}
 Prompt.propTypes = {
   onAccept: PropTypes.func.isRequired,
   onCancel: PropTypes.func.isRequired,
-  commentType: PropTypes.string.isRequired,
+  acceptCssClass: PropTypes.string.isRequired,
+  acceptLabel: PropTypes.string.isRequired,
+  selectedAction: PropTypes.string.isRequired,
   targetApi: PropTypes.string.isRequired,
 };
 
