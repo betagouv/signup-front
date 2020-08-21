@@ -75,8 +75,7 @@ const DocumentUpload = ({
     });
   };
 
-  const onCancelFile = () => {
-    setUploadedDocument(null);
+  const onReplaceFile = () => {
     setShowDocumentDownloadLink(false);
   };
 
@@ -104,6 +103,8 @@ const DocumentUpload = ({
             <button
               className="button download-button"
               onClick={() => setShowWarningModal(true)}
+              title="Télécharger le document"
+              aria-label="Télécharger le document"
             >
               <div className="download-button-icon">
                 <DescriptionIcon color="var(--theme-primary)" />
@@ -114,10 +115,10 @@ const DocumentUpload = ({
             </button>
             {!disabled && (
               <button
-                className="button cancel-file-button"
-                onClick={onCancelFile}
-                title="Changer le document"
-                tooltip="Changer le document"
+                className="button replace-file-button"
+                onClick={onReplaceFile}
+                title="Remplacer le document"
+                aria-label="Remplacer le document"
               >
                 ×
               </button>

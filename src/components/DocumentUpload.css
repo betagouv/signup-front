@@ -41,9 +41,9 @@
   white-space: nowrap;
 }
 
-.button.cancel-file-button,
-.button.cancel-file-button:focus,
-.button.cancel-file-button:hover {
+.button.replace-file-button,
+.button.replace-file-button:focus,
+.button.replace-file-button:hover {
   color: #3f454a;
   margin-left: 0;
   padding: var(--space-xs) var(--space-xs);
