@@ -191,7 +191,7 @@ const PreviousEnrollmentSection = ({
                   <option value={''}>aucune démarche</option>
                   {validatedEnrollments.map(({ intitule: name, id }) => (
                     <option key={id} value={id}>
-                      {name}
+                      {`n°${id} : ${name}`}
                     </option>
                   ))}
                 </select>
