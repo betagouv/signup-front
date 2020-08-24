@@ -83,7 +83,9 @@ const DocumentUpload = ({
   const download = () => {
     setShowWarningModal(false);
     httpClient
-      .get(`${BACK_HOST}${uploadedDocument.attachment.url}`)
+      .get(`${BACK_HOST}${uploadedDocument.attachment.url}`, {
+        responseType: 'blob',
+      })
       .then(response => {
         fileDownload(response.data, uploadedDocument.filename);
       });
@@ -95,12 +97,11 @@ const DocumentUpload = ({
         <>
           <div>{label}</div>
           <div className="file-input">
-            <a
+            <button
               className="button download-button"
-              // onClick={() => setShowWarningModal(true)}
+              onClick={() => setShowWarningModal(true)}
               title="Télécharger le document"
               aria-label="Télécharger le document"
-              href={`${BACK_HOST}${uploadedDocument.attachment.url}`}
             >
               <div className="download-button-icon">
                 <DescriptionIcon color="var(--theme-primary)" />
@@ -108,7 +109,7 @@ const DocumentUpload = ({
               <div className="download-button-label">
                 {uploadedDocument.filename}
               </div>
-            </a>
+            </button>
             {!disabled && (
               <button
                 className="button replace-file-button"
