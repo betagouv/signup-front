@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EventItem } from './ActivityFeed';
 import './Prompt.css';
 import { getMostUsedComments } from '../../lib/services';
 import { TARGET_API_LABELS } from '../../lib/api';
+import UnfoldMoreIcon from '../icons/unfold-more';
+import UnfoldLessIcon from '../icons/unfold-less';
 
 const actionToEventName = {
   notify: 'notified',
@@ -80,8 +81,6 @@ class Prompt extends React.Component {
       showTemplates,
     } = this.state;
 
-    const eventName = actionToEventName[selectedAction];
-
     const promptMessage = {
       notify: 'Votre message\xa0:',
       review_application:
@@ -105,24 +104,40 @@ class Prompt extends React.Component {
 
     const teamName = TARGET_API_LABELS[targetApi];
 
-    const mailContent = `Bonjour,
+    const mailFirstSection = `Bonjour,
 
-${emailContent}
+${emailContent}`;
 
-${input}
-
-Pour consulter cette demande, cliquer sur le lien suivant ${
-      window.location.href
+    const mailLastSection = `Pour consulter cette demande, cliquer sur le lien suivant ${
+      window.location.href.split('#')[0]
     } .
 
 L'équipe ${teamName}
 `;
 
     return (
-      // <div className="modal__backdrop" id="modal" style={{ display: 'flex' }}>
-      //   <div className="modal comment-action">
       <div className="panel">
-        <p>{promptMessage}</p>
+        <button
+          title={
+            showTemplates
+              ? "Cacher l'aperçu"
+              : "Voir un aperçu de l'email qui sera envoyé"
+          }
+          aria-label={
+            showTemplates
+              ? "Cacher l'aperçu"
+              : "Voir un aperçu de l'email qui sera envoyé"
+          }
+          className="light inline-icon-button toggle-comment-button"
+          onClick={this.toggleShowTemplates}
+        >
+          {showTemplates ? (
+            <UnfoldLessIcon color="var(--grey)" />
+          ) : (
+            <UnfoldMoreIcon color="var(--grey)" />
+          )}
+        </button>
+        <label htmlFor="comment">{promptMessage}</label>
         {templates.length > 0 && (
           <select
             value={selectedTemplateIndex}
@@ -136,37 +151,27 @@ L'équipe ${teamName}
             ))}
           </select>
         )}
+        <div
+          className={`mail-section ${
+            showTemplates ? 'mail-section-opened' : ''
+          }`}
+        >
+          <div className="mail-section-content">{mailFirstSection}</div>
+        </div>
         <textarea
+          id="comment"
           cols="80"
           rows="5"
           value={input}
           onChange={this.handleInputChange}
         />
-        {!showTemplates && (
-          <div className="form__group button__group">
-            <button
-              className="button-outline secondary"
-              onClick={this.toggleShowTemplates}
-            >
-              Voir un aperçu du mail qui sera envoyé
-            </button>
-          </div>
-        )}
-        {showTemplates && (
-          <>
-            <p>Aperçu de l'email qui sera envoyé :</p>
-            <textarea cols="80" rows="10" value={mailContent} disabled={true} />
-            <p>Aperçu de la notification :</p>
-            <hr />
-            <EventItem
-              email={'example@email.com'}
-              updated_at={new Date().toISOString()}
-              name={eventName}
-              comment={input}
-            />
-            <hr />
-          </>
-        )}
+        <div
+          className={`mail-section ${
+            showTemplates ? 'mail-section-opened' : ''
+          }`}
+        >
+          <div className="mail-section-content">{mailLastSection}</div>
+        </div>
         <div className="button-list action">
           <button
             className="button-outline large secondary"
