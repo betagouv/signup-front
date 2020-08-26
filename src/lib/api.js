@@ -2,7 +2,7 @@ export const TARGET_API_LABELS = {
   api_particulier: 'API Particulier',
   franceconnect: 'FranceConnect',
   api_entreprise: 'API Entreprise',
-  preuve_covoiturage: 'Registre de Preuve de Covoiturage',
+  preuve_covoiturage: 'Registre de preuve de covoiturage',
   api_impot_particulier_sandbox: 'API Impôt particulier (Bac à sable)',
   api_impot_particulier_production: 'API Impôt particulier (Production)',
   api_impot_particulier_fc_sandbox: 'API Impôt particulier (Bac à sable)',

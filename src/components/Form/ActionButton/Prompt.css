@@ -1,0 +1,32 @@
+.toggle-comment-button {
+  position: absolute;
+  right: 1.5em;
+}
+
+button.light.toggle-comment-button {
+  background-color: transparent;
+}
+
+.mail-section {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
+  white-space: pre-line;
+  background: #ebeff3;
+  border-radius: 3px;
+}
+
+.mail-section-content {
+  margin: 0.5em 0.875em;
+}
+
+.mail-section-head {
+  margin: 0.5em 0.875em 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--grey);
+}
+
+.mail-section-opened {
+  max-height: 500px;
+  transition: max-height 0.25s ease-in;
+}
