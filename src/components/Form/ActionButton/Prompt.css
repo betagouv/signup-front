@@ -20,6 +20,12 @@ button.light.toggle-comment-button {
   margin: 0.5em 0.875em;
 }
 
+.mail-section-head {
+  margin: 0.5em 0.875em 0;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--grey);
+}
+
 .mail-section-opened {
   max-height: 500px;
   transition: max-height 0.25s ease-in;

@@ -162,13 +162,22 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerEnrollment({ action, id, comment }) {
+export function triggerEnrollment({
+  action,
+  id,
+  comment,
+  commentFullEditMode,
+}) {
   const options = {
     event: action,
   };
 
   if (comment) {
     options.comment = comment;
+  }
+
+  if (commentFullEditMode) {
+    options.commentFullEditMode = commentFullEditMode;
   }
 
   return httpClient.patch(

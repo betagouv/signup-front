@@ -5,11 +5,11 @@ import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   triggerEnrollment,
-} from '../../lib/services';
+} from '../../../lib/services';
 import Prompt from './Prompt';
-import { getErrorMessages } from '../../lib';
-import Spinner from '../icons/spinner';
-import DoneIcon from '../icons/done';
+import { getErrorMessages } from '../../../lib';
+import Spinner from '../../icons/spinner';
+import DoneIcon from '../../icons/done';
 
 class ActionButton extends React.Component {
   constructor(props) {
@@ -79,8 +79,8 @@ class ActionButton extends React.Component {
     });
   };
 
-  submitActionMessage = message => {
-    this.resolveActionMessagePromise(message);
+  submitActionMessage = (message, fullEditMode) => {
+    this.resolveActionMessagePromise({ message, fullEditMode });
 
     this.setState({ showPrompt: false, selectedAction: '' });
   };
@@ -100,6 +100,7 @@ class ActionButton extends React.Component {
 
     try {
       let comment = null;
+      let commentFullEditMode = null;
 
       if (
         [
@@ -110,7 +111,9 @@ class ActionButton extends React.Component {
         ].includes(action)
       ) {
         try {
-          comment = await this.getActionMessage(action);
+          const actionMessage = await this.getActionMessage(action);
+          comment = actionMessage.message;
+          commentFullEditMode = actionMessage.fullEditMode;
         } catch (e) {
           return resultMessages;
         }
@@ -149,6 +152,7 @@ class ActionButton extends React.Component {
           action,
           id: enrollmentId,
           comment,
+          commentFullEditMode,
         });
       }
 
@@ -176,7 +180,11 @@ class ActionButton extends React.Component {
   };
 
   render() {
-    const { acl, target_api } = this.props.enrollment;
+    const {
+      acl,
+      target_api,
+      user: { email: ownerEmailAddress } = { email: null },
+    } = this.props.enrollment;
     const buttonsParams = this.transformAclToButtonsParams(acl);
     const { isLoading, showPrompt, selectedAction } = this.state;
 
@@ -209,6 +217,7 @@ class ActionButton extends React.Component {
             acceptCssClass={this.actionToDisplayInfo[selectedAction].cssClass}
             selectedAction={selectedAction}
             targetApi={target_api}
+            ownerEmailAddress={ownerEmailAddress}
           />
         )}
       </>
