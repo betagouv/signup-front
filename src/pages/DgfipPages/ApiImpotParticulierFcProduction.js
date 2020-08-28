@@ -9,6 +9,7 @@ import HomologationSecuriteSection from '../../components/form-sections/dgfip-se
 import RecetteFonctionnelleSection from '../../components/form-sections/dgfip-sections/RecetteFonctionnelleSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
+import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/form-sections/CguSection';
 import {
   CadreJuridiqueDescription,
@@ -62,6 +63,7 @@ const ApiImpotParticulierFcProduction = ({
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'homologation-securite', label: 'Homologation de sécurité' },
+        { id: 'volumetrie', label: 'Volumétrie' },
         { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
@@ -88,6 +90,7 @@ const ApiImpotParticulierFcProduction = ({
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <HomologationSecuriteSection />
+        <VolumetrieSection />
         <CguSection cguLink={cguLink} CguDescription={CguDescription} />
       </Form>
     </div>
