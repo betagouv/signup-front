@@ -12,7 +12,6 @@ import OrganisationSection from '../../components/form-sections/OrganisationSect
 import DonneesSection from '../../components/form-sections/DonneesSection';
 import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
-import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
   availableScopes as fcAvailableScopes,
@@ -64,7 +63,6 @@ const ApiImpotParticulierSandbox = ({
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
-        { id: 'volumetrie', label: 'Volumétrie' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -89,7 +87,6 @@ const ApiImpotParticulierSandbox = ({
       >
         <OrganisationSection />
         <DescriptionSection />
-        <VolumetrieSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
         <DonneesSection
           availableScopes={availableScopes}
