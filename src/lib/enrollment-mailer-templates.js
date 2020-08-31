@@ -57,10 +57,10 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
 Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
       window.location.host
     }/api-impot-particulier-production`,
-    api_particulier: `Votre demande a été validée.
-
-Veuillez contacter votre responsable technique pour l'inviter à récupérer votre token sur le lien suivant : https://particulier.api.gouv.fr/dashboard
-Veilliez à ce que lors de son inscription sur l'outil, votre contact technique utilise le même email que celui renseigné dans votre demande.`,
+    api_particulier: `Merci de transmettre ce message à votre contact technique, qui devra :
+- se connecter au portail des APIs : https://admin.portail.api.gouv.fr en utilisant son compte api.gouv.fr
+- attendre la création d'un token d'accès à API Particulier
+- récupérer ce token dans l'onglet "Métadonnées" de son application`,
     api_r2p_production:
       "Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l'environnement de production.",
     api_r2p_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
