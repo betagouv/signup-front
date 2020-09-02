@@ -10,6 +10,7 @@ import Prompt from './Prompt';
 import { getErrorMessages } from '../../../lib';
 import Spinner from '../../icons/spinner';
 import DoneIcon from '../../icons/done';
+import { PrefilledFormUrlGenerator } from './PrefilledFormUrlGenerator';
 
 class ActionButton extends React.Component {
   constructor(props) {
@@ -220,6 +221,8 @@ class ActionButton extends React.Component {
             ownerEmailAddress={ownerEmailAddress}
           />
         )}
+
+        <PrefilledFormUrlGenerator enrollment={this.props.enrollment} />
       </>
     );
   }

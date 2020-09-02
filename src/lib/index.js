@@ -183,9 +183,9 @@ export function hashToQueryParams(hash) {
     // [[ 'a', 1 ], [ 'b', true ]]
     .map(
       ([key, value]) =>
-        `${key}=${
-          isObject(value) ? encodeURIComponent(JSON.stringify(value)) : value
-        }`
+        `${key}=${encodeURIComponent(
+          isObject(value) ? JSON.stringify(value) : value
+        )}`
     )
     // [ 'a=1', 'b=true' ]
     .value();
