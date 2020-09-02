@@ -84,7 +84,7 @@ class Form extends React.Component {
     }
   }
 
-  componentWillUnMount = () => {
+  componentWillUnmount = () => {
     if (typeof window !== 'undefined' && window.generateUrl) {
       delete window.generateUrl;
     }
