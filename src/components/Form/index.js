@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { object } from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
@@ -54,32 +54,66 @@ class Form extends React.Component {
         enrollment: merge(
           {},
           prevEnrollment,
-          omitBy(enrollmentFromUrlParams, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+          omitBy(enrollmentFromUrlParams, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
         ),
       }));
     }
 
     getUserEnrollment(id)
-      .then(enrollment => {
-        document.title = `${enrollment.id} - ${enrollment.intitule ||
-          targetApiLabel}`;
+      .then((enrollment) => {
+        document.title = `${enrollment.id} - ${
+          enrollment.intitule || targetApiLabel
+        }`;
         this.setState(({ enrollment: prevEnrollment }) => ({
           isUserEnrollmentLoading: false,
           enrollment: merge(
             {},
             prevEnrollment,
-            omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+            omitBy(enrollment, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
           ),
         }));
       })
-      .catch(error => {
+      .catch((error) => {
         if (error.response && error.response.status === 404) {
           this.props.history.push('/');
         }
       });
+
+    if (typeof window !== 'undefined') {
+      window.generateUrl = this.convertEnrollmentToUrl;
+    }
   }
 
-  updateEnrollment = enrollment => {
+  componentWillUnMount = () => {
+    if (typeof window !== 'undefined' && window.generateUrl) {
+      delete window.generateUrl;
+    }
+  };
+
+  convertEnrollmentToUrl = () => {
+    const {
+      fondement_juridique_title,
+      fondement_juridique_url,
+      scopes,
+    } = this.state.enrollment;
+
+    const params = [];
+
+    if (fondement_juridique_title) {
+      params.push(`fondement_juridique_title=${fondement_juridique_title}`);
+    }
+    if (fondement_juridique_url) {
+      params.push(`fondement_juridique_url=${fondement_juridique_url}`);
+    }
+    if (scopes) {
+      Object.keys(scopes).forEach((key) => {
+        params.push(`${key}=${scopes[key]}`);
+      });
+    }
+    console.log(encodeURI(`${window.location.href}?${params.join('&')}`));
+  };
+
+  updateEnrollment = (enrollment) => {
     if (!this.state.enrollment.id && enrollment.id) {
       window.history.replaceState(
         window.history.state,
@@ -94,7 +128,7 @@ class Form extends React.Component {
       enrollment: merge(
         {},
         prevEnrollment,
-        omitBy(enrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+        omitBy(enrollment, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
       ),
     }));
   };
@@ -232,12 +266,12 @@ class Form extends React.Component {
         >
           {this.props.children}
         </FormContext.Provider>
-        {successMessages.map(successMessage => (
+        {successMessages.map((successMessage) => (
           <div key={successMessage} className="notification success">
             <Linkify>{successMessage}</Linkify>
           </div>
         ))}
-        {errorMessages.map(errorMessage => (
+        {errorMessages.map((errorMessage) => (
           <div
             key={errorMessage}
             className="notification error"
