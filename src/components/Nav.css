@@ -22,6 +22,7 @@ aside .form-nav-logo {
   display: flex;
   margin: 0 auto;
   mix-blend-mode: multiply;
+  max-width: 100%;
 }
 
 .dashboard .side-menu button {
@@ -69,5 +70,5 @@ aside .form-nav-logo {
   margin-inline-start: 0;
   margin-inline-end: 0;
   margin-top: 0;
-  font-family: "Evolventa", "Trebuchet MS", sans-serif;
+  font-family: 'Evolventa', 'Trebuchet MS', sans-serif;
 }
