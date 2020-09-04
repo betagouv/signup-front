@@ -50,7 +50,7 @@ const LeTaxi = ({
       logo={{
         src: `/images/${API_ICONS.le_taxi}`,
         alt: `Logo ${TARGET_API_LABELS.le_taxi}`,
-        url: 'https://www.impots.gouv.fr/',
+        url: 'https://le.taxi/',
       }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
