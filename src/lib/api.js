@@ -11,6 +11,7 @@ export const TARGET_API_LABELS = {
   api_r2p_production: 'API R2P (Production)',
   api_droits_cnam: 'API Droits CNAM',
   le_taxi: 'le.Taxi',
+  cartobio: 'CartoBio - Territoires',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -34,4 +35,5 @@ export const API_ICONS = {
   api_r2p_production: 'logo-dgfip-with-label.png',
   api_droits_cnam: 'logo-cnam.jpg',
   le_taxi: 'logo-le.taxi.svg',
+  cartobio: 'logo-cartobio-text.svg',
 };

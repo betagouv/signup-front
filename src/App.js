@@ -22,6 +22,7 @@ import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
 import LeTaxi from './pages/LeTaxi';
+import CartoBio from './pages/CartoBio';
 import ApiImpotParticulierFcSandbox from './pages/DgfipPages/ApiImpotParticulierFcSandbox';
 import ApiImpotParticulierFcProduction from './pages/DgfipPages/ApiImpotParticulierFcProduction';
 import ApiImpotParticulierSandbox from './pages/DgfipPages/ApiImpotParticulierSandbox';
@@ -147,6 +148,11 @@ const App = () => (
                   <PrivateRoute
                     path="/preuve-covoiturage/:enrollmentId?"
                     component={PreuveCovoiturage}
+                  />
+
+                  <PrivateRoute
+                    path="/cartobio/:enrollmentId?"
+                    component={CartoBio}
                   />
 
                   <PrivateRoute
