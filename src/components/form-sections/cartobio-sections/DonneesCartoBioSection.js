@@ -27,7 +27,7 @@ const DonneesCartoBioSection = () => {
         <textarea
           rows="1"
           onChange={onChange}
-          name="location_scopes"
+          name="additional_content.location_scopes"
           id="location_scopes"
           readOnly={disabled}
           value={location_scopes}
@@ -36,6 +36,7 @@ const DonneesCartoBioSection = () => {
       </div>
       <DocumentUpload
         label="Sinon, joindre les contours géographiques au format GeoJSON"
+        mimeTypes="*"
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}

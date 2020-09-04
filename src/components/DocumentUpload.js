@@ -13,6 +13,7 @@ const FILE_SIZE_LIMIT_IN_MB = 10;
 
 const DocumentUpload = ({
   label,
+  mimeTypes = '.pdf, application/pdf',
   disabled,
   uploadedDocuments,
   documentsToUpload,
@@ -127,7 +128,7 @@ const DocumentUpload = ({
           <label htmlFor={documentType}>{label}</label>
           <input
             type="file"
-            accept=".pdf, application/pdf"
+            accept={mimeTypes}
             onChange={onChange}
             disabled={disabled}
             name={documentType}
@@ -170,6 +171,7 @@ DocumentUpload.propTypes = {
   documentType: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired,
+  mimeTypes: PropTypes.string,
 };
 
 export default DocumentUpload;
