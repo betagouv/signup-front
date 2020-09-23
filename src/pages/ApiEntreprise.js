@@ -158,6 +158,10 @@ const availableScopes = [
     value: 'exercices',
     label: 'Exercice',
   },
+  {
+    value: 'conventions_collectives',
+    label: 'Conventions Collectives',
+  },
 ];
 
 const intitulePlaceholder = sample([
