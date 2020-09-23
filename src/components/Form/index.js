@@ -46,7 +46,7 @@ class Form extends React.Component {
     if (!id) {
       const enrollmentFromUrlParams = getStateFromUrlParams({
         intitule: '',
-        'detailed-description': '',
+        description: '',
         fondement_juridique_title: '',
         fondement_juridique_url: '',
         scopes: {},
