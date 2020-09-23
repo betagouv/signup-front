@@ -12,21 +12,6 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 import { sample } from 'lodash';
 
-const DemarcheDescription = () => (
-  <div className="notification warning">
-    Attention, pour toute demande relative aux <b>marchés publics</b>, merci de
-    contacter le support (
-    <a
-      href="mailto:support@entreprise.api.gouv.fr"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      support@entreprise.api.gouv.fr
-    </a>
-    ) avant de soumettre votre demande.
-  </div>
-);
-
 const contacts = {
   metier: {
     heading: 'Contact métier',
@@ -61,11 +46,11 @@ const DonneesDescription = () => (
     <p>
       Vous pouvez trouver une description détaillée de chaque API sur{' '}
       <a
-        href="https://doc.entreprise.api.gouv.fr/"
+        href="https://entreprise.api.gouv.fr/catalogue/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        doc.entreprise.api.gouv.fr
+        entreprise.api.gouv.fr
       </a>
       .
     </p>
@@ -204,7 +189,6 @@ const ApiEntreprise = ({
         enrollmentId={enrollmentId}
         target_api="api_entreprise"
         title="Demande d'accès à l'API Entreprise"
-        DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />
         <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
