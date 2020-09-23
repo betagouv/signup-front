@@ -9,11 +9,15 @@ export const PrefilledFormUrlGenerator = ({ enrollment }) => {
   useEffect(() => {
     window.generateUrl = () => {
       const {
+        intitule,
+        description,
         fondement_juridique_title,
         fondement_juridique_url,
         scopes,
       } = enrollment;
       const queryParams = hashToQueryParams({
+        intitule,
+        description,
         fondement_juridique_title,
         fondement_juridique_url,
         scopes,
