@@ -5,25 +5,30 @@ export const DemarcheDescription = () => (
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l’API Impôt particulier permet
-      l’échange d’informations fiscales entre la DGFiP et une administration ou
-      collectivité dans le cadre d’un téléservice. L’usager n'a plus besoin de
-      transmettre son avis d’imposition.
+      l’échange d’informations fiscales, dans le cadre d’un téléservice, entre
+      la DGFiP et une entité administrative ou une entreprise dans le cadre de
+      ses obligations légales et réglementaires pour des missions d’intérêt
+      général. L’usager n'a plus besoin de transmettre les données fiscales déjà
+      transmises à la DGFiP.
     </p>
     <p>
-      Ce portail vous permet en qualité de fournisseur de service de demander le
-      raccordement de votre téléservice à l’API Impôt particulier.
+      Ce portail vous permet en qualité de fournisseur de services de demander
+      le raccordement de votre téléservice à l’API Impôt particulier.
     </p>
     <p>
       Pour cela, il vous est demandé de compléter le plus précisément possible
-      les informations, en particulier pour ce qui concerne :
+      les informations demandées dans le formulaire de souscription en ligne, en
+      particulier pour ce qui concerne :
     </p>
     <ul>
       <li>les données nécessaires à la démarche administrative ;</li>
-      <li>la volumétrie de sollicitation de l’API.</li>
+      <li>la volumétrie de sollicitation de l’API ;</li>
+      <li>le cadre juridique.</li>
     </ul>
     <p>
-      Pour faciliter votre raccordement à l’API Impôt particulier, une API de
-      test vous sera proposée après validation de cette première étape.
+      Pour faciliter votre raccordement à l’API Impôt particulier, l’accès à un
+      environnement de test (bac à sable) vous sera proposé après validation de
+      cette première étape.
     </p>
   </div>
 );
@@ -97,10 +102,6 @@ export const availableScopes = [
     label: 'Données du local',
   },
   {
-    value: 'dgfip_eligibilite_lep',
-    label: "Indicateur d'éligibilité au Livret d'Épargne Populaire",
-  },
-  {
     value: 'dgfip_annee_n_moins_1',
     label: 'Dernière année de revenu',
     groupTitle,
@@ -141,8 +142,8 @@ export const CadreJuridiqueDescription = () => (
 export const CguDescription = () => (
   <div className="text-quote">
     <p>
-      Votre raccordement à l‘API Impôt particulier nécessite l‘acceptation des
-      modalités d’utilisation.
+      Votre raccordement à l‘API Impôt particulier nécessite l’acceptation des
+      conditions générales d'utilisation.
     </p>
   </div>
 );
@@ -170,12 +171,12 @@ export const SuiteDescription = () => (
     <p>En cas d’acceptation de votre demande :</p>
     <ul>
       <li>
-        Le contact technique recevra par mail les informations nécessaires pour
-        accéder à l’API de test.
+        Le contact technique recevra par courriel les informations nécessaires
+        pour accéder à l’environnement de test (bac à sable) de l’API.
       </li>
       <li>
-        Vous recevrez par mail un lien vers un deuxième formulaire à remplir
-        pour accéder à l’API de production.
+        Vous recevrez par courriel un lien vers un deuxième formulaire à remplir
+        afin d’accéder à l’environnement de production de l’API.
       </li>
     </ul>
   </div>

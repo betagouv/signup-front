@@ -35,6 +35,10 @@ const groupTitle = "Modalité d'accès à l'API :";
 const availableScopes = [
   ...fcAvailableScopes,
   {
+    value: 'dgfip_eligibilite_lep',
+    label: "Indicateur d'éligibilité au Livret d'Épargne Populaire",
+  },
+  {
     value: 'dgfip_acces_spi',
     label: 'via le Numéro fiscal (SPI)',
     groupTitle,
