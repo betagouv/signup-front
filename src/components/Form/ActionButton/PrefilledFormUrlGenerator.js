@@ -11,6 +11,8 @@ export const PrefilledFormUrlGenerator = ({ enrollment }) => {
       const {
         intitule,
         description,
+        data_recipients,
+        data_retention_period,
         fondement_juridique_title,
         fondement_juridique_url,
         scopes,
@@ -18,6 +20,8 @@ export const PrefilledFormUrlGenerator = ({ enrollment }) => {
       const queryParams = hashToQueryParams({
         intitule,
         description,
+        data_recipients,
+        data_retention_period,
         fondement_juridique_title,
         fondement_juridique_url,
         scopes,
