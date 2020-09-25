@@ -14,7 +14,6 @@ import CguSection from '../../components/form-sections/CguSection';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
-  cguLink,
 } from './api-impot-particulier-common';
 
 const steps = ['api_r2p_sandbox', 'api_r2p_production'];
@@ -63,7 +62,7 @@ const ApiR2PProduction = ({
         <CadreJuridiqueSection />
         <HomologationSecuriteSection />
         <VolumetrieSection options={[1000]} />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.4.pdf" />
       </Form>
     </div>
   </div>

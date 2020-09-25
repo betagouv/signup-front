@@ -15,7 +15,6 @@ import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
   CguDescription,
-  cguLink,
 } from './api-impot-particulier-common';
 import { CadreJuridiqueDescription } from './ApiImpotParticulierSandbox';
 
@@ -70,7 +69,10 @@ const ApiImpotParticulierProduction = ({
         />
         <HomologationSecuriteSection />
         <VolumetrieSection />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <CguSection
+          cguLink="/docs/cgu_api_impot_particulier_production_hors_connexion_fc_septembre2020_v3.5.pdf"
+          CguDescription={CguDescription}
+        />
       </Form>
     </div>
   </div>

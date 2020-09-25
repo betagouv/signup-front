@@ -16,7 +16,6 @@ import CadreJuridiqueSection from '../../components/form-sections/CadreJuridique
 import {
   availableScopes as fcAvailableScopes,
   CguDescription,
-  cguLink,
   contacts,
   DemarcheDescription,
   DonneesDescription,
@@ -29,12 +28,13 @@ export const CadreJuridiqueDescription = () => (
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DGFiP de transmettre des données fiscales à votre entité
-      administrative.
+      la DGFiP de transmettre des données fiscales à son futur partenaire
+      conventionné.
     </p>
     <p>
       Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
+      l’échange de données s’impose aux partenaires conventionnés
+      (administration, collectivité, établissement bancaire…) dès lors que :
     </p>
     <ul>
       <li>
@@ -42,9 +42,9 @@ export const CadreJuridiqueDescription = () => (
         un usager ;
       </li>
       <li>
-        l’administration destinataire est habilitée à connaître ces données dans
-        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
-        n°2016-1321 du 7 octobre 2016 - art. 91 )
+        le partenaire conventionné destinataire est habilité à connaître ces
+        données dans le cadre de ses missions. (Article L114-8 1er alinéa
+        modifié par LOI n°2016-1321 du 7 octobre 2016 - art. 91 )
       </li>
     </ul>
   </div>
@@ -126,7 +126,10 @@ const ApiImpotParticulierSandbox = ({
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <CguSection
+          cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
+          CguDescription={CguDescription}
+        />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
     </div>

@@ -170,9 +170,6 @@ export const CguDescription = () => (
   </div>
 );
 
-export const cguLink =
-  '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
-
 export const SuiteDescription = () => (
   <div className="text-quote">
     <p>

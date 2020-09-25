@@ -17,7 +17,6 @@ import {
   availableScopes,
   CadreJuridiqueDescription,
   CguDescription,
-  cguLink,
   contacts,
   DemarcheDescription,
   DonneesDescription,
@@ -81,7 +80,10 @@ const ApiImpotParticulierFcSandbox = ({
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <CguSection
+          cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_fc_septembre2020_v2.6.pdf"
+          CguDescription={CguDescription}
+        />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
     </div>

@@ -14,7 +14,6 @@ import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
-  cguLink,
   contacts,
   DonneesDescription,
   SuiteDescription,
@@ -98,7 +97,7 @@ const ApiR2PSandbox = ({
           DonneesDescription={DonneesDescription}
         />
         <CadreJuridiqueSection />
-        <CguSection cguLink={cguLink} />
+        <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
     </div>

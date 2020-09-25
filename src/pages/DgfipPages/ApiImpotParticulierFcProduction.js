@@ -16,7 +16,6 @@ import {
   PreviousEnrollmentDescription,
   CadreJuridiqueDescription,
   CguDescription,
-  cguLink,
 } from './api-impot-particulier-common';
 
 const steps = [
@@ -71,7 +70,10 @@ const ApiImpotParticulierFcProduction = ({
         />
         <HomologationSecuriteSection />
         <VolumetrieSection />
-        <CguSection cguLink={cguLink} CguDescription={CguDescription} />
+        <CguSection
+          cguLink="/docs/cgu_api_impot_particulier_production_connexion_fc_septembre2020_v5.5.pdf"
+          CguDescription={CguDescription}
+        />
       </Form>
     </div>
   </div>
