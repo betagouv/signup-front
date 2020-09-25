@@ -20,12 +20,12 @@ import {
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
-      Votre demande d'habilitation pour accéder à l'API Impôt particulier a été
-      acceptée, vous pouvez maintenant construire votre démarche/téléservice en
-      utilisant l'API exposée dans un environnement bac à sable. Parallèlement
-      au développement, vous devez remplir les informations ci-dessous. Elles
-      sont nécessaires pour obtenir l'habilitation de l'accès à l'API de
-      production.
+      Votre demande d'habilitation pour accéder au bac à sable de l'API Impôt
+      particulier a été acceptée, vous pouvez maintenant construire votre
+      démarche/téléservice en utilisant l'API exposée dans un environnement bac
+      à sable. Parallèlement au développement, vous devez remplir les
+      informations ci-dessous. Elles sont nécessaires pour obtenir
+      l'habilitation de l'accès à l'API de production.
     </p>
   </div>
 );

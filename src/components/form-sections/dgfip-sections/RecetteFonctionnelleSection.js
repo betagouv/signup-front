@@ -29,11 +29,11 @@ const RecetteFonctionnelleSection = () => {
           fonctionnellement identique à l'environnement de production.
         </p>
         <p>
-          Un jeu de données fictives avec plusieurs cas nominaux vous permet de
-          valider l'intégration de quelques cas fonctionnels dans votre
-          téléservice. L'environnement de test proposé par la DGFiP n'a donc pas
-          vocation à recetter toutes les fonctionnalités du téléservice, qui
-          doivent faire l'objet d'une recette interne.
+          Un jeu de données fictives vous permet de valider l'intégration de
+          quelques cas fonctionnels dans votre téléservice. L'environnement de
+          test proposé par la DGFiP n'a donc pas vocation à recetter toutes les
+          fonctionnalités du téléservice, qui doivent faire l'objet d'une
+          recette interne.
         </p>
         <p>
           A l'issue de vos travaux, veuillez attester de la qualification de
