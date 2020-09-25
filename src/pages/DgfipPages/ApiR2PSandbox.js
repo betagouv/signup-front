@@ -13,7 +13,12 @@ import DonneesSection from '../../components/form-sections/DonneesSection';
 import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import { DonneesDescription } from './api-impot-particulier-common';
+import {
+  cguLink,
+  contacts,
+  DonneesDescription,
+  SuiteDescription,
+} from './api-impot-particulier-common';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -42,58 +47,6 @@ const useCases = [
     scopes: ['dgfip_acces_spi', 'dgfip_acces_etat_civil_et_adresse'],
   },
 ];
-
-export const cguLink =
-  '/docs/conditions_generales_d_utilisation_de_l_api_impot_particulier_v3.pdf';
-
-const SuiteDescription = () => (
-  <div className="text-quote">
-    <p>
-      Après avoir cliqué sur « Soumettre la demande », les prochaines étapes
-      sont :
-    </p>
-    <ol>
-      <li>Le fournisseur de données de l’API va instruire la demande.</li>
-      <li>
-        En cours d’instruction, le fournisseur de données pourra vous demander
-        par courriel des informations supplémentaires.
-      </li>
-      <li>
-        Après instruction, vous serez informé par courriel de l’acceptation ou
-        du refus de votre demande.
-      </li>
-    </ol>
-    <p>En cas d’acceptation de votre demande :</p>
-    <ul>
-      <li>
-        Le contact technique recevra par mail les informations nécessaires pour
-        accéder à l’API de test.
-      </li>
-      <li>
-        Vous recevrez par mail un lien vers un deuxième formulaire à remplir
-        pour accéder à l’API de production.
-      </li>
-    </ul>
-  </div>
-);
-
-const contacts = {
-  technique: {
-    heading: 'Responsable technique',
-    description: () => (
-      <p>
-        Cette personne recevra les accès techniques par mail. Elle pourra
-        également être contactée par téléphone pour faciliter le raccordement à
-        l'API. Le responsable technique peut être le contact technique de votre
-        prestataire.
-      </p>
-    ),
-    family_name: '',
-    given_name: '',
-    email: '',
-    phone_number: '',
-  },
-};
 
 const steps = ['api_r2p_sandbox', 'api_r2p_production'];
 

@@ -12,32 +12,12 @@ import DonneesPersonnellesSection from '../../components/form-sections/DonneesPe
 import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/form-sections/CguSection';
 import {
+  DemarcheDescriptionProduction as DemarcheDescription,
+  PreviousEnrollmentDescription,
   CadreJuridiqueDescription,
   CguDescription,
   cguLink,
 } from './api-impot-particulier-common';
-
-const DemarcheDescription = () => (
-  <div className="notification grey">
-    <p>
-      Votre demande d'habilitation pour accéder au bac à sable de l'API Impôt
-      particulier a été acceptée, vous pouvez maintenant construire votre
-      démarche/téléservice en utilisant l'API exposée dans un environnement bac
-      à sable. Parallèlement au développement, vous devez remplir les
-      informations ci-dessous. Elles sont nécessaires pour obtenir
-      l'habilitation de l'accès à l'API de production.
-    </p>
-  </div>
-);
-
-const PreviousEnrollmentDescription = () => (
-  <div className="text-quote">
-    <p>
-      Vous devez tout d'abord sélectionner la démarche que vous souhaitez
-      poursuivre.
-    </p>
-  </div>
-);
 
 const steps = [
   'franceconnect',

@@ -15,7 +15,6 @@ import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSect
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
   availableScopes as fcAvailableScopes,
-  CadreJuridiqueDescription,
   CguDescription,
   cguLink,
   contacts,
@@ -24,6 +23,32 @@ import {
   DonneesFootnote,
   SuiteDescription,
 } from './api-impot-particulier-common';
+
+export const CadreJuridiqueDescription = () => (
+  <div className="text-quote">
+    <p>
+      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
+      cadre légal et réglementaire des fournisseurs de service doit permettre à
+      la DGFiP de transmettre des données fiscales à votre entité
+      administrative.
+    </p>
+    <p>
+      Conformément au Code des relations entre le public et l’administration,
+      l’échange de données s’impose aux administrations dès lors que :
+    </p>
+    <ul>
+      <li>
+        ces données sont nécessaires au traitement d’une demande présentée par
+        un usager ;
+      </li>
+      <li>
+        l’administration destinataire est habilitée à connaître ces données dans
+        le cadre de ses missions. (Article L114-8 1er alinéa modifié par LOI
+        n°2016-1321 du 7 octobre 2016 - art. 91 )
+      </li>
+    </ul>
+  </div>
+);
 
 const steps = [
   'api_impot_particulier_sandbox',

@@ -33,6 +33,28 @@ export const DemarcheDescription = () => (
   </div>
 );
 
+export const DemarcheDescriptionProduction = () => (
+  <div className="notification grey">
+    <p>
+      Votre demande d'habilitation pour accéder à l'API « bac à sable » a été
+      acceptée, vous pouvez maintenant construire votre démarche/téléservice en
+      utilisant l'API exposée dans un environnement bac à sable. Parallèlement
+      au développement, vous devez remplir les informations ci-dessous. Elles
+      sont nécessaires pour obtenir l'habilitation de l'accès à l'API de
+      production.
+    </p>
+  </div>
+);
+
+export const PreviousEnrollmentDescription = () => (
+  <div className="text-quote">
+    <p>
+      Vous devez tout d'abord sélectionner la démarche que vous souhaitez
+      poursuivre.
+    </p>
+  </div>
+);
+
 export const DonneesDescription = () => (
   <div className="text-quote">
     <p>
