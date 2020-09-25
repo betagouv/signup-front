@@ -20,9 +20,8 @@ const DonneesCartoBioSection = () => {
       <br />
       <div className="form__group">
         <label htmlFor="location_scopes">
-          Si possible, préciser le ou les code commune Insee, code EPCI, numéro
-          de département, etc. du ou des périmètres de données nécessaires à
-          votre cas d'usage :
+          Indiquez l'entité administrative concernée : commune(s) (nom ou code
+          INSEE), EPCI (nom et/ou code INSEE), numéro de département ou région :
         </label>
         <textarea
           rows="1"
@@ -35,7 +34,7 @@ const DonneesCartoBioSection = () => {
         />
       </div>
       <DocumentUpload
-        label="Sinon, joindre les contours géographiques au format GeoJSON"
+        label="Sinon, joindre les contours géographiques au format Shapefile ou GeoJSON, tel quel ou zippé :"
         mimeTypes="*"
         disabled={disabled}
         uploadedDocuments={documents}

@@ -6,10 +6,9 @@ import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 import DonneesCartoBioSection from '../components/form-sections/cartobio-sections/DonneesCartoBioSection';
-import CartoBioAdditionalAgreements from '../components/form-sections/CguSection/CartoBioAdditionalAgreements';
+import CartoBioAdditionalAgreements from '../components/form-sections/cartobio-sections/CartoBioAdditionalAgreements';
 
 const CartoBio = ({
   match: {
@@ -46,13 +45,10 @@ const CartoBio = ({
         title="Demande d'accès à l'API CartoBio - Territoires"
       >
         <OrganisationSection />
-        <DescriptionSection />
+        <DescriptionSection descriptionHelper="Dites-nous en quoi les données géographiques vous permettent de réaliser vos missions ? Quelle sont-elles ?" />
         <DonneesCartoBioSection />
         <MiseEnOeuvreSection />
-        <CguSection
-          cguLink="/docs/Modele_Engagement_de_confidentialite_-_CartoBio.pdf"
-          AdditionalCguContent={CartoBioAdditionalAgreements}
-        />
+        <CartoBioAdditionalAgreements />
       </Form>
     </div>
   </div>

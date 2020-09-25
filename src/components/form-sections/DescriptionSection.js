@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 const DescriptionSection = ({
   intitulePlaceholder = '',
   descriptionPlaceholder = '',
+  descriptionHelper = null,
 }) => {
   const {
     disabled,
@@ -38,7 +39,13 @@ const DescriptionSection = ({
       <div className="form__group">
         <label htmlFor="detailed-description">
           Description détaillée
-          <Helper title="À quoi sert le service numérique qui consommera la donnée&nbsp;?" />
+          <Helper
+            title={
+              descriptionHelper
+                ? descriptionHelper
+                : 'À quoi sert le service numérique qui consommera la donnée ?'
+            }
+          />
         </label>
         <textarea
           rows="10"
@@ -57,6 +64,7 @@ const DescriptionSection = ({
 DescriptionSection.propTypes = {
   intitulePlaceholder: PropTypes.string,
   descriptionPlaceholder: PropTypes.string,
+  descriptionHelper: PropTypes.string,
 };
 
 export default DescriptionSection;
