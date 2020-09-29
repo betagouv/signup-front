@@ -33,6 +33,8 @@ import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
 import Accessibilite from './pages/Accessibilite';
 import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
+import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
+import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import UserList from './pages/AdminPages/UserList';
 
 const history = createBrowserHistory();
@@ -117,6 +119,16 @@ const App = () => (
                   <PrivateRoute
                     path="/api-r2p-production/:enrollmentId?"
                     component={ApiR2PProduction}
+                  />
+
+                  <PrivateRoute
+                    path="/api-ficoba-sandbox/:enrollmentId?"
+                    component={ApiFicobaSandbox}
+                  />
+
+                  <PrivateRoute
+                    path="/api-ficoba-production/:enrollmentId?"
+                    component={ApiFicobaProduction}
                   />
 
                   <PrivateRoute
