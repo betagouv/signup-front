@@ -43,8 +43,10 @@ export const CadreJuridiqueDescription = () => (
       </li>
       <li>
         le partenaire conventionné destinataire est habilité à connaître ces
-        données dans le cadre de ses missions. (Article L114-8 1er alinéa
-        modifié par LOI n°2016-1321 du 7 octobre 2016 - art. 91 )
+        données dans le cadre de ses missions (Article L114-8 1er alinéa modifié
+        par LOI n°2016-1321 du 7 octobre 2016 - art. 91 ou tout texte législatif
+        ou réglementaire permettant de justifier que le partenaire ait accès aux
+        données).
       </li>
     </ul>
   </div>
