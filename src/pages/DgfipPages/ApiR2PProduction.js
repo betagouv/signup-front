@@ -62,7 +62,7 @@ const ApiR2PProduction = ({
         <CadreJuridiqueSection />
         <HomologationSecuriteSection />
         <VolumetrieSection options={[1000]} />
-        <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.4.pdf" />
+        <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.5.pdf" />
       </Form>
     </div>
   </div>
