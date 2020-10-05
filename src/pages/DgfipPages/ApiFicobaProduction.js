@@ -15,6 +15,7 @@ import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
 } from './api-impot-particulier-common';
+import { CadreJuridiqueDescription } from './ApiFicobaSandbox';
 
 const steps = ['api_ficoba_sandbox', 'api_ficoba_production'];
 
@@ -59,7 +60,9 @@ const ApiFicobaProduction = ({
       >
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
-        <CadreJuridiqueSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
         <HomologationSecuriteSection />
         <VolumetrieSection />
         <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.4.pdf" />

@@ -39,6 +39,7 @@ const availableScopes = [
   {
     value: 'dgfip_ficoba_compte',
     label: 'Désignation du compte',
+    checkedByDefault: true,
   },
   {
     value: 'dgfip_ficoba_etablissement_bancaire',
@@ -76,6 +77,32 @@ const availableScopes = [
 ];
 
 const steps = ['api_ficoba_sandbox', 'api_ficoba_production'];
+
+export const CadreJuridiqueDescription = () => (
+  <div className="text-quote">
+    <p>
+      L’accès au dispositif API FICOBA est soumis à deux conditions
+      cumulatives :
+    </p>
+    <ul>
+      <li>
+        la ou les information(s) recherchée(s) par le fournisseur de service
+        doivent être strictement nécessaires au traitement d’une demande ou dans
+        l'exercice des missions du fournisseur de service justifiant l’accès
+        auxdites informations ;
+      </li>
+      <li>
+        l'accès aux informations s'inscrit en application d’un texte législatif
+        ou réglementaire.
+      </li>
+    </ul>
+    <p>
+      Le fournisseur de service sollicitant le raccordement au dispositif doit
+      être autorisé à demander et exploiter les données fiscales dans le cadre
+      de l'exercice de ses missions.
+    </p>
+  </div>
+);
 
 const ApiFicobaSandbox = ({
   match: {
@@ -122,7 +149,9 @@ const ApiFicobaSandbox = ({
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
         />
-        <CadreJuridiqueSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
         <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
