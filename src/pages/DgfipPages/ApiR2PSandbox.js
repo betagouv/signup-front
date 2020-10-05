@@ -28,18 +28,25 @@ DgfipRgpdAgreement.propTypes = {
 const availableScopes = [
   {
     value: 'dgfip_acces_spi',
-    label: 'Numéro fiscal (SPI)',
+    label:
+      'Recherche par identifiant fiscal (SPI) - Restitution de l’état civil complet, de l’adresse et de l’identifiant fiscal (SPI)',
   },
   {
     value: 'dgfip_acces_etat_civil_et_adresse',
-    label: 'État civil et Adresse',
+    label:
+      'Recherche par état civil et adresse - Restitution de l’état civil complet, de l’adresse et de l’identifiant fiscal (SPI)',
+  },
+  {
+    value: 'dgfip_acces_etat_civil',
+    label:
+      'Recherche par état civil - Restitution de l’identifiant fiscal (SPI)',
   },
 ];
 
 const useCases = [
   {
     label: 'Établissement bancaire',
-    scopes: ['dgfip_acces_spi'],
+    scopes: ['dgfip_acces_etat_civil'],
   },
   {
     label: 'Ordonnateur',
@@ -92,7 +99,7 @@ const ApiR2PSandbox = ({
         <DonneesSection
           availableScopes={availableScopes}
           useCases={useCases}
-          scopesLabel="Liste des modalités d'accès correspondantes :"
+          scopesLabel="Liste des données restituées en fonction des modalités d'accès :"
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
         />
