@@ -18,8 +18,7 @@ const ApiImpotParticulierSandboxWelcomeMessage = () => (
         L'équipe en charge de l'API Impôt particulier à la{' '}
         <abbr title="Direction Générale des Finances Publiques">DGFiP</abbr>{' '}
         valide votre accès à <b>l' API Manager (APIM) DGFiP</b> vous permettant
-        de récupérer des données d'imposition de test avec votre bouton
-        FranceConnect.
+        de récupérer des données d'imposition de test.
       </li>
       <li>
         L'équipe API Impôt particulier valide votre accès aux{' '}
