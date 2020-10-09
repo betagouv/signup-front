@@ -88,30 +88,6 @@ export function getEnrollmentCopies(id) {
     .then(({ data: { enrollments: data } }) => data);
 }
 
-export function getUserValidatedEnrollments(targetApi) {
-  // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
-  // since we arbitrary limit the max size of the result to 100.
-  return (
-    httpClient
-      .get(
-        `${BACK_HOST}/api/enrollments/?status=validated&target_api=${targetApi}&detailed=true&size=100`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        }
-      )
-      // format contact to a more usable structure
-      // the backend should be able to use this structure too in the future
-      .then(({ data: { enrollments: data } }) =>
-        data.map(e => ({
-          ...e,
-          contacts: collectionWithKeyToObject(e.contacts),
-        }))
-      )
-  );
-}
-
 export function getPublicValidatedEnrollments(targetApi) {
   const queryParam = hashToQueryParams({ target_api: targetApi });
 
@@ -129,6 +105,8 @@ export function getEnrollments({
   archived = null,
   sortBy = [],
   filter = [],
+  detailed = null,
+  size = null,
 }) {
   const formatedSortBy = sortBy.map(({ id, desc }) => ({
     [id]: desc ? 'desc' : 'asc',
@@ -139,6 +117,8 @@ export function getEnrollments({
   const queryParam = hashToQueryParams({
     page,
     archived,
+    detailed,
+    size,
     sortedBy: formatedSortBy,
     filter: formatedFilter,
   });
@@ -150,6 +130,29 @@ export function getEnrollments({
       },
     })
     .then(({ data }) => data);
+}
+
+export function getUserValidatedEnrollments(targetApi) {
+  // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
+  // since we arbitrary limit the max size of the result to 100.
+  return (
+    getEnrollments({
+      filter: [
+        { id: 'status', value: 'validated' },
+        { id: 'target_api', value: targetApi },
+      ],
+      detailed: true,
+      size: 100,
+    })
+      // format contact to a more usable structure
+      // the backend should be able to use this structure too in the future
+      .then(({ enrollments }) =>
+        enrollments.map(e => ({
+          ...e,
+          contacts: collectionWithKeyToObject(e.contacts),
+        }))
+      )
+  );
 }
 
 export function getUserEnrollments() {

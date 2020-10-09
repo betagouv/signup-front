@@ -395,6 +395,16 @@ describe('utils', () => {
       );
     });
 
+    it('should process boolean value', () => {
+      global.window.location.search = '?a=true&b=false';
+
+      const expectedResult = { a: true, b: false, c: false };
+
+      expect(getStateFromUrlParams({ a: false, b: true, c: false })).toEqual(
+        expectedResult
+      );
+    });
+
     it('should return a hash from preset enrollment form url', () => {
       global.window.location.search =
         '?fondement_juridique_title=Article%20L114-8%20du%20CRPA' +

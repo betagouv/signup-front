@@ -258,6 +258,10 @@ export const getStateFromUrlParams = (defaultState = {}) => {
       return parseInt(param[0]) || value;
     }
 
+    if (isBoolean(value)) {
+      return param[0] === 'true';
+    }
+
     return param[0];
   });
 };

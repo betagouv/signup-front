@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
 import 'react-table/react-table.css';
 import ReactTable from 'react-table';
-import { debounce, isEmpty, pick, pickBy, toPairs } from 'lodash';
+import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 
 import './AdminEnrollmentList.css';
@@ -32,11 +31,12 @@ class AdminEnrollmentList extends React.Component {
       sorted: [
         {
           id: 'updated_at',
-          desc: !!this.props.showArchived,
+          desc: false,
         },
       ],
       filtered: [],
       previouslySelectedEnrollmentId: 0,
+      archived: false,
     };
   }
 
@@ -48,6 +48,7 @@ class AdminEnrollmentList extends React.Component {
           'sorted',
           'filtered',
           'previouslySelectedEnrollmentId',
+          'archived',
         ])
       )
     );
@@ -63,6 +64,10 @@ class AdminEnrollmentList extends React.Component {
         this.onPageChange(pageMax);
       }
     }
+
+    setUrlParamsFromState(
+      pick(this.state, ['page', 'sorted', 'filtered', 'archived'])
+    );
   }
 
   availableAction = new Set([
@@ -92,7 +97,7 @@ class AdminEnrollmentList extends React.Component {
       width: 50,
       sortable: true,
       Cell: ({ value: updatedAt }) => {
-        if (this.props.showArchived) {
+        if (this.state.archived) {
           return <small>{moment(updatedAt).format('D/M')}</small>;
         }
 
@@ -219,23 +224,42 @@ class AdminEnrollmentList extends React.Component {
   };
 
   onPageChange = newPage => {
-    setUrlParamsFromState({ page: newPage });
     this.setState({ page: newPage });
   };
 
   onSortedChange = newSorted => {
-    setUrlParamsFromState({ sorted: newSorted });
     this.setState({ sorted: newSorted });
   };
 
   onFilteredChange = newFiltered => {
-    setUrlParamsFromState({ filtered: newFiltered, page: 0 });
     this.setState({ filtered: newFiltered, page: 0 });
+  };
+
+  onArchivedChange = newArchived => {
+    let filtered = [];
+    // If the user clicks once, we change the category (archived or ongoing) without clearing filters.
+    // If the user clicks twice, we stay on the category and we clear the filter.
+    // That provides a way to clear all filter without reloading the page.
+    if (this.state.archived !== newArchived) {
+      filtered = filter(this.state.filtered, ({ id }) => id !== 'status');
+    }
+
+    this.setState({
+      archived: newArchived,
+      sorted: [
+        {
+          id: 'updated_at',
+          desc: !!newArchived,
+        },
+      ],
+      filtered,
+      page: 0,
+      previouslySelectedEnrollmentId: 0,
+    });
   };
 
   savePreviouslySelectedEnrollmentId = id => {
     setUrlParamsFromState({ previouslySelectedEnrollmentId: id });
-    this.setState({ previouslySelectedEnrollmentId: id });
   };
 
   onFetchData = async () => {
@@ -243,7 +267,7 @@ class AdminEnrollmentList extends React.Component {
     // Read the state from this.state and not from internally computed react table state
     // (passed as param of this function) as react table will reset page count to zero
     // on filter update. This breaks page selection on page load.
-    const { page, sorted, filtered } = this.state;
+    const { page, sorted, filtered, archived } = this.state;
 
     const {
       enrollments,
@@ -252,7 +276,7 @@ class AdminEnrollmentList extends React.Component {
       page,
       sortBy: sorted,
       filter: filtered,
-      archived: this.props.showArchived,
+      archived,
     });
 
     this.setState({
@@ -271,7 +295,7 @@ class AdminEnrollmentList extends React.Component {
   }
 
   render() {
-    const { history, showArchived } = this.props;
+    const { history } = this.props;
     const {
       enrollments,
       errors,
@@ -279,6 +303,7 @@ class AdminEnrollmentList extends React.Component {
       page,
       sorted,
       filtered,
+      archived,
       previouslySelectedEnrollmentId,
       totalPages,
     } = this.state;
@@ -290,14 +315,20 @@ class AdminEnrollmentList extends React.Component {
               <h2>Liste des demandes</h2>
               <ul className="nav__links">
                 <li className="nav__item">
-                  <NavLink activeClassName={'active_link'} exact to="/">
+                  <button
+                    className={`nav-button ${!archived ? 'active_link' : ''}`}
+                    onClick={() => this.onArchivedChange(false)}
+                  >
                     Demandes en cours
-                  </NavLink>
+                  </button>
                 </li>
                 <li className="nav__item">
-                  <NavLink activeClassName={'active_link'} exact to="/archive">
+                  <button
+                    className={`nav-button ${archived ? 'active_link' : ''}`}
+                    onClick={() => this.onArchivedChange(true)}
+                  >
                     Demandes traitées
-                  </NavLink>
+                  </button>
                 </li>
               </ul>
             </div>
@@ -366,7 +397,7 @@ class AdminEnrollmentList extends React.Component {
                 nextText="Suivant"
                 loadingText="Chargement..."
                 noDataText={
-                  showArchived
+                  archived
                     ? 'Aucune demande'
                     : 'Toute les demandes ont été traitées'
                 }
@@ -396,11 +427,6 @@ AdminEnrollmentList.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }),
-  showArchived: PropTypes.bool,
-};
-
-AdminEnrollmentList.defaultProps = {
-  showArchived: false,
 };
 
 export default AdminEnrollmentList;

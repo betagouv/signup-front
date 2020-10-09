@@ -83,14 +83,6 @@ const App = () => (
                   />
 
                   <PrivateRoute
-                    exact
-                    path="/archive"
-                    component={props => (
-                      <AdminEnrollmentList {...props} showArchived />
-                    )}
-                  />
-
-                  <PrivateRoute
                     path="/api-particulier/:enrollmentId?"
                     component={ApiParticulier}
                   />

@@ -484,3 +484,18 @@ button.light:focus {
 a.light {
   text-decoration: none;
 }
+
+/* nav-button */
+/* it is an equivalent of <a> within a .nav_link but with a <button> element */
+.nav-button {
+  border: none;
+  color: var(--black);
+  padding: .4em .8em;
+  border-radius: 3px;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.nav-button:focus {
+  outline: none;
+}
