@@ -6,7 +6,8 @@ export const TARGET_API_LABELS = {
   api_impot_particulier_sandbox: 'API Impôt particulier (Bac à sable)',
   api_impot_particulier_production: 'API Impôt particulier (Production)',
   api_impot_particulier_fc_sandbox: 'API Impôt particulier (FC - Bac à sable)',
-  api_impot_particulier_fc_production: 'API Impôt particulier (FC - Production)',
+  api_impot_particulier_fc_production:
+    'API Impôt particulier (FC - Production)',
   api_r2p_sandbox: 'API R2P (Bac à sable)',
   api_r2p_production: 'API R2P (Production)',
   api_droits_cnam: 'API Droits CNAM',
