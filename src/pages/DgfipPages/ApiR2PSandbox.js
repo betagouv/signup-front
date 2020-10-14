@@ -45,7 +45,7 @@ const availableScopes = [
 
 const useCases = [
   {
-    label: 'Établissement bancaire',
+    label: 'Entité administrative ou établissement bancaire',
     scopes: ['dgfip_acces_etat_civil'],
   },
   {
