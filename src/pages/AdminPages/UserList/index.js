@@ -27,20 +27,20 @@ const UserList = () => {
         Filter: TextFilter,
         filter: 'text',
       },
-      ...Object.keys(TARGET_API_LABELS)
-        .map(key =>
-          ['instructor', 'reporter', 'subscriber'].map(roleType => ({
-            Header: () => (
-              <span style={{ writingMode: 'vertical-rl' }}>
-                {`${TARGET_API_LABELS[key]} (${roleType[0]})`}
-              </span>
-            ),
-            id: `${key}:${roleType}`,
-            accessor: ({ roles }) => roles.includes(`${key}:${roleType}`),
-            Cell: RoleCheckboxCell,
-          }))
-        )
-        .flat(),
+      ...Object.keys(TARGET_API_LABELS).map(targetApi => ({
+        Header: () => (
+          <span style={{ writingMode: 'vertical-rl' }}>
+            {`${TARGET_API_LABELS[targetApi]}`}
+          </span>
+        ),
+        id: targetApi,
+        columns: ['reporter', 'instructor', 'subscriber'].map(roleType => ({
+          Header: `${roleType[0]}`,
+          id: `${targetApi}:${roleType}`,
+          accessor: ({ roles }) => roles.includes(`${targetApi}:${roleType}`),
+          Cell: RoleCheckboxCell,
+        })),
+      })),
       { Header: 'Id', accessor: 'id' },
     ],
     []
@@ -80,7 +80,7 @@ const UserList = () => {
   }, [showAllUsers]);
 
   return (
-    <section className="section-grey enrollment-page">
+    <section className="section-grey full-width-section user-page">
       <div className="container">
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -107,18 +107,31 @@ const UserList = () => {
         </div>
         <div className="panel">
           {isLoading ? (
-            <div className="section-full-page" style={{ minHeight: '640px' }}>
+            <div className="section-full-page" style={{ minHeight: '800px' }}>
               <Spinner />
             </div>
           ) : (
-            <Table
-              columns={columns}
-              data={users}
-              updateData={updateRole}
-              filterTypes={filterTypes}
-              skipReset={skipReset}
-              initialState={{ hiddenColumns: ['id'] }}
-            />
+            <>
+              <Table
+                columns={columns}
+                data={users}
+                updateData={updateRole}
+                filterTypes={filterTypes}
+                skipReset={skipReset}
+                initialState={{ hiddenColumns: ['id'] }}
+              />
+              <div>
+                Légende :
+                <ul>
+                  <li>r (reporter) : rapporteur</li>
+                  <li>i (instructor) : instructeur</li>
+                  <li>s (subscriber) : abonné</li>
+                </ul>
+                <a href="https://github.com/betagouv/datapass#les-roles-dans-data-pass">
+                  Plus d'info
+                </a>
+              </div>
+            </>
           )}
         </div>
       </div>

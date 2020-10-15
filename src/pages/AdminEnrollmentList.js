@@ -308,7 +308,7 @@ class AdminEnrollmentList extends React.Component {
       totalPages,
     } = this.state;
     return (
-      <section className="section-grey enrollment-page">
+      <section className="section-grey full-width-section enrollment-page">
         <div className="container">
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>

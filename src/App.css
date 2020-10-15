@@ -21,10 +21,6 @@ main {
   flex-grow: 1;
 }
 
-section.enrollment-page {
-  padding: 2em 0 1em 0;
-}
-
 section.section-full-page,
 div.section-full-page {
   display: flex;
@@ -490,7 +486,7 @@ a.light {
 .nav-button {
   border: none;
   color: var(--black);
-  padding: .4em .8em;
+  padding: 0.4em 0.8em;
   border-radius: 3px;
   font-size: inherit;
   font-family: inherit;
@@ -498,4 +494,25 @@ a.light {
 
 .nav-button:focus {
   outline: none;
+}
+
+/* full width section */
+section.full-width-section {
+  padding: 2em 0 1em 0;
+}
+
+.full-width-section .container {
+  max-width: inherit;
+}
+
+@media (min-width: 550px) {
+  .full-width-section .container {
+    width: inherit;
+  }
+}
+
+@media (min-width: 400px) {
+  .full-width-section .container {
+    width: inherit;
+  }
 }

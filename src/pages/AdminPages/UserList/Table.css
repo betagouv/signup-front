@@ -10,8 +10,12 @@
   vertical-align: bottom;
 }
 
-.admin-table th:first-of-type,
-.admin-table td:first-of-type {
+.admin-table td input[type='checkbox'] {
+  margin-right: inherit;
+}
+
+.user-page .admin-table th:first-of-type,
+.user-page .admin-table td:first-of-type {
   position: sticky;
   width: 200px;
   min-width: 200px;
@@ -22,4 +26,21 @@
   white-space: nowrap;
   background-color: white;
   z-index: 1;
+}
+
+.user-page .admin-table td:nth-child(3n + 1) {
+  border-right: 1px solid black;
+  padding-right: 6px;
+}
+
+.user-page .admin-table td:nth-child(3n + 2) {
+  padding-left: 6px;
+}
+
+.user-page .admin-table table {
+  border-collapse: collapse;
+}
+
+.user-page .admin-table td {
+  padding: 2px;
 }
