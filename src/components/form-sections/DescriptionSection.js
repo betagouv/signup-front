@@ -21,7 +21,7 @@ const DescriptionSection = ({
       <div className="form__group">
         <label htmlFor="intitule">
           Nom du service
-          <Helper title="Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue publique, il convient d'être synthétique et précis." />
+          <Helper title="Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue publique, il convient d’être synthétique et précis." />
         </label>
         <input
           type="text"
