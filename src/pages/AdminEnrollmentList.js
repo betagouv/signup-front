@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import 'react-table/react-table.css';
-import ReactTable from 'react-table';
+import 'react-table-6/react-table.css';
+import ReactTable from 'react-table-6';
 import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 

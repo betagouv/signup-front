@@ -32,6 +32,7 @@ import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
 import Accessibilite from './pages/Accessibilite';
 import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
+import UserList from './pages/AdminPages/UserList';
 
 const history = createBrowserHistory();
 
@@ -156,6 +157,8 @@ const App = () => (
                     path="/authorization-request/:enrollmentId"
                     component={Enrollment}
                   />
+
+                  <PrivateRoute path="/admin/users" component={UserList} />
                 </>
               )}
             </main>
