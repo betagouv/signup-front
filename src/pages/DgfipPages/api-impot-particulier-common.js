@@ -124,6 +124,14 @@ export const availableScopes = [
     label: 'Données du local',
   },
   {
+    value: 'dgfip_sitfam',
+    label: 'Situation de famille',
+  },
+  {
+    value: 'dgfip_nbpac',
+    label: 'Nombre de personnes à charge',
+  },
+  {
     value: 'dgfip_annee_n_moins_1',
     label: 'Dernière année de revenu',
     groupTitle,
