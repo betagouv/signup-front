@@ -12,7 +12,7 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 
 const contacts = {
-  organization: {
+  metier: {
     heading: 'Responsable organisation',
     description: () => (
       <p>
