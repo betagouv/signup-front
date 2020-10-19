@@ -28,6 +28,7 @@ import ApiImpotParticulierFcProduction from './pages/DgfipPages/ApiImpotParticul
 import ApiImpotParticulierSandbox from './pages/DgfipPages/ApiImpotParticulierSandbox';
 import ApiR2PSandbox from './pages/DgfipPages/ApiR2PSandbox';
 import ApiR2PProduction from './pages/DgfipPages/ApiR2PProduction';
+import AidantsConnect from './pages/AidantsConnect';
 import CopyEnrollment from './pages/CopyEnrollment';
 import Enrollment from './pages/Enrollment';
 import Accessibilite from './pages/Accessibilite';
@@ -121,6 +122,11 @@ const App = () => (
                   <PrivateRoute
                     path="/franceconnect/:enrollmentId?"
                     component={FranceConnect}
+                  />
+
+                  <PrivateRoute
+                    path="/aidants-connect/:enrollmentId?"
+                    component={AidantsConnect}
                   />
 
                   <PrivateRoute

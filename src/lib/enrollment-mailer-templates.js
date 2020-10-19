@@ -17,6 +17,7 @@ export const getMailAttributes = (selectedAction, targetApi) => {
     preuve_covoiturage: 'contact@covoiturage.beta.gouv.fr',
     le_taxi: 'contact@api.gouv.fr',
     cartobio: 'cartobio@beta.gouv.fr',
+    aidants_connect: 'contact@api.gouv.fr',
   };
 
   const subjects = {
