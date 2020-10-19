@@ -35,7 +35,7 @@ const AidantsConnect = ({
       logo={{
         src: `/images/${API_ICONS.aidants_connect}`,
         alt: `Logo ${TARGET_API_LABELS.aidants_connect}`,
-        url: 'https://aidantsconnect.beta.gouv.fr//',
+        url: 'https://aidantsconnect.beta.gouv.fr/',
       }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
