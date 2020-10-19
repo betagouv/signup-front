@@ -56,7 +56,7 @@ const AidantsConnect = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="aidants-connect"
+        target_api="aidants_connect"
         title="Demande d'habilitation juridique à Aidants Connect"
       >
         <OrganisationSection />
