@@ -1,7 +1,6 @@
 import { mapValues, memoize } from 'lodash';
 import jsonToFormData from './json-form-data';
 import httpClient from './http-client';
-import axios from 'axios';
 
 import {
   collectionWithKeyToObject,
@@ -260,23 +259,25 @@ export function getMostUsedComments({ eventName, targetApi } = {}) {
 }
 
 export async function getAPIStats(target_api) {
-  const result = await axios(
-    `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`
+  return httpClient.get(
+    `${BACK_HOST}/api/stats${hashToQueryParams({ target_api })}`,
+    {
+      headers: { 'Content-type': 'application/json' },
+    }
   );
-
-  return result;
 }
 
 export async function getMajorityPercentileProcessingTimeInDays(target_api) {
-  const result = await axios(
+  return httpClient.get(
     `${BACK_HOST}/api/stats/majority_percentile_processing_time_in_days${hashToQueryParams(
       {
         target_api,
       }
-    )}`
+    )}`,
+    {
+      headers: { 'Content-type': 'application/json' },
+    }
   );
-
-  return result;
 }
 
 export const getCachedMajorityPercentileProcessingTimeInDays = memoize(
