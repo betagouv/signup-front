@@ -116,20 +116,20 @@ export const availableScopes = [
     label: 'Nombre de parts',
   },
   {
-    value: 'dgfip_aft',
-    label: 'Adresse fiscale de taxation au 1er janvier',
-  },
-  {
-    value: 'dgfip_locaux_th',
-    label: 'Données du local',
-  },
-  {
     value: 'dgfip_sitfam',
     label: 'Situation de famille',
   },
   {
     value: 'dgfip_nbpac',
     label: 'Nombre de personnes à charge',
+  },
+  {
+    value: 'dgfip_aft',
+    label: 'Adresse fiscale de taxation au 1er janvier',
+  },
+  {
+    value: 'dgfip_locaux_th',
+    label: 'Données du local',
   },
   {
     value: 'dgfip_annee_n_moins_1',
@@ -139,6 +139,11 @@ export const availableScopes = [
   {
     value: 'dgfip_annee_n_moins_2',
     label: 'Avant-dernière année de revenu',
+    groupTitle,
+  },
+  {
+    value: 'dgfip_annee_n_moins_3',
+    label: 'Avant-avant-dernière année de revenu',
     groupTitle,
   },
 ];
