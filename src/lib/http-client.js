@@ -9,7 +9,7 @@ axios.defaults.adapter = httpAdapter;
 axios.interceptors.request.use(config => {
   if (
     new URL(config.url).origin === BACK_HOST &&
-    new URL(config.url).pathname !== '/api/stats'
+    !new URL(config.url).pathname.startsWith('/api/stats')
   ) {
     config.withCredentials = true;
   }
