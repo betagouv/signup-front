@@ -44,15 +44,26 @@ const Index = () => {
         activite,
         adresse,
         ville,
+        etat_administratif,
       } = await getOrganizationInformation(siret);
 
-      setTitle(title);
-      setAdresse(adresse);
-      setVille(ville);
-      setActivite(activite);
-      setIsOrganizationInfoLoading(false);
-      setShowOrganizationInfoNotFound(false);
-      setShowOrganizationInfoError(false);
+      if (etat_administratif !== 'A') {
+        setTitle('');
+        setAdresse('');
+        setVille('');
+        setActivite('');
+        setIsOrganizationInfoLoading(false);
+        setShowOrganizationInfoNotFound(true);
+        setShowOrganizationInfoError(false);
+      } else {
+        setTitle(title);
+        setAdresse(adresse);
+        setVille(ville);
+        setActivite(activite);
+        setIsOrganizationInfoLoading(false);
+        setShowOrganizationInfoNotFound(false);
+        setShowOrganizationInfoError(false);
+      }
     } catch (e) {
       setTitle('');
       setAdresse('');
@@ -60,12 +71,7 @@ const Index = () => {
       setActivite('');
       setIsOrganizationInfoLoading(false);
       setShowOrganizationInfoNotFound(false);
-      setShowOrganizationInfoError(false);
-      if (e.response && e.response.status === 404) {
-        setShowOrganizationInfoNotFound(true);
-      } else {
-        setShowOrganizationInfoError(true);
-      }
+      setShowOrganizationInfoError(true);
     }
   };
 

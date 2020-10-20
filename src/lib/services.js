@@ -203,41 +203,53 @@ export function deleteEnrollment({ id }) {
 
 export function getOrganizationInformation(siret) {
   return httpClient
-    .get(`https://entreprise.data.gouv.fr/api/sirene/v1/siret/${siret}`)
+    .get(
+      `https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/${siret}`
+    )
     .then(
       ({
         data: {
           etablissement: {
-            enseigne,
-            nom_raison_sociale,
+            numero_voie,
+            indice_repetition,
+            type_voie,
+            libelle_voie,
+            code_postal,
+            libelle_commune,
             activite_principale,
-            libelle_activite_principale,
-            l2_normalisee,
-            l3_normalisee,
-            l4_normalisee,
-            l5_normalisee,
-            l6_normalisee,
-            l7_normalisee,
+            denomination_usuelle,
+            etat_administratif,
+            unite_legale: {
+              denomination,
+              nom,
+              prenom_1,
+              prenom_2,
+              prenom_3,
+              prenom_4,
+            },
           },
         },
       }) => {
         const adresse = [
-          l2_normalisee,
-          l3_normalisee,
-          l4_normalisee,
-          l5_normalisee,
+          numero_voie,
+          indice_repetition,
+          type_voie,
+          libelle_voie,
         ]
           .filter(e => e)
-          .join(', ');
+          .join(' ');
 
-        const ville = [l6_normalisee, l7_normalisee].filter(e => e).join(', ');
+        const prenom_nom = [prenom_1, prenom_2, prenom_3, prenom_4, nom]
+          .filter(e => e)
+          .join(' ');
 
         return mapValues(
           {
-            title: `${nom_raison_sociale}${enseigne ? ' - ' + enseigne : ''}`,
-            activite: `${activite_principale} - ${libelle_activite_principale}`,
+            title: denomination || denomination_usuelle || prenom_nom,
+            activite: `${activite_principale}`,
             adresse,
-            ville,
+            ville: `${code_postal} ${libelle_commune}`,
+            etat_administratif,
           },
           v => (v ? v : 'Non renseigné')
         );
