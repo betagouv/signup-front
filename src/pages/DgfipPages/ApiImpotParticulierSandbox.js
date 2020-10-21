@@ -65,7 +65,7 @@ const availableScopes = [
     value: 'dgfip_eligibilite_lep',
     label: "Indicateur d'éligibilité au Livret d'Épargne Populaire",
     helper:
-      "Actuellement, accès à l'avant-dernière année de revenus seulement. Accès aux dernière et avant-avant-dernière années disponibles d'ici la fin du 1er semestre 2021",
+      "Actuellement, accès à l'avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d'ici la fin du 1er semestre 2021.",
   },
   {
     value: 'dgfip_acces_spi',
@@ -75,8 +75,7 @@ const availableScopes = [
   {
     value: 'dgfip_acces_etat_civil',
     label: "via l'état civil",
-    helper:
-      "Merci de remplir une demande de souscription à l'API R2P afin d'obtenir les SPI à partir de l'état civil.",
+    helper: "Merci de remplir une demande de souscription à l'API R2P.",
     groupTitle,
   },
 ];
