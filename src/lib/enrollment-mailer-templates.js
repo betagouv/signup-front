@@ -12,6 +12,8 @@ export const getMailAttributes = (selectedAction, targetApi) => {
     api_impot_particulier_fc_production: 'contact@api.gouv.fr',
     api_r2p_sandbox: 'contact@api.gouv.fr',
     api_r2p_production: 'contact@api.gouv.fr',
+    api_ficoba_sandbox: 'contact@api.gouv.fr',
+    api_ficoba_production: 'contact@api.gouv.fr',
     api_droits_cnam: 'contact@api.gouv.fr',
     api_entreprise: 'support@entreprise.api.gouv.fr',
     preuve_covoiturage: 'contact@covoiturage.beta.gouv.fr',
@@ -69,6 +71,12 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
 Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
       window.location.host
     }/api-r2p-production`,
+    api_ficoba_production:
+      "Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l'environnement de production.",
+    api_ficoba_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
+Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
+      window.location.host
+    }/api-ficoba-production`,
   };
 
   if (
