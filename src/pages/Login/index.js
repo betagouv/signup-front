@@ -54,7 +54,11 @@ export const Login = () => {
           <div className="login-buttons">
             {isOnNewEnrollmentPage ? (
               <>
-                <a className="button-outline primary" href={loginUrl}>
+                <a
+                  className="button-outline primary"
+                  href={loginUrl}
+                  referrerPolicy="no-referrer-when-downgrade"
+                >
                   Se connecter
                 </a>
                 <span className="login-buttons-or">ou</span>
@@ -68,7 +72,11 @@ export const Login = () => {
                   Créer un compte
                 </a>
                 <span className="login-buttons-or">ou</span>
-                <a className="button primary" href={loginUrl}>
+                <a
+                  className="button primary"
+                  href={loginUrl}
+                  referrerPolicy="no-referrer-when-downgrade"
+                >
                   Se connecter
                 </a>
               </>
