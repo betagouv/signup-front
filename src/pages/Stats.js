@@ -217,6 +217,37 @@ export default ({
           <div className="row-grid">
             <div className="card">
               <div className="card__content">
+                <h3>Répartition des demandes par statut</h3>
+              </div>
+              <div className="card__content card_graph">
+                <ResponsiveContainer width={'100%'} height={250}>
+                  <PieChart>
+                    <Pie
+                      data={stats.enrollment_by_status}
+                      dataKey="count"
+                      label
+                    >
+                      {stats.enrollment_by_status.map((entry, index) => (
+                        <Cell
+                          key={index}
+                          fill={USER_STATUS_COLORS[entry.name]}
+                        />
+                      ))}
+                    </Pie>
+                    <Legend
+                      layout={'vertical'}
+                      align={'right'}
+                      verticalAlign={'middle'}
+                      formatter={value => USER_STATUS_LABELS[value]}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+          <div className="row-grid">
+            <div className="card">
+              <div className="card__content">
                 <h3>Répartition des demandes par API</h3>
               </div>
               <div className="card__content card_graph">
@@ -241,37 +272,6 @@ export default ({
                       formatter={value =>
                         TARGET_API_LABELS[value].substring(0, 25)
                       }
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-            </div>
-          </div>
-          <div className="row-grid">
-            <div className="card">
-              <div className="card__content">
-                <h3>Répartition des demandes par statut</h3>
-              </div>
-              <div className="card__content card_graph">
-                <ResponsiveContainer width={'100%'} height={250}>
-                  <PieChart>
-                    <Pie
-                      data={stats.enrollment_by_status}
-                      dataKey="count"
-                      label
-                    >
-                      {stats.enrollment_by_status.map((entry, index) => (
-                        <Cell
-                          key={index}
-                          fill={USER_STATUS_COLORS[entry.name]}
-                        />
-                      ))}
-                    </Pie>
-                    <Legend
-                      layout={'vertical'}
-                      align={'right'}
-                      verticalAlign={'middle'}
-                      formatter={value => USER_STATUS_LABELS[value]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
