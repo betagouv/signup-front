@@ -28,9 +28,32 @@ import {
 import Helper from '../components/Helper';
 import Spinner from '../components/icons/spinner';
 
-// inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
-const COLORS = ['#1A535C', '#4ECDC4', '#FF6B6B', '#FFE66D', '#50514F'];
+// inspired from http://colrd.com/palette/19308/
+const COLORS = [
+  '#447c69',
+  '#8e8c6d',
+  '#e9d78e',
+  '#f19670',
+  '#c94a53',
+  '#a34974',
+  '#65387d',
+  '#9163b6',
+  '#e0598b',
+  '#5698c4',
+  '#51574a',
+  '#74c493',
+  '#e4bf80',
+  '#e2975d',
+  '#e16552',
+  '#be5168',
+  '#993767',
+  '#4e2472',
+  '#e279a3',
+  '#7c9fb0',
+  '#9abf88',
+];
 
+// inspired from https://coolors.co/1a535c-4ecdc4-f7fff7-ff6b6b-ffe66d
 const USER_STATUS_COLORS = {
   pending: '#50514F',
   modification_pending: '#1A535C',
@@ -197,14 +220,14 @@ export default ({
                 <h3>Répartition des demandes par API</h3>
               </div>
               <div className="card__content card_graph">
-                <ResponsiveContainer width={'100%'} height={250}>
+                <ResponsiveContainer width={'100%'} height={350}>
                   <PieChart>
                     <Pie
                       data={stats.enrollment_by_target_api}
                       dataKey="count"
                       label
                     >
-                      {stats.enrollment_by_status.map((entry, index) => (
+                      {stats.enrollment_by_target_api.map((entry, index) => (
                         <Cell
                           key={index}
                           fill={COLORS[index % COLORS.length]}
@@ -215,12 +238,16 @@ export default ({
                       layout={'vertical'}
                       align={'right'}
                       verticalAlign={'middle'}
-                      formatter={value => TARGET_API_LABELS[value]}
+                      formatter={value =>
+                        TARGET_API_LABELS[value].substring(0, 25)
+                      }
                     />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
             </div>
+          </div>
+          <div className="row-grid">
             <div className="card">
               <div className="card__content">
                 <h3>Répartition des demandes par statut</h3>
