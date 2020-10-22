@@ -257,6 +257,14 @@ export function getOrganizationInformation(siret) {
     );
 }
 
+export function getOrganizationActivityDetails(NafCode) {
+  return httpClient
+    .get(`${BACK_HOST}/api/insee-proxy/naf/${NafCode}`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data);
+}
+
 export function getMostUsedComments({ eventName, targetApi } = {}) {
   const queryParam = hashToQueryParams({
     event: eventName,

@@ -1,7 +1,10 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash';
 import { UserContext } from '../../UserContext';
-import { getOrganizationInformation } from '../../../lib/services';
+import {
+  getOrganizationActivityDetails,
+  getOrganizationInformation,
+} from '../../../lib/services';
 import { isValidNAFCode } from '../../../lib';
 import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';
@@ -22,6 +25,7 @@ const Index = () => {
   const [adresse, setAdresse] = useState('');
   const [ville, setVille] = useState('');
   const [activite, setActivite] = useState('');
+  const [activiteLabel, setActiviteLabel] = useState('');
   const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] = useState(
     false
   );
@@ -35,45 +39,6 @@ const Index = () => {
   const [showPrompt, setShowPrompt] = useState(false);
 
   const { user, isLoading } = useContext(UserContext);
-
-  const fetchOrganizationInfo = async ({ siret }) => {
-    try {
-      setIsOrganizationInfoLoading(true);
-      const {
-        title,
-        activite,
-        adresse,
-        ville,
-        etat_administratif,
-      } = await getOrganizationInformation(siret);
-
-      if (etat_administratif !== 'A') {
-        setTitle('');
-        setAdresse('');
-        setVille('');
-        setActivite('');
-        setIsOrganizationInfoLoading(false);
-        setShowOrganizationInfoNotFound(true);
-        setShowOrganizationInfoError(false);
-      } else {
-        setTitle(title);
-        setAdresse(adresse);
-        setVille(ville);
-        setActivite(activite);
-        setIsOrganizationInfoLoading(false);
-        setShowOrganizationInfoNotFound(false);
-        setShowOrganizationInfoError(false);
-      }
-    } catch (e) {
-      setTitle('');
-      setAdresse('');
-      setVille('');
-      setActivite('');
-      setIsOrganizationInfoLoading(false);
-      setShowOrganizationInfoNotFound(false);
-      setShowOrganizationInfoError(true);
-    }
-  };
 
   const updateOrganizationInfo = useCallback(
     ({ organization_id, siret }) => {
@@ -112,10 +77,66 @@ const Index = () => {
   ]);
 
   useEffect(() => {
+    const fetchOrganizationInfo = async siret => {
+      try {
+        setIsOrganizationInfoLoading(true);
+        const {
+          title,
+          activite,
+          adresse,
+          ville,
+          etat_administratif,
+        } = await getOrganizationInformation(siret);
+
+        if (etat_administratif !== 'A') {
+          setTitle('');
+          setAdresse('');
+          setVille('');
+          setActivite('');
+          setActiviteLabel('');
+          setIsOrganizationInfoLoading(false);
+          setShowOrganizationInfoNotFound(true);
+          setShowOrganizationInfoError(false);
+        } else {
+          setTitle(title);
+          setAdresse(adresse);
+          setVille(ville);
+          setActivite(activite);
+          setIsOrganizationInfoLoading(false);
+          setShowOrganizationInfoNotFound(false);
+          setShowOrganizationInfoError(false);
+        }
+      } catch (e) {
+        setTitle('');
+        setAdresse('');
+        setVille('');
+        setActivite('');
+        setActiviteLabel('');
+        setIsOrganizationInfoLoading(false);
+        setShowOrganizationInfoNotFound(false);
+        setShowOrganizationInfoError(true);
+      }
+    };
+
     if (siret) {
-      fetchOrganizationInfo({ siret });
+      fetchOrganizationInfo(siret);
     }
   }, [siret]);
+
+  useEffect(() => {
+    const fetchOrganizationActivityLabel = async activite => {
+      try {
+        setIsOrganizationInfoLoading(true);
+        const { libelle } = await getOrganizationActivityDetails(activite);
+        setActiviteLabel(libelle);
+      } catch (e) {
+        setActiviteLabel('');
+      }
+    };
+    if (activite) {
+      fetchOrganizationActivityLabel(activite);
+    }
+  }, [activite]);
 
   const onOrganizationChange = new_organization_id => {
     setShowPrompt(false);
@@ -181,7 +202,9 @@ const Index = () => {
       <div className="organization-subtitle">{adresse}</div>
       <div className="organization-subtitle">{ville}</div>
       <div className="organization-subtitle">SIRET : {siret}</div>
-      <div className="organization-subtitle">Code NAF : {activite}</div>
+      <div className="organization-subtitle">
+        Code NAF : {activite} {activiteLabel ? '- ' + activiteLabel : null}
+      </div>
 
       {!disabled && !isLoading && showPrompt && (
         <OrganizationPrompt
