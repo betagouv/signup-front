@@ -251,7 +251,7 @@ export default ({
                 <h3>Répartition des demandes par API</h3>
               </div>
               <div className="card__content card_graph">
-                <ResponsiveContainer width={'100%'} height={350}>
+                <ResponsiveContainer width={'100%'} height={450}>
                   <PieChart>
                     <Pie
                       data={stats.enrollment_by_target_api}
