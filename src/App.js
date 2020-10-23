@@ -35,6 +35,7 @@ import Accessibilite from './pages/Accessibilite';
 import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
+import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 
 const history = createBrowserHistory();
@@ -164,6 +165,11 @@ const App = () => (
                   <PrivateRoute
                     path="/cartobio/:enrollmentId?"
                     component={CartoBio}
+                  />
+
+                  <PrivateRoute
+                    path="/agence-bio/:enrollmentId?"
+                    component={AgenceBio}
                   />
 
                   <PrivateRoute
