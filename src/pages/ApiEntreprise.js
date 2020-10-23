@@ -173,7 +173,7 @@ const availableScopes = [
     link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_cnetp',
   },
   {
-    value: 'certificats_rge_ademe',
+    value: 'certificat_rge_ademe',
     label: 'Certificats RGE (ADEME)',
     groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_rge_ademe',
