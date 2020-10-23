@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Scopes.css';
 import WarningModal from '../../WarningModal';
 import Helper from '../../Helper';
+import OpenInNewIcon from '../../icons/open-in-new';
 
 const ModalContent = {
   rgpd: {
@@ -59,6 +60,7 @@ const Scopes = ({
               comment,
               triggerWarning,
               warningType,
+              link,
             }) => (
               <div className="scope_item" key={value}>
                 <input
@@ -84,6 +86,22 @@ const Scopes = ({
                   {label}
                   {mandatory && <i> (nécessaire)</i>}
                   {helper && <Helper title={helper} />}
+                  {link && (
+                    <>
+                      {' '}
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Plus d’information sur la donnée ${label}`}
+                      >
+                        <OpenInNewIcon
+                          color={'var(--theme-primary)'}
+                          size={14}
+                        />
+                      </a>
+                    </>
+                  )}
                 </label>
                 {comment && <div className="scope_comment">{comment}</div>}
               </div>

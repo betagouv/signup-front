@@ -61,93 +61,140 @@ const DonneesDescription = () => (
   </div>
 );
 
-// NB: this list is manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
+// NB: this list was manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
+// Then edited by API Entreprise UX team
 const availableScopes = [
   {
     value: 'entreprises',
     label: 'Données de référence d’une entité - INSEE & Inforgreffe',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#entreprises',
   },
   {
     value: 'etablissements',
     label: 'Données de référence d’un établissement - INSEE',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#etablissements',
+  },
+  {
+    value: 'extraits_rcs',
+    label: 'Extrait RCS - Infogreffe',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#extraits_rcs_infogreffe',
   },
   {
     value: 'associations',
     label:
       'Informations déclaratives d’une association - Ministère de l’Intérieur',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#associations',
   },
   {
     value: 'documents_association',
     label: 'Divers documents d’une association - Ministère de l’Intérieur',
-  },
-  {
-    value: 'attestations_fiscales',
-    label: 'Attestation fiscale - DGFIP',
-  },
-  {
-    value: 'attestations_sociales',
-    label: 'Attestation de vigilance - ACOSS',
-  },
-  {
-    value: 'msa_cotisations',
-    label: 'Cotisations de sécurité sociale agricole - MSA',
-  },
-  {
-    value: 'attestations_agefiph',
-    label: 'Conformité emploi des travailleurs handicapés - AGEFIPH',
-  },
-  {
-    value: 'bilans_entreprise_bdf',
-    label: '3 derniers bilans annuels - Banque de France',
-  },
-  {
-    value: 'fntp_carte_pro',
-    label: 'Carte professionnelle travaux publics - FNTP',
-  },
-  {
-    value: 'certificat_cnetp',
-    label: 'Cotisations congés payés & chômage intempéries - CNETP',
-  },
-  {
-    value: 'certificat_opqibi',
-    label: 'Certification de qualification d’ingénierie - OPQIBI',
-  },
-  {
-    value: 'probtp',
-    label: 'Cotisations retraite bâtiment - ProBTP',
-  },
-  {
-    value: 'qualibat',
-    label: 'Certification de qualification bâtiment - Qualibat',
-  },
-  {
-    value: 'certificats_rge_ademe',
-    label: 'Certificats RGE (ADEME)',
-  },
-  {
-    value: 'extrait_court_inpi',
-    label: 'Brevets, modèles et marques déposés - INPI',
-  },
-  {
-    value: 'extraits_rcs',
-    label: 'Extrait RCS - Infogreffe',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#documents_associations',
   },
   {
     value: 'actes_bilans_inpi',
     label: 'Actes et bilans annuels - INPI',
-  },
-  {
-    value: 'liasse_fiscale',
-    label: 'Déclarations de résultat - DGFIP',
-  },
-  {
-    value: 'exercices',
-    label: 'Chiffre d’affaires - DGFIP',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#actes_inpi',
   },
   {
     value: 'conventions_collectives',
     label:
       'Conventions collectives - Fabrique numérique des Ministères Sociaux',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#conventions_collectives',
+  },
+  {
+    value: 'exercices',
+    label: 'Chiffre d’affaires - DGFIP',
+    groupTitle: 'Informations financières :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#exercices',
+  },
+  {
+    value: 'bilans_entreprise_bdf',
+    label: '3 derniers bilans annuels - Banque de France',
+    groupTitle: 'Informations financières :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#bilans_entreprises_bdf',
+  },
+  {
+    value: 'liasse_fiscale',
+    label: 'Déclarations de résultat - DGFIP',
+    groupTitle: 'Informations financières :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#liasses_fiscales_dgfip',
+  },
+  {
+    value: 'attestations_fiscales',
+    label: 'Attestation fiscale - DGFIP',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link:
+      'https://entreprise.api.gouv.fr/catalogue/#attestations_fiscales_dgfip',
+  },
+  {
+    value: 'attestations_sociales',
+    label: 'Attestation de vigilance - ACOSS',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link:
+      'https://entreprise.api.gouv.fr/catalogue/#attestations_sociales_acoss',
+  },
+  {
+    value: 'attestations_agefiph',
+    label: 'Conformité emploi des travailleurs handicapés - AGEFIPH',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#attestations_agefiph',
+  },
+  {
+    value: 'msa_cotisations',
+    label: 'Cotisations de sécurité sociale agricole - MSA',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#cotisations_msa',
+  },
+  {
+    value: 'probtp',
+    label: 'Cotisations retraite bâtiment - ProBTP',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link:
+      'https://entreprise.api.gouv.fr/catalogue/#cotisation_retraite_probtp',
+  },
+  {
+    value: 'fntp_carte_pro',
+    label: 'Carte professionnelle travaux publics - FNTP',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link:
+      'https://entreprise.api.gouv.fr/catalogue/#cartes_professionnelles_fntp',
+  },
+  {
+    value: 'certificat_cnetp',
+    label: 'Cotisations congés payés & chômage intempéries - CNETP',
+    groupTitle: 'Attestations sociales et fiscales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_cnetp',
+  },
+  {
+    value: 'certificats_rge_ademe',
+    label: 'Certificats RGE (ADEME)',
+    groupTitle: 'Certifications professionnelles :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_rge_ademe',
+  },
+  {
+    value: 'qualibat',
+    label: 'Certification de qualification bâtiment - Qualibat',
+    groupTitle: 'Certifications professionnelles :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_qualibat',
+  },
+  {
+    value: 'certificat_opqibi',
+    label: 'Certification de qualification d’ingénierie - OPQIBI',
+    groupTitle: 'Certifications professionnelles :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_opqibi',
+  },
+  {
+    value: 'extrait_court_inpi',
+    label: 'Brevets, modèles et marques déposés - INPI',
+    groupTitle: 'Propriété intellectuelle :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#extraits_courts_inpi',
   },
 ];
 
