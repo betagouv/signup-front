@@ -65,87 +65,89 @@ const DonneesDescription = () => (
 const availableScopes = [
   {
     value: 'entreprises',
-    label: 'INSEE Entreprise',
+    label: 'Données de référence d’une entité - INSEE & Inforgreffe',
   },
   {
     value: 'etablissements',
-    label: 'INSEE Etablissement',
+    label: 'Données de référence d’un établissement - INSEE',
   },
   {
     value: 'associations',
-    label: 'Association',
+    label:
+      'Informations déclaratives d’une association - Ministère de l’Intérieur',
   },
   {
     value: 'documents_association',
-    label: 'Document association',
+    label: 'Divers documents d’une association - Ministère de l’Intérieur',
   },
   {
     value: 'attestations_fiscales',
-    label: 'Attestation Fiscale',
+    label: 'Attestation fiscale - DGFIP',
   },
   {
     value: 'attestations_sociales',
-    label: 'Attestation Sociale',
+    label: 'Attestation de vigilance - ACOSS',
   },
   {
     value: 'msa_cotisations',
-    label: 'Cotisation MSA',
+    label: 'Cotisations de sécurité sociale agricole - MSA',
   },
   {
     value: 'attestations_agefiph',
-    label: 'Attestation AGEFIPH',
+    label: 'Conformité emploi des travailleurs handicapés - AGEFIPH',
   },
   {
     value: 'bilans_entreprise_bdf',
-    label: 'Bilans Entreprises BDF',
+    label: '3 derniers bilans annuels - Banque de France',
   },
   {
     value: 'fntp_carte_pro',
-    label: 'Carte Pro FNTP',
+    label: 'Carte professionnelle travaux publics - FNTP',
   },
   {
     value: 'certificat_cnetp',
-    label: 'Certificat CNETP',
+    label: 'Cotisations congés payés & chômage intempéries - CNETP',
   },
   {
     value: 'certificat_opqibi',
-    label: 'Certificat OPQIBI',
+    label: 'Certification de qualification d’ingénierie - OPQIBI',
   },
   {
     value: 'probtp',
-    label: 'Certificat PROBTP',
+    label: 'Cotisations retraite bâtiment - ProBTP',
   },
   {
     value: 'qualibat',
-    label: 'Certificat Qualibat',
+    label: 'Certification de qualification bâtiment - Qualibat',
   },
   {
-    value: 'certificat_rge_ademe',
+    value: 'certificats_rge_ademe',
     label: 'Certificats RGE (ADEME)',
   },
   {
     value: 'extrait_court_inpi',
-    label: 'Extrait INPI',
+    label: 'Brevets, modèles et marques déposés - INPI',
   },
   {
     value: 'extraits_rcs',
-    label: 'Extrait RCS',
+    label: 'Extrait RCS - Infogreffe',
   },
   {
     value: 'actes_bilans_inpi',
-    label: 'Actes et Bilans INPI',
+    label: 'Actes et bilans annuels - INPI',
   },
   {
     value: 'liasse_fiscale',
-    label: 'Liasse fiscale',
+    label: 'Déclarations de résultat - DGFIP',
   },
   {
     value: 'exercices',
-    label: 'Exercice',
+    label: 'Chiffre d’affaires - DGFIP',
   },
   {
     value: 'conventions_collectives',
-    label: 'Conventions Collectives',
+    label:
+      'Conventions collectives - Fabrique numérique des Ministères Sociaux',
   },
 ];
 
