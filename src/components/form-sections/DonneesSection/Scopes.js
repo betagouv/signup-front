@@ -30,6 +30,7 @@ const Scopes = ({
   selectedScopes,
   disabledApplication,
   handleChange,
+  useCategoryStyle,
 }) => {
   const [warningModalScope, setWarningModalScope] = useState(null);
   const [warningType, setWarningType] = useState('rgpd');
@@ -49,7 +50,12 @@ const Scopes = ({
   return (
     <div className="form__group">
       <fieldset>
-        {title && <label className="typography__caption label">{title}</label>}
+        {title &&
+          (useCategoryStyle ? (
+            <label className="typography__caption label">{title}</label>
+          ) : (
+            <p>{title}</p>
+          ))}
         <div className="scope_container">
           {scopes.map(
             ({
@@ -130,6 +136,7 @@ const Scopes = ({
 Scopes.defaultProps = {
   disabledApplication: false,
   title: null,
+  useCategoryStyle: true,
 };
 
 Scopes.propTypes = {
@@ -138,6 +145,7 @@ Scopes.propTypes = {
   selectedScopes: PropTypes.object.isRequired,
   disabledApplication: PropTypes.bool,
   handleChange: PropTypes.func.isRequired,
+  useCategoryStyle: PropTypes.bool,
 };
 
 export default Scopes;

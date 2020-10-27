@@ -25,7 +25,7 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const groupTitle = "Modalité d'accès à l'API :";
+const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
 
 const availableScopes = [
   {

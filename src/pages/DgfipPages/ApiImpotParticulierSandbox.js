@@ -57,7 +57,7 @@ const steps = [
   'api_impot_particulier_production',
 ];
 
-const groupTitle = "Modalité d'accès à l'API :";
+const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
 
 const availableScopes = [
   ...fcAvailableScopes,

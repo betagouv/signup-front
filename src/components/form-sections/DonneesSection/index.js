@@ -42,6 +42,8 @@ const DonneesSection = ({
     e => e.groupTitle || 'default'
   );
 
+  const hasDefaultGroup = availableScopes.some(e => !e.groupTitle);
+
   // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
   const scopesAsArray = _(scopes)
     .omitBy(e => !e)
@@ -78,6 +80,7 @@ const DonneesSection = ({
           selectedScopes={scopes}
           disabledApplication={disabled}
           handleChange={onChange}
+          useCategoryStyle={!hasDefaultGroup}
         />
       ))}
       {disabled && !isEmpty(outdatedScopes) && (
