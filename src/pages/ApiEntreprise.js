@@ -54,10 +54,6 @@ const DonneesDescription = () => (
       </a>
       .
     </p>
-    <p>
-      Pour mémoire, seuls les agents dûment habilités pour traiter cette
-      démarche doivent pouvoir accéder aux données transmises.
-    </p>
   </div>
 );
 
@@ -66,7 +62,7 @@ const DonneesDescription = () => (
 const availableScopes = [
   {
     value: 'entreprises',
-    label: 'Données de référence d’une entité - INSEE & Inforgreffe',
+    label: 'Données de référence d’une entité - INSEE & Infogreffe',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#entreprises',
   },
@@ -174,7 +170,7 @@ const availableScopes = [
   },
   {
     value: 'certificat_rge_ademe',
-    label: 'Certificats RGE (ADEME)',
+    label: 'Certificats RGE - ADEME',
     groupTitle: 'Certifications professionnelles :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_rge_ademe',
   },
