@@ -210,7 +210,7 @@ const FranceConnect = ({
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
-        <DonneesPersonnellesSection />
+        <DonneesPersonnellesSection data_retention_period_helper="À compter de la cessation de la relation contractuelle" />
         <MiseEnOeuvreSection initialContacts={contacts} />
         <CguSection
           cguLink="https://partenaires.franceconnect.gouv.fr/cgu"

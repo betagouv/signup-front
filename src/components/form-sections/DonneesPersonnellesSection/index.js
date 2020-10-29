@@ -4,7 +4,7 @@ import RgpdContact from './RgpdContact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
-const Index = () => {
+const DonneesPersonnellesSection = ({ data_retention_period_helper = '' }) => {
   const {
     disabled,
     onChange,
@@ -60,6 +60,9 @@ const Index = () => {
       <div className="form__group">
         <label htmlFor="data_retention_period">
           Durée de conservation des données en mois
+          {data_retention_period_helper && (
+            <Helper title={data_retention_period_helper} />
+          )}
         </label>
         <input
           type="number"
@@ -115,4 +118,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default DonneesPersonnellesSection;
