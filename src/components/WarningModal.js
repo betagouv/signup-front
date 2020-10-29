@@ -1,5 +1,5 @@
 import React from 'react';
-import AriaModal from 'react-aria-modal';
+import AriaModal from '@justfixnyc/react-aria-modal';
 
 const WarningModal = ({
   handleCancel,

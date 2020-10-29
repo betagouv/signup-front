@@ -17,6 +17,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@justfixnyc/react-aria-modal": "^5.1.2-alpha.0",
     "axios": "^0.18.1",
     "flat": "^4.1.0",
     "js-file-download": "^0.4.12",
@@ -26,7 +27,6 @@
     "piwik-react-router": "^0.12.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
-    "react-aria-modal": "git+https://github.com/rdubigny/react-aria-modal.git",
     "react-dom": "^16.8.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^3.4.4",

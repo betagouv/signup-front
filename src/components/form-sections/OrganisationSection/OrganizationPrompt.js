@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AriaModal from 'react-aria-modal';
+import AriaModal from '@justfixnyc/react-aria-modal';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
