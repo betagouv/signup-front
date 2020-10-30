@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Prompt.css';
-import UnfoldMoreIcon from '../../icons/unfold-more';
-import UnfoldLessIcon from '../../icons/unfold-less';
 import EditIcon from '../../icons/edit';
 import useMostUsedComments from './useMostUsedComments';
 import {
@@ -22,7 +20,6 @@ const Prompt = ({
 }) => {
   const [input, setInput] = useState('');
   const [selectedTemplateIndex, setSelectedTemplateIndex] = useState('');
-  const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(false);
   const [fullEditMode, setFullEditMode] = useState(false);
   const templates = useMostUsedComments(selectedAction, targetApi);
 
@@ -43,10 +40,6 @@ const Prompt = ({
     }
   };
 
-  const toggleShowTemplates = () => {
-    setShowHeaderAndFooter(!showHeaderAndFooter);
-  };
-
   const { senderAddress, subject } = getMailAttributes(
     selectedAction,
     targetApi
@@ -60,7 +53,6 @@ const Prompt = ({
 ${input}
 
 ${mailFooter}`);
-    setShowHeaderAndFooter(false);
     setFullEditMode(true);
   };
 
@@ -74,28 +66,6 @@ ${mailFooter}`);
 
   return (
     <div className="panel">
-      {!fullEditMode && (
-        <button
-          title={
-            showHeaderAndFooter
-              ? "Cacher l'aperçu"
-              : "Voir un aperçu de l'email qui sera envoyé"
-          }
-          aria-label={
-            showHeaderAndFooter
-              ? "Cacher l'aperçu"
-              : "Voir un aperçu de l'email qui sera envoyé"
-          }
-          className="light inline-icon-button toggle-comment-button"
-          onClick={toggleShowTemplates}
-        >
-          {showHeaderAndFooter ? (
-            <UnfoldLessIcon color="var(--grey)" />
-          ) : (
-            <UnfoldMoreIcon color="var(--grey)" />
-          )}
-        </button>
-      )}
       <label htmlFor="comment">{promptMessage}</label>
       {templates.length > 0 && (
         <select
@@ -111,11 +81,7 @@ ${mailFooter}`);
           ))}
         </select>
       )}
-      <div
-        className={`mail-section ${
-          showHeaderAndFooter || fullEditMode ? 'mail-section-opened' : ''
-        }`}
-      >
+      <div className={`mail-section mail-section-opened`}>
         <div className="mail-section-head">
           <div className="mail-section-attributes">
             <b>DE :</b> {senderAddress}
@@ -135,25 +101,23 @@ ${mailFooter}`);
               className="light inline-icon-button toggle-comment-button"
               onClick={switchToFullEditMode}
             >
-              <EditIcon color="var(--grey)" size={17} />
+              Editer <EditIcon color="var(--grey)" size={17} />
             </button>
             {mailHeader}
           </div>
         )}
       </div>
-      <textarea
-        id="comment"
-        cols="80"
-        rows={fullEditMode ? '15' : '5'}
-        value={input}
-        onChange={handleInputChange}
-      />
+      <div className="text-area-wrapper">
+        <textarea
+          id="comment"
+          cols="80"
+          rows={fullEditMode ? '15' : '5'}
+          value={input}
+          onChange={handleInputChange}
+        />
+      </div>
       {!fullEditMode && (
-        <div
-          className={`mail-section ${
-            showHeaderAndFooter ? 'mail-section-opened' : ''
-          }`}
-        >
+        <div className={`mail-section mail-section-opened`}>
           <div className="mail-section-content">{mailFooter}</div>
         </div>
       )}
