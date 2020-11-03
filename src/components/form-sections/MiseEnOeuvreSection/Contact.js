@@ -12,15 +12,20 @@ export const Contact = ({
   email,
   phone_number,
   display_mobile_phone_label = false,
+  backup_email,
+  BackupEmailDescription = () => null,
+  backupEmailPlaceholder = '',
   disabled,
   handleChange,
 }) => (
   <div className="card">
     <div className="card__content">
       <h3>{heading}</h3>
-      <div className="form__group">
-        <div className="text-quote">{description()}</div>
-      </div>
+      {description && (
+        <div className="form__group">
+          <div className="text-quote">{description()}</div>
+        </div>
+      )}
       {typeof given_name !== 'undefined' && typeof family_name !== 'undefined' && (
         <div className="form-row">
           <div className="form-col">
@@ -83,6 +88,26 @@ export const Contact = ({
             } du ${heading}`}
           />
         </div>
+      )}
+      {typeof backup_email !== 'undefined' && (
+        <>
+          <BackupEmailDescription />
+          <div className="form__group">
+            <label htmlFor={`person_${id}_backup_email`}>
+              Email de secours, générique du service et pérenne
+            </label>
+            <input
+              type="email"
+              onChange={handleChange}
+              name={`contacts.${id}.backup_email`}
+              id={`person_${id}_backup_email`}
+              readOnly={disabled}
+              value={backup_email}
+              placeholder={backupEmailPlaceholder}
+              aria-label={`Email de secours du ${heading}`}
+            />
+          </div>
+        </>
       )}
     </div>
   </div>

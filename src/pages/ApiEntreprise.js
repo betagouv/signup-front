@@ -12,28 +12,44 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 import { sample } from 'lodash';
 
+const WarningEmoji = () => (
+  <span role="img" aria-label="Attention">
+    ⚠️
+  </span>
+);
+
+const BackupEmailDescription = () => (
+  <div className="form__group">
+    <div className="text-quote">
+      <p>
+        Veuillez également nous fournir un mail générique du service technique.{' '}
+        <WarningEmoji /> Ce mail doit être valide pour une durée de 3 ans
+        minimum.
+      </p>
+    </div>
+  </div>
+);
+
 const contacts = {
   metier: {
     heading: 'Contact métier',
-    description: () => (
-      <p>
-        Cette personne sera contactée en cas de problème fonctionnel sur votre
-        service.
-      </p>
-    ),
+    family_name: '',
+    given_name: '',
     email: '',
     phone_number: '',
+    backup_email: '',
+    BackupEmailDescription,
+    backupEmailPlaceholder: 'par exemple : tech@votreservice.fr',
   },
   technique: {
     heading: 'Contact technique',
-    description: () => (
-      <p>
-        Cette personne sera contactée en cas de problème technique sur votre
-        service.
-      </p>
-    ),
+    family_name: '',
+    given_name: '',
     email: '',
     phone_number: '',
+    backup_email: '',
+    BackupEmailDescription,
+    backupEmailPlaceholder: 'par exemple : contact-metier@votreservice.fr',
   },
 };
 
@@ -200,6 +216,30 @@ const intitulePlaceholder = sample([
   "« Déclaration d'installation classée pour la protection de l'environnement »",
 ]);
 
+const MiseEnOeuvreDescription = () => (
+  <div className="text-quote">
+    <p>
+      Afin de fluidifier la suite de votre demande, et surtout dans l'objectif
+      de pouvoir vous contacter tout au long de votre utilisation d'API
+      Entreprise, merci de renseigner vos informations de contact.
+    </p>
+    <p>
+      <WarningEmoji /> Si votre demande est validée, il est important qu'API
+      Entreprise puisse vous joindre pour vous avertir d'évolutions, de
+      nouvelles fonctionnalités, ou d'incidents, et surtout de l'expiration de
+      vos jetons d'accès qui intervient tous les 18 mois !
+    </p>
+    <p>
+      C'est pourquoi nous vous demandons deux types d'information de contact :
+      les coordonnées des contacts techniques et métiers actuels. Ainsi qu'un
+      mail générique de contact qui nous permettra de joindre le service
+      technique ou métier dans le cas où le premier mail ne serait plus
+      fonctionnel. Par exemple, tech@votreservice.fr ou encore
+      contact-metier@votreservice.fr
+    </p>
+  </div>
+);
+
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -214,7 +254,7 @@ const ApiEntreprise = ({
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
+        { id: 'contacts-moe', label: 'Contacts' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
@@ -243,7 +283,11 @@ const ApiEntreprise = ({
         />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection initialContacts={contacts} />
+        <MiseEnOeuvreSection
+          sectionTitle="Coordonnées des référents du service"
+          initialContacts={contacts}
+          MiseEnOeuvreDescription={MiseEnOeuvreDescription}
+        />
         <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
       </Form>
     </div>

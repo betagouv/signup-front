@@ -19,7 +19,7 @@ WarningIcon.propTypes = {
 };
 
 WarningIcon.defaultProps = {
-  color: 'none',
+  color: 'black',
 };
 
 export default WarningIcon;
