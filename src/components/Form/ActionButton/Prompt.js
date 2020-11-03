@@ -65,7 +65,7 @@ ${mailFooter}`);
   }[selectedAction];
 
   return (
-    <div className="panel">
+    <div className="panel comment-section-prompt">
       <label htmlFor="comment">{promptMessage}</label>
       {templates.length > 0 && (
         <select
@@ -81,7 +81,7 @@ ${mailFooter}`);
           ))}
         </select>
       )}
-      <div className={`mail-section mail-section-opened`}>
+      <div className={`mail-section`}>
         <div className="mail-section-head">
           <div className="mail-section-attributes">
             <b>DE :</b> {senderAddress}

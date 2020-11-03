@@ -9,14 +9,12 @@
 button.light.toggle-comment-button {
   background-color: transparent;
 }
-.panel > label {
+.comment-section-prompt > label {
   margin-bottom: 10px;
 }
 
 .mail-section {
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.15s ease-out;
   white-space: pre-line;
   background: #ebeff3;
   border-radius: 3px;
@@ -26,6 +24,11 @@ button.light.toggle-comment-button {
   margin: 0.5em 0.875em;
   position: relative;
 }
+.mail-section-content > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .mail-section-head {
   margin: 0.5em 0.875em 0;
@@ -33,12 +36,7 @@ button.light.toggle-comment-button {
   border-bottom: 1px solid var(--grey);
 }
 
-.mail-section-opened {
-  max-height: 500px;
-  transition: max-height 0.25s ease-in;
-}
-
-.panel .text-area-wrapper {
+.comment-section-prompt .text-area-wrapper {
   padding: 0.5em 0.875em;
   background: #ebeff3;
 }
