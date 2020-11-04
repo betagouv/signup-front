@@ -94,7 +94,7 @@ export const Contact = ({
           <BackupEmailDescription />
           <div className="form__group">
             <label htmlFor={`person_${id}_backup_email`}>
-              Email de secours, générique du service et pérenne
+              Email de secours
             </label>
             <input
               type="email"

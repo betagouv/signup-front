@@ -22,9 +22,10 @@ const BackupEmailDescription = () => (
   <div className="form__group">
     <div className="text-quote">
       <p>
-        Veuillez également nous fournir un mail générique du service technique.{' '}
-        <WarningEmoji /> Ce mail doit être valide pour une durée de 3 ans
-        minimum.
+        <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin de
+        garantir que votre service ne soit pas interrompu, merci de renseigner
+        une adresse email de secours au cas ou nous ne parviendrons pas à vous
+        joindre directement (changement de poste, congés, etc.).
       </p>
     </div>
   </div>
@@ -33,23 +34,32 @@ const BackupEmailDescription = () => (
 const contacts = {
   metier: {
     heading: 'Contact métier',
+    description: () => (
+      <p>
+        Nous contacterons cette personne pour vous avertir de nouvelles
+        fonctionnalités ou d'incidents sur nos API.
+      </p>
+    ),
     family_name: '',
     given_name: '',
     email: '',
     phone_number: '',
-    backup_email: '',
-    BackupEmailDescription,
-    backupEmailPlaceholder: 'par exemple : tech@votreservice.fr',
   },
   technique: {
     heading: 'Contact technique',
+    description: () => (
+      <p>
+        Nous contacterons cette personne pour vous avertir des évolutions
+        techniques, des incidents et de l'expiration des jetons.
+      </p>
+    ),
     family_name: '',
     given_name: '',
     email: '',
     phone_number: '',
     backup_email: '',
     BackupEmailDescription,
-    backupEmailPlaceholder: 'par exemple : contact-metier@votreservice.fr',
+    backupEmailPlaceholder: 'tech@exemple.fr',
   },
 };
 
@@ -219,23 +229,8 @@ const intitulePlaceholder = sample([
 const MiseEnOeuvreDescription = () => (
   <div className="text-quote">
     <p>
-      Afin de fluidifier la suite de votre demande, et surtout dans l'objectif
-      de pouvoir vous contacter tout au long de votre utilisation d'API
+      Afin de pouvoir vous contacter tout au long de votre utilisation d'API
       Entreprise, merci de renseigner vos informations de contact.
-    </p>
-    <p>
-      <WarningEmoji /> Si votre demande est validée, il est important qu'API
-      Entreprise puisse vous joindre pour vous avertir d'évolutions, de
-      nouvelles fonctionnalités, ou d'incidents, et surtout de l'expiration de
-      vos jetons d'accès qui intervient tous les 18 mois !
-    </p>
-    <p>
-      C'est pourquoi nous vous demandons deux types d'information de contact :
-      les coordonnées des contacts techniques et métiers actuels. Ainsi qu'un
-      mail générique de contact qui nous permettra de joindre le service
-      technique ou métier dans le cas où le premier mail ne serait plus
-      fonctionnel. Par exemple, tech@votreservice.fr ou encore
-      contact-metier@votreservice.fr
     </p>
   </div>
 );
