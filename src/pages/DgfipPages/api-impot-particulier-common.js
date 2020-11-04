@@ -89,17 +89,16 @@ export const DonneesDescription = () => (
 export const DonneesFootnote = () => (
   <small className="card__meta">
     <i>
-      Des précisions sur les données proposées par l’API Impôt particulier sont
-      disponibles sur{' '}
       <a
-        href="/docs/Description_des_donnees_de_l_API_impot_particulier_081019.pdf"
+        href="/docs/presentation_de_l_api_impot_particulier___v1.6.pdf"
         target="_blank"
         rel="noreferrer noopener"
         aria-label="Document pdf précisant les données proposées"
       >
-        ce document
-      </a>
-      .
+        Ce document
+      </a>{' '}
+      présente les modalités d'appel et de réponse de l'API Impôt particulier,
+      et décrit les données proposées.
     </i>
   </small>
 );
