@@ -4,7 +4,7 @@ import RgpdContact from './RgpdContact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
-const DonneesPersonnellesSection = ({ data_retention_period_helper = '' }) => {
+const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   const {
     disabled,
     onChange,
@@ -60,8 +60,8 @@ const DonneesPersonnellesSection = ({ data_retention_period_helper = '' }) => {
       <div className="form__group">
         <label htmlFor="data_retention_period">
           Durée de conservation des données en mois
-          {data_retention_period_helper && (
-            <Helper title={data_retention_period_helper} />
+          {dataRetentionPeriodHelper && (
+            <Helper title={dataRetentionPeriodHelper} />
           )}
         </label>
         <input

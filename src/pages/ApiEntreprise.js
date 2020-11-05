@@ -12,15 +12,36 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 import CguSection from '../components/form-sections/CguSection';
 import { sample } from 'lodash';
 
+const WarningEmoji = () => (
+  <span role="img" aria-label="Attention">
+    ⚠️
+  </span>
+);
+
+const BackupEmailDescription = () => (
+  <div className="form__group">
+    <div className="text-quote">
+      <p>
+        <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin de
+        garantir que votre service ne soit pas interrompu, merci de renseigner
+        une adresse email de secours au cas ou nous ne parviendrons pas à vous
+        joindre directement (changement de poste, congés, etc.).
+      </p>
+    </div>
+  </div>
+);
+
 const contacts = {
   metier: {
     heading: 'Contact métier',
     description: () => (
       <p>
-        Cette personne sera contactée en cas de problème fonctionnel sur votre
-        service.
+        Nous contacterons cette personne pour vous avertir de nouvelles
+        fonctionnalités ou d'incidents sur nos API.
       </p>
     ),
+    family_name: '',
+    given_name: '',
     email: '',
     phone_number: '',
   },
@@ -28,12 +49,17 @@ const contacts = {
     heading: 'Contact technique',
     description: () => (
       <p>
-        Cette personne sera contactée en cas de problème technique sur votre
-        service.
+        Nous contacterons cette personne pour vous avertir des évolutions
+        techniques, des incidents et de l'expiration des jetons.
       </p>
     ),
+    family_name: '',
+    given_name: '',
     email: '',
     phone_number: '',
+    backup_email: '',
+    BackupEmailDescription,
+    backupEmailPlaceholder: 'tech@exemple.fr',
   },
 };
 
@@ -200,6 +226,15 @@ const intitulePlaceholder = sample([
   "« Déclaration d'installation classée pour la protection de l'environnement »",
 ]);
 
+const MiseEnOeuvreDescription = () => (
+  <div className="text-quote">
+    <p>
+      Afin de pouvoir vous contacter tout au long de votre utilisation d'API
+      Entreprise, merci de renseigner vos informations de contact.
+    </p>
+  </div>
+);
+
 const ApiEntreprise = ({
   match: {
     params: { enrollmentId },
@@ -214,7 +249,7 @@ const ApiEntreprise = ({
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
+        { id: 'contacts-moe', label: 'Contacts' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
@@ -243,7 +278,11 @@ const ApiEntreprise = ({
         />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection initialContacts={contacts} />
+        <MiseEnOeuvreSection
+          sectionTitle="Coordonnées des référents du service"
+          initialContacts={contacts}
+          MiseEnOeuvreDescription={MiseEnOeuvreDescription}
+        />
         <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
       </Form>
     </div>

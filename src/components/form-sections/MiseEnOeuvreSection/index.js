@@ -5,9 +5,18 @@ import { Contact } from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
-const Index = ({
+const MiseEnOeuvreSection = ({
   initialContacts = {},
   AdditionalMiseEnOeuvreContent = () => null,
+  sectionTitle = 'La mise en œuvre du service',
+  MiseEnOeuvreDescription = () => (
+    <div className="text-quote">
+      <p>
+        Afin de fluidifier la suite de votre demande merci de renseigner les
+        informations suivantes.
+      </p>
+    </div>
+  ),
 }) => {
   const {
     disabled,
@@ -41,13 +50,8 @@ const Index = ({
   }
   return (
     <ScrollablePanel scrollableId="contacts-moe">
-      <h2>La mise en œuvre du service</h2>
-      <div className="text-quote">
-        <p>
-          Afin de fluidifier la suite de votre demande merci de renseigner les
-          informations suivantes.
-        </p>
-      </div>
+      <h2>{sectionTitle}</h2>
+      <MiseEnOeuvreDescription />
       <br />
       <AdditionalMiseEnOeuvreContent
         disabled={disabled}
@@ -59,18 +63,18 @@ const Index = ({
           mind that there might be other legacy contact type present in production database that we
           do not want to display here
         */}
-        {!isEmpty(contacts.technique) && (
-          <Contact
-            id={'technique'}
-            {...contacts.technique}
-            disabled={disabled}
-            handleChange={onChange}
-          />
-        )}
         {!isEmpty(contacts.metier) && (
           <Contact
             id={'metier'}
             {...contacts.metier}
+            disabled={disabled}
+            handleChange={onChange}
+          />
+        )}
+        {!isEmpty(contacts.technique) && (
+          <Contact
+            id={'technique'}
+            {...contacts.technique}
             disabled={disabled}
             handleChange={onChange}
           />
@@ -95,9 +99,11 @@ const contactPropTypesShape = {
   }),
 };
 
-Index.propTypes = {
+MiseEnOeuvreSection.propTypes = {
   AdditionalMiseEnOeuvreContent: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
+  sectionTitle: PropTypes.string,
+  MiseEnOeuvreDescription: PropTypes.func,
 };
 
-export default Index;
+export default MiseEnOeuvreSection;
