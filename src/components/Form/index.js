@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
-import { getUserEnrollment } from '../../lib/services';
+import { getUserEnrollment } from '../../services/enrollments';
 import ActionButton from './ActionButton';
 import ActivityFeed from './ActivityFeed';
 import { ScrollablePanel } from '../Scrollable';

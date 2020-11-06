@@ -19,7 +19,7 @@ import {
 import './Stats.css';
 
 import { USER_STATUS_LABELS } from '../lib/enrollment';
-import { getAPIStats } from '../lib/services';
+import { getAPIStats } from '../services/stats';
 import {
   TARGET_API_LABELS,
   TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,

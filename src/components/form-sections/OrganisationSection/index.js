@@ -1,10 +1,8 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash';
 import { UserContext } from '../../UserContext';
-import {
-  getOrganizationActivityDetails,
-  getOrganizationInformation,
-} from '../../../lib/services';
+import { getOrganizationActivityDetails } from '../../../services/external';
+import { getOrganizationInformation } from '../../../services/external';
 import { isValidNAFCode } from '../../../lib';
 import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';

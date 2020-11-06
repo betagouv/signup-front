@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { getUsers } from '../../../lib/services';
+
 import { TARGET_API_LABELS } from '../../../lib/api';
+import { getUsers } from '../../../services/users';
 import Spinner from '../../../components/icons/spinner';
 import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';

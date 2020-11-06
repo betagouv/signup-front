@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { updateUser } from '../../../lib/services';
+import { updateUser } from '../../../services/users';
 
 const RoleCheckboxCell = ({
   value: initialValue,

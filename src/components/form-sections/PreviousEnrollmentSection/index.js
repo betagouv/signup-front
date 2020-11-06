@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { TARGET_API_LABELS } from '../../../lib/api';
 import useAccessToEnrollment from './useAccessToEnrollment';
 import { FormContext } from '../../Form';
-import { getUserValidatedEnrollments } from '../../../lib/services';
+import { getUserValidatedEnrollments } from '../../../services/enrollments';
 import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
 import Helper from '../../Helper';
