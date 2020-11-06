@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DemarcheSection from '../components/form-sections/DemarcheSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
@@ -135,6 +136,7 @@ const ApiParticulier = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'demarche', label: 'Demarche' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -158,6 +160,7 @@ const ApiParticulier = ({
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />
+        <DemarcheSection />
         <DescriptionSection
           intitulePlaceholder={
             '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'

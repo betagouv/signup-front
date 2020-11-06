@@ -44,8 +44,11 @@ class Form extends React.Component {
     document.title = targetApiLabel;
 
     if (!id) {
+      // Only "demarche" parameter will be read in the future.
+      // We keep this for backward compatibility purposes.
       const enrollmentFromUrlParams = getStateFromUrlParams({
         intitule: '',
+        demarche: '',
         description: '',
         data_recipients: '',
         data_retention_period: '',
@@ -53,12 +56,18 @@ class Form extends React.Component {
         fondement_juridique_url: '',
         scopes: {},
       });
+
+      const demarche = enrollmentFromUrlParams.demarche;
+
       return this.setState(({ enrollment: prevEnrollment }) => ({
         isUserEnrollmentLoading: false,
         enrollment: merge(
           {},
           prevEnrollment,
-          omitBy(enrollmentFromUrlParams, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+          omitBy(
+            demarche ? { demarche } : enrollmentFromUrlParams,
+            e => e === null
+          ) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
         ),
       }));
     }
@@ -216,12 +225,12 @@ class Form extends React.Component {
           <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
 
           {!isUserEnrollmentLoading && acl.update && (
-            <>
-              <div className="notification info">
-                Pensez à sauvegarder régulièrement votre demande en brouillon.
-              </div>
-              <DemarcheDescription />
-            </>
+            <div className="notification info">
+              Pensez à sauvegarder régulièrement votre demande en brouillon.
+            </div>
+          )}
+          {!isUserEnrollmentLoading && acl.update && !enrollment.demarche && (
+            <DemarcheDescription />
           )}
         </ScrollablePanel>
 

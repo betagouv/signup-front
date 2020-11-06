@@ -66,3 +66,11 @@ export function getOrganizationInformation(siret) {
       }
     );
 }
+
+export function getDemarches(targetApi) {
+  return httpClient
+    .get(`${BACK_HOST}/api/demarches/${targetApi}`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data }) => data);
+}
