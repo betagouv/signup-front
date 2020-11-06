@@ -18,26 +18,13 @@ const WarningEmoji = () => (
   </span>
 );
 
-const BackupEmailDescription = () => (
-  <div className="form__group">
-    <div className="text-quote">
-      <p>
-        <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin de
-        garantir que votre service ne soit pas interrompu, merci de renseigner
-        une adresse email de secours au cas ou nous ne parviendrons pas à vous
-        joindre directement (changement de poste, congés, etc.).
-      </p>
-    </div>
-  </div>
-);
-
 const contacts = {
   metier: {
     heading: 'Contact métier',
     description: () => (
       <p>
         Nous contacterons cette personne pour vous avertir de nouvelles
-        fonctionnalités ou d'incidents sur nos API.
+        fonctionnalités ou d'incidents majeurs sur nos API.
       </p>
     ),
     family_name: '',
@@ -55,11 +42,22 @@ const contacts = {
     ),
     family_name: '',
     given_name: '',
+    EmailDescription: () => (
+      <div className="form__group">
+        <div className="text-quote">
+          <p>
+            <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois.
+            Afin de garantir que votre service ne soit pas interrompu, merci de
+            renseigner une adresse email générique afin que nous puissions vous
+            transmettre les nouveaux jetons malgré des aléas de changement de
+            poste, congés ou autre.
+          </p>
+        </div>
+      </div>
+    ),
     email: '',
+    emailPlaceholder: 'contact@nom-organisation.fr',
     phone_number: '',
-    backup_email: '',
-    BackupEmailDescription,
-    backupEmailPlaceholder: 'tech@exemple.fr',
   },
 };
 

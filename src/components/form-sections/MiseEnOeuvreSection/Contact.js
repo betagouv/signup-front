@@ -9,12 +9,11 @@ export const Contact = ({
   description,
   given_name,
   family_name,
+  EmailDescription = () => null,
   email,
+  emailPlaceholder = '',
   phone_number,
   display_mobile_phone_label = false,
-  backup_email,
-  BackupEmailDescription = () => null,
-  backupEmailPlaceholder = '',
   disabled,
   handleChange,
 }) => (
@@ -56,6 +55,7 @@ export const Contact = ({
           </div>
         </div>
       )}
+      <EmailDescription />
       <div className="form__group">
         <label htmlFor={`person_${id}_email`}>Email</label>
         <input
@@ -65,6 +65,7 @@ export const Contact = ({
           id={`person_${id}_email`}
           readOnly={disabled}
           value={email}
+          placeholder={emailPlaceholder}
           aria-label={`Email du ${heading}`}
         />
       </div>
@@ -89,26 +90,6 @@ export const Contact = ({
           />
         </div>
       )}
-      {typeof backup_email !== 'undefined' && (
-        <>
-          <BackupEmailDescription />
-          <div className="form__group">
-            <label htmlFor={`person_${id}_backup_email`}>
-              Email de secours
-            </label>
-            <input
-              type="email"
-              onChange={handleChange}
-              name={`contacts.${id}.backup_email`}
-              id={`person_${id}_backup_email`}
-              readOnly={disabled}
-              value={backup_email}
-              placeholder={backupEmailPlaceholder}
-              aria-label={`Email de secours du ${heading}`}
-            />
-          </div>
-        </>
-      )}
     </div>
   </div>
 );
@@ -120,6 +101,7 @@ Contact.propTypes = {
   description: PropTypes.func,
   nom: PropTypes.string,
   email: PropTypes.string,
+  emailPlaceholder: PropTypes.string,
   phone_number: PropTypes.string,
   disabled: PropTypes.bool,
   handleChange: PropTypes.func,
