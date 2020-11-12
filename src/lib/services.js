@@ -87,7 +87,7 @@ export function getEnrollmentCopies(id) {
     .then(({ data: { enrollments: data } }) => data);
 }
 
-export function getNextEnrollment(id) {
+export function getNextEnrollments(id) {
   return httpClient
     .get(`${BACK_HOST}/api/enrollments/${id}/next_enrollment`, {
       headers: {
