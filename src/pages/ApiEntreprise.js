@@ -116,8 +116,8 @@ const availableScopes = [
     link: 'https://entreprise.api.gouv.fr/catalogue/#documents_associations',
   },
   {
-    value: 'actes_bilans_inpi',
-    label: 'Actes et bilans annuels - INPI',
+    value: 'actes_inpi',
+    label: 'Actes - INPI',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#actes_inpi',
   },
@@ -133,6 +133,12 @@ const availableScopes = [
     label: 'Chiffre d’affaires - DGFIP',
     groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#exercices',
+  },
+  {
+    value: 'bilans_inpi',
+    label: 'Bilans annuels - INPI',
+    groupTitle: 'Informations financières :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#bilans_inpi',
   },
   {
     value: 'bilans_entreprise_bdf',
