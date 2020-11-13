@@ -89,7 +89,7 @@ export function getEnrollmentCopies(id) {
 
 export function getNextEnrollments(id) {
   return httpClient
-    .get(`${BACK_HOST}/api/enrollments/${id}/next_enrollment`, {
+    .get(`${BACK_HOST}/api/enrollments/${id}/next_enrollments`, {
       headers: {
         'Content-Type': 'application/json',
       },

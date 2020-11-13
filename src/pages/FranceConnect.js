@@ -13,7 +13,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
-import HasNextEnrollmentNotification from '../components/Form/HasNextEnrollmentNotification';
+import HasNextEnrollmentsNotification from '../components/Form/HasNextEnrollmentsNotification';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -202,7 +202,7 @@ const FranceConnect = ({
         title="Demande d'habilitation juridique à FranceConnect"
         DemarcheDescription={DemarcheDescription}
       >
-        <HasNextEnrollmentNotification enrollmentId={enrollmentId} />
+        <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
         <OrganisationSection />
         <DescriptionSection
           intitulePlaceholder="« Se connecter au portail famille de ma ville »"
