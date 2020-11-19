@@ -124,7 +124,6 @@ const Index = () => {
   useEffect(() => {
     const fetchOrganizationActivityLabel = async activite => {
       try {
-        setIsOrganizationInfoLoading(true);
         const { message } = await getOrganizationActivityDetails(activite);
         setActiviteLabel(message);
       } catch (e) {

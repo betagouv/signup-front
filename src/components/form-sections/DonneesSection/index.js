@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import _, { difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
@@ -20,20 +20,24 @@ const DonneesSection = ({
     enrollment: { additional_content = {}, scopes = {} },
   } = useContext(FormContext);
 
-  if (isEmpty(scopes)) {
-    onChange({
-      target: {
-        name: 'scopes',
-        value: zipObject(
-          availableScopes.map(({ value }) => value),
-          availableScopes.map(
-            ({ mandatory, checkedByDefault }) =>
-              !!mandatory || !!checkedByDefault
-          )
-        ),
-      },
-    });
+  useEffect(() => {
+    if (isEmpty(scopes)) {
+      onChange({
+        target: {
+          name: 'scopes',
+          value: zipObject(
+            availableScopes.map(({ value }) => value),
+            availableScopes.map(
+              ({ mandatory, checkedByDefault }) =>
+                !!mandatory || !!checkedByDefault
+            )
+          ),
+        },
+      });
+    }
+  });
 
+  if (isEmpty(scopes)) {
     return null;
   }
 
