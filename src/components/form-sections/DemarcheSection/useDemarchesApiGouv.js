@@ -11,12 +11,7 @@ const useDemarches = targetApi => {
 
       const demarches = await getDemarches(targetApi);
 
-      setDemarches(
-        objectToCollectionWithKey(demarches).map(e => ({
-          ...e,
-          path: e.path.replace('https://datapass.api.gouv.fr/', '/'),
-        }))
-      );
+      setDemarches(objectToCollectionWithKey(demarches));
     }
 
     fetchDemarches();

@@ -32,6 +32,10 @@ export const Form = ({
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(false);
 
   const enrollmentReducer = (previousEnrollment, action) => {
+    if (!isObject(action)) {
+      return previousEnrollment;
+    }
+
     if (!action.target) {
       const newEnrollment = action;
 

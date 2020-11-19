@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { isEmpty, merge } from 'lodash';
 import { FormContext } from '../../Form';
 import useDemarches from './useDemarchesApiGouv';
 import { ScrollablePanel } from '../../Scrollable';
@@ -6,12 +7,25 @@ import './index.css';
 
 export const DemarcheSection = () => {
   const {
-    enrollment: { id, demarche, target_api },
+    onChange,
+    enrollment: { id, demarche: demarcheId, target_api },
   } = useContext(FormContext);
 
   const demarches = useDemarches(target_api);
 
-  const currentDemarche = demarches.find(({ id }) => id === demarche);
+  useEffect(() => {
+    if (!id) {
+      const current = demarches.find(({ id }) => id === demarcheId);
+      const defaultDemarche =
+        demarches.find(({ id }) => id === 'default') || {};
+
+      if (!isEmpty(demarches) && current) {
+        onChange(merge({}, defaultDemarche.state, current.state));
+      }
+    }
+  }, [id, demarcheId, demarches, onChange]);
+
+  const setDemarcheId = id => onChange({ demarche: id });
 
   if (id) return null;
 
@@ -19,37 +33,21 @@ export const DemarcheSection = () => {
     <ScrollablePanel scrollableId="demarche">
       <h2>Démarche</h2>
       <div className="form__group">
-        {!demarche ? (
-          <label htmlFor="fondement_juridique_url">
-            Quel est votre cas d'usage ?
-          </label>
-        ) : (
-          <>
-            <div className="form__group">
-              Vous avez sélectionné le cas d'usage suivant :{' '}
-            </div>
-            <div className="form__group">
-              <i>{currentDemarche ? currentDemarche.label : 'chargement...'}</i>
-            </div>
-            <div className="form__group">
-              <label htmlFor="fondement_juridique_url">
-                Souhaitez vous sélectionner un autre cas d'usage ?
-              </label>
-            </div>
-          </>
-        )}
-        {demarches.map(({ id, label, path }) => (
-          <a
-            key={id}
-            className={`button-outline ${
-              id === demarche ? 'primary' : 'secondary'
-            }`}
-            href={path}
-          >
-            {label}
-          </a>
-        ))}
+        <label htmlFor="fondement_juridique_url">
+          Souhaitez vous sélectionner un cas d'usage ?
+        </label>
       </div>
+      {demarches.map(({ id, label }) => (
+        <button
+          key={id}
+          className={`button-outline ${
+            id === demarcheId ? 'primary' : 'secondary'
+          }`}
+          onClick={() => setDemarcheId(id)}
+        >
+          {label}
+        </button>
+      ))}
     </ScrollablePanel>
   );
 };
