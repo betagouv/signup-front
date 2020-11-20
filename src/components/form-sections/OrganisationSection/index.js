@@ -127,8 +127,8 @@ const Index = () => {
     const fetchOrganizationActivityLabel = async activite => {
       try {
         setIsOrganizationInfoLoading(true);
-        const { libelle } = await getOrganizationActivityDetails(activite);
-        setActiviteLabel(libelle);
+        const { message } = await getOrganizationActivityDetails(activite);
+        setActiviteLabel(message);
       } catch (e) {
         setActiviteLabel('');
       }
