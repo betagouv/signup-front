@@ -1,26 +1,35 @@
 import React from 'react';
 
 import { TARGET_API_LABELS } from '../../lib/api';
+import NextSteps from './NextSteps';
 
 const getWelcomeMessage = ({
   isOnNewEnrollmentPage,
   targetApi,
   TARGET_API_LABELS,
 }) => {
-  if (isOnNewEnrollmentPage && targetApi === 'franceconnect')
-    return "Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne, ";
-
-  if (isOnNewEnrollmentPage)
-    return `Vous souhaitez connecter votre service en ligne à « ${
-      TARGET_API_LABELS[targetApi]
-    } », `;
-
-  if (TARGET_API_LABELS[targetApi])
-    return `Vous souhaitez suivre le traitement d'une demande d'habilitation à « ${
-      TARGET_API_LABELS[targetApi]
-    } », `;
-
-  return "Vous souhaitez suivre le traitement d'une demande d'habilitation, ";
+  let message = '';
+  if (isOnNewEnrollmentPage) {
+    if (targetApi === 'franceconnect') {
+      message =
+        "Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne";
+    } else {
+      message = `Vous souhaitez connecter votre service en ligne à « ${
+        TARGET_API_LABELS[targetApi]
+      } »`;
+    }
+    return `${message}, votre demande va se dérouler en 4 étapes :`;
+  } else {
+    if (TARGET_API_LABELS[targetApi]) {
+      message = `Vous souhaitez suivre le traitement d'une demande d'habilitation à « ${
+        TARGET_API_LABELS[targetApi]
+      } »`;
+    } else {
+      message =
+        "Vous souhaitez suivre le traitement d'une demande d'habilitation";
+    }
+    return `${message}, merci de vous identifier afin que nous puissions configurer vos accès.`;
+  }
 };
 
 const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
@@ -45,13 +54,16 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
               En savoir plus
             </a>
           </p>
+          <p>
+            Pour faire une demande d'accès, allez sur{' '}
+            <a href="https://api.gouv.fr/rechercher-api">api.gouv</a> et faites
+            une demande à l'API de votre choix.
+          </p>
         </>
       )}
       <p className="call-to-action">
         {welcomeMessage}
-        {isOnNewEnrollmentPage
-          ? 'merci de créer un compte pour déposer votre demande et suivre son traitement.'
-          : 'merci de vous identifier afin que nous puissions configurer vos accès.'}
+        {isOnNewEnrollmentPage && <NextSteps />}
       </p>
     </>
   );

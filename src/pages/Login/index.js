@@ -5,10 +5,35 @@ import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
+import ButtonLink from '../../atoms/buttonLink';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export const Login = () => {
+const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
+  if (!isOnNewEnrollmentPage) {
+    return (
+      <WelcomeMessage
+        isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+        targetApi={targetApi}
+      />
+    );
+  }
+  switch (targetApi) {
+    case 'api_impot_particulier_fc_sandbox':
+      return <ApiImpotParticulierFcSandboxWelcomeMessage />;
+    case 'api_impot_particulier_sandbox':
+      return <ApiImpotParticulierSandboxWelcomeMessage />;
+    default:
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+        />
+      );
+  }
+};
+
+const LoginButtons = ({ isOnNewEnrollmentPage }) => {
   const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
     prompt: 'login',
   })}`;
@@ -17,7 +42,28 @@ export const Login = () => {
       prompt: 'create_account',
     }
   )}`;
+  return (
+    <div className="login-buttons">
+      <ButtonLink
+        className="button-outline primary"
+        href={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
+        referrerPolicy="no-referrer-when-downgrade"
+      >
+        {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
+      </ButtonLink>
+      <span className="login-buttons-or">ou</span>
+      <ButtonLink
+        className="button primary"
+        href={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
+        referrerPolicy="no-referrer-when-downgrade"
+      >
+        {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
+      </ButtonLink>
+    </div>
+  );
+};
 
+export const Login = () => {
   const targetApi = (window.location.pathname.split('/')[1] || '').replace(
     /-/g,
     '_'
@@ -37,51 +83,11 @@ export const Login = () => {
               height="90"
             />
           )}
-          {(isOnNewEnrollmentPage &&
-            {
-              api_impot_particulier_fc_sandbox: (
-                <ApiImpotParticulierFcSandboxWelcomeMessage />
-              ),
-              api_impot_particulier_sandbox: (
-                <ApiImpotParticulierSandboxWelcomeMessage />
-              ),
-            }[targetApi]) || (
-            <WelcomeMessage
-              isOnNewEnrollmentPage={isOnNewEnrollmentPage}
-              targetApi={targetApi}
-            />
-          )}
-          <div className="login-buttons">
-            {isOnNewEnrollmentPage ? (
-              <>
-                <a
-                  className="button-outline primary"
-                  href={loginUrl}
-                  referrerPolicy="no-referrer-when-downgrade"
-                >
-                  Se connecter
-                </a>
-                <span className="login-buttons-or">ou</span>
-                <a className="button primary" href={createAccountUrl}>
-                  Créer un compte
-                </a>
-              </>
-            ) : (
-              <>
-                <a className="button-outline primary" href={createAccountUrl}>
-                  Créer un compte
-                </a>
-                <span className="login-buttons-or">ou</span>
-                <a
-                  className="button primary"
-                  href={loginUrl}
-                  referrerPolicy="no-referrer-when-downgrade"
-                >
-                  Se connecter
-                </a>
-              </>
-            )}
-          </div>
+          <WelcomeMessageRouter
+            targetApi={targetApi}
+            isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          />
+          <LoginButtons isOnNewEnrollmentPage={isOnNewEnrollmentPage} />
         </div>
       </div>
     </section>
