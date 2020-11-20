@@ -130,7 +130,7 @@ const Index = () => {
         const { message } = await getOrganizationActivityDetails(activite);
         setActiviteLabel(message);
       } catch (e) {
-        setActiviteLabel('');
+        setActiviteLabel('Code inconnu');
       }
     };
     if (activite) {
