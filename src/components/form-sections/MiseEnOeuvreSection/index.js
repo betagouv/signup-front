@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import { Contact } from './Contact';
@@ -24,30 +24,36 @@ const MiseEnOeuvreSection = ({
     enrollment: { contacts, additional_content = {} },
   } = useContext(FormContext);
 
-  // initialize contacts
+  useEffect(() => {
+    if (isEmpty(contacts)) {
+      // initialize contacts
+      const defaultContacts = {
+        technique: {
+          heading: 'Responsable technique',
+          description: () => (
+            <p>
+              Cette personne recevra les accès techniques par mail. Le
+              responsable technique peut être le contact technique de votre
+              prestataire.
+            </p>
+          ),
+          email: '',
+        },
+      };
+
+      onChange({
+        target: {
+          name: 'contacts',
+          value: !isEmpty(initialContacts) ? initialContacts : defaultContacts,
+        },
+      });
+    }
+  });
+
   if (isEmpty(contacts)) {
-    const defaultContacts = {
-      technique: {
-        heading: 'Responsable technique',
-        description: () => (
-          <p>
-            Cette personne recevra les accès techniques par mail. Le responsable
-            technique peut être le contact technique de votre prestataire.
-          </p>
-        ),
-        email: '',
-      },
-    };
-
-    onChange({
-      target: {
-        name: 'contacts',
-        value: !isEmpty(initialContacts) ? initialContacts : defaultContacts,
-      },
-    });
-
     return null;
   }
+
   return (
     <ScrollablePanel scrollableId="contacts-moe">
       <h2>{sectionTitle}</h2>

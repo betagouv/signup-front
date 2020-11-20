@@ -3,11 +3,11 @@ import {
   getEnrollments,
   getUserEnrollment,
   serializeEnrollment,
-} from './services';
+} from './enrollments';
 import * as UserContext from '../components/UserContext';
-import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment';
-import ENROLLMENTS from '../../mock/api/get-user-enrollments-response';
-import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment';
+import FIRST_ENROLLMENT_1 from '../../mock/enrollment-form/first-form-enrollment.json';
+import ENROLLMENTS from '../../mock/api/get-user-enrollments-response.json';
+import SENT_ENROLLMENT from '../../mock/enrollment-form/sent-enrollment.json';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 

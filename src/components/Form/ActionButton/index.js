@@ -5,7 +5,7 @@ import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   triggerEnrollment,
-} from '../../../lib/services';
+} from '../../../services/enrollments';
 import Prompt from './Prompt';
 import { getErrorMessages } from '../../../lib';
 import Spinner from '../../icons/spinner';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { TARGET_API_LABELS } from '../../lib/api';
-import { getNextEnrollments } from '../../lib/services';
+import { getNextEnrollments } from '../../services/enrollments';
 
 const formatNextEnrollment = enrollment =>
   `${TARGET_API_LABELS[enrollment.target_api] || enrollment.target_api} : #${

@@ -5,7 +5,7 @@ import { groupBy } from 'lodash';
 import './UserEnrollments.css';
 
 import { openLink } from '../../lib';
-import { getUserEnrollments } from '../../lib/services';
+import { getUserEnrollments } from '../../services/enrollments';
 
 import AddIcon from '../../components/icons/add';
 import Spinner from '../../components/icons/spinner';

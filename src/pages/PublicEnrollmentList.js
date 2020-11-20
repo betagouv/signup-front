@@ -5,7 +5,7 @@ import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
 import moment from 'moment';
 
-import { getPublicValidatedEnrollments } from '../lib/services';
+import { getPublicValidatedEnrollments } from '../services/enrollments';
 import { enrollmentListStyle } from '../lib/enrollment';
 import {
   TARGET_API_LABELS,

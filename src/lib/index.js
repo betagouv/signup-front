@@ -213,7 +213,7 @@ export function objectToCollectionWithKey(object) {
       .toPairs()
       // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
       .map(([id, attributes]) => ({ id, ...attributes }))
-      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
+      // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
       .value()
   );
 }

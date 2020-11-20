@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import Spinner from '../components/icons/spinner';
-import { getUserEnrollment } from '../lib/services';
+import { getUserEnrollment } from '../services/enrollments';
 import { Redirect } from 'react-router-dom';
 
 const Enrollment = ({

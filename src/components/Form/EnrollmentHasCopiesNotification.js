@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getEnrollmentCopies } from '../../lib/services';
+import { getEnrollmentCopies } from '../../services/enrollments';
 import { isEmpty } from 'lodash';
 
 const EnrollmentHasCopiesNotification = ({ enrollmentId }) => {

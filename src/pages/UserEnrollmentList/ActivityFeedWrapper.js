@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import ActivityFeed from '../../components/Form/ActivityFeed';
-import { getCachedMajorityPercentileProcessingTimeInDays } from '../../lib/services';
+import { getCachedMajorityPercentileProcessingTimeInDays } from '../../services/stats';
 
 const ActivityFeedWrapper = ({ events, status, target_api }) => {
   const [
