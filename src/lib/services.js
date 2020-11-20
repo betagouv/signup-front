@@ -269,7 +269,7 @@ export function getOrganizationInformation(siret) {
 
 export function getOrganizationActivityDetails(NafCode) {
   return httpClient
-    .get(`${BACK_HOST}/api/insee-proxy/naf/${NafCode}`, {
+    .get(`${BACK_HOST}/api/insee/naf/${NafCode}`, {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data);
