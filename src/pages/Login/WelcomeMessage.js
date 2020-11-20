@@ -61,10 +61,10 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
           </p>
         </>
       )}
-      <p className="call-to-action">
-        {welcomeMessage}
+      <div>
+        <p className="call-to-action">{welcomeMessage}</p>
         {isOnNewEnrollmentPage && <NextSteps />}
-      </p>
+      </div>
     </>
   );
 };
