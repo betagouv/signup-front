@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DemarcheSection from '../components/form-sections/DemarcheSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
@@ -249,6 +250,7 @@ const ApiEntreprise = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'service-numerique', label: 'Service numérique' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -275,6 +277,7 @@ const ApiEntreprise = ({
         title="Demande d'accès à l'API Entreprise"
       >
         <OrganisationSection />
+        <DemarcheSection />
         <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
         <DonneesSection
           availableScopes={availableScopes}
