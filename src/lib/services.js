@@ -262,10 +262,7 @@ export function getOrganizationActivityDetails(NafCode) {
     .get(`${BACK_HOST}/api/insee/naf/${NafCode}`, {
       headers: { 'Content-type': 'application/json' },
     })
-    .then(({ data }) => data)
-    .catch(() => {
-      return { message: 'Code inconnu' };
-    });
+    .then(({ data }) => data);
 }
 
 export function getMostUsedComments({ eventName, targetApi } = {}) {
