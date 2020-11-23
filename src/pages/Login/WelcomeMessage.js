@@ -34,8 +34,6 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
     targetApi,
   });
 
-  console.log(message);
-
   return (
     <>
       {isOnNewEnrollmentPage ? (
