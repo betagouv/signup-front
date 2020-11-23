@@ -3,11 +3,7 @@ import React from 'react';
 import { TARGET_API_LABELS } from '../../lib/api';
 import NextSteps from './NextSteps';
 
-const getWelcomeMessage = ({
-  isOnNewEnrollmentPage,
-  targetApi,
-  TARGET_API_LABELS,
-}) => {
+const getWelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
   let message = '';
   if (isOnNewEnrollmentPage) {
     if (targetApi === 'franceconnect') {
@@ -18,7 +14,7 @@ const getWelcomeMessage = ({
         TARGET_API_LABELS[targetApi]
       } »`;
     }
-    return `${message}, votre demande va se dérouler en 4 étapes :`;
+    return message;
   } else {
     if (TARGET_API_LABELS[targetApi]) {
       message = `Vous souhaitez suivre le traitement d'une demande d'habilitation à « ${
@@ -28,16 +24,17 @@ const getWelcomeMessage = ({
       message =
         "Vous souhaitez suivre le traitement d'une demande d'habilitation";
     }
-    return `${message}, merci de vous identifier afin que nous puissions configurer vos accès.`;
+    return message;
   }
 };
 
 const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
-  const welcomeMessage = getWelcomeMessage({
+  const message = getWelcomeMessage({
     isOnNewEnrollmentPage,
     targetApi,
-    TARGET_API_LABELS,
   });
+
+  console.log(message);
 
   return (
     <>
@@ -62,8 +59,24 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
         </>
       )}
       <div>
-        <p className="call-to-action">{welcomeMessage}</p>
-        {isOnNewEnrollmentPage && <NextSteps />}
+        <div className="call-to-action">
+          {isOnNewEnrollmentPage ? (
+            <>
+              {message}, votre demande va se dérouler en 4 étapes :
+              <NextSteps targetApi={targetApi} />
+              <p>
+                Merci de <b>créer un compte</b> pour déposer votre demande et
+                suivre son traitement.
+                <br /> Si vous possédez déja un compte, identifiez-vous.
+              </p>
+            </>
+          ) : (
+            <>
+              {message}, merci de vous identifier afin que nous puissions
+              configurer vos accès.
+            </>
+          )}
+        </div>
       </div>
     </>
   );

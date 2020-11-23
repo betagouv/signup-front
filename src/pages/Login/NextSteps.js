@@ -1,47 +1,70 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import AuthIcon from '../../components/icons/auth';
 import DemandeIcon from '../../components/icons/demande';
 import HabilitationIcon from '../../components/icons/habilitation';
 import TokenIcon from '../../components/icons/token';
+import { getCachedMajorityPercentileProcessingTimeInDays } from '../../lib/services';
 
-const NextSteps = () => (
-  <>
-    <div className="next-steps">
-      <div>
+const NextSteps = ({ targetApi }) => {
+  const [stat, setStat] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+      const {
+        data: { majority_percentile_processing_time_in_days },
+      } = await getCachedMajorityPercentileProcessingTimeInDays(targetApi);
+      setStat(majority_percentile_processing_time_in_days);
+    }
+
+    fetchData();
+  }, [targetApi]);
+
+  return (
+    <>
+      <div className="next-steps">
         <div>
-          <AuthIcon />
+          <div>
+            <AuthIcon />
+          </div>
+          <div>S’authentifier</div>
         </div>
-        <div>S’authentifier</div>
-      </div>
-      <div className="separator">⇢</div>
-      <div>
         <div>
-          <DemandeIcon />
+          <div>
+            <DemandeIcon />
+          </div>
+          <div>Remplir sa demande</div>
         </div>
-        <div>Remplir sa demande</div>
-      </div>
-      <div className="separator">⇢</div>
-      <div>
         <div>
-          <HabilitationIcon />
+          <div>
+            <HabilitationIcon />
+          </div>
+          <div>Être habilité</div>
         </div>
-        <div>Être habilité</div>
-      </div>
-      <div className="separator">⇢</div>
-      <div>
         <div>
-          <TokenIcon />
+          <div>
+            <TokenIcon />
+          </div>
+          <div>Recevoir son token</div>
         </div>
-        <div>Recevoir son token</div>
       </div>
-    </div>
-    <p>
-      Merci de <b>créer un compte</b> pour déposer votre demande et suivre son
-      traitement.
-      <br /> Si vous possédez déja un compte, identifiez-vous.
-    </p>
-  </>
-);
+      <div className="timeline">
+        <div>
+          <div className="step" />
+        </div>
+        <div>
+          <div className="step" />
+          {stat && <div className="time-indication">~ {stat} jour(s)</div>}
+        </div>
+        <div>
+          <div className="step" />
+        </div>
+        <div>
+          <div className="step" />
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default NextSteps;
