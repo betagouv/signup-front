@@ -4,7 +4,7 @@ import AuthIcon from '../../components/icons/auth';
 import DemandeIcon from '../../components/icons/demande';
 import HabilitationIcon from '../../components/icons/habilitation';
 import TokenIcon from '../../components/icons/token';
-import { getCachedMajorityPercentileProcessingTimeInDays } from '../../lib/services';
+import { getCachedMajorityPercentileProcessingTimeInDays } from '../../services/stats';
 
 const NextSteps = ({ targetApi }) => {
   const [stat, setStat] = useState(null);
