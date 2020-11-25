@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const demande = ({ color }) => (
+const demandeIcon = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -24,12 +24,12 @@ const demande = ({ color }) => (
   </svg>
 );
 
-demande.propTypes = {
+demandeIcon.propTypes = {
   color: PropTypes.string,
 };
 
-demande.defaultProps = {
+demandeIcon.defaultProps = {
   color: undefined,
 };
 
-export default demande;
+export default demandeIcon;

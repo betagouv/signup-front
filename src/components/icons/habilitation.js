@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const habilitation = ({ color = undefined }) => (
+const habilitationIcon = ({ color = undefined }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -24,12 +24,12 @@ const habilitation = ({ color = undefined }) => (
   </svg>
 );
 
-habilitation.propTypes = {
+habilitationIcon.propTypes = {
   color: PropTypes.string,
 };
 
-habilitation.defaultProps = {
+habilitationIcon.defaultProps = {
   color: undefined,
 };
 
-export default habilitation;
+export default habilitationIcon;

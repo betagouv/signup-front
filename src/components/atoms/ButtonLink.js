@@ -2,13 +2,9 @@ import React from 'react';
 
 const LinkAsAButton = ({
   href,
-  alt,
-  rel,
   target,
-  disabled,
   children,
   className,
-  size,
   referrerPolicy,
   onClick = () => {},
 }) => (
@@ -24,16 +20,7 @@ const LinkAsAButton = ({
   </a>
 );
 
-const ClassicButton = ({
-  type,
-  onClick,
-  alt,
-  size,
-  disabled,
-  referrerPolicy,
-  className,
-  children,
-}) => (
+const ClassicButton = ({ type, onClick, className, children }) => (
   <button onClick={onClick} type={type} className={className}>
     {children}
   </button>
@@ -41,12 +28,8 @@ const ClassicButton = ({
 
 const ButtonLink = ({
   href,
-  alt,
-  rel,
   target,
-  disabled,
   children,
-  size,
   type,
   onClick,
   referrerPolicy,
@@ -56,12 +39,8 @@ const ButtonLink = ({
     return (
       <LinkAsAButton
         href={href}
-        rel={rel}
         target={target}
-        alt={alt}
-        disabled={disabled}
         children={children}
-        size={size}
         onClick={onClick}
         className={className}
         referrerPolicy={referrerPolicy}
@@ -73,15 +52,13 @@ const ButtonLink = ({
       <ClassicButton
         onClick={onClick}
         type={type}
-        alt={alt}
-        disabled={disabled}
         className={className}
         children={children}
         size={size}
       />
     );
   }
-  throw new Error('Should not happen');
+  throw new Error("Please specify either 'href', 'onClick' or 'type' props");
 };
 
 export default ButtonLink;

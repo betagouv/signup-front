@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const auth = ({ color }) => (
+const authIcon = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -24,12 +24,12 @@ const auth = ({ color }) => (
   </svg>
 );
 
-auth.propTypes = {
+authIcon.propTypes = {
   color: PropTypes.string,
 };
 
-auth.defaultProps = {
+authIcon.defaultProps = {
   color: undefined,
 };
 
-export default auth;
+export default authIcon;

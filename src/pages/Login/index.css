@@ -23,9 +23,10 @@
 .timeline {
   display: flex;
   justify-content: space-between;
-  align-items: start;
+  align-items: flex-start;
   margin: 30px 0 15px;
 }
+
 .timeline {
   margin: 0 0 50px;
   align-items: center;
@@ -41,6 +42,7 @@
   color: var(--blue);
   font-weight: bold;
 }
+
 .timeline > div {
   width: 25%;
   display: flex;
@@ -66,10 +68,12 @@
   background-color: var(--blue);
   opacity: 0.15;
 }
+
 .timeline > div:first-of-type:before,
 .timeline > div:last-of-type:after {
   opacity: 0;
 }
+
 .timeline .step {
   height: 7px;
   width: 7px;
@@ -80,6 +84,7 @@
 .next-steps svg {
   fill: var(--blue);
 }
+
 .next-steps .prepare > ul {
   padding: 10px;
   margin: 0;

@@ -49,11 +49,6 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
               En savoir plus
             </a>
           </p>
-          <p>
-            Pour faire une demande d'accès, allez sur{' '}
-            <a href="https://api.gouv.fr/rechercher-api">api.gouv</a> et faites
-            une demande à l'API de votre choix.
-          </p>
         </>
       )}
       <div>

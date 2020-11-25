@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const token = ({ color }) => (
+const tokenIcon = ({ color }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height="24"
@@ -24,12 +24,12 @@ const token = ({ color }) => (
   </svg>
 );
 
-token.propTypes = {
+tokenIcon.propTypes = {
   color: PropTypes.string,
 };
 
-token.defaultProps = {
+tokenIcon.defaultProps = {
   color: undefined,
 };
 
-export default token;
+export default tokenIcon;

@@ -5,7 +5,7 @@ import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
-import ButtonLink from '../../atoms/buttonLink';
+import ButtonLink from '../../components/atoms/ButtonLink';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
