@@ -1,33 +1,37 @@
 import React from 'react';
 
 import { TARGET_API_LABELS } from '../../lib/api';
+import NextSteps from './NextSteps';
 
-const getWelcomeMessage = ({
-  isOnNewEnrollmentPage,
-  targetApi,
-  TARGET_API_LABELS,
-}) => {
-  if (isOnNewEnrollmentPage && targetApi === 'franceconnect')
-    return "Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne, ";
-
-  if (isOnNewEnrollmentPage)
-    return `Vous souhaitez connecter votre service en ligne à « ${
-      TARGET_API_LABELS[targetApi]
-    } », `;
-
-  if (TARGET_API_LABELS[targetApi])
-    return `Vous souhaitez suivre le traitement d'une demande d'habilitation à « ${
-      TARGET_API_LABELS[targetApi]
-    } », `;
-
-  return "Vous souhaitez suivre le traitement d'une demande d'habilitation, ";
+const getWelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
+  let message = '';
+  if (isOnNewEnrollmentPage) {
+    if (targetApi === 'franceconnect') {
+      message =
+        "Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne";
+    } else {
+      message = `Vous souhaitez connecter votre service en ligne à « ${
+        TARGET_API_LABELS[targetApi]
+      } »`;
+    }
+    return message;
+  } else {
+    if (TARGET_API_LABELS[targetApi]) {
+      message = `Vous souhaitez suivre le traitement d'une demande d'habilitation à « ${
+        TARGET_API_LABELS[targetApi]
+      } »`;
+    } else {
+      message =
+        "Vous souhaitez suivre le traitement d'une demande d'habilitation";
+    }
+    return message;
+  }
 };
 
 const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
-  const welcomeMessage = getWelcomeMessage({
+  const message = getWelcomeMessage({
     isOnNewEnrollmentPage,
     targetApi,
-    TARGET_API_LABELS,
   });
 
   return (
@@ -47,12 +51,24 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
           </p>
         </>
       )}
-      <p className="call-to-action">
-        {welcomeMessage}
-        {isOnNewEnrollmentPage
-          ? 'merci de créer un compte pour déposer votre demande et suivre son traitement.'
-          : 'merci de vous identifier afin que nous puissions configurer vos accès.'}
-      </p>
+      <div className="call-to-action">
+        {isOnNewEnrollmentPage ? (
+          <>
+            {message}, votre demande va se dérouler en 4 étapes :
+            <NextSteps targetApi={targetApi} />
+            <p>
+              Merci de <b>créer un compte</b> pour déposer votre demande et
+              suivre son traitement.
+              <br /> Si vous possédez déja un compte, identifiez-vous.
+            </p>
+          </>
+        ) : (
+          <>
+            {message}, merci de vous identifier afin que nous puissions
+            configurer vos accès.
+          </>
+        )}
+      </div>
     </>
   );
 };
