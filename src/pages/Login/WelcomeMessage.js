@@ -51,25 +51,23 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
           </p>
         </>
       )}
-      <div>
-        <div className="call-to-action">
-          {isOnNewEnrollmentPage ? (
-            <>
-              {message}, votre demande va se dérouler en 4 étapes :
-              <NextSteps targetApi={targetApi} />
-              <p>
-                Merci de <b>créer un compte</b> pour déposer votre demande et
-                suivre son traitement.
-                <br /> Si vous possédez déja un compte, identifiez-vous.
-              </p>
-            </>
-          ) : (
-            <>
-              {message}, merci de vous identifier afin que nous puissions
-              configurer vos accès.
-            </>
-          )}
-        </div>
+      <div className="call-to-action">
+        {isOnNewEnrollmentPage ? (
+          <>
+            {message}, votre demande va se dérouler en 4 étapes :
+            <NextSteps targetApi={targetApi} />
+            <p>
+              Merci de <b>créer un compte</b> pour déposer votre demande et
+              suivre son traitement.
+              <br /> Si vous possédez déja un compte, identifiez-vous.
+            </p>
+          </>
+        ) : (
+          <>
+            {message}, merci de vous identifier afin que nous puissions
+            configurer vos accès.
+          </>
+        )}
       </div>
     </>
   );

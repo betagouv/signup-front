@@ -9,7 +9,6 @@ const LinkAsAButton = ({
   onClick = () => {},
 }) => (
   <a
-    rel={rel}
     target={target}
     onClick={onClick}
     referrerPolicy={referrerPolicy}
@@ -54,7 +53,6 @@ const ButtonLink = ({
         type={type}
         className={className}
         children={children}
-        size={size}
       />
     );
   }
