@@ -29,7 +29,7 @@ export const Form = ({
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
-  const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(false);
+  const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
 
   const enrollmentReducer = (previousEnrollment, action) => {
     if (!isObject(action)) {
@@ -67,10 +67,9 @@ export const Form = ({
   useEffect(() => {
     async function fetchUserEnrollment() {
       try {
-        setIsUserEnrollmentLoading(true);
         const userEnrollment = await getUserEnrollment(enrollmentId);
-        setIsUserEnrollmentLoading(false);
         dispatchSetEnrollment(userEnrollment);
+        setIsUserEnrollmentLoading(false);
       } catch (error) {
         if (error.response && error.response.status === 404) {
           history.push('/');
@@ -96,6 +95,7 @@ export const Form = ({
 
       const { demarche } = enrollmentFromUrlParams;
       dispatchSetEnrollment(demarche ? { demarche } : enrollmentFromUrlParams);
+      setIsUserEnrollmentLoading(false);
     }
   }, [enrollmentId, history]);
 
