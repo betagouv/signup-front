@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
+import DemarcheSection from '../components/form-sections/DemarcheSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
@@ -224,6 +225,84 @@ const availableScopes = [
   },
 ];
 
+const demarches = {
+  default: {
+    label: 'Demande libre',
+    about: 'https://entreprise.api.gouv.fr/use_cases/autres/',
+    state: {
+      scopes: {
+        entreprises: false,
+        etablissements: false,
+        extraits_rcs: false,
+        associations: false,
+        documents_association: false,
+        actes_inpi: false,
+        conventions_collectives: false,
+        exercices: false,
+        bilans_inpi: false,
+        bilans_entreprise_bdf: false,
+        liasse_fiscale: false,
+        attestations_fiscales: false,
+        attestations_sociales: false,
+        attestations_agefiph: false,
+        msa_cotisations: false,
+        probtp: false,
+        fntp_carte_pro: false,
+        certificat_cnetp: false,
+        certificat_rge_ademe: false,
+        qualibat: false,
+        certificat_opqibi: false,
+        extrait_court_inpi: false,
+      },
+    },
+  },
+  'marche-public': {
+    label: 'Marchés publics',
+    about: 'https://entreprise.api.gouv.fr/use_cases/marches_publics/',
+    state: {
+      scopes: {
+        entreprises: true,
+        etablissements: true,
+        extraits_rcs_infogreffe: true,
+        associations: true,
+        documents_associations: true,
+        actes_inpi: true,
+        conventions_collectives: true,
+        exercices: true,
+        bilans_inpi: true,
+        attestations_fiscales_dgfip: true,
+        attestations_sociales_acoss: true,
+        attestations_agefiph: true,
+        cotisations_msa: true,
+        cotisation_retraite_probtp: true,
+        cartes_professionnelles_fntp: true,
+        certificats_cnetp: true,
+        certificats_rge_ademe: true,
+        certificats_qualibat: true,
+        certificats_opqibi: true,
+        extraits_courts_inpi: true,
+      },
+    },
+  },
+  'aides-publiques': {
+    label: 'Aides publiques',
+    about: 'https://entreprise.api.gouv.fr/use_cases/aides_publiques/',
+    state: {
+      scopes: {},
+    },
+  },
+  'aide-covid': {
+    label: "Aide d'urgence régionale Covid-19 aux TPE",
+    about: 'https://entreprise.api.gouv.fr/use_cases/covid-19/',
+    state: {
+      scopes: {
+        entreprises: true,
+        effectifs_acoss: true,
+      },
+    },
+  },
+};
+
 const intitulePlaceholder = sample([
   '« Pré-remplissage du formulaire de création de compte des entreprise »',
   '« Simplification des demandes de subvention de la région »',
@@ -249,6 +328,7 @@ const ApiEntreprise = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'service-numerique', label: 'Service numérique' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -275,6 +355,7 @@ const ApiEntreprise = ({
         title="Demande d'accès à l'API Entreprise"
       >
         <OrganisationSection />
+        <DemarcheSection demarches={demarches} />
         <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
         <DonneesSection
           availableScopes={availableScopes}

@@ -1,19 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { isEmpty, merge } from 'lodash';
 import { FormContext } from '../../Form';
-import useDemarches from './useDemarchesApiGouv';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
 import OpenInNewIcon from '../../icons/open-in-new';
 
-export const DemarcheSection = () => {
+export const DemarcheSection = ({ demarches }) => {
   const {
     onChange,
-    enrollment: { id, demarche: selectedDemarcheId, target_api },
+    enrollment: { id: enrollmentId, demarche: selectedDemarcheId },
   } = useContext(FormContext);
 
   const [showInfo, setShowInfo] = useState(false);
-  const demarches = useDemarches(target_api);
 
   useEffect(
     () => setShowInfo(selectedDemarcheId && selectedDemarcheId !== 'default'),
@@ -21,18 +20,17 @@ export const DemarcheSection = () => {
   );
 
   useEffect(() => {
-    if (!id) {
-      const current = demarches.find(({ id }) => id === selectedDemarcheId);
-      const defaultDemarche =
-        demarches.find(({ id }) => id === 'default') || {};
+    if (!enrollmentId) {
+      const current = demarches[selectedDemarcheId];
+      const defaultDemarche = demarches.default || {};
 
       if (!isEmpty(demarches) && current) {
         onChange(merge({}, defaultDemarche.state, current.state));
       }
     }
-  }, [id, selectedDemarcheId, demarches, onChange]);
+  }, [enrollmentId, selectedDemarcheId, demarches, onChange]);
 
-  if (id) return null;
+  if (enrollmentId) return null;
 
   return (
     <>
@@ -50,22 +48,20 @@ export const DemarcheSection = () => {
           value={selectedDemarcheId}
           onChange={onChange}
         >
-          {demarches.map(({ id, label }) => (
-            <option key={id} value={id}>
-              {label}
+          {Object.keys(demarches).map(demarcheId => (
+            <option key={demarcheId} value={demarcheId}>
+              {demarches[demarcheId].label}
             </option>
           ))}
         </select>
-        {demarches && selectedDemarcheId && (
+        {!isEmpty(demarches) && selectedDemarcheId && (
           <small className="card__meta">
             <i>
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
-                href={
-                  demarches.find(({ id }) => id === selectedDemarcheId).about
-                }
+                href={demarches[selectedDemarcheId].about}
               >
                 Consulter le détail de ce cas d'usage{' '}
                 <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
@@ -82,6 +78,10 @@ export const DemarcheSection = () => {
       )}
     </>
   );
+};
+
+DemarcheSection.propTypes = {
+  demarches: PropTypes.object.isRequired,
 };
 
 export default DemarcheSection;
