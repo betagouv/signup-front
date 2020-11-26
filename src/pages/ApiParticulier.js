@@ -126,6 +126,121 @@ const availableScopes = [
   },
 ];
 
+const demarches = {
+  default: {
+    label: 'Demande libre',
+    about: 'https://api.gouv.fr/les-api/api-particulier',
+    state: {
+      intitule: '',
+      description: '',
+      data_recipients: '',
+      data_retention_period: '',
+      fondement_juridique_title: '',
+      fondement_juridique_url: '',
+      scopes: {
+        dgfip_avis_imposition: false,
+        dgfip_adresse: false,
+        cnaf_quotient_familial: false,
+        cnaf_allocataires: false,
+        cnaf_enfants: false,
+        cnaf_adresse: false,
+      },
+    },
+  },
+  ccas: {
+    label: "Dématérialisation de l'instruction des dossiers dans un CCAS",
+    about: 'https://api.gouv.fr/guides/ccas',
+    state: {
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: true,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: true,
+        cnaf_enfants: true,
+        cnaf_adresse: false,
+      },
+    },
+  },
+  'ccas-arpege': {
+    label:
+      "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur Arpège",
+    about: 'https://api.gouv.fr/guides/ccas',
+    state: {
+      intitule:
+        'Récupération du Quotient Familial et des Impôts pour les aides sociales facultatives et les services à la personne du CCAS',
+      description:
+        'Le CCAS de notre commune module le montant des aides octroyées aux usagers en difficulté en fonction du QF.\nLe prix des services à la personne pour les aînés et personnes en situation de handicap est calculé en fonction de l’impôt sur le revenu.\nDans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles les informations de calcul mais plutôt nous baser sur les données proposées par API Particulier.\nNous utilisons le logiciel Sonate édité par la Société Arpège.',
+      data_recipients:
+        "agents instructeurs des demandes d'aides, agents instructeurs des demandes d'inscriptions aux services à la personne, ...",
+      data_retention_period: '12',
+      fondement_juridique_title:
+        "Préciser ici les délibérations du conseil d'administration qui détaillent les modalités de calcul du montant des aides et/ou du prix de services.\nLorsque le calcul du montant des aides est à la libre appréciation du travailleur social ou de la commission d’attribution, préciser sur quels éléments se basent la décision.",
+      fondement_juridique_url:
+        'Joindre les délibérations ou procédures internes concernées.',
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: false,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: false,
+        cnaf_enfants: false,
+        cnaf_adresse: false,
+      },
+    },
+  },
+  'ccas-up': {
+    label: 'Tarification des activités périscolaires et municipales',
+    about: 'https://api.gouv.fr/guides/ccas',
+    state: {
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: true,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: true,
+        cnaf_enfants: true,
+        cnaf_adresse: false,
+      },
+    },
+  },
+  'pass-famille': {
+    label: 'Pass Famille',
+    about: 'https://api.gouv.fr/guides/portail-famille-pass-famille',
+  },
+  'petite-enfance': {
+    label: 'Inscriptions à la crèche',
+    about: 'https://api.gouv.fr/guides/portail-famille-petite-enfance',
+  },
+  'tarif-restauration-scolaire': {
+    label: 'Tarification de la restauration scolaire',
+    about:
+      'https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire',
+    state: {
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: true,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: true,
+        cnaf_enfants: true,
+        cnaf_adresse: false,
+      },
+    },
+  },
+  'tarif-activite-periscolaire': {
+    label: 'Tarification des activités périscolaires et municipales',
+    about:
+      'https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire',
+    state: {
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: true,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: false,
+        cnaf_enfants: false,
+        cnaf_adresse: false,
+      },
+    },
+  },
+};
+
 const ApiParticulier = ({
   match: {
     params: { enrollmentId },
@@ -160,7 +275,7 @@ const ApiParticulier = ({
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />
-        <DemarcheSection />
+        <DemarcheSection demarches={demarches} />
         <DescriptionSection
           intitulePlaceholder={
             '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
