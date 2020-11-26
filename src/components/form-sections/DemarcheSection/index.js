@@ -9,7 +9,7 @@ import OpenInNewIcon from '../../icons/open-in-new';
 export const DemarcheSection = ({ demarches }) => {
   const {
     onChange,
-    enrollment: { id, demarche: selectedDemarcheId },
+    enrollment: { id: enrollmentId, demarche: selectedDemarcheId },
   } = useContext(FormContext);
 
   const [showInfo, setShowInfo] = useState(false);
@@ -20,7 +20,7 @@ export const DemarcheSection = ({ demarches }) => {
   );
 
   useEffect(() => {
-    if (!id) {
+    if (!enrollmentId) {
       const current = demarches[selectedDemarcheId];
       const defaultDemarche = demarches.default || {};
 
@@ -28,9 +28,9 @@ export const DemarcheSection = ({ demarches }) => {
         onChange(merge({}, defaultDemarche.state, current.state));
       }
     }
-  }, [id, selectedDemarcheId, demarches, onChange]);
+  }, [enrollmentId, selectedDemarcheId, demarches, onChange]);
 
-  if (id) return null;
+  if (enrollmentId) return null;
 
   return (
     <>
@@ -48,9 +48,9 @@ export const DemarcheSection = ({ demarches }) => {
           value={selectedDemarcheId}
           onChange={onChange}
         >
-          {Object.keys(demarches).map(id => (
-            <option key={id} value={id}>
-              {demarches[id].label}
+          {Object.keys(demarches).map(demarcheId => (
+            <option key={demarcheId} value={demarcheId}>
+              {demarches[demarcheId].label}
             </option>
           ))}
         </select>
