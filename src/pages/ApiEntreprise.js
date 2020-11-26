@@ -291,18 +291,6 @@ const demarches = {
       scopes: {},
     },
   },
-  'loi-energie': {
-    label: "Application de l'article 64 de la loi énergie",
-    about: 'https://entreprise.api.gouv.fr/use_cases/loi_energie/',
-    state: {
-      scopes: {
-        entreprises: true,
-        etablissements: true,
-        exercices: true,
-        liasses_fiscales_dgfip: true,
-      },
-    },
-  },
   'aide-covid': {
     label: "Aide d'urgence régionale Covid-19 aux TPE",
     about: 'https://entreprise.api.gouv.fr/use_cases/covid-19/',
