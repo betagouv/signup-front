@@ -421,6 +421,8 @@ input[type='radio'][disabled] {
 /*fix: select makes container to grow*/
 select {
   width: 100%;
+  appearance: auto !important;
+  background: none !important;
 }
 
 /*
@@ -515,4 +517,22 @@ section.full-width-section {
   .full-width-section .container {
     width: inherit;
   }
+}
+
+/* generic flex declarative class */
+
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.layout-column {
+  display: flex;
+  flex-direction: column;
 }

@@ -1,0 +1,33 @@
+.loader-container {
+  width: 100%;
+  margin: 20px auto;
+}
+
+.loader-container > .message {
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.loader-container .loader {
+  border: 7px solid #c9d3df; /* Light grey */
+  border-top-color: #53657d; /* Blue */
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  animation: spin 750ms linear infinite;
+}
+
+.loader-container .loader.small {
+  border-width: 3px;
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
