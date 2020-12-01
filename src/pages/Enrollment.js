@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Spinner from '../components/icons/spinner';
 import { getUserEnrollment } from '../services/enrollments';
 import { Redirect } from 'react-router-dom';
+import Loader from '../components/atoms/Loader';
 
 const Enrollment = ({
   match: {
@@ -48,7 +48,7 @@ const Enrollment = ({
 
   if (fetchEnrollmentNotFound) {
     return (
-      <section className="section-grey section-full-page">
+      <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
           Nous n'avons pas trouvé votre demande d'habilitation.
         </div>
@@ -58,7 +58,7 @@ const Enrollment = ({
 
   if (fetchEnrollmentError) {
     return (
-      <section className="section-grey section-full-page">
+      <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
           Erreur inconnue lors de la récupération de la demande d'habilitation.
         </div>
@@ -67,8 +67,8 @@ const Enrollment = ({
   }
 
   return (
-    <section className="section-grey section-full-page">
-      <Spinner />
+    <section className="section-grey layout-full-page">
+      <Loader />
     </section>
   );
 };

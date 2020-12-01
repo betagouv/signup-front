@@ -8,9 +8,9 @@ import {
 } from '../../../services/enrollments';
 import Prompt from './Prompt';
 import { getErrorMessages } from '../../../lib';
-import Spinner from '../../icons/spinner';
 import DoneIcon from '../../icons/done';
 import { PrefilledFormUrlGenerator } from './PrefilledFormUrlGenerator';
+import Loader from '../../atoms/Loader';
 
 class ActionButton extends React.Component {
   constructor(props) {
@@ -202,9 +202,7 @@ class ActionButton extends React.Component {
               <div className="button-icon">{icon}</div>
               <div>
                 {label}
-                {isLoading && selectedAction === id && (
-                  <Spinner inline={true} />
-                )}
+                {isLoading && selectedAction === id && <Loader small />}
               </div>
             </button>
           ))}

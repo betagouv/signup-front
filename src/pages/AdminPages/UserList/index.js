@@ -2,10 +2,10 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { TARGET_API_LABELS } from '../../../lib/api';
 import { getUsers } from '../../../services/users';
-import Spinner from '../../../components/icons/spinner';
 import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
+import Loader from '../../../components/atoms/Loader';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -108,8 +108,8 @@ const UserList = () => {
         </div>
         <div className="panel">
           {isLoading ? (
-            <div className="section-full-page" style={{ minHeight: '800px' }}>
-              <Spinner />
+            <div className="layout-full-page" style={{ minHeight: '800px' }}>
+              <Loader />
             </div>
           ) : (
             <>

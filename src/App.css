@@ -21,15 +21,6 @@ main {
   flex-grow: 1;
 }
 
-section.section-full-page,
-div.section-full-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100%;
-}
-
 .container {
   padding-left: 16px;
   padding-right: 16px;
@@ -520,6 +511,10 @@ section.full-width-section {
 }
 
 /* generic flex declarative class */
+.layout-full-page {
+  display: flex;
+  height: 100%;
+}
 
 .layout-center {
   display: flex;

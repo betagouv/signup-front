@@ -8,7 +8,7 @@ import { openLink } from '../../lib';
 import { getUserEnrollments } from '../../services/enrollments';
 
 import AddIcon from '../../components/icons/add';
-import Spinner from '../../components/icons/spinner';
+import Loader from '../../components/atoms/Loader';
 
 import Enrollment from './Enrollment';
 
@@ -53,8 +53,8 @@ const UserEnrollmentList = ({ history }) => {
 
       <section className="section-grey enrollments-section">
         {isLoading ? (
-          <div className="section-full-page">
-            <Spinner />
+          <div className="layout-full-page">
+            <Loader />
           </div>
         ) : (
           <div className="container">

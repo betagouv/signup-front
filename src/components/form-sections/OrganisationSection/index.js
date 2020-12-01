@@ -9,7 +9,7 @@ import OrganizationPrompt from './OrganizationPrompt';
 import EditIcon from '../../icons/edit';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
-import Spinner from '../../icons/spinner';
+import Loader from '../../atoms/Loader';
 
 const Index = () => {
   const {
@@ -149,11 +149,7 @@ const Index = () => {
   if (isUserEnrollmentLoading || isOrganizationInfoLoading) {
     return (
       <ScrollablePanel scrollableId="organisation">
-        <div style={{ height: '150px' }}>
-          <div className="section-full-page">
-            <Spinner />
-          </div>
-        </div>
+        <Loader />
       </ScrollablePanel>
     );
   }

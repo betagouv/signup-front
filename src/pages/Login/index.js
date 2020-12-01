@@ -73,7 +73,7 @@ export const Login = () => {
     !!TARGET_API_LABELS[targetApi] && !window.location.pathname.split('/')[2];
 
   return (
-    <section className="section-grey section-full-page">
+    <section className="section-grey layout-full-page layout-center">
       <div className="container container-large">
         <div className="panel" style={{ textAlign: 'center' }}>
           {API_ICONS[targetApi] && (
