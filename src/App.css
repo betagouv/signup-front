@@ -418,6 +418,10 @@ select {
   appearance: auto !important;
   background: #fff !important;
 }
+input,
+select {
+  height: 43px;
+}
 
 /*
 fix: rules on '.card__content :last-child' propagates within children instead of
