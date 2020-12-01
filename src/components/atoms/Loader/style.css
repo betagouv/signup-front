@@ -9,8 +9,8 @@
 }
 
 .loader-container .loader {
-  border: 7px solid #c9d3df; /* Light grey */
-  border-top-color: #53657d; /* Blue */
+  border: 7px solid #c9d3df;
+  border-top-color: #53657d;
   border-radius: 50%;
   width: 70px;
   height: 70px;

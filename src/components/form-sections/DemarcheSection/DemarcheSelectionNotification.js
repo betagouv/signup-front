@@ -1,7 +1,7 @@
 import React from 'react';
-import Loader from '../atoms/Loader';
+import Loader from '../../atoms/Loader';
 import { isEmpty } from 'lodash';
-import OpenInNewIcon from '../icons/open-in-new';
+import OpenInNewIcon from '../../icons/open-in-new';
 
 const DemarcheSelectionNotification = ({
   isLoading = false,

@@ -4,7 +4,7 @@ import { isEmpty, merge } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
-import DemarcheSelectionNotification from '../../Form/DemarcheSelectionNotification';
+import DemarcheSelectionNotification from './DemarcheSelectionNotification';
 
 export const DemarcheSection = ({ demarches }) => {
   const {
@@ -16,7 +16,8 @@ export const DemarcheSection = ({ demarches }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    window.setTimeout(() => setIsLoading(false), 900);
+    const timer = setTimeout(() => setIsLoading(false), 9000);
+    return () => clearTimeout(timer);
   }, [selectedDemarcheId]);
 
   useEffect(() => {

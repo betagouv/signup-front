@@ -409,11 +409,14 @@ input[type='radio'][disabled] {
   }
 }
 
-/*fix: select makes container to grow*/
+/*
+* Fix: select makes container to grow
+* Fix 2: and remove background that hides down arrow
+*/
 select {
   width: 100%;
   appearance: auto !important;
-  background: none !important;
+  background: #fff !important;
 }
 
 /*
