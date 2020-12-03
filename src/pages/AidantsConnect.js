@@ -6,24 +6,11 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
-
-const contacts = {
-  metier: {
-    heading: 'Responsable organisation',
-    description: () => (
-      <p>
-        Cette personne recevra les accès par mail. Le numéro de téléphone sera
-        utilisé pour vous contacter pour vous donner les accès.
-      </p>
-    ),
-    email: '',
-    phone_number: '',
-  },
-};
+import LabelsSection from '../components/form-sections/aidants-connect-sections/LabelsSection';
+import AidantsSection from '../components/form-sections/aidants-connect-sections/AidantsSection';
+import StructureSection from '../components/form-sections/aidants-connect-sections/StructureSection';
 
 const AidantsConnect = ({
   match: {
@@ -40,9 +27,10 @@ const AidantsConnect = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
-        { id: 'description', label: 'Description' },
+        { id: 'structure', label: 'Structure' },
+        { id: 'labels', label: 'Labels' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
+        { id: 'aidants', label: 'Les aidants' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
@@ -60,9 +48,10 @@ const AidantsConnect = ({
         title="Demande d'habilitation juridique à Aidants Connect"
       >
         <OrganisationSection />
-        <DescriptionSection />
+        <StructureSection />
+        <LabelsSection />
         <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection initialContacts={contacts} />
+        <AidantsSection />
         <CguSection cguLink="https://aidantsconnect.beta.gouv.fr/cgu/" />
       </Form>
     </div>
