@@ -16,7 +16,7 @@ export const DemarcheSection = ({ demarches }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 9000);
+    const timer = setTimeout(() => setIsLoading(false), 900);
     return () => clearTimeout(timer);
   }, [selectedDemarcheId]);
 
