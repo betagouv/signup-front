@@ -3,7 +3,7 @@ import Loader from '../../atoms/Loader';
 import { isEmpty } from 'lodash';
 import OpenInNewIcon from '../../icons/open-in-new';
 
-const DemarcheSelectionNotification = ({
+const DemarcheSectionNotification = ({
   isLoading = false,
   selectedDemarcheId,
   demarches,
@@ -29,7 +29,8 @@ const DemarcheSelectionNotification = ({
             <br />
             Vous avez séléctionné le cas d'usage «{' '}
             <b>
-              {demarches[selectedDemarcheId].label || selectedDemarcheId}
+              {(demarches[selectedDemarcheId] || {}).label ||
+                selectedDemarcheId}
             </b>{' '}
             ».{' '}
             {!isEmpty(demarches) && selectedDemarcheId && (
@@ -40,7 +41,7 @@ const DemarcheSelectionNotification = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
-                  href={demarches[selectedDemarcheId].about}
+                  href={(demarches[selectedDemarcheId] || {}).about}
                 >
                   fiche explicative
                   <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
@@ -61,4 +62,4 @@ const DemarcheSelectionNotification = ({
     )}
   </>
 );
-export default DemarcheSelectionNotification;
+export default DemarcheSectionNotification;

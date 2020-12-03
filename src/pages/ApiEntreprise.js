@@ -253,6 +253,7 @@ const demarches = {
         qualibat: false,
         certificat_opqibi: false,
         extrait_court_inpi: false,
+        effectifs_acoss: false,
       },
     },
   },

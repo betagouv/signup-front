@@ -127,6 +127,26 @@ const availableScopes = [
 ];
 
 const demarches = {
+  default: {
+    label: 'Demande Libre',
+    about: 'https://api.gouv.fr/les-api/api-particulier',
+    state: {
+      intitule: '',
+      description: '',
+      data_recipients: '',
+      data_retention_period: '',
+      fondement_juridique_title: '',
+      fondement_juridique_url: '',
+      scopes: {
+        dgfip_avis_imposition: false,
+        dgfip_adresse: false,
+        cnaf_quotient_familial: false,
+        cnaf_allocataires: false,
+        cnaf_enfants: false,
+        cnaf_adresse: false,
+      },
+    },
+  },
   ccas: {
     label: "Dématérialisation de l'instruction des dossiers dans un CCAS",
     about: 'https://api.gouv.fr/guides/ccas',
@@ -169,7 +189,7 @@ const demarches = {
   },
   'ccas-up': {
     label:
-      "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur UP",
+      'Dématérialisation de l’instruction des dossiers dans un CCAS avec l’editeur Up',
     about: 'https://api.gouv.fr/guides/ccas',
     state: {
       intitule: 'Service d’actions sociales du CCAS',
@@ -227,26 +247,6 @@ Article L114-8 et Article R. 114-9-3 du code des relations entre le public et l�
         dgfip_avis_imposition: true,
         dgfip_adresse: true,
         cnaf_quotient_familial: true,
-        cnaf_allocataires: false,
-        cnaf_enfants: false,
-        cnaf_adresse: false,
-      },
-    },
-  },
-  default: {
-    label: 'Autre cas d’usage',
-    about: 'https://api.gouv.fr/les-api/api-particulier',
-    state: {
-      intitule: '',
-      description: '',
-      data_recipients: '',
-      data_retention_period: '',
-      fondement_juridique_title: '',
-      fondement_juridique_url: '',
-      scopes: {
-        dgfip_avis_imposition: false,
-        dgfip_adresse: false,
-        cnaf_quotient_familial: false,
         cnaf_allocataires: false,
         cnaf_enfants: false,
         cnaf_adresse: false,
