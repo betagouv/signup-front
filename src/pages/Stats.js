@@ -26,7 +26,7 @@ import {
 } from '../lib/api';
 
 import Helper from '../components/Helper';
-import Spinner from '../components/icons/spinner';
+import Loader from '../components/atoms/Loader';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -80,8 +80,8 @@ export default ({
 
   if (!stats) {
     return (
-      <section className="section-grey section-full-page">
-        <Spinner />
+      <section className="section-grey layout-full-page">
+        <Loader />
       </section>
     );
   }

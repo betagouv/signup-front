@@ -1,0 +1,64 @@
+import React from 'react';
+import Loader from '../../atoms/Loader';
+import { isEmpty } from 'lodash';
+import OpenInNewIcon from '../../icons/open-in-new';
+
+const DemarcheSelectionNotification = ({
+  isLoading = false,
+  selectedDemarcheId,
+  demarches,
+}) => (
+  <>
+    {isLoading && selectedDemarcheId === 'default' && (
+      <div className="notification info">
+        <Loader small message="Nettoyage du formulaire en cours ..." />
+      </div>
+    )}
+    {selectedDemarcheId && selectedDemarcheId !== 'default' && (
+      <div className="notification info">
+        {isLoading ? (
+          <Loader small message="pré-remplissage du formulaire en cours ..." />
+        ) : (
+          <div>
+            <b>
+              Formulaire pré-rempli{' '}
+              <span role="img" aria-label="Emoji-eclair">
+                ⚡️
+              </span>
+            </b>
+            <br />
+            Vous avez séléctionné le cas d'usage «{' '}
+            <b>
+              {demarches[selectedDemarcheId].label || selectedDemarcheId}
+            </b>{' '}
+            ».{' '}
+            {!isEmpty(demarches) && selectedDemarcheId && (
+              <>
+                Pour en savoir plus sur ce cas d’usage, vous pouvez en consulter
+                la{' '}
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
+                  href={demarches[selectedDemarcheId].about}
+                >
+                  fiche explicative
+                  <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
+                </a>
+              </>
+            )}
+            <br />
+            <br />
+            Certains champs du formulaire ont été pré-remplis afin de faciliter
+            votre demande. Attention, il est <b>
+              tout de même indispensable
+            </b>{' '}
+            que vous lisiez la demande et que vous adaptiez les champs selon
+            votre cas.
+          </div>
+        )}
+      </div>
+    )}
+  </>
+);
+export default DemarcheSelectionNotification;

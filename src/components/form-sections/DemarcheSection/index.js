@@ -4,7 +4,7 @@ import { isEmpty, merge } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
-import OpenInNewIcon from '../../icons/open-in-new';
+import DemarcheSelectionNotification from './DemarcheSelectionNotification';
 
 export const DemarcheSection = ({ demarches }) => {
   const {
@@ -12,12 +12,13 @@ export const DemarcheSection = ({ demarches }) => {
     enrollment: { id: enrollmentId, demarche: selectedDemarcheId },
   } = useContext(FormContext);
 
-  const [showInfo, setShowInfo] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(
-    () => setShowInfo(selectedDemarcheId && selectedDemarcheId !== 'default'),
-    [selectedDemarcheId]
-  );
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => setIsLoading(false), 9000);
+    return () => clearTimeout(timer);
+  }, [selectedDemarcheId]);
 
   useEffect(() => {
     if (!enrollmentId) {
@@ -36,46 +37,32 @@ export const DemarcheSection = ({ demarches }) => {
     <>
       <ScrollablePanel scrollableId="service-numerique">
         <h2>Service numérique</h2>
-        <div className="form__group">
-          <label htmlFor="demarche">
-            Votre service correspond à un de ces cas ? Sélectionnez-le et gagnez
-            du temps
-          </label>
+        <p>
+          Nous avons identifié plusieurs cas d’usage de cette API. Si votre
+          demande s’inscrit dans un des cas ci-dessous, selectionnez-le pour
+          gagner du temps.
+        </p>
+        <div>
+          <label htmlFor="demarche">Sélectionnez-un cas d'usage :</label>
+          <select
+            id="demarche"
+            name="demarche"
+            value={selectedDemarcheId}
+            onChange={onChange}
+          >
+            {Object.keys(demarches).map(demarcheId => (
+              <option key={demarcheId} value={demarcheId}>
+                {demarches[demarcheId].label}
+              </option>
+            ))}
+          </select>
         </div>
-        <select
-          id="demarche"
-          name="demarche"
-          value={selectedDemarcheId}
-          onChange={onChange}
-        >
-          {Object.keys(demarches).map(demarcheId => (
-            <option key={demarcheId} value={demarcheId}>
-              {demarches[demarcheId].label}
-            </option>
-          ))}
-        </select>
-        {!isEmpty(demarches) && selectedDemarcheId && (
-          <small className="card__meta">
-            <i>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
-                href={demarches[selectedDemarcheId].about}
-              >
-                Consulter le détail de ce cas d'usage{' '}
-                <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
-              </a>
-            </i>
-          </small>
-        )}
       </ScrollablePanel>
-      {showInfo && (
-        <div className="notification info">
-          Certains champs ont été pré-rempli en fonction de votre choix pour
-          faciliter votre demande. Vous pouvez toujours les modifier.
-        </div>
-      )}
+      <DemarcheSelectionNotification
+        isLoading={isLoading}
+        selectedDemarcheId={selectedDemarcheId}
+        demarches={demarches}
+      />
     </>
   );
 };

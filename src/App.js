@@ -8,7 +8,6 @@ import './App.css';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
-import Spinner from './components/icons/spinner';
 import PrivateRoute from './components/PrivateRoute';
 import { UserStore, UserContext } from './components/UserContext';
 
@@ -37,6 +36,7 @@ import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
+import Loader from './components/atoms/Loader';
 
 const history = createBrowserHistory();
 
@@ -55,12 +55,12 @@ const App = () => (
           {({ user, isLoading, connectionError }) => (
             <main>
               {isLoading && (
-                <section className="section-grey section-full-page">
-                  <Spinner />
+                <section className="section-grey layout-full-page">
+                  <Loader />
                 </section>
               )}
               {!isLoading && connectionError && (
-                <section className="section-grey section-full-page">
+                <section className="section-grey layout-full-page layout-center">
                   <div className="notification error">{connectionError}</div>
                 </section>
               )}

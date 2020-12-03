@@ -53,8 +53,8 @@
 .timeline > div > .time-indication {
   font-style: italic;
   position: absolute;
-  width: 80px;
-  right: -40px;
+  width: 90px;
+  right: -45px;
   background-color: #fff;
   z-index: 5;
   padding: 0 5px;

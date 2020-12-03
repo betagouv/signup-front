@@ -21,15 +21,6 @@ main {
   flex-grow: 1;
 }
 
-section.section-full-page,
-div.section-full-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100%;
-}
-
 .container {
   padding-left: 16px;
   padding-right: 16px;
@@ -418,9 +409,18 @@ input[type='radio'][disabled] {
   }
 }
 
-/*fix: select makes container to grow*/
+/*
+* Fix: select makes container to grow
+* Fix 2: and remove background that hides down arrow
+*/
 select {
   width: 100%;
+  appearance: auto !important;
+  background: #fff !important;
+}
+input,
+select {
+  height: 43px;
 }
 
 /*
@@ -515,4 +515,26 @@ section.full-width-section {
   .full-width-section .container {
     width: inherit;
   }
+}
+
+/* generic flex declarative class */
+.layout-full-page {
+  display: flex;
+  height: 100%;
+}
+
+.layout-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.layout-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.layout-column {
+  display: flex;
+  flex-direction: column;
 }

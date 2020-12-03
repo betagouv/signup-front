@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import Spinner from '../components/icons/spinner';
 import { copyEnrollment } from '../services/enrollments';
 import { Redirect } from 'react-router-dom';
 import { getErrorMessages } from '../lib';
+import Loader from '../components/atoms/Loader';
 
 const CopyEnrollment = ({
   match: {
@@ -61,7 +61,7 @@ const CopyEnrollment = ({
 
   if (copyError) {
     return (
-      <section className="section-grey section-full-page">
+      <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
           Erreur inconnue lors de la copie de la demande d'habilitation.
         </div>
@@ -71,7 +71,7 @@ const CopyEnrollment = ({
 
   if (alreadyCopiedError) {
     return (
-      <section className="section-grey section-full-page">
+      <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
           Copie impossible : une copie de cette demande d'habilitation existe
           déjà.
@@ -81,8 +81,8 @@ const CopyEnrollment = ({
   }
 
   return (
-    <section className="section-grey section-full-page">
-      <Spinner />
+    <section className="section-grey layout-full-page">
+      <Loader />
     </section>
   );
 };
