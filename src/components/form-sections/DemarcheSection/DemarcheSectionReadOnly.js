@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
@@ -24,7 +24,7 @@ export const DemarcheSectionReadOnly = ({ demarches }) => {
     ) {
       setModifiedFields(
         findModifiedFields(
-          demarches.get(selectedDemarcheId, {}).state,
+          get(demarches, selectedDemarcheId, {}).state,
           enrollment
         )
       );

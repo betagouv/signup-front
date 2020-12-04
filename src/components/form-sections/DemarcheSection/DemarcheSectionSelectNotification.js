@@ -1,6 +1,6 @@
 import React from 'react';
 import Loader from '../../atoms/Loader';
-import { isEmpty } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import OpenInNewIcon from '../../icons/open-in-new';
 
 const DemarcheSectionNotification = ({
@@ -9,11 +9,6 @@ const DemarcheSectionNotification = ({
   demarches,
 }) => (
   <>
-    {isLoading && selectedDemarcheId === 'default' && (
-      <div className="notification info">
-        <Loader small message="Nettoyage du formulaire en cours ..." />
-      </div>
-    )}
     {selectedDemarcheId && selectedDemarcheId !== 'default' && (
       <div className="notification info">
         {isLoading ? (
@@ -29,7 +24,7 @@ const DemarcheSectionNotification = ({
             <br />
             Vous avez séléctionné le cas d'usage «{' '}
             <b>
-              {(demarches[selectedDemarcheId] || {}).label ||
+              {get(demarches, selectedDemarcheId, {}).label ||
                 selectedDemarcheId}
             </b>{' '}
             ».{' '}
@@ -41,7 +36,7 @@ const DemarcheSectionNotification = ({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
-                  href={(demarches[selectedDemarcheId] || {}).about}
+                  href={get(demarches, selectedDemarcheId, {}).about}
                 >
                   fiche explicative
                   <OpenInNewIcon color={'var(--theme-primary)'} size={14} />

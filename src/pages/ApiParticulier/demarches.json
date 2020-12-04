@@ -74,11 +74,13 @@
   },
   "pass-famille": {
     "label": "Pass Famille",
-    "about": "https://api.gouv.fr/guides/portail-famille-pass-famille"
+    "about": "https://api.gouv.fr/guides/portail-famille-pass-famille",
+    "state": {}
   },
   "petite-enfance": {
     "label": "Inscriptions à la crèche",
-    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance"
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {}
   },
   "tarif-restauration-scolaire": {
     "label": "Tarification de la restauration scolaire",

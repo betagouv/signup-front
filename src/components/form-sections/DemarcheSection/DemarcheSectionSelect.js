@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty, merge } from 'lodash';
+import { isEmpty, merge, get } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
@@ -16,9 +16,20 @@ export const DemarcheSectionSelect = ({ demarches }) => {
   const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => setIsLoading(false), 900);
-    return () => clearTimeout(timer);
+    // this is not great but state update goes like this
+    // => first selectedDemarcheId is undefined, then when state is updated, selectedDemarcheId is '' and then can become 'default' or another demarche
+    // this initialized demarche as soon as component is mounted
+    if (!selectedDemarcheId) {
+      onChange({ demarche: 'default' });
+    }
+  }, [selectedDemarcheId, onChange]);
+
+  useEffect(() => {
+    if (selectedDemarcheId !== 'default') {
+      setIsLoading(true);
+      const timer = setTimeout(() => setIsLoading(false), 900);
+      return () => clearTimeout(timer);
+    }
   }, [selectedDemarcheId]);
 
   useEffect(() => {
@@ -26,7 +37,7 @@ export const DemarcheSectionSelect = ({ demarches }) => {
 
     if (!isEmpty(demarches) && current) {
       // update Enrollment Context with pre-filled state
-      onChange(merge({}, demarches.get('default', {}).state, current.state));
+      onChange(merge({}, get(demarches, 'default', {}).state, current.state));
     }
   }, [selectedDemarcheId, demarches, onChange]);
 
@@ -36,8 +47,8 @@ export const DemarcheSectionSelect = ({ demarches }) => {
     const modifs = findModifiedFields(
       merge(
         {},
-        demarches.get('default', {}).state,
-        demarches.get(selectedDemarcheId, {}).state
+        get(demarches, 'default', {}).state,
+        get(demarches, selectedDemarcheId, {}).state
       ),
       enrollment
     );
@@ -84,7 +95,7 @@ export const DemarcheSectionSelect = ({ demarches }) => {
           >
             {Object.keys(demarches).map(demarcheId => (
               <option key={demarcheId} value={demarcheId}>
-                {demarches.get(demarcheId, {}).label}
+                {get(demarches, demarcheId, {}).label}
               </option>
             ))}
           </select>
