@@ -6,7 +6,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
 import ConfirmationModal from '../../ConfirmationModal';
 import { findModifiedFields } from '../../../lib';
-import DemarcheSectionNotification from './DemarcheSectionNotification';
+import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 
 export const DemarcheSectionSelect = ({ demarches }) => {
   const { onChange, enrollment } = useContext(FormContext);
@@ -26,8 +26,7 @@ export const DemarcheSectionSelect = ({ demarches }) => {
 
     if (!isEmpty(demarches) && current) {
       // update Enrollment Context with pre-filled state
-      const defaultDemarche = demarches.default || {};
-      onChange(merge({}, defaultDemarche.state, current.state));
+      onChange(merge({}, demarches.get('default', {}).state, current.state));
     }
   }, [selectedDemarcheId, demarches, onChange]);
 
@@ -37,8 +36,8 @@ export const DemarcheSectionSelect = ({ demarches }) => {
     const modifs = findModifiedFields(
       merge(
         {},
-        (demarches['default'] || {}).state,
-        (demarches[selectedDemarcheId || 'default'] || {}).state
+        demarches.get('default', {}).state,
+        demarches.get(selectedDemarcheId, {}).state
       ),
       enrollment
     );
@@ -85,13 +84,13 @@ export const DemarcheSectionSelect = ({ demarches }) => {
           >
             {Object.keys(demarches).map(demarcheId => (
               <option key={demarcheId} value={demarcheId}>
-                {(demarches[demarcheId] || {}).label || selectedDemarcheId}
+                {demarches.get(demarcheId, {}).label}
               </option>
             ))}
           </select>
         </div>
       </ScrollablePanel>
-      <DemarcheSectionNotification
+      <DemarcheSectionSelectNotification
         isLoading={isLoading}
         selectedDemarcheId={selectedDemarcheId}
         demarches={demarches}

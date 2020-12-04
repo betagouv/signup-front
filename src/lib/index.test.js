@@ -495,7 +495,7 @@ describe('utils', () => {
             target_api: 'api_particulier',
           }
         )
-      ).toStrictEqual([]);
+      ).toStrictEqual(['intitule']);
     });
   });
 });

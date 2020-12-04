@@ -294,7 +294,10 @@ export const setUrlParamsFromState = (newState = {}) => {
   );
 };
 
-export const findModifiedFields = (demarcheState, enrollmentState) => {
+export const findModifiedFields = (
+  demarcheState = {},
+  enrollmentState = {}
+) => {
   const modified = [];
   Object.keys(demarcheState).forEach(key => {
     const initialValue = demarcheState[key];

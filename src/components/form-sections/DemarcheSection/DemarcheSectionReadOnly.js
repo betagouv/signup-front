@@ -24,7 +24,7 @@ export const DemarcheSectionReadOnly = ({ demarches }) => {
     ) {
       setModifiedFields(
         findModifiedFields(
-          (demarches[selectedDemarcheId] || {}).state || {},
+          demarches.get(selectedDemarcheId, {}).state,
           enrollment
         )
       );
