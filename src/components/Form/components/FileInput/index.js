@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import fileDownload from 'js-file-download';
-import DescriptionIcon from './icons/description';
-import './DocumentUpload.css';
-import WarningModal from './WarningModal';
-import httpClient from '../lib/http-client';
+import { uniqueId } from 'lodash';
+import DescriptionIcon from '../../../icons/description';
+import './index.css';
+import WarningModal from '../../../WarningModal';
+import httpClient from '../../../../lib/http-client';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 // NB: please keep this limit in sync with the limit in nginx signup-back configuration
 const FILE_SIZE_LIMIT_IN_MB = 10;
 
-const DocumentUpload = ({
+const FileInput = ({
   label,
   mimeTypes = '.pdf, application/pdf',
   disabled,
@@ -20,6 +21,7 @@ const DocumentUpload = ({
   documentType,
   handleChange,
 }) => {
+  const [id] = useState(uniqueId(documentType));
   const [documentsTooLargeError, setDocumentsTooLargeError] = useState(false);
   const [showDocumentDownloadLink, setShowDocumentDownloadLink] = useState(
     false
@@ -125,14 +127,14 @@ const DocumentUpload = ({
         </>
       ) : (
         <>
-          <label htmlFor={documentType}>{label}</label>
+          <label htmlFor={id}>{label}</label>
           <input
             type="file"
             accept={mimeTypes}
             onChange={onChange}
             disabled={disabled}
             name={documentType}
-            id={documentType}
+            id={id}
           />
           {documentsTooLargeError && (
             <div className="notification error">
@@ -156,7 +158,7 @@ const DocumentUpload = ({
   );
 };
 
-DocumentUpload.propTypes = {
+FileInput.propTypes = {
   disabled: PropTypes.bool.isRequired,
   uploadedDocuments: PropTypes.arrayOf(
     PropTypes.shape({ type: PropTypes.string.isRequired })
@@ -174,4 +176,4 @@ DocumentUpload.propTypes = {
   mimeTypes: PropTypes.string,
 };
 
-export default DocumentUpload;
+export default FileInput;

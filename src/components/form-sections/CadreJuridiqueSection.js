@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import DocumentUpload from '../DocumentUpload';
+import FileInput from '../Form/components/FileInput';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
 
@@ -62,7 +62,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
           value={fondement_juridique_url}
         />
       </div>
-      <DocumentUpload
+      <FileInput
         label="Sinon, joindre le document lui même"
         disabled={disabled}
         uploadedDocuments={documents}

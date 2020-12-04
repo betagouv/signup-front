@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import DocumentUpload from '../../DocumentUpload';
+import FileInput from '../../Form/components/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
@@ -33,7 +33,7 @@ const DonneesCartoBioSection = () => {
           placeholder="« 93032,93077 », « 200054781,200054781 », « 93 », etc."
         />
       </div>
-      <DocumentUpload
+      <FileInput
         label="Sinon, joindre les contours géographiques au format Shapefile ou GeoJSON, tel quel ou zippé :"
         mimeTypes="*"
         disabled={disabled}
