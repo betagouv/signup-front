@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const YesNoRadio = ({
+export const YesNoRadioInput = ({
   label,
   name,
   value = null,
@@ -53,4 +53,4 @@ export const YesNoRadio = ({
   );
 };
 
-export default YesNoRadio;
+export default YesNoRadioInput;

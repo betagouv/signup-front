@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import DocumentUpload from '../../DocumentUpload';
+import FileInput from '../../Form/components/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 
@@ -89,7 +89,7 @@ const HomologationSecuriteSection = () => {
         />
       </div>
 
-      <DocumentUpload
+      <FileInput
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
