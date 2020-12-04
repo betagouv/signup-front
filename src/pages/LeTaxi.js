@@ -32,11 +32,11 @@ const DonneesDescription = () => (
 const availableScopes = [
   {
     value: 'operator',
-    label: 'Opérateur de taxi',
+    label: 'Applicatif chauffeur',
   },
   {
     value: 'search_engine',
-    label: 'Moteur de Recherche',
+    label: 'Applicatif client',
   },
 ];
 
