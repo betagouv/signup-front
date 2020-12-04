@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { uniqueId } from 'lodash';
 
 export const YesNoRadioInput = ({
   label,
@@ -7,6 +8,8 @@ export const YesNoRadioInput = ({
   disabled,
   onChange,
 }) => {
+  const [id] = useState(uniqueId(name));
+
   const onYesNoChange = onChangeEvent => {
     const {
       target: { type = null, checked = null, value: inputValue, name },
@@ -24,13 +27,13 @@ export const YesNoRadioInput = ({
           <input
             type="radio"
             name={name}
-            id={`${name}_true`}
+            id={`${id}_true`}
             value={true}
             checked={value === true}
             onChange={onYesNoChange}
             disabled={disabled ? 'disabled' : false}
           />
-          <label htmlFor={`${name}_true`} className="label-inline">
+          <label htmlFor={`${id}_true`} className="label-inline">
             oui
           </label>
         </>
@@ -38,13 +41,13 @@ export const YesNoRadioInput = ({
           <input
             type="radio"
             name={name}
-            id={`${name}_false`}
+            id={`${id}_false`}
             value={false}
             checked={value === false}
             onChange={onYesNoChange}
             disabled={disabled ? 'disabled' : false}
           />
-          <label htmlFor={`${name}_false`} className="label-inline">
+          <label htmlFor={`${id}_false`} className="label-inline">
             non
           </label>
         </>

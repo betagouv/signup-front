@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import fileDownload from 'js-file-download';
+import { uniqueId } from 'lodash';
 import DescriptionIcon from '../../../icons/description';
 import './index.css';
 import WarningModal from '../../../WarningModal';
@@ -20,6 +21,7 @@ const FileInput = ({
   documentType,
   handleChange,
 }) => {
+  const [id] = useState(uniqueId(documentType));
   const [documentsTooLargeError, setDocumentsTooLargeError] = useState(false);
   const [showDocumentDownloadLink, setShowDocumentDownloadLink] = useState(
     false
@@ -125,14 +127,14 @@ const FileInput = ({
         </>
       ) : (
         <>
-          <label htmlFor={documentType}>{label}</label>
+          <label htmlFor={id}>{label}</label>
           <input
             type="file"
             accept={mimeTypes}
             onChange={onChange}
             disabled={disabled}
             name={documentType}
-            id={documentType}
+            id={id}
           />
           {documentsTooLargeError && (
             <div className="notification error">

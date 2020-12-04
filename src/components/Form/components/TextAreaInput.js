@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Helper from '../../Helper';
+import { uniqueId } from 'lodash';
 
 export const TextAreaInput = ({
   label,
@@ -9,22 +10,26 @@ export const TextAreaInput = ({
   value = null,
   disabled,
   onChange,
-}) => (
-  <div className="form__group">
-    <label htmlFor={name}>
-      {label}
-      {helper && <Helper title={helper} />}
-    </label>
-    <textarea
-      rows="10"
-      onChange={onChange}
-      name={name}
-      placeholder={placeholder}
-      id={name}
-      readOnly={disabled}
-      value={value}
-    />
-  </div>
-);
+}) => {
+  const [id] = useState(uniqueId(name));
+
+  return (
+    <div className="form__group">
+      <label htmlFor={id}>
+        {label}
+        {helper && <Helper title={helper} />}
+      </label>
+      <textarea
+        rows="10"
+        onChange={onChange}
+        name={name}
+        placeholder={placeholder}
+        id={id}
+        readOnly={disabled}
+        value={value}
+      />
+    </div>
+  );
+};
 
 export default TextAreaInput;
