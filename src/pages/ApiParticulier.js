@@ -188,16 +188,30 @@ const demarches = {
     },
   },
   'ccas-up': {
-    label: 'Tarification des activités périscolaires et municipales',
+    label:
+      "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur UP",
     about: 'https://api.gouv.fr/guides/ccas',
     state: {
+      intitule: 'Service d’actions sociales du CCAS',
+      description: `Les agents sociaux de la collectivité (CCAS) instruisent des dossiers de demande d'aides légales et/ou facultatives. Dans ce contexte, ils ont besoin de connaître la composition familiale et la situation financière du foyer du demandeur : état civil (nom prénom date de naissance), structure familiale (nom prénom date de naissance des enfants et parents), adresse du foyer, quotient familial calculé par la CAF et les données fiscales de la DGFIP.
+
+Toutes ces informations leur permettent de vérifier les conditions d'éligibilité aux aides sociales.
+
+Ainsi, dans une volonté de simplification de la démarche pour les citoyens et agents, nous souhaitons exploiter les données déjà connues de l’API Particulier.
+
+Pour cela, la collectivité utilise la solution Millésime édité par la société Cityzen du groupe Up.`,
+      data_recipients: `Agents instructeurs des demandes d’aides et des demandes d’inscription.`,
+      data_retention_period: 24,
+      fondement_juridique_title: `Article L. 312-1 et Article R123-5 du code de l'action sociale et des familles.
+
+Article L114-8 et Article R. 114-9-3 du code des relations entre le public et l’administration.`,
       scopes: {
         dgfip_avis_imposition: true,
-        dgfip_adresse: true,
+        dgfip_adresse: false,
         cnaf_quotient_familial: true,
         cnaf_allocataires: true,
         cnaf_enfants: true,
-        cnaf_adresse: false,
+        cnaf_adresse: true,
       },
     },
   },
