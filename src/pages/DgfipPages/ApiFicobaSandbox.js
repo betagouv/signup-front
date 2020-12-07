@@ -13,11 +13,7 @@ import DonneesSection from '../../components/form-sections/DonneesSection';
 import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import {
-  contacts,
-  DonneesDescription,
-  SuiteDescription,
-} from './api-impot-particulier-common';
+import { contacts, SuiteDescription } from './api-impot-particulier-common';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -77,6 +73,51 @@ const availableScopes = [
 ];
 
 const steps = ['api_ficoba_sandbox', 'api_ficoba_production'];
+
+export const DonneesDescription = () => (
+  <div className="text-quote">
+    <p>
+      L'API FICOBA restituant des éléments sensibles (comptes bancaires du
+      titulaire et/ou du co-titulaire, éléments relatifs à l'état civil et au
+      lieu de résidence du titulaire et/ou du co-titulaire) est couverte par la
+      règle du secret professionnel prévue par les dispositions de l’article L.
+      103 du Livre des Procédures Fiscales, car elles constituent des données
+      nominatives et personnelles. Il ne peut être dérogé au secret
+      professionnel que par une disposition législative spécifique.
+    </p>
+    <p>
+      En conséquence, les informations restituées par l'API FICOBA ne peuvent
+      être communiquées qu’aux personnes, organismes ou autorités bénéficiant
+      d’une telle mesure et dans la limite fixée par la loi.
+    </p>
+    <p>
+      La loi informatique et libertés définit les principes à respecter lors de
+      la collecte, du traitement et de la conservation de données personnelles.
+    </p>
+    <p>L’article 6 précise :</p>
+    <ul>
+      <li>
+        3° [les données] sont adéquates, pertinentes et non excessives au regard
+        des finalités pour lesquelles elles sont collectées et de leurs
+        traitements ultérieurs ;
+      </li>
+      <li>
+        4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les
+        mesures appropriées doivent être prises pour que les données inexactes
+        ou incomplètes au regard des finalités pour lesquelles elles sont
+        collectées ou traitées soient effacées ou rectifiées ;
+      </li>
+    </ul>
+    <p>
+      Nous vous remercions de sélectionner uniquement les données strictement
+      nécessaires à votre téléservice.
+    </p>
+    <p>
+      Le non-respect du principe de proportionnalité vous expose vis à vis de la
+      CNIL.
+    </p>
+  </div>
+);
 
 export const CadreJuridiqueDescription = () => (
   <div className="text-quote">
@@ -150,9 +191,13 @@ const ApiFicobaSandbox = ({
           DonneesDescription={DonneesDescription}
         />
         <CadreJuridiqueSection
+          custom_fondement_juridique_title_label={
+            'Précisez la nature et les références du texte vous autorisant à ' +
+            'traiter les données'
+          }
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
-        <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
+        <CguSection cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf" />
         <TextSection Description={SuiteDescription} title="" />
       </Form>
     </div>

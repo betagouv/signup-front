@@ -61,11 +61,15 @@ const ApiFicobaProduction = ({
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
         <CadreJuridiqueSection
+          custom_fondement_juridique_title_label={
+            'Précisez la nature et les références du texte vous autorisant à ' +
+            'traiter les données'
+          }
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <HomologationSecuriteSection />
         <VolumetrieSection />
-        <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.4.pdf" />
+        <CguSection cguLink="/docs/cgu_api_ficoba_production_decembre2020_v1.1.pdf" />
       </Form>
     </div>
   </div>

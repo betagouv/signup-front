@@ -4,7 +4,10 @@ import FileInput from '../Form/components/FileInput';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
 
-const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
+const CadreJuridiqueSection = ({
+  custom_fondement_juridique_title_label,
+  CadreJuridiqueDescription = () => null,
+}) => {
   const {
     disabled,
     onChange,
@@ -16,6 +19,11 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
     },
   } = useContext(FormContext);
 
+  const fondement_juridique_title_label =
+    custom_fondement_juridique_title_label ||
+    'Précisez la nature et, le cas échéant, les références du texte vous' +
+      ' autorisant à traiter les données';
+
   return (
     <ScrollablePanel scrollableId="cadre-juridique">
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
@@ -23,8 +31,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
       <br />
       <div className="form__group">
         <label htmlFor="fondement_juridique_title">
-          Précisez la nature et, le cas échéant, les références du texte vous
-          autorisant à traiter les données
+          {fondement_juridique_title_label}
         </label>
         <textarea
           rows="1"
