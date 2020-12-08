@@ -187,6 +187,32 @@ const demarches = {
       },
     },
   },
+  'arpege-concerto': {
+    label:
+      'Dématérialisation des demandes de facturation des services liés à la petite enfance et à l’enfance avec l’editeur Arpège',
+    about: 'https://api.gouv.fr/les-api/api-particulier',
+    state: {
+      intitule:
+        'Récupération du Quotient Familial et des Impôts pour les services Petite Enfance et Périscolaire',
+      description:
+        'Notre commune module la facturation des services liés à la petite enfance et à l’enfance en fonction des QF et des revenus. Dans un esprit de simplification et de sécurité, nous souhaitons ne pas demander aux familles ces éléments de calcul mais plutôt nous baser sur les données proposées par API Particulier. Nous utilisons le logiciel Concerto, édité par la Société Arpège.',
+      data_recipients:
+        'Agents instructeurs des dossiers d’inscription en multi-accueil, Agents instructeurs des dossiers au guichet unique, Agents instructeurs des dossiers d’inscription en accueil périscolaire',
+      data_retention_period: '12',
+      fondement_juridique_title:
+        'Préciser ici les délibérations tarifaires qui détaillent les modalités de calcul des services petite enfance et périscolaire. ',
+      fondement_juridique_url:
+        'Joindre les délibérations ou procédures internes concernées.',
+      scopes: {
+        dgfip_avis_imposition: true,
+        dgfip_adresse: false,
+        cnaf_quotient_familial: true,
+        cnaf_allocataires: true,
+        cnaf_enfants: true,
+        cnaf_adresse: false,
+      },
+    },
+  },
   'ccas-up': {
     label:
       "Dématérialisation de l'instruction des dossiers dans un CCAS avec l’editeur UP",
