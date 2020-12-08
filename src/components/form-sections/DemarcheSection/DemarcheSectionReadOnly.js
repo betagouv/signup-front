@@ -14,7 +14,7 @@ export const DemarcheSectionReadOnly = ({ demarches }) => {
     user: { roles },
   } = useContext(UserContext);
 
-  const [modifiedFields, setModifiedFields] = useState(false);
+  const [modifiedFields, setModifiedFields] = useState([]);
 
   useEffect(() => {
     if (
@@ -38,7 +38,7 @@ export const DemarcheSectionReadOnly = ({ demarches }) => {
         <p>
           Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
           <i>
-            {(demarches[selectedDemarcheId] || {}).label || selectedDemarcheId}
+            {get(demarches, selectedDemarcheId, {}).label || selectedDemarcheId}
           </i>
         </p>
         {!isEmpty(roles) && !isEmpty(modifiedFields) && (

@@ -6,14 +6,11 @@ import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../Form';
 
 export const DemarcheSection = ({ demarches }) => {
-  const {
-    enrollment: { id: enrollmentId },
-    disabled,
-  } = useContext(FormContext);
+  const { disabled } = useContext(FormContext);
 
   return (
     <>
-      {enrollmentId && disabled ? (
+      {disabled ? (
         <DemarcheSectionReadOnly demarches={demarches} />
       ) : (
         <DemarcheSectionSelect demarches={demarches} />

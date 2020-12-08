@@ -16,9 +16,10 @@ export const DemarcheSectionSelect = ({ demarches }) => {
   const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
 
   useEffect(() => {
-    // this is not great but state update goes like this
-    // => first selectedDemarcheId is undefined, then when state is updated, selectedDemarcheId is '' and then can become 'default' or another demarche
-    // this initialized demarche as soon as component is mounted
+    // To keep in mind ! this triggers an additional render as state update goes as follow :
+    // => first selectedDemarcheId is undefined
+    // => when state is updated, selectedDemarcheId is '' and then can become 'default' or another demarche
+    // => this initialized demarche as soon as component is mounted
     if (!selectedDemarcheId) {
       onChange({ demarche: 'default' });
     }
@@ -33,9 +34,9 @@ export const DemarcheSectionSelect = ({ demarches }) => {
   }, [selectedDemarcheId]);
 
   useEffect(() => {
-    const current = demarches[selectedDemarcheId];
+    const current = get(demarches, selectedDemarcheId, {});
 
-    if (!isEmpty(demarches) && current) {
+    if (!isEmpty(demarches) && !isEmpty(current)) {
       // update Enrollment Context with pre-filled state
       onChange(merge({}, get(demarches, 'default', {}).state, current.state));
     }
