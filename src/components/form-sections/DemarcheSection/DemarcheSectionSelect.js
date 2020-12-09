@@ -25,13 +25,15 @@ export const DemarcheSectionSelect = () => {
   const onSelectDemarche = event => {
     let newDemarcheId = event.target.value || 'default';
 
-    const futureEnrollment = merge(
+    const preFilledEnrollment = merge(
       {},
       get(demarches, 'default', {}).state,
       get(demarches, selectedDemarcheId, {}).state
     );
 
-    const modifications = findModifiedFields(futureEnrollment, enrollment);
+    // we compare current enrollment with prefilled associated with selectedDemarcheId
+    // if modifications, it means any change to selectedDemarcheId could overwrite the user's changes.
+    const modifications = findModifiedFields(preFilledEnrollment, enrollment);
 
     if (!isEmpty(modifications)) {
       // trigger confirmation modal before updating Enrollment

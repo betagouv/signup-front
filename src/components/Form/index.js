@@ -16,7 +16,10 @@ import { getStateFromUrlParams } from '../../lib';
 
 export const FormContext = React.createContext();
 
-const enrollmentReducer = demarches => (previousEnrollment, action) => {
+const enrollmentReducer = (demarches = null) => (
+  previousEnrollment,
+  action
+) => {
   if (!isObject(action)) {
     return previousEnrollment;
   }
@@ -43,11 +46,7 @@ const enrollmentReducer = demarches => (previousEnrollment, action) => {
 
   let futureEnrollment = zipObjectDeep([`${name}`], [value]);
 
-  const isDemarcheModified =
-    futureEnrollment.demarche &&
-    futureEnrollment.demarche !== previousEnrollment.demarche;
-
-  if (isDemarcheModified) {
+  if (demarches && name === 'demarche') {
     futureEnrollment = merge(
       {},
       futureEnrollment,
