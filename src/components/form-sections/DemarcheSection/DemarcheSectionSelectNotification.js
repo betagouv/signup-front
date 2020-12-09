@@ -1,6 +1,6 @@
 import React from 'react';
 import Loader from '../../atoms/Loader';
-import { get, isEmpty } from 'lodash';
+import { get, has, isEmpty } from 'lodash';
 import OpenInNewIcon from '../../icons/open-in-new';
 
 const DemarcheSectionNotification = ({
@@ -8,13 +8,12 @@ const DemarcheSectionNotification = ({
   selectedDemarcheId,
   demarches,
 }) => {
-  const relevantDemarcheId =
-    Object.keys(demarches).indexOf(selectedDemarcheId) > -1 &&
-    selectedDemarcheId !== 'default';
+  const displayNotification =
+    has(demarches, selectedDemarcheId) && selectedDemarcheId !== 'default';
 
   return (
     <>
-      {relevantDemarcheId && (
+      {displayNotification && (
         <div className="notification info">
           {isLoading ? (
             <Loader
