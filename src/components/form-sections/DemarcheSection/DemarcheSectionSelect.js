@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isEmpty, merge, get } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
@@ -8,22 +7,47 @@ import ConfirmationModal from '../../ConfirmationModal';
 import { findModifiedFields } from '../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 
-export const DemarcheSectionSelect = ({ demarches }) => {
-  const { onChange, enrollment } = useContext(FormContext);
+export const DemarcheSectionSelect = () => {
+  const { onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
   const [isLoading, setIsLoading] = useState(false);
   const [confirmNewDemarcheId, setConfirmNewDemarcheId] = useState(false);
 
-  useEffect(() => {
-    // To keep in mind ! this triggers an additional render as state update goes as follow :
-    // => first selectedDemarcheId is undefined
-    // => when state is updated, selectedDemarcheId is '' and then can become 'default' or another demarche
-    // => this initialized demarche as soon as component is mounted
-    if (!selectedDemarcheId) {
-      onChange({ demarche: 'default' });
+  // reducer expects onChange events from HTML Element
+  const selectNewDemarche = useCallback(
+    newDemarcheId => {
+      onChange({ target: { value: newDemarcheId, name: 'demarche' } });
+    },
+    [onChange]
+  );
+
+  const onSelectDemarche = event => {
+    let newDemarcheId = event.target.value || 'default';
+
+    const futureEnrollment = merge(
+      {},
+      get(demarches, 'default', {}).state,
+      get(demarches, selectedDemarcheId, {}).state
+    );
+
+    const modifications = findModifiedFields(futureEnrollment, enrollment);
+
+    if (!isEmpty(modifications)) {
+      // trigger confirmation modal before updating Enrollment
+      setConfirmNewDemarcheId(newDemarcheId);
+    } else {
+      // update Enrollment Context with new demarche
+      selectNewDemarche(newDemarcheId);
     }
-  }, [selectedDemarcheId, onChange]);
+  };
+
+  useEffect(() => {
+    // Initialize demarche in Enrollment
+    if (!selectedDemarcheId) {
+      selectNewDemarche('default');
+    }
+  }, [selectedDemarcheId, selectNewDemarche]);
 
   useEffect(() => {
     if (selectedDemarcheId !== 'default') {
@@ -32,35 +56,6 @@ export const DemarcheSectionSelect = ({ demarches }) => {
       return () => clearTimeout(timer);
     }
   }, [selectedDemarcheId]);
-
-  useEffect(() => {
-    const current = get(demarches, selectedDemarcheId, {});
-
-    if (!isEmpty(demarches) && !isEmpty(current)) {
-      // update Enrollment Context with pre-filled state
-      onChange(merge({}, get(demarches, 'default', {}).state, current.state));
-    }
-  }, [selectedDemarcheId, demarches, onChange]);
-
-  const onSelectDemarche = event => {
-    let newDemarcheId = event.target.value || 'default';
-
-    const modifs = findModifiedFields(
-      merge(
-        {},
-        get(demarches, 'default', {}).state,
-        get(demarches, selectedDemarcheId, {}).state
-      ),
-      enrollment
-    );
-    if (!isEmpty(modifs)) {
-      // trigger confirmation modal before updating Enrollment
-      setConfirmNewDemarcheId(newDemarcheId);
-    } else {
-      // update Enrollment Context with new demarche
-      onChange({ demarche: newDemarcheId });
-    }
-  };
 
   return (
     <>
@@ -71,7 +66,7 @@ export const DemarcheSectionSelect = ({ demarches }) => {
             handleCancel={() => setConfirmNewDemarcheId(false)}
             handleConfirm={() => {
               setConfirmNewDemarcheId(false);
-              onChange({ demarche: confirmNewDemarcheId });
+              selectNewDemarche(confirmNewDemarcheId);
             }}
             okLabel="Changer tout de même"
           >
@@ -109,10 +104,6 @@ export const DemarcheSectionSelect = ({ demarches }) => {
       />
     </>
   );
-};
-
-DemarcheSectionSelect.propTypes = {
-  demarches: PropTypes.object.isRequired,
 };
 
 export default DemarcheSectionSelect;

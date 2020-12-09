@@ -1,26 +1,15 @@
 import React, { useContext } from 'react';
-import PropTypes from 'prop-types';
 import './index.css';
 import DemarcheSectionReadOnly from './DemarcheSectionReadOnly';
 import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../Form';
 
-export const DemarcheSection = ({ demarches }) => {
+export const DemarcheSection = () => {
   const { disabled } = useContext(FormContext);
 
   return (
-    <>
-      {disabled ? (
-        <DemarcheSectionReadOnly demarches={demarches} />
-      ) : (
-        <DemarcheSectionSelect demarches={demarches} />
-      )}
-    </>
+    <>{disabled ? <DemarcheSectionReadOnly /> : <DemarcheSectionSelect />}</>
   );
-};
-
-DemarcheSection.propTypes = {
-  demarches: PropTypes.object.isRequired,
 };
 
 export default DemarcheSection;

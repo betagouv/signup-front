@@ -16,6 +16,49 @@ import { getStateFromUrlParams } from '../../lib';
 
 export const FormContext = React.createContext();
 
+const enrollmentReducer = demarches => (previousEnrollment, action) => {
+  if (!isObject(action)) {
+    return previousEnrollment;
+  }
+
+  // if no action.target, this is a direct state update (network for instance)
+  // a direct state update DOES NOT trigger a pre-filled demarche update
+  if (!action.target) {
+    const newEnrollment = action;
+
+    return merge(
+      {},
+      previousEnrollment,
+      omitBy(newEnrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+    );
+  }
+
+  // if action.target, it means reducer was trigger by an html element (input, select etc.)
+  const {
+    target: { type = null, checked = null, value: inputValue, name },
+  } = action;
+
+  // checkbox elements must be handled specifically as we look for checked and not target
+  const value = type === 'checkbox' ? checked : inputValue;
+
+  let futureEnrollment = zipObjectDeep([`${name}`], [value]);
+
+  const isDemarcheModified =
+    futureEnrollment.demarche &&
+    futureEnrollment.demarche !== previousEnrollment.demarche;
+
+  if (isDemarcheModified) {
+    futureEnrollment = merge(
+      {},
+      futureEnrollment,
+      get(demarches, 'default', {}).state,
+      get(demarches, value, {}).state
+    );
+  }
+
+  return merge({}, previousEnrollment, futureEnrollment);
+};
+
 export const Form = ({
   title,
   DemarcheDescription = () => null,
@@ -25,44 +68,25 @@ export const Form = ({
   target_api,
   enrollmentId = null,
   history,
+  demarches = null,
   children,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
 
-  const enrollmentReducer = (previousEnrollment, action) => {
-    if (!isObject(action)) {
-      return previousEnrollment;
+  const [enrollment, dispatchSetEnrollment] = useReducer(
+    enrollmentReducer(demarches),
+    {
+      acl: {
+        update: true,
+        send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
+      },
+      events: [],
+      target_api,
+      additional_content: {},
     }
-
-    if (!action.target) {
-      const newEnrollment = action;
-
-      return merge(
-        {},
-        previousEnrollment,
-        omitBy(newEnrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-      );
-    }
-
-    const {
-      target: { type = null, checked = null, value: inputValue, name },
-    } = action;
-    const value = type === 'checkbox' ? checked : inputValue;
-
-    return merge({}, previousEnrollment, zipObjectDeep([`${name}`], [value]));
-  };
-
-  const [enrollment, dispatchSetEnrollment] = useReducer(enrollmentReducer, {
-    acl: {
-      update: true,
-      send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
-    },
-    events: [],
-    target_api,
-    additional_content: {},
-  });
+  );
 
   useEffect(() => {
     async function fetchUserEnrollment() {
@@ -178,6 +202,7 @@ export const Form = ({
               onChange: dispatchSetEnrollment,
               enrollment,
               isUserEnrollmentLoading,
+              demarches,
             }}
           >
             <PreviousEnrollmentSection
@@ -215,6 +240,7 @@ export const Form = ({
           onChange: dispatchSetEnrollment,
           enrollment,
           isUserEnrollmentLoading,
+          demarches,
         }}
       >
         {children}
@@ -249,6 +275,7 @@ Form.propTypes = {
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
+  demarches: PropTypes.any,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

@@ -159,9 +159,10 @@ const ApiParticulier = ({
         target_api="api_particulier"
         title="Demande d'accès à API Particulier"
         DemarcheDescription={DemarcheDescription}
+        demarches={demarches}
       >
         <OrganisationSection />
-        <DemarcheSection demarches={demarches} />
+        <DemarcheSection />
         <DescriptionSection
           intitulePlaceholder={
             '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import { get, isEmpty } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
@@ -7,8 +6,8 @@ import './index.css';
 import { UserContext } from '../../UserContext';
 import { findModifiedFields } from '../../../lib';
 
-export const DemarcheSectionReadOnly = ({ demarches }) => {
-  const { enrollment } = useContext(FormContext);
+export const DemarcheSectionReadOnly = () => {
+  const { enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
   const {
     user: { roles },
@@ -50,10 +49,6 @@ export const DemarcheSectionReadOnly = ({ demarches }) => {
       </div>
     </ScrollablePanel>
   );
-};
-
-DemarcheSectionReadOnly.propTypes = {
-  demarches: PropTypes.object.isRequired,
 };
 
 export default DemarcheSectionReadOnly;
