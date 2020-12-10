@@ -31,8 +31,8 @@ export const DemarcheSectionReadOnly = () => {
   }, [enrollment, selectedDemarcheId, demarches]);
 
   return (
-    <ScrollablePanel scrollableId="service-numerique">
-      <h2>Service numérique</h2>
+    <ScrollablePanel scrollableId="modeles-preremplis">
+      <h2>Modèles pré-remplis</h2>
       <div>
         <p>
           Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}

@@ -61,7 +61,7 @@ export const DemarcheSectionSelect = () => {
 
   return (
     <>
-      <ScrollablePanel scrollableId="service-numerique">
+      <ScrollablePanel scrollableId="modeles-preremplis">
         {confirmNewDemarcheId && (
           <ConfirmationModal
             title="Attention, vous allez écraser certains de vos changements"
@@ -78,7 +78,7 @@ export const DemarcheSectionSelect = () => {
             </p>
           </ConfirmationModal>
         )}
-        <h2>Service numérique</h2>
+        <h2>Modèles pré-remplis</h2>
         <p>
           Nous avons identifié plusieurs cas d’usage de cette API. Si votre
           demande s’inscrit dans un des cas ci-dessous, selectionnez-le pour

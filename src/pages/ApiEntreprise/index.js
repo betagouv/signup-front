@@ -251,7 +251,7 @@ const ApiEntreprise = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
-        { id: 'service-numerique', label: 'Service numérique' },
+        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
