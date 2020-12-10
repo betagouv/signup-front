@@ -6,11 +6,40 @@ import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import CguSection from '../components/form-sections/CguSection';
 import LabelsSection from '../components/form-sections/aidants-connect-sections/LabelsSection';
 import AidantsSection from '../components/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/form-sections/aidants-connect-sections/StructureSection';
+import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+
+const contacts = {
+  metier: {
+    heading: 'Représentant légal',
+    description: () => (
+      <p>
+        La personne aillant pouvoir de signature pour engager la structure avec
+        Aidant Connect.
+      </p>
+    ),
+    family_name: '',
+    given_name: '',
+    email: '',
+    phone_number: '',
+  },
+  technique: {
+    heading: 'Contact métier',
+    description: () => (
+      <p>
+        La personne responsable de la mise en place de aidant connect au sein de
+        votre structure.
+      </p>
+    ),
+    family_name: '',
+    given_name: '',
+    email: '',
+    phone_number: '',
+  },
+};
 
 const AidantsConnect = ({
   match: {
@@ -29,7 +58,7 @@ const AidantsConnect = ({
         { id: 'organisation', label: 'Organisation' },
         { id: 'structure', label: 'Structure' },
         { id: 'labels', label: 'Labels' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
+        { id: 'contacts-moe', label: 'Référents' },
         { id: 'aidants', label: 'Les aidants' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
@@ -50,7 +79,11 @@ const AidantsConnect = ({
         <OrganisationSection />
         <StructureSection />
         <LabelsSection />
-        <DonneesPersonnellesSection />
+        <MiseEnOeuvreSection
+          sectionTitle="Coordonnées des référents de votre structure"
+          initialContacts={contacts}
+          MiseEnOeuvreDescription={() => null}
+        />
         <AidantsSection />
         <CguSection cguLink="https://aidantsconnect.beta.gouv.fr/cgu/" />
       </Form>

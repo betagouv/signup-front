@@ -61,10 +61,6 @@ const ApiFicobaProduction = ({
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
         <CadreJuridiqueSection
-          custom_fondement_juridique_title_label={
-            'Précisez la nature et les références du texte vous autorisant à ' +
-            'traiter les données'
-          }
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <HomologationSecuriteSection />

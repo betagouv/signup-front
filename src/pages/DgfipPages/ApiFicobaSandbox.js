@@ -191,10 +191,6 @@ const ApiFicobaSandbox = ({
           DonneesDescription={DonneesDescription}
         />
         <CadreJuridiqueSection
-          custom_fondement_juridique_title_label={
-            'Précisez la nature et les références du texte vous autorisant à ' +
-            'traiter les données'
-          }
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <CguSection cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf" />

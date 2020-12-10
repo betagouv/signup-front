@@ -70,7 +70,7 @@ export const DemarcheSectionSelect = () => {
               setConfirmNewDemarcheId(false);
               selectNewDemarche(confirmNewDemarcheId);
             }}
-            okLabel="Changer tout de même"
+            confirmLabel="Changer tout de même"
           >
             <p>
               En changeant de cas d’usage, certains des champs que vous avez
