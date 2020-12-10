@@ -70,13 +70,6 @@
       }
     }
   },
-  "aides-publiques": {
-    "label": "Aides publiques",
-    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
-    "state": {
-      "scopes": {}
-    }
-  },
   "aide-covid": {
     "label": "Aide d'urgence régionale Covid-19 aux TPE",
     "about": "https://entreprise.api.gouv.fr/use_cases/covid-19/",
