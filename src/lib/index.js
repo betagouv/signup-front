@@ -293,3 +293,18 @@ export const setUrlParamsFromState = (newState = {}) => {
     `${window.location.pathname}?${newQueryString}`
   );
 };
+
+export const findModifiedFields = (
+  demarcheState = {},
+  enrollmentState = {}
+) => {
+  const modified = [];
+  Object.keys(demarcheState).forEach(key => {
+    const initialValue = demarcheState[key];
+    const value = enrollmentState[key];
+    if (JSON.stringify(initialValue) !== JSON.stringify(value)) {
+      modified.push(key);
+    }
+  });
+  return modified;
+};

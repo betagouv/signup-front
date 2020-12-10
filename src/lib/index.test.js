@@ -1,5 +1,6 @@
 import {
   collectionWithKeyToObject,
+  findModifiedFields,
   getChangelog,
   getErrorMessages,
   getStateFromUrlParams,
@@ -432,6 +433,69 @@ describe('utils', () => {
           scopes: {},
         })
       ).toEqual(expectedResult);
+    });
+  });
+
+  describe('findModifiedFieldsInEnrollment', () => {
+    it('should return an array with modified field(s)', () => {
+      expect(
+        findModifiedFields(
+          {
+            data_recipients: '',
+            data_retention_period: '',
+            description: '',
+            fondement_juridique_title: '',
+            fondement_juridique_url: '',
+            intitule: '',
+            scopes: {
+              cnaf_adresse: false,
+              cnaf_allocataires: true,
+              cnaf_enfants: true,
+              cnaf_quotient_familial: true,
+              dgfip_adresse: true,
+              dgfip_avis_imposition: true,
+            },
+          },
+          {
+            acl: {
+              send_application: true,
+              update: true,
+              additional_content: {},
+            },
+            contacts: {
+              metier: {
+                heading: 'Contact métier',
+                email: '',
+                phone_number: '',
+              },
+              technique: {
+                heading: 'Responsable technique',
+                email: '',
+                phone_number: '',
+              },
+            },
+            data_recipients: '',
+            data_retention_period: '',
+            demarche: 'ccas',
+            description: '',
+            events: [],
+            fondement_juridique_title: '',
+            fondement_juridique_url: '',
+            intitule: 'wxcxcw',
+            organization_id: 1,
+            scopes: {
+              cnaf_adresse: false,
+              cnaf_allocataires: true,
+              cnaf_enfants: true,
+              cnaf_quotient_familial: true,
+              dgfip_adresse: true,
+              dgfip_avis_imposition: true,
+            },
+            siret: '21920023500014',
+            target_api: 'api_particulier',
+          }
+        )
+      ).toStrictEqual(['intitule']);
     });
   });
 });

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Scopes.css';
-import WarningModal from '../../WarningModal';
+import ConfirmationModal from '../../ConfirmationModal';
 import Helper from '../../Helper';
 import OpenInNewIcon from '../../icons/open-in-new';
 
@@ -116,18 +116,20 @@ const Scopes = ({
         </div>
       </fieldset>
       {warningModalScope && (
-        <WarningModal
+        <ConfirmationModal
           handleCancel={() => setWarningModalScope(null)}
-          handleValidate={handleWarningModalClose}
-          okLabel={`Demander la donnée « ${
+          handleConfirm={handleWarningModalClose}
+          confirmLabel={`Demander la donnée « ${
             scopes.find(({ value }) => value === warningModalScope).label
           } »`}
-          koLabel={`Ne pas demander la donnée « ${
+          cancelLabel={`Ne pas demander la donnée « ${
             scopes.find(({ value }) => value === warningModalScope).label
           } »`}
           title={ModalContent[warningType].title}
-          body={ModalContent[warningType].body}
-        />
+          theme="warning"
+        >
+          <p>{ModalContent[warningType].body} </p>
+        </ConfirmationModal>
       )}
     </div>
   );
