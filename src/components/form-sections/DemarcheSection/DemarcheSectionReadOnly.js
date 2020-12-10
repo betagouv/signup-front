@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { get, isEmpty } from 'lodash';
+import { get, has, isEmpty } from 'lodash';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import './index.css';
@@ -30,24 +30,36 @@ export const DemarcheSectionReadOnly = () => {
     }
   }, [enrollment, selectedDemarcheId, demarches]);
 
+  const hasSelectedDemarche =
+    has(demarches, selectedDemarcheId) && selectedDemarcheId !== 'default';
+
   return (
-    <ScrollablePanel scrollableId="modeles-preremplis">
-      <h2>Modèles pré-remplis</h2>
-      <div>
-        <p>
-          Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
-          <i>
-            {get(demarches, selectedDemarcheId, {}).label || selectedDemarcheId}
-          </i>
-        </p>
-        {!isEmpty(roles) && !isEmpty(modifiedFields) && (
-          <p>
-            Certaines des sections pré-remplies par le cas d’usage ont été
-            modifiées.
-          </p>
-        )}
-      </div>
-    </ScrollablePanel>
+    <>
+      <ScrollablePanel scrollableId="modeles-preremplis">
+        <h2>Modèles pré-remplis</h2>
+        <div>
+          {hasSelectedDemarche ? (
+            <>
+              <p>
+                Ce formulaire a été pré-rempli selon le cas d’usage suivant :{' '}
+                <i>
+                  {get(demarches, selectedDemarcheId, {}).label ||
+                    selectedDemarcheId}
+                </i>
+              </p>
+              {!isEmpty(roles) && !isEmpty(modifiedFields) && (
+                <p>
+                  Certaines des sections pré-remplies par le cas d’usage ont été
+                  modifiées.
+                </p>
+              )}
+            </>
+          ) : (
+            <>Cette demande n'a pas utilisé de modèle de pré-remplissage.</>
+          )}
+        </div>
+      </ScrollablePanel>
+    </>
   );
 };
 
