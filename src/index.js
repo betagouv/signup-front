@@ -7,7 +7,7 @@ import 'moment/locale/fr'; // set moment locale to french globally
 
 // Setup sentry
 if (
-  // process.env.NODE_ENV === 'production' &&
+  process.env.NODE_ENV === 'production' &&
   typeof window !== 'undefined' &&
   !!window.Raven
 ) {
