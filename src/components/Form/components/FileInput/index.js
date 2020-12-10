@@ -4,7 +4,7 @@ import fileDownload from 'js-file-download';
 import { uniqueId } from 'lodash';
 import DescriptionIcon from '../../../icons/description';
 import './index.css';
-import WarningModal from '../../../WarningModal';
+import ConfirmationModal from '../../../ConfirmationModal';
 import httpClient from '../../../../lib/http-client';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -145,14 +145,19 @@ const FileInput = ({
         </>
       )}
       {showWarningModal && (
-        <WarningModal
+        <ConfirmationModal
           title="Fichier non vérifié"
-          body="Ce fichier provient d'une source extérieure et n'a pas été vérifié. Merci de l'analyser avec votre antivirus avant de l'ouvrir."
           handleCancel={() => setShowWarningModal(false)}
-          handleValidate={download}
-          koLabel={`Ne pas télécharger le fichier`}
-          okLabel={`Télécharger ${uploadedDocument.filename}`}
-        />
+          handleConfirm={download}
+          cancelLabel={`Ne pas télécharger le fichier`}
+          confirmLabel={`Télécharger ${uploadedDocument.filename}`}
+          theme="warning"
+        >
+          <p>
+            Ce fichier provient d'une source extérieure et n'a pas été vérifié.
+            Merci de l'analyser avec votre antivirus avant de l'ouvrir.
+          </p>
+        </ConfirmationModal>
       )}
     </div>
   );

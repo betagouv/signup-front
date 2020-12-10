@@ -2,12 +2,13 @@ import React from 'react';
 import AriaModal from '@justfixnyc/react-aria-modal';
 
 const ConfirmationModal = ({
-  handleCancel,
   handleConfirm,
+  confirmLabel = 'Confirmer',
+  handleCancel,
+  cancelLabel = 'Annuler',
   title,
   children,
-  okLabel,
-  nokLabel,
+  theme = 'primary',
 }) => (
   <AriaModal
     titleText={title}
@@ -30,19 +31,19 @@ const ConfirmationModal = ({
           id="close-warning-modal"
           className="closing_cross"
           onClick={handleCancel}
-          aria-label={nokLabel || 'Annuler'}
+          aria-label={cancelLabel}
         >
           ×
         </button>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button
-            className="button-outline large primary"
+            className={`button-outline large ${theme}`}
             onClick={handleCancel}
           >
-            {nokLabel || 'Annuler'}
+            {cancelLabel}
           </button>
-          <button className="button large" onClick={handleConfirm}>
-            {okLabel || 'Confirmer'}
+          <button className={`button large ${theme}`} onClick={handleConfirm}>
+            {confirmLabel}
           </button>
         </div>
       </div>
