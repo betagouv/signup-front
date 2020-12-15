@@ -45,13 +45,6 @@ export const DemarcheSectionSelect = () => {
   };
 
   useEffect(() => {
-    // Initialize demarche in Enrollment
-    if (!selectedDemarcheId) {
-      selectNewDemarche('default');
-    }
-  }, [selectedDemarcheId, selectNewDemarche]);
-
-  useEffect(() => {
     if (selectedDemarcheId !== 'default') {
       setIsLoading(true);
       const timer = setTimeout(() => setIsLoading(false), 900);
