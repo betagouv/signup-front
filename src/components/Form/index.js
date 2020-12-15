@@ -117,7 +117,11 @@ export const Form = ({
       });
 
       const { demarche } = enrollmentFromUrlParams;
-      dispatchSetEnrollment(demarche ? { demarche } : enrollmentFromUrlParams);
+      dispatchSetEnrollment(
+        demarche
+          ? { target: { name: 'demarche', value: demarche } }
+          : enrollmentFromUrlParams
+      );
       setIsUserEnrollmentLoading(false);
     }
   }, [enrollmentId, history]);
