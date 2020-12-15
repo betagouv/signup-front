@@ -1,5 +1,31 @@
 # Frontend de Data Pass
 
+## Installation
+
+### Avec un backend distant
+
+Cette installation utilise le backend disponible sur https://back.datapass-test.api.gouv.fr. Elle ne permet pas de développements sur le backend.
+
+Install NodeJs version ^12.18.
+
+Clone the repository then install npm dependencies:
+
+```
+git clone git@github.com:betagouv/signup-front.git
+cd signup-front
+npm i
+```
+
+Run the projet:
+
+```
+npm run dev-with-remote-backend
+```
+
+### Avec un backend local
+
+Cette installation utilise un backend lancé dans virtualbox. L'installation est donc beaucoup plus longue que la première mais permet de faire des développements sur le backend.
+
 Les instructions d'installation se trouvent ici : https://github.com/betagouv/datapass
 
 ## Usage statistics
