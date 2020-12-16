@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
-import FileInput from '../../Form/components/FileInput';
 import TextInput from '../../Form/components/TextInput';
 import TextAreaInput from '../../Form/components/TextAreaInput';
 import Quote from '../../Form/components/Quote';
+import OrInput from '../../Form/components/OrInput';
 
 export const StructureSection = () => {
   const {
@@ -53,21 +53,22 @@ export const StructureSection = () => {
           l'un des champs suivant :
         </p>
       </Quote>
-      <FileInput
+      <OrInput
         label="Téléverser un document"
         documentType={'Document::DelegationServicePublic'}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         disabled={disabled}
-        handleChange={onChange}
-      />
-      <TextInput
-        label="Renseigner l'administration avec laquelle vous travaillez"
-        name="additional_content.associated_public_organisation"
-        value={associated_public_organisation}
-        disabled={disabled}
         onChange={onChange}
-      />
+      >
+        <TextInput
+          label="Renseigner l'administration avec laquelle vous travaillez"
+          name="additional_content.associated_public_organisation"
+          value={associated_public_organisation}
+          disabled={disabled}
+          onChange={onChange}
+        />
+      </OrInput>
     </ScrollablePanel>
   );
 };

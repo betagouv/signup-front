@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import FileInput from '../Form/components/FileInput';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
+import OrInput from '../Form/components/OrInput';
 
 const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   const {
@@ -36,40 +36,41 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
           placeholder="« loi », « décret », « délibération », etc."
         />
       </div>
-      <div className="form__group">
-        <label htmlFor="fondement_juridique_url">
-          Si possible, joindre l'URL du texte relatif au traitement{' '}
-          {fondement_juridique_url && (
-            <span>
-              (
-              <a
-                href={fondement_juridique_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                accéder à cette URL
-              </a>
-              )
-            </span>
-          )}
-        </label>
-        <input
-          type="url"
-          onChange={onChange}
-          name="fondement_juridique_url"
-          id="fondement_juridique_url"
-          readOnly={disabled}
-          value={fondement_juridique_url}
-        />
-      </div>
-      <FileInput
-        label="Sinon, joindre le document lui même"
+      <OrInput
+        label="Joindre le document lui même"
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::LegalBasis'}
-        handleChange={onChange}
-      />
+        onChange={onChange}
+      >
+        <>
+          <label htmlFor="fondement_juridique_url">
+            Si possible, joindre l'URL du texte relatif au traitement{' '}
+            {fondement_juridique_url && (
+              <span>
+                (
+                <a
+                  href={fondement_juridique_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  accéder à cette URL
+                </a>
+                )
+              </span>
+            )}
+          </label>
+          <input
+            type="url"
+            onChange={onChange}
+            name="fondement_juridique_url"
+            id="fondement_juridique_url"
+            readOnly={disabled}
+            value={fondement_juridique_url}
+          />
+        </>
+      </OrInput>
     </ScrollablePanel>
   );
 };
