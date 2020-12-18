@@ -1,7 +1,7 @@
 import React from 'react';
 import './OrWrapperStyle.css';
 
-export const OrWrapper = ({ children = [], ...props }) => {
+export const OrWrapper = ({ children = [] }) => {
   return (
     <div id="or-input-form" className="form__group">
       {children.map((child, index) => (
