@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
-import OrInput from '../../Form/components/OrInput';
+import FileInput from '../../Form/components/FileInput';
+import OrWrapper from '../../Form/components/OrWrapper';
 
 const DonneesCartoBioSection = () => {
   const {
@@ -18,15 +19,7 @@ const DonneesCartoBioSection = () => {
     <ScrollablePanel scrollableId="cartobio-donnees">
       <h2>Les périmètres de données dont vous avez besoin</h2>
       <br />
-      <OrInput
-        label="Joindre les contours géographiques au format Shapefile ou GeoJSON, tel quel ou zippé :"
-        mimeTypes="*"
-        disabled={disabled}
-        uploadedDocuments={documents}
-        documentsToUpload={documents_attributes}
-        documentType={'Document::GeoShape'}
-        handleChange={onChange}
-      >
+      <OrWrapper>
         <>
           <label htmlFor="location_scopes">
             Indiquez l'entité administrative concernée : commune(s) (nom ou code
@@ -43,7 +36,16 @@ const DonneesCartoBioSection = () => {
             placeholder="« 93032,93077 », « 200054781,200054781 », « 93 », etc."
           />
         </>
-      </OrInput>
+        <FileInput
+          label="Joindre les contours géographiques au format Shapefile ou GeoJSON, tel quel ou zippé :"
+          mimeTypes="*"
+          disabled={disabled}
+          uploadedDocuments={documents}
+          documentsToUpload={documents_attributes}
+          documentType={'Document::GeoShape'}
+          handleChange={onChange}
+        />
+      </OrWrapper>
     </ScrollablePanel>
   );
 };

@@ -4,7 +4,8 @@ import { ScrollablePanel } from '../../Scrollable';
 import TextInput from '../../Form/components/TextInput';
 import TextAreaInput from '../../Form/components/TextAreaInput';
 import Quote from '../../Form/components/Quote';
-import OrInput from '../../Form/components/OrInput';
+import OrWrapper from '../../Form/components/OrWrapper';
+import FileInput from '../../Form/components/FileInput';
 
 export const StructureSection = () => {
   const {
@@ -53,14 +54,7 @@ export const StructureSection = () => {
           l'un des champs suivant :
         </p>
       </Quote>
-      <OrInput
-        label="Téléverser un document"
-        documentType={'Document::DelegationServicePublic'}
-        uploadedDocuments={documents}
-        documentsToUpload={documents_attributes}
-        disabled={disabled}
-        onChange={onChange}
-      >
+      <OrWrapper>
         <TextInput
           label="Renseigner l'administration avec laquelle vous travaillez"
           name="additional_content.associated_public_organisation"
@@ -68,7 +62,15 @@ export const StructureSection = () => {
           disabled={disabled}
           onChange={onChange}
         />
-      </OrInput>
+        <FileInput
+          label="Téléverser un document"
+          documentType={'Document::DelegationServicePublic'}
+          uploadedDocuments={documents}
+          documentsToUpload={documents_attributes}
+          disabled={disabled}
+          onChange={onChange}
+        />
+      </OrWrapper>
     </ScrollablePanel>
   );
 };

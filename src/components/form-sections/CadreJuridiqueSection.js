@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
-import OrInput from '../Form/components/OrInput';
+import OrWrapper from '../Form/components/OrWrapper';
+import FileInput from '../Form/components/FileInput';
 
 const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   const {
@@ -36,14 +37,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
           placeholder="« loi », « décret », « délibération », etc."
         />
       </div>
-      <OrInput
-        label="Joindre le document lui même"
-        disabled={disabled}
-        uploadedDocuments={documents}
-        documentsToUpload={documents_attributes}
-        documentType={'Document::LegalBasis'}
-        onChange={onChange}
-      >
+      <OrWrapper>
         <>
           <label htmlFor="fondement_juridique_url">
             Si possible, joindre l'URL du texte relatif au traitement{' '}
@@ -70,7 +64,15 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
             value={fondement_juridique_url}
           />
         </>
-      </OrInput>
+        <FileInput
+          label="Joindre le document lui même"
+          disabled={disabled}
+          uploadedDocuments={documents}
+          documentsToUpload={documents_attributes}
+          documentType={'Document::LegalBasis'}
+          onChange={onChange}
+        />
+      </OrWrapper>
     </ScrollablePanel>
   );
 };
