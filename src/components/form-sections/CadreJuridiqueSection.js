@@ -70,7 +70,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
           uploadedDocuments={documents}
           documentsToUpload={documents_attributes}
           documentType={'Document::LegalBasis'}
-          onChange={onChange}
+          handleChange={onChange}
         />
       </OrWrapper>
     </ScrollablePanel>

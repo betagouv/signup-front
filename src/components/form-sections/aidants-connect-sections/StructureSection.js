@@ -68,7 +68,7 @@ export const StructureSection = () => {
           uploadedDocuments={documents}
           documentsToUpload={documents_attributes}
           disabled={disabled}
-          onChange={onChange}
+          handleChange={onChange}
         />
       </OrWrapper>
     </ScrollablePanel>
