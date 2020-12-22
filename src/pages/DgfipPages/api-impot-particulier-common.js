@@ -1,4 +1,5 @@
 import React from 'react';
+import Quote from '../../components/Form/components/Quote';
 
 export const DemarcheDescription = () => (
   <div className="notification grey">
@@ -47,16 +48,16 @@ export const DemarcheDescriptionProduction = () => (
 );
 
 export const PreviousEnrollmentDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Vous devez tout d'abord sélectionner la démarche que vous souhaitez
       poursuivre.
     </p>
-  </div>
+  </Quote>
 );
 
 export const DonneesDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -83,24 +84,26 @@ export const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-  </div>
+  </Quote>
 );
 
 export const DonneesFootnote = () => (
-  <small className="card__meta">
-    <i>
-      <a
-        href="/docs/presentation_de_l_api_impot_particulier___v1.6.pdf"
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="Document pdf précisant les données proposées"
-      >
-        Ce document
-      </a>{' '}
-      présente les modalités d'appel et de réponse de l'API Impôt particulier,
-      et décrit les données proposées.
-    </i>
-  </small>
+  <div className="form__group">
+    <small className="card__meta">
+      <i>
+        <a
+          href="/docs/presentation_de_l_api_impot_particulier___v1.6.pdf"
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label="Document pdf précisant les données proposées"
+        >
+          Ce document
+        </a>{' '}
+        présente les modalités d'appel et de réponse de l'API Impôt particulier,
+        et décrit les données proposées.
+      </i>
+    </small>
+  </div>
 );
 
 export const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
@@ -148,7 +151,7 @@ export const availableScopes = [
 ];
 
 export const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
@@ -170,20 +173,20 @@ export const CadreJuridiqueDescription = () => (
         n°2016-1321 du 7 octobre 2016 - art. 91 )
       </li>
     </ul>
-  </div>
+  </Quote>
 );
 
 export const CguDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Votre raccordement à l‘API Impôt particulier nécessite l’acceptation des
       conditions générales d'utilisation.
     </p>
-  </div>
+  </Quote>
 );
 
 export const SuiteDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Après avoir cliqué sur « Soumettre la demande », les prochaines étapes
       sont :
@@ -210,13 +213,13 @@ export const SuiteDescription = () => (
         afin d’accéder à l’environnement de production de l’API.
       </li>
     </ul>
-  </div>
+  </Quote>
 );
 
 export const contacts = {
   technique: {
     heading: 'Responsable technique',
-    description: () => (
+    description: (
       <p>
         Cette personne recevra les accès techniques par mail. Elle pourra
         également être contactée par téléphone pour faciliter le raccordement à

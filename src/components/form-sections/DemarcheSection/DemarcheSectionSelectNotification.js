@@ -35,21 +35,23 @@ const DemarcheSectionNotification = ({
                   selectedDemarcheId}
               </b>{' '}
               ».{' '}
-              {!isEmpty(demarches) && selectedDemarcheId && (
-                <>
-                  Pour en savoir plus sur ce cas d’usage, vous pouvez en
-                  consulter la{' '}
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
-                    href={get(demarches, selectedDemarcheId, {}).about}
-                  >
-                    fiche explicative
-                    <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
-                  </a>
-                </>
-              )}
+              {!isEmpty(demarches) &&
+                selectedDemarcheId &&
+                get(demarches, selectedDemarcheId, {}).about && (
+                  <>
+                    Pour en savoir plus sur ce cas d’usage, vous pouvez en
+                    consulter la{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
+                      href={get(demarches, selectedDemarcheId, {}).about}
+                    >
+                      fiche explicative
+                      <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
+                    </a>
+                  </>
+                )}
               <br />
               <br />
               Certains champs du formulaire ont été pré-remplis afin de

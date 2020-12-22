@@ -14,6 +14,7 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/Form/HasNextEnrollmentsNotification';
+import Quote from '../components/Form/components/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -55,7 +56,7 @@ const DemarcheDescription = () => (
 const contacts = {
   technique: {
     heading: 'Responsable technique',
-    description: () => (
+    description: (
       <p>
         Cette personne recevra les accès techniques par mail. Le numéro de
         téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
@@ -71,7 +72,7 @@ const contacts = {
 };
 
 const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
       réglementaire qui s'applique à votre entité (administration ou entreprise)
@@ -95,7 +96,7 @@ const CadreJuridiqueDescription = () => (
         réglementaire qui s'applique à votre entité.
       </li>
     </ul>
-  </div>
+  </Quote>
 );
 
 const availableScopes = [

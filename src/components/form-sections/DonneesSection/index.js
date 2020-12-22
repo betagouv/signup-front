@@ -65,7 +65,6 @@ const DonneesSection = ({
         onChange={onChange}
         additional_content={additional_content}
       />
-      <br />
       {!isEmpty(useCases) && (
         <UseCase availableScopes={availableScopes} useCases={useCases} />
       )}
@@ -73,8 +72,8 @@ const DonneesSection = ({
         {scopesLabel
           ? scopesLabel
           : isEmpty(useCases)
-          ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
-          : 'Liste des données correspondantes :'}
+          ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
+          : 'Liste des données correspondantes :'}
       </p>
       {Object.keys(groupTitleScopesGroup).map(group => (
         <Scopes
@@ -89,7 +88,7 @@ const DonneesSection = ({
       ))}
       {disabled && !isEmpty(outdatedScopes) && (
         <Scopes
-          title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
+          title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
           scopes={outdatedScopes.map(value => ({ value, label: value }))}
           selectedScopes={zipObject(
             outdatedScopes,

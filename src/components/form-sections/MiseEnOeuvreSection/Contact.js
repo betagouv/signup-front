@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Contact.css';
+import TextInput from '../../Form/components/TextInput';
+import Quote from '../../Form/components/Quote';
+import EmailInput from '../../Form/components/EmailInput';
+import TelInput from '../../Form/components/TelInput';
 
 export const Contact = ({
   id,
@@ -15,80 +19,61 @@ export const Contact = ({
   phone_number,
   display_mobile_phone_label = false,
   disabled,
-  handleChange,
+  onChange,
 }) => (
   <div className="card">
     <div className="card__content">
       <h3>{heading}</h3>
-      {description && (
-        <div className="form__group">
-          <div className="text-quote">{description()}</div>
-        </div>
-      )}
+      {description && <Quote>{description}</Quote>}
       {typeof given_name !== 'undefined' && typeof family_name !== 'undefined' && (
         <div className="form-row">
           <div className="form-col">
-            <label htmlFor={`person_${id}_given_name`}>Prénom</label>
-            <input
-              className="form-control"
-              type="text"
-              onChange={handleChange}
+            <TextInput
+              label="Prénom"
               name={`contacts.${id}.given_name`}
-              id={`person_${id}_given_name`}
-              readOnly={disabled}
               value={given_name}
-              aria-label={`Prénom du ${heading}`}
+              disabled={disabled}
+              onChange={onChange}
+              ariaLabel={`Prénom du ${heading}`}
             />
           </div>
           <div className="form-col">
-            <label htmlFor={`person_${id}_family_name`}>Nom de famille</label>
-            <input
-              className="form-control"
-              type="text"
-              onChange={handleChange}
+            <TextInput
+              label="Nom de famille"
               name={`contacts.${id}.family_name`}
-              id={`person_${id}_family_name`}
-              readOnly={disabled}
               value={family_name}
-              aria-label={`Nom de famille du ${heading}`}
+              disabled={disabled}
+              onChange={onChange}
+              ariaLabel={`Nom de famille du ${heading}`}
             />
           </div>
         </div>
       )}
       <EmailDescription />
-      <div className="form__group">
-        <label htmlFor={`person_${id}_email`}>Email</label>
-        <input
-          type="email"
-          onChange={handleChange}
-          name={`contacts.${id}.email`}
-          id={`person_${id}_email`}
-          readOnly={disabled}
-          value={email}
-          placeholder={emailPlaceholder}
-          aria-label={`Email du ${heading}`}
-        />
-      </div>
+      <EmailInput
+        label="Email"
+        placeholder={emailPlaceholder}
+        name={`contacts.${id}.email`}
+        value={email}
+        disabled={disabled}
+        onChange={onChange}
+        ariaLabel={`Email du ${heading}`}
+      />
       {typeof phone_number !== 'undefined' && (
-        <div className="form__group">
-          <label htmlFor={`person_${id}_phone_number`}>
-            {display_mobile_phone_label
+        <TelInput
+          label={
+            display_mobile_phone_label
               ? 'Numéro de téléphone mobile'
-              : 'Numéro de téléphone'}
-          </label>
-          <input
-            type="tel"
-            onChange={handleChange}
-            name={`contacts.${id}.phone_number`}
-            id={`person_${id}_phone_number`}
-            readOnly={disabled}
-            value={phone_number}
-            pattern="\+?(?:[0-9][ -]?){6,14}[0-9]"
-            aria-label={`Numéro de téléphone ${
-              display_mobile_phone_label ? 'mobile' : ''
-            } du ${heading}`}
-          />
-        </div>
+              : 'Numéro de téléphone'
+          }
+          name={`contacts.${id}.phone_number`}
+          value={phone_number}
+          disabled={disabled}
+          onChange={onChange}
+          ariaLabel={`Numéro de téléphone ${
+            display_mobile_phone_label ? 'mobile ' : ''
+          }du ${heading}`}
+        />
       )}
     </div>
   </div>
@@ -98,13 +83,12 @@ Contact.propTypes = {
   id: PropTypes.string,
   heading: PropTypes.string,
   link: PropTypes.string,
-  description: PropTypes.func,
   nom: PropTypes.string,
   email: PropTypes.string,
   emailPlaceholder: PropTypes.string,
   phone_number: PropTypes.string,
   disabled: PropTypes.bool,
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
 };
 
 export default Contact;

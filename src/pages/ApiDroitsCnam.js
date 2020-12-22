@@ -26,7 +26,7 @@ const DemarcheDescription = () => (
       fournisseurs de service à l’API Droits CNAM.
     </p>
     <p>
-      Pour faciliter votre racordement à l'API Droits CNAM, une{' '}
+      Pour faciliter votre raccordement à l'API Droits CNAM, une{' '}
       <a
         href="https://github.com/assurance-maladie-digital/api-droits-fs-exemple-php"
         target="_blank"

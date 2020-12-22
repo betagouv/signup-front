@@ -6,9 +6,10 @@ import './index.css';
 import ConfirmationModal from '../../ConfirmationModal';
 import { findModifiedFields } from '../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
+import Select from '../../Form/components/Select';
 
 export const DemarcheSectionSelect = () => {
-  const { onChange, enrollment, demarches } = useContext(FormContext);
+  const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -72,25 +73,23 @@ export const DemarcheSectionSelect = () => {
           </ConfirmationModal>
         )}
         <h2>Modèles pré-remplis</h2>
-        <p>
-          Nous avons identifié plusieurs cas d’usage de cette API. Si votre
-          demande s’inscrit dans un des cas ci-dessous, selectionnez-le pour
-          gagner du temps.
-        </p>
-        <div>
-          <select
-            id="demarche"
-            name="demarche"
-            value={selectedDemarcheId}
-            onChange={onSelectDemarche}
-          >
-            {Object.keys(demarches).map(demarcheId => (
-              <option key={demarcheId} value={demarcheId}>
-                {get(demarches, demarcheId, {}).label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <Select
+          label={
+            <>
+              Nous avons identifié plusieurs cas d’usage de cette API. Si votre
+              demande s’inscrit dans un des cas ci-dessous, sélectionnez-le pour
+              gagner du temps.
+            </>
+          }
+          name="demarche"
+          options={Object.keys(demarches).map(demarcheId => ({
+            id: demarcheId,
+            label: get(demarches, demarcheId, {}).label,
+          }))}
+          value={selectedDemarcheId}
+          disabled={disabled}
+          onChange={onSelectDemarche}
+        />
       </ScrollablePanel>
       <DemarcheSectionSelectNotification
         isLoading={isLoading}

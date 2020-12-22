@@ -3,6 +3,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
 import FileInput from '../../Form/components/FileInput';
 import OrWrapper from '../../Form/components/OrWrapper';
+import TextAreaInput from '../../Form/components/TextAreaInput';
 
 const DonneesCartoBioSection = () => {
   const {
@@ -18,26 +19,29 @@ const DonneesCartoBioSection = () => {
   return (
     <ScrollablePanel scrollableId="cartobio-donnees">
       <h2>Les périmètres de données dont vous avez besoin</h2>
-      <br />
       <OrWrapper>
-        <>
-          <label htmlFor="location_scopes">
-            Indiquez l'entité administrative concernée : commune(s) (nom ou code
-            INSEE), EPCI (nom et/ou code INSEE), numéro de département ou région
-            :
-          </label>
-          <textarea
-            rows="1"
-            onChange={onChange}
-            name="additional_content.location_scopes"
-            id="location_scopes"
-            readOnly={disabled}
-            value={location_scopes}
-            placeholder="« 93032,93077 », « 200054781,200054781 », « 93 », etc."
-          />
-        </>
+        <TextAreaInput
+          label={
+            <>
+              Indiquez l'entité administrative concernée : commune(s) (nom ou
+              code INSEE), EPCI (nom et/ou code INSEE), numéro de département ou
+              région :
+            </>
+          }
+          placeholder="« 93032,93077 », « 200054781,200054781 », « 93 », etc."
+          name="additional_content.location_scopes"
+          value={location_scopes}
+          disabled={disabled}
+          onChange={onChange}
+          rows={1}
+        />
         <FileInput
-          label="Joindre les contours géographiques au format Shapefile ou GeoJSON, tel quel ou zippé :"
+          label={
+            <>
+              Joindre les contours géographiques au format Shapefile ou GeoJSON,
+              tel quel ou zippé :
+            </>
+          }
           mimeTypes="*"
           disabled={disabled}
           uploadedDocuments={documents}

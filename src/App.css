@@ -431,6 +431,11 @@ targeting the last_child like so '.card__content > :last-child'
   margin-bottom: 1em;
 }
 
+/* fix: margin behave coherently with h2 margin rules */
+.card__content h3 {
+  margin-bottom: 1em;
+}
+
 /* fix: modal overflow */
 .modal {
   max-width: 50em;

@@ -13,6 +13,7 @@ import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSect
 import CguSection from '../../components/form-sections/CguSection';
 import { sample } from 'lodash';
 import demarches from './demarches.json';
+import Quote from '../../components/Form/components/Quote';
 
 const WarningEmoji = () => (
   <span role="img" aria-label="Attention">
@@ -23,7 +24,7 @@ const WarningEmoji = () => (
 const contacts = {
   metier: {
     heading: 'Contact métier',
-    description: () => (
+    description: (
       <p>
         Nous contacterons cette personne pour vous avertir de nouvelles
         fonctionnalités ou d'incidents majeurs sur nos API.
@@ -36,7 +37,7 @@ const contacts = {
   },
   technique: {
     heading: 'Contact technique',
-    description: () => (
+    description: (
       <p>
         Nous contacterons cette personne pour vous avertir des évolutions
         techniques, des incidents et de l'expiration des jetons.
@@ -45,17 +46,15 @@ const contacts = {
     family_name: '',
     given_name: '',
     EmailDescription: () => (
-      <div className="form__group">
-        <div className="text-quote">
-          <p>
-            <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois.
-            Afin de garantir que votre service ne soit pas interrompu, merci de
-            renseigner une adresse email générique afin que nous puissions vous
-            transmettre les nouveaux jetons malgré des aléas de changement de
-            poste, congés ou autre.
-          </p>
-        </div>
-      </div>
+      <Quote>
+        <p>
+          <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin
+          de garantir que votre service ne soit pas interrompu, merci de
+          renseigner une adresse email générique afin que nous puissions vous
+          transmettre les nouveaux jetons malgré des aléas de changement de
+          poste, congés ou autre.
+        </p>
+      </Quote>
     ),
     email: '',
     emailPlaceholder: 'contact@nom-organisation.fr',
@@ -64,7 +63,7 @@ const contacts = {
 };
 
 const DonneesDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Sélectionner ci-dessous les API qui sont strictement nécessaires pour
       cette démarche.
@@ -80,7 +79,7 @@ const DonneesDescription = () => (
       </a>
       .
     </p>
-  </div>
+  </Quote>
 );
 
 // NB: this list was manually updated from https://dashboard.entreprise.api.gouv.fr/api/admin/roles
@@ -233,12 +232,12 @@ const intitulePlaceholder = sample([
 ]);
 
 const MiseEnOeuvreDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Afin de pouvoir vous contacter tout au long de votre utilisation d'API
       Entreprise, merci de renseigner vos informations de contact.
     </p>
-  </div>
+  </Quote>
 );
 
 const ApiEntreprise = ({

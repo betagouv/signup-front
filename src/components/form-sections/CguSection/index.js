@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
+import CheckboxInput from '../../Form/components/CheckboxInput';
 
 const Index = ({
   CguDescription = () => null,
@@ -18,26 +19,22 @@ const Index = ({
     <ScrollablePanel scrollableId="cgu">
       <h2>Modalités d’utilisation</h2>
       <CguDescription />
-      <br />
-      <div className="form__group">
-        <input
-          onChange={onChange}
-          disabled={disabled ? 'disabled' : false}
-          checked={cgu_approved}
-          type="checkbox"
-          name="cgu_approved"
-          id="cgu_approved"
-        />
-        <label htmlFor="cgu_approved" className="label-inline">
-          J'ai pris connaissance des{' '}
-          <a href={cguLink} target="_blank" rel="noreferrer noopener">
-            conditions générales d'utilisation
-          </a>{' '}
-          et je les valide. Je confirme que le délégué à la protection des
-          données de mon organisation est informé de ma demande.
-        </label>
-      </div>
-
+      <CheckboxInput
+        label={
+          <>
+            J'ai pris connaissance des{' '}
+            <a href={cguLink} target="_blank" rel="noreferrer noopener">
+              conditions générales d'utilisation
+            </a>{' '}
+            et je les valide. Je confirme que le délégué à la protection des
+            données de mon organisation est informé de ma demande.
+          </>
+        }
+        name="cgu_approved"
+        value={cgu_approved}
+        disabled={disabled}
+        onChange={onChange}
+      />
       <AdditionalCguContent
         additional_content={additional_content}
         onChange={onChange}

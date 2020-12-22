@@ -22,9 +22,10 @@ import {
   DonneesFootnote,
   SuiteDescription,
 } from './api-impot-particulier-common';
+import Quote from '../../components/Form/components/Quote';
 
 export const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
@@ -49,7 +50,7 @@ export const CadreJuridiqueDescription = () => (
         données).
       </li>
     </ul>
-  </div>
+  </Quote>
 );
 
 const steps = [
@@ -57,7 +58,7 @@ const steps = [
   'api_impot_particulier_production',
 ];
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
+const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
 
 const availableScopes = [
   ...fcAvailableScopes,
@@ -134,7 +135,11 @@ const ApiImpotParticulierSandbox = ({
           cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
           CguDescription={CguDescription}
         />
-        <TextSection Description={SuiteDescription} title="" />
+        <TextSection
+          Description={SuiteDescription}
+          title=""
+          id="next-steps-description"
+        />
       </Form>
     </div>
   </div>

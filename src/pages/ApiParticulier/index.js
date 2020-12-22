@@ -12,6 +12,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
+import Quote from '../../components/Form/components/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -38,7 +39,7 @@ const DemarcheDescription = () => (
 const contacts = {
   metier: {
     heading: 'Contact métier',
-    description: () => (
+    description: (
       <p>
         Cette personne sera contactée en cas de problème fonctionnel sur votre
         service.
@@ -49,7 +50,7 @@ const contacts = {
   },
   technique: {
     heading: 'Responsable technique',
-    description: () => (
+    description: (
       <p>
         Cette personne sera contactée en cas de problème technique sur votre
         service. Le responsable technique peut être le contact technique de
@@ -62,18 +63,18 @@ const contacts = {
 };
 
 const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
       la DINUM de transmettre des données personnelles à votre entité
       administrative.
     </p>
-  </div>
+  </Quote>
 );
 
 const DonneesDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -97,7 +98,7 @@ const DonneesDescription = () => (
       nécessaires à votre téléservice. Le non-respect du principe de
       proportionnalité vous expose vis à vis de la CNIL.
     </p>
-  </div>
+  </Quote>
 );
 
 const availableScopes = [

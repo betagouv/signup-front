@@ -57,11 +57,11 @@ ${mailFooter}`);
   };
 
   const promptMessage = {
-    notify: 'Votre message\xa0:',
+    notify: 'Votre message :',
     review_application:
-      'Précisez au demandeur les modifications à apporter à sa demande\xa0:',
-    refuse_application: 'Précisez au demandeur le motif de votre refus\xa0:',
-    validate_application: 'Vous pouvez ajouter un commentaire (optionnel)\xa0:',
+      'Précisez au demandeur les modifications à apporter à sa demande :',
+    refuse_application: 'Précisez au demandeur le motif de votre refus :',
+    validate_application: 'Vous pouvez ajouter un commentaire (optionnel) :',
   }[selectedAction];
 
   return (
