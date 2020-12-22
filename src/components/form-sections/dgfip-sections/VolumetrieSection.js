@@ -1,6 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
+import Quote from '../../Form/components/Quote';
+import Select from '../../Form/components/Select';
 
 const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   const {
@@ -37,7 +39,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   return (
     <ScrollablePanel scrollableId="volumetrie">
       <h2>Volumétrie</h2>
-      <div className="text-quote">
+      <Quote>
         <p>
           Connaître les données relatives à la volumétrie de votre téléservice
           nous permet de vous offrir la meilleure qualité de service possible.
@@ -48,27 +50,18 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
           Conformément aux modalités d’utilisation, nous nous réservons le droit
           de réduire ou couper les appels autorisés au fournisseur de service.
         </p>
-      </div>
-      <br />
-      <div className="form__group">
-        <label htmlFor="nombre_demandes_annuelle">
-          Quel est la limitation de debit que vous souhaitez pour votre
-          téléservice&nbsp;?
-        </label>
-        <select
-          onChange={onChange}
-          name="additional_content.volumetrie_appels_par_minute"
-          id="nombre_demandes_annuelle"
-          value={volumetrie_appels_par_minute}
-          disabled={disabled}
-        >
-          {options.map(appelsParMinute => (
-            <option key={appelsParMinute} value={appelsParMinute}>
-              {appelsParMinute} appels / minute
-            </option>
-          ))}
-        </select>
-      </div>
+      </Quote>
+      <Select
+        label="Quel est la limitation de debit que vous souhaitez pour votre téléservice ?"
+        name="additional_content.volumetrie_appels_par_minute"
+        options={options.map(appelsParMinute => ({
+          id: appelsParMinute,
+          label: `${appelsParMinute} appels / minute`,
+        }))}
+        value={volumetrie_appels_par_minute}
+        disabled={disabled}
+        onChange={onChange}
+      />
     </ScrollablePanel>
   );
 };

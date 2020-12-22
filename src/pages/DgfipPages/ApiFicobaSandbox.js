@@ -14,6 +14,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import { contacts, SuiteDescription } from './api-impot-particulier-common';
+import Quote from '../../components/Form/components/Quote';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -21,7 +22,7 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
+const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
 
 const availableScopes = [
   {
@@ -75,7 +76,7 @@ const availableScopes = [
 const steps = ['api_ficoba_sandbox', 'api_ficoba_production'];
 
 export const DonneesDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       L'API FICOBA restituant des éléments sensibles (comptes bancaires du
       titulaire et/ou du co-titulaire, éléments relatifs à l'état civil et au
@@ -116,11 +117,11 @@ export const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-  </div>
+  </Quote>
 );
 
 export const CadreJuridiqueDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       L’accès au dispositif API FICOBA est soumis à deux conditions
       cumulatives :
@@ -142,7 +143,7 @@ export const CadreJuridiqueDescription = () => (
       être autorisé à demander et exploiter les données fiscales dans le cadre
       de l'exercice de ses missions.
     </p>
-  </div>
+  </Quote>
 );
 
 const ApiFicobaSandbox = ({
@@ -194,7 +195,11 @@ const ApiFicobaSandbox = ({
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <CguSection cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf" />
-        <TextSection Description={SuiteDescription} title="" />
+        <TextSection
+          Description={SuiteDescription}
+          title=""
+          id="next-steps-description"
+        />
       </Form>
     </div>
   </div>

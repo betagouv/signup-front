@@ -4,6 +4,27 @@ import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../Form';
 import OrWrapper from '../Form/components/OrWrapper';
 import FileInput from '../Form/components/FileInput';
+import TextAreaInput from '../Form/components/TextAreaInput';
+import TextInput from '../Form/components/TextInput';
+
+const Label = ({ fondement_juridique_url }) => (
+  <>
+    Si possible, joindre l'URL du texte relatif au traitement{' '}
+    {fondement_juridique_url && (
+      <span>
+        (
+        <a
+          href={fondement_juridique_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          accéder à cette URL
+        </a>
+        )
+      </span>
+    )}
+  </>
+);
 
 const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   const {
@@ -21,49 +42,28 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
     <ScrollablePanel scrollableId="cadre-juridique">
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
       <CadreJuridiqueDescription />
-      <br />
-      <div className="form__group">
-        <label htmlFor="fondement_juridique_title">
-          Précisez la nature et les références du texte vous autorisant à
-          traiter les données
-        </label>
-        <textarea
-          rows="1"
-          onChange={onChange}
-          name="fondement_juridique_title"
-          id="fondement_juridique_title"
-          readOnly={disabled}
-          value={fondement_juridique_title}
-          placeholder="« loi », « décret », « délibération », etc."
-        />
-      </div>
+      <TextAreaInput
+        label={
+          <>
+            Précisez la nature et les références du texte vous autorisant à
+            traiter les données
+          </>
+        }
+        name="fondement_juridique_title"
+        placeholder="« loi », « décret », « délibération », etc."
+        value={fondement_juridique_title}
+        disabled={disabled}
+        onChange={onChange}
+        rows={1}
+      />
       <OrWrapper>
-        <>
-          <label htmlFor="fondement_juridique_url">
-            Si possible, joindre l'URL du texte relatif au traitement{' '}
-            {fondement_juridique_url && (
-              <span>
-                (
-                <a
-                  href={fondement_juridique_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  accéder à cette URL
-                </a>
-                )
-              </span>
-            )}
-          </label>
-          <input
-            type="url"
-            onChange={onChange}
-            name="fondement_juridique_url"
-            id="fondement_juridique_url"
-            readOnly={disabled}
-            value={fondement_juridique_url}
-          />
-        </>
+        <TextInput
+          label={<Label fondement_juridique_url={fondement_juridique_url} />}
+          name="fondement_juridique_url"
+          value={fondement_juridique_url}
+          disabled={disabled}
+          onChange={onChange}
+        />
         <FileInput
           label="Joindre le document lui même"
           disabled={disabled}

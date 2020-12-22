@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import Helper from '../../Helper';
 import RgpdContact from './RgpdContact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
+import TextInput from '../../Form/components/TextInput';
+import NumberInput from '../../Form/components/NumberInput';
 
 const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   const {
@@ -24,75 +25,54 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   return (
     <ScrollablePanel scrollableId="donnees-personnelles">
       <h2>Le traitement de données à caractère personnel</h2>
-
-      <div className="form__group">
-        <label htmlFor="data_recipients">
-          Destinataires des données
-          <Helper
-            title={
-              'description du service ou des personnes physiques qui consulteront ces données'
-            }
-          />
-        </label>
-        <input
-          type="text"
-          placeholder="« agents instructeurs des demandes d’aides », « usagers des services publics de la ville », etc."
-          onChange={onChange}
-          name="data_recipients"
-          id="data_recipients"
-          readOnly={disabled}
-          value={data_recipients}
-        />
-        <small className="card__meta">
-          <i>
-            <a
-              href="https://www.cnil.fr/fr/definition/destinataire"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Voir la définition CNIL du destinataire des données"
-            >
-              Plus d’infos
-            </a>
-          </i>
-        </small>
-      </div>
-
-      <div className="form__group">
-        <label htmlFor="data_retention_period">
-          Durée de conservation des données en mois
-          {dataRetentionPeriodHelper && (
-            <Helper title={dataRetentionPeriodHelper} />
-          )}
-        </label>
-        <input
-          type="number"
-          min="0"
-          max="2147483647"
-          onChange={onChange}
-          name="data_retention_period"
-          id="data_retention_period"
-          disabled={disabled}
-          value={data_retention_period}
-        />
-      </div>
-      {data_retention_period > 36 && (
-        <div className="form__group">
-          <label
-            htmlFor="data_retention_comment"
-            className="notification warning"
+      <TextInput
+        label="Destinataires des données"
+        helper={
+          'description du service ou des personnes physiques qui consulteront' +
+          'ces données'
+        }
+        placeholder={
+          '« agents instructeurs des demandes d’aides », « usagers des' +
+          'services publics de la ville », etc.'
+        }
+        meta={
+          <a
+            href="https://www.cnil.fr/fr/definition/destinataire"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Voir la définition CNIL du destinataire des données"
           >
-            Cette durée excède la durée communément constatée (36 mois).
-            Veuillez justifier cette durée dans le champ ci-après:
-          </label>
-          <textarea
-            rows="10"
-            onChange={onChange}
+            Plus d’infos
+          </a>
+        }
+        name="data_recipients"
+        value={data_recipients}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <NumberInput
+        label="Durée de conservation des données en mois"
+        helper={dataRetentionPeriodHelper}
+        name="data_retention_period"
+        value={data_retention_period}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      {data_retention_period > 36 && (
+        <>
+          <div className="form__group">
+            <div className="notification warning">
+              Cette durée excède la durée communément constatée (36 mois).
+            </div>
+          </div>
+          <TextInput
+            label="Veuillez justifier cette durée dans le champ ci-après :"
             name="data_retention_comment"
-            id="data_retention_comment"
-            readOnly={disabled}
             value={data_retention_comment}
+            disabled={disabled}
+            onChange={onChange}
           />
-        </div>
+        </>
       )}
       <div className="form__group">
         <div className="row">
@@ -102,7 +82,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
             email={responsable_traitement_email}
             phone_number={responsable_traitement_phone_number}
             disabled={disabled}
-            handleChange={onChange}
+            onChange={onChange}
           />
           <RgpdContact
             type={'dpo'}
@@ -110,7 +90,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
             email={dpo_email}
             phone_number={dpo_phone_number}
             disabled={disabled}
-            handleChange={onChange}
+            onChange={onChange}
           />
         </div>
       </div>

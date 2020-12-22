@@ -10,6 +10,7 @@ import DonneesPersonnellesSection from '../components/form-sections/DonneesPerso
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
+import Quote from '../components/Form/components/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -21,12 +22,12 @@ const DemarcheDescription = () => (
 );
 
 const DonneesDescription = () => (
-  <div className="text-quote">
+  <Quote>
     <p>
       Selon la nature de votre service, les données auxquelles vous aurez accès
       vont différer.
     </p>
-  </div>
+  </Quote>
 );
 
 const availableScopes = [
@@ -79,7 +80,7 @@ const LeTaxi = ({
         <OrganisationSection />
         <DescriptionSection />
         <DonneesSection
-          scopesLabel="Sélectionnez la nature de votre service :"
+          scopesLabel="Sélectionnez la nature de votre service :"
           DonneesDescription={DonneesDescription}
           availableScopes={availableScopes}
         />

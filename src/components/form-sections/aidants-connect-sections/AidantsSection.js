@@ -32,7 +32,12 @@ export const AidantsSection = () => {
         onChange={onChange}
       />
       <YesNoRadioInput
-        label="Les aidants réalisent-ils des démarches administratives à la place d’usagers (connexion avec les codes de l’usager) ?"
+        label={
+          <>
+            Les aidants réalisent-ils des démarches administratives à la place
+            d’usagers (connexion avec les codes de l’usager) ?
+          </>
+        }
         name="additional_content.utilisation_identifiants_usagers"
         value={utilisation_identifiants_usagers}
         disabled={disabled}
@@ -46,28 +51,49 @@ export const AidantsSection = () => {
         onChange={onChange}
       />
       <YesNoRadioInput
-        label="Les aidants sont-ils autorisés à télétravailler et accompagner les usagers à distance ?"
+        label={
+          <>
+            Les aidants sont-ils autorisés à télétravailler et accompagner les
+            usagers à distance ?
+          </>
+        }
         name="additional_content.teletravail_autorise"
         value={teletravail_autorise}
         disabled={disabled}
         onChange={onChange}
       />
       <YesNoRadioInput
-        label="Les aidants à habiliter ont-ils bien une adresse mail professionnelle individuelle ?"
+        label={
+          <>
+            Les aidants à habiliter ont-ils bien une adresse mail
+            professionnelle individuelle ?
+          </>
+        }
         name="additional_content.adresse_mail_professionnelle"
         value={adresse_mail_professionnelle}
         disabled={disabled}
         onChange={onChange}
       />
       <YesNoRadioInput
-        label="Les aidants ont-ils à disposition un smartphone individuel pour s’identifier au service ? (en vue de l’installation d’une application d’authentification)"
+        label={
+          <>
+            Les aidants ont-ils à disposition un smartphone individuel pour
+            s’identifier au service ? (en vue de l’installation d’une
+            application d’authentification)
+          </>
+        }
         name="additional_content.telephone_portable_professionnel"
         value={telephone_portable_professionnel}
         disabled={disabled}
         onChange={onChange}
       />
       <YesNoRadioInput
-        label="Les aidants ont-ils un ordinateur professionnel portable individuel ?"
+        label={
+          <>
+            Les aidants ont-ils un ordinateur professionnel portable
+            individuel ?
+          </>
+        }
         name="additional_content.ordinateur_professionnel"
         value={ordinateur_professionnel}
         disabled={disabled}

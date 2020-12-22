@@ -84,7 +84,11 @@ const ApiImpotParticulierFcSandbox = ({
           cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_fc_septembre2020_v2.6.pdf"
           CguDescription={CguDescription}
         />
-        <TextSection Description={SuiteDescription} title="" />
+        <TextSection
+          Description={SuiteDescription}
+          title=""
+          id="next-steps-description"
+        />
       </Form>
     </div>
   </div>

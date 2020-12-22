@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash';
 
-export const CheckboxInput = ({
+export const DateInput = ({
   label,
   name,
   value = null,
@@ -14,19 +14,17 @@ export const CheckboxInput = ({
 
   return (
     <div className="form__group">
+      <label htmlFor={id}>{label}</label>
       <input
+        type="date"
         onChange={onChange}
-        disabled={disabled ? 'disabled' : false}
-        checked={value}
-        type="checkbox"
         name={name}
         id={id}
+        readOnly={disabled}
+        value={value}
       />
-      <label htmlFor={id} className="label-inline">
-        {label}
-      </label>
     </div>
   );
 };
 
-export default CheckboxInput;
+export default DateInput;

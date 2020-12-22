@@ -105,7 +105,11 @@ const ApiR2PSandbox = ({
         />
         <CadreJuridiqueSection />
         <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
-        <TextSection Description={SuiteDescription} title="" />
+        <TextSection
+          Description={SuiteDescription}
+          title=""
+          id="next-steps-description"
+        />
       </Form>
     </div>
   </div>

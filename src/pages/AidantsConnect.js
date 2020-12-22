@@ -15,7 +15,7 @@ import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection
 const contacts = {
   metier: {
     heading: 'Représentant légal',
-    description: () => (
+    description: (
       <p>
         La personne aillant pouvoir de signature pour engager la structure avec
         Aidant Connect.
@@ -28,7 +28,7 @@ const contacts = {
   },
   technique: {
     heading: 'Contact métier',
-    description: () => (
+    description: (
       <p>
         La personne responsable de la mise en place de aidant connect au sein de
         votre structure.

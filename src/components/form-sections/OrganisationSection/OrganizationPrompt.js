@@ -13,7 +13,7 @@ const OrganizationPrompt = ({
 
   return (
     <AriaModal
-      titleText="Sélectionnez l'organisation à associer à cette demande :"
+      titleText="Sélectionnez l'organisation à associer à cette demande :"
       // we use this no op function to close the modal
       onExit={() => onSelect(selectedOrganizationId)}
       focusDialog={true}

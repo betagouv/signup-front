@@ -8,6 +8,8 @@ import DescriptionSection from '../components/form-sections/DescriptionSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import Quote from '../components/Form/components/Quote';
+import TextInput from '../components/Form/components/TextInput';
 
 const AdditionalMiseEnOeuvreContent = ({
   disabled,
@@ -15,31 +17,26 @@ const AdditionalMiseEnOeuvreContent = ({
   additional_content: { ips_de_production = '' },
 }) => (
   <>
-    <div className="form__group">
-      <div className="text-quote">
-        <p>
-          Pour permettre la liaison technique entre votre SI et celui de
-          l'agence Bio, vous devez fournir les adresses IP des serveurs qui vont
-          communiquer avec l'API Agence Bio.
-        </p>
-      </div>
-    </div>
-    <div className="form__group">
-      <label htmlFor="ips_de_production">IPs de production</label>
-      <input
-        type="text"
-        onChange={onChange}
-        name="additional_content.ips_de_production"
-        id="ips_de_production"
-        readOnly={disabled}
-        value={ips_de_production}
-      />
-      <small className="card__meta">
-        Vous pouvez ajouter plusieurs adresses IP en les séparant par une
-        virgule (ex: 111.111.11.11, 111.111.11.12)
-      </small>
-    </div>
-    <br />
+    <Quote>
+      <p>
+        Pour permettre la liaison technique entre votre SI et celui de l'agence
+        Bio, vous devez fournir les adresses IP des serveurs qui vont
+        communiquer avec l'API Agence Bio.
+      </p>
+    </Quote>
+    <TextInput
+      label="IPs de production"
+      meta={
+        <>
+          Vous pouvez ajouter plusieurs adresses IP en les séparant par une
+          virgule (ex: 111.111.11.11, 111.111.11.12)
+        </>
+      }
+      name="additional_content.ips_de_production"
+      value={ips_de_production}
+      disabled={disabled}
+      onChange={onChange}
+    />
   </>
 );
 

@@ -16,13 +16,15 @@ const DescriptionSection = ({
     enrollment: { intitule = '', description = '' },
   } = useContext(FormContext);
 
-  // change the scrollableid so it does not conflict with the detailed description
   return (
     <ScrollablePanel scrollableId="description">
       <h2>Description de votre service</h2>
       <TextInput
         label="Nom du service"
-        helper="Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue publique, il convient d’être synthétique et précis."
+        helper={
+          'Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue' +
+          'publique, il convient d’être synthétique et précis.'
+        }
         meta="Cette information peut être rendue publique."
         name="intitule"
         placeholder={intitulePlaceholder}

@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import FileInput from '../../Form/components/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../Form';
+import Quote from '../../Form/components/Quote';
+import TextInput from '../../Form/components/TextInput';
+import DateInput from '../../Form/components/DateInput';
 
 const HomologationSecuriteSection = () => {
   const {
@@ -22,7 +25,7 @@ const HomologationSecuriteSection = () => {
   return (
     <ScrollablePanel scrollableId="homologation-securite">
       <h2>Homologation de sécurité</h2>
-      <div className="text-quote">
+      <Quote>
         <p>
           Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche
           d’homologation obligatoire pour les SI relatifs aux échanges entre une
@@ -34,61 +37,35 @@ const HomologationSecuriteSection = () => {
           décision formelle d’homologation (également appelée attestation
           formelle).
         </p>
-      </div>
-      <br />
-      <div className="form__group">
-        <label htmlFor="autorite_homologation_nom">
-          Nom de l’autorité d’homologation
-        </label>
-        <input
-          type="text"
-          onChange={onChange}
-          name="additional_content.autorite_homologation_nom"
-          id="autorite_homologation_nom"
-          readOnly={disabled}
-          value={autorite_homologation_nom}
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="autorite_homologation_fonction">
-          Fonction de l’autorité d’homologation
-        </label>
-        <input
-          type="text"
-          onChange={onChange}
-          name="additional_content.autorite_homologation_fonction"
-          id="autorite_homologation_fonction"
-          readOnly={disabled}
-          value={autorite_homologation_fonction}
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="date_homologation">
-          Date de début de l’homologation
-        </label>
-        <input
-          type="date"
-          onChange={onChange}
-          name="additional_content.date_homologation"
-          id="date_homologation"
-          disabled={disabled}
-          value={date_homologation}
-        />
-      </div>
-      <div className="form__group">
-        <label htmlFor="date_fin_homologation">
-          Date de fin de l’homologation
-        </label>
-        <input
-          type="date"
-          onChange={onChange}
-          name="additional_content.date_fin_homologation"
-          id="date_fin_homologation"
-          disabled={disabled}
-          value={date_fin_homologation}
-        />
-      </div>
-
+      </Quote>
+      <TextInput
+        label="Nom de l’autorité d’homologation"
+        name="additional_content.autorite_homologation_nom"
+        value={autorite_homologation_nom}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <TextInput
+        label="Fonction de l’autorité d’homologation"
+        name="additional_content.autorite_homologation_fonction"
+        value={autorite_homologation_fonction}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <DateInput
+        label="Date de début de l’homologation"
+        name="additional_content.date_homologation"
+        value={date_homologation}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <DateInput
+        label="Date de fin de l’homologation"
+        name="additional_content.date_fin_homologation"
+        value={date_fin_homologation}
+        disabled={disabled}
+        onChange={onChange}
+      />
       <FileInput
         disabled={disabled}
         uploadedDocuments={documents}

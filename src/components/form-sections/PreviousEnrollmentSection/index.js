@@ -7,18 +7,19 @@ import { FormContext } from '../../Form';
 import { getUserValidatedEnrollments } from '../../../services/enrollments';
 import { Link } from 'react-router-dom';
 import Stepper from './Stepper';
-import Helper from '../../Helper';
+import Quote from '../../Form/components/Quote';
+import Select from '../../Form/components/Select';
 
 const PreviousEnrollmentSection = ({
   steps,
   Description = () => (
-    <div className="text-quote">
+    <Quote>
       <p>
         Afin de pouvoir utiliser votre bouton FranceConnect pour récupérer les
         données, merci de renseigner la demande FranceConnect à associer à cette
         demande.
       </p>
-    </div>
+    </Quote>
   ),
 }) => {
   const {
@@ -69,17 +70,6 @@ const PreviousEnrollmentSection = ({
       fetchUserValidatedEnrollments();
     }
   }, [isUserEnrollmentLoading, disabled, previousTargetApi]);
-
-  const handleValidatedEnrollmentChange = event => {
-    const id = event.target.value;
-
-    onChange({
-      target: {
-        name: 'previous_enrollment_id',
-        value: id,
-      },
-    });
-  };
 
   return (
     <>
@@ -144,7 +134,6 @@ const PreviousEnrollmentSection = ({
         <div className="panel">
           <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
           <Description />
-          <br />
           {!disabled &&
             !isUserEnrollmentLoading &&
             isValidatedEnrollmentsLoading && (
@@ -171,31 +160,31 @@ const PreviousEnrollmentSection = ({
           {!disabled &&
             !isUserEnrollmentLoading &&
             !isValidatedEnrollmentsLoading && (
-              <div className="form__group">
-                <label htmlFor="validated_enrollments">
-                  Nom de la démarche{' '}
-                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                  {target_api === 'api_impot_particulier_fc_sandbox' && (
-                    <Helper
-                      title={
-                        'Sélectionnez "aucune démarche" si vous souhaitez accéder à l\'API sans FranceConnect'
-                      }
-                    />
-                  )}
-                </label>
-                <select
-                  onChange={handleValidatedEnrollmentChange}
-                  id="validated_enrollments"
+              <>
+                <Select
+                  label={
+                    <>
+                      Nom de la démarche{' '}
+                      <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                    </>
+                  }
+                  helper={
+                    target_api === 'api_impot_particulier_fc_sandbox' &&
+                    'Sélectionnez "aucune démarche" si vous souhaitez accéder à l‘API sans FranceConnect'
+                  }
+                  name="previous_enrollment_id"
+                  options={[
+                    { id: '', label: 'aucune démarche' },
+                    ...validatedEnrollments.map(({ intitule: name, id }) => ({
+                      id,
+                      label: `n°${id} : ${name}`,
+                    })),
+                  ]}
                   value={previous_enrollment_id}
-                >
-                  <option value={''}>aucune démarche</option>
-                  {validatedEnrollments.map(({ intitule: name, id }) => (
-                    <option key={id} value={id}>
-                      {`n°${id} : ${name}`}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                  disabled={disabled}
+                  onChange={onChange}
+                />
+              </>
             )}
           {disabled && !isUserEnrollmentLoading && (
             <div className="button-list enrollment">
