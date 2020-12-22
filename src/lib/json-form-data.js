@@ -39,7 +39,10 @@ function convert(jsonObject, parentKey, carryFormData) {
           convert(jsonObject[key], propName, formData);
         } else if (typeof jsonObject[key] === 'boolean') {
           formData.append(propName, +jsonObject[key] ? 'true' : 'false');
-        } else {
+        } else if (
+          typeof jsonObject[key] !== 'symbol' &&
+          typeof jsonObject[key] !== 'function'
+        ) {
           formData.append(propName, jsonObject[key]);
         }
       }
