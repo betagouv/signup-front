@@ -25,20 +25,7 @@
         "certificat_rge_ademe": false,
         "qualibat": false,
         "certificat_opqibi": false,
-        "extrait_court_inpi": false,
-        "effectifs_acoss": false,
-        "extraits_rcs_infogreffe": false,
-        "documents_associations": false,
-        "attestations_fiscales_dgfip": false,
-        "attestations_sociales_acoss": false,
-        "cotisations_msa": false,
-        "cotisation_retraite_probtp": false,
-        "cartes_professionnelles_fntp": false,
-        "certificats_cnetp": false,
-        "certificats_rge_ademe": false,
-        "certificats_qualibat": false,
-        "certificats_opqibi": false,
-        "extraits_courts_inpi": false
+        "extrait_court_inpi": false
       }
     }
   },
@@ -49,24 +36,24 @@
       "scopes": {
         "entreprises": true,
         "etablissements": true,
-        "extraits_rcs_infogreffe": true,
+        "extraits_rcs": true,
         "associations": true,
-        "documents_associations": true,
+        "documents_association": true,
         "actes_inpi": true,
         "conventions_collectives": true,
         "exercices": true,
         "bilans_inpi": true,
-        "attestations_fiscales_dgfip": true,
-        "attestations_sociales_acoss": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true,
         "attestations_agefiph": true,
-        "cotisations_msa": true,
-        "cotisation_retraite_probtp": true,
-        "cartes_professionnelles_fntp": true,
-        "certificats_cnetp": true,
-        "certificats_rge_ademe": true,
-        "certificats_qualibat": true,
-        "certificats_opqibi": true,
-        "extraits_courts_inpi": true
+        "msa_cotisations": true,
+        "probtp": true,
+        "fntp_carte_pro": true,
+        "certificat_cnetp": true,
+        "certificat_rge_ademe": true,
+        "qualibat": true,
+        "certificat_opqibi": true,
+        "extrait_court_inpi": true
       }
     }
   },
@@ -75,8 +62,7 @@
     "about": "https://entreprise.api.gouv.fr/use_cases/covid-19/",
     "state": {
       "scopes": {
-        "entreprises": true,
-        "effectifs_acoss": true
+        "entreprises": true
       }
     }
   }
