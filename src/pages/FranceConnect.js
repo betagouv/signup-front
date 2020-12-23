@@ -9,6 +9,7 @@ import FcHasAlternativeAuthenticationMethod from '../components/form-sections/Cg
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
 import DonneesSection from '../components/form-sections/DonneesSection';
+import FranceConnectPlusSection from '../components/form-sections/FranceConnectPlusSection';
 import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
@@ -173,6 +174,7 @@ const FranceConnect = ({
         { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
+        { id: 'niveau-eidas', label: 'Niveau de garantie' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
@@ -210,6 +212,7 @@ const FranceConnect = ({
           descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
         />
         <DonneesSection availableScopes={availableScopes} />
+        <FranceConnectPlusSection />
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />

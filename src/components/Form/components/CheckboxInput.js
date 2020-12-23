@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash';
+import Helper from '../../Helper';
 
 export const CheckboxInput = ({
   label,
+  helper,
   name,
   value = null,
   disabled,
@@ -24,6 +26,7 @@ export const CheckboxInput = ({
       />
       <label htmlFor={id} className="label-inline">
         {label}
+        {helper && <Helper title={helper} />}
       </label>
     </div>
   );
