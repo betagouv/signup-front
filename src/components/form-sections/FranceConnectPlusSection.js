@@ -24,7 +24,7 @@ export const FranceConnectPlusSection = () => {
         },
       });
     }
-  }, [isUserEnrollmentLoading, disabled]);
+  }, [isUserEnrollmentLoading, disabled, onChange, eidas_1]);
 
   return (
     <ScrollablePanel scrollableId="niveau-eidas">
