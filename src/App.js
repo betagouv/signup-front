@@ -37,6 +37,7 @@ import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
+import ApiDsnj from './pages/ApiDsnj';
 
 const history = createBrowserHistory();
 
@@ -170,6 +171,11 @@ const App = () => (
                   <PrivateRoute
                     path="/agence-bio/:enrollmentId?"
                     component={AgenceBio}
+                  />
+
+                  <PrivateRoute
+                    path="/api-dsnj/:enrollmentId?"
+                    component={ApiDsnj}
                   />
 
                   <PrivateRoute
