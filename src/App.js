@@ -38,6 +38,7 @@ import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
 import ApiDsnj from './pages/ApiDsnj';
+import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
 
 const history = createBrowserHistory();
 
@@ -189,6 +190,11 @@ const App = () => (
                   />
 
                   <PrivateRoute path="/admin/users" component={UserList} />
+
+                  <PrivateRoute
+                    path="/admin/rgpd-update"
+                    component={RgpdUpdate}
+                  />
                 </>
               )}
             </main>
