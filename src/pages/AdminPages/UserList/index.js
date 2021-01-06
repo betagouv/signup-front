@@ -83,28 +83,26 @@ const UserList = () => {
   return (
     <section className="section-grey full-width-section user-page">
       <div className="container">
-        <div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <h2>Liste des utilisateurs</h2>
-            <ul className="nav__links">
-              <li className="nav__item">
-                <button
-                  className={`nav-button ${!showAllUsers ? 'active_link' : ''}`}
-                  onClick={() => setShowAllUsers(false)}
-                >
-                  Utilisateurs avec droits
-                </button>
-              </li>
-              <li className="nav__item">
-                <button
-                  className={`nav-button ${showAllUsers ? 'active_link' : ''}`}
-                  onClick={() => setShowAllUsers(true)}
-                >
-                  Tous les utilisateurs
-                </button>
-              </li>
-            </ul>
-          </div>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <h2>Liste des utilisateurs</h2>
+          <ul className="nav__links">
+            <li className="nav__item">
+              <button
+                className={`nav-button ${!showAllUsers ? 'active_link' : ''}`}
+                onClick={() => setShowAllUsers(false)}
+              >
+                Utilisateurs avec droits
+              </button>
+            </li>
+            <li className="nav__item">
+              <button
+                className={`nav-button ${showAllUsers ? 'active_link' : ''}`}
+                onClick={() => setShowAllUsers(true)}
+              >
+                Tous les utilisateurs
+              </button>
+            </li>
+          </ul>
         </div>
         <div className="panel">
           {isLoading ? (

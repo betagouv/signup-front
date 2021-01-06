@@ -22,7 +22,7 @@ describe('demarches', () => {
       expect(Object.keys(allDemarches).length).toBeGreaterThan(0);
     });
 
-    const compulsoryFields = ['state', 'label', 'about'];
+    const compulsoryFields = ['state', 'label'];
 
     compulsoryFields.forEach(fieldName => {
       it(`should have a defined ${fieldName} field`, async () => {

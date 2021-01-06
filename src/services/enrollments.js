@@ -202,6 +202,23 @@ export function triggerEnrollment({
   );
 }
 
+export function updateRgpdContact({ enrollmentId, email, role }) {
+  const enrollment = {};
+  enrollment[`${role}_email`] = email;
+  const serializedEnrollment = serializeEnrollment(enrollment);
+  return httpClient
+    .patch(
+      `${BACK_HOST}/api/enrollments/${enrollmentId}/update_rgpd_contact`,
+      serializedEnrollment,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+    )
+    .then(({ data }) => data);
+}
+
 export function deleteEnrollment({ id }) {
   return httpClient.delete(`${BACK_HOST}/api/enrollments/${id}`, {
     headers: {
