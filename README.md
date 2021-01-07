@@ -4,11 +4,11 @@
 
 ### Avec un backend distant
 
-Cette installation utilise le backend disponible sur https://back.datapass-test.api.gouv.fr. Elle ne permet pas de développements sur le backend.
+Cette installation utilise le backend disponible sur https://back.datapass-test.api.gouv.fr. L'installation est simple et rapide mais ne permet pas de développements sur le backend.
 
-Install NodeJs version ^12.18.
+Installer NodeJs version ^12.18.
 
-Clone the repository then install npm dependencies:
+Cloner le dépot de code puis installer les dépendances npm :
 
 ```
 git clone git@github.com:betagouv/signup-front.git
@@ -16,7 +16,7 @@ cd signup-front
 npm i
 ```
 
-Run the projet:
+Lancer le serveur :
 
 ```
 npm run dev-with-remote-backend
