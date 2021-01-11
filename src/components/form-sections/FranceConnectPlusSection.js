@@ -53,6 +53,7 @@ export const FranceConnectPlusSection = () => {
             </a>
           </>
         }
+        helper="Si vous êtes un acteur du secteur privé, une facturation pourra être appliquée par certains fournisseurs d'identité."
         name="additional_content.eidas_2"
         value={eidas_2}
         disabled={disabled}
