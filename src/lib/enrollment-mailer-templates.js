@@ -27,7 +27,7 @@ export const getMailAttributes = (selectedAction, targetApi) => {
     validate_application: 'Votre demande a été validée',
     review_application: 'Votre demande requiert des modifications',
     refuse_application: 'Votre demande a été refusée',
-    notify_application_sent: 'Nouvelle demande sur Data Pass',
+    notify_application_sent: 'Nouvelle demande sur DataPass',
     create_application: 'Votre demande a été enregistrée',
     notify: 'Vous avez un nouveau message concernant votre demande',
   };

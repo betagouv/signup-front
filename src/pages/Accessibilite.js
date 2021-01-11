@@ -7,7 +7,7 @@ const Accessibilite = () => (
       <h2>Périmètre d'accessibilité visé</h2>
       <p>
         Dans la suite, nous parlons d'interface utilisable lorsqu'un utilisateur
-        a la possibilité de soumettre une demande d'habilitation via Data Pass
+        a la possibilité de soumettre une demande d'habilitation via DataPass
         bien que l'affichage de certaines fonctionnalités non essentielles à la
         soumission d’une demande puissent être dégradées ou inaccessibles.
       </p>
@@ -25,7 +25,7 @@ const Accessibilite = () => (
         accessibilité des images en environnement de développement.
       </p>
       <h2>Compatibilité avec les navigateurs</h2>
-      <p>Data Pass est optimisé pour les navigateurs suivant :</p>
+      <p>DataPass est optimisé pour les navigateurs suivant :</p>
       <ul>
         <li>
           sous windows 7 et versions ultérieures : Firefox 68 (et versions
@@ -33,7 +33,7 @@ const Accessibilite = () => (
         </li>
         <li>sous Linux et Mac OS X : Firefox et Chrome (dernières versions)</li>
       </ul>
-      <p>Data Pass est utilisable sur les navigateurs suivant :</p>
+      <p>DataPass est utilisable sur les navigateurs suivant :</p>
       <ul>
         <li>sous windows 7 et ultérieures : Internet Explorer 11 et Edge</li>
       </ul>
@@ -59,27 +59,27 @@ const Accessibilite = () => (
         Les normes d'accessibilité numérique incluent les conditions suivantes :
       </p>
       <ul>
-        <li>Data Pass est entièrement accessible au clavier</li>
+        <li>DataPass est entièrement accessible au clavier</li>
         <li>
-          Data Pass fournit des indices de repérage et une juste structuration
+          DataPass fournit des indices de repérage et une juste structuration
           de son contenu
         </li>
-        <li>Data Pass utilise des contrastes de couleurs</li>
+        <li>DataPass utilise des contrastes de couleurs</li>
         <li>
-          les contenus textuels de Data Pass peuvent être personnalisés :
+          les contenus textuels de DataPass peuvent être personnalisés :
           agrandissement des caractères, augmentation de l’interlignage,
           changement de la couleur du texte
         </li>
-        <li>les liens présents sur Data Pass ont des intitulés explicites</li>
+        <li>les liens présents sur DataPass ont des intitulés explicites</li>
         <li>
-          Data Pass n'ajoute pas de défilement horizontal au grossissement des
+          DataPass n'ajoute pas de défilement horizontal au grossissement des
           caractères
         </li>
-        <li>Data Pass ne véhicule pas d'information par la couleur</li>
+        <li>DataPass ne véhicule pas d'information par la couleur</li>
       </ul>
       <p>
         L'équipe organise tous les ans un test utilisateur avec une personne non
-        voyante pour valider que Data Pass est utilisable pour les personnes
+        voyante pour valider que DataPass est utilisable pour les personnes
         ayant des troubles visuels.
       </p>
       <h2>Problèmes d’accessibilité</h2>
