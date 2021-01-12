@@ -43,8 +43,8 @@ const WelcomeMessage = ({ isOnNewEnrollmentPage, targetApi }) => {
           <h3>Bienvenue sur DataPass !</h3>
           <p>
             Vous cherchez à accéder à des données protégées pour construire un
-            service en ligne innovant, DataPass remplace les conventions et
-            vous délivre un passe vers la donnée.{' '}
+            service en ligne innovant, DataPass remplace les conventions et vous
+            délivre un passe vers la donnée.{' '}
             <a href="https://github.com/betagouv/datapass#data-pass-anciennement-signup">
               En savoir plus
             </a>
