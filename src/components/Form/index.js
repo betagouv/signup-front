@@ -225,13 +225,13 @@ export const Form = ({
         <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
 
         {!isUserEnrollmentLoading && enrollment.acl.update && (
-          <div className="notification info">
-            Pensez à sauvegarder régulièrement votre demande en brouillon.
-          </div>
+          <>
+            <div className="notification info">
+              Pensez à sauvegarder régulièrement votre demande en brouillon.
+            </div>
+            <DemarcheDescription />
+          </>
         )}
-        {!isUserEnrollmentLoading &&
-          enrollment.acl.update &&
-          !enrollment.demarche && <DemarcheDescription />}
       </ScrollablePanel>
 
       {enrollment.events.length > 0 && (

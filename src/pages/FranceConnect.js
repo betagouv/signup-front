@@ -100,7 +100,7 @@ const CadreJuridiqueDescription = () => (
   </Quote>
 );
 
-const availableScopes = [
+export const availableScopes = [
   {
     value: 'family_name',
     label: 'Nom de naissance',

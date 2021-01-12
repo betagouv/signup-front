@@ -38,6 +38,7 @@ import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
 import ApiDsnj from './pages/ApiDsnj';
+import FranceRelanceFc from "./pages/FranceRelanceFc";
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
 
 const history = createBrowserHistory();
@@ -137,6 +138,11 @@ const App = () => (
                   <PrivateRoute
                     path="/franceconnect/:enrollmentId?"
                     component={FranceConnect}
+                  />
+
+                  <PrivateRoute
+                    path="/francerelance-fc/:enrollmentId?"
+                    component={FranceRelanceFc}
                   />
 
                   <PrivateRoute
