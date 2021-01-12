@@ -92,6 +92,24 @@
       }
     }
   },
+  "entrouvert-publik": {
+    "label": "Calcul du prix du repas pour un enfant scolarisé avec l'éditeur Entr'ouvert",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "intitule": "Calcul du prix du repas pour un enfant scolarisé",
+      "description": "Le prix du repas en restauration scolaire est calculé sur la base de plusieurs critères dont le QF de la famille. L'utilisation d'API Particulier permettra, en plus du dépôt de justificatifs, un calcul direct du QF pour les usagers le souhaitant.\nLa démarche de calcul du prix du repas sera effectuée sur la solution de Gestion de la Relation Usager Publik, mise en œuvre par la société Entr'ouvert.",
+      "data_recipients": "Agents instructeurs des dossiers \"restauration scolaire\"",
+      "data_retention_period": 11,
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": true,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": false
+      }
+    }
+  },
   "pass-famille": {
     "label": "Pass Famille",
     "about": "https://api.gouv.fr/guides/portail-famille-pass-famille",

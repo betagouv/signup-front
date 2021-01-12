@@ -61,8 +61,8 @@ const Accessibilite = () => (
       <ul>
         <li>DataPass est entièrement accessible au clavier</li>
         <li>
-          DataPass fournit des indices de repérage et une juste structuration
-          de son contenu
+          DataPass fournit des indices de repérage et une juste structuration de
+          son contenu
         </li>
         <li>DataPass utilise des contrastes de couleurs</li>
         <li>
