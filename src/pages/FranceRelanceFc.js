@@ -13,6 +13,7 @@ import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSec
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
+import UniquenessWarningNotification from '../components/Form/UniquenessWarningNotification';
 import HasNextEnrollmentsNotification from '../components/Form/HasNextEnrollmentsNotification';
 import Quote from '../components/Form/components/Quote';
 import { availableScopes as franceConnectAvailableScopes } from './FranceConnect';
@@ -21,29 +22,20 @@ import DateInput from '../components/Form/components/DateInput';
 import TextInput from '../components/Form/components/TextInput';
 
 const DemarcheDescription = () => (
-  <>
-    <div className="notification warning">
-      Votre organisation à déjà obtenu une habilitation FranceConnect
-      subventionnée : <a href={`/authorization-request/${'123'}`}>#{'123'}</a>.
-      Vous ne pouvez donc souscrire à une seconde habilitation subventionnée.
-      Vous pouvez cependant souscrire à une seconde habilitation sans subvention
-      : <a href="/franceconnect">via ce lien</a>.
-    </div>
-    <div className="notification grey">
-      <p>
-        Pour implémenter FranceConnect sur votre site en ligne, vous devez
-        obtenir une habilitation. L’accès à ce service n’est disponible que si
-        vous êtes une administration ou une entreprise prestataire d’une
-        administration ou ayant une délégation de service public.
-      </p>
-      <p>
-        À noter qu'une seule demande FranceConnect par organisation sera
-        subventionnée. La seconde demande sera systématiquement refusée. Aussi
-        merci de privilégier une utilisation sur un portail englobant plusieurs
-        services plutôt que sur un service spécifique.
-      </p>
-    </div>
-  </>
+  <div className="notification grey">
+    <p>
+      Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
+      une habilitation. L’accès à ce service n’est disponible que si vous êtes
+      une administration ou une entreprise prestataire d’une administration ou
+      ayant une délégation de service public.
+    </p>
+    <p>
+      À noter qu'une seule demande FranceConnect par organisation sera
+      subventionnée. La seconde demande sera systématiquement refusée. Aussi
+      merci de privilégier une utilisation sur un portail englobant plusieurs
+      services plutôt que sur un service spécifique.
+    </p>
+  </div>
 );
 
 // there is no actual demarche choice in this form
@@ -214,6 +206,7 @@ const FranceRelanceFc = ({
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >
+        <UniquenessWarningNotification />
         <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
         <OrganisationSection />
         <DescriptionSection
