@@ -11,6 +11,7 @@
         "documents_association": false,
         "actes_inpi": false,
         "conventions_collectives": false,
+        "effectifs_acoss": false,
         "exercices": false,
         "bilans_inpi": false,
         "bilans_entreprise_bdf": false,
@@ -62,7 +63,8 @@
     "about": "https://entreprise.api.gouv.fr/use_cases/covid-19/",
     "state": {
       "scopes": {
-        "entreprises": true
+        "entreprises": true,
+        "effectifs_acoss": true
       }
     }
   }

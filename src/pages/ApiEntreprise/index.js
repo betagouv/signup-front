@@ -130,6 +130,11 @@ const availableScopes = [
     link: 'https://entreprise.api.gouv.fr/catalogue/#conventions_collectives',
   },
   {
+    value: 'effectifs_acoss',
+    label: "Effectifs d'une entreprise - ACOSS",
+    groupTitle: 'Informations générales :',
+  },
+  {
     value: 'exercices',
     label: 'Chiffre d’affaires - DGFIP',
     groupTitle: 'Informations financières :',
