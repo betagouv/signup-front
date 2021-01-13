@@ -16,6 +16,7 @@ export const TARGET_API_LABELS = {
   le_taxi: 'le.Taxi',
   cartobio: 'CartoBio - Territoires',
   aidants_connect: 'Aidants Connect',
+  francerelance_fc: 'FranceRelance - Guichet FranceConnect',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -25,6 +26,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_impot_particulier_fc_sandbox',
   'api_impot_particulier_fc_production',
   'api_droits_cnam',
+  'francerelance_fc',
 ];
 
 export const API_ICONS = {
@@ -43,4 +45,5 @@ export const API_ICONS = {
   le_taxi: 'logo-le.taxi.svg',
   cartobio: 'logo-cartobio-text.svg',
   aidants_connect: 'aidants-connect_logo.png',
+  francerelance_fc: 'logo-fc-with-label.png',
 };

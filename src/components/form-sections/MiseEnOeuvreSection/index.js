@@ -78,6 +78,14 @@ const MiseEnOeuvreSection = ({
               onChange={onChange}
             />
           )}
+          {!isEmpty(contacts.comptable) && (
+            <Contact
+              id={'comptable'}
+              {...contacts.comptable}
+              disabled={disabled}
+              onChange={onChange}
+            />
+          )}
           {!isEmpty(contacts.technique) && (
             <Contact
               id={'technique'}
