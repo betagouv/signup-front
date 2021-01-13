@@ -38,7 +38,7 @@ import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
 import ApiDsnj from './pages/ApiDsnj';
-import FranceRelanceFc from "./pages/FranceRelanceFc";
+import FranceRelanceFc from './pages/FranceRelanceFc';
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
 
 const history = createBrowserHistory();
