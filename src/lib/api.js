@@ -16,7 +16,7 @@ export const TARGET_API_LABELS = {
   le_taxi: 'le.Taxi',
   cartobio: 'CartoBio - Territoires',
   aidants_connect: 'Aidants Connect',
-  francerelance_fc: 'FranceRelance - Guichet FranceConnect'
+  francerelance_fc: 'FranceRelance - Guichet FranceConnect',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
