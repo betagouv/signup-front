@@ -148,7 +148,7 @@ const AdditionalMiseEnOeuvreContent = ({
       onChange={onChange}
     />
     <TextInput
-      label="Indiquer les types de dépenses prévues de financer grâce à la subvention accordée ?"
+      label="Indiquez les types de dépenses qui seront financées à travers la subvention accordée ?"
       name="additional_content.type_de_depenses"
       placeholder="paiement du prestataire, paiement de l'éditeur, etc."
       value={type_de_depenses}
