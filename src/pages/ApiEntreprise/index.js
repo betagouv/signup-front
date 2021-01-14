@@ -133,6 +133,8 @@ const availableScopes = [
     value: 'effectifs_acoss',
     label: "Effectifs d'une entreprise - ACOSS",
     groupTitle: 'Informations générales :',
+    link:
+      'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
   },
   {
     value: 'exercices',
