@@ -5,43 +5,21 @@ import Form from '../components/Form';
 import Nav from '../components/Nav';
 import OrganisationSection from '../components/form-sections/OrganisationSection';
 import DescriptionSection from '../components/form-sections/DescriptionSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
 import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/form-sections/CguSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-import Quote from '../components/Form/components/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
       Remplissez ce formulaire pour vous inscrire au Registre de disponibilité
-      des Taxis en tant qu'Opérateur ou en tant que Moteur de Recherche
+      des Taxis.
     </p>
   </div>
 );
 
-const DonneesDescription = () => (
-  <Quote>
-    <p>
-      Selon la nature de votre service, les données auxquelles vous aurez accès
-      vont différer.
-    </p>
-  </Quote>
-);
-
-const availableScopes = [
-  {
-    value: 'operator',
-    label: 'Applicatif chauffeur',
-  },
-  {
-    value: 'search_engine',
-    label: 'Applicatif client',
-  },
-];
-
-const LeTaxi = ({
+const LeTaxiClients = ({
   match: {
     params: { enrollmentId },
   },
@@ -49,15 +27,14 @@ const LeTaxi = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.le_taxi}`,
-        alt: `Logo ${TARGET_API_LABELS.le_taxi}`,
+        src: `/images/${API_ICONS.le_taxi_clients}`,
+        alt: `Logo ${TARGET_API_LABELS.le_taxi_clients}`,
         url: 'https://le.taxi/',
       }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
         { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'cgu', label: "Modalités d'utilisation" },
@@ -73,17 +50,12 @@ const LeTaxi = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="le_taxi"
-        title="Demande d'accès à l'API le.Taxi"
+        target_api="le_taxi_clients"
+        title="Demande d'accès à l'API le.Taxi - applicatifs clients"
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />
         <DescriptionSection />
-        <DonneesSection
-          scopesLabel="Sélectionnez la nature de votre service :"
-          DonneesDescription={DonneesDescription}
-          availableScopes={availableScopes}
-        />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
         <CguSection cguLink="https://le.taxi/assets/documents/CGU.pdf" />
@@ -92,7 +64,7 @@ const LeTaxi = ({
   </div>
 );
 
-LeTaxi.propTypes = {
+LeTaxiClients.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -100,7 +72,7 @@ LeTaxi.propTypes = {
   }),
 };
 
-LeTaxi.defaultProps = {
+LeTaxiClients.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -108,4 +80,4 @@ LeTaxi.defaultProps = {
   },
 };
 
-export default LeTaxi;
+export default LeTaxiClients;

@@ -20,7 +20,8 @@ import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import ApiEntreprise from './pages/ApiEntreprise';
 import PreuveCovoiturage from './pages/PreuveCovoiturage';
-import LeTaxi from './pages/LeTaxi';
+import LeTaxiClients from './pages/LeTaxiClients';
+import LeTaxiChauffeurs from './pages/LeTaxiChauffeurs';
 import CartoBio from './pages/CartoBio';
 import ApiImpotParticulierFcSandbox from './pages/DgfipPages/ApiImpotParticulierFcSandbox';
 import ApiImpotParticulierFcProduction from './pages/DgfipPages/ApiImpotParticulierFcProduction';
@@ -161,8 +162,13 @@ const App = () => (
                   />
 
                   <PrivateRoute
-                    path="/le-taxi/:enrollmentId?"
-                    component={LeTaxi}
+                    path="/le-taxi-clients/:enrollmentId?"
+                    component={LeTaxiClients}
+                  />
+
+                  <PrivateRoute
+                    path="/le-taxi-chauffeurs/:enrollmentId?"
+                    component={LeTaxiChauffeurs}
                   />
 
                   <PrivateRoute
