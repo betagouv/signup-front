@@ -5,7 +5,7 @@ export const Select = ({
   label,
   name,
   helper,
-  options,
+  options = [],
   value,
   disabled,
   onChange,
