@@ -111,6 +111,7 @@ export function getPublicValidatedEnrollments(targetApi) {
 export function getEnrollments({
   page = null,
   archived = null,
+  francerelanceApi = null,
   sortBy = [],
   filter = [],
   detailed = null,
@@ -125,6 +126,7 @@ export function getEnrollments({
   const queryParam = hashToQueryParams({
     page,
     archived,
+    francerelanceApi,
     detailed,
     size,
     sortedBy: formatedSortBy,
@@ -141,6 +143,25 @@ export function getEnrollments({
 }
 
 export function getUserValidatedEnrollments(targetApi) {
+  if (targetApi === 'francerelance_api') {
+    return (
+      getEnrollments({
+        filter: [{ id: 'status', value: 'validated' }],
+        francerelanceApi: true,
+        detailed: true,
+        size: 100,
+      })
+        // format contact to a more usable structure
+        // the backend should be able to use this structure too in the future
+        .then(({ enrollments }) =>
+          enrollments.map(e => ({
+            ...e,
+            contacts: collectionWithKeyToObject(e.contacts),
+          }))
+        )
+    );
+  }
+
   // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
   return (

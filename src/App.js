@@ -41,6 +41,8 @@ import Loader from './components/atoms/Loader';
 import ApiDsnj from './pages/ApiDsnj';
 import FranceRelanceFc from './pages/FranceRelanceFc';
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
+import FranceRelanceApiRestreinte from './pages/FranceRelanceApiRestreinte';
+import FranceRelanceApiOuverte from './pages/FranceRelanceApiOuverte';
 
 const history = createBrowserHistory();
 
@@ -144,6 +146,16 @@ const App = () => (
                   <PrivateRoute
                     path="/francerelance-fc/:enrollmentId?"
                     component={FranceRelanceFc}
+                  />
+
+                  <PrivateRoute
+                    path="/francerelance-api-restreinte/:enrollmentId?"
+                    component={FranceRelanceApiRestreinte}
+                  />
+
+                  <PrivateRoute
+                    path="/francerelance-api-ouverte/:enrollmentId?"
+                    component={FranceRelanceApiOuverte}
                   />
 
                   <PrivateRoute

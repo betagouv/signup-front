@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { getEnrollments } from '../../services/enrollments';
 import { FormContext } from '../Form';
+import { TARGET_API_LABELS } from '../../lib/api';
 
 const UniquenessWarningNotification = () => {
   const [enrollments, setEnrollments] = useState([]);
@@ -17,7 +18,14 @@ const UniquenessWarningNotification = () => {
         page: 0,
         sortBy: [{ id: 'updated_at', desc: true }],
         filter: [
-          { id: 'target_api', value: target_api },
+          {
+            id: 'target_api',
+            // if target_api is francerelance_api_ouverte or francerelance_api_restreinte
+            // we want the unicity to be checked against the 2 targets
+            value: target_api.startsWith('francerelance_api')
+              ? 'francerelance_api'
+              : target_api,
+          },
           { id: 'status', value: 'validated' },
           { id: 'siret', value: siret },
         ],
@@ -38,8 +46,8 @@ const UniquenessWarningNotification = () => {
 
   return (
     <div className="notification warning">
-      Votre organisation à déjà obtenu une habilitation FranceConnect
-      subventionnée :
+      Votre organisation à déjà obtenu une subvention dans le cadre de{' '}
+      {TARGET_API_LABELS[target_api]} :
       {enrollments.map(enrollment => (
         <span key={enrollment.id}>
           {' '}
@@ -50,7 +58,17 @@ const UniquenessWarningNotification = () => {
       ))}
       . Vous ne pouvez donc pas souscrire à une seconde habilitation
       subventionnée. Vous pouvez cependant souscrire à une seconde habilitation
-      sans subvention : <a href="/franceconnect">via ce lien</a>.
+      sans subvention :{' '}
+      <a
+        href={
+          target_api === 'francerelance_fc'
+            ? '/franceconnect'
+            : 'https://api.gouv.fr/datapass/api'
+        }
+      >
+        via ce lien
+      </a>
+      .
     </div>
   );
 };

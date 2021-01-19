@@ -18,6 +18,8 @@ export const TARGET_API_LABELS = {
   cartobio: 'CartoBio - Territoires',
   aidants_connect: 'Aidants Connect',
   francerelance_fc: 'FranceRelance - Guichet FranceConnect',
+  francerelance_api_restreinte: 'FranceRelance - subvention API restreinte',
+  francerelance_api_ouverte: 'FranceRelance - subvention API ouverte',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -48,4 +50,6 @@ export const API_ICONS = {
   cartobio: 'logo-cartobio-text.svg',
   aidants_connect: 'aidants-connect_logo.png',
   francerelance_fc: 'logo-fc-with-label.png',
+  francerelance_api_restreinte: 'logo-francerelance.png',
+  francerelance_api_ouverte: 'logo-francerelance.png',
 };

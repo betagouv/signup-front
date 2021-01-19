@@ -64,6 +64,7 @@ export const Form = ({
   location,
   steps = undefined,
   PreviousEnrollmentDescription,
+  previousEnrollmentWarning,
   target_api,
   enrollmentId = null,
   history,
@@ -211,6 +212,7 @@ export const Form = ({
             <PreviousEnrollmentSection
               steps={steps}
               Description={PreviousEnrollmentDescription}
+              warning={previousEnrollmentWarning}
             />
           </FormContext.Provider>
         )}

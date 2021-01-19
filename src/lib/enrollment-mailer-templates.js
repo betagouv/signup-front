@@ -77,6 +77,10 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
       }/api-ficoba-production`,
       cartobio:
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
+      francerelance_api_restreinte:
+        'Votre demande de subvention a été validée. Votre responsable comptable sera contacté sous peu pour établir les modalités de versement de la subvention.',
+      francerelance_api_ouverte:
+        'Votre demande de subvention a été validée. Votre responsable comptable sera contacté sous peu pour établir les modalités de versement de la subvention.',
     },
     refuse_application: {
       cartobio:

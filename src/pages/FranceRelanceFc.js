@@ -20,6 +20,7 @@ import { availableScopes as franceConnectAvailableScopes } from './FranceConnect
 import YesNoRadioInput from '../components/Form/components/YesNoRadioInput';
 import DateInput from '../components/Form/components/DateInput';
 import TextInput from '../components/Form/components/TextInput';
+import InformationsBancairesSection from '../components/form-sections/francerelance-sections/InformationsBancairesSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -129,7 +130,7 @@ const AdditionalMiseEnOeuvreContent = ({
   additional_content: {
     utilisation_franceconnect_autre_projet = '',
     date_integration = '',
-    type_de_depenses = '',
+    types_de_depenses = '',
   },
 }) => (
   <>
@@ -149,9 +150,9 @@ const AdditionalMiseEnOeuvreContent = ({
     />
     <TextInput
       label="Indiquez les types de dépenses qui seront financées à travers la subvention accordée ?"
-      name="additional_content.type_de_depenses"
+      name="additional_content.types_de_depenses"
       placeholder="paiement du prestataire, paiement de l'éditeur, etc."
-      value={type_de_depenses}
+      value={types_de_depenses}
       disabled={disabled}
       onChange={onChange}
     />
@@ -178,6 +179,7 @@ const FranceRelanceFc = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
+        { id: 'informations-bancaires', label: 'Informations bancaires' },
         { id: 'cgu', label: "Modalités d'utilisation" },
       ]}
       contactInformation={[
@@ -223,6 +225,7 @@ const FranceRelanceFc = ({
           MiseEnOeuvreDescription={() => null}
           AdditionalMiseEnOeuvreContent={AdditionalMiseEnOeuvreContent}
         />
+        <InformationsBancairesSection />
         <CguSection
           cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
           AdditionalCguContent={FcHasAlternativeAuthenticationMethod}

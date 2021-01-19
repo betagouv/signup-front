@@ -21,6 +21,7 @@ const PreviousEnrollmentSection = ({
       </p>
     </Quote>
   ),
+  warning,
 }) => {
   const {
     isUserEnrollmentLoading,
@@ -97,27 +98,34 @@ const PreviousEnrollmentSection = ({
         validatedEnrollments.length === 0 && (
           <div className="form__group">
             <div className="notification warning">
-              <p>
-                Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>
-                {target_api === 'api_impot_particulier_fc_sandbox' && (
-                  <span> en mode FranceConnecté</span>
-                )}
-                , vous devez avoir préalablement obtenu un accès à{' '}
-                <b>{TARGET_API_LABELS[previousTargetApi]}</b>.
-              </p>
-              <p>
-                Veuillez{' '}
-                <Link
-                  to={{
-                    pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
-                    state: { fromFranceConnectedAPI: target_api },
-                  }}
-                >
-                  demander votre accès à{' '}
-                  <b>{TARGET_API_LABELS[previousTargetApi]}</b>
-                </Link>{' '}
-                avant de continuer cette demande.
-              </p>
+              {warning ? (
+                warning
+              ) : (
+                <>
+                  <p>
+                    Pour demander l'accès à{' '}
+                    <b>{TARGET_API_LABELS[target_api]}</b>
+                    {target_api === 'api_impot_particulier_fc_sandbox' && (
+                      <span> en mode FranceConnecté</span>
+                    )}
+                    , vous devez avoir préalablement obtenu un accès à{' '}
+                    <b>{TARGET_API_LABELS[previousTargetApi]}</b>.
+                  </p>
+                  <p>
+                    Veuillez{' '}
+                    <Link
+                      to={{
+                        pathname: `/${previousTargetApi.replace(/_/g, '-')}`,
+                        state: { fromFranceConnectedAPI: target_api },
+                      }}
+                    >
+                      demander votre accès à{' '}
+                      <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                    </Link>{' '}
+                    avant de continuer cette demande.
+                  </p>
+                </>
+              )}
               {previousTargetApi === 'franceconnect' && (
                 <p>
                   Vous avez déjà accès à FranceConnect mais vous ne retrouvez
@@ -132,7 +140,7 @@ const PreviousEnrollmentSection = ({
         )}
       {previousTargetApi && (
         <div className="panel">
-          <h2>Démarche {TARGET_API_LABELS[previousTargetApi]} associée</h2>
+          <h2>Demande {TARGET_API_LABELS[previousTargetApi]} associée</h2>
           <Description />
           {!disabled &&
             !isUserEnrollmentLoading &&
@@ -164,17 +172,17 @@ const PreviousEnrollmentSection = ({
                 <Select
                   label={
                     <>
-                      Nom de la démarche{' '}
+                      Nom de la demande{' '}
                       <b>{TARGET_API_LABELS[previousTargetApi]}</b>
                     </>
                   }
                   helper={
                     target_api === 'api_impot_particulier_fc_sandbox' &&
-                    'Sélectionnez "aucune démarche" si vous souhaitez accéder à l‘API sans FranceConnect'
+                    'Sélectionnez "aucune demande" si vous souhaitez accéder à l‘API sans FranceConnect'
                   }
                   name="previous_enrollment_id"
                   options={[
-                    { id: '', label: 'aucune démarche' },
+                    { id: '', label: 'aucune demande' },
                     ...validatedEnrollments.map(({ intitule: name, id }) => ({
                       id,
                       label: `n°${id} : ${name}`,
@@ -190,10 +198,7 @@ const PreviousEnrollmentSection = ({
             <div className="button-list enrollment">
               {hasAccessToPreviousEnrollment ? (
                 <a
-                  href={`/${previousTargetApi.replace(
-                    /_/g,
-                    '-'
-                  )}/${previous_enrollment_id}`}
+                  href={`/authorization-request/${previous_enrollment_id}`}
                   className="light"
                 >
                   Numéro de la demande associée : {previous_enrollment_id}
