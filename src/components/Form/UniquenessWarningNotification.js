@@ -20,6 +20,7 @@ const UniquenessWarningNotification = () => {
         filter: [
           {
             id: 'target_api',
+            // TODO use multivalue filter instead
             // if target_api is francerelance_api_ouverte or francerelance_api_restreinte
             // we want the unicity to be checked against the 2 targets
             value: target_api.startsWith('francerelance_api')

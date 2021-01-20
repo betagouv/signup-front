@@ -35,7 +35,7 @@ const Stepper = ({
     <ul className="steps-form">
       {steps.map((e, i) => (
         <li key={e} className={getStepCssClass(i)}>
-          <div>{TARGET_API_LABELS[e]}</div>
+          <div>{e === 'francerelance_api' ? 'Demande d\'API' : TARGET_API_LABELS[e]}</div>
         </li>
       ))}
       <li className="check-mark">

@@ -143,6 +143,7 @@ export function getEnrollments({
 }
 
 export function getUserValidatedEnrollments(targetApi) {
+  // TODO refactor this to accept multiple value on filter keys instead
   if (targetApi === 'francerelance_api') {
     return (
       getEnrollments({

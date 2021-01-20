@@ -154,7 +154,7 @@ class AdminEnrollmentList extends React.Component {
             </option>
           ))}
         </select>
-      ),
+      ), // TODO limit filter to available scopes in user roles
     },
     {
       Header: 'Statut',

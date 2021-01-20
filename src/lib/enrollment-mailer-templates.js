@@ -87,6 +87,7 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
         'Je suis au regret de vous annoncer que votre demande d’accès aux données de Cartobio sur le territoire demandé à été refusée.',
     },
   };
+  // TODO also add special header for francerelance-fc
 
   if (
     specificHeaderMessage[selectedAction] &&

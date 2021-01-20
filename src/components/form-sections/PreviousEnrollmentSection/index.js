@@ -21,7 +21,7 @@ const PreviousEnrollmentSection = ({
       </p>
     </Quote>
   ),
-  warning,
+  warning, // TODO use warning for all apis instead of doing magic trickery
 }) => {
   const {
     isUserEnrollmentLoading,
