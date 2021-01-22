@@ -110,7 +110,6 @@ export function getPublicValidatedEnrollments(targetApi) {
 
 export function getEnrollments({
   page = null,
-  archived = null,
   sortBy = [],
   filter = [],
   detailed = null,
@@ -124,7 +123,6 @@ export function getEnrollments({
   }));
   const queryParam = hashToQueryParams({
     page,
-    archived,
     detailed,
     size,
     sortedBy: formatedSortBy,

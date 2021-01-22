@@ -2,15 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
-import {
-  debounce,
-  filter,
-  isArray,
-  isEmpty,
-  pick,
-  pickBy,
-  toPairs,
-} from 'lodash';
+import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
 import moment from 'moment';
 
 import './AdminEnrollmentList.css';
@@ -24,8 +16,42 @@ import ScheduleIcon from '../components/icons/schedule';
 import AddIcon from '../components/icons/add';
 import AutorenewIcon from '../components/icons/autorenew';
 import { withUser } from '../components/UserContext';
+import MultiSelect from '../components/atoms/MultiSelect';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+
+const INBOXES = {
+  primary: {
+    label: 'Demandes en cours',
+    sorted: [
+      {
+        id: 'updated_at',
+        desc: false,
+      },
+    ],
+    filtered: [
+      {
+        id: 'status',
+        value: ['sent', 'modification_pending'],
+      },
+    ],
+  },
+  archive: {
+    label: 'Demandes traitées',
+    sorted: [
+      {
+        id: 'updated_at',
+        desc: true,
+      },
+    ],
+    filtered: [
+      {
+        id: 'status',
+        value: ['validated', 'refused'],
+      },
+    ],
+  },
+};
 
 class AdminEnrollmentList extends React.Component {
   constructor(props) {
@@ -37,30 +63,28 @@ class AdminEnrollmentList extends React.Component {
       loading: true,
       totalPages: 0,
       page: 0,
-      sorted: [
-        {
-          id: 'updated_at',
-          desc: false,
-        },
-      ],
-      filtered: [],
+      sorted: INBOXES['primary'].sorted,
+      filtered: INBOXES['primary'].filtered,
       previouslySelectedEnrollmentId: 0,
-      archived: false,
+      inbox: 'primary',
     };
   }
 
   async componentDidMount() {
-    this.setState(
-      getStateFromUrlParams(
+    try {
+      const newState = getStateFromUrlParams(
         pick(this.state, [
           'page',
           'sorted',
           'filtered',
           'previouslySelectedEnrollmentId',
-          'archived',
         ])
-      )
-    );
+      );
+      this.setState(newState);
+    } catch (e) {
+      // silently fail, if the state from url is not properly formatted we do not apply url params
+      console.error(e);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -74,9 +98,7 @@ class AdminEnrollmentList extends React.Component {
       }
     }
 
-    setUrlParamsFromState(
-      pick(this.state, ['page', 'sorted', 'filtered', 'archived'])
-    );
+    setUrlParamsFromState(pick(this.state, ['page', 'sorted', 'filtered']));
   }
 
   availableAction = new Set([
@@ -106,7 +128,7 @@ class AdminEnrollmentList extends React.Component {
       width: 50,
       sortable: true,
       Cell: ({ value: updatedAt }) => {
-        if (this.state.archived) {
+        if (this.state.inbox !== 'primary') {
           return <small>{moment(updatedAt).format('D/M')}</small>;
         }
 
@@ -153,7 +175,7 @@ class AdminEnrollmentList extends React.Component {
       filterable: true,
       Filter: ({ filter, onChange }) => {
         // Note that users own enrollments might not be available through this filter
-        const availableTargetApi = this.props.user.roles
+        const options = this.props.user.roles
           .filter(role => role.endsWith(':reporter'))
           .map(role => {
             const targetApiKey = role.split(':')[0];
@@ -164,34 +186,12 @@ class AdminEnrollmentList extends React.Component {
             };
           });
 
-        const value = filter
-          ? isArray(filter.value)
-            ? filter.value
-            : [filter.value]
-          : [''];
-
         return (
-          <select
-            onChange={event => {
-              // get multiple options from react select
-              // see https://stackoverflow.com/questions/28624763/retrieving-value-from-select-with-multiple-option-in-react
-              const values = Array.from(
-                event.target.selectedOptions,
-                option => option.value
-              );
-              onChange(values);
-            }}
-            value={value}
-            multiple={true}
-            style={{ height: '90px' }}
-          >
-            <option value="">Tous</option>
-            {availableTargetApi.map(({ key, label }) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <MultiSelect
+            options={options}
+            values={filter ? filter.value : ['']}
+            onChange={onChange}
+          />
         );
       },
     },
@@ -228,34 +228,17 @@ class AdminEnrollmentList extends React.Component {
         );
       },
       Filter: ({ filter, onChange }) => {
-        const value = filter
-          ? isArray(filter.value)
-            ? filter.value
-            : [filter.value]
-          : [''];
+        const options = toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => ({
+          key,
+          label,
+        }));
 
         return (
-          <select
-            onChange={event => {
-              // get multiple options from react select
-              // see https://stackoverflow.com/questions/28624763/retrieving-value-from-select-with-multiple-option-in-react
-              const values = Array.from(
-                event.target.selectedOptions,
-                option => option.value
-              );
-              onChange(values);
-            }}
-            value={value}
-            multiple={true}
-            style={{ height: '90px' }}
-          >
-            <option value="">Tous</option>
-            {toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <MultiSelect
+            options={options}
+            values={filter ? filter.value : ['']}
+            onChange={onChange}
+          />
         );
       },
     },
@@ -292,24 +275,19 @@ class AdminEnrollmentList extends React.Component {
     this.setState({ filtered: newFiltered, page: 0 });
   };
 
-  onArchivedChange = newArchived => {
-    let filtered = [];
-    // If the user clicks once, we change the category (archived or ongoing) without clearing filters.
-    // If the user clicks twice, we stay on the category and we clear the filter.
+  onSelectInbox = newInbox => {
+    // If the user clicks once, we change the inbox (primary or archive) without clearing filters.
+    // If the user clicks twice, we stay on the inbox and we clear the filter.
     // That provides a way to clear all filter without reloading the page.
-    if (this.state.archived !== newArchived) {
+    let filtered = [];
+    if (this.state.inbox !== newInbox) {
       filtered = filter(this.state.filtered, ({ id }) => id !== 'status');
     }
 
     this.setState({
-      archived: newArchived,
-      sorted: [
-        {
-          id: 'updated_at',
-          desc: !!newArchived,
-        },
-      ],
-      filtered,
+      inbox: newInbox,
+      sorted: INBOXES[newInbox].sorted,
+      filtered: [...filtered, ...INBOXES[newInbox].filtered],
       page: 0,
       previouslySelectedEnrollmentId: 0,
     });
@@ -324,7 +302,7 @@ class AdminEnrollmentList extends React.Component {
     // Read the state from this.state and not from internally computed react table state
     // (passed as param of this function) as react table will reset page count to zero
     // on filter update. This breaks page selection on page load.
-    const { page, sorted, filtered, archived } = this.state;
+    const { page, sorted, filtered } = this.state;
 
     const {
       enrollments,
@@ -333,7 +311,6 @@ class AdminEnrollmentList extends React.Component {
       page,
       sortBy: sorted,
       filter: filtered,
-      archived,
     });
 
     this.setState({
@@ -360,7 +337,7 @@ class AdminEnrollmentList extends React.Component {
       page,
       sorted,
       filtered,
-      archived,
+      inbox,
       previouslySelectedEnrollmentId,
       totalPages,
     } = this.state;
@@ -371,22 +348,18 @@ class AdminEnrollmentList extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h2>Liste des demandes</h2>
               <ul className="nav__links">
-                <li className="nav__item">
-                  <button
-                    className={`nav-button ${!archived ? 'active_link' : ''}`}
-                    onClick={() => this.onArchivedChange(false)}
-                  >
-                    Demandes en cours
-                  </button>
-                </li>
-                <li className="nav__item">
-                  <button
-                    className={`nav-button ${archived ? 'active_link' : ''}`}
-                    onClick={() => this.onArchivedChange(true)}
-                  >
-                    Demandes traitées
-                  </button>
-                </li>
+                {Object.keys(INBOXES).map(currentInbox => (
+                  <li key={currentInbox} className="nav__item">
+                    <button
+                      className={`nav-button ${
+                        inbox === currentInbox ? 'active_link' : ''
+                      }`}
+                      onClick={() => this.onSelectInbox(currentInbox)}
+                    >
+                      {INBOXES[currentInbox].label}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -454,9 +427,9 @@ class AdminEnrollmentList extends React.Component {
                 nextText="Suivant"
                 loadingText="Chargement..."
                 noDataText={
-                  archived
-                    ? 'Aucune demande'
-                    : 'Toute les demandes ont été traitées'
+                  inbox === 'primary'
+                    ? 'Toute les demandes ont été traitées'
+                    : 'Aucune demande'
                 }
                 pageText="Page"
                 ofText="sur"

@@ -1,6 +1,5 @@
 import _, {
   isBoolean,
-  isArray,
   isEmpty,
   isInteger,
   isObject,
@@ -174,24 +173,18 @@ export function getChangelog(diff) {
   }
 }
 
-export function hashToQueryParams(hash) {
-  const queryParams = _(hash)
-    // { a: 1, b: true, c: false, d: [] }
-    .omitBy(e => (isObject(e) ? isEmpty(e) : !e))
-    // { a: 1, b: true }
-    .toPairs()
-    // [[ 'a', 1 ], [ 'b', true ]]
-    .map(
-      ([key, value]) =>
-        `${key}=${encodeURIComponent(
-          isObject(value) ? JSON.stringify(value) : value
-        )}`
-    )
-    // [ 'a=1', 'b=true' ]
-    .value();
+export function hashToQueryParams(hash, initialSearchParams) {
+  const hashWithoutNullValue = omitBy(hash, e =>
+    isObject(e) ? isEmpty(e) : !e
+  );
 
-  // '?a=1&b=true'
-  return isEmpty(queryParams) ? '' : `?${queryParams.join('&')}`;
+  const urlParams = new URLSearchParams(initialSearchParams);
+
+  forOwn(hashWithoutNullValue, (value, key) =>
+    urlParams.set(key, isObject(value) ? JSON.stringify(value) : value)
+  );
+
+  return isEmpty(hashWithoutNullValue) ? '' : `?${urlParams.toString()}`;
 }
 
 export function collectionWithKeyToObject(collection) {
@@ -237,23 +230,6 @@ export const getStateFromUrlParams = (defaultState = {}) => {
 
     const param = urlParams.getAll(key);
 
-    if (isArray(value)) {
-      return param.map(itemAsString => {
-        const k = itemAsString.split(':')[0];
-        const v = itemAsString.split(':')[1];
-
-        if (['asc', 'desc'].includes(v)) {
-          return { id: k, desc: v === 'desc' };
-        }
-
-        if (v.includes(',')) {
-          return { id: k, value: v.split(',') };
-        }
-
-        return { id: k, value: v };
-      });
-    }
-
     if (isObject(value)) {
       return JSON.parse(param[0]);
     }
@@ -270,31 +246,13 @@ export const getStateFromUrlParams = (defaultState = {}) => {
   });
 };
 
-export const setUrlParamsFromState = (newState = {}) => {
-  const urlParams = new URLSearchParams(window.location.search);
-
-  forOwn(newState, (value, key) => {
-    if (isArray(value)) {
-      urlParams.delete(key);
-
-      return value.forEach(({ id: k, value: v, desc }) => {
-        if (desc !== undefined) {
-          return urlParams.append(key, `${k}:${desc ? 'desc' : 'asc'}`);
-        }
-
-        return urlParams.append(key, `${k}:${v}`);
-      });
-    }
-
-    return urlParams.set(key, value);
-  });
-
-  const newQueryString = urlParams.toString();
+export const setUrlParamsFromState = (state = {}) => {
+  const newQueryString = hashToQueryParams(state, window.location.search);
 
   window.history.replaceState(
     window.history.state,
     '',
-    `${window.location.pathname}?${newQueryString}`
+    `${window.location.pathname}${newQueryString}`
   );
 };
 
