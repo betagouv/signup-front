@@ -24,10 +24,21 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'franceconnect',
   'api_entreprise',
   'api_particulier',
+  'cartobio',
+  'api_impot_particulier_sandbox',
+  'api_impot_particulier_production',
+  'api_r2p_sandbox',
+  'api_r2p_production',
   'api_impot_particulier_fc_sandbox',
   'api_impot_particulier_fc_production',
+  'le_taxi_clients',
+  'le_taxi_chauffeurs',
   'api_droits_cnam',
+  'api_ficoba_sandbox',
+  'api_ficoba_production',
   'francerelance_fc',
+  // 'preuve_covoiturage',
+  // 'aidants_connect',
 ];
 
 export const API_ICONS = {

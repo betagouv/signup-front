@@ -33,7 +33,3 @@ section.stats-page {
   display: flex;
   justify-content: space-between;
 }
-
-.tab-container .nav__item {
-  padding: 1em 0;
-}
