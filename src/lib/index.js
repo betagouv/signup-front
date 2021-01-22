@@ -246,6 +246,10 @@ export const getStateFromUrlParams = (defaultState = {}) => {
           return { id: k, desc: v === 'desc' };
         }
 
+        if (v.includes(',')) {
+          return { id: k, value: v.split(',') };
+        }
+
         return { id: k, value: v };
       });
     }

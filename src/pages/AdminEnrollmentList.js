@@ -2,7 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import 'react-table-6/react-table.css';
 import ReactTable from 'react-table-6';
-import { debounce, filter, isEmpty, pick, pickBy, toPairs } from 'lodash';
+import {
+  debounce,
+  filter,
+  isArray,
+  isEmpty,
+  pick,
+  pickBy,
+  toPairs,
+} from 'lodash';
 import moment from 'moment';
 
 import './AdminEnrollmentList.css';
@@ -15,6 +23,7 @@ import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../lib/enrollment';
 import ScheduleIcon from '../components/icons/schedule';
 import AddIcon from '../components/icons/add';
 import AutorenewIcon from '../components/icons/autorenew';
+import { withUser } from '../components/UserContext';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -142,19 +151,49 @@ class AdminEnrollmentList extends React.Component {
       style: enrollmentListStyle.cell,
       width: 130,
       filterable: true,
-      Filter: ({ filter, onChange }) => (
-        <select
-          onChange={event => onChange(event.target.value)}
-          value={filter ? filter.value : ''}
-        >
-          <option value="">Tous</option>
-          {toPairs(TARGET_API_LABELS).map(([key, label]) => (
-            <option key={key} value={key}>
-              {label}
-            </option>
-          ))}
-        </select>
-      ),
+      Filter: ({ filter, onChange }) => {
+        // Note that users own enrollments might not be available through this filter
+        const availableTargetApi = this.props.user.roles
+          .filter(role => role.endsWith(':reporter'))
+          .map(role => {
+            const targetApiKey = role.split(':')[0];
+
+            return {
+              key: targetApiKey,
+              label: TARGET_API_LABELS[targetApiKey],
+            };
+          });
+
+        const value = filter
+          ? isArray(filter.value)
+            ? filter.value
+            : [filter.value]
+          : [''];
+
+        return (
+          <select
+            onChange={event => {
+              // get multiple options from react select
+              // see https://stackoverflow.com/questions/28624763/retrieving-value-from-select-with-multiple-option-in-react
+              const values = Array.from(
+                event.target.selectedOptions,
+                option => option.value
+              );
+              onChange(values);
+            }}
+            value={value}
+            multiple={true}
+            style={{ height: '90px' }}
+          >
+            <option value="">Tous</option>
+            {availableTargetApi.map(({ key, label }) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+        );
+      },
     },
     {
       Header: 'Statut',
@@ -188,19 +227,37 @@ class AdminEnrollmentList extends React.Component {
           </button>
         );
       },
-      Filter: ({ filter, onChange }) => (
-        <select
-          onChange={event => onChange(event.target.value)}
-          value={filter ? filter.value : ''}
-        >
-          <option value="">Tous</option>
-          {toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => (
-            <option key={key} value={key}>
-              {label}
-            </option>
-          ))}
-        </select>
-      ),
+      Filter: ({ filter, onChange }) => {
+        const value = filter
+          ? isArray(filter.value)
+            ? filter.value
+            : [filter.value]
+          : [''];
+
+        return (
+          <select
+            onChange={event => {
+              // get multiple options from react select
+              // see https://stackoverflow.com/questions/28624763/retrieving-value-from-select-with-multiple-option-in-react
+              const values = Array.from(
+                event.target.selectedOptions,
+                option => option.value
+              );
+              onChange(values);
+            }}
+            value={value}
+            multiple={true}
+            style={{ height: '90px' }}
+          >
+            <option value="">Tous</option>
+            {toPairs(ADMIN_STATUS_LABELS).map(([key, label]) => (
+              <option key={key} value={key}>
+                {label}
+              </option>
+            ))}
+          </select>
+        );
+      },
     },
   ];
 
@@ -429,4 +486,4 @@ AdminEnrollmentList.propTypes = {
   }),
 };
 
-export default AdminEnrollmentList;
+export default withUser(AdminEnrollmentList);

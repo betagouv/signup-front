@@ -434,6 +434,23 @@ describe('utils', () => {
         })
       ).toEqual(expectedResult);
     });
+
+    it('should process nested array value', () => {
+      global.window.location.search =
+        '?filtered=target_api%3Afrancerelance_fc%2Capi_particulier%2Capi_entreprise&filtered=nom_raison_sociale%3Aa';
+
+      const expectedResult = {
+        filtered: [
+          {
+            id: 'target_api',
+            value: ['francerelance_fc', 'api_particulier', 'api_entreprise'],
+          },
+          { id: 'nom_raison_sociale', value: 'a' },
+        ],
+      };
+
+      expect(getStateFromUrlParams({ filtered: [] })).toEqual(expectedResult);
+    });
   });
 
   describe('findModifiedFieldsInEnrollment', () => {
