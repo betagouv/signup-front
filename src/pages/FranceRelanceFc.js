@@ -82,19 +82,6 @@ const contacts = {
     phone_number: '',
     display_mobile_phone_label: true,
   },
-  comptable: {
-    heading: 'Contact comptable',
-    description: (
-      <p>
-        Nous contacterons cette personne pour établir les modalités de versement
-        de la subvention.
-      </p>
-    ),
-    family_name: '',
-    given_name: '',
-    email: '',
-    phone_number: '',
-  },
 };
 
 const CadreJuridiqueDescription = () => (
@@ -130,6 +117,7 @@ const AdditionalMiseEnOeuvreContent = ({
     utilisation_franceconnect_autre_projet = '',
     date_integration = '',
     type_de_depenses = '',
+    code_ic = '',
   },
 }) => (
   <>
@@ -152,6 +140,14 @@ const AdditionalMiseEnOeuvreContent = ({
       name="additional_content.type_de_depenses"
       placeholder="paiement du prestataire, paiement de l'éditeur, etc."
       value={type_de_depenses}
+      disabled={disabled}
+      onChange={onChange}
+    />
+    <TextInput
+      label="Renseignez votre code DGFIP IC"
+      name="additional_content.code_ic"
+      helper={'Identification du comptable public'}
+      value={code_ic}
       disabled={disabled}
       onChange={onChange}
     />
