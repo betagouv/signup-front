@@ -54,7 +54,7 @@
     }
   },
   "arpege-concerto": {
-    "label": "Dématérialisation des demandes de facturation des services liés à la petite enfance et à l’enfance avec l’editeur Arpège",
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec l’editeur Arpège",
     "about": "https://api.gouv.fr/les-api/api-particulier",
     "state": {
       "intitule": "Récupération du Quotient Familial et des Impôts pour les services Petite Enfance et Périscolaire",
@@ -93,7 +93,7 @@
     }
   },
   "entrouvert-publik": {
-    "label": "Calcul du prix du repas pour un enfant scolarisé avec l'éditeur Entr'ouvert",
+    "label": "Tarification de la restauration scolaire avec la solution Publik",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
     "state": {
       "intitule": "Calcul du prix du repas pour un enfant scolarisé",
