@@ -147,5 +147,24 @@
         "cnaf_adresse": false
       }
     }
+  },
+  "civil-enfance-ciril-group": {
+    "label": "Facturation des activités du portail famille avec la solution Civil Enfance de l'éditeur Ciril Group",
+    "about": "https://api.gouv.fr/guides/portail-famille",
+    "state": {
+      "intitule": "Déclaration et calcul du quotient familial pour la facturation des activités du portail famille",
+      "description": "Ce service permet aux familles de déclarer leurs ressources et faire calculer leur quotient familial via le portail famille Civil Enfance de l'éditeur Ciril Group sans se déplacer en Mairie. Cette procédure est entièrement dématérialisée.\n[Vous pouvez indiquer que les données nécessaires au calcul du quotient seront récupérées des services fiscaux et / ou des services de la CNAF en fonction de vos besoins. Soyez-spécifique sur quelle donnée pour quel usage.]",
+      "data_recipients": "Agents de la collectivité en charge des services enfance, petite enfance et jeunesse de la ville.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
   }
 }
