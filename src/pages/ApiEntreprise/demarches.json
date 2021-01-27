@@ -60,7 +60,7 @@
   },
   "aide-covid": {
     "label": "Aide d'urgence régionale Covid-19 aux TPE",
-    "about": "https://entreprise.api.gouv.fr/use_cases/covid-19/",
+    "about": "https://entreprise.api.gouv.fr/use_cases/covid_19/",
     "state": {
       "scopes": {
         "entreprises": true,
