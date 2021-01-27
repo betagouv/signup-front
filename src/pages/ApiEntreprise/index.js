@@ -130,6 +130,13 @@ const availableScopes = [
     link: 'https://entreprise.api.gouv.fr/catalogue/#conventions_collectives',
   },
   {
+    value: 'entreprises_artisanales',
+    label: "Données de référence d'une entreprise artisanale - CMA France",
+    groupTitle: 'Informations générales :',
+    link:
+      'https://api-entreprise-sandbox.netlify.app/catalogue/#a-entreprises_artisanales_cma',
+  },
+  {
     value: 'effectifs_acoss',
     label: "Effectifs d'une entreprise - ACOSS",
     groupTitle: 'Informations générales :',
