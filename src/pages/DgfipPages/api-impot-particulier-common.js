@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Quote from '../../components/Form/components/Quote';
+import FileInput from '../../components/Form/components/FileInput';
+import { FormContext } from '../../components/Form';
+import { isEmpty } from 'lodash';
 
 export const DemarcheDescription = () => (
   <div className="notification grey">
@@ -19,11 +22,11 @@ export const DemarcheDescription = () => (
     <p>
       Pour cela, il vous est demandé de compléter le plus précisément possible
       les informations demandées dans le formulaire de souscription en ligne, en
-      particulier pour ce qui concerne :
+      particulier pour ce qui concerne :
     </p>
     <ul>
-      <li>les données nécessaires à la démarche administrative ;</li>
-      <li>la volumétrie de sollicitation de l’API ;</li>
+      <li>les données nécessaires à la démarche administrative ;</li>
+      <li>la volumétrie de sollicitation de l’API ;</li>
       <li>le cadre juridique.</li>
     </ul>
     <p>
@@ -62,18 +65,18 @@ export const DonneesDescription = () => (
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
     </p>
-    <p>L’article 6 précise :</p>
+    <p>L’article 6 précise :</p>
     <ul>
       <li>
         3° [les données] sont adéquates, pertinentes et non excessives au regard
         des finalités pour lesquelles elles sont collectées et de leurs
-        traitements ultérieurs ;
+        traitements ultérieurs ;
       </li>
       <li>
         4° Elles sont exactes, complètes et, si nécessaire, mises à jour ; les
         mesures appropriées doivent être prises pour que les données inexactes
         ou incomplètes au regard des finalités pour lesquelles elles sont
-        collectées ou traitées soient effacées ou rectifiées ;
+        collectées ou traitées soient effacées ou rectifiées ;
       </li>
     </ul>
     <p>
@@ -87,24 +90,87 @@ export const DonneesDescription = () => (
   </Quote>
 );
 
-export const DonneesFootnote = () => (
-  <div className="form__group">
-    <small className="card__meta">
-      <i>
-        <a
-          href="/docs/presentation_de_l_api_impot_particulier___v1.6.1.pdf"
-          target="_blank"
-          rel="noreferrer noopener"
-          aria-label="Document pdf précisant les données proposées"
+export const DonneesFootnote = () => {
+  const {
+    disabled,
+    onChange,
+    enrollment: { documents = [], documents_attributes = [] },
+  } = useContext(FormContext);
+  const [isFileInputExpanded, setFileInputExpanded] = useState(
+    !isEmpty(
+      documents.filter(
+        ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
+      )
+    )
+  );
+
+  useEffect(() => {
+    const hasDocument = !isEmpty(
+      documents.filter(
+        ({ type }) => type === 'Document::ExpressionBesoinSpecifique'
+      )
+    );
+    if (!isFileInputExpanded && hasDocument) {
+      setFileInputExpanded(true);
+    }
+  }, [isFileInputExpanded, documents]);
+
+  return (
+    <>
+      <div className="form__group">
+        <small className="card__meta">
+          <i>
+            <a
+              href="/docs/presentation_de_l_api_impot_particulier___v1.6.1.pdf"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="Document pdf précisant les données proposées"
+            >
+              Ce document
+            </a>{' '}
+            présente les modalités d'appel et de réponse de l'API Impôt
+            particulier, et décrit les données proposées.
+          </i>
+        </small>
+      </div>
+      <p>Expression de besoin spécifique :</p>
+      <Quote>
+        <p>
+          Les partenaires ayant convenu avec la DGFiP un périmètre de données
+          particulier peuvent rattacher leur expression de besoin listant
+          l’ensemble des données strictement nécessaires à leur cas d’usage.
+        </p>
+        <button
+          onClick={() => setFileInputExpanded(!isFileInputExpanded)}
+          disabled={disabled}
+          className="button-outline primary small"
         >
-          Ce document
-        </a>{' '}
-        présente les modalités d'appel et de réponse de l'API Impôt particulier,
-        et décrit les données proposées.
-      </i>
-    </small>
-  </div>
-);
+          Je dépose mon expression de besoin spécifique
+        </button>
+      </Quote>
+      {isFileInputExpanded && (
+        <>
+          <div className="form__group">
+            <div className="notification warning">
+              <b>Attention :</b> seule l’expression de besoin en données ayant
+              déjà été partagée avec la DGFiP peut être rattachée à votre
+              demande.
+            </div>
+          </div>
+          <FileInput
+            label="Je suis déjà en contact avec la DGFiP, je joins mon expression de besoin"
+            mimeTypes="*"
+            disabled={disabled}
+            uploadedDocuments={documents}
+            documentsToUpload={documents_attributes}
+            documentType={'Document::ExpressionBesoinSpecifique'}
+            handleChange={onChange}
+          />
+        </>
+      )}
+    </>
+  );
+};
 
 export const groupTitle = 'Sélectionnez les années de revenus souhaitées :';
 
@@ -160,12 +226,12 @@ export const CadreJuridiqueDescription = () => (
     </p>
     <p>
       Conformément au Code des relations entre le public et l’administration,
-      l’échange de données s’impose aux administrations dès lors que :
+      l’échange de données s’impose aux administrations dès lors que :
     </p>
     <ul>
       <li>
         ces données sont nécessaires au traitement d’une demande présentée par
-        un usager ;
+        un usager ;
       </li>
       <li>
         l’administration destinataire est habilitée à connaître ces données dans
@@ -189,7 +255,7 @@ export const SuiteDescription = () => (
   <Quote>
     <p>
       Après avoir cliqué sur « Soumettre la demande », les prochaines étapes
-      sont :
+      sont :
     </p>
     <ol>
       <li>Le fournisseur de données de l’API va instruire la demande.</li>
@@ -202,7 +268,7 @@ export const SuiteDescription = () => (
         du refus de votre demande.
       </li>
     </ol>
-    <p>En cas d’acceptation de votre demande :</p>
+    <p>En cas d’acceptation de votre demande :</p>
     <ul>
       <li>
         Le contact technique recevra par courriel les informations nécessaires
