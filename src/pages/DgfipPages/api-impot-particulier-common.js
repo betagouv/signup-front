@@ -3,6 +3,7 @@ import Quote from '../../components/Form/components/Quote';
 import FileInput from '../../components/Form/components/FileInput';
 import { FormContext } from '../../components/Form';
 import { isEmpty } from 'lodash';
+import CheckboxInput from '../../components/Form/components/CheckboxInput';
 
 export const DemarcheDescription = () => (
   <div className="notification grey">
@@ -133,41 +134,42 @@ export const DonneesFootnote = () => {
           </i>
         </small>
       </div>
-      <p>Expression de besoin spécifique :</p>
       <Quote>
-        <p>
-          Les partenaires ayant convenu avec la DGFiP un périmètre de données
-          particulier peuvent rattacher leur expression de besoin listant
-          l’ensemble des données strictement nécessaires à leur cas d’usage.
-        </p>
-        <button
-          onClick={() => setFileInputExpanded(!isFileInputExpanded)}
-          disabled={disabled}
-          className="button-outline primary small"
-        >
-          Je dépose mon expression de besoin spécifique
-        </button>
-      </Quote>
-      {isFileInputExpanded && (
-        <>
-          <div className="form__group">
-            <div className="notification warning">
-              <b>Attention :</b> seule l’expression de besoin en données ayant
-              déjà été partagée avec la DGFiP peut être rattachée à votre
-              demande.
-            </div>
-          </div>
-          <FileInput
-            label="Je suis déjà en contact avec la DGFiP, je joins mon expression de besoin"
-            mimeTypes="*"
+        <div style={{ margin: '1em 0.5em 1em 0' }}>
+          <b>Expression de besoin spécifique</b>
+          <p>
+            Les partenaires ayant convenu avec la DGFiP un périmètre de données
+            particulier peuvent rattacher leur expression de besoin listant
+            l’ensemble des données strictement nécessaires à leur cas d’usage.
+          </p>
+          <CheckboxInput
+            label="J'ai une expression de besoin spécifique"
+            value={isFileInputExpanded}
+            onChange={() => setFileInputExpanded(!isFileInputExpanded)}
             disabled={disabled}
-            uploadedDocuments={documents}
-            documentsToUpload={documents_attributes}
-            documentType={'Document::ExpressionBesoinSpecifique'}
-            handleChange={onChange}
           />
-        </>
-      )}
+          {isFileInputExpanded && (
+            <>
+              <p>
+                <i>
+                  Attention : seule l’expression de besoin en données ayant déjà
+                  été partagée avec la DGFiP peut être rattachée à votre
+                  demande.
+                </i>
+              </p>
+              <FileInput
+                label="Joindre l'expression de besoin"
+                mimeTypes="*"
+                disabled={disabled}
+                uploadedDocuments={documents}
+                documentsToUpload={documents_attributes}
+                documentType={'Document::ExpressionBesoinSpecifique'}
+                handleChange={onChange}
+              />
+            </>
+          )}
+        </div>
+      </Quote>
     </>
   );
 };
