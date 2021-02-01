@@ -259,25 +259,9 @@ describe('utils', () => {
     });
 
     it('should return an serialized json object', () => {
-      const state = {
-        fondement_juridique_title: 'Article L114-8 du CRPA',
-        fondement_juridique_url:
-          'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033219997&cidTexte=LEGITEXT000031366350&dateTexte=20161009',
-        scopes: {
-          cnaf_adresse: true,
-          cnaf_allocataires: true,
-          cnaf_enfants: true,
-          cnaf_quotient_familial: true,
-          dgfip_adresse: true,
-          dgfip_avis_imposition: true,
-        },
-      };
+      const state = { demarche: 'ccas' };
 
-      expect(hashToQueryParams(state)).toBe(
-        '?fondement_juridique_title=Article%20L114-8%20du%20CRPA' +
-          '&fondement_juridique_url=https%3A%2F%2Fwww.legifrance.gouv.fr%2FaffichCodeArticle.do%3FidArticle%3DLEGIARTI000033219997%26cidTexte%3DLEGITEXT000031366350%26dateTexte%3D20161009' +
-          '&scopes=%7B%22cnaf_adresse%22%3Atrue%2C%22cnaf_allocataires%22%3Atrue%2C%22cnaf_enfants%22%3Atrue%2C%22cnaf_quotient_familial%22%3Atrue%2C%22dgfip_adresse%22%3Atrue%2C%22dgfip_avis_imposition%22%3Atrue%7D'
-      );
+      expect(hashToQueryParams(state)).toBe('?demarche=ccas');
     });
   });
 

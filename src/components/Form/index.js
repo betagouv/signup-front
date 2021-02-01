@@ -103,25 +103,15 @@ export const Form = ({
     if (enrollmentId) {
       fetchUserEnrollment();
     } else {
-      // Only "demarche" parameter will be read in the future.
-      // We keep this for backward compatibility purposes.
-      const enrollmentFromUrlParams = getStateFromUrlParams({
-        intitule: '',
+      const { demarche } = getStateFromUrlParams({
         demarche: '',
-        description: '',
-        data_recipients: '',
-        data_retention_period: '',
-        fondement_juridique_title: '',
-        fondement_juridique_url: '',
-        scopes: {},
       });
 
-      const { demarche } = enrollmentFromUrlParams;
-      dispatchSetEnrollment(
-        demarche
-          ? { target: { name: 'demarche', value: demarche } }
-          : enrollmentFromUrlParams
-      );
+      if (demarche) {
+        dispatchSetEnrollment({
+          target: { name: 'demarche', value: demarche },
+        });
+      }
       setIsUserEnrollmentLoading(false);
     }
   }, [enrollmentId, history]);
