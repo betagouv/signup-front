@@ -189,7 +189,7 @@ class AdminEnrollmentList extends React.Component {
         return (
           <MultiSelect
             options={options}
-            values={filter ? filter.value : ['']}
+            values={filter ? filter.value : []}
             onChange={onChange}
           />
         );
@@ -236,7 +236,7 @@ class AdminEnrollmentList extends React.Component {
         return (
           <MultiSelect
             options={options}
-            values={filter ? filter.value : ['']}
+            values={filter ? filter.value : []}
             onChange={onChange}
           />
         );
