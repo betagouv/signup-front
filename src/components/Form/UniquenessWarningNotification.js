@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { isEmpty } from 'lodash';
 import { getEnrollments } from '../../services/enrollments';
 import { FormContext } from '../Form';
+import { TARGET_API_LABELS } from '../../lib/api';
 
 const UniquenessWarningNotification = () => {
   const [enrollments, setEnrollments] = useState([]);
@@ -38,8 +39,8 @@ const UniquenessWarningNotification = () => {
 
   return (
     <div className="notification warning">
-      Votre organisation à déjà obtenu une habilitation FranceConnect
-      subventionnée :
+      Votre organisation à déjà obtenu une subvention dans le cadre de{' '}
+      {TARGET_API_LABELS[target_api]} :
       {enrollments.map(enrollment => (
         <span key={enrollment.id}>
           {' '}

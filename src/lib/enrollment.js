@@ -1,9 +1,9 @@
 export const ADMIN_STATUS_LABELS = {
-  pending: 'Brouillon',
-  modification_pending: 'Retour',
   sent: 'À valider',
+  modification_pending: 'Retour',
   validated: 'Validée',
   refused: 'Refusée',
+  pending: 'Brouillon',
 };
 
 export const USER_STATUS_LABELS = {

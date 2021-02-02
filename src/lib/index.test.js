@@ -259,25 +259,9 @@ describe('utils', () => {
     });
 
     it('should return an serialized json object', () => {
-      const state = {
-        fondement_juridique_title: 'Article L114-8 du CRPA',
-        fondement_juridique_url:
-          'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033219997&cidTexte=LEGITEXT000031366350&dateTexte=20161009',
-        scopes: {
-          cnaf_adresse: true,
-          cnaf_allocataires: true,
-          cnaf_enfants: true,
-          cnaf_quotient_familial: true,
-          dgfip_adresse: true,
-          dgfip_avis_imposition: true,
-        },
-      };
+      const state = { demarche: 'ccas' };
 
-      expect(hashToQueryParams(state)).toBe(
-        '?fondement_juridique_title=Article%20L114-8%20du%20CRPA' +
-          '&fondement_juridique_url=https%3A%2F%2Fwww.legifrance.gouv.fr%2FaffichCodeArticle.do%3FidArticle%3DLEGIARTI000033219997%26cidTexte%3DLEGITEXT000031366350%26dateTexte%3D20161009' +
-          '&scopes=%7B%22cnaf_adresse%22%3Atrue%2C%22cnaf_allocataires%22%3Atrue%2C%22cnaf_enfants%22%3Atrue%2C%22cnaf_quotient_familial%22%3Atrue%2C%22dgfip_adresse%22%3Atrue%2C%22dgfip_avis_imposition%22%3Atrue%7D'
-      );
+      expect(hashToQueryParams(state)).toBe('?demarche=ccas');
     });
   });
 
@@ -366,10 +350,8 @@ describe('utils', () => {
     it('should return a hash from filtered enrollment list url', () => {
       global.window.location.search =
         '?page=0' +
-        '&sorted=updated_at%3Adesc' +
-        '&filtered=nom_raison_sociale%3Ate' +
-        '&filtered=user.email%3Afrance' +
-        '&filtered=target_api%3Afranceconnect';
+        '&sorted=%5B%7B"id"%3A"updated_at"%2C"desc"%3Atrue%7D%5D' +
+        '&filtered=%5B%7B"id"%3A"nom_raison_sociale"%2C"value"%3A"te"%7D%2C%7B"id"%3A"user.email"%2C"value"%3A"france"%7D%2C%7B"id"%3A"target_api"%2C"value"%3A%5B"franceconnect"%5D%7D%2C%7B"id"%3A"status"%2C"value"%3A%5B""%5D%7D%5D';
 
       const expectedResult = {
         page: 0,
@@ -377,7 +359,8 @@ describe('utils', () => {
         filtered: [
           { id: 'nom_raison_sociale', value: 'te' },
           { id: 'user.email', value: 'france' },
-          { id: 'target_api', value: 'franceconnect' },
+          { id: 'target_api', value: ['franceconnect'] },
+          { id: 'status', value: [''] },
         ],
       };
 
@@ -406,33 +389,49 @@ describe('utils', () => {
       );
     });
 
-    it('should return a hash from preset enrollment form url', () => {
-      global.window.location.search =
-        '?fondement_juridique_title=Article%20L114-8%20du%20CRPA' +
-        '&fondement_juridique_url=https%3A%2F%2Fwww.legifrance.gouv.fr%2FaffichCodeArticle.do%3FidArticle%3DLEGIARTI000033219997%26cidTexte%3DLEGITEXT000031366350%26dateTexte%3D20161009' +
-        '&scopes=%7B%22cnaf_adresse%22%3Atrue%2C%22cnaf_allocataires%22%3Atrue%2C%22cnaf_enfants%22%3Atrue%2C%22cnaf_quotient_familial%22%3Atrue%2C%22dgfip_adresse%22%3Atrue%2C%22dgfip_avis_imposition%22%3Atrue%7D';
+    it('should return a hash from preset enrollment demarche form url', () => {
+      global.window.location.search = '?demarche=ccas';
 
-      const expectedResult = {
-        fondement_juridique_title: 'Article L114-8 du CRPA',
-        fondement_juridique_url:
-          'https://www.legifrance.gouv.fr/affichCodeArticle.do?idArticle=LEGIARTI000033219997&cidTexte=LEGITEXT000031366350&dateTexte=20161009',
-        scopes: {
-          cnaf_adresse: true,
-          cnaf_allocataires: true,
-          cnaf_enfants: true,
-          cnaf_quotient_familial: true,
-          dgfip_adresse: true,
-          dgfip_avis_imposition: true,
-        },
-      };
+      const expectedResult = { demarche: 'ccas' };
 
       expect(
         getStateFromUrlParams({
-          fondement_juridique_title: '',
-          fondement_juridique_url: '',
-          scopes: {},
+          demarche: '',
         })
       ).toEqual(expectedResult);
+    });
+
+    it('should process nested array value', () => {
+      global.window.location.search =
+        '?filtered=%5B%7B%22id%22%3A%22target_api%22%2C%22value%22%3A%5B%22francerelance_fc%22%2C%22api_particulier%22%2C%22api_entreprise%22%5D%7D%2C%7B%22id%22%3A%22nom_raison_sociale%22%2C%22value%22%3A%22a%22%7D%5D';
+
+      const expectedResult = {
+        filtered: [
+          {
+            id: 'target_api',
+            value: ['francerelance_fc', 'api_particulier', 'api_entreprise'],
+          },
+          { id: 'nom_raison_sociale', value: 'a' },
+        ],
+      };
+
+      expect(getStateFromUrlParams({ filtered: [] })).toEqual(expectedResult);
+    });
+
+    it('should be the inverse fonction of hashToQueryParams', () => {
+      const hash = {
+        filtered: [
+          {
+            id: 'target_api',
+            value: ['francerelance_fc', 'api_particulier', 'api_entreprise'],
+          },
+          { id: 'nom_raison_sociale', value: 'a' },
+        ],
+      };
+
+      global.window.location.search = hashToQueryParams(hash);
+
+      expect(getStateFromUrlParams({ filtered: [] })).toEqual(hash);
     });
   });
 

@@ -22,7 +22,7 @@ const DescriptionSection = ({
       <TextInput
         label="Nom du service"
         helper={
-          'Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue' +
+          'Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue ' +
           'publique, il convient d’être synthétique et précis.'
         }
         meta="Cette information peut être rendue publique."
