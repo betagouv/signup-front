@@ -6,6 +6,7 @@ import TextAreaInput from '../../Form/components/TextAreaInput';
 import Quote from '../../Form/components/Quote';
 import OrWrapper from '../../Form/components/OrWrapper';
 import FileInput from '../../Form/components/FileInput';
+import RadioInput from '../../Form/components/RadioInput';
 
 export const StructureSection = () => {
   const {
@@ -17,6 +18,7 @@ export const StructureSection = () => {
       documents = [],
       documents_attributes = [],
       additional_content: {
+        organization_type = '',
         organization_address = '',
         associated_public_organisation = '',
       },
@@ -34,8 +36,28 @@ export const StructureSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
+      <RadioInput
+        label="Type de structure"
+        options={[
+          { id: 'france-services', label: 'France Services' },
+          { id: 'ccas', label: 'CCAS' },
+          { id: 'collectivite', label: 'Collectivité' },
+          { id: 'mediatheque', label: 'Médiathèque' },
+          { id: 'association', label: 'Association' },
+          { id: 'espace-public-numerique', label: 'Espace Public Numérique' },
+          {
+            id: 'structure-medicale',
+            label: 'Structure médicale (CSAPA, CHU, CMS)',
+          },
+          { id: 'independant', label: 'Indépendant' },
+        ]}
+        name="additional_content.organization_type"
+        value={organization_type}
+        disabled={disabled}
+        onChange={onChange}
+      />
       <TextInput
-        label="Adresse de la structure, si différent de l’organisation"
+        label="Adresse de la structure si différente de celle de l'organisation"
         name="additional_content.organization_address"
         value={organization_address}
         disabled={disabled}
@@ -50,8 +72,9 @@ export const StructureSection = () => {
       />
       <Quote>
         <p>
-          Si vous avez une délégation de service public, merci de renseigner
-          l'un des champs suivant :
+          Si vous travaillez avec une administration ou un établissement publics
+          (prestation, délégation de service public, subvention publique, etc.),
+          merci de renseigner l'un des champs suivants :
         </p>
       </Quote>
       <OrWrapper>

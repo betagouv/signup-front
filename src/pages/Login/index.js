@@ -23,6 +23,23 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
       return <ApiImpotParticulierFcSandboxWelcomeMessage />;
     case 'api_impot_particulier_sandbox':
       return <ApiImpotParticulierSandboxWelcomeMessage />;
+    case 'franceconnect':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+          newEnrollmentPageMessage="Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne"
+        />
+      );
+    case 'aidants_connect':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+          isService={true}
+          newEnrollmentPageMessage="Vous souhaitez accompagner des usagers avec Aidants Connect"
+        />
+      );
     default:
       return (
         <WelcomeMessage

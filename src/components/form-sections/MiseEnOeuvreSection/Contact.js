@@ -39,12 +39,12 @@ export const Contact = ({
           </div>
           <div className="form-col">
             <TextInput
-              label="Nom de famille"
+              label="Nom"
               name={`contacts.${id}.family_name`}
               value={family_name}
               disabled={disabled}
               onChange={onChange}
-              ariaLabel={`Nom de famille du ${heading}`}
+              ariaLabel={`Nom du ${heading}`}
             />
           </div>
         </div>

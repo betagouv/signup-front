@@ -16,10 +16,7 @@ const contacts = {
   metier: {
     heading: 'Représentant légal',
     description: (
-      <p>
-        La personne aillant pouvoir de signature pour engager la structure avec
-        Aidant Connect.
-      </p>
+      <p>La personne ayant pouvoir de signature pour engager la structure.</p>
     ),
     family_name: '',
     given_name: '',
@@ -30,7 +27,7 @@ const contacts = {
     heading: 'Contact métier',
     description: (
       <p>
-        La personne responsable de la mise en place de aidant connect au sein de
+        La personne responsable de la mise en place d'Aidants Connect au sein de
         votre structure.
       </p>
     ),
@@ -74,7 +71,7 @@ const AidantsConnect = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="aidants_connect"
-        title="Demande d'habilitation juridique à Aidants Connect"
+        title="Demande d'habilitation à Aidants Connect"
       >
         <OrganisationSection />
         <StructureSection />

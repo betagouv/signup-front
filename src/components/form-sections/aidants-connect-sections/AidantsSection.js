@@ -13,10 +13,9 @@ export const AidantsSection = () => {
         nombre_aidants = '',
         utilisation_identifiants_usagers = null,
         demandes_par_semaines = '',
-        teletravail_autorise = null,
         adresse_mail_professionnelle = null,
-        telephone_portable_professionnel = null,
-        ordinateur_professionnel = null,
+        participation_reseau = null,
+        nom_reseau = '',
       },
     },
   } = useContext(FormContext);
@@ -53,18 +52,6 @@ export const AidantsSection = () => {
       <YesNoRadioInput
         label={
           <>
-            Les aidants sont-ils autorisés à télétravailler et accompagner les
-            usagers à distance ?
-          </>
-        }
-        name="additional_content.teletravail_autorise"
-        value={teletravail_autorise}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <YesNoRadioInput
-        label={
-          <>
             Les aidants à habiliter ont-ils bien une adresse mail
             professionnelle individuelle ?
           </>
@@ -77,25 +64,19 @@ export const AidantsSection = () => {
       <YesNoRadioInput
         label={
           <>
-            Les aidants ont-ils à disposition un smartphone individuel pour
-            s’identifier au service ? (en vue de l’installation d’une
-            application d’authentification)
+            Participez-vous à un réseau régional ou local (ex : PIMMS, EPN,
+            etc.) ?
           </>
         }
-        name="additional_content.telephone_portable_professionnel"
-        value={telephone_portable_professionnel}
+        name="additional_content.participation_reseau"
+        value={participation_reseau}
         disabled={disabled}
         onChange={onChange}
       />
-      <YesNoRadioInput
-        label={
-          <>
-            Les aidants ont-ils un ordinateur professionnel portable
-            individuel ?
-          </>
-        }
-        name="additional_content.ordinateur_professionnel"
-        value={ordinateur_professionnel}
+      <NumberInput
+        label="Si oui, lequel ?"
+        name="additional_content.nom_reseau"
+        value={nom_reseau}
         disabled={disabled}
         onChange={onChange}
       />
