@@ -245,6 +245,19 @@ const intitulePlaceholder = sample([
   "« Déclaration d'installation classée pour la protection de l'environnement »",
 ]);
 
+const CadreJuridiqueDescription = () => (
+  <Quote>
+    <p>
+      Pour en savoir plus sur les éléments à fournir pour justifier de votre
+      cadre juridique, vous pouvez vous référer{' '}
+      <a href="https://entreprise.api.gouv.fr/doc/#le-cadre-juridique">
+        cette documentation
+      </a>
+      .
+    </p>
+  </Quote>
+);
+
 const MiseEnOeuvreDescription = () => (
   <Quote>
     <p>
@@ -298,7 +311,9 @@ const ApiEntreprise = ({
           availableScopes={availableScopes}
           DonneesDescription={DonneesDescription}
         />
-        <CadreJuridiqueSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection
           sectionTitle="Coordonnées des référents du service"
