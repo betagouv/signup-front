@@ -6,7 +6,7 @@ import HabilitationIcon from '../../components/icons/habilitation';
 import TokenIcon from '../../components/icons/token';
 import { getCachedMajorityPercentileProcessingTimeInDays } from '../../services/stats';
 
-const NextSteps = ({ targetApi }) => {
+const NextSteps = ({ targetApi, isService = false }) => {
   const [stat, setStat] = useState(null);
 
   useEffect(() => {
@@ -45,7 +45,9 @@ const NextSteps = ({ targetApi }) => {
           <div>
             <TokenIcon />
           </div>
-          <div>Recevoir son token</div>
+          <div>
+            {isService ? 'Avoir accès au service' : 'Recevoir son token'}
+          </div>
         </div>
       </div>
       <div className="timeline">
