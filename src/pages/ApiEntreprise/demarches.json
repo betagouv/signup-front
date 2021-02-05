@@ -60,6 +60,23 @@
       }
     }
   },
+  "aides_publiques": {
+    "label": "Aides et subventions publiques",
+    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "entreprises_artisanales": true,
+        "exercices": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true
+      }
+    }
+  },
   "aide-covid": {
     "label": "Aide d'urgence régionale Covid-19 aux TPE",
     "about": "https://entreprise.api.gouv.fr/use_cases/covid_19/",
