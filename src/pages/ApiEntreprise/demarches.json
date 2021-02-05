@@ -44,6 +44,7 @@
         "actes_inpi": true,
         "conventions_collectives": true,
         "entreprises_artisanales": true,
+        "effectifs_acoss": true,
         "exercices": true,
         "bilans_inpi": true,
         "attestations_fiscales": true,
