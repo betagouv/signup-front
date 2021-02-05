@@ -3,6 +3,7 @@ import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import YesNoRadioInput from '../../Form/components/YesNoRadioInput';
 import NumberInput from '../../Form/components/NumberInput';
+import TextInput from '../../Form/components/TextInput';
 
 export const AidantsSection = () => {
   const {
@@ -73,7 +74,7 @@ export const AidantsSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
-      <NumberInput
+      <TextInput
         label="Si oui, lequel ?"
         name="additional_content.nom_reseau"
         value={nom_reseau}
