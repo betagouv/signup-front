@@ -31,7 +31,7 @@
       }
     }
   },
-  "marche-public": {
+  "marches_publics": {
     "label": "Marchés publics",
     "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
     "state": {
@@ -78,7 +78,7 @@
       }
     }
   },
-  "aide-covid": {
+  "covid_19": {
     "label": "Aide d'urgence régionale Covid-19 aux TPE",
     "about": "https://entreprise.api.gouv.fr/use_cases/covid_19/",
     "state": {
