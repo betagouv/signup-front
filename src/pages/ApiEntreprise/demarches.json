@@ -31,7 +31,7 @@
       }
     }
   },
-  "marche-public": {
+  "marches_publics": {
     "label": "Marchés publics",
     "about": "https://entreprise.api.gouv.fr/use_cases/marches_publics/",
     "state": {
@@ -44,6 +44,7 @@
         "actes_inpi": true,
         "conventions_collectives": true,
         "entreprises_artisanales": true,
+        "effectifs_acoss": true,
         "exercices": true,
         "bilans_inpi": true,
         "attestations_fiscales": true,
@@ -60,7 +61,24 @@
       }
     }
   },
-  "aide-covid": {
+  "aides_publiques": {
+    "label": "Aides et subventions publiques",
+    "about": "https://entreprise.api.gouv.fr/use_cases/aides_publiques/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "documents_association": true,
+        "entreprises_artisanales": true,
+        "exercices": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true
+      }
+    }
+  },
+  "covid_19": {
     "label": "Aide d'urgence régionale Covid-19 aux TPE",
     "about": "https://entreprise.api.gouv.fr/use_cases/covid_19/",
     "state": {
