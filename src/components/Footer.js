@@ -9,7 +9,7 @@ const Footer = () => (
     <div className="container">
       <ul className="footer__links">
         <li>
-          <a href="/stats">Statistique d'utilisation</a>
+          <a href="/stats">Statistiques d'utilisation</a>
         </li>
         <li>
           <a href={`${API_GOUV_HOST}/apropos`}>Qu'est ce qu'une API ?</a>
