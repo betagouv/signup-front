@@ -12,7 +12,7 @@ import DonneesPersonnellesSection from '../../components/form-sections/DonneesPe
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 
-const ApiDsnj = ({
+const ApiServiceNational = ({
   match: {
     params: { enrollmentId },
   },
@@ -31,9 +31,9 @@ const ApiDsnj = ({
       ]}
       contactInformation={[
         {
-          email: 'contact@particulier.api.gouv.fr',
+          email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
+          subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
         },
       ]}
     />
@@ -41,7 +41,7 @@ const ApiDsnj = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_dsnj"
-        title="Demande d'accès à l'API DSNJ"
+        title="Demande d'accès à l'API Service National"
         demarches={demarches}
       >
         <OrganisationSection />
@@ -50,13 +50,13 @@ const ApiDsnj = ({
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />
-        <CguSection cguLink="https://www.google.com/search?q=cgu" />
+        <CguSection cguLink="https://presaje.sga.defense.gouv.fr/cgu-dln1f" />
       </Form>
     </div>
   </div>
 );
 
-ApiDsnj.propTypes = {
+ApiServiceNational.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -64,7 +64,7 @@ ApiDsnj.propTypes = {
   }),
 };
 
-ApiDsnj.defaultProps = {
+ApiServiceNational.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -72,4 +72,4 @@ ApiDsnj.defaultProps = {
   },
 };
 
-export default ApiDsnj;
+export default ApiServiceNational;

@@ -38,7 +38,7 @@ import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import AgenceBio from './pages/AgenceBio';
 import UserList from './pages/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
-import ApiDsnj from './pages/ApiDsnj';
+import ApiServiceNational from './pages/ApiServiceNational';
 import FranceRelanceFc from './pages/FranceRelanceFc';
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
 
@@ -187,8 +187,8 @@ const App = () => (
                   />
 
                   <PrivateRoute
-                    path="/api-dsnj/:enrollmentId?"
-                    component={ApiDsnj}
+                    path="/api-service-national/:enrollmentId?"
+                    component={ApiServiceNational}
                   />
 
                   <PrivateRoute
