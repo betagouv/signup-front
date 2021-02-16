@@ -7,14 +7,14 @@
     }
   },
   "inscription-examens": {
-    "label": "Inscription aux examens",
+    "label": "Inscription à un concours ou un examen (hors permis de conduire)",
     "state": {
       "fondement_juridique_title": "Article L114-6 du code du service national",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021960309/"
     }
   },
   "permis-de-conduire": {
-    "label": "Permis de conduire",
+    "label": "Inscription à l’examen du permis de conduire",
     "state": {
       "fondement_juridique_title": "Article L114-6 du code du service national",
       "fondement_juridique_url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000021960309/"
