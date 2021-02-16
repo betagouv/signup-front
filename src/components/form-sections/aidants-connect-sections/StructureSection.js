@@ -7,6 +7,7 @@ import Quote from '../../Form/components/Quote';
 import OrWrapper from '../../Form/components/OrWrapper';
 import FileInput from '../../Form/components/FileInput';
 import RadioInput from '../../Form/components/RadioInput';
+import YesNoRadioInput from '../../Form/components/YesNoRadioInput';
 
 export const StructureSection = () => {
   const {
@@ -20,7 +21,11 @@ export const StructureSection = () => {
       additional_content: {
         organization_type = '',
         organization_address = '',
+        organization_postal_code = '',
+        organization_website = '',
         associated_public_organisation = '',
+        participation_reseau = null,
+        nom_reseau = '',
       },
     },
   } = useContext(FormContext);
@@ -39,7 +44,6 @@ export const StructureSection = () => {
       <RadioInput
         label="Type de structure"
         options={[
-          { id: 'france-services', label: 'France Services' },
           { id: 'ccas', label: 'CCAS' },
           { id: 'collectivite', label: 'Collectivité' },
           { id: 'mediatheque', label: 'Médiathèque' },
@@ -63,10 +67,43 @@ export const StructureSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
+      <TextInput
+        label="Code postal de la structure si différent de celui de l'organisation"
+        name="additional_content.organization_postal_code"
+        value={organization_postal_code}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <YesNoRadioInput
+        label={
+          <>
+            Participez-vous à un réseau régional ou local (ex : PIMMS, EPN,
+            etc.) ?
+          </>
+        }
+        name="additional_content.participation_reseau"
+        value={participation_reseau}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <TextInput
+        label="Si oui, lequel ?"
+        name="additional_content.nom_reseau"
+        value={nom_reseau}
+        disabled={disabled}
+        onChange={onChange}
+      />
       <TextAreaInput
         label="Description des missions de votre structure"
         name="description"
         value={description}
+        disabled={disabled}
+        onChange={onChange}
+      />
+      <TextInput
+        label="Site web de votre structure"
+        name="additional_content.organization_website"
+        value={organization_website}
         disabled={disabled}
         onChange={onChange}
       />

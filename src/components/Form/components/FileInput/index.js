@@ -177,7 +177,7 @@ FileInput.propTypes = {
   ).isRequired,
   documentType: PropTypes.string.isRequired,
   handleChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.node.isRequired,
   mimeTypes: PropTypes.string,
 };
 

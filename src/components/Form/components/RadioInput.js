@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { uniqueId } from 'lodash';
-import TextInput from './TextInput';
 
 export const RadioInput = ({
   label,
@@ -50,19 +49,30 @@ export const RadioInput = ({
             <label htmlFor={`${id}-other`} className="label-inline">
               Autre
             </label>
+            {isOtherSelected && (
+              <span>
+                <label
+                  style={{ display: 'inherit' }}
+                  htmlFor={`${id}-other-text-input`}
+                >
+                  {'. '}
+                  Précisez :{' '}
+                </label>
+                <input
+                  style={{ height: 'inherit', width: 'inherit', padding: 0 }}
+                  id={`${id}-other-text-input`}
+                  type="text"
+                  onChange={onChange}
+                  name={name}
+                  readOnly={disabled}
+                  value={value}
+                  aria-label={`Nom de votre ${label}`}
+                />
+              </span>
+            )}
           </div>
         </fieldset>
       </div>
-      {isOtherSelected && (
-        <TextInput
-          label={'Précisez :'}
-          name={name}
-          value={value}
-          onChange={onChange}
-          disabled={disabled}
-          ariaLabel={`Nom de votre ${label}`}
-        />
-      )}
     </>
   );
 };

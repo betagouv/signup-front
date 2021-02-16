@@ -12,7 +12,7 @@ const WelcomeMessage = ({
   <>
     {isOnNewEnrollmentPage ? (
       <>
-        <h3>Bienvenue !</h3>
+        <h3>Bienvenue !</h3>
         <div className="call-to-action">
           {newEnrollmentPageMessage ||
             `Vous souhaitez connecter votre service en ligne à « ${
@@ -29,7 +29,7 @@ const WelcomeMessage = ({
       </>
     ) : (
       <>
-        <h3>Bienvenue sur DataPass !</h3>
+        <h3>Bienvenue sur DataPass !</h3>
         <p>
           Vous cherchez à accéder à des données protégées pour construire un
           service en ligne innovant, DataPass remplace les conventions et vous

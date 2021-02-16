@@ -3,20 +3,19 @@ import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import YesNoRadioInput from '../../Form/components/YesNoRadioInput';
 import NumberInput from '../../Form/components/NumberInput';
-import TextInput from '../../Form/components/TextInput';
+import FileInput from '../../Form/components/FileInput';
 
 export const AidantsSection = () => {
   const {
     disabled,
     onChange,
     enrollment: {
+      documents = [],
+      documents_attributes = [],
       additional_content: {
-        nombre_aidants = '',
         utilisation_identifiants_usagers = null,
         demandes_par_semaines = '',
         adresse_mail_professionnelle = null,
-        participation_reseau = null,
-        nom_reseau = '',
       },
     },
   } = useContext(FormContext);
@@ -24,12 +23,22 @@ export const AidantsSection = () => {
   return (
     <ScrollablePanel scrollableId="aidants">
       <h2>Les aidants</h2>
-      <NumberInput
-        label="Nombre d’aidants à habiliter"
-        name="additional_content.nombre_aidants"
-        value={nombre_aidants}
+      <FileInput
+        label={
+          <>
+            Liste des aidants à habiliter (
+            <a href={`/docs/cgu_datapass.pdf`} download>
+              utilisez le modèle suivant
+            </a>
+            )
+          </>
+        }
         disabled={disabled}
-        onChange={onChange}
+        documentType={'Document::ListeAidants'}
+        mimeTypes=".ods, .xls, .xlsx, .csv"
+        uploadedDocuments={documents}
+        handleChange={onChange}
+        documentsToUpload={documents_attributes}
       />
       <YesNoRadioInput
         label={
@@ -59,25 +68,6 @@ export const AidantsSection = () => {
         }
         name="additional_content.adresse_mail_professionnelle"
         value={adresse_mail_professionnelle}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <YesNoRadioInput
-        label={
-          <>
-            Participez-vous à un réseau régional ou local (ex : PIMMS, EPN,
-            etc.) ?
-          </>
-        }
-        name="additional_content.participation_reseau"
-        value={participation_reseau}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <TextInput
-        label="Si oui, lequel ?"
-        name="additional_content.nom_reseau"
-        value={nom_reseau}
         disabled={disabled}
         onChange={onChange}
       />

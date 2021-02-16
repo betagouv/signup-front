@@ -39,7 +39,7 @@ const NextSteps = ({ targetApi, isService = false }) => {
           <div>
             <HabilitationIcon />
           </div>
-          <div>Être habilité</div>
+          <div>{isService ? 'Demande acceptée' : 'Être habilité'}</div>
         </div>
         <div>
           <div>

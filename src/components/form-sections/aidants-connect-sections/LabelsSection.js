@@ -19,8 +19,7 @@ export const LabelsSection = () => {
 
   return (
     <ScrollablePanel scrollableId="labels">
-      <h2>Les financements obtenus par votre structure</h2>
-      <p>Votre structure a obtenu :</p>
+      <h2>Votre structure a obtenu</h2>
       <CheckboxInput
         label="Le label Pass Numérique"
         name="additional_content.label_pass_numerique"

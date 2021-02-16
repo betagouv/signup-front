@@ -37,7 +37,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
           isService={true}
-          newEnrollmentPageMessage="Vous souhaitez accompagner des usagers avec Aidants Connect"
+          newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
         />
       );
     default:
