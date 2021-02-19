@@ -70,6 +70,32 @@ const CadreJuridiqueDescription = () => (
       la DINUM de transmettre des données personnelles à votre entité
       administrative.
     </p>
+    <p>
+      Dans le cas où vous représentez une collectivité, veuillez joindre la
+      délibération du conseil municipal explicitant l&lsquo;usage des données
+      demandées.
+    </p>
+    <p>
+      Voici quelques exemples de formulations que vous pouvez faire apparaitre
+      dans la délibération :
+      <ul>
+        <li>
+          "Le quotient familial se base sur la valeur transmise par la CNAF."
+        </li>
+        <li>
+          "Le quotient familial est calculé par division du revenu fiscal de
+          référence par le nombre de parts du foyer."
+        </li>
+        <li>
+          "L&lsquo;adresse fiscale est collectée afin de vérifier que le
+          demandeur réside bien sur la commune de XXX."
+        </li>
+        <li>
+          "La liste des enfants fournie par la CNAF est nécessaire à pré-remplir
+          l&lsquo;inscription aux activités périscolaires."
+        </li>
+      </ul>
+    </p>
   </Quote>
 );
 
