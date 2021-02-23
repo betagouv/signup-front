@@ -1,0 +1,38 @@
+{
+  "default": {
+    "label": "Demande Libre",
+    "state": {
+      "scopes": {
+        "cnam_beneficiaires": false,
+        "cnam_contrats": false,
+        "cnam_caisse": false,
+        "cnam_exonerations": false,
+        "cnam_medecin_traitant": false,
+        "cnam_presence_medecin_traitant": false
+      }
+    }
+  },
+  "etablissement-de-soin": {
+    "label": "Établissement de soin",
+    "state": {
+      "scopes": {
+        "cnam_beneficiaires": true,
+        "cnam_contrats": true,
+        "cnam_caisse": true,
+        "cnam_exonerations": true,
+        "cnam_medecin_traitant": true
+      }
+    }
+  },
+  "organisme-complementaire": {
+    "label": "Organisme complémentaire",
+    "state": {
+      "scopes": {
+        "cnam_beneficiaires": true,
+        "cnam_contrats": true,
+        "cnam_caisse": true,
+        "cnam_presence_medecin_traitant": true
+      }
+    }
+  }
+}
