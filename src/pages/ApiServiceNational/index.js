@@ -40,7 +40,7 @@ const ApiServiceNational = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_dsnj"
+        target_api="api_service_national"
         title="Demande d'accès à l'API Service National"
         demarches={demarches}
       >

@@ -18,6 +18,7 @@ export const TARGET_API_LABELS = {
   cartobio: 'CartoBio - Territoires',
   aidants_connect: 'Aidants Connect',
   francerelance_fc: 'FranceRelance - Guichet FranceConnect',
+  api_service_national: 'API Service National',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -39,6 +40,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'francerelance_fc',
   // 'preuve_covoiturage',
   // 'aidants_connect',
+  // 'api_service_national',
 ];
 
 export const API_ICONS = {
