@@ -16,6 +16,11 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": ""
+        }
       }
     }
   },
@@ -30,6 +35,11 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
         "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": "yo@yopmail.com"
+        }
       }
     }
   },
