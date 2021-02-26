@@ -33,7 +33,8 @@ const ApiServiceNational = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
+          subject:
+            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
         },
       ]}
     />

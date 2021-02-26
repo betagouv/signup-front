@@ -62,7 +62,7 @@ const USER_STATUS_COLORS = {
   refused: '#FF6B6B',
 };
 
-export default ({
+export const Stats = ({
   match: {
     params: { targetApi },
   },
@@ -283,3 +283,5 @@ export default ({
     </section>
   );
 };
+
+export default Stats;
