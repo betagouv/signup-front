@@ -144,6 +144,12 @@ const availableScopes = [
       'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
   },
   {
+    value: 'eori_douanes',
+    label: 'Immatriculation EORI - Douanes',
+    groupTitle: 'Informations générales :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#a-eori_douanes',
+  },
+  {
     value: 'exercices',
     label: 'Chiffre d’affaires - DGFIP',
     groupTitle: 'Informations financières :',
