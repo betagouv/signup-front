@@ -16,7 +16,7 @@
     "test": "npm run lint && CI=true REACT_APP_BACK_HOST=http://localhost react-scripts test --transformIgnorePatterns \"node_modules/(?!(@justfixnyc/react-aria-modal)/)/\" && npm audit",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "prettier --list-different src/*.js src/**/*.js src/**/**/*.js src/**/**/**/*.js"
+    "lint": "prettier --list-different src/**/*.js"
   },
   "keywords": [],
   "author": "",
