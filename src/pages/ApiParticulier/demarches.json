@@ -79,6 +79,31 @@
       }
     }
   },
+  "bl-enfance-berger-levrault": {
+    "label": "Tarification des services de la petite enfance avec l'éditeur Berger Levrault",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs",
+      "description": "La collectivité a voté un règlement intérieur où figure le tarif des prestations liées aux activités scolaires et périscolaires, qui est fonction du quotient familial. Il est donc nécessaire de récupérer ce dernier qui a été transmis par la CAF.\nLa solution utilisée est BL.enfance de l’éditeur Berger-levrault.",
+      "data_recipients": "Agent de la collectivité ( ou association) en charge de l’inscription des familles ou en charge de la facturation des activités, agent du service guichet unique.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "En pièce jointe la délibération ou la nature du texte qui justifie l'accès aux données",
+      "scopes": {
+        "dgfip_avis_imposition": false,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": "enfance.mes@berger-levrault.com",
+          "phone_number": "0561395284"
+        }
+      }
+    }
+  },
   "ccas-up": {
     "label": "Dématérialisation de l’instruction des dossiers dans un CCAS avec l’editeur UP",
     "about": "https://api.gouv.fr/guides/ccas",
