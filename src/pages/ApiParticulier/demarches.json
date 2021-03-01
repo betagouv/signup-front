@@ -16,6 +16,12 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": "",
+          "phone_number": ""
+        }
       }
     }
   },
@@ -89,6 +95,31 @@
         "cnaf_allocataires": true,
         "cnaf_enfants": true,
         "cnaf_adresse": true
+      }
+    }
+  },
+  "city-family-mushroom-software": {
+    "label": "Tarification des services de la petite enfance avec l'éditeur Mushroom Software",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Calcul du quotient familial pour la facturations des crèches, du périscolaire, du scolaire et de l’extrascolaire",
+      "description": "La ville gère les prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est lié soit aux revenus des familles soit à leur quotient familial.\nNous utilisons la solution CityFamily de Mushroom Software.",
+      "data_recipients": "Il s'agit de l'agent en Mairie effectuant la gestion des familles pour une facturation conforme à la délibération municipale. La consultation des données n’est pas autorisée ni permise aux agents n’ayant pas rapport au service.",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Délibération de la commune au format PDF en pièce jointe",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": "technique@mushroom-software.com",
+          "phone_number": "0674577622"
+        }
       }
     }
   },
