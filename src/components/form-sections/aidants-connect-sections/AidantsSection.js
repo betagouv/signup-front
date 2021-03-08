@@ -27,7 +27,7 @@ export const AidantsSection = () => {
         label={
           <>
             Liste des aidants à habiliter (
-            <a href={`/docs/cgu_datapass.pdf`} download>
+            <a href={`/docs/liste_des_aidants_a_habiliter.xlsx`} download>
               utilisez le modèle suivant
             </a>
             )
