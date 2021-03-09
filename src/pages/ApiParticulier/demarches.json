@@ -16,12 +16,6 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
-      },
-      "contacts": {
-        "technique": {
-          "email": "",
-          "phone_number": ""
-        }
       }
     }
   },

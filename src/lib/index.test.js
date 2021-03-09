@@ -435,7 +435,21 @@ describe('utils', () => {
     });
   });
 
-  describe('findModifiedFieldsInEnrollment', () => {
+  describe('findModifiedFields', () => {
+    it('should return null when only empty field are modified', () => {
+      expect(
+        findModifiedFields(
+          {
+            fondement_juridique_title: '',
+          },
+          {
+            fondement_juridique_title:
+              'Article L114-6 du code du service national',
+          }
+        )
+      ).toStrictEqual([]);
+    });
+
     it('should return an array with modified field(s)', () => {
       expect(
         findModifiedFields(
@@ -445,7 +459,7 @@ describe('utils', () => {
             description: '',
             fondement_juridique_title: '',
             fondement_juridique_url: '',
-            intitule: '',
+            intitule: 'Mon intitulé',
             scopes: {
               cnaf_adresse: false,
               cnaf_allocataires: true,
@@ -480,7 +494,7 @@ describe('utils', () => {
             events: [],
             fondement_juridique_title: '',
             fondement_juridique_url: '',
-            intitule: 'wxcxcw',
+            intitule: 'Portail famille',
             organization_id: 1,
             scopes: {
               cnaf_adresse: false,

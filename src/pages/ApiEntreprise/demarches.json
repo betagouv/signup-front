@@ -13,6 +13,7 @@
         "conventions_collectives": false,
         "entreprises_artisanales": false,
         "effectifs_acoss": false,
+        "eori_douanes": false,
         "exercices": false,
         "bilans_inpi": false,
         "bilans_entreprise_bdf": false,

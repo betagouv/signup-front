@@ -264,7 +264,10 @@ export const findModifiedFields = (
   Object.keys(demarcheState).forEach(key => {
     const initialValue = demarcheState[key];
     const value = enrollmentState[key];
-    if (JSON.stringify(initialValue) !== JSON.stringify(value)) {
+    if (
+      !isEmpty(initialValue) &&
+      JSON.stringify(initialValue) !== JSON.stringify(value)
+    ) {
       modified.push(key);
     }
   });
