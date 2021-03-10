@@ -46,7 +46,7 @@ export const StructureSection = () => {
         options={[
           { id: 'ccas', label: 'CCAS' },
           { id: 'centre-social', label: 'Centre social' },
-          { id: 'secretariat-mairie', label: 'Sécrétariat de mairie' },
+          { id: 'secretariat-mairie', label: 'Secrétariat de mairie' },
           { id: 'maisons-departementales-solidarites', label: 'Maison départementale des solidarités' },
           { id: 'mediatheque', label: 'Médiathèque' },
           { id: 'autre-guichet', label: 'Autre guichet d’accueil de service public de proximité' },
