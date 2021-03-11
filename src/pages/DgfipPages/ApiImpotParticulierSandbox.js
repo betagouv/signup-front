@@ -14,6 +14,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
+  demarches,
   availableScopes as fcAvailableScopes,
   CguDescription,
   contacts,
@@ -23,6 +24,7 @@ import {
   SuiteDescription,
 } from './api-impot-particulier-common';
 import Quote from '../../components/Form/components/Quote';
+import DemarcheSection from '../../components/form-sections/DemarcheSection';
 
 export const CadreJuridiqueDescription = () => (
   <Quote>
@@ -58,15 +60,17 @@ const steps = [
   'api_impot_particulier_production',
 ];
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
+const groupTitle = "Sélectionnez les modalités d'accès à l'API";
 
 const availableScopes = [
   ...fcAvailableScopes,
   {
     value: 'dgfip_eligibilite_lep',
-    label: "Indicateur d'éligibilité au Livret d'Épargne Populaire",
+    label: 'Indicateur d’éligibilité au LEP',
     helper:
-      "Actuellement, accès à l'avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d'ici la fin du 1er semestre 2021.",
+      'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici la fin du 1er semestre 2021.',
+    groupTitle:
+      'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
   },
   {
     value: 'dgfip_acces_spi',
@@ -118,8 +122,10 @@ const ApiImpotParticulierSandbox = ({
         steps={steps}
         title="Demande d’accès au bac à sable API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
+        demarches={demarches}
       >
         <OrganisationSection />
+        <DemarcheSection />
         <DescriptionSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
         <DonneesSection

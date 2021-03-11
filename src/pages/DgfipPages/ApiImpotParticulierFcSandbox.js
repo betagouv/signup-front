@@ -14,6 +14,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
+  demarches,
   availableScopes,
   CadreJuridiqueDescription,
   CguDescription,
@@ -23,6 +24,7 @@ import {
   DonneesFootnote,
   SuiteDescription,
 } from './api-impot-particulier-common';
+import DemarcheSection from '../../components/form-sections/DemarcheSection';
 
 const steps = [
   'franceconnect',
@@ -45,6 +47,7 @@ const ApiImpotParticulierFcSandbox = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
         { id: 'description', label: 'Description' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'donnees', label: 'Données' },
@@ -67,8 +70,10 @@ const ApiImpotParticulierFcSandbox = ({
         steps={steps}
         title="Demande d’accès au bac à sable API Impôt particulier"
         DemarcheDescription={DemarcheDescription}
+        demarches={demarches}
       >
         <OrganisationSection />
+        <DemarcheSection />
         <DescriptionSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
         <DonneesSection
