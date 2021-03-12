@@ -45,13 +45,16 @@ export const StructureSection = () => {
         label="Type de structure"
         options={[
           { id: 'ccas', label: 'CCAS' },
-          { id: 'collectivite', label: 'Collectivité' },
+          { id: 'centre-social', label: 'Centre social' },
+          { id: 'secretariat-mairie', label: 'Secrétariat de mairie' },
+          { id: 'maisons-departementales-solidarites', label: 'Maison départementale des solidarités' },
           { id: 'mediatheque', label: 'Médiathèque' },
-          { id: 'association', label: 'Association' },
-          { id: 'espace-public-numerique', label: 'Espace Public Numérique' },
+          { id: 'autre-guichet', label: 'Autre guichet d’accueil de service public de proximité' },
+          { id: 'guichet-accueil-osp', label: 'Guichet d’accueil d’opérateur de service public (CAF, Pôle Emploi, etc.)' }, 
+          { id: 'association', label: 'Autre association d’accompagnement des publics ou de médiation numérique' },
           {
-            id: 'structure-medicale',
-            label: 'Structure médicale (CSAPA, CHU, CMS)',
+            id: 'structure-medico-sociale',
+            label: 'Structure médico-sociale (CSAPA, CHU, CMS)',
           },
           { id: 'independant', label: 'Indépendant' },
         ]}
