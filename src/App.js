@@ -41,6 +41,7 @@ import Loader from './components/atoms/Loader';
 import ApiServiceNational from './pages/ApiServiceNational';
 import FranceRelanceFc from './pages/FranceRelanceFc';
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
+import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 
 const history = createBrowserHistory();
 
@@ -189,6 +190,11 @@ const App = () => (
                   <PrivateRoute
                     path="/api-service-national/:enrollmentId?"
                     component={ApiServiceNational}
+                  />
+
+                  <PrivateRoute
+                    path="/api-statut-etudiant/:enrollmentId?"
+                    component={ApiStatutEtudiant}
                   />
 
                   <PrivateRoute

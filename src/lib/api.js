@@ -19,6 +19,7 @@ export const TARGET_API_LABELS = {
   aidants_connect: 'Aidants Connect',
   francerelance_fc: 'FranceRelance - Guichet FranceConnect',
   api_service_national: 'API Service National',
+  api_statut_etudiant: 'API Statut étudiant',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -41,6 +42,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'preuve_covoiturage',
   // 'aidants_connect',
   // 'api_service_national',
+  // 'api_statut_etudiant',
 ];
 
 export const API_ICONS = {
