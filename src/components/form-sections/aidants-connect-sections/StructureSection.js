@@ -47,11 +47,25 @@ export const StructureSection = () => {
           { id: 'ccas', label: 'CCAS' },
           { id: 'centre-social', label: 'Centre social' },
           { id: 'secretariat-mairie', label: 'Secrétariat de mairie' },
-          { id: 'maisons-departementales-solidarites', label: 'Maison départementale des solidarités' },
+          {
+            id: 'maisons-departementales-solidarites',
+            label: 'Maison départementale des solidarités',
+          },
           { id: 'mediatheque', label: 'Médiathèque' },
-          { id: 'autre-guichet', label: 'Autre guichet d’accueil de service public de proximité' },
-          { id: 'guichet-accueil-osp', label: 'Guichet d’accueil d’opérateur de service public (CAF, Pôle Emploi, etc.)' }, 
-          { id: 'association', label: 'Autre association d’accompagnement des publics ou de médiation numérique' },
+          {
+            id: 'autre-guichet',
+            label: 'Autre guichet d’accueil de service public de proximité',
+          },
+          {
+            id: 'guichet-accueil-osp',
+            label:
+              'Guichet d’accueil d’opérateur de service public (CAF, Pôle Emploi, etc.)',
+          },
+          {
+            id: 'association',
+            label:
+              'Autre association d’accompagnement des publics ou de médiation numérique',
+          },
           {
             id: 'structure-medico-sociale',
             label: 'Structure médico-sociale (CSAPA, CHU, CMS)',
