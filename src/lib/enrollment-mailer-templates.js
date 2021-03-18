@@ -77,6 +77,8 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
       }/api-ficoba-production`,
       cartobio:
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
+      aidants_connect:
+        "Votre demande d'habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d'Aidants Connect. Retrouvez dès maintenant tous les détails du processus d'habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation .",
     },
     refuse_application: {
       cartobio:
