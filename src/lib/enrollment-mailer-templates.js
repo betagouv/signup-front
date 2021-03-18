@@ -132,7 +132,7 @@ Le fruit de votre analyse, si la source n’est pas exposée, peut quant à elle
 Voici des ressources supplémentaires si besoin :
 
 - les statistiques par commune et département sur https://www.agencebio.org/vos-outils/les-chiffres-cles/
-- la couche "Registre Parcellaire Graphique" sur le Géoportail (https://www.geoportail.gouv.fr/donnees/registre-parcellaire-graphique-rpg-2018)
+- la couche "Registre Parcellaire Graphique" sur le Géoportail (https://www.geoportail.gouv.fr/donnees/registre-parcellaire-graphique-rpg-2019)
 
 
 Afin d’évaluer et d’améliorer notre service, un questionnaire vous sera envoyé dans quelques semaines.
