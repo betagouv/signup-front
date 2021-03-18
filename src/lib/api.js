@@ -39,8 +39,8 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   'api_ficoba_sandbox',
   'api_ficoba_production',
   'francerelance_fc',
+  'aidants_connect',
   // 'preuve_covoiturage',
-  // 'aidants_connect',
   // 'api_service_national',
   // 'api_statut_etudiant',
 ];
