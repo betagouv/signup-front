@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react';
 import { isEmpty } from 'lodash';
 import { UserContext } from '../../UserContext';
-import { getOrganizationActivityDetails } from '../../../services/external';
-import { getOrganizationInformation } from '../../../services/external';
+import { getCachedOrganizationActivityDetails } from '../../../services/external';
+import { getCachedOrganizationInformation } from '../../../services/external';
 import { isValidNAFCode } from '../../../lib';
 import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';
@@ -84,7 +84,7 @@ const Index = () => {
           adresse,
           ville,
           etat_administratif,
-        } = await getOrganizationInformation(siret);
+        } = await getCachedOrganizationInformation(siret);
 
         if (etat_administratif !== 'A') {
           setTitle('');
@@ -124,7 +124,9 @@ const Index = () => {
   useEffect(() => {
     const fetchOrganizationActivityLabel = async activite => {
       try {
-        const { message } = await getOrganizationActivityDetails(activite);
+        const { message } = await getCachedOrganizationActivityDetails(
+          activite
+        );
         setActiviteLabel(message);
       } catch (e) {
         setActiviteLabel('Code inconnu');

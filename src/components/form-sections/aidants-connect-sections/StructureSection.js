@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { FormContext } from '../../Form';
 import { ScrollablePanel } from '../../Scrollable';
 import TextInput from '../../Form/components/TextInput';
@@ -8,6 +8,7 @@ import OrWrapper from '../../Form/components/OrWrapper';
 import FileInput from '../../Form/components/FileInput';
 import RadioInput from '../../Form/components/RadioInput';
 import YesNoRadioInput from '../../Form/components/YesNoRadioInput';
+import { getCachedOrganizationInformation } from '../../../services/external';
 
 export const StructureSection = () => {
   const {
@@ -15,6 +16,7 @@ export const StructureSection = () => {
     onChange,
     enrollment: {
       intitule = '',
+      siret,
       description = '',
       documents = [],
       documents_attributes = [],
@@ -29,6 +31,46 @@ export const StructureSection = () => {
       },
     },
   } = useContext(FormContext);
+
+  useEffect(() => {
+    const fetchOrganizationInfo = async siret => {
+      try {
+        const {
+          geo_adresse,
+          code_postal,
+        } = await getCachedOrganizationInformation(siret);
+        onChange({
+          target: {
+            value: geo_adresse,
+            name: 'additional_content.organization_address',
+          },
+        });
+        onChange({
+          target: {
+            value: code_postal,
+            name: 'additional_content.organization_postal_code',
+          },
+        });
+      } catch (e) {
+        // silently fail, the fields will not be prefilled.
+      }
+    };
+
+    if (
+      !disabled &&
+      siret &&
+      !organization_address &&
+      !organization_postal_code
+    ) {
+      fetchOrganizationInfo(siret);
+    }
+  }, [
+    onChange,
+    disabled,
+    siret,
+    organization_address,
+    organization_postal_code,
+  ]);
 
   return (
     <ScrollablePanel scrollableId="structure">
@@ -78,14 +120,14 @@ export const StructureSection = () => {
         onChange={onChange}
       />
       <TextInput
-        label="Adresse de la structure si différente de celle de l'organisation"
+        label="Adresse de la structure"
         name="additional_content.organization_address"
         value={organization_address}
         disabled={disabled}
         onChange={onChange}
       />
       <TextInput
-        label="Code postal de la structure si différent de celui de l'organisation"
+        label="Code postal de la structure"
         name="additional_content.organization_postal_code"
         value={organization_postal_code}
         disabled={disabled}

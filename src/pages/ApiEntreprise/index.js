@@ -45,16 +45,14 @@ const contacts = {
     ),
     family_name: '',
     given_name: '',
-    EmailDescription: () => (
-      <Quote>
-        <p>
-          <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin
-          de garantir que votre service ne soit pas interrompu, merci de
-          renseigner une adresse email générique afin que nous puissions vous
-          transmettre les nouveaux jetons malgré des aléas de changement de
-          poste, congés ou autre.
-        </p>
-      </Quote>
+    emailDescription: (
+      <p>
+        <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin de
+        garantir que votre service ne soit pas interrompu, merci de renseigner
+        une adresse email générique afin que nous puissions vous transmettre les
+        nouveaux jetons malgré des aléas de changement de poste, congés ou
+        autre.
+      </p>
     ),
     email: '',
     emailPlaceholder: 'contact@nom-organisation.fr',

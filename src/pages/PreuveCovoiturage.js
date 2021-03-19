@@ -19,7 +19,7 @@ const DemarcheDescription = () => (
       (AOM).
     </p>
     <p>
-      Décrivez brièvement votre service ainsi que l‘utilisation prévue des
+      Décrivez brièvement votre service ainsi que l’utilisation prévue des
       données transmises. C'est la raison pour laquelle vous traitez ces données
       qui peuvent inclure des données à caractère personnel.
     </p>

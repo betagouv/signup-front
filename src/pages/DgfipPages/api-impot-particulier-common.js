@@ -221,7 +221,7 @@ export const availableScopes = [
 export const CadreJuridiqueDescription = () => (
   <Quote>
     <p>
-      Pour pouvoir bénéficier du raccordement à l‘API Impôt particulier, le
+      Pour pouvoir bénéficier du raccordement à l’API Impôt particulier, le
       cadre légal et réglementaire des fournisseurs de service doit permettre à
       la DGFiP de transmettre des données fiscales à votre entité
       administrative.
@@ -247,7 +247,7 @@ export const CadreJuridiqueDescription = () => (
 export const CguDescription = () => (
   <Quote>
     <p>
-      Votre raccordement à l‘API Impôt particulier nécessite l’acceptation des
+      Votre raccordement à l’API Impôt particulier nécessite l’acceptation des
       conditions générales d'utilisation.
     </p>
   </Quote>

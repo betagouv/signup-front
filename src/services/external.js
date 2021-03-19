@@ -1,9 +1,9 @@
 import httpClient from '../lib/http-client';
-import { mapValues } from 'lodash';
+import { mapValues, memoize } from 'lodash';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-export function getOrganizationActivityDetails(NafCode) {
+function getOrganizationActivityDetails(NafCode) {
   return httpClient
     .get(`${BACK_HOST}/api/insee/naf/${NafCode}`, {
       headers: { 'Content-type': 'application/json' },
@@ -11,7 +11,11 @@ export function getOrganizationActivityDetails(NafCode) {
     .then(({ data }) => data);
 }
 
-export function getOrganizationInformation(siret) {
+export const getCachedOrganizationActivityDetails = memoize(
+  getOrganizationActivityDetails
+);
+
+function getOrganizationInformation(siret) {
   return httpClient
     .get(
       `https://entreprise.data.gouv.fr/api/sirene/v3/etablissements/${siret}`
@@ -24,6 +28,7 @@ export function getOrganizationInformation(siret) {
             indice_repetition,
             type_voie,
             libelle_voie,
+            geo_adresse,
             code_postal,
             libelle_commune,
             activite_principale,
@@ -60,9 +65,15 @@ export function getOrganizationInformation(siret) {
             adresse,
             ville: `${code_postal} ${libelle_commune}`,
             etat_administratif,
+            geo_adresse,
+            code_postal,
           },
           v => (v ? v : 'Non renseigné')
         );
       }
     );
 }
+
+export const getCachedOrganizationInformation = memoize(
+  getOrganizationInformation
+);

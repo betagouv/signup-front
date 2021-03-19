@@ -13,7 +13,7 @@ export const Contact = ({
   description,
   given_name,
   family_name,
-  EmailDescription = () => null,
+  emailDescription,
   email,
   emailPlaceholder = '',
   phone_number,
@@ -49,7 +49,7 @@ export const Contact = ({
           </div>
         </div>
       )}
-      <EmailDescription />
+      {emailDescription && <Quote>{emailDescription}</Quote>}
       <EmailInput
         label="Email"
         placeholder={emailPlaceholder}

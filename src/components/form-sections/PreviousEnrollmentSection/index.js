@@ -170,7 +170,7 @@ const PreviousEnrollmentSection = ({
                   }
                   helper={
                     target_api === 'api_impot_particulier_fc_sandbox' &&
-                    'Sélectionnez "aucune démarche" si vous souhaitez accéder à l‘API sans FranceConnect'
+                    'Sélectionnez "aucune démarche" si vous souhaitez accéder à l’API sans FranceConnect'
                   }
                   name="previous_enrollment_id"
                   options={[
