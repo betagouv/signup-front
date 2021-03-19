@@ -12,17 +12,28 @@ import CguSection from '../../components/form-sections/CguSection';
 import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
+import Quote from '../../components/Form/components/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
-      L’API Statut étudiant simplifie les démarches des étudiants usagers et le
-      processus de gestion de vos services. Il permet de disposer d’informations
-      sur le statut étudiant des usagers dans le cadre de l’obtention d’un
-      service proposé par votre administration ou votre entreprise prestataire
-      d’une administration ou ayant une délégation de service public.
+      L’API Statut étudiant simplifie les démarches administratives des
+      collectivités et administrations fournisseurs de services aux étudiants.
+      Il permet de disposer d’informations sur le statut étudiant des usagers
+      dans le cadre de l’obtention d’un service proposé par votre administration
+      ou votre entreprise ayant délégation de service public.
     </p>
   </div>
+);
+
+const CadreJuridiqueDescription = () => (
+  <Quote>
+    Pour pouvoir bénéficier du raccordement à l‘API Statut étudiant, le cadre
+    légal et réglementaire des fournisseurs de service doit permettre à la DINUM
+    de transmettre des données personnelles à votre entité administrative. Dans
+    le cas où vous représentez une collectivité, veuillez joindre la
+    délibération du conseil municipal explicitant l‘usage des données demandées.
+  </Quote>
 );
 
 const contacts = {
@@ -71,7 +82,7 @@ const availableScopes = [
 
   {
     value: 'etablissement',
-    label: 'Données d’établissement',
+    label: 'Données territoriales (lieu d’inscription, établissement)',
   },
 ];
 
@@ -115,7 +126,9 @@ const ApiStatutEtudiant = ({
         <DemarcheSection />
         <DescriptionSection />
         <DonneesSection availableScopes={availableScopes} />
-        <CadreJuridiqueSection />
+        <CadreJuridiqueSection
+          CadreJuridiqueDescription={CadreJuridiqueDescription}
+        />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
         <CguSection cguLink="" />
