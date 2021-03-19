@@ -28,11 +28,14 @@ const DemarcheDescription = () => (
 
 const CadreJuridiqueDescription = () => (
   <Quote>
-    Pour pouvoir bénéficier du raccordement à l‘API Statut étudiant, le cadre
-    légal et réglementaire des fournisseurs de service doit permettre à la DINUM
-    de transmettre des données personnelles à votre entité administrative. Dans
-    le cas où vous représentez une collectivité, veuillez joindre la
-    délibération du conseil municipal explicitant l‘usage des données demandées.
+    <p>
+      Pour pouvoir bénéficier du raccordement à l‘API Statut étudiant, le cadre
+      légal et réglementaire des fournisseurs de service doit permettre à la
+      DINUM de transmettre des données personnelles à votre entité
+      administrative. Dans le cas où vous représentez une collectivité, veuillez
+      joindre la délibération du conseil municipal explicitant l‘usage des
+      données demandées.
+    </p>
   </Quote>
 );
 
