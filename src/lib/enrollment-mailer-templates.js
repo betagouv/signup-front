@@ -20,7 +20,7 @@ export const getMailAttributes = (selectedAction, targetApi) => {
     le_taxi_clients: 'contact@api.gouv.fr',
     le_taxi_chauffeurs: 'contact@api.gouv.fr',
     cartobio: 'cartobio@beta.gouv.fr',
-    aidants_connect: 'contact@api.gouv.fr',
+    aidants_connect: 'contact@aidantsconnect.beta.gouv.fr',
   };
 
   const subjects = {
