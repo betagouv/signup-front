@@ -34,7 +34,13 @@ const contacts = {
     ),
     family_name: '',
     given_name: '',
-    emailDescription: <p>Seule une adresse email personnelle sera acceptée.</p>,
+    emailDescription: (
+      <p>
+        Seule une adresse email individuelle, professionnelle et nominative sera
+        acceptée. Les adresses de type contact@anct.gouv.fr ou
+        ccas.ville@hotmail.com ne sont donc pas acceptées.
+      </p>
+    ),
     email: '',
     phone_number: '',
   },
