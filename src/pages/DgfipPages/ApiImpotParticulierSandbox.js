@@ -65,7 +65,7 @@ const groupTitle = "Sélectionnez les modalités d'accès à l'API";
 const availableScopes = [
   ...fcAvailableScopes,
   {
-    value: 'dgfip_eligibilite_lep',
+    value: 'dgfip_IndLep',
     label: 'Indicateur d’éligibilité au LEP',
     helper:
       'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici la fin du 1er semestre 2021.',
