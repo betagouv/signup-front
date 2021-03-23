@@ -16,13 +16,20 @@ const contacts = {
   metier: {
     heading: 'Responsable de structure',
     description: (
-      <p>Le représentant légal ayant pouvoir de signature pour engager la structure.</p>
+      <p>
+        Le représentant légal ayant pouvoir de signature pour engager la
+        structure.
+      </p>
     ),
     family_name: '',
     given_name: '',
-    emailDescription: <p>Seule une adresse email individuelle, professionnelle et nominative sera
+    emailDescription: (
+      <p>
+        Seule une adresse email individuelle, professionnelle et nominative sera
         acceptée. Les adresses de type contact@anct.gouv.fr ou
-        ccas.ville@hotmail.com ne sont donc pas acceptées.</p>,
+        ccas.ville@hotmail.com ne sont donc pas acceptées.
+      </p>
+    ),
     email: '',
     phone_number: '',
   },
