@@ -218,6 +218,12 @@ const availableScopes = [
     link: 'https://entreprise.api.gouv.fr/catalogue/#certificats_cnetp',
   },
   {
+    value: 'certificat_agence_bio',
+    label: 'Certifications en BIO',
+    groupTitle: 'Certifications professionnelles :',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#a-certificats_agence_bio',
+  },
+  {
     value: 'certificat_rge_ademe',
     label: 'Certificats RGE - ADEME',
     groupTitle: 'Certifications professionnelles :',
