@@ -60,32 +60,27 @@ const availableScopes = [
     label:
       'Identifiant national de l’étudiant-INE (réservé aux administrations du secteur de l’éducation)',
   },
-
   {
     value: 'identite',
     label: 'Données d’identité',
   },
-
+  {
+    value: 'etablissement',
+    label: 'Données territoriales (lieu d’inscription, établissement)',
+  },
+  {
+    value: 'admission',
+    label: 'Données d’admission (inscription en cours)',
+  },
   {
     value: 'inscription_statut_etudiant',
     label:
       'Données d’inscription sous statut étudiant (formation initiale, étudiant-apprenti)',
   },
-
   {
     value: 'inscription_autre_statuts',
     label:
       'Données d’inscription autres statuts (stagiaire formation continue ou contrat de professionnalisation)',
-  },
-
-  {
-    value: 'admission',
-    label: 'Données d’admission (inscription en cours)',
-  },
-
-  {
-    value: 'etablissement',
-    label: 'Données territoriales (lieu d’inscription, établissement)',
   },
 ];
 
