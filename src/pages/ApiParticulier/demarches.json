@@ -16,7 +16,8 @@
         "cnaf_allocataires": false,
         "cnaf_enfants": false,
         "cnaf_adresse": false
-      }
+      },
+      "contacts": {}
     }
   },
   "ccas": {
