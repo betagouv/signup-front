@@ -17,6 +17,7 @@ export const Contact = ({
   email,
   emailPlaceholder = '',
   phone_number,
+  job,
   display_mobile_phone_label = false,
   disabled,
   onChange,
@@ -73,6 +74,16 @@ export const Contact = ({
           ariaLabel={`Numéro de téléphone ${
             display_mobile_phone_label ? 'mobile ' : ''
           }du ${heading}`}
+        />
+      )}
+      {typeof job !== 'undefined' && (
+        <TextInput
+          label="Intitulé de poste"
+          name={`contacts.${id}.job`}
+          value={job}
+          disabled={disabled}
+          onChange={onChange}
+          ariaLabel={`Intitulé de poste du ${heading}`}
         />
       )}
     </div>

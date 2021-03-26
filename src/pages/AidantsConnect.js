@@ -11,6 +11,7 @@ import LabelsSection from '../components/form-sections/aidants-connect-sections/
 import AidantsSection from '../components/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/form-sections/aidants-connect-sections/StructureSection';
 import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import CheckboxInput from '../components/Form/components/CheckboxInput';
 
 const contacts = {
   metier: {
@@ -32,28 +33,29 @@ const contacts = {
     ),
     email: '',
     phone_number: '',
-  },
-  technique: {
-    heading: 'Contact métier',
-    description: (
-      <p>
-        La personne responsable de la mise en place d'Aidants Connect au sein de
-        votre structure.
-      </p>
-    ),
-    family_name: '',
-    given_name: '',
-    emailDescription: (
-      <p>
-        Seule une adresse email individuelle, professionnelle et nominative sera
-        acceptée. Les adresses de type contact@anct.gouv.fr ou
-        ccas.ville@hotmail.com ne sont donc pas acceptées.
-      </p>
-    ),
-    email: '',
-    phone_number: '',
+    job: '',
   },
 };
+
+const AdditionalCguContent = ({
+  disabled,
+  onChange,
+  additional_content: { has_professional_contact_only = false },
+}) => (
+  <CheckboxInput
+    label={
+      <>
+        Je confirme que la liste des aidants à habiliter contient exclusivement
+        des aidants professionnels. Elle ne contient donc ni service civique, ni
+        bénévole, ni apprenti, ni stagiaire.
+      </>
+    }
+    name="additional_content.has_professional_contact_only"
+    value={has_professional_contact_only}
+    disabled={disabled}
+    onChange={onChange}
+  />
+);
 
 const AidantsConnect = ({
   match: {
@@ -99,7 +101,10 @@ const AidantsConnect = ({
           MiseEnOeuvreDescription={() => null}
         />
         <AidantsSection />
-        <CguSection cguLink="https://aidantsconnect.beta.gouv.fr/cgu/" />
+        <CguSection
+          cguLink="https://aidantsconnect.beta.gouv.fr/cgu/"
+          AdditionalCguContent={AdditionalCguContent}
+        />
       </Form>
     </div>
   </div>
