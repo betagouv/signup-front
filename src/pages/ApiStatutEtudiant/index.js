@@ -71,11 +71,15 @@ const availableScopes = [
   {
     value: 'admission',
     label: 'Données d’admission (inscription en cours)',
+    helper:
+      'Étudiant inscrit dans une formation de l’enseignement supérieur, et qui ne s’est pas encore acquitté du montant des droits d’inscription.',
   },
   {
     value: 'inscription_statut_etudiant',
     label:
-      'Données d’inscription sous statut étudiant (formation initiale, étudiant-apprenti)',
+      'Données d’inscription sous statut étudiant en formation initiale ou sous contrat d’apprenti',
+    helper:
+      'Étudiant inscrit dans une formation de l’enseignement supérieur, et qui s’est acquitté du montant des droits d’inscription ou en a été exonéré.',
   },
   {
     value: 'inscription_autre_statuts',
