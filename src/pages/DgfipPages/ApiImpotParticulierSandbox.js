@@ -14,7 +14,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
 import {
-  demarches,
+  demarches as fcAvailableDemarches,
   availableScopes as fcAvailableScopes,
   CguDescription,
   contacts,
@@ -68,7 +68,7 @@ const availableScopes = [
     value: 'dgfip_IndLep',
     label: 'Indicateur d’éligibilité au LEP',
     helper:
-      'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici la fin du 1er semestre 2021.',
+      'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici le 7 avril 2021.',
     groupTitle:
       'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
   },
@@ -85,6 +85,23 @@ const availableScopes = [
   },
 ];
 
+const demarches = {
+  ...fcAvailableDemarches,
+  eligibilite_lep: {
+    label: "Vérification de l’éligibilité au Livret d'épargne populaire (LEP)",
+    state: {
+      scopes: {
+        dgfip_IndLep: true,
+        dgfip_annee_n_moins_1: true,
+        dgfip_annee_n_moins_2: true,
+        dgfip_annee_n_moins_3: true,
+        dgfip_acces_spi: true,
+        dgfip_acces_etat_civil: true,
+      },
+    },
+  },
+};
+
 const ApiImpotParticulierSandbox = ({
   match: {
     params: { enrollmentId },
@@ -100,6 +117,7 @@ const ApiImpotParticulierSandbox = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
         { id: 'description', label: 'Description' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'donnees', label: 'Données' },
