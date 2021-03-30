@@ -97,7 +97,7 @@ const availableScopes = [
     label: (
       <>
         Données d’inscription{inscriptionHelper}autres statuts (stagiaire
-        formation continue ou contrat de professionnalisation
+        formation continue ou contrat de professionnalisation)
       </>
     ),
   },
