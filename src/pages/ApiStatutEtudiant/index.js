@@ -13,6 +13,7 @@ import DonneesPersonnellesSection from '../../components/form-sections/DonneesPe
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/Form/components/Quote';
+import Helper from '../../components/Helper';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -54,6 +55,14 @@ const contacts = {
   },
 };
 
+const inscriptionHelper = (
+  <Helper
+    title={
+      'Étudiant inscrit dans une formation de l’enseignement supérieur, et qui s’est acquitté du montant des droits d’inscription ou en a été exonéré.'
+    }
+  />
+);
+
 const availableScopes = [
   {
     value: 'ine',
@@ -76,15 +85,21 @@ const availableScopes = [
   },
   {
     value: 'inscription_statut_etudiant',
-    label:
-      'Données d’inscription sous statut étudiant en formation initiale ou sous contrat d’apprenti',
-    helper:
-      'Étudiant inscrit dans une formation de l’enseignement supérieur, et qui s’est acquitté du montant des droits d’inscription ou en a été exonéré.',
+    label: (
+      <>
+        Données d’inscription{inscriptionHelper}sous statut étudiant en
+        formation initiale ou sous contrat d’apprenti
+      </>
+    ),
   },
   {
     value: 'inscription_autre_statuts',
-    label:
-      'Données d’inscription autres statuts (stagiaire formation continue ou contrat de professionnalisation)',
+    label: (
+      <>
+        Données d’inscription{inscriptionHelper}autres statuts (stagiaire
+        formation continue ou contrat de professionnalisation
+      </>
+    ),
   },
 ];
 
