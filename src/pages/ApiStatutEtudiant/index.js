@@ -134,7 +134,6 @@ const ApiStatutEtudiant = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_statut_etudiant"
-        steps={['franceconnect', 'api_statut_etudiant']}
         title="Demande d'accès à l’API Statut étudiant"
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
