@@ -25,6 +25,7 @@ import {
 } from './api-impot-particulier-common';
 import Quote from '../../components/Form/components/Quote';
 import DemarcheSection from '../../components/form-sections/DemarcheSection';
+import { ModalitesAcces } from '../../components/form-sections/dgfip-sections/ModalitesAcces';
 
 export const CadreJuridiqueDescription = () => (
   <Quote>
@@ -60,8 +61,6 @@ const steps = [
   'api_impot_particulier_production',
 ];
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API";
-
 const availableScopes = [
   ...fcAvailableScopes,
   {
@@ -71,17 +70,6 @@ const availableScopes = [
       'Actuellement, accès à l’avant-dernière année de revenus. Accès aux dernière et avant-avant-dernière années d’ici le 7 avril 2021.',
     groupTitle:
       'Éligibilité Livret d’Épargne Populaire - établissements bancaires uniquement',
-  },
-  {
-    value: 'dgfip_acces_spi',
-    label: 'via le Numéro fiscal (SPI)',
-    groupTitle,
-  },
-  {
-    value: 'dgfip_acces_etat_civil',
-    label: "via l'état civil",
-    helper: "Merci de remplir une demande de souscription à l'API R2P.",
-    groupTitle,
   },
 ];
 
@@ -121,6 +109,7 @@ const ApiImpotParticulierSandbox = ({
         { id: 'description', label: 'Description' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
         { id: 'donnees', label: 'Données' },
+        { id: 'modalites-acces', label: "Modalités d'accès" },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
@@ -152,6 +141,7 @@ const ApiImpotParticulierSandbox = ({
           DonneesDescription={DonneesDescription}
           DonneesFootnote={DonneesFootnote}
         />
+        <ModalitesAcces />
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
