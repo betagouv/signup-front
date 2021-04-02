@@ -90,5 +90,39 @@
         "effectifs_acoss": true
       }
     }
+  },
+  "preremplissage": {
+    "label": "Pré-remplissage d'un formulaire",
+    "about": "https://entreprise.api.gouv.fr/use_cases/preremplissage/",
+    "state": {
+      "description": "Merci d'indiquer si le formulaire ou l'interface qui utilisera le pré-remplissage API Entreprise est :\n- en accès libre,\n- ou après authentification préalable, c'est à dire uniquement accessible à l'utilisateur concerné ou l'agent habilité à voir ces données.\n\nLes données protégées ne peuvent pas être exposées sur un formulaire librement accessible. Si le formulaire est en accès libre, seules les données ouvertes peuvent être utilisées pour le pré-remplissage. L'ensemble de ces éléments est synthétisé sur  https://entreprise.api.gouv.fr/use_cases/preremplissage/",
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "associations": true,
+        "entreprises_artisanales": true
+      }
+    }
+  },
+  "detection_fraude": {
+    "label": "Détection de la fraude",
+    "about": "https://entreprise.api.gouv.fr/use_cases/detection_fraude/",
+    "state": {
+      "scopes": {
+        "entreprises": true,
+        "etablissements": true,
+        "extraits_rcs": true,
+        "actes_inpi": true,
+        "effectifs_acoss": true,
+        "eori_douanes": true,
+        "exercices": true,
+        "bilans_inpi": true,
+        "bilans_entreprise_bdf": true,
+        "liasse_fiscale": true,
+        "attestations_fiscales": true,
+        "attestations_sociales": true
+      }
+    }
   }
 }
