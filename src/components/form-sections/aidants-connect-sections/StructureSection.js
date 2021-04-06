@@ -9,6 +9,7 @@ import FileInput from '../../Form/components/FileInput';
 import RadioInput from '../../Form/components/RadioInput';
 import YesNoRadioInput from '../../Form/components/YesNoRadioInput';
 import { getCachedOrganizationInformation } from '../../../services/external';
+import WarningEmoji from '../../icons/WarningEmoji';
 
 export const StructureSection = () => {
   const {
@@ -75,6 +76,12 @@ export const StructureSection = () => {
   return (
     <ScrollablePanel scrollableId="structure">
       <h2>Description de votre structure</h2>
+      <Quote>
+        <p>
+          <WarningEmoji /> Attention : 1 structure = 1 lieu d'accueil. Merci de
+          remplir une demande d'habilitation par lieu d'accueil.
+        </p>
+      </Quote>
       <TextInput
         label="Nom de la structure"
         meta="Cette information peut être rendue publique."
@@ -159,11 +166,6 @@ export const StructureSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
-   <Quote>
-        <p>
-          Attention :  1 structure = 1 lieu d'accueil. Merci de remplir une demande d'habilitation par lieu d'accueil.
-        </p>
-      </Quote>
       <TextInput
         label="Site web de votre structure"
         name="additional_content.organization_website"

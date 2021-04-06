@@ -14,12 +14,7 @@ import CguSection from '../../components/form-sections/CguSection';
 import { sample } from 'lodash';
 import demarches from './demarches.json';
 import Quote from '../../components/Form/components/Quote';
-
-const WarningEmoji = () => (
-  <span role="img" aria-label="Attention">
-    ⚠️
-  </span>
-);
+import WarningEmoji from '../../components/icons/WarningEmoji';
 
 const contacts = {
   metier: {
