@@ -17,12 +17,10 @@ import {
   demarches as fcAvailableDemarches,
   availableScopes as fcAvailableScopes,
   CguDescription,
-  contacts,
   DemarcheDescription,
-  DonneesDescription,
   DonneesFootnote,
-  SuiteDescription,
 } from './api-impot-particulier-common';
+import { contacts, DonneesDescription, SuiteDescription } from './common';
 import Quote from '../../components/Form/components/Quote';
 import DemarcheSection from '../../components/form-sections/DemarcheSection';
 
@@ -55,10 +53,8 @@ export const CadreJuridiqueDescription = () => (
   </Quote>
 );
 
-const steps = [
-  'api_impot_particulier_sandbox',
-  'api_impot_particulier_production',
-];
+const target_api = 'api_impot_particulier_sandbox';
+const steps = [target_api, 'api_impot_particulier_production'];
 
 const groupTitle = "Sélectionnez les modalités d'accès à l'API";
 
@@ -110,8 +106,8 @@ const ApiImpotParticulierSandbox = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_impot_particulier_sandbox}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier_sandbox}`,
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -128,17 +124,18 @@ const ApiImpotParticulierSandbox = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Impôt%20particulier%20bac%20%C3%A0%20sable',
+          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            TARGET_API_LABELS[target_api]
+          )}`,
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_impot_particulier_sandbox"
+        target_api={target_api}
         steps={steps}
-        title="Demande d’accès au bac à sable API Impôt particulier"
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >
@@ -159,11 +156,9 @@ const ApiImpotParticulierSandbox = ({
           cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_hors_fc_septembre2020_v2.6.pdf"
           CguDescription={CguDescription}
         />
-        <TextSection
-          Description={SuiteDescription}
-          title=""
-          id="next-steps-description"
-        />
+        <TextSection title="" id="next-steps-description">
+          <SuiteDescription />
+        </TextSection>
       </Form>
     </div>
   </div>

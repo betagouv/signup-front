@@ -14,9 +14,10 @@ import CguSection from '../../components/form-sections/CguSection';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
-} from './api-impot-particulier-common';
+} from './common';
 
-const steps = ['api_r2p_sandbox', 'api_r2p_production'];
+const target_api = 'api_r2p_production';
+const steps = ['api_r2p_sandbox', target_api];
 
 const ApiR2PProduction = ({
   match: {
@@ -26,8 +27,8 @@ const ApiR2PProduction = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_r2p_production}`,
-        alt: `Logo ${TARGET_API_LABELS.api_r2p_production}`,
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -43,18 +44,19 @@ const ApiR2PProduction = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20R2p%20production',
+          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            TARGET_API_LABELS[target_api]
+          )}`,
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_r2p_production"
+        target_api={target_api}
         steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
-        title="Demande d'accès à la production API R2P"
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
         DemarcheDescription={DemarcheDescription}
       >
         <RecetteFonctionnelleSection />

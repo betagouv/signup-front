@@ -12,17 +12,16 @@ import DonneesPersonnellesSection from '../../components/form-sections/DonneesPe
 import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/form-sections/CguSection';
 import {
-  DemarcheDescriptionProduction as DemarcheDescription,
-  PreviousEnrollmentDescription,
   CadreJuridiqueDescription,
   CguDescription,
 } from './api-impot-particulier-common';
+import {
+  DemarcheDescriptionProduction as DemarcheDescription,
+  PreviousEnrollmentDescription,
+} from './common';
 
-const steps = [
-  'franceconnect',
-  'api_impot_particulier_fc_sandbox',
-  'api_impot_particulier_fc_production',
-];
+const target_api = 'api_impot_particulier_fc_production';
+const steps = ['franceconnect', 'api_impot_particulier_fc_sandbox', target_api];
 
 const ApiImpotParticulierFcProduction = ({
   match: {
@@ -32,8 +31,8 @@ const ApiImpotParticulierFcProduction = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_impot_particulier_fc_production}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier_fc_production}`,
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -49,18 +48,19 @@ const ApiImpotParticulierFcProduction = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Impôt%20particulier%20FC%20production',
+          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            TARGET_API_LABELS[target_api]
+          )}`,
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_impot_particulier_fc_production"
+        target_api={target_api}
         steps={steps}
         PreviousEnrollmentDescription={PreviousEnrollmentDescription}
-        title="Demande d'accès à la production API Impôt particulier"
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
         DemarcheDescription={DemarcheDescription}
       >
         <RecetteFonctionnelleSection />

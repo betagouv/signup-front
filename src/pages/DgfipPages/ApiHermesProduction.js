@@ -15,12 +15,11 @@ import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
 } from './common';
-import { CadreJuridiqueDescription } from './ApiFicobaSandbox';
 
-const target_api = 'api_ficoba_production';
-const steps = ['api_ficoba_sandbox', target_api];
+const target_api = 'api_hermes_production';
+const steps = ['api_hermes_sandbox', target_api];
 
-const ApiFicobaProduction = ({
+const ApiHermesProduction = ({
   match: {
     params: { enrollmentId },
   },
@@ -62,18 +61,16 @@ const ApiFicobaProduction = ({
       >
         <RecetteFonctionnelleSection />
         <DonneesPersonnellesSection />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
+        <CadreJuridiqueSection />
         <HomologationSecuriteSection />
-        <VolumetrieSection options={[200]} />
-        <CguSection cguLink="/docs/cgu_api_ficoba_production_decembre2020_v1.1.pdf" />
+        <VolumetrieSection options={[1000]} />
+        <CguSection cguLink="/docs/cgu_api_r2p_production_septembre2020_v2.5.pdf" />
       </Form>
     </div>
   </div>
 );
 
-ApiFicobaProduction.propTypes = {
+ApiHermesProduction.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -81,7 +78,7 @@ ApiFicobaProduction.propTypes = {
   }),
 };
 
-ApiFicobaProduction.defaultProps = {
+ApiHermesProduction.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -89,4 +86,4 @@ ApiFicobaProduction.defaultProps = {
   },
 };
 
-export default ApiFicobaProduction;
+export default ApiHermesProduction;

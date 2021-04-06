@@ -42,6 +42,8 @@ import ApiServiceNational from './pages/ApiServiceNational';
 import FranceRelanceFc from './pages/FranceRelanceFc';
 import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
 import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
+import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
+import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 
 const history = createBrowserHistory();
 
@@ -195,6 +197,16 @@ const App = () => (
                   <PrivateRoute
                     path="/api-statut-etudiant/:enrollmentId?"
                     component={ApiStatutEtudiant}
+                  />
+
+                  <PrivateRoute
+                    path="/api-hermes-sandbox/:enrollmentId?"
+                    component={ApiHermesSandbox}
+                  />
+
+                  <PrivateRoute
+                    path="/api-hermes-production/:enrollmentId?"
+                    component={ApiHermesProduction}
                   />
 
                   <PrivateRoute

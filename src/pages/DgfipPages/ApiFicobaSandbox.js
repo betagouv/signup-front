@@ -13,7 +13,7 @@ import DonneesSection from '../../components/form-sections/DonneesSection';
 import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import { contacts, SuiteDescription } from './api-impot-particulier-common';
+import { contacts, SuiteDescription } from './common';
 import Quote from '../../components/Form/components/Quote';
 
 DgfipRgpdAgreement.propTypes = {
@@ -72,8 +72,6 @@ const availableScopes = [
     groupTitle,
   },
 ];
-
-const steps = ['api_ficoba_sandbox', 'api_ficoba_production'];
 
 export const DonneesDescription = () => (
   <Quote>
@@ -146,6 +144,9 @@ export const CadreJuridiqueDescription = () => (
   </Quote>
 );
 
+const target_api = 'api_ficoba_sandbox';
+const steps = [target_api, 'api_ficoba_production'];
+
 const ApiFicobaSandbox = ({
   match: {
     params: { enrollmentId },
@@ -154,8 +155,8 @@ const ApiFicobaSandbox = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_ficoba_sandbox}`,
-        alt: `Logo ${TARGET_API_LABELS.api_ficoba_sandbox}`,
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -171,17 +172,18 @@ const ApiFicobaSandbox = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20FICOBA%20bac%20%C3%A0%20sable',
+          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            TARGET_API_LABELS[target_api]
+          )}`,
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_ficoba_sandbox"
+        target_api={target_api}
         steps={steps}
-        title="Demande d’accès au bac à sable API FICOBA"
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
       >
         <OrganisationSection />
         <DescriptionSection />
@@ -195,11 +197,9 @@ const ApiFicobaSandbox = ({
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <CguSection cguLink="/docs/cgu_api_ficoba_bac_a_sable_decembre2020_v1.1.pdf" />
-        <TextSection
-          Description={SuiteDescription}
-          title=""
-          id="next-steps-description"
-        />
+        <TextSection title="" id="next-steps-description">
+          <SuiteDescription />
+        </TextSection>
       </Form>
     </div>
   </div>

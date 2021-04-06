@@ -18,17 +18,16 @@ import {
   availableScopes,
   CadreJuridiqueDescription,
   CguDescription,
-  contacts,
   DemarcheDescription,
-  DonneesDescription,
   DonneesFootnote,
-  SuiteDescription,
 } from './api-impot-particulier-common';
+import { contacts, DonneesDescription, SuiteDescription } from './common';
 import DemarcheSection from '../../components/form-sections/DemarcheSection';
 
+const target_api = 'api_impot_particulier_fc_sandbox';
 const steps = [
   'franceconnect',
-  'api_impot_particulier_fc_sandbox',
+  target_api,
   'api_impot_particulier_fc_production',
 ];
 
@@ -40,8 +39,8 @@ const ApiImpotParticulierFcSandbox = ({
   <div className="dashboard">
     <Nav
       logo={{
-        src: `/images/${API_ICONS.api_impot_particulier_fc_sandbox}`,
-        alt: `Logo ${TARGET_API_LABELS.api_impot_particulier_fc_sandbox}`,
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
         url: 'https://www.impots.gouv.fr/',
       }}
       navLinks={[
@@ -58,17 +57,18 @@ const ApiImpotParticulierFcSandbox = ({
         {
           email: 'contact@api.gouv.fr',
           label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Impôt%20particulier%20FC%20bac%20%C3%A0%20sable',
+          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+            TARGET_API_LABELS[target_api]
+          )}`,
         },
       ]}
     />
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_impot_particulier_fc_sandbox"
+        target_api={target_api}
         steps={steps}
-        title="Demande d’accès au bac à sable API Impôt particulier"
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >
@@ -89,11 +89,9 @@ const ApiImpotParticulierFcSandbox = ({
           cguLink="/docs/cgu_api_impot_particulier_bac_a_sable_connexion_fc_septembre2020_v2.6.pdf"
           CguDescription={CguDescription}
         />
-        <TextSection
-          Description={SuiteDescription}
-          title=""
-          id="next-steps-description"
-        />
+        <TextSection title="" id="next-steps-description">
+          <SuiteDescription />
+        </TextSection>
       </Form>
     </div>
   </div>

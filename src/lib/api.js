@@ -10,6 +10,8 @@ export const TARGET_API_LABELS = {
     'API Impôt particulier (FC - Production)',
   api_r2p_sandbox: 'API R2P (Bac à sable)',
   api_r2p_production: 'API R2P (Production)',
+  api_hermes_sandbox: 'API Hermes (Bac à sable)',
+  api_hermes_production: 'API Hermes (Production)',
   api_ficoba_sandbox: 'API FICOBA (Bac à sable)',
   api_ficoba_production: 'API FICOBA (Production)',
   api_droits_cnam: 'API Droits CNAM',
@@ -43,6 +45,8 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'preuve_covoiturage',
   // 'api_service_national',
   // 'api_statut_etudiant',
+  // 'api_hermes_sandbox',
+  // 'api_hermes_production',
 ];
 
 export const API_ICONS = {
@@ -55,6 +59,8 @@ export const API_ICONS = {
   api_impot_particulier_fc_production: 'logo-dgfip-with-label.png',
   api_r2p_sandbox: 'logo-dgfip-with-label.png',
   api_r2p_production: 'logo-dgfip-with-label.png',
+  api_hermes_sandbox: 'logo-dgfip-with-label.png',
+  api_hermes_production: 'logo-dgfip-with-label.png',
   api_ficoba_sandbox: 'logo-dgfip-with-label.png',
   api_ficoba_production: 'logo-dgfip-with-label.png',
   api_droits_cnam: 'logo-cnam.jpg',

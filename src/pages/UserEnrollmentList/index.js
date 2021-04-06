@@ -42,7 +42,7 @@ const UserEnrollmentList = ({ history }) => {
       <div className="container header">
         <h2>Mes demandes</h2>
         <a href={`${API_GOUV_HOST}/datapass/api`}>
-          <button className="button large" name="nouvelle-demande">
+          <button className="button large">
             Nouvelle demande API
             <div className="button-icon">
               <AddIcon color="white" />
@@ -50,8 +50,8 @@ const UserEnrollmentList = ({ history }) => {
           </button>
         </a>
         <a href="https://aidantsconnect.beta.gouv.fr/habilitation">
-          <button className="button large" name="nouvelle-demande">
-            Nouvelle demande AidantsConnect
+          <button className="button large">
+            Nouvelle demande Aidants Connect
             <div className="button-icon">
               <AddIcon color="white" />
             </div>

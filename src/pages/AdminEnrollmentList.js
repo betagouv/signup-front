@@ -438,7 +438,7 @@ class AdminEnrollmentList extends React.Component {
             </div>
             <p className="align-right">
               <a href={`${API_GOUV_HOST}/datapass/api`}>
-                <button className="button large" name="nouvelle-demande">
+                <button className="button large">
                   Nouvelle Demande
                   <div className="button-icon">
                     <AddIcon color="white" />

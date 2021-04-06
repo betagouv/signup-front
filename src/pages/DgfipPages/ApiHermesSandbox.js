@@ -9,12 +9,11 @@ import DgfipRgpdAgreement from '../../components/form-sections/DonneesSection/Dg
 import TextSection from '../../components/form-sections/TextSection';
 import DescriptionSection from '../../components/form-sections/DescriptionSection';
 import OrganisationSection from '../../components/form-sections/OrganisationSection';
-import DonneesSection from '../../components/form-sections/DonneesSection';
 import CguSection from '../../components/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import DemarcheSection from '../../components/form-sections/DemarcheSection';
-import { contacts, DonneesDescription, SuiteDescription } from './common';
+import { contacts, SuiteDescription } from './common';
+import Quote from '../../components/Form/components/Quote';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,
@@ -22,73 +21,10 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const availableScopes = [
-  {
-    value: 'dgfip_acces_etat_civil',
-    label:
-      "Recherche par état civil complet - Restitution de l'état civil complet, de l'adresse et de l'identifiant fiscal (SPI)",
-  },
-  {
-    value: 'dgfip_acces_spi',
-    label:
-      'Recherche par identifiant fiscal (SPI) - Restitution de l’état civil complet, de l’adresse et de l’identifiant fiscal (SPI)',
-  },
-  {
-    value: 'dgfip_acces_etat_civil_et_adresse',
-    label:
-      'Recherche par état civil dégradé et éléments d’adresse - Restitution de l’état civil complet, de l’adresse et de l’identifiant fiscal (SPI)',
-  },
-  {
-    value: 'dgfip_acces_etat_civil_restitution_spi',
-    label:
-      'Recherche par état civil complet - Restitution de l’identifiant fiscal (SPI)',
-  },
-];
+const target_api = 'api_hermes_sandbox';
+const steps = [target_api, 'api_hermes_production'];
 
-const demarches = {
-  default: {
-    label: 'Demande Libre',
-    state: {
-      intitule: '',
-      description: '',
-      data_recipients: '',
-      data_retention_period: '',
-      fondement_juridique_title: '',
-      fondement_juridique_url: '',
-      scopes: {
-        dgfip_acces_etat_civil: false,
-        dgfip_acces_spi: false,
-        dgfip_acces_etat_civil_et_adresse: false,
-        dgfip_acces_etat_civil_restitution_spi: false,
-      },
-      contacts: {},
-    },
-  },
-  ordonnateur: {
-    label: 'Ordonnateur (fiabilisation des bases tiers des collectivités)',
-    state: {
-      scopes: {
-        dgfip_acces_etat_civil: true,
-        dgfip_acces_spi: true,
-        dgfip_acces_etat_civil_et_adresse: true,
-      },
-    },
-  },
-  appel_api_impot_particulier: {
-    label:
-      "Restitution du numéro fiscal (SPI) pour appel de l'API Impôt particulier",
-    state: {
-      scopes: {
-        dgfip_acces_etat_civil_restitution_spi: true,
-      },
-    },
-  },
-};
-
-const target_api = 'api_r2p_sandbox';
-const steps = [target_api, 'api_r2p_production'];
-
-const ApiR2PSandbox = ({
+const ApiHermesSandbox = ({
   match: {
     params: { enrollmentId },
   },
@@ -126,18 +62,18 @@ const ApiR2PSandbox = ({
         target_api={target_api}
         steps={steps}
         title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
-        demarches={demarches}
       >
         <OrganisationSection />
-        <DemarcheSection />
         <DescriptionSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
-        <DonneesSection
-          availableScopes={availableScopes}
-          scopesLabel="Liste des données restituées en fonction des modalités d'accès :"
-          AdditionalRgpdAgreement={DgfipRgpdAgreement}
-          DonneesDescription={DonneesDescription}
-        />
+        <TextSection title="Les données dont vous avez besoin" id="donnees">
+          <Quote>
+            <p>
+              Les données échangées par l'API sont décrites dans les CGU
+              attachées à cette demande.
+            </p>
+          </Quote>
+        </TextSection>
         <CadreJuridiqueSection />
         <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
         <TextSection title="" id="next-steps-description">
@@ -148,7 +84,7 @@ const ApiR2PSandbox = ({
   </div>
 );
 
-ApiR2PSandbox.propTypes = {
+ApiHermesSandbox.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -156,7 +92,7 @@ ApiR2PSandbox.propTypes = {
   }),
 };
 
-ApiR2PSandbox.defaultProps = {
+ApiHermesSandbox.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -164,4 +100,4 @@ ApiR2PSandbox.defaultProps = {
   },
 };
 
-export default ApiR2PSandbox;
+export default ApiHermesSandbox;
