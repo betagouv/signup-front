@@ -159,6 +159,11 @@ export const StructureSection = () => {
         disabled={disabled}
         onChange={onChange}
       />
+   <Quote>
+        <p>
+          Attention :  1 structure = 1 lieu d'accueil. Merci de remplir une demande d'habilitation par lieu d'accueil.
+        </p>
+      </Quote>
       <TextInput
         label="Site web de votre structure"
         name="additional_content.organization_website"

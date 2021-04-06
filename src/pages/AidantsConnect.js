@@ -18,8 +18,7 @@ const contacts = {
     heading: 'Responsable de structure',
     description: (
       <p>
-        Le représentant légal ayant pouvoir de signature pour engager la
-        structure.
+        Le responsable est en charge de la mise en place et du suivi d'Aidants Connect au sein du lieu d'accueil. Il tient également à jour la liste des aidants habilités Aidants Connect sur son espace administrateur (à venir).
       </p>
     ),
     family_name: '',
@@ -96,7 +95,7 @@ const AidantsConnect = ({
         <StructureSection />
         <LabelsSection />
         <MiseEnOeuvreSection
-          sectionTitle="Coordonnées des référents de votre structure"
+          sectionTitle="Coordonnées du référent de votre structure"
           initialContacts={contacts}
           MiseEnOeuvreDescription={() => null}
         />
