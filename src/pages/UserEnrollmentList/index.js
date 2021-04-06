@@ -49,7 +49,7 @@ const UserEnrollmentList = ({ history }) => {
             </div>
           </button>
         </a>
-        <a href={`/aidants-connect`}>
+        <a href="https://aidantsconnect.beta.gouv.fr/habilitation">
           <button className="button large" name="nouvelle-demande">
             Nouvelle demande AidantsConnect
             <div className="button-icon">
