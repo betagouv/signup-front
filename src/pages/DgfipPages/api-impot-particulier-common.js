@@ -245,6 +245,11 @@ export const availableScopes = [
     groupTitle: 'Situation du foyer fiscal',
   },
   {
+    value: 'dgfip_pac_nbPac',
+    label: 'Nombre de personnes à charge',
+    groupTitle: 'Situation du foyer fiscal',
+  },
+  {
     value: 'dgfip_pac',
     label: 'Détail des personnes à charge et rattachées',
     groupTitle: 'Situation du foyer fiscal',
