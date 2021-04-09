@@ -236,5 +236,24 @@
         "cnaf_adresse": true
       }
     }
+  },
+  "teamnet": {
+    "label": "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées avec l'éditeur Teamnet",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées",
+      "description": "Le télé-service de déclaration des revenus est accessible sur le Portail Familles. Il permet à une famille de déclarer ses revenus et de préciser le nombre de personnes qui compose le foyer.\nLes revenus déclarés par la famille sont utilisés pour actualiser les tarifs appliqués aux différentes prestations facturées.\nLes tarifs des prestations sont calculés en fonction des revenus de la famille ou de son quotient familial. Le quotient familial est calculé avec les revenus du foyer et le nombre de personnes qui composent le foyer.",
+      "data_recipients": "Agents instructeurs qui gèrent la facturation des prestations de la Petite Enfance, du Scolaire et de l'extra-scolaire",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Préciser la référence et le texte et de la délibération au format PDF vous autorisant à traiter les données.",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
   }
 }
