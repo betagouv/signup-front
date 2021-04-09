@@ -3,6 +3,7 @@
     "label": "Demande libre",
     "about": "https://entreprise.api.gouv.fr/use_cases/autres/",
     "state": {
+      "description": "",
       "scopes": {
         "entreprises": false,
         "etablissements": false,
