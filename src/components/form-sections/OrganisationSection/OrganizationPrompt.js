@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import AriaModal from '@justfixnyc/react-aria-modal';
+import { collectionWithKeyToObject } from '../../../lib';
+import { isEmpty } from 'lodash';
+import { getCachedOrganizationInformationPool } from '../../../services/external';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -10,6 +13,33 @@ const OrganizationPrompt = ({
   organizations,
 }) => {
   const handleChange = ({ target: { value } }) => onSelect(parseInt(value));
+
+  const [siretToNomRaisonSociale, setSiretToNomRaisonSociale] = useState(
+    collectionWithKeyToObject(organizations.map(({ siret }) => ({ id: siret })))
+  );
+  useEffect(() => {
+    const fetchCachedOrganizationInformationPool = async organizations => {
+      try {
+        const organizationInformationPool = await getCachedOrganizationInformationPool(
+          organizations.map(({ siret }) => siret)
+        );
+        const organizationInformationPoolWithKey = organizationInformationPool.map(
+          ({ title, siret }) => ({
+            id: siret,
+            title,
+          })
+        );
+        setSiretToNomRaisonSociale(
+          collectionWithKeyToObject(organizationInformationPoolWithKey)
+        );
+      } catch (e) {
+        // silently fail
+      }
+    };
+    if (!isEmpty(organizations)) {
+      fetchCachedOrganizationInformationPool(organizations);
+    }
+  }, [organizations]);
 
   return (
     <AriaModal
@@ -46,7 +76,9 @@ const OrganizationPrompt = ({
                     onChange={handleChange}
                   />
                   <label htmlFor={id} className="label-inline">
-                    {siret}
+                    {(siretToNomRaisonSociale[siret] &&
+                      siretToNomRaisonSociale[siret].title) ||
+                      siret}
                   </label>
                 </div>
               ))}

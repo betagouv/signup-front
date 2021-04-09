@@ -8,11 +8,8 @@
   color: var(--darker-grey);
 }
 
-button.light.inline-icon-button {
+button.light.inline-icon-button,
+a.light.inline-icon-button {
   padding: 0 0.8em;
   vertical-align: bottom;
-}
-
-button.light.inline-icon-button svg {
-  height: 1.5em;
 }

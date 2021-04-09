@@ -56,3 +56,13 @@
 [tooltip]:focus::before {
   outline: 0;
 }
+
+[tooltip].tooltip-controlled:hover::after,
+[tooltip].tooltip-controlled:hover::before {
+  opacity: 0;
+}
+
+[tooltip].tooltip-controlled.tooltip-opened::after,
+[tooltip].tooltip-controlled.tooltip-opened::before {
+  opacity: 1;
+}
