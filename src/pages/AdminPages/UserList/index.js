@@ -6,6 +6,8 @@ import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../components/atoms/Loader';
+import AddUser from './AddUser';
+import AutorenewIcon from '../../../components/icons/autorenew';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,9 +78,15 @@ const UserList = () => {
       setUsers(users);
       setIsLoading(false);
     };
-
     onFetchData();
   }, [showAllUsers]);
+
+  const handleRefreshData = async () => {
+    setIsLoading(true);
+    const { users } = await getUsers({ usersWithRolesOnly: !showAllUsers });
+    setUsers(users);
+    setIsLoading(false);
+  };
 
   return (
     <section className="section-grey full-width-section user-page">
@@ -100,6 +108,11 @@ const UserList = () => {
                 onClick={() => setShowAllUsers(true)}
               >
                 Tous les utilisateurs
+              </button>
+            </li>
+            <li className="nav__item">
+              <button className={`nav-button`} onClick={handleRefreshData}>
+                <AutorenewIcon size={16} />
               </button>
             </li>
           </ul>
@@ -132,6 +145,14 @@ const UserList = () => {
               </div>
             </>
           )}
+          <div className="row">
+            <div className="card">
+              <div className="card__content">
+                <h3>Ajouter un utilisateur</h3>
+                <AddUser />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -23,3 +23,15 @@ export function updateUser({ id, roles = [] }) {
     .patch(`${BACK_HOST}/api/users/${id}`, { user: { roles } }, config)
     .then(({ data }) => data);
 }
+
+export function createUser({ email }) {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+
+  return httpClient
+    .post(`${BACK_HOST}/api/users`, { user: { email } }, config)
+    .then(({ data }) => data);
+}
