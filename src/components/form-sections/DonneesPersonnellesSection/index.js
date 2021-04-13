@@ -29,10 +29,10 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
         label="Destinataires des données"
         helper={
           'description du service ou des personnes physiques qui consulteront' +
-          'ces données'
+          ' ces données'
         }
         placeholder={
-          '« agents instructeurs des demandes d’aides », « usagers des' +
+          '« agents instructeurs des demandes d’aides », « usagers des ' +
           'services publics de la ville », etc.'
         }
         meta={
