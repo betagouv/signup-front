@@ -117,6 +117,10 @@ input[type='tel']::placeholder {
   font-weight: normal;
 }
 
+.card > .card__content > h4 {
+  font-weight: normal;
+}
+
 section + section {
   padding-top: 0;
 }
@@ -185,32 +189,6 @@ li.panel .button-list {
 .button-list .button-outline:visited {
   flex-flow: nowrap;
   width: 40%;
-}
-
-@media (max-width: 1300px) {
-  .row {
-    flex-direction: column;
-  }
-
-  .row > .card {
-    margin: 0;
-  }
-
-  .row > .card + .card {
-    margin-top: 2em;
-  }
-
-  /*
-  cards and columns overlap on small screen on IE11.
-  https://makandracards.com/makandra/54644-do-not-use-flex-1-or-flex-basis-0-inside-flex-direction-column-when-you-need-to-support-ie11
-  */
-  .row > .column {
-    flex: 1 1 auto;
-  }
-
-  .row > .card {
-    flex: 1 1 auto;
-  }
 }
 
 @media (max-width: 550px) {
