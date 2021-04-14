@@ -41,6 +41,15 @@ const Index = () => {
   const [showPrompt, setShowPrompt] = useState(false);
 
   const { user, isLoading } = useContext(UserContext);
+  const [personalInformation, setPersonalInformation] = useState({});
+
+  useEffect(() => {
+    if (isEmpty(owner)) {
+      setPersonalInformation(user);
+    } else {
+      setPersonalInformation(owner);
+    }
+  }, [owner, user]);
 
   const updateOrganizationInfo = useCallback(
     ({ organization_id, siret }) => {
@@ -161,8 +170,8 @@ const Index = () => {
             <h4>Vous êtes :</h4>
             <div className="organization-title">
               <span>
-                {(owner ? owner : user).given_name}{' '}
-                {(owner ? owner : user).family_name}
+                {personalInformation.given_name}{' '}
+                {personalInformation.family_name}
               </span>
               {!disabled && (
                 <a
@@ -176,14 +185,14 @@ const Index = () => {
               )}
             </div>
             <div className="organization-subtitle">
-              {(owner ? owner : user).email}
-              <CopyToCliboardButton textToCopy={(owner ? owner : user).email} />
+              {personalInformation.email}
+              <CopyToCliboardButton textToCopy={personalInformation.email} />
             </div>
             <div className="organization-subtitle">
-              {(owner ? owner : user).phone_number}
+              {personalInformation.phone_number}
             </div>
             <div className="organization-subtitle">
-              {(owner ? owner : user).job}
+              {personalInformation.job}
             </div>
           </div>
         </div>
