@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
+import Form from '../../components/Form';
+import Nav from '../../components/Nav';
+import OrganisationSection from '../../components/form-sections/OrganisationSection';
+import DemarcheSection from '../../components/form-sections/DemarcheSection';
+import DescriptionSection from '../../components/form-sections/DescriptionSection';
+import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
+import CguSection from '../../components/form-sections/CguSection';
+import DonneesSection from '../../components/form-sections/DonneesSection';
+import demarches from './demarches.json';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -66,28 +68,6 @@ const availableScopes = [
   },
 ];
 
-const useCases = [
-  {
-    label: 'Établissement de soin',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_exonerations',
-      'cnam_medecin_traitant',
-    ],
-  },
-  {
-    label: 'Organisme complémentaire',
-    scopes: [
-      'cnam_beneficiaires',
-      'cnam_caisse',
-      'cnam_contrats',
-      'cnam_presence_medecin_traitant',
-    ],
-  },
-];
-
 const steps = ['franceconnect', 'api_droits_cnam'];
 
 const ApiDroitsCnam = ({
@@ -105,6 +85,7 @@ const ApiDroitsCnam = ({
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
+        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
         { id: 'description', label: 'Description' },
         { id: 'donnees', label: 'Données' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
@@ -127,10 +108,12 @@ const ApiDroitsCnam = ({
         steps={steps}
         title="Demande d'accès à l'API Droits CNAM"
         DemarcheDescription={DemarcheDescription}
+        demarches={demarches}
       >
         <OrganisationSection />
+        <DemarcheSection />
         <DescriptionSection />
-        <DonneesSection availableScopes={availableScopes} useCases={useCases} />
+        <DonneesSection availableScopes={availableScopes} />
         <CadreJuridiqueSection />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection />

@@ -1,0 +1,36 @@
+{
+  "default": {
+    "label": "Demande Libre",
+    "state": {
+      "scopes": {
+        "cnam_beneficiaires": false,
+        "cnam_contrats": false,
+        "cnam_caisse": false,
+        "cnam_exonerations": false,
+        "cnam_medecin_traitant": false,
+        "cnam_presence_medecin_traitant": false
+      }
+    }
+  },
+  "etablissement-de-soin": {
+    "label": "Pré-admission en établissement de soin",
+    "state": {
+      "fondement_juridique_title": "Conditions générales du contrat de l'établissement de soin",
+      "scopes": {
+        "cnam_contrats": true,
+        "cnam_exonerations": true,
+        "cnam_medecin_traitant": true
+      }
+    }
+  },
+  "organisme-complementaire": {
+    "label": "Vérification des droits",
+    "state": {
+      "scopes": {
+        "cnam_contrats": true,
+        "cnam_exonerations": true,
+        "cnam_medecin_traitant": true
+      }
+    }
+  }
+}
