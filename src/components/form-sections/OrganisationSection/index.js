@@ -161,7 +161,8 @@ const Index = () => {
             <h4>Vous êtes :</h4>
             <div className="organization-title">
               <span>
-                {owner.given_name} {owner.family_name}
+                {(owner ? owner : user).given_name}{' '}
+                {(owner ? owner : user).family_name}
               </span>
               {!disabled && (
                 <a
@@ -175,11 +176,15 @@ const Index = () => {
               )}
             </div>
             <div className="organization-subtitle">
-              {owner.email}
-              <CopyToCliboardButton textToCopy={owner.email} />
+              {(owner ? owner : user).email}
+              <CopyToCliboardButton textToCopy={(owner ? owner : user).email} />
             </div>
-            <div className="organization-subtitle">{owner.phone_number}</div>
-            <div className="organization-subtitle">{owner.job}</div>
+            <div className="organization-subtitle">
+              {(owner ? owner : user).phone_number}
+            </div>
+            <div className="organization-subtitle">
+              {(owner ? owner : user).job}
+            </div>
           </div>
         </div>
         <div className="card">
