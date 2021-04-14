@@ -44,6 +44,7 @@ import RgpdUpdate from './components/templates/AdminPages/RgpdUpdate';
 import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
+import ApiHomePlus from './pages/ApiHomePlus';
 
 const history = createBrowserHistory();
 
@@ -207,6 +208,11 @@ const App = () => (
                   <PrivateRoute
                     path="/api-hermes-production/:enrollmentId?"
                     component={ApiHermesProduction}
+                  />
+
+                  <PrivateRoute
+                    path="/api-home-plus/:enrollmentId?"
+                    component={ApiHomePlus}
                   />
 
                   <PrivateRoute
