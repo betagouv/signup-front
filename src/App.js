@@ -6,15 +6,15 @@ import PiwikReactRouter from 'piwik-react-router';
 
 import './App.css';
 
-import Footer from './components/Footer';
-import Header from './components/Header';
-import PrivateRoute from './components/PrivateRoute';
-import { UserStore, UserContext } from './components/UserContext';
+import Footer from './components/organisms/Footer';
+import Header from './components/organisms/Header';
+import PrivateRoute from './components/organisms/PrivateRoute';
+import { UserStore, UserContext } from './components/organisms/UserContext';
 
-import AdminEnrollmentList from './pages/AdminEnrollmentList';
-import UserEnrollmentList from './pages/UserEnrollmentList';
-import PublicEnrollmentList from './pages/PublicEnrollmentList';
-import Stats from './pages/Stats';
+import AdminEnrollmentList from './components/templates/AdminEnrollmentList';
+import UserEnrollmentList from './components/templates/UserEnrollmentList';
+import PublicEnrollmentList from './components/templates/PublicEnrollmentList';
+import Stats from './components/templates/Stats';
 import ApiParticulier from './pages/ApiParticulier';
 import FranceConnect from './pages/FranceConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
@@ -29,18 +29,18 @@ import ApiImpotParticulierSandbox from './pages/DgfipPages/ApiImpotParticulierSa
 import ApiR2PSandbox from './pages/DgfipPages/ApiR2PSandbox';
 import ApiR2PProduction from './pages/DgfipPages/ApiR2PProduction';
 import AidantsConnect from './pages/AidantsConnect';
-import CopyEnrollment from './pages/CopyEnrollment';
-import Enrollment from './pages/Enrollment';
-import Accessibilite from './pages/Accessibilite';
+import CopyEnrollment from './components/templates/CopyEnrollment';
+import Enrollment from './components/templates/Enrollment';
+import Accessibilite from './components/templates/Accessibilite';
 import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulierProduction';
 import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import AgenceBio from './pages/AgenceBio';
-import UserList from './pages/AdminPages/UserList';
+import UserList from './components/templates/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
 import ApiServiceNational from './pages/ApiServiceNational';
 import FranceRelanceFc from './pages/FranceRelanceFc';
-import RgpdUpdate from './pages/AdminPages/RgpdUpdate';
+import RgpdUpdate from './components/templates/AdminPages/RgpdUpdate';
 import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';

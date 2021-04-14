@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../../components/Form';
-import Nav from '../../components/Nav';
-import HomologationSecuriteSection from '../../components/form-sections/dgfip-sections/HomologationSecuriteSection';
-import RecetteFonctionnelleSection from '../../components/form-sections/dgfip-sections/RecetteFonctionnelleSection';
-import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
-import VolumetrieSection from '../../components/form-sections/dgfip-sections/VolumetrieSection';
-import CguSection from '../../components/form-sections/CguSection';
+import Form from '../../components/templates/Form';
+import Nav from '../../components/organisms/Nav';
+import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
+import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
+import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import { CguDescription } from './api-impot-particulier-common';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,

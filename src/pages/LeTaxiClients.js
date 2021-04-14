@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 const DemarcheDescription = () => (

@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../../components/Form';
-import Nav from '../../components/Nav';
-import DgfipRgpdAgreement from '../../components/form-sections/DonneesSection/DgfipRgpdAgreement';
-import TextSection from '../../components/form-sections/TextSection';
-import DescriptionSection from '../../components/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/form-sections/OrganisationSection';
-import DonneesSection from '../../components/form-sections/DonneesSection';
-import CguSection from '../../components/form-sections/CguSection';
-import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
-import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import Form from '../../components/templates/Form';
+import Nav from '../../components/organisms/Nav';
+import DgfipRgpdAgreement from '../../components/organisms/form-sections/DonneesSection/DgfipRgpdAgreement';
+import TextSection from '../../components/organisms/form-sections/TextSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import {
   demarches,
   availableScopes,
@@ -22,7 +22,7 @@ import {
   DonneesFootnote,
 } from './api-impot-particulier-common';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
-import DemarcheSection from '../../components/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 
 const target_api = 'api_impot_particulier_fc_sandbox';
 const steps = [

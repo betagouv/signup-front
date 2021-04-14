@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-import DonneesCartoBioSection from '../components/form-sections/cartobio-sections/DonneesCartoBioSection';
-import CartoBioAdditionalAgreements from '../components/form-sections/cartobio-sections/CartoBioAdditionalAgreements';
+import DonneesCartoBioSection from '../components/organisms/form-sections/cartobio-sections/DonneesCartoBioSection';
+import CartoBioAdditionalAgreements from '../components/organisms/form-sections/cartobio-sections/CartoBioAdditionalAgreements';
 
 const CartoBio = ({
   match: {

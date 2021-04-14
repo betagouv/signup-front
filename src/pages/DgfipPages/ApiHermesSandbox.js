@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
-import Form from '../../components/Form';
-import Nav from '../../components/Nav';
-import DgfipRgpdAgreement from '../../components/form-sections/DonneesSection/DgfipRgpdAgreement';
-import TextSection from '../../components/form-sections/TextSection';
-import DescriptionSection from '../../components/form-sections/DescriptionSection';
-import OrganisationSection from '../../components/form-sections/OrganisationSection';
-import CguSection from '../../components/form-sections/CguSection';
-import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
-import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
+import Form from '../../components/templates/Form';
+import Nav from '../../components/organisms/Nav';
+import DgfipRgpdAgreement from '../../components/organisms/form-sections/DonneesSection/DgfipRgpdAgreement';
+import TextSection from '../../components/organisms/form-sections/TextSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import { contacts, SuiteDescription } from './common';
-import Quote from '../../components/Form/components/Quote';
+import Quote from '../../components/atoms/inputs/Quote';
 
 DgfipRgpdAgreement.propTypes = {
   additional_content: PropTypes.object.isRequired,

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

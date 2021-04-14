@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import CguSection from '../components/form-sections/CguSection';
-import LabelsSection from '../components/form-sections/aidants-connect-sections/LabelsSection';
-import AidantsSection from '../components/form-sections/aidants-connect-sections/AidantsSection';
-import StructureSection from '../components/form-sections/aidants-connect-sections/StructureSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CheckboxInput from '../components/Form/components/CheckboxInput';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import LabelsSection from '../components/organisms/form-sections/aidants-connect-sections/LabelsSection';
+import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
+import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 
 const contacts = {
   metier: {

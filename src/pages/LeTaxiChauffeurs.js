@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import Form, { FormContext } from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
+import Form, { FormContext } from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-import Quote from '../components/Form/components/Quote';
-import { ScrollablePanel } from '../components/Scrollable';
-import RadioInput from '../components/Form/components/RadioInput';
+import Quote from '../components/atoms/inputs/Quote';
+import { ScrollablePanel } from '../components/organisms/Scrollable';
+import RadioInput from '../components/atoms/inputs/RadioInput';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

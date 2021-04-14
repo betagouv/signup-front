@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import CguSection from '../components/form-sections/CguSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import Quote from '../components/Form/components/Quote';
-import TextInput from '../components/Form/components/TextInput';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import Quote from '../components/atoms/inputs/Quote';
+import TextInput from '../components/atoms/inputs/TextInput';
 
 const AdditionalMiseEnOeuvreContent = ({
   disabled,

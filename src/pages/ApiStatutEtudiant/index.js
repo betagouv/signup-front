@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../../components/Form';
-import Nav from '../../components/Nav';
-import OrganisationSection from '../../components/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/form-sections/DemarcheSection';
-import DescriptionSection from '../../components/form-sections/DescriptionSection';
-import DonneesSection from '../../components/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../../components/form-sections/CadreJuridiqueSection';
-import CguSection from '../../components/form-sections/CguSection';
-import DonneesPersonnellesSection from '../../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../../components/form-sections/MiseEnOeuvreSection';
+import Form from '../../components/templates/Form';
+import Nav from '../../components/organisms/Nav';
+import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
+import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
+import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
-import Quote from '../../components/Form/components/Quote';
-import Helper from '../../components/Helper';
+import Quote from '../../components/atoms/inputs/Quote';
+import Helper from '../../components/atoms/Helper';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

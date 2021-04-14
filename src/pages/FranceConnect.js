@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
-import Form from '../components/Form';
-import Nav from '../components/Nav';
-import FcHasAlternativeAuthenticationMethod from '../components/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
-import OrganisationSection from '../components/form-sections/OrganisationSection';
-import DescriptionSection from '../components/form-sections/DescriptionSection';
-import DonneesSection from '../components/form-sections/DonneesSection';
-import FranceConnectPlusSection from '../components/form-sections/FranceConnectPlusSection';
-import CadreJuridiqueSection from '../components/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/form-sections/CguSection';
-import HasNextEnrollmentsNotification from '../components/Form/HasNextEnrollmentsNotification';
-import Quote from '../components/Form/components/Quote';
+import Form from '../components/templates/Form';
+import Nav from '../components/organisms/Nav';
+import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
+import Quote from '../components/atoms/inputs/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

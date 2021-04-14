@@ -1,5 +1,5 @@
 import React from 'react';
-import Quote from '../../components/Form/components/Quote';
+import Quote from '../../components/atoms/inputs/Quote';
 
 export const contacts = {
   technique: {

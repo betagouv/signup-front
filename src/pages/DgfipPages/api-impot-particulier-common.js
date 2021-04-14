@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import Quote from '../../components/Form/components/Quote';
-import FileInput from '../../components/Form/components/FileInput';
-import { FormContext } from '../../components/Form';
+import Quote from '../../components/atoms/inputs/Quote';
+import FileInput from '../../components/molecules/FileInput';
+import { FormContext } from '../../components/templates/Form';
 import { isEmpty } from 'lodash';
-import CheckboxInput from '../../components/Form/components/CheckboxInput';
+import CheckboxInput from '../../components/atoms/inputs/CheckboxInput';
 
 export const DemarcheDescription = () => (
   <div className="notification grey">

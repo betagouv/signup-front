@@ -1,6 +1,6 @@
 import axios from 'axios';
 import httpAdapter from 'axios/lib/adapters/http';
-import { resetUserContext } from '../components/UserContext';
+import { resetUserContext } from '../components/organisms/UserContext';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
