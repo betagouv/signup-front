@@ -13,6 +13,7 @@ import DonneesPersonnellesSection from '../../components/organisms/form-sections
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -65,14 +66,14 @@ const contacts = {
 const CadreJuridiqueDescription = () => (
   <Quote>
     <p>
-      Pour pouvoir bénéficier du raccordement à l&lsquo;API Particulier, le
-      cadre légal et réglementaire des fournisseurs de service doit permettre à
-      la DINUM de transmettre des données personnelles à votre entité
+      Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
+      légal et réglementaire des fournisseurs de service doit permettre à la
+      DINUM de transmettre des données personnelles à votre entité
       administrative.
     </p>
     <p>
       Dans le cas où vous représentez une collectivité, veuillez joindre la
-      délibération du conseil municipal explicitant l&lsquo;usage des données
+      délibération du conseil municipal explicitant l’usage des données
       demandées.
     </p>
     <p>
@@ -88,12 +89,12 @@ const CadreJuridiqueDescription = () => (
         référence par le nombre de parts du foyer."
       </li>
       <li>
-        "L&lsquo;adresse fiscale est collectée afin de vérifier que le demandeur
+        "L’adresse fiscale est collectée afin de vérifier que le demandeur
         réside bien sur la commune de XXX."
       </li>
       <li>
         "La liste des enfants fournie par la CNAF est nécessaire à pré-remplir
-        l&lsquo;inscription aux activités périscolaires."
+        l’inscription aux activités périscolaires."
       </li>
     </ul>
   </Quote>
@@ -154,6 +155,8 @@ const availableScopes = [
   },
 ];
 
+const target_api = 'api_particulier';
+
 const ApiParticulier = ({
   match: {
     params: { enrollmentId },
@@ -161,6 +164,11 @@ const ApiParticulier = ({
 }) => (
   <div className="dashboard">
     <Nav
+      logo={{
+        src: `/images/${API_ICONS[target_api]}`,
+        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
+        url: 'https://api.gouv.fr/les-api/api-particulier',
+      }}
       navLinks={[
         { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
         { id: 'organisation', label: 'Organisation' },
@@ -183,8 +191,8 @@ const ApiParticulier = ({
     <div className="main">
       <Form
         enrollmentId={enrollmentId}
-        target_api="api_particulier"
-        title="Demande d'accès à API Particulier"
+        target_api={target_api}
+        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >
