@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../../components/templates/Form';
+import Form, { FormContext } from '../../components/templates/Form';
 import Nav from '../../components/organisms/Nav';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
 import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
+import { ScrollablePanel } from '../../components/organisms/Scrollable';
+import FileInput from '../../components/molecules/FileInput';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -92,6 +93,7 @@ const ApiHomePlus = ({
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'L’équipe' },
         { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'licence', label: 'Licence' },
       ]}
       contactInformation={[
         {
@@ -124,7 +126,8 @@ const ApiHomePlus = ({
           MiseEnOeuvreDescription={() => null}
           initialContacts={contacts}
         />
-        <CguSection cguLink="" />
+        <ModaliteUtilisationSection />
+        <ContratDeLicenceSection />
       </Form>
     </div>
   </div>
