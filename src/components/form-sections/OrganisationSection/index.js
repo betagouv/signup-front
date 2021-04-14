@@ -20,7 +20,7 @@ const Index = () => {
     disabled,
     isUserEnrollmentLoading,
     onChange,
-    enrollment: { organization_id = null, siret = '', target_api },
+    enrollment: { organization_id = null, siret = '', target_api, user: owner },
   } = useContext(FormContext);
 
   const [title, setTitle] = useState('');
@@ -161,7 +161,7 @@ const Index = () => {
             <h4>Vous êtes :</h4>
             <div className="organization-title">
               <span>
-                {user.given_name} {user.family_name}
+                {owner.given_name} {owner.family_name}
               </span>
               {!disabled && (
                 <a
@@ -175,11 +175,11 @@ const Index = () => {
               )}
             </div>
             <div className="organization-subtitle">
-              {user.email}
-              <CopyToCliboardButton textToCopy={user.email} />
+              {owner.email}
+              <CopyToCliboardButton textToCopy={owner.email} />
             </div>
-            <div className="organization-subtitle">{user.phone_number}</div>
-            <div className="organization-subtitle">{user.job}</div>
+            <div className="organization-subtitle">{owner.phone_number}</div>
+            <div className="organization-subtitle">{owner.job}</div>
           </div>
         </div>
         <div className="card">
