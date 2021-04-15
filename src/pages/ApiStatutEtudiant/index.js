@@ -119,7 +119,7 @@ const ApiStatutEtudiant = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -134,7 +134,7 @@ const ApiStatutEtudiant = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_statut_etudiant"
-        title="Demande d'accès à l’API Statut étudiant"
+        title="Demande d’accès à l’API Statut étudiant"
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >

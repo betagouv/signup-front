@@ -8,7 +8,7 @@ export const contacts = {
       <p>
         Cette personne recevra les accès techniques par mail. Elle pourra
         également être contactée par téléphone pour faciliter le raccordement à
-        l'API. Le responsable technique peut être le contact technique de votre
+        l’API. Le responsable technique peut être le contact technique de votre
         prestataire.
       </p>
     ),
@@ -84,11 +84,11 @@ export const SuiteDescription = () => (
 export const DemarcheDescriptionProduction = () => (
   <div className="notification grey">
     <p>
-      Votre demande d'habilitation pour accéder à l'API « bac à sable » a été
+      Votre demande d’habilitation pour accéder à l’API « bac à sable » a été
       acceptée, vous pouvez maintenant construire votre démarche/téléservice en
-      utilisant l'API exposée dans un environnement bac à sable. Parallèlement
+      utilisant l’API exposée dans un environnement bac à sable. Parallèlement
       au développement, vous devez remplir les informations ci-dessous. Elles
-      sont nécessaires pour obtenir l'habilitation de l'accès à l'API de
+      sont nécessaires pour obtenir l’habilitation de l’accès à l’API de
       production.
     </p>
   </div>
@@ -97,7 +97,7 @@ export const DemarcheDescriptionProduction = () => (
 export const PreviousEnrollmentDescription = () => (
   <Quote>
     <p>
-      Vous devez tout d'abord sélectionner la démarche que vous souhaitez
+      Vous devez tout d’abord sélectionner la démarche que vous souhaitez
       poursuivre.
     </p>
   </Quote>

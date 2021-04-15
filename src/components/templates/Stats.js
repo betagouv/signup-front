@@ -113,7 +113,7 @@ export const Stats = ({
           <div className="row-grid">
             <div className="card">
               <div className="card__content">
-                <h3>Demandes d'habilitation déposées</h3>
+                <h3>Demandes d’habilitation déposées</h3>
               </div>
               <div className="card__content card_number">
                 {stats.enrollment_count}
@@ -121,7 +121,7 @@ export const Stats = ({
             </div>
             <div className="card">
               <div className="card__content">
-                <h3>Demandes d'habilitation validées</h3>
+                <h3>Demandes d’habilitation validées</h3>
                 <div className="card__meta">
                   (<a href="/public">voir la liste détaillée</a>)
                 </div>
@@ -136,7 +136,7 @@ export const Stats = ({
               <div className="card__content">
                 <h3>
                   Temps moyen de traitement des demandes
-                  <Helper title="temps moyen entre la dernière soumission d'une demande jusqu'à sa validation ou son refus sur les 6 derniers mois" />
+                  <Helper title="temps moyen entre la dernière soumission d’une demande jusqu’à sa validation ou son refus sur les 6 derniers mois" />
                 </h3>
                 <div className="card__meta">(en jours)</div>
               </div>
@@ -160,7 +160,7 @@ export const Stats = ({
           <div className="row-grid">
             <div className="card">
               <div className="card__content">
-                <h3>Demandes d'habilitation déposées</h3>
+                <h3>Demandes d’habilitation déposées</h3>
               </div>
               <div className="card__content card_graph">
                 <ResponsiveContainer width={'100%'} height={250}>

@@ -18,15 +18,15 @@ const DemarcheDescription = () => (
     <p>
       Dans le cadre du programme « Dites-le nous une fois », visant à simplifier
       les démarches administratives des usagers, l’API Droits CNAM permet de
-      récupérer des informations d'assurance maladie des usagers de façon à leur
-      éviter la transmission d'information papier.
+      récupérer des informations d’assurance maladie des usagers de façon à leur
+      éviter la transmission d’information papier.
     </p>
     <p>
       Ce portail permet de faciliter le raccordement du téléservice des
       fournisseurs de service à l’API Droits CNAM.
     </p>
     <p>
-      Pour faciliter votre raccordement à l'API Droits CNAM, une{' '}
+      Pour faciliter votre raccordement à l’API Droits CNAM, une{' '}
       <a
         href="https://github.com/assurance-maladie-digital/api-droits-fs-exemple-php"
         target="_blank"
@@ -62,7 +62,7 @@ const availableScopes = [
   },
   {
     value: 'cnam_presence_medecin_traitant',
-    label: "Présence d'un médecin traitant",
+    label: 'Présence d’un médecin traitant',
   },
 ];
 
@@ -110,7 +110,7 @@ const ApiDroitsCnam = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -125,7 +125,7 @@ const ApiDroitsCnam = ({
         enrollmentId={enrollmentId}
         target_api="api_droits_cnam"
         steps={steps}
-        title="Demande d'accès à l'API Droits CNAM"
+        title="Demande d’accès à l’API Droits CNAM"
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />

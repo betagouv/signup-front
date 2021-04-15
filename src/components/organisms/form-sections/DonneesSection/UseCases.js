@@ -62,7 +62,7 @@ const UseCase = ({ availableScopes, useCases = [] }) => {
 
   return (
     <fieldset className="vertical">
-      <legend>Sélectionnez votre cas d'usage :</legend>
+      <legend>Sélectionnez votre cas d’usage :</legend>
       <div className="row">
         <div className="column">
           {useCases.map(({ label }) => (

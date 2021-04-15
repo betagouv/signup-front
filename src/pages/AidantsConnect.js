@@ -18,8 +18,8 @@ const contacts = {
     heading: 'Responsable de structure',
     description: (
       <p>
-        Le responsable est en charge de la mise en place et du suivi d'Aidants
-        Connect au sein du lieu d'accueil. Il tient également à jour la liste
+        Le responsable est en charge de la mise en place et du suivi d’Aidants
+        Connect au sein du lieu d’accueil. Il tient également à jour la liste
         des aidants habilités Aidants Connect sur son espace administrateur (à
         venir).
       </p>
@@ -78,7 +78,7 @@ const AidantsConnect = ({
         { id: 'labels', label: 'Labels' },
         { id: 'contacts-moe', label: 'Référents' },
         { id: 'aidants', label: 'Les aidants' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -92,7 +92,7 @@ const AidantsConnect = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="aidants_connect"
-        title="Demande d'habilitation à Aidants Connect"
+        title="Demande d’habilitation à Aidants Connect"
       >
         <OrganisationSection />
         <StructureSection />

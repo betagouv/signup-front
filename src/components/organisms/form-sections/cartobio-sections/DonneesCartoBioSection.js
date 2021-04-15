@@ -23,7 +23,7 @@ const DonneesCartoBioSection = () => {
         <TextAreaInput
           label={
             <>
-              Indiquez l'entité administrative concernée : commune(s) (nom ou
+              Indiquez l’entité administrative concernée : commune(s) (nom ou
               code INSEE), EPCI (nom et/ou code INSEE), numéro de département ou
               région :
             </>

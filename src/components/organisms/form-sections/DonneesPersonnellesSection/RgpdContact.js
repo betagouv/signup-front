@@ -12,7 +12,7 @@ const descriptions = {
         Le responsable du traitement des données est la personne physique ou
         morale qui, seul ou conjointement avec d’autres, détermine les finalités
         et les moyens du traitement des données à caractère personnel. Seule une
-        personne appartenant à l'organisme demandeur peut être renseignée. (
+        personne appartenant à l’organisme demandeur peut être renseignée. (
         <a
           href={'https://www.cnil.fr/fr/definition/responsable-de-traitement'}
           target="_blank"
@@ -29,9 +29,9 @@ const descriptions = {
     heading: 'Délégué à la protection des données',
     hint: (
       <p>
-        C'est la personne qui s'assure que l'organisation protège convenablement
+        C'est la personne qui s’assure que l’organisation protège convenablement
         les données à caractère personnel, conformément à la législation en
-        vigueur. C'est généralement une personne appartenant à l'organisme
+        vigueur. C'est généralement une personne appartenant à l’organisme
         demandeur. (
         <a
           href={'https://www.cnil.fr/fr/designation-dpo'}
@@ -89,7 +89,7 @@ const RgpdContact = ({
         label="Numéro de téléphone"
         helper={
           'Ce numéro peut être le numéro du secrétariat ou le numéro direct de la personne concernée. Ce numéro nous ' +
-          "permettra de vous contacter lors d'incidents ou difficultés."
+          'permettra de vous contacter lors d’incidents ou difficultés.'
         }
         name={`${type}_phone_number`}
         value={phone_number}

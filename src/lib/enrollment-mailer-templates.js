@@ -24,7 +24,7 @@ export const getMailAttributes = (selectedAction, targetApi) => {
   };
 
   const subjects = {
-    send_application: "Nous avons bien reçu votre demande d'accès",
+    send_application: 'Nous avons bien reçu votre demande d’accès',
     validate_application: 'Votre demande a été validée',
     review_application: 'Votre demande requiert des modifications',
     refuse_application: 'Votre demande a été refusée',
@@ -52,9 +52,9 @@ export const getMailHeader = (selectedAction, targetApi) => {
   const specificHeaderMessage = {
     validate_application: {
       api_entreprise:
-        "Votre demande a été validée. Vous allez recevoir un mail vous permettant de créer un mot de passe d'accès à l'interface (dashbord.entreprise.api.gouv.fr) qui vous permettra de récuperer votre token.",
+        'Votre demande a été validée. Vous allez recevoir un mail vous permettant de créer un mot de passe d’accès à l’interface (dashbord.entreprise.api.gouv.fr) qui vous permettra de récuperer votre token.',
       api_impot_particulier_fc_production:
-        "Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l'environnement de production.",
+        'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_impot_particulier_fc_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
 Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
         window.location.host
@@ -64,13 +64,13 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
         window.location.host
       }/api-impot-particulier-production`,
       api_r2p_production:
-        "Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l'environnement de production.",
+        'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_r2p_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
 Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
         window.location.host
       }/api-r2p-production`,
       api_ficoba_production:
-        "Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l'environnement de production.",
+        'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_ficoba_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
 Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
         window.location.host
@@ -78,7 +78,7 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
       cartobio:
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
       aidants_connect:
-        "Votre demande d'habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d'Aidants Connect. Retrouvez dès maintenant tous les détails du processus d'habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation .",
+        'Votre demande d’habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d’Aidants Connect. Retrouvez dès maintenant tous les détails du processus d’habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation .',
     },
     refuse_application: {
       cartobio:
@@ -104,7 +104,7 @@ export const getMailFooter = (selectedAction, targetApi) => {
   let footerMessage = {
     notify: '',
     review_application:
-      "Merci d'apporter ces modifications directement sur votre demande en ligne.",
+      'Merci d’apporter ces modifications directement sur votre demande en ligne.',
     refuse_application: '',
     validate_application: '',
   }[selectedAction];
@@ -114,7 +114,7 @@ export const getMailFooter = (selectedAction, targetApi) => {
       cartobio: `**Plus d’information sur les données**
 Les données les plus récentes sont celles de 2019, les données 2020 ne sont pas encore disponibles.
 
-L'année 2019 référence à la fois les parcelles bio (propriété BIO=1) et conventionnelles (propriété BIO=0).
+L’année 2019 référence à la fois les parcelles bio (propriété BIO=1) et conventionnelles (propriété BIO=0).
 C'est également le cas pour 2017 et 2018, mais les parcelles conventionnelles sont partielles — uniquement pour des exploitations ayant au moins 1 parcelle bio.
 
 Il s’agit de données anonymisées, c’est-à-dire que les informations concernant la personne physique ou morale qui cultive ces parcelles sont absentes.
@@ -143,7 +143,7 @@ Je suis disponible si vous avez des remarques ou questions.`,
     refuse_application: {
       cartobio: `Voici néanmoins d’autres ressources ouvertes sur le sujet. Elles pourront peut-être vous aider :
 
-- l'annuaire de l'Agence Bio : https://annuaire.agencebio.org/
+- l’annuaire de l’Agence Bio : https://annuaire.agencebio.org/
 - les statistiques par commune et département : https://www.agencebio.org/vos-outils/les-chiffres-cles/
 - la couche "Registre Parcellaire Graphique" sur le Géoportail : https://www.geoportail.gouv.fr/`,
     },
@@ -166,6 +166,6 @@ Je suis disponible si vous avez des remarques ou questions.`,
     window.location.href.split('#')[0]
   } .
 
-L'équipe ${teamName}
+L’équipe ${teamName}
 `;
 };

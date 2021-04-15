@@ -31,7 +31,7 @@ export const FranceConnectPlusSection = () => {
       <h2>Le niveau de garantie attendu par votre service</h2>
       <CheckboxInput
         label="FranceConnect : niveau de garantie eIDAS 1"
-        helper="Niveau par défaut, recommandé si vous n'avez pas d’exigence particulière sur le niveau eIDAS"
+        helper="Niveau par défaut, recommandé si vous n’avez pas d’exigence particulière sur le niveau eIDAS"
         name="additional_content.eidas_1"
         value={eidas_1}
         disabled={disabled}
@@ -53,7 +53,7 @@ export const FranceConnectPlusSection = () => {
             </a>
           </>
         }
-        helper="Si vous êtes un acteur du secteur privé, une facturation pourra être appliquée par certains fournisseurs d'identité."
+        helper="Si vous êtes un acteur du secteur privé, une facturation pourra être appliquée par certains fournisseurs d’identité."
         name="additional_content.eidas_2"
         value={eidas_2}
         disabled={disabled}

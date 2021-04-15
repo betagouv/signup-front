@@ -50,7 +50,7 @@ const Enrollment = ({
     return (
       <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
-          Nous n'avons pas trouvé votre demande d'habilitation.
+          Nous n’avons pas trouvé votre demande d’habilitation.
         </div>
       </section>
     );
@@ -60,7 +60,7 @@ const Enrollment = ({
     return (
       <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
-          Erreur inconnue lors de la récupération de la demande d'habilitation.
+          Erreur inconnue lors de la récupération de la demande d’habilitation.
         </div>
       </section>
     );

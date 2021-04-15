@@ -167,7 +167,7 @@ export const Form = ({
         {get(location, 'state.fromFranceConnectedAPI') ===
           'api_droits_cnam' && (
           <>
-            <p>La procédure consiste en 2 demandes d'accès distinctes&nbsp;:</p>
+            <p>La procédure consiste en 2 demandes d’accès distinctes&nbsp;:</p>
             <Stepper
               steps={['franceconnect', 'api_droits_cnam']}
               currentStep="franceconnect"
@@ -177,7 +177,7 @@ export const Form = ({
         {get(location, 'state.fromFranceConnectedAPI') ===
           'api_impot_particulier_fc_sandbox' && (
           <>
-            <p>La procédure consiste en 3 demandes d'accès distinctes&nbsp;:</p>
+            <p>La procédure consiste en 3 demandes d’accès distinctes&nbsp;:</p>
             <Stepper
               steps={[
                 'franceconnect',

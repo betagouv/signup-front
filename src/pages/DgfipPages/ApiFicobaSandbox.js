@@ -22,7 +22,7 @@ DgfipRgpdAgreement.propTypes = {
   disabled: PropTypes.bool.isRequired,
 };
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API :";
+const groupTitle = 'Sélectionnez les modalités d’accès à l’API :';
 
 const availableScopes = [
   {
@@ -76,8 +76,8 @@ const availableScopes = [
 export const DonneesDescription = () => (
   <Quote>
     <p>
-      L'API FICOBA restituant des éléments sensibles (comptes bancaires du
-      titulaire et/ou du co-titulaire, éléments relatifs à l'état civil et au
+      L’API FICOBA restituant des éléments sensibles (comptes bancaires du
+      titulaire et/ou du co-titulaire, éléments relatifs à l’état civil et au
       lieu de résidence du titulaire et/ou du co-titulaire) est couverte par la
       règle du secret professionnel prévue par les dispositions de l’article L.
       103 du Livre des Procédures Fiscales, car elles constituent des données
@@ -85,7 +85,7 @@ export const DonneesDescription = () => (
       professionnel que par une disposition législative spécifique.
     </p>
     <p>
-      En conséquence, les informations restituées par l'API FICOBA ne peuvent
+      En conséquence, les informations restituées par l’API FICOBA ne peuvent
       être communiquées qu’aux personnes, organismes ou autorités bénéficiant
       d’une telle mesure et dans la limite fixée par la loi.
     </p>
@@ -128,18 +128,18 @@ export const CadreJuridiqueDescription = () => (
       <li>
         la ou les information(s) recherchée(s) par le fournisseur de service
         doivent être strictement nécessaires au traitement d’une demande ou dans
-        l'exercice des missions du fournisseur de service justifiant l’accès
+        l’exercice des missions du fournisseur de service justifiant l’accès
         auxdites informations ;
       </li>
       <li>
-        l'accès aux informations s'inscrit en application d’un texte législatif
+        l’accès aux informations s’inscrit en application d’un texte législatif
         ou réglementaire.
       </li>
     </ul>
     <p>
       Le fournisseur de service sollicitant le raccordement au dispositif doit
       être autorisé à demander et exploiter les données fiscales dans le cadre
-      de l'exercice de ses missions.
+      de l’exercice de ses missions.
     </p>
   </Quote>
 );

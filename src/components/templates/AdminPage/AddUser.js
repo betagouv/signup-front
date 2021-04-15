@@ -33,8 +33,8 @@ export const AddUser = () => {
       <h2>Ajouter un utilisateur</h2>
       {success && (
         <div className="notification success">
-          L'utilisateur a correctement été ajouté. Vous pouvez rafraichir la
-          liste des utilisateurs en cliquant sur l'icone{' '}
+          L’utilisateur a correctement été ajouté. Vous pouvez rafraichir la
+          liste des utilisateurs en cliquant sur l’icone{' '}
           <AutorenewIcon size={16} />.
         </div>
       )}
@@ -46,7 +46,7 @@ export const AddUser = () => {
           value={newUserEmail}
           required
         />
-        <button type="submit">Ajouter l'utilisateur</button>
+        <button type="submit">Ajouter l’utilisateur</button>
       </form>
     </div>
   );

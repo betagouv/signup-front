@@ -69,7 +69,7 @@ const ApiHermesSandbox = ({
         <TextSection title="Les données dont vous avez besoin" id="donnees">
           <Quote>
             <p>
-              Les données échangées par l'API sont décrites dans les CGU
+              Les données échangées par l’API sont décrites dans les CGU
               attachées à cette demande.
             </p>
           </Quote>

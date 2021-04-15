@@ -14,7 +14,7 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 const DemarcheDescription = () => (
   <div className="notification grey">
     <p>
-      L'accès au Registre de preuve de covoiturage est disponible pour les
+      L’accès au Registre de preuve de covoiturage est disponible pour les
       opérateurs de covoiturage et les autorités organisatrices de mobilité
       (AOM).
     </p>
@@ -52,7 +52,7 @@ const PreuveCovoiturage = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -66,7 +66,7 @@ const PreuveCovoiturage = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="preuve_covoiturage"
-        title="Demande d'accès au Registre de preuve de covoiturage"
+        title="Demande d’accès au Registre de preuve de covoiturage"
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />

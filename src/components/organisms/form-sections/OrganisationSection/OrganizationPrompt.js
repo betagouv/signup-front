@@ -43,7 +43,7 @@ const OrganizationPrompt = ({
 
   return (
     <AriaModal
-      titleText="Sélectionnez l'organisation à associer à cette demande :"
+      titleText="Sélectionnez l’organisation à associer à cette demande :"
       // we use this no op function to close the modal
       onExit={() => onSelect(selectedOrganizationId)}
       focusDialog={true}
@@ -61,7 +61,7 @@ const OrganizationPrompt = ({
           <div className="form__group">
             <fieldset>
               <legend>
-                Sélectionnez l'organisation à associer à cette demande&nbsp;:
+                Sélectionnez l’organisation à associer à cette demande&nbsp;:
               </legend>
               {organizations.map(({ id, siret }) => (
                 <div key={id}>
@@ -93,7 +93,7 @@ const OrganizationPrompt = ({
             id="close-warning-modal"
             className="closing_cross"
             onClick={() => onSelect(selectedOrganizationId)}
-            aria-label="Conserver l'organisation actuelle"
+            aria-label="Conserver l’organisation actuelle"
           >
             ×
           </button>

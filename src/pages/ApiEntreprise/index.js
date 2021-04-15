@@ -22,7 +22,7 @@ const contacts = {
     description: (
       <p>
         Nous contacterons cette personne pour vous avertir de nouvelles
-        fonctionnalités ou d'incidents majeurs sur nos API.
+        fonctionnalités ou d’incidents majeurs sur nos API.
       </p>
     ),
     family_name: '',
@@ -35,14 +35,14 @@ const contacts = {
     description: (
       <p>
         Nous contacterons cette personne pour vous avertir des évolutions
-        techniques, des incidents et de l'expiration des jetons.
+        techniques, des incidents et de l’expiration des jetons.
       </p>
     ),
     family_name: '',
     given_name: '',
     emailDescription: (
       <p>
-        <WarningEmoji /> Vos jetons d'accès expireront tous les 18 mois. Afin de
+        <WarningEmoji /> Vos jetons d’accès expireront tous les 18 mois. Afin de
         garantir que votre service ne soit pas interrompu, merci de renseigner
         une adresse email générique afin que nous puissions vous transmettre les
         nouveaux jetons malgré des aléas de changement de poste, congés ou
@@ -124,14 +124,14 @@ const availableScopes = [
   },
   {
     value: 'entreprises_artisanales',
-    label: "Données de référence d'une entreprise artisanale - CMA France",
+    label: 'Données de référence d’une entreprise artisanale - CMA France',
     groupTitle: 'Informations générales :',
     link:
       'https://api-entreprise-sandbox.netlify.app/catalogue/#a-entreprises_artisanales_cma',
   },
   {
     value: 'effectifs_acoss',
-    label: "Effectifs d'une entreprise - ACOSS",
+    label: 'Effectifs d’une entreprise - ACOSS',
     groupTitle: 'Informations générales :',
     link:
       'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
@@ -247,7 +247,7 @@ const availableScopes = [
 const intitulePlaceholder = sample([
   '« Pré-remplissage du formulaire de création de compte des entreprise »',
   '« Simplification des demandes de subvention de la région »',
-  "« Déclaration d'installation classée pour la protection de l'environnement »",
+  '« Déclaration d’installation classée pour la protection de l’environnement »',
 ]);
 
 const CadreJuridiqueDescription = () => (
@@ -266,7 +266,7 @@ const CadreJuridiqueDescription = () => (
 const MiseEnOeuvreDescription = () => (
   <Quote>
     <p>
-      Afin de pouvoir vous contacter tout au long de votre utilisation d'API
+      Afin de pouvoir vous contacter tout au long de votre utilisation d’API
       Entreprise, merci de renseigner vos informations de contact.
     </p>
   </Quote>
@@ -288,7 +288,7 @@ const ApiEntreprise = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Contacts' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -306,7 +306,7 @@ const ApiEntreprise = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="api_entreprise"
-        title="Demande d'accès à l'API Entreprise"
+        title="Demande d’accès à l’API Entreprise"
         demarches={demarches}
       >
         <OrganisationSection />

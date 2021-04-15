@@ -56,7 +56,7 @@ export const CadreJuridiqueDescription = () => (
 const target_api = 'api_impot_particulier_sandbox';
 const steps = [target_api, 'api_impot_particulier_production'];
 
-const groupTitle = "Sélectionnez les modalités d'accès à l'API";
+const groupTitle = 'Sélectionnez les modalités d’accès à l’API';
 
 const availableScopes = [
   ...fcAvailableScopes,
@@ -75,8 +75,8 @@ const availableScopes = [
   },
   {
     value: 'dgfip_acces_etat_civil',
-    label: "via l'état civil",
-    helper: "Merci de remplir une demande de souscription à l'API R2P.",
+    label: 'via l’état civil',
+    helper: 'Merci de remplir une demande de souscription à l’API R2P.',
     groupTitle,
   },
 ];
@@ -84,7 +84,7 @@ const availableScopes = [
 const demarches = {
   ...fcAvailableDemarches,
   eligibilite_lep: {
-    label: "Vérification de l’éligibilité au Livret d'épargne populaire (LEP)",
+    label: 'Vérification de l’éligibilité au Livret d’épargne populaire (LEP)',
     state: {
       scopes: {
         dgfip_IndLep: true,

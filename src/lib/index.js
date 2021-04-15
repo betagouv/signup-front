@@ -26,7 +26,7 @@ export function getErrorMessages(error) {
 
   if (!isEmpty(error.response)) {
     return [
-      `Une erreur est survenue. Le code de l'erreur est ${
+      `Une erreur est survenue. Le code de l’erreur est ${
         error.response.status
       } (${error.response.statusText}). ${errorMessageEnd}`,
     ];
@@ -36,8 +36,8 @@ export function getErrorMessages(error) {
     return [
       'Une erreur de connection au serveur est survenue. ' +
         'Merci de vérifier que vous êtes bien connecté à internet. ' +
-        "Si vous utilisez un réseau d'entreprise, merci de signaler cette erreur à " +
-        "l'administrateur de votre réseau informatique. " +
+        'Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à ' +
+        'l’administrateur de votre réseau informatique. ' +
         'Si le problème persiste, vous pouvez nous contacter par mail à ' +
         'contact@api.gouv.fr.',
     ];
@@ -75,27 +75,27 @@ export function isValidNAFCode(provider, NAFcode) {
 }
 
 const diffFieldLabels = {
-  cgu_approved: "de l'approbation des CGU",
+  cgu_approved: 'de l’approbation des CGU',
   data_recipients: 'des destinataires des données',
   data_retention_period: 'de la durée de conservation des données',
   data_retention_comment:
     'de la justification de la durée de conservation des données',
   description: 'de la description',
   fondement_juridique_title: 'de la référence du cadre juridique',
-  fondement_juridique_url: "de l'url du cadre juridique",
-  intitule: "de l'intitulé",
+  fondement_juridique_url: 'de l’url du cadre juridique',
+  intitule: 'de l’intitulé',
   dpo_label: 'du nom du DPD',
-  dpo_id: "de l'identifiant du DPD",
+  dpo_id: 'de l’identifiant du DPD',
   dpo_phone_number: 'du numéro de téléphone du DPD',
   responsable_traitement_label: 'du nom du responsable de traitement',
-  responsable_traitement_id: "de l'identifiant du responsable de traitement",
+  responsable_traitement_id: 'de l’identifiant du responsable de traitement',
   responsable_traitement_phone_number:
     'du numéro de téléphone du responsable de traitement',
   'contacts.0.nom': 'du nom du contact 1',
-  'contacts.0.email': "de l'email du contact 1",
+  'contacts.0.email': 'de l’email du contact 1',
   'contacts.0.phone_number': 'du numéro de téléphone du contact 1',
   'contacts.1.nom': 'du nom du contact 2',
-  'contacts.1.email': "de l'email du contact 2",
+  'contacts.1.email': 'de l’email du contact 2',
   'contacts.1.phone_number': 'du numéro de téléphone du contact 2',
 };
 
@@ -162,7 +162,7 @@ export function getChangelog(diff) {
         .transform(flattenDiffTransformer, {})
         // { intitule: ['a', 'b'], contacts.0.name: ['c', 'e'] }
         .transform(changelogFormatTransformer, [])
-        // ['changement d'intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
+        // ['changement d’intitule de "a" en "b"', 'changement du nom du DPD de "c" en "d"']
         .value()
     );
   } catch (e) {

@@ -13,7 +13,7 @@ export const DemarcheDescription = () => (
       l’échange d’informations fiscales, dans le cadre d’un téléservice, entre
       la DGFiP et une entité administrative ou une entreprise dans le cadre de
       ses obligations légales et réglementaires pour des missions d’intérêt
-      général. L’usager n'a plus besoin de transmettre les données fiscales déjà
+      général. L’usager n’a plus besoin de transmettre les données fiscales déjà
       transmises à la DGFiP.
     </p>
     <p>
@@ -76,7 +76,7 @@ export const DonneesFootnote = () => {
             >
               Ce document
             </a>{' '}
-            présente les modalités d'appel et de réponse de l'API Impôt
+            présente les modalités d’appel et de réponse de l’API Impôt
             particulier, et décrit les données proposées.
           </i>
         </small>
@@ -90,7 +90,7 @@ export const DonneesFootnote = () => {
             l’ensemble des données strictement nécessaires à leur cas d’usage.
           </p>
           <CheckboxInput
-            label="J'ai une expression de besoin spécifique"
+            label="J’ai une expression de besoin spécifique"
             value={isFileInputExpanded}
             onChange={() => setFileInputExpanded(!isFileInputExpanded)}
             disabled={disabled}
@@ -105,7 +105,7 @@ export const DonneesFootnote = () => {
                 </i>
               </p>
               <FileInput
-                label="Joindre l'expression de besoin"
+                label="Joindre l’expression de besoin"
                 mimeTypes="*"
                 disabled={disabled}
                 uploadedDocuments={documents}
@@ -400,7 +400,7 @@ export const CguDescription = () => (
   <Quote>
     <p>
       Votre raccordement à l’API Impôt particulier nécessite l’acceptation des
-      conditions générales d'utilisation.
+      conditions générales d’utilisation.
     </p>
   </Quote>
 );

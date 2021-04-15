@@ -137,7 +137,7 @@ const UserList = () => {
               <li>s (subscriber) : abonné</li>
             </ul>
             <a href="https://github.com/betagouv/datapass#les-roles-dans-datapass">
-              Plus d'info
+              Plus d’info
             </a>
           </div>
         </>

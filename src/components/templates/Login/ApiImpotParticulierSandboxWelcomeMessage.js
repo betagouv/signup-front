@@ -5,8 +5,8 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 
 const ApiImpotParticulierSandboxWelcomeMessage = () => (
   <>
-    <h3>Demande d'accès à « API Impôt particulier »</h3>
-    <p>La procédure consiste en 2 demandes d'accès distinctes&nbsp;:</p>
+    <h3>Demande d’accès à « API Impôt particulier »</h3>
+    <p>La procédure consiste en 2 demandes d’accès distinctes&nbsp;:</p>
     <Stepper
       steps={[
         'api_impot_particulier_sandbox',
@@ -15,13 +15,13 @@ const ApiImpotParticulierSandboxWelcomeMessage = () => (
     />
     <ol className="steps-form-description">
       <li>
-        L'équipe en charge de l'API Impôt particulier à la{' '}
+        L’équipe en charge de l’API Impôt particulier à la{' '}
         <abbr title="Direction Générale des Finances Publiques">DGFiP</abbr>{' '}
         valide votre accès à <b>l' API Manager (APIM) DGFiP</b> vous permettant
-        de récupérer des données d'imposition de test.
+        de récupérer des données d’imposition de test.
       </li>
       <li>
-        L'équipe API Impôt particulier valide votre accès aux{' '}
+        L’équipe API Impôt particulier valide votre accès aux{' '}
         <b>
           données de production via l'
           <abbr title="API Manager">APIM</abbr> DGFiP

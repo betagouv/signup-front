@@ -14,13 +14,13 @@ const ModalContent = {
       'Afin de respecter le principe RGPD de minimisation de la circulation des ' +
       'données personnelles, nous effectuons un contrôle de cohérence entre les ' +
       'données demandées et l’usage décrit. Une demande non conforme fera ' +
-      "l'objet d'un retour pour rectification, et donc d'un délai " +
+      'l’objet d’un retour pour rectification, et donc d’un délai ' +
       'supplémentaire.',
   },
   fc_incomplete: {
-    title: "Cette donnée n'est pas vérifiée",
+    title: 'Cette donnée n’est pas vérifiée',
     body:
-      "Elle ne sera transmise que si elle est disponible chez le fournisseur d'identité.",
+      'Elle ne sera transmise que si elle est disponible chez le fournisseur d’identité.',
   },
 };
 

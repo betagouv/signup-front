@@ -78,8 +78,8 @@ export const StructureSection = () => {
       <h2>Description de votre structure</h2>
       <Quote>
         <p>
-          <WarningEmoji /> Attention : 1 structure = 1 lieu d'accueil. Merci de
-          remplir une demande d'habilitation par lieu d'accueil.
+          <WarningEmoji /> Attention : 1 structure = 1 lieu d’accueil. Merci de
+          remplir une demande d’habilitation par lieu d’accueil.
         </p>
       </Quote>
       <TextInput
@@ -177,12 +177,12 @@ export const StructureSection = () => {
         <p>
           Si vous travaillez avec une administration ou un établissement publics
           (prestation, délégation de service public, subvention publique, etc.),
-          merci de renseigner l'un des champs suivants :
+          merci de renseigner l’un des champs suivants :
         </p>
       </Quote>
       <OrWrapper>
         <TextInput
-          label="Renseigner l'administration avec laquelle vous travaillez"
+          label="Renseigner l’administration avec laquelle vous travaillez"
           name="additional_content.associated_public_organisation"
           value={associated_public_organisation}
           disabled={disabled}

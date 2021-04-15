@@ -28,7 +28,7 @@ const CartoBio = ({
         { id: 'description', label: 'Description' },
         { id: 'cartobio-donnees', label: 'Données' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -42,7 +42,7 @@ const CartoBio = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="cartobio"
-        title="Demande d'accès à l'API CartoBio - Territoires"
+        title="Demande d’accès à l’API CartoBio - Territoires"
       >
         <OrganisationSection />
         <DescriptionSection descriptionHelper="Dites-nous en quoi les données géographiques vous permettent de réaliser vos missions ? Quelle sont-elles ?" />

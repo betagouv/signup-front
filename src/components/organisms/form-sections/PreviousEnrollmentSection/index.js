@@ -76,7 +76,7 @@ const PreviousEnrollmentSection = ({
       {!disabled && !isUserEnrollmentLoading && (
         <>
           <p>
-            La procédure consiste en {steps.length} demandes d'accès
+            La procédure consiste en {steps.length} demandes d’accès
             distinctes&nbsp;:
           </p>
           <Stepper
@@ -98,7 +98,7 @@ const PreviousEnrollmentSection = ({
           <div className="form__group">
             <div className="notification warning">
               <p>
-                Pour demander l'accès à <b>{TARGET_API_LABELS[target_api]}</b>
+                Pour demander l’accès à <b>{TARGET_API_LABELS[target_api]}</b>
                 {target_api === 'api_impot_particulier_fc_sandbox' && (
                   <span> en mode FranceConnecté</span>
                 )}
@@ -122,9 +122,9 @@ const PreviousEnrollmentSection = ({
                 <p>
                   Vous avez déjà accès à FranceConnect mais vous ne retrouvez
                   pas la demande correspondante ? Vos accès datent probablement
-                  d'avant la mise en place de ce dispositif. Merci de remplir
-                  une nouvelle demande d'accès à FranceConnect. Cette nouvelle
-                  demande n'interférera pas avec vos accès précédents.
+                  d’avant la mise en place de ce dispositif. Merci de remplir
+                  une nouvelle demande d’accès à FranceConnect. Cette nouvelle
+                  demande n’interférera pas avec vos accès précédents.
                 </p>
               )}
             </div>

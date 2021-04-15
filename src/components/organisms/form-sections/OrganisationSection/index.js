@@ -163,7 +163,7 @@ const Index = () => {
 
   return (
     <ScrollablePanel scrollableId="organisation">
-      <h2>L'organisation</h2>
+      <h2>L’organisation</h2>
       <div className="row">
         <div className="card">
           <div className="card__content">

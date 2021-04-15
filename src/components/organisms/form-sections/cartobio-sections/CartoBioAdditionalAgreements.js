@@ -24,8 +24,8 @@ const CartoBioAdditionalAgreements = () => {
       <CheckboxInput
         label={
           <>
-            Je m'engage à respecter le secret statistique des données transmises
-            lors d'une communication publique.
+            Je m’engage à respecter le secret statistique des données transmises
+            lors d’une communication publique.
           </>
         }
         name="additional_content.secret_statistique_agreement"
@@ -36,8 +36,8 @@ const CartoBioAdditionalAgreements = () => {
       <CheckboxInput
         label={
           <>
-            Je m'engage à partager les données uniquement au personnel de
-            l'organisation que je représente.
+            Je m’engage à partager les données uniquement au personnel de
+            l’organisation que je représente.
           </>
         }
         name="additional_content.partage_agreement"
@@ -48,7 +48,7 @@ const CartoBioAdditionalAgreements = () => {
       <CheckboxInput
         label={
           <>
-            Je m'engage à mettre en œuvre les mesures nécessaires pour éviter la
+            Je m’engage à mettre en œuvre les mesures nécessaires pour éviter la
             divulgation des données à des tiers.
           </>
         }
@@ -60,10 +60,10 @@ const CartoBioAdditionalAgreements = () => {
       <CheckboxInput
         label={
           <>
-            J'ai compris que les données transmises ne sont pas exhaustives, et
-            ne représentent pas l'intégralité des surfaces cultivées en bio —
+            J’ai compris que les données transmises ne sont pas exhaustives, et
+            ne représentent pas l’intégralité des surfaces cultivées en bio —
             les communications publiques et privées doivent en tenir compte et
-            l'expliciter.
+            l’expliciter.
           </>
         }
         name="additional_content.exhaustivite_agreement"
@@ -74,9 +74,9 @@ const CartoBioAdditionalAgreements = () => {
       <CheckboxInput
         label={
           <>
-            Je m'engage à tenir l'équipe CartoBio informée des productions
+            Je m’engage à tenir l’équipe CartoBio informée des productions
             établies avec les données géographiques — nous les mettrons en
-            valeur pour stimuler une variété d'usages.
+            valeur pour stimuler une variété d’usages.
           </>
         }
         name="additional_content.information_agreement"

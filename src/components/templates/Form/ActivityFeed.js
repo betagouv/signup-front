@@ -151,7 +151,7 @@ class ActivityFeed extends React.Component {
             className="toogle-detail"
             onClick={() => this.setState({ showDetails: !showDetails })}
           >
-            {showDetails ? "Cacher l'historique" : "Voir l'historique"}
+            {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
           </button>
         </div>
         {eventsToDisplay.map(

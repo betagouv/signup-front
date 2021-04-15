@@ -9,7 +9,7 @@ import TextInput from '../../atoms/inputs/TextInput';
 
 const Label = ({ fondement_juridique_url }) => (
   <>
-    Si possible, joindre l'URL du texte relatif au traitement{' '}
+    Si possible, joindre l’URL du texte relatif au traitement{' '}
     {fondement_juridique_url && (
       <span>
         (

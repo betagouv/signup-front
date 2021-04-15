@@ -29,7 +29,7 @@ const DemarcheSectionNotification = ({
                 </span>
               </b>
               <br />
-              Vous avez séléctionné le cas d'usage «{' '}
+              Vous avez séléctionné le cas d’usage «{' '}
               <b>
                 {get(demarches, selectedDemarcheId, {}).label ||
                   selectedDemarcheId}
@@ -44,7 +44,7 @@ const DemarcheSectionNotification = ({
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Plus d’information sur le cas d'usage « ${selectedDemarcheId} »`}
+                      aria-label={`Plus d’information sur le cas d’usage « ${selectedDemarcheId} »`}
                       href={get(demarches, selectedDemarcheId, {}).about}
                     >
                       fiche explicative

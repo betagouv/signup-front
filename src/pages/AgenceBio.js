@@ -19,9 +19,9 @@ const AdditionalMiseEnOeuvreContent = ({
   <>
     <Quote>
       <p>
-        Pour permettre la liaison technique entre votre SI et celui de l'agence
+        Pour permettre la liaison technique entre votre SI et celui de l’agence
         Bio, vous devez fournir les adresses IP des serveurs qui vont
-        communiquer avec l'API Agence Bio.
+        communiquer avec l’API Agence Bio.
       </p>
     </Quote>
     <TextInput
@@ -53,7 +53,7 @@ const AgenceBio = ({
         { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -68,7 +68,7 @@ const AgenceBio = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="agence_bio"
-        title="Demande d'accès à l'API Agence Bio"
+        title="Demande d’accès à l’API Agence Bio"
       >
         <OrganisationSection />
         <DescriptionSection />

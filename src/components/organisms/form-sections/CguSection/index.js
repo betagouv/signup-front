@@ -22,9 +22,9 @@ const Index = ({
       <CheckboxInput
         label={
           <>
-            J'ai pris connaissance des{' '}
+            J’ai pris connaissance des{' '}
             <a href={cguLink} target="_blank" rel="noreferrer noopener">
-              conditions générales d'utilisation
+              conditions générales d’utilisation
             </a>{' '}
             et je les valide. Je confirme que le délégué à la protection des
             données de mon organisation est informé de ma demande.

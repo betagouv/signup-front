@@ -28,7 +28,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          newEnrollmentPageMessage="Vous souhaitez intégrer le bouton d'identification FranceConnect à votre service en ligne"
+          newEnrollmentPageMessage="Vous souhaitez intégrer le bouton d’identification FranceConnect à votre service en ligne"
         />
       );
     case 'aidants_connect':

@@ -31,8 +31,8 @@ const DemarcheDescription = () => (
         de service public
       </li>
       <li>
-        un partenaire privé du service public de changement d'adresse en ligne :
-        fournisseurs d'énergie, d'eau, opérateurs de communications
+        un partenaire privé du service public de changement d’adresse en ligne :
+        fournisseurs d’énergie, d’eau, opérateurs de communications
         électroniques et services postaux
       </li>
       <li>
@@ -40,14 +40,14 @@ const DemarcheDescription = () => (
         légales (assurances, banques)
       </li>
       <li>
-        une entreprise proposant des services dont l'usage impose la
-        vérification de l'identité ou d'un de ses attributs (majorité légale par
+        une entreprise proposant des services dont l’usage impose la
+        vérification de l’identité ou d’un de ses attributs (majorité légale par
         exemple)
       </li>
     </ul>
     <p>
       À la clé ? La garantie de transactions sécurisées grâce au dispositif
-      FranceConnect. Les utilisateurs quant à eux, gagneront en facilité d'accès
+      FranceConnect. Les utilisateurs quant à eux, gagneront en facilité d’accès
       à ces nouveaux services auxquels ils pourront se connecter via
       FranceConnect, sans avoir à créer un compte et un mot de passe.
     </p>
@@ -61,7 +61,7 @@ const contacts = {
       <p>
         Cette personne recevra les accès techniques par mail. Le numéro de
         téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
-        envoyer un code d'accès. Le responsable technique peut être le contact
+        envoyer un code d’accès. Le responsable technique peut être le contact
         technique de votre prestataire. Attention, ce courrier peut parfois
         passer en «&nbsp;courriers indésirables&nbsp;».
       </p>
@@ -76,8 +76,8 @@ const CadreJuridiqueDescription = () => (
   <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
-      réglementaire qui s'applique à votre entité (administration ou entreprise)
-      doit permettre à la DINUM de lui transmettre des données d'identité.
+      réglementaire qui s’applique à votre entité (administration ou entreprise)
+      doit permettre à la DINUM de lui transmettre des données d’identité.
     </p>
     <ul>
       <li>
@@ -87,14 +87,14 @@ const CadreJuridiqueDescription = () => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          l'arrêté du 8 novembre 2018
+          l’arrêté du 8 novembre 2018
         </a>
-        . N'oubliez pas de justifier la nécessité d'identification de la
-        personne dans le champs de description de votre cas d'usage.{' '}
+        . N’oubliez pas de justifier la nécessité d’identification de la
+        personne dans le champs de description de votre cas d’usage.{' '}
       </li>
       <li>
         Si vous êtes une <b>entreprise</b>, vous devez citer le cadre légal et
-        réglementaire qui s'applique à votre entité.
+        réglementaire qui s’applique à votre entité.
       </li>
     </ul>
   </Quote>
@@ -137,7 +137,7 @@ export const availableScopes = [
   },
   {
     value: 'preferred_username',
-    label: "Nom d'usage",
+    label: 'Nom d’usage',
     triggerWarning: true,
     warningType: 'fc_incomplete',
     groupTitle: 'Autres données :',
@@ -178,7 +178,7 @@ const FranceConnect = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -202,7 +202,7 @@ const FranceConnect = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="franceconnect"
-        title="Demande d'habilitation juridique à FranceConnect"
+        title="Demande d’habilitation juridique à FranceConnect"
         DemarcheDescription={DemarcheDescription}
       >
         <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />

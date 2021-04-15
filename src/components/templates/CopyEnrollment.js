@@ -29,7 +29,7 @@ const CopyEnrollment = ({
     } catch (e) {
       if (
         getErrorMessages(e)[0].includes(
-          "Copied from enrollment n'est pas disponible"
+          'Copied from enrollment n’est pas disponible'
         )
       ) {
         setAlreadyCopiedError(true);
@@ -63,7 +63,7 @@ const CopyEnrollment = ({
     return (
       <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
-          Erreur inconnue lors de la copie de la demande d'habilitation.
+          Erreur inconnue lors de la copie de la demande d’habilitation.
         </div>
       </section>
     );
@@ -73,7 +73,7 @@ const CopyEnrollment = ({
     return (
       <section className="section-grey layout-full-page layout-center">
         <div className="notification error">
-          Copie impossible : une copie de cette demande d'habilitation existe
+          Copie impossible : une copie de cette demande d’habilitation existe
           déjà.
         </div>
       </section>

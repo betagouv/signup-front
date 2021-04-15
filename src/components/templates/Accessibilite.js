@@ -3,16 +3,16 @@ import React from 'react';
 const Accessibilite = () => (
   <section className="section-white" style={{ padding: '5em 0' }}>
     <div className="container">
-      <h1>Déclaration d'accessibilité</h1>
-      <h2>Périmètre d'accessibilité visé</h2>
+      <h1>Déclaration d’accessibilité</h1>
+      <h2>Périmètre d’accessibilité visé</h2>
       <p>
-        Dans la suite, nous parlons d'interface utilisable lorsqu'un utilisateur
-        a la possibilité de soumettre une demande d'habilitation via DataPass
-        bien que l'affichage de certaines fonctionnalités non essentielles à la
+        Dans la suite, nous parlons d’interface utilisable lorsqu’un utilisateur
+        a la possibilité de soumettre une demande d’habilitation via DataPass
+        bien que l’affichage de certaines fonctionnalités non essentielles à la
         soumission d’une demande puissent être dégradées ou inaccessibles.
       </p>
       <p>
-        Nous parlons d'interface optimisée lorsque toutes les fonctionnalités du
+        Nous parlons d’interface optimisée lorsque toutes les fonctionnalités du
         site sont utilisables à leur plein potentiel.
       </p>
       <h2>Couleurs et images</h2>
@@ -21,7 +21,7 @@ const Accessibilite = () => (
         une lecture aisée.
       </p>
       <p>
-        L'équipe technique utilise des tests automatiques de contraste et
+        L’équipe technique utilise des tests automatiques de contraste et
         accessibilité des images en environnement de développement.
       </p>
       <h2>Compatibilité avec les navigateurs</h2>
@@ -38,25 +38,25 @@ const Accessibilite = () => (
         <li>sous windows 7 et ultérieures : Internet Explorer 11 et Edge</li>
       </ul>
       <p>
-        L'équipe technique teste l'application sur Chrome, Firefox, Firefox 68
-        (Windows 7) et IE11 (Windows 7) à chaque changement d'interface.
+        L’équipe technique teste l’application sur Chrome, Firefox, Firefox 68
+        (Windows 7) et IE11 (Windows 7) à chaque changement d’interface.
       </p>
-      <h2>Compatibilité avec les différents types d'écran</h2>
+      <h2>Compatibilité avec les différents types d’écran</h2>
       <p>
-        L'interface est optimisée pour un écran de bureautique à partir d'une
+        L’interface est optimisée pour un écran de bureautique à partir d’une
         résolution de 1024x768 pixels et pour des résolutions supérieures.
       </p>
       <p>
-        L'interface est utilisable pour des écrans mobile et tablette de tout
+        L’interface est utilisable pour des écrans mobile et tablette de tout
         type.
       </p>
       <p>
-        L'équipe technique teste l'application sur mobile, tablette et
-        ordinateur à chaque changement d'interface.
+        L’équipe technique teste l’application sur mobile, tablette et
+        ordinateur à chaque changement d’interface.
       </p>
       <h2>Accessibilité des contenus et respect des standards web</h2>
       <p>
-        Les normes d'accessibilité numérique incluent les conditions suivantes :
+        Les normes d’accessibilité numérique incluent les conditions suivantes :
       </p>
       <ul>
         <li>DataPass est entièrement accessible au clavier</li>
@@ -72,13 +72,13 @@ const Accessibilite = () => (
         </li>
         <li>les liens présents sur DataPass ont des intitulés explicites</li>
         <li>
-          DataPass n'ajoute pas de défilement horizontal au grossissement des
+          DataPass n’ajoute pas de défilement horizontal au grossissement des
           caractères
         </li>
-        <li>DataPass ne véhicule pas d'information par la couleur</li>
+        <li>DataPass ne véhicule pas d’information par la couleur</li>
       </ul>
       <p>
-        L'équipe organise tous les ans un test utilisateur avec une personne non
+        L’équipe organise tous les ans un test utilisateur avec une personne non
         voyante pour valider que DataPass est utilisable pour les personnes
         ayant des troubles visuels.
       </p>
@@ -92,7 +92,7 @@ const Accessibilite = () => (
 
       <a href="mailto:datapass@api.gouv.fr?subject=Probl%C3%A8me%20d%27accessibilit%C3%A9">
         <button className="button large">
-          Signaler un problème d'accessibilité par email
+          Signaler un problème d’accessibilité par email
         </button>
       </a>
     </div>

@@ -26,7 +26,7 @@ const availableScopes = [
   {
     value: 'dgfip_acces_etat_civil',
     label:
-      "Recherche par état civil complet - Restitution de l'état civil complet, de l'adresse et de l'identifiant fiscal (SPI)",
+      'Recherche par état civil complet - Restitution de l’état civil complet, de l’adresse et de l’identifiant fiscal (SPI)',
   },
   {
     value: 'dgfip_acces_spi',
@@ -76,7 +76,7 @@ const demarches = {
   },
   appel_api_impot_particulier: {
     label:
-      "Restitution du numéro fiscal (SPI) pour appel de l'API Impôt particulier",
+      'Restitution du numéro fiscal (SPI) pour appel de l’API Impôt particulier',
     state: {
       scopes: {
         dgfip_acces_etat_civil_restitution_spi: true,
@@ -134,7 +134,7 @@ const ApiR2PSandbox = ({
         <MiseEnOeuvreSection initialContacts={contacts} />
         <DonneesSection
           availableScopes={availableScopes}
-          scopesLabel="Liste des données restituées en fonction des modalités d'accès :"
+          scopesLabel="Liste des données restituées en fonction des modalités d’accès :"
           AdditionalRgpdAgreement={DgfipRgpdAgreement}
           DonneesDescription={DonneesDescription}
         />

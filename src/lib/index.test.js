@@ -22,7 +22,7 @@ describe('utils', () => {
       };
 
       expect(getErrorMessages(errorObject)).toEqual([
-        "Une erreur est survenue. Le code de l'erreur est 502 (Bad Gateway). Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.",
+        'Une erreur est survenue. Le code de l’erreur est 502 (Bad Gateway). Merci de réessayer ultérieurement. Vous pouvez également nous signaler cette erreur par mail à contact@api.gouv.fr.',
       ]);
     });
 
@@ -56,7 +56,7 @@ describe('utils', () => {
       };
 
       expect(getErrorMessages(errorObject)).toEqual([
-        "Une erreur de connection au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d'entreprise, merci de signaler cette erreur à l'administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à contact@api.gouv.fr.",
+        'Une erreur de connection au serveur est survenue. Merci de vérifier que vous êtes bien connecté à internet. Si vous utilisez un réseau d’entreprise, merci de signaler cette erreur à l’administrateur de votre réseau informatique. Si le problème persiste, vous pouvez nous contacter par mail à contact@api.gouv.fr.',
       ]);
     });
 
@@ -65,7 +65,7 @@ describe('utils', () => {
         response: {
           data: {
             message:
-              "La validation a échoué : Copied from enrollment n'est pas disponible",
+              'La validation a échoué : Copied from enrollment n’est pas disponible',
           },
           status: 422,
           statusText: 'Unprocessable Entity',
@@ -73,7 +73,7 @@ describe('utils', () => {
       };
 
       expect(getErrorMessages(errorObject)).toEqual([
-        "La validation a échoué : Copied from enrollment n'est pas disponible",
+        'La validation a échoué : Copied from enrollment n’est pas disponible',
       ]);
     });
 
@@ -81,7 +81,7 @@ describe('utils', () => {
       const errorObject = {
         response: {
           data: {
-            message: "Vous n'êtes pas autorisé à modifier cette ressource",
+            message: 'Vous n’êtes pas autorisé à modifier cette ressource',
           },
           status: 403,
           statusText: 'Forbidden',
@@ -89,7 +89,7 @@ describe('utils', () => {
       };
 
       expect(getErrorMessages(errorObject)).toEqual([
-        "Vous n'êtes pas autorisé à modifier cette ressource",
+        'Vous n’êtes pas autorisé à modifier cette ressource',
       ]);
     });
 

@@ -131,7 +131,7 @@ const DonneesDescription = () => (
 const availableScopes = [
   {
     value: 'dgfip_avis_imposition',
-    label: "DGFIP - Avis d'imposition",
+    label: 'DGFIP - Avis d’imposition',
   },
   {
     value: 'dgfip_adresse',
@@ -178,7 +178,7 @@ const ApiParticulier = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {

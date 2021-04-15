@@ -154,8 +154,8 @@ const FileInput = ({
           theme="warning"
         >
           <p>
-            Ce fichier provient d'une source extérieure et n'a pas été vérifié.
-            Merci de l'analyser avec votre antivirus avant de l'ouvrir.
+            Ce fichier provient d’une source extérieure et n’a pas été vérifié.
+            Merci de l’analyser avec votre antivirus avant de l’ouvrir.
           </p>
         </ConfirmationModal>
       )}

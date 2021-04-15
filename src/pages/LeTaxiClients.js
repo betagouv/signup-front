@@ -37,7 +37,7 @@ const LeTaxiClients = ({
         { id: 'description', label: 'Description' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -51,7 +51,7 @@ const LeTaxiClients = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="le_taxi_clients"
-        title="Demande d'accès à l'API le.Taxi - applicatifs clients"
+        title="Demande d’accès à l’API le.Taxi - applicatifs clients"
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />

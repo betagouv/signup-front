@@ -94,7 +94,7 @@ const LeTaxiChauffeurs = ({
         { id: 'solution-logicielle', label: 'Solution logicielle' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -108,7 +108,7 @@ const LeTaxiChauffeurs = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="le_taxi_chauffeurs"
-        title="Demande d'accès à l'API le.Taxi - applicatifs chauffeurs"
+        title="Demande d’accès à l’API le.Taxi - applicatifs chauffeurs"
         DemarcheDescription={DemarcheDescription}
       >
         <OrganisationSection />

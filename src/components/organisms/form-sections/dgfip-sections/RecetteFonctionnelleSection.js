@@ -20,7 +20,7 @@ const RecetteFonctionnelleSection = () => {
         <p>
           La qualification de votre téléservice est obligatoire tant pour votre
           homologation de sécurité ou vos obligations RGPD que pour demander
-          l'entrée en production auprès de la DGFiP.
+          l’entrée en production auprès de la DGFiP.
         </p>
         <p>
           Pour vous accompagner dans vos travaux, un environnement de test est
@@ -28,17 +28,17 @@ const RecetteFonctionnelleSection = () => {
         </p>
         <p>
           Le périmètre des réponses de cet environnement de test est
-          fonctionnellement identique à l'environnement de production.
+          fonctionnellement identique à l’environnement de production.
         </p>
         <p>
-          Un jeu de données fictives vous permet de valider l'intégration de
-          quelques cas fonctionnels dans votre téléservice. L'environnement de
-          test proposé par la DGFiP n'a donc pas vocation à recetter toutes les
-          fonctionnalités du téléservice, qui doivent faire l'objet d'une
+          Un jeu de données fictives vous permet de valider l’intégration de
+          quelques cas fonctionnels dans votre téléservice. L’environnement de
+          test proposé par la DGFiP n’a donc pas vocation à recetter toutes les
+          fonctionnalités du téléservice, qui doivent faire l’objet d’une
           recette interne.
         </p>
         <p>
-          A l'issue de vos travaux, veuillez attester de la qualification de
+          A l’issue de vos travaux, veuillez attester de la qualification de
           votre téléservice.
         </p>
       </Quote>

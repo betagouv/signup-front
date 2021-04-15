@@ -9,21 +9,21 @@ const Footer = () => (
     <div className="container">
       <ul className="footer__links">
         <li>
-          <a href="/stats">Statistiques d'utilisation</a>
+          <a href="/stats">Statistiques d’utilisation</a>
         </li>
         <li>
-          <a href={`${API_GOUV_HOST}/apropos`}>Qu'est ce qu'une API ?</a>
+          <a href={`${API_GOUV_HOST}/apropos`}>Qu’est ce qu’une API ?</a>
         </li>
       </ul>
       <ul className="footer__links">
         <li>
           <a href={`/docs/cgu_datapass.pdf`}>
-            Conditions générales d'utilisation
+            Conditions générales d’utilisation
           </a>
         </li>
         <li>
           <NavLink exact to={`/accessibilite`}>
-            Déclaration d'accessibilité
+            Déclaration d’accessibilité
           </NavLink>
         </li>
       </ul>

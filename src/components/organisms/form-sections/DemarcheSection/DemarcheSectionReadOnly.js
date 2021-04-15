@@ -55,7 +55,7 @@ export const DemarcheSectionReadOnly = () => {
               )}
             </>
           ) : (
-            <>Cette demande n'a pas utilisé de modèle de pré-remplissage.</>
+            <>Cette demande n’a pas utilisé de modèle de pré-remplissage.</>
           )}
         </div>
       </ScrollablePanel>

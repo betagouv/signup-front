@@ -96,8 +96,8 @@ ${mailFooter}`);
         {!fullEditMode && (
           <div className="mail-section-content">
             <button
-              title="Éditer les sections d'entête et de pied de l'email"
-              aria-label="Éditer les sections d'entête et de pied de l'email"
+              title="Éditer les sections d’entête et de pied de l’email"
+              aria-label="Éditer les sections d’entête et de pied de l’email"
               className="light inline-icon-button toggle-comment-button"
               onClick={switchToFullEditMode}
             >

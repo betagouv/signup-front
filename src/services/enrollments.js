@@ -139,7 +139,7 @@ export function getEnrollments({
 }
 
 export function getUserValidatedEnrollments(targetApi) {
-  // NB. if the user has more than 100 validated franceconnect enrollments, he won't be able to choose amongst them all
+  // NB. if the user has more than 100 validated franceconnect enrollments, he won’t be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
   return (
     getEnrollments({

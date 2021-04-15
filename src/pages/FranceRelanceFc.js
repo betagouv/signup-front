@@ -30,7 +30,7 @@ const DemarcheDescription = () => (
       ayant une délégation de service public.
     </p>
     <p>
-      À noter qu'une seule demande FranceConnect par organisation sera
+      À noter qu’une seule demande FranceConnect par organisation sera
       subventionnée. La seconde demande sera systématiquement refusée. Aussi
       merci de privilégier une utilisation sur un portail englobant plusieurs
       services plutôt que sur un service spécifique.
@@ -71,7 +71,7 @@ const contacts = {
       <p>
         Cette personne recevra les accès techniques par mail. Le numéro de
         téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
-        envoyer un code d'accès. Le responsable technique peut être le contact
+        envoyer un code d’accès. Le responsable technique peut être le contact
         technique de votre prestataire. Attention, ce courrier peut parfois
         passer en «&nbsp;courriers indésirables&nbsp;».
       </p>
@@ -88,8 +88,8 @@ const CadreJuridiqueDescription = () => (
   <Quote>
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
-      réglementaire qui s'applique à votre entité (administration ou entreprise)
-      doit permettre à la DINUM de lui transmettre des données d'identité.
+      réglementaire qui s’applique à votre entité (administration ou entreprise)
+      doit permettre à la DINUM de lui transmettre des données d’identité.
     </p>
     <p>
       Si vous êtes une administration, vous pouvez laisser ici la mention de{' '}
@@ -98,13 +98,13 @@ const CadreJuridiqueDescription = () => (
         target="_blank"
         rel="noopener noreferrer"
       >
-        l'arrêté du 8 novembre 2018
+        l’arrêté du 8 novembre 2018
       </a>
       .
     </p>
     <p>
       Attention cette base légale ne concerne que les administrations ayant une
-      nécessité légale d'identification des personnes. Si vous n'êtes pas
+      nécessité légale d’identification des personnes. Si vous n’êtes pas
       concerné par ce cas, veuillez préciser votre base légale.
     </p>
   </Quote>
@@ -122,14 +122,14 @@ const AdditionalMiseEnOeuvreContent = ({
 }) => (
   <>
     <YesNoRadioInput
-      label="Votre collectivité utilise-t-elle déjà FranceConnect pour d'autres de ses services en ligne ?"
+      label="Votre collectivité utilise-t-elle déjà FranceConnect pour d’autres de ses services en ligne ?"
       name="additional_content.utilisation_franceconnect_autre_projet"
       value={utilisation_franceconnect_autre_projet}
       disabled={disabled}
       onChange={onChange}
     />
     <DateInput
-      label="A quelle date prévoyez-vous d'avoir achevé l'intégration de l'identification FranceConnect sur le service en ligne visé ?"
+      label="A quelle date prévoyez-vous d’avoir achevé l’intégration de l’identification FranceConnect sur le service en ligne visé ?"
       name="additional_content.date_integration"
       value={date_integration}
       disabled={disabled}
@@ -138,7 +138,7 @@ const AdditionalMiseEnOeuvreContent = ({
     <TextInput
       label="Indiquez les types de dépenses qui seront financées à travers la subvention accordée ?"
       name="additional_content.type_de_depenses"
-      placeholder="paiement du prestataire, paiement de l'éditeur, etc."
+      placeholder="paiement du prestataire, paiement de l’éditeur, etc."
       value={type_de_depenses}
       disabled={disabled}
       onChange={onChange}
@@ -174,7 +174,7 @@ const FranceRelanceFc = ({
         { id: 'cadre-juridique', label: 'Cadre juridique' },
         { id: 'donnees-personnelles', label: 'Données personnelles' },
         { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: "Modalités d'utilisation" },
+        { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
         {
@@ -198,7 +198,7 @@ const FranceRelanceFc = ({
       <Form
         enrollmentId={enrollmentId}
         target_api="francerelance_fc"
-        title="Demande d'habilitation juridique à FranceRelance - Guichet FranceConnect"
+        title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
         DemarcheDescription={DemarcheDescription}
         demarches={demarches}
       >
