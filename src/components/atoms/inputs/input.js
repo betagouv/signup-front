@@ -13,6 +13,7 @@ export const Input = ({
   disabled,
   onChange,
   ariaLabel,
+  required,
 }) => {
   // id will be set once when the component initially renders, but never again
   // we generate an unique id prefixed by the field name
@@ -33,6 +34,7 @@ export const Input = ({
         readOnly={disabled}
         value={value}
         aria-label={ariaLabel}
+        required={required}
       />
       {meta && (
         <small className="card__meta">

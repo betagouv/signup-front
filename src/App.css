@@ -109,7 +109,7 @@ input[type='tel']::placeholder {
   background-color: #e8e8e8;
 }
 
-.panel > h2 {
+.panel h2 {
   font-weight: normal;
 }
 

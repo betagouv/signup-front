@@ -2,17 +2,19 @@ import React, { useState } from 'react';
 import { createUser } from '../../../services/users';
 import TextInput from '../../atoms/inputs/TextInput';
 import AutorenewIcon from '../../atoms/icons/autorenew';
+import { getErrorMessages } from '../../../lib';
 
 export const AddUser = () => {
   const [newUserEmail, setNewUserEmail] = useState('');
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = event => {
     setNewUserEmail(event.target.value);
   };
 
-  const handleAddUser = async () => {
+  const onSubmit = async event => {
+    event.preventDefault();
     setSuccess(false);
     setError(false);
     try {
@@ -22,7 +24,7 @@ export const AddUser = () => {
         setNewUserEmail('');
       }
     } catch (e) {
-      setError(true);
+      setError(getErrorMessages(e));
     }
   };
 
@@ -36,19 +38,16 @@ export const AddUser = () => {
           <AutorenewIcon size={16} />.
         </div>
       )}
-      {error && (
-        <div className="notification error">
-          Erreur lors de la création de l'utilisateur.
-        </div>
-      )}
-      <TextInput
-        label="Adresse email du nouvel utilisateur à ajouter"
-        onChange={handleChange}
-        value={newUserEmail}
-      />
-      <button className="button" onClick={handleAddUser}>
-        Ajouter l'utilisateur
-      </button>
+      {error && <div className="notification error">{error}</div>}
+      <form onSubmit={onSubmit}>
+        <TextInput
+          label="Adresse email du nouvel utilisateur à ajouter"
+          onChange={handleChange}
+          value={newUserEmail}
+          required
+        />
+        <button type="submit">Ajouter l'utilisateur</button>
+      </form>
     </div>
   );
 };
