@@ -44,6 +44,7 @@ import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 import ApiHomePlus from './pages/ApiHomePlus';
 import AdminPage from './components/templates/AdminPage';
+import Hubee from './pages/Hubee';
 
 const history = createBrowserHistory();
 
@@ -212,6 +213,11 @@ const App = () => (
                   <PrivateRoute
                     path="/api-home-plus/:enrollmentId?"
                     component={ApiHomePlus}
+                  />
+
+                  <PrivateRoute
+                    path="/hubee/:enrollmentId?"
+                    component={Hubee}
                   />
 
                   <PrivateRoute

@@ -113,16 +113,22 @@ describe('utils', () => {
 
   describe('isValidNAFCode', () => {
     it('should return true for COMMUNE D HEM', () => {
-      expect(isValidNAFCode('api_particulier', '8411Z')).toBe(true);
+      expect(isValidNAFCode('api_particulier', '84.11Z')).toBe(true);
     });
     it('should return true for ASSISTANCE PUBLIQUE HOPITAUX DE PARIS', () => {
-      expect(isValidNAFCode('api_particulier', '8610Z')).toBe(true);
+      expect(isValidNAFCode('api_particulier', '86.10Z')).toBe(true);
     });
     it('should return false for RED NEEDLES', () => {
-      expect(isValidNAFCode('api_particulier', '6202A')).toBe(false);
+      expect(isValidNAFCode('api_particulier', '62.02A')).toBe(false);
     });
     it('should return true if provider does not filter on NAF code', () => {
-      expect(isValidNAFCode('dgfip', '6202A')).toBe(true);
+      expect(isValidNAFCode('dgfip', '62.02A')).toBe(true);
+    });
+    it('should return true for Commune de bresse vallons', () => {
+      expect(isValidNAFCode('hubee', '84.11Z')).toBe(true);
+    });
+    it('should return false for Cpam de loire atlantique (cpam)', () => {
+      expect(isValidNAFCode('hubee', '84.30A')).toBe(false);
     });
   });
 
