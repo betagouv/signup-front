@@ -6,7 +6,6 @@ import Table from './Table';
 import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
-import AddUser from './AddUser';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
 
 const UserList = () => {
@@ -89,73 +88,61 @@ const UserList = () => {
   };
 
   return (
-    <section className="section-grey full-width-section user-page">
-      <div className="container">
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h2>Liste des utilisateurs</h2>
-          <ul className="nav__links">
-            <li className="nav__item">
-              <button
-                className={`nav-button ${!showAllUsers ? 'active_link' : ''}`}
-                onClick={() => setShowAllUsers(false)}
-              >
-                Utilisateurs avec droits
-              </button>
-            </li>
-            <li className="nav__item">
-              <button
-                className={`nav-button ${showAllUsers ? 'active_link' : ''}`}
-                onClick={() => setShowAllUsers(true)}
-              >
-                Tous les utilisateurs
-              </button>
-            </li>
-            <li className="nav__item">
-              <button className={`nav-button`} onClick={handleRefreshData}>
-                <AutorenewIcon size={16} />
-              </button>
-            </li>
-          </ul>
-        </div>
-        <div className="panel">
-          {isLoading ? (
-            <div className="layout-full-page" style={{ minHeight: '800px' }}>
-              <Loader />
-            </div>
-          ) : (
-            <>
-              <Table
-                columns={columns}
-                data={users}
-                updateData={updateRole}
-                filterTypes={filterTypes}
-                skipReset={skipReset}
-                initialState={{ hiddenColumns: ['id'] }}
-              />
-              <div>
-                Légende :
-                <ul>
-                  <li>r (reporter) : rapporteur</li>
-                  <li>i (instructor) : instructeur</li>
-                  <li>s (subscriber) : abonné</li>
-                </ul>
-                <a href="https://github.com/betagouv/datapass#les-roles-dans-datapass">
-                  Plus d'info
-                </a>
-              </div>
-            </>
-          )}
-          <div className="row">
-            <div className="card">
-              <div className="card__content">
-                <h3>Ajouter un utilisateur</h3>
-                <AddUser />
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="panel">
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <h2>Liste des utilisateurs</h2>
+        <ul className="nav__links">
+          <li className="nav__item">
+            <button
+              className={`nav-button ${!showAllUsers ? 'active_link' : ''}`}
+              onClick={() => setShowAllUsers(false)}
+            >
+              Utilisateurs avec droits
+            </button>
+          </li>
+          <li className="nav__item">
+            <button
+              className={`nav-button ${showAllUsers ? 'active_link' : ''}`}
+              onClick={() => setShowAllUsers(true)}
+            >
+              Tous les utilisateurs
+            </button>
+          </li>
+          <li className="nav__item">
+            <button className={`nav-button`} onClick={handleRefreshData}>
+              <AutorenewIcon size={16} />
+            </button>
+          </li>
+        </ul>
       </div>
-    </section>
+      {isLoading ? (
+        <div className="layout-full-page" style={{ minHeight: '800px' }}>
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <Table
+            columns={columns}
+            data={users}
+            updateData={updateRole}
+            filterTypes={filterTypes}
+            skipReset={skipReset}
+            initialState={{ hiddenColumns: ['id'] }}
+          />
+          <div>
+            Légende :
+            <ul>
+              <li>r (reporter) : rapporteur</li>
+              <li>i (instructor) : instructeur</li>
+              <li>s (subscriber) : abonné</li>
+            </ul>
+            <a href="https://github.com/betagouv/datapass#les-roles-dans-datapass">
+              Plus d'info
+            </a>
+          </div>
+        </>
+      )}
+    </div>
   );
 };
 

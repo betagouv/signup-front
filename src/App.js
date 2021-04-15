@@ -36,15 +36,14 @@ import ApiImpotParticulierProduction from './pages/DgfipPages/ApiImpotParticulie
 import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import AgenceBio from './pages/AgenceBio';
-import UserList from './components/templates/AdminPages/UserList';
 import Loader from './components/atoms/Loader';
 import ApiServiceNational from './pages/ApiServiceNational';
 import FranceRelanceFc from './pages/FranceRelanceFc';
-import RgpdUpdate from './components/templates/AdminPages/RgpdUpdate';
 import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 import ApiHomePlus from './pages/ApiHomePlus';
+import AdminPage from './components/templates/AdminPage';
 
 const history = createBrowserHistory();
 
@@ -225,12 +224,7 @@ const App = () => (
                     component={Enrollment}
                   />
 
-                  <PrivateRoute path="/admin/users" component={UserList} />
-
-                  <PrivateRoute
-                    path="/admin/rgpd-update"
-                    component={RgpdUpdate}
-                  />
+                  <PrivateRoute path="/admin" component={AdminPage} />
                 </>
               )}
             </main>

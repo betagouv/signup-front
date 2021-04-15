@@ -39,12 +39,7 @@ const Header = ({ user, logout }) => {
             {user && user.roles.includes('administrator') && (
               <>
                 <li className="nav__item">
-                  <a href="/admin/rgpd-update">
-                    Modification des contacts RGPD
-                  </a>
-                </li>
-                <li className="nav__item">
-                  <a href="/admin/users">Gestion des rôles</a>
+                  <a href="/admin">Administration</a>
                 </li>
               </>
             )}
