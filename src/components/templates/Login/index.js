@@ -40,6 +40,15 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
           newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
         />
       );
+    case 'hubee':
+      return (
+        <WelcomeMessage
+          isOnNewEnrollmentPage={isOnNewEnrollmentPage}
+          targetApi={targetApi}
+          isService={true}
+          newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
+        />
+      );
     default:
       return (
         <WelcomeMessage

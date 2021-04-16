@@ -21,6 +21,7 @@ export const getMailAttributes = (selectedAction, targetApi) => {
     le_taxi_chauffeurs: 'contact@api.gouv.fr',
     cartobio: 'cartobio@beta.gouv.fr',
     aidants_connect: 'contact@aidantsconnect.beta.gouv.fr',
+    hubee: 'contact@api.gouv.fr',
   };
 
   const subjects = {
@@ -79,6 +80,8 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
       aidants_connect:
         'Votre demande d’habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d’Aidants Connect. Retrouvez dès maintenant tous les détails du processus d’habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation .',
+      hubee:
+        'Votre demande d’abonnement a été validée et vous disposez désormais d’un compte d’Administrateur Local sur le Portail HubEE.',
     },
     refuse_application: {
       cartobio:
@@ -139,6 +142,23 @@ Afin d’évaluer et d’améliorer notre service, un questionnaire vous sera en
 Cela nous permet de mieux comprendre si ces données sont satisfaisantes et à quels type d’analyse ou d’actions elles mènent.
 
 Je suis disponible si vous avez des remarques ou questions.`,
+      hubee: `Pour finaliser la procédure d’abonnement connectez-vous au Portail HubEE avec votre identifiant DataPass que vous avez créé lors de la demande d’abonnement (bouton en bas de la page de connexion):
+
+Ensuite, rendez-vous dans le menu de gauche dans la rubrique « Abonnement », et sélectionnez votre abonnement dans la liste pour en finaliser le paramétrage, avec les options suivantes :
+
+- Choix du mode d’accès aux données (API ou Portail).
+Attention – le mode API ne peut être choisi que si votre commune dispose d’un logiciel métier en capacité de s’interfacer à HubEE. Veuillez contacter votre éditeur pour vous en assurer avant de faire ce choix.
+Une fois ce choix fait, HubEE générera les crédentials (clientId/Clientsecret) que vous devrez copier/coller dans le logiciel métier.
+
+- Choix de la date d’activation de l’abonnement
+Si vous avez choisi le mode « Portail », n’oublier pas de créer les comptes des agents de votre commune avant cette date
+
+- Choix du choix de l’activation de la notification par courriel lors de la mise à disposition de données et de sa fréquence (actif pour les 2 modes d’accès)
+
+Nous vous conseillons également fortement de créer un deuxième compte d’administrateur local pour l’un de vos collègues.
+
+Pour vous connecter au portail HubEE, un lien vous sera communiqué prochainement.
+`,
     },
     refuse_application: {
       cartobio: `Voici néanmoins d’autres ressources ouvertes sur le sujet. Elles pourront peut-être vous aider :
