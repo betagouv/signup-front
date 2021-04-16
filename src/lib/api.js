@@ -23,7 +23,7 @@ export const TARGET_API_LABELS = {
   api_service_national: 'API Service National',
   api_statut_etudiant: 'API Statut étudiant',
   api_home_plus: 'API Home +',
-  hubee: 'abonnement Hubee',
+  hubee: 'HubEE',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [

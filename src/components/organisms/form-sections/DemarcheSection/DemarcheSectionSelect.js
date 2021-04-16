@@ -72,12 +72,10 @@ export const DemarcheSectionSelect = ({ title, body }) => {
             </p>
           </ConfirmationModal>
         )}
-        <h2>{title ? title : 'Modèles préremplis'}</h2>
+        <h2>{title || 'Modèles préremplis'}</h2>
         <Select
           label={
-            body ? (
-              body
-            ) : (
+            body || (
               <>
                 Nous avons identifié plusieurs cas d’usage de cette API. Si
                 votre demande s’inscrit dans un des cas ci-dessous,

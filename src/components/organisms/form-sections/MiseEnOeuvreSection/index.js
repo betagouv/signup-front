@@ -9,7 +9,7 @@ import Quote from '../../../atoms/inputs/Quote';
 const MiseEnOeuvreSection = ({
   initialContacts = {},
   AdditionalMiseEnOeuvreContent = () => null,
-  sectionTitle = 'La mise en œuvre du service',
+  title = 'La mise en œuvre du service',
   MiseEnOeuvreDescription = () => (
     <Quote>
       <p>
@@ -57,7 +57,7 @@ const MiseEnOeuvreSection = ({
 
   return (
     <ScrollablePanel scrollableId="contacts-moe">
-      <h2>{sectionTitle}</h2>
+      <h2>{title}</h2>
       <MiseEnOeuvreDescription />
       <AdditionalMiseEnOeuvreContent
         disabled={disabled}
@@ -108,7 +108,7 @@ const contactPropTypesShape = {
 MiseEnOeuvreSection.propTypes = {
   AdditionalMiseEnOeuvreContent: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
-  sectionTitle: PropTypes.string,
+  title: PropTypes.string,
   MiseEnOeuvreDescription: PropTypes.func,
 };
 

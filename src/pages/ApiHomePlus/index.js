@@ -220,7 +220,7 @@ const ApiHomePlus = ({
         />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection
-          sectionTitle={'L’équipe du projet'}
+          title={'L’équipe du projet'}
           MiseEnOeuvreDescription={() => null}
           initialContacts={contacts}
         />

@@ -321,7 +321,7 @@ const ApiEntreprise = ({
         />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection
-          sectionTitle="Coordonnées des référents du service"
+          title="Coordonnées des référents du service"
           initialContacts={contacts}
           MiseEnOeuvreDescription={MiseEnOeuvreDescription}
         />

@@ -98,7 +98,7 @@ const AidantsConnect = ({
         <StructureSection />
         <LabelsSection />
         <MiseEnOeuvreSection
-          sectionTitle="Coordonnées du référent de votre structure"
+          title="Coordonnées du référent de votre structure"
           initialContacts={contacts}
           MiseEnOeuvreDescription={() => null}
         />

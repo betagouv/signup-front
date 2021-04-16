@@ -13,6 +13,7 @@ import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import Helper from '../../components/atoms/Helper';
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
+import { ApplicationMetier } from '../../components/organisms/form-sections/hubee-sections/ApplicationMetier';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -84,6 +85,11 @@ const contacts = {
 const CadreJuridiqueDescription = () => (
   <Quote>
     <p>
+      La loi n° 78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers
+      et aux libertés définit les principes à respecter lors de la collecte, du
+      traitement et de la conservation de données personnelles.
+    </p>
+    <p>
       Pour pouvoir bénéficier de l’abonnement aux démarches en ligne, le cadre
       légal et réglementaire doit permettre la transmission des données
       personnelles issues des démarches en ligne à votre commune.
@@ -97,11 +103,6 @@ const CadreJuridiqueDescription = () => (
 );
 
 const target_api = 'hubee';
-
-// Nom de l’application métier
-// Nom de l’éditeur
-// Numéro de Version
-// Pour compléter votre demande, il est nécessaire de joindre un courrier officiel de votre commune
 
 const Hubee = ({
   match: {
@@ -121,7 +122,8 @@ const Hubee = ({
         { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
         { id: 'description', label: 'Description' },
         { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'contacts-moe', label: 'L’équipe' },
+        { id: 'contacts-moe', label: 'Équipe' },
+        { id: 'application-metier', label: 'Application' },
         { id: 'cgu', label: 'Modalités d’utilisation' },
       ]}
       contactInformation={[
@@ -147,16 +149,20 @@ const Hubee = ({
           title="Les démarches en ligne auxquelles vous souhaitez abonner votre commune"
           body="Sélectionnez les démarches en lignes auxquelles vous souhaitez abonner votre commune :"
         />
-        <DescriptionSection />
+        <DescriptionSection
+          title="Description du téléservice"
+          intituleLabel="Nom du téléservice"
+        />
         <CadreJuridiqueSection
           CadreJuridiqueDescription={CadreJuridiqueDescription}
         />
         <MiseEnOeuvreSection
-          sectionTitle={'L’équipe du projet'}
+          title={'L’équipe en charge du téléservice'}
           MiseEnOeuvreDescription={() => null}
           initialContacts={contacts}
         />
-        <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
+        <ApplicationMetier />
+        <CguSection cguLink="" />
       </Form>
     </div>
   </div>

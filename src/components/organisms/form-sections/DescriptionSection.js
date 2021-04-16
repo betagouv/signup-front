@@ -6,6 +6,8 @@ import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 
 const DescriptionSection = ({
+  title,
+  intituleLabel,
   intitulePlaceholder = '',
   descriptionPlaceholder = '',
   descriptionHelper = null,
@@ -18,9 +20,9 @@ const DescriptionSection = ({
 
   return (
     <ScrollablePanel scrollableId="description">
-      <h2>Description de votre service</h2>
+      <h2>{title || 'Description de votre service'}</h2>
       <TextInput
-        label="Nom du service"
+        label={intituleLabel || 'Nom du service'}
         helper={
           'Il doit permettre de faciliter l’identification de votre service. Cette information pouvant être rendue ' +
           'publique, il convient d’être synthétique et précis.'
