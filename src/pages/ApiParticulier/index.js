@@ -212,7 +212,7 @@ const ApiParticulier = ({
         />
         <DonneesPersonnellesSection />
         <MiseEnOeuvreSection initialContacts={contacts} />
-        <CguSection cguLink="http://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
+        <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
       </Form>
     </div>
   </div>
