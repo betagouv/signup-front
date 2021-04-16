@@ -200,9 +200,17 @@ export function triggerEnrollment({
   );
 }
 
-export function updateRgpdContact({ enrollmentId, email, role }) {
+export function updateRgpdContact({
+  enrollmentId,
+  label,
+  email,
+  phoneNumber,
+  role,
+}) {
   const enrollment = {};
-  enrollment[`${role}_email`] = email;
+  if (label) enrollment[`${role}_label`] = label;
+  if (email) enrollment[`${role}_email`] = email;
+  if (phoneNumber) enrollment[`${role}_phone_number`] = phoneNumber;
   const serializedEnrollment = serializeEnrollment(enrollment);
   return httpClient
     .patch(

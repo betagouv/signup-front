@@ -43,7 +43,7 @@ import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
 import ApiHermesSandbox from './pages/DgfipPages/ApiHermesSandbox';
 import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 import ApiHomePlus from './pages/ApiHomePlus';
-import AdminPage from './components/templates/AdminPage';
+import Admin from './components/templates/Admin';
 import Hubee from './pages/Hubee';
 
 const history = createBrowserHistory();
@@ -230,7 +230,7 @@ const App = () => (
                     component={Enrollment}
                   />
 
-                  <PrivateRoute path="/admin" component={AdminPage} />
+                  <PrivateRoute path="/admin" component={Admin} />
                 </>
               )}
             </main>
