@@ -75,7 +75,7 @@ const ApiHermesSandbox = ({
           </Quote>
         </TextSection>
         <CadreJuridiqueSection />
-        <CguSection cguLink="/docs/cgu_api_r2p_bac_a_sable_septembre2020_v2.6.pdf" />
+        <CguSection cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_1_19-04-2021.pdf" />
         <TextSection title="" id="next-steps-description">
           <SuiteDescription />
         </TextSection>
