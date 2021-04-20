@@ -20,7 +20,13 @@ const Index = () => {
     disabled,
     isUserEnrollmentLoading,
     onChange,
-    enrollment: { organization_id = null, siret = '', target_api, user: owner },
+    enrollment: {
+      organization_id = null,
+      nom_raison_sociale,
+      siret = '',
+      target_api,
+      user: owner,
+    },
   } = useContext(FormContext);
 
   const [title, setTitle] = useState('');
@@ -226,7 +232,7 @@ const Index = () => {
               )}
               <div className="organization-title">
                 <span>
-                  {title}{' '}
+                  {title || nom_raison_sociale}{' '}
                   <a
                     href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
                     target="_blank"
