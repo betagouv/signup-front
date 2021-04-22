@@ -232,7 +232,7 @@ const Index = () => {
               )}
               <div className="organization-title">
                 <span>
-                  {title || nom_raison_sociale}{' '}
+                  {title || (disabled && nom_raison_sociale)}{' '}
                   <a
                     href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
                     target="_blank"
