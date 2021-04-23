@@ -6,7 +6,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 function getOrganizationActivityDetails(NafCode) {
   return httpClient
-    .get(`${BACK_HOST}/api/insee/naf/${NafCode}`, {
+    .get(`${BACK_HOST}/api/insee/code_naf/${NafCode}`, {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data);
