@@ -20,6 +20,25 @@
       "contacts": {}
     }
   },
+  "abelium": {
+    "label": "Tarification des services liés à l'enfance avec Abelium",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Service Périscolaire, Restauration Scolaire, Extrascolaire, Accueil des loisirs",
+      "description": "Le logiciel Domino 'Web permet la facturation des prestations liées à la restauration scolaire, les garderies, les centres de loisirs et les crèches. Le calcul du prix des prestations est réalisé selon un ou plusieurs critères suivants : en fonction des revenus des familles, en fonction de leur quotient familial.\nModule DIABOLO (Gestion des structures enfance, restauration, périscolaire, extrascolaire et jeunesse), le calcul du tarif des consommations (tarif repas, tarif de l’accueil périscolaire, tarif demi-journée ou journée ALSH, etc.) est lié soit au montant du quotient familial soit au revenu de la famille (Revenu brut global).\nAbelium Collectivités accompagne le demandeur lors de la mise en place de la demande des informations sur l'application API.",
+      "data_recipients": "Agents du service",
+      "data_retention_period": 60,
+      "fondement_juridique_title": "Joindre en pièce jointe la délibération",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      }
+    }
+  },
   "agora-plus": {
     "label": "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes) avec l'éditeur AgoraPlus",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
