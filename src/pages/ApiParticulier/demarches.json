@@ -40,7 +40,7 @@
     }
   },
   "agora-plus": {
-    "label": "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes) avec l'éditeur AgoraPlus",
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec l'éditeur AgoraPlus",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
     "state": {
       "intitule": "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes)",
@@ -85,7 +85,7 @@
     }
   },
   "bl-enfance-berger-levrault": {
-    "label": "Tarification des services de la petite enfance avec l'éditeur Berger Levrault",
+    "label": "Tarification activités enfance et petite enfance avec l'éditeur Berger Levrault",
     "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
     "state": {
       "intitule": "Calcul du quotient familial pour la facturation des activités scolaires, périscolaires et loisirs",
@@ -282,7 +282,7 @@
     }
   },
   "teamnet": {
-    "label": "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées avec l'éditeur Teamnet",
+    "label": "Dématérialisation des demandes de facturation des services liés à l’enfance avec Teamnet",
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
     "state": {
       "intitule": "Déclaration des revenus et calcul du quotient familial pour actualiser les tarifs appliqués aux différentes prestations facturées",
