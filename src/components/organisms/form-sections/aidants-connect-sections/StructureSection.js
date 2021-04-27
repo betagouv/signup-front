@@ -136,9 +136,11 @@ export const StructureSection = () => {
       <TextInput
         label="Code postal de la structure"
         name="additional_content.organization_postal_code"
+        placeholder={'12345'}
         value={organization_postal_code}
         disabled={disabled}
         onChange={onChange}
+        maxLength={5}
       />
       <YesNoRadioInput
         label={
