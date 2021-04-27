@@ -69,7 +69,7 @@ const contacts = {
         </p>
         <p>
           Cette personne disposera des droits d’accès à la gestion des
-          abonnements au sein du Hub d'Échange de l'État. Elle pourra également
+          abonnements au sein du Hub d’Échange de l’État. Elle pourra également
           être contactée en cas de problème technique.
         </p>
       </>
