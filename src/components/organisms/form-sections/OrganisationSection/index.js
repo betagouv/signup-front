@@ -31,6 +31,7 @@ const Index = () => {
 
   const [title, setTitle] = useState('');
   const [adresse, setAdresse] = useState('');
+  const [codePostal, setCodePostal] = useState('');
   const [ville, setVille] = useState('');
   const [activite, setActivite] = useState('');
   const [activiteLabel, setActiviteLabel] = useState('');
@@ -101,6 +102,7 @@ const Index = () => {
           title,
           activite,
           adresse,
+          code_postal,
           ville,
           etat_administratif,
         } = await getCachedOrganizationInformation(siret);
@@ -108,6 +110,7 @@ const Index = () => {
         if (etat_administratif !== 'A') {
           setTitle('');
           setAdresse('');
+          setCodePostal('');
           setVille('');
           setActivite('');
           setActiviteLabel('');
@@ -117,6 +120,7 @@ const Index = () => {
         } else {
           setTitle(title);
           setAdresse(adresse);
+          setCodePostal(code_postal);
           setVille(ville);
           setActivite(activite);
           setIsOrganizationInfoLoading(false);
@@ -126,6 +130,7 @@ const Index = () => {
       } catch (e) {
         setTitle('');
         setAdresse('');
+        setCodePostal('');
         setVille('');
         setActivite('');
         setActiviteLabel('');
@@ -253,7 +258,9 @@ const Index = () => {
                 )}
               </div>
               <div className="organization-subtitle">{adresse}</div>
-              <div className="organization-subtitle">{ville}</div>
+              <div className="organization-subtitle">
+                {codePostal} {ville}
+              </div>
               <div className="organization-subtitle">SIRET : {siret}</div>
               <div className="organization-subtitle">
                 Code NAF : {activite}{' '}

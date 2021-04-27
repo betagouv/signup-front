@@ -25,6 +25,7 @@ export const StructureSection = () => {
         organization_type = '',
         organization_address = '',
         organization_postal_code = '',
+        organization_city = '',
         organization_website = '',
         associated_public_organisation = '',
         participation_reseau = null,
@@ -37,12 +38,13 @@ export const StructureSection = () => {
     const fetchOrganizationInfo = async siret => {
       try {
         const {
-          geo_adresse,
+          adresse,
           code_postal,
+          ville,
         } = await getCachedOrganizationInformation(siret);
         onChange({
           target: {
-            value: geo_adresse,
+            value: adresse,
             name: 'additional_content.organization_address',
           },
         });
@@ -50,6 +52,12 @@ export const StructureSection = () => {
           target: {
             value: code_postal,
             name: 'additional_content.organization_postal_code',
+          },
+        });
+        onChange({
+          target: {
+            value: ville,
+            name: 'additional_content.organization_city',
           },
         });
       } catch (e) {
@@ -61,7 +69,8 @@ export const StructureSection = () => {
       !disabled &&
       siret &&
       !organization_address &&
-      !organization_postal_code
+      !organization_postal_code &&
+      !organization_city
     ) {
       fetchOrganizationInfo(siret);
     }
@@ -71,6 +80,7 @@ export const StructureSection = () => {
     siret,
     organization_address,
     organization_postal_code,
+    organization_city,
   ]);
 
   return (
@@ -136,11 +146,17 @@ export const StructureSection = () => {
       <TextInput
         label="Code postal de la structure"
         name="additional_content.organization_postal_code"
-        placeholder={'12345'}
         value={organization_postal_code}
         disabled={disabled}
         onChange={onChange}
         maxLength={5}
+      />
+      <TextInput
+        label="Ville de la structure"
+        name="additional_content.organization_city"
+        value={organization_city}
+        disabled={disabled}
+        onChange={onChange}
       />
       <YesNoRadioInput
         label={

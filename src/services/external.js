@@ -1,5 +1,5 @@
 import httpClient from '../lib/http-client';
-import { mapValues, memoize } from 'lodash';
+import { memoize } from 'lodash';
 import { RateLimiter } from 'limiter';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -36,7 +36,6 @@ const getOrganizationInformation = async siret => {
         indice_repetition,
         type_voie,
         libelle_voie,
-        geo_adresse,
         code_postal,
         libelle_commune,
         activite_principale,
@@ -64,19 +63,15 @@ const getOrganizationInformation = async siret => {
     .filter(e => e)
     .join(' ');
 
-  return mapValues(
-    {
-      title: denomination || denomination_usuelle || prenom_nom,
-      activite: `${activite_principale}`,
-      adresse,
-      ville: `${code_postal} ${libelle_commune}`,
-      etat_administratif,
-      geo_adresse,
-      code_postal,
-      siret,
-    },
-    v => (v ? v : 'Non renseigné')
-  );
+  return {
+    title: denomination || denomination_usuelle || prenom_nom,
+    activite: `${activite_principale}`,
+    adresse,
+    code_postal,
+    ville: libelle_commune,
+    etat_administratif,
+    siret,
+  };
 };
 
 export const getCachedOrganizationInformation = memoize(
