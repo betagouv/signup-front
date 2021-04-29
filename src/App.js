@@ -45,6 +45,7 @@ import ApiHermesProduction from './pages/DgfipPages/ApiHermesProduction';
 import ApiHomePlus from './pages/ApiHomePlus';
 import Admin from './components/templates/Admin';
 import Hubee from './pages/Hubee';
+import ApiProSanteConnect from './pages/ApiProSanteConnect';
 
 const history = createBrowserHistory();
 
@@ -218,6 +219,11 @@ const App = () => (
                   <PrivateRoute
                     path="/hubee/:enrollmentId?"
                     component={Hubee}
+                  />
+
+                  <PrivateRoute
+                    path="/api-pro-sante-connect/:enrollmentId?"
+                    component={ApiProSanteConnect}
                   />
 
                   <PrivateRoute

@@ -24,6 +24,7 @@ export const TARGET_API_LABELS = {
   api_statut_etudiant: 'API Statut étudiant',
   api_home_plus: 'API Home +',
   hubee: 'HubEE',
+  api_pro_sante_connect: 'API Pro Santé Connect',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -51,6 +52,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'api_hermes_production',
   // 'api_home_plus',
   // 'hubee',
+  // 'api_pro_sante_connect',
 ];
 
 export const API_ICONS = {
@@ -75,4 +77,5 @@ export const API_ICONS = {
   francerelance_fc: 'logo-fc-with-label.png',
   api_home_plus: 'logo-urssaf.jpg',
   hubee: 'logo-dinum.png',
+  api_pro_sante_connect: 'logo-ans.png',
 };
