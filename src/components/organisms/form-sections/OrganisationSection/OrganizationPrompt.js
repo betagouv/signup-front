@@ -10,6 +10,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const OrganizationPrompt = ({
   selectedOrganizationId,
   onSelect,
+  onClose,
   organizations,
 }) => {
   const handleChange = ({ target: { value } }) => onSelect(parseInt(value));
@@ -45,7 +46,7 @@ const OrganizationPrompt = ({
     <AriaModal
       titleText="Sélectionnez l’organisation à associer à cette demande :"
       // we use this no op function to close the modal
-      onExit={() => onSelect(selectedOrganizationId)}
+      onExit={() => onClose()}
       focusDialog={true}
       getApplicationNode={() => document.getElementById('root')}
       scrollDisabled={false}
@@ -55,7 +56,7 @@ const OrganizationPrompt = ({
         id="modal"
         style={{ display: 'flex' }}
         // we use this no op function to close the modal
-        onClick={() => onSelect(selectedOrganizationId)}
+        onClick={() => onClose()}
       >
         <div className="modal" onClick={e => e.stopPropagation()}>
           <div className="form__group">
@@ -92,7 +93,7 @@ const OrganizationPrompt = ({
           <button
             id="close-warning-modal"
             className="closing_cross"
-            onClick={() => onSelect(selectedOrganizationId)}
+            onClick={() => onClose()}
             aria-label="Conserver l’organisation actuelle"
           >
             ×
@@ -106,6 +107,7 @@ const OrganizationPrompt = ({
 OrganizationPrompt.propTypes = {
   selectedOrganizationId: PropTypes.number,
   onSelect: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   organizations: PropTypes.array.isRequired,
 };
 

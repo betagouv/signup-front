@@ -274,6 +274,7 @@ const Index = () => {
           <OrganizationPrompt
             selectedOrganizationId={organization_id}
             onSelect={onOrganizationChange}
+            onClose={() => setShowPrompt(false)}
             organizations={user.organizations}
           />
         )}
