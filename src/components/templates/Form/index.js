@@ -12,7 +12,7 @@ import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
 import PreviousEnrollmentSection from '../../organisms/form-sections/PreviousEnrollmentSection';
 import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
 import { TARGET_API_LABELS } from '../../../lib/api';
-import { getStateFromUrlParams } from '../../../lib';
+import { getStateFromUrlParams, goBack } from '../../../lib';
 
 export const FormContext = React.createContext();
 
@@ -141,16 +141,8 @@ export const Form = ({
     successMessages = [],
     redirectToHome = false,
   }) => {
-    if (
-      redirectToHome &&
-      isObject(history.location.state) &&
-      history.location.state.fromList
-    ) {
-      return history.goBack();
-    }
-
     if (redirectToHome) {
-      return history.push('/');
+      return goBack(history);
     }
 
     setErrorMessages(errorMessages);

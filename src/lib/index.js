@@ -217,8 +217,22 @@ export function openLink(e, history, targetUrl) {
     // metaKey is cmd on mac
     window.open(targetUrl); // open in new tab
   } else {
-    history.push(targetUrl, { fromList: true });
+    const previousPath = `${window.location.path || '/'}${
+      window.location.search
+    }`;
+    history.push(targetUrl, { previousPath });
   }
+}
+
+export function goBack(history) {
+  if (
+    isObject(history.location.state) &&
+    !isEmpty(history.location.state.previousPath)
+  ) {
+    return history.push(history.location.state.previousPath);
+  }
+
+  return history.push('/');
 }
 
 export const getStateFromUrlParams = (defaultState = {}) => {

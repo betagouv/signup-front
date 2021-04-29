@@ -173,9 +173,8 @@ class ActionButton extends React.Component {
 
       const resultMessages = await this.triggerAction(action);
 
-      this.props.handleSubmit(resultMessages);
-
       this.setState({ isLoading: false });
+      this.props.handleSubmit(resultMessages);
     };
   };
 
