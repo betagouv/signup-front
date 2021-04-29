@@ -87,7 +87,7 @@ export const Contact = ({
                   <FrontHandIcon color="var(--blue)" size={28} />
                 </div>
                 <div style={{ textAlign: 'left' }}>
-                  Je suis {heading.toLowerCase()}.<br />
+                  Je suis {(heading || '').toLowerCase()}.<br />
                   Remplir avec mes informations.
                 </div>
               </button>
