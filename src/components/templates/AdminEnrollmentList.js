@@ -24,7 +24,7 @@ import MultiSelect from '../molecules/MultiSelect';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
-const INBOXES = {
+const getInboxes = user => ({
   primary: {
     label: 'Demandes en cours',
     sorted: [
@@ -36,7 +36,9 @@ const INBOXES = {
     filtered: [
       {
         id: 'status',
-        value: ['sent', 'modification_pending'],
+        value: isEmpty(user.roles)
+          ? ['sent', 'modification_pending', 'pending']
+          : ['sent', 'modification_pending'],
       },
     ],
   },
@@ -55,7 +57,7 @@ const INBOXES = {
       },
     ],
   },
-};
+});
 
 class AdminEnrollmentList extends React.Component {
   constructor(props) {
@@ -67,8 +69,8 @@ class AdminEnrollmentList extends React.Component {
       loading: true,
       totalPages: 0,
       page: 0,
-      sorted: INBOXES['primary'].sorted,
-      filtered: INBOXES['primary'].filtered,
+      sorted: getInboxes(this.props.user)['primary'].sorted,
+      filtered: getInboxes(this.props.user)['primary'].filtered,
       previouslySelectedEnrollmentId: 0,
       inbox: 'primary',
     };
@@ -290,8 +292,11 @@ class AdminEnrollmentList extends React.Component {
 
     this.setState({
       inbox: newInbox,
-      sorted: INBOXES[newInbox].sorted,
-      filtered: [...filtered, ...INBOXES[newInbox].filtered],
+      sorted: getInboxes(this.props.user)[newInbox].sorted,
+      filtered: [
+        ...filtered,
+        ...getInboxes(this.props.user)[newInbox].filtered,
+      ],
       page: 0,
       previouslySelectedEnrollmentId: 0,
     });
@@ -352,7 +357,7 @@ class AdminEnrollmentList extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h2>Liste des demandes</h2>
               <ul className="nav__links">
-                {Object.keys(INBOXES).map(currentInbox => (
+                {Object.keys(getInboxes(this.props.user)).map(currentInbox => (
                   <li key={currentInbox} className="nav__item">
                     <button
                       className={`nav-button ${
@@ -360,7 +365,7 @@ class AdminEnrollmentList extends React.Component {
                       }`}
                       onClick={() => this.onSelectInbox(currentInbox)}
                     >
-                      {INBOXES[currentInbox].label}
+                      {getInboxes(this.props.user)[currentInbox].label}
                     </button>
                   </li>
                 ))}
