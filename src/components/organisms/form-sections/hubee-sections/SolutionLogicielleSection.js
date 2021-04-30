@@ -3,7 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import TextInput from '../../../atoms/inputs/TextInput';
 
-export const ApplicationMetier = () => {
+export const SolutionLogicielleSection = () => {
   const {
     disabled,
     onChange,
@@ -17,7 +17,7 @@ export const ApplicationMetier = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="application-metier">
+    <ScrollablePanel scrollableId="SolutionLogicielleSection">
       <h2>Informations sur votre application métier</h2>
       <TextInput
         label="Nom de l’application métier"

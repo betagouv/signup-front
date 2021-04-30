@@ -4,7 +4,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
-const Index = ({
+const CguSection = ({
   CguDescription = () => null,
   cguLink,
   AdditionalCguContent = () => null,
@@ -16,7 +16,7 @@ const Index = ({
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="cgu">
+    <ScrollablePanel scrollableId="CguSection">
       <h2>Modalités d’utilisation</h2>
       <CguDescription />
       <CheckboxInput
@@ -44,10 +44,10 @@ const Index = ({
   );
 };
 
-Index.propTypes = {
+CguSection.propTypes = {
   CguDescription: PropTypes.func,
   cguLink: PropTypes.string.isRequired,
   AdditionalCguContent: PropTypes.func,
 };
 
-export default Index;
+export default CguSection;

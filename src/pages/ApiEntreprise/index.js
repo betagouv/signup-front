@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import Nav from '../../components/organisms/Nav';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -277,58 +276,39 @@ const ApiEntreprise = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
-        { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Contacts' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'support@entreprise.api.gouv.fr',
-          label: 'Contact mail',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
-        },
-        {
-          tel: '+33622814166',
-        },
-      ]}
+  <Form
+    enrollmentId={enrollmentId}
+    target_api="api_entreprise"
+    title="Demande d’accès à l’API Entreprise"
+    demarches={demarches}
+    contactInformation={[
+      {
+        email: 'support@entreprise.api.gouv.fr',
+        label: 'Contact mail',
+        subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
+      },
+      {
+        tel: '+33622814166',
+      },
+    ]}
+  >
+    <OrganisationSection />
+    <DemarcheSection />
+    <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
+    <DonneesSection
+      availableScopes={availableScopes}
+      DonneesDescription={DonneesDescription}
     />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="api_entreprise"
-        title="Demande d’accès à l’API Entreprise"
-        demarches={demarches}
-      >
-        <OrganisationSection />
-        <DemarcheSection />
-        <DescriptionSection intitulePlaceholder={intitulePlaceholder} />
-        <DonneesSection
-          availableScopes={availableScopes}
-          DonneesDescription={DonneesDescription}
-        />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection
-          title="Coordonnées des référents du service"
-          initialContacts={contacts}
-          MiseEnOeuvreDescription={MiseEnOeuvreDescription}
-        />
-        <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
-      </Form>
-    </div>
-  </div>
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+    />
+    <DonneesPersonnellesSection />
+    <MiseEnOeuvreSection
+      initialContacts={contacts}
+      MiseEnOeuvreDescription={MiseEnOeuvreDescription}
+    />
+    <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
+  </Form>
 );
 
 ApiEntreprise.propTypes = {

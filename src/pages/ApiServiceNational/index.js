@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import Nav from '../../components/organisms/Nav';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -17,44 +16,28 @@ const ApiServiceNational = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
-        { id: 'description', label: 'Description' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'contact@api.gouv.fr',
-          label: 'Nous contacter',
-          subject:
-            'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
-        },
-      ]}
-    />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="api_service_national"
-        title="Demande d’accès à l’API Service National"
-        demarches={demarches}
-      >
-        <OrganisationSection />
-        <DemarcheSection />
-        <DescriptionSection />
-        <CadreJuridiqueSection />
-        <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection />
-        <CguSection cguLink="https://presaje.sga.defense.gouv.fr/cgu-dln1f" />
-      </Form>
-    </div>
-  </div>
+  <Form
+    enrollmentId={enrollmentId}
+    target_api="api_service_national"
+    title="Demande d’accès à l’API Service National"
+    demarches={demarches}
+    contactInformation={[
+      {
+        email: 'contact@api.gouv.fr',
+        label: 'Nous contacter',
+        subject:
+          'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
+      },
+    ]}
+  >
+    <OrganisationSection />
+    <DemarcheSection />
+    <DescriptionSection />
+    <CadreJuridiqueSection />
+    <DonneesPersonnellesSection />
+    <MiseEnOeuvreSection />
+    <CguSection cguLink="https://presaje.sga.defense.gouv.fr/cgu-dln1f" />
+  </Form>
 );
 
 ApiServiceNational.propTypes = {

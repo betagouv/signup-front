@@ -18,7 +18,7 @@ export const LabelsSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="labels">
+    <ScrollablePanel scrollableId="LabelsSection">
       <h2>Votre structure a obtenu</h2>
       <CheckboxInput
         label="Le label Pass Numérique"

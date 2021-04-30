@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import Nav from '../../components/organisms/Nav';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -13,7 +12,7 @@ import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import Helper from '../../components/atoms/Helper';
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
-import { ApplicationMetier } from '../../components/organisms/form-sections/hubee-sections/ApplicationMetier';
+import { SolutionLogicielleSection } from '../../components/organisms/form-sections/hubee-sections/SolutionLogicielleSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -109,63 +108,47 @@ const Hubee = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS[target_api]}`,
-        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-        url: 'https://www.numerique.gouv.fr/dinum',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
-        { id: 'description', label: 'Description' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'contacts-moe', label: 'Équipe' },
-        { id: 'application-metier', label: 'Application' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'contact@api.gouv.fr',
-          label: 'Nous contacter',
-          subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-            TARGET_API_LABELS[target_api]
-          )}`,
-        },
-      ]}
+  <Form
+    enrollmentId={enrollmentId}
+    target_api={target_api}
+    title="Demande d’abonnement à une démarche en ligne"
+    DemarcheDescription={DemarcheDescription}
+    demarches={demarches}
+    logo={{
+      src: `/images/${API_ICONS[target_api]}`,
+      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
+      url: 'https://www.numerique.gouv.fr/dinum',
+    }}
+    contactInformation={[
+      {
+        email: 'contact@api.gouv.fr',
+        label: 'Nous contacter',
+        subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+          TARGET_API_LABELS[target_api]
+        )}`,
+      },
+    ]}
+  >
+    <OrganisationSection />
+    <DemarcheSection
+      title="Les démarches en ligne auxquelles vous souhaitez abonner votre commune"
+      body="Sélectionnez les démarches en lignes auxquelles vous souhaitez abonner votre commune :"
     />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title="Demande d’abonnement à une démarche en ligne"
-        DemarcheDescription={DemarcheDescription}
-        demarches={demarches}
-      >
-        <OrganisationSection />
-        <DemarcheSection
-          title="Les démarches en ligne auxquelles vous souhaitez abonner votre commune"
-          body="Sélectionnez les démarches en lignes auxquelles vous souhaitez abonner votre commune :"
-        />
-        <DescriptionSection
-          title="Description du téléservice"
-          intituleLabel="Nom du téléservice"
-        />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <MiseEnOeuvreSection
-          title={'L’équipe en charge du téléservice'}
-          MiseEnOeuvreDescription={() => null}
-          initialContacts={contacts}
-        />
-        <ApplicationMetier />
-        <CguSection cguLink="" />
-      </Form>
-    </div>
-  </div>
+    <DescriptionSection
+      title="Description du téléservice"
+      intituleLabel="Nom du téléservice"
+    />
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+    />
+    <MiseEnOeuvreSection
+      title={'L’équipe en charge du téléservice'}
+      MiseEnOeuvreDescription={() => null}
+      initialContacts={contacts}
+    />
+    <SolutionLogicielleSection />
+    <CguSection cguLink="" />
+  </Form>
 );
 
 Hubee.propTypes = {

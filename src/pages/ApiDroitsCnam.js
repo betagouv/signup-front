@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 import Form from '../components/templates/Form';
-import Nav from '../components/organisms/Nav';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
@@ -95,49 +94,33 @@ const ApiDroitsCnam = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS.api_droits_cnam}`,
-        alt: `Logo ${TARGET_API_LABELS.api_droits_cnam}`,
-        url: 'https://www.ameli.fr/',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'contact@api.gouv.fr',
-          label: 'Nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20CNAM',
-        },
-      ]}
-    />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="api_droits_cnam"
-        steps={steps}
-        title="Demande d’accès à l’API Droits CNAM"
-        DemarcheDescription={DemarcheDescription}
-      >
-        <OrganisationSection />
-        <DescriptionSection />
-        <DonneesSection availableScopes={availableScopes} useCases={useCases} />
-        <CadreJuridiqueSection />
-        <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection />
-        <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
-      </Form>
-    </div>
-  </div>
+  <Form
+    enrollmentId={enrollmentId}
+    target_api="api_droits_cnam"
+    steps={steps}
+    title="Demande d’accès à l’API Droits CNAM"
+    DemarcheDescription={DemarcheDescription}
+    logo={{
+      src: `/images/${API_ICONS.api_droits_cnam}`,
+      alt: `Logo ${TARGET_API_LABELS.api_droits_cnam}`,
+      url: 'https://www.ameli.fr/',
+    }}
+    contactInformation={[
+      {
+        email: 'contact@api.gouv.fr',
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20CNAM',
+      },
+    ]}
+  >
+    <OrganisationSection />
+    <DescriptionSection />
+    <DonneesSection availableScopes={availableScopes} useCases={useCases} />
+    <CadreJuridiqueSection />
+    <DonneesPersonnellesSection />
+    <MiseEnOeuvreSection />
+    <CguSection cguLink="/docs/API_Droits_CNAM_CGU_20181210.pdf" />
+  </Form>
 );
 
 ApiDroitsCnam.propTypes = {

@@ -35,7 +35,7 @@ export const DemarcheSectionReadOnly = ({ title }) => {
 
   return (
     <>
-      <ScrollablePanel scrollableId="modeles-preremplis">
+      <ScrollablePanel scrollableId="DemarcheSection">
         <h2>{title || 'Modèles préremplis'}</h2>
         <div>
           {hasSelectedDemarche ? (

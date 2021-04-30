@@ -15,7 +15,7 @@ import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-const Index = () => {
+const OrganisationSection = () => {
   const {
     disabled,
     isUserEnrollmentLoading,
@@ -173,7 +173,7 @@ const Index = () => {
   };
 
   return (
-    <ScrollablePanel scrollableId="organisation">
+    <ScrollablePanel scrollableId="OrganisationSection">
       <h2>L’organisation</h2>
       <div className="row">
         <div className="card">
@@ -283,4 +283,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default OrganisationSection;

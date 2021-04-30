@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useMemo, useReducer, useState } from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
@@ -13,6 +13,7 @@ import PreviousEnrollmentSection from '../../organisms/form-sections/PreviousEnr
 import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Stepper';
 import { TARGET_API_LABELS } from '../../../lib/api';
 import { getStateFromUrlParams, goBack } from '../../../lib';
+import Nav from '../../organisms/Nav';
 
 export const FormContext = React.createContext();
 
@@ -69,10 +70,16 @@ export const Form = ({
   history,
   demarches = null,
   children,
+  logo,
+  contactInformation,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
+  const sectionNames = useMemo(
+    () => React.Children.map(children, ({ type: { name } }) => name),
+    [children]
+  );
 
   const [enrollment, dispatchSetEnrollment] = useReducer(
     enrollmentReducer(demarches),
@@ -150,107 +157,118 @@ export const Form = ({
   };
 
   return (
-    <>
-      <ScrollablePanel scrollableId="head" className={null}>
-        <h1 style={{ fontSize: '1.75em' }}>
-          {title}
-          {enrollment.id ? ` n°${enrollment.id}` : ''}
-        </h1>
-        {get(location, 'state.fromFranceConnectedAPI') ===
-          'api_droits_cnam' && (
-          <>
-            <p>La procédure consiste en 2 demandes d’accès distinctes&nbsp;:</p>
-            <Stepper
-              steps={['franceconnect', 'api_droits_cnam']}
-              currentStep="franceconnect"
-            />
-          </>
-        )}
-        {get(location, 'state.fromFranceConnectedAPI') ===
-          'api_impot_particulier_fc_sandbox' && (
-          <>
-            <p>La procédure consiste en 3 demandes d’accès distinctes&nbsp;:</p>
-            <Stepper
-              steps={[
-                'franceconnect',
-                'api_impot_particulier_fc_sandbox',
-                'api_impot_particulier_fc_production',
-              ]}
-              currentStep="franceconnect"
-            />
-          </>
-        )}
-        {steps && (
-          <FormContext.Provider
-            value={{
-              disabled: !enrollment.acl.send_application,
-              onChange: dispatchSetEnrollment,
-              enrollment,
-              isUserEnrollmentLoading,
-              demarches,
-            }}
-          >
-            <PreviousEnrollmentSection
-              steps={steps}
-              Description={PreviousEnrollmentDescription}
-            />
-          </FormContext.Provider>
-        )}
-        {get(location, 'state.source') === 'copy-authorization-request' && (
-          <div className="notification warning">
-            Vous trouverez ci dessous une copie de votre demande initiale. Merci
-            de vérifier que ces informations sont à jour puis cliquez sur
-            "Soumettre la demande".
-          </div>
-        )}
-
-        <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
-
-        {!isUserEnrollmentLoading && enrollment.acl.update && (
-          <>
-            <div className="notification info">
-              Pensez à sauvegarder régulièrement votre demande en brouillon.
-            </div>
-            <DemarcheDescription />
-          </>
-        )}
-      </ScrollablePanel>
-
-      {enrollment.events.length > 0 && (
-        <ActivityFeed events={enrollment.events} />
-      )}
-      <FormContext.Provider
-        value={{
-          disabled: !enrollment.acl.send_application,
-          onChange: dispatchSetEnrollment,
-          enrollment,
-          isUserEnrollmentLoading,
-          demarches,
-        }}
-      >
-        {children}
-      </FormContext.Provider>
-      {successMessages.map(successMessage => (
-        <div key={successMessage} className="notification success">
-          <Linkify>{successMessage}</Linkify>
-        </div>
-      ))}
-      {errorMessages.map(errorMessage => (
-        <div
-          key={errorMessage}
-          className="notification error"
-          style={{ whiteSpace: 'pre-line' }}
-        >
-          <Linkify>{errorMessage}</Linkify>
-        </div>
-      ))}
-
-      <ActionButton
-        enrollment={enrollment}
-        updateEnrollment={dispatchSetEnrollment}
-        handleSubmit={handleSubmit}
+    <div className="dashboard">
+      <Nav
+        logo={logo}
+        contactInformation={contactInformation}
+        sectionNames={sectionNames}
       />
-    </>
+      <div className="main">
+        <ScrollablePanel scrollableId="head" className={null}>
+          <h1 style={{ fontSize: '1.75em' }}>
+            {title}
+            {enrollment.id ? ` n°${enrollment.id}` : ''}
+          </h1>
+          {get(location, 'state.fromFranceConnectedAPI') ===
+            'api_droits_cnam' && (
+            <>
+              <p>
+                La procédure consiste en 2 demandes d’accès distinctes&nbsp;:
+              </p>
+              <Stepper
+                steps={['franceconnect', 'api_droits_cnam']}
+                currentStep="franceconnect"
+              />
+            </>
+          )}
+          {get(location, 'state.fromFranceConnectedAPI') ===
+            'api_impot_particulier_fc_sandbox' && (
+            <>
+              <p>
+                La procédure consiste en 3 demandes d’accès distinctes&nbsp;:
+              </p>
+              <Stepper
+                steps={[
+                  'franceconnect',
+                  'api_impot_particulier_fc_sandbox',
+                  'api_impot_particulier_fc_production',
+                ]}
+                currentStep="franceconnect"
+              />
+            </>
+          )}
+          {steps && (
+            <FormContext.Provider
+              value={{
+                disabled: !enrollment.acl.send_application,
+                onChange: dispatchSetEnrollment,
+                enrollment,
+                isUserEnrollmentLoading,
+                demarches,
+              }}
+            >
+              <PreviousEnrollmentSection
+                steps={steps}
+                Description={PreviousEnrollmentDescription}
+              />
+            </FormContext.Provider>
+          )}
+          {get(location, 'state.source') === 'copy-authorization-request' && (
+            <div className="notification warning">
+              Vous trouverez ci dessous une copie de votre demande initiale.
+              Merci de vérifier que ces informations sont à jour puis cliquez
+              sur "Soumettre la demande".
+            </div>
+          )}
+
+          <EnrollmentHasCopiesNotification enrollmentId={enrollment.id} />
+
+          {!isUserEnrollmentLoading && enrollment.acl.update && (
+            <>
+              <div className="notification info">
+                Pensez à sauvegarder régulièrement votre demande en brouillon.
+              </div>
+              <DemarcheDescription />
+            </>
+          )}
+        </ScrollablePanel>
+
+        {enrollment.events.length > 0 && (
+          <ActivityFeed events={enrollment.events} />
+        )}
+        <FormContext.Provider
+          value={{
+            disabled: !enrollment.acl.send_application,
+            onChange: dispatchSetEnrollment,
+            enrollment,
+            isUserEnrollmentLoading,
+            demarches,
+          }}
+        >
+          {children}
+        </FormContext.Provider>
+        {successMessages.map(successMessage => (
+          <div key={successMessage} className="notification success">
+            <Linkify>{successMessage}</Linkify>
+          </div>
+        ))}
+        {errorMessages.map(errorMessage => (
+          <div
+            key={errorMessage}
+            className="notification error"
+            style={{ whiteSpace: 'pre-line' }}
+          >
+            <Linkify>{errorMessage}</Linkify>
+          </div>
+        ))}
+
+        <ActionButton
+          enrollment={enrollment}
+          updateEnrollment={dispatchSetEnrollment}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -261,6 +279,8 @@ Form.propTypes = {
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
   demarches: PropTypes.any,
+  logo: PropTypes.any,
+  contactInformation: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

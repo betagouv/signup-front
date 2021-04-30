@@ -21,7 +21,7 @@ export const AidantsSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="aidants">
+    <ScrollablePanel scrollableId="AidantsSection">
       <h2>Les aidants</h2>
       <FileInput
         label={

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import Nav from '../../components/organisms/Nav';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
@@ -123,7 +122,7 @@ const DonneesDescription = () => (
     <p>
       Nous vous remercions de sélectionner uniquement les données strictement
       nécessaires à votre téléservice. Le non-respect du principe de
-      proportionnalité vous expose vis à vis de la CNIL.
+      proportionnalité vous expose vis-à-vis de la CNIL.
     </p>
   </Quote>
 );
@@ -162,60 +161,43 @@ const ApiParticulier = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS[target_api]}`,
-        alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-        url: 'https://api.gouv.fr/les-api/api-particulier',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'modeles-preremplis', label: 'Modèles pré-remplis' },
-        { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'contact@particulier.api.gouv.fr',
-          label: 'Nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-      ]}
+  <Form
+    enrollmentId={enrollmentId}
+    target_api={target_api}
+    title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
+    DemarcheDescription={DemarcheDescription}
+    demarches={demarches}
+    logo={{
+      src: `/images/${API_ICONS[target_api]}`,
+      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
+      url: 'https://api.gouv.fr/les-api/api-particulier',
+    }}
+    contactInformation={[
+      {
+        email: 'contact@particulier.api.gouv.fr',
+        label: 'Nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
+  >
+    <OrganisationSection />
+    <DemarcheSection />
+    <DescriptionSection
+      intitulePlaceholder={
+        '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
+      }
     />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api={target_api}
-        title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
-        DemarcheDescription={DemarcheDescription}
-        demarches={demarches}
-      >
-        <OrganisationSection />
-        <DemarcheSection />
-        <DescriptionSection
-          intitulePlaceholder={
-            '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
-          }
-        />
-        <DonneesSection
-          availableScopes={availableScopes}
-          DonneesDescription={DonneesDescription}
-        />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <DonneesPersonnellesSection />
-        <MiseEnOeuvreSection initialContacts={contacts} />
-        <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
-      </Form>
-    </div>
-  </div>
+    <DonneesSection
+      availableScopes={availableScopes}
+      DonneesDescription={DonneesDescription}
+    />
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+    />
+    <DonneesPersonnellesSection />
+    <MiseEnOeuvreSection initialContacts={contacts} />
+    <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
+  </Form>
 );
 
 ApiParticulier.propTypes = {

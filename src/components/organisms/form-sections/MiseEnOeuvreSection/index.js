@@ -8,8 +8,7 @@ import Quote from '../../../atoms/inputs/Quote';
 
 const MiseEnOeuvreSection = ({
   initialContacts = {},
-  AdditionalMiseEnOeuvreContent = () => null,
-  title = 'La mise en œuvre du service',
+  title = 'Coordonnées des référents du service',
   MiseEnOeuvreDescription = () => (
     <Quote>
       <p>
@@ -22,7 +21,7 @@ const MiseEnOeuvreSection = ({
   const {
     disabled,
     onChange,
-    enrollment: { contacts, additional_content = {} },
+    enrollment: { contacts },
   } = useContext(FormContext);
 
   useEffect(() => {
@@ -56,14 +55,9 @@ const MiseEnOeuvreSection = ({
   }
 
   return (
-    <ScrollablePanel scrollableId="contacts-moe">
+    <ScrollablePanel scrollableId="MiseEnOeuvreSection">
       <h2>{title}</h2>
       <MiseEnOeuvreDescription />
-      <AdditionalMiseEnOeuvreContent
-        disabled={disabled}
-        onChange={onChange}
-        additional_content={additional_content}
-      />
       <div className="form__group">
         <div className="row">
           {/*
@@ -106,7 +100,6 @@ const contactPropTypesShape = {
 };
 
 MiseEnOeuvreSection.propTypes = {
-  AdditionalMiseEnOeuvreContent: PropTypes.func,
   initialContacts: PropTypes.shape(contactPropTypesShape),
   title: PropTypes.string,
   MiseEnOeuvreDescription: PropTypes.func,
