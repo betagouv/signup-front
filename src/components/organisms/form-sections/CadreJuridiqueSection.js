@@ -39,7 +39,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="cadre-juridique">
+    <ScrollablePanel scrollableId="CadreJuridiqueSection">
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
       <CadreJuridiqueDescription />
       <TextAreaInput

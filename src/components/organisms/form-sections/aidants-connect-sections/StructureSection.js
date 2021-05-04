@@ -84,7 +84,7 @@ export const StructureSection = () => {
   ]);
 
   return (
-    <ScrollablePanel scrollableId="structure">
+    <ScrollablePanel scrollableId="StructureSection">
       <h2>Description de votre structure</h2>
       <Quote>
         <p>

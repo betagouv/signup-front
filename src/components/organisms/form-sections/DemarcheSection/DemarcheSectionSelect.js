@@ -55,7 +55,7 @@ export const DemarcheSectionSelect = ({ title, body }) => {
 
   return (
     <>
-      <ScrollablePanel scrollableId="modeles-preremplis">
+      <ScrollablePanel scrollableId="DemarcheSection">
         {confirmNewDemarcheId && (
           <ConfirmationModal
             title="Attention, vous allez écraser certains de vos changements"

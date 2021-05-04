@@ -37,7 +37,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   ]);
 
   return (
-    <ScrollablePanel scrollableId="volumetrie">
+    <ScrollablePanel scrollableId="VolumetrieSection">
       <h2>Volumétrie</h2>
       <Quote>
         <p>

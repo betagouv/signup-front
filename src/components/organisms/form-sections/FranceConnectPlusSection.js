@@ -27,7 +27,7 @@ export const FranceConnectPlusSection = () => {
   }, [isUserEnrollmentLoading, disabled, onChange, eidas_1]);
 
   return (
-    <ScrollablePanel scrollableId="niveau-eidas">
+    <ScrollablePanel scrollableId="FranceConnectPlusSection">
       <h2>Le niveau de garantie attendu par votre service</h2>
       <CheckboxInput
         label="FranceConnect : niveau de garantie eIDAS 1"

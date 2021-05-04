@@ -58,7 +58,6 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
 export const API_ICONS = {
   api_particulier: 'logo-beta-gouv.svg',
   franceconnect: 'logo-fc-with-label.png',
-  api_entreprise: 'logo-beta-gouv.svg',
   api_impot_particulier_sandbox: 'logo-dgfip-with-label.png',
   api_impot_particulier_production: 'logo-dgfip-with-label.png',
   api_impot_particulier_fc_sandbox: 'logo-dgfip-with-label.png',

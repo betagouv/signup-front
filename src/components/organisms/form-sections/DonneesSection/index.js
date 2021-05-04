@@ -57,7 +57,7 @@ const DonneesSection = ({
   const outdatedScopes = difference(scopesAsArray, availableScopesAsArray);
 
   return (
-    <ScrollablePanel scrollableId="donnees">
+    <ScrollablePanel scrollableId="DonneesSection">
       <h2>Les données dont vous avez besoin</h2>
       <DonneesDescription />
       <AdditionalRgpdAgreement

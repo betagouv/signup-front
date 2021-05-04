@@ -14,7 +14,7 @@ const RecetteFonctionnelleSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="recette-fonctionnelle">
+    <ScrollablePanel scrollableId="RecetteFonctionnelleSection">
       <h2>Recette fonctionnelle</h2>
       <Quote>
         <p>

@@ -5,7 +5,7 @@ import FileInput from '../../../molecules/FileInput';
 import OrWrapper from '../../../atoms/inputs/OrWrapper';
 import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
 
-const DonneesCartoBioSection = () => {
+const DonneesSection = () => {
   const {
     disabled,
     onChange,
@@ -17,7 +17,7 @@ const DonneesCartoBioSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="cartobio-donnees">
+    <ScrollablePanel scrollableId="DonneesSection">
       <h2>Les périmètres de données dont vous avez besoin</h2>
       <OrWrapper>
         <TextAreaInput
@@ -54,4 +54,4 @@ const DonneesCartoBioSection = () => {
   );
 };
 
-export default DonneesCartoBioSection;
+export default DonneesSection;

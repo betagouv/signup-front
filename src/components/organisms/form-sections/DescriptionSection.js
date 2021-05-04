@@ -19,7 +19,7 @@ const DescriptionSection = ({
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="description">
+    <ScrollablePanel scrollableId="DescriptionSection">
       <h2>{title || 'Description de votre service'}</h2>
       <TextInput
         label={intituleLabel || 'Nom du service'}

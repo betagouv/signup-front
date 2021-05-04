@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
 import Form from '../components/templates/Form';
-import Nav from '../components/organisms/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -162,69 +159,47 @@ const FranceConnect = ({
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS.franceconnect}`,
-        alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
-        url: 'https://franceconnect.gouv.fr/',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'niveau-eidas', label: 'Niveau de garantie' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'support.usagers@franceconnect.gouv.fr',
-          label: 'Particuliers, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-        {
-          email: 'support.partenaires@franceconnect.gouv.fr',
-          label: 'Entreprises, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-        {
-          email: 'support.partenaires@franceconnect.gouv.fr',
-          label: 'Administrations, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-      ]}
+  <Form
+    enrollmentId={enrollmentId}
+    target_api="franceconnect"
+    title="Demande d’habilitation juridique à FranceConnect"
+    DemarcheDescription={DemarcheDescription}
+    contactInformation={[
+      {
+        email: 'support.usagers@franceconnect.gouv.fr',
+        label: 'Particuliers, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+      {
+        email: 'support.partenaires@franceconnect.gouv.fr',
+        label: 'Entreprises, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+      {
+        email: 'support.partenaires@franceconnect.gouv.fr',
+        label: 'Administrations, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
+  >
+    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
+    <OrganisationSection />
+    <DescriptionSection
+      intitulePlaceholder="« Se connecter au portail famille de ma ville »"
+      descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
     />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="franceconnect"
-        title="Demande d’habilitation juridique à FranceConnect"
-        DemarcheDescription={DemarcheDescription}
-      >
-        <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
-        <OrganisationSection />
-        <DescriptionSection
-          intitulePlaceholder="« Se connecter au portail famille de ma ville »"
-          descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
-        />
-        <DonneesSection availableScopes={availableScopes} />
-        <FranceConnectPlusSection />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <DonneesPersonnellesSection dataRetentionPeriodHelper="À compter de la cessation de la relation contractuelle" />
-        <MiseEnOeuvreSection initialContacts={contacts} />
-        <CguSection
-          cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
-          AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
-        />
-      </Form>
-    </div>
-  </div>
+    <DonneesSection availableScopes={availableScopes} />
+    <FranceConnectPlusSection />
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+    />
+    <DonneesPersonnellesSection dataRetentionPeriodHelper="À compter de la cessation de la relation contractuelle" />
+    <MiseEnOeuvreSection initialContacts={contacts} />
+    <CguSection
+      cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
+      AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
+    />
+  </Form>
 );
 
 FranceConnect.propTypes = {

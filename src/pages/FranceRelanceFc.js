@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
 import Form from '../components/templates/Form';
-import Nav from '../components/organisms/Nav';
 import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
@@ -17,9 +14,7 @@ import UniquenessWarningNotification from '../components/templates/Form/Uniquene
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
 import Quote from '../components/atoms/inputs/Quote';
 import { availableScopes as franceConnectAvailableScopes } from './FranceConnect';
-import YesNoRadioInput from '../components/atoms/inputs/YesNoRadioInput';
-import DateInput from '../components/atoms/inputs/DateInput';
-import TextInput from '../components/atoms/inputs/TextInput';
+import AboutSection from '../components/organisms/form-sections/francerelance-sections/AboutSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -110,122 +105,58 @@ const CadreJuridiqueDescription = () => (
   </Quote>
 );
 
-const AdditionalMiseEnOeuvreContent = ({
-  disabled,
-  onChange,
-  additional_content: {
-    utilisation_franceconnect_autre_projet = '',
-    date_integration = '',
-    type_de_depenses = '',
-    code_ic = '',
-  },
-}) => (
-  <>
-    <YesNoRadioInput
-      label="Votre collectivité utilise-t-elle déjà FranceConnect pour d’autres de ses services en ligne ?"
-      name="additional_content.utilisation_franceconnect_autre_projet"
-      value={utilisation_franceconnect_autre_projet}
-      disabled={disabled}
-      onChange={onChange}
-    />
-    <DateInput
-      label="A quelle date prévoyez-vous d’avoir achevé l’intégration de l’identification FranceConnect sur le service en ligne visé ?"
-      name="additional_content.date_integration"
-      value={date_integration}
-      disabled={disabled}
-      onChange={onChange}
-    />
-    <TextInput
-      label="Indiquez les types de dépenses qui seront financées à travers la subvention accordée ?"
-      name="additional_content.type_de_depenses"
-      placeholder="paiement du prestataire, paiement de l’éditeur, etc."
-      value={type_de_depenses}
-      disabled={disabled}
-      onChange={onChange}
-    />
-    <TextInput
-      label="Renseignez votre code DGFIP IC"
-      name="additional_content.code_ic"
-      helper={'Identification du comptable public'}
-      value={code_ic}
-      disabled={disabled}
-      onChange={onChange}
-    />
-  </>
-);
-
 const FranceRelanceFc = ({
   match: {
     params: { enrollmentId },
   },
 }) => (
-  <div className="dashboard">
-    <Nav
-      logo={{
-        src: `/images/${API_ICONS.franceconnect}`,
-        alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
-        url: 'https://franceconnect.gouv.fr/',
-      }}
-      navLinks={[
-        { id: 'head', label: 'Formulaire', style: { fontWeight: 'bold' } },
-        { id: 'organisation', label: 'Organisation' },
-        { id: 'description', label: 'Description' },
-        { id: 'donnees', label: 'Données' },
-        { id: 'cadre-juridique', label: 'Cadre juridique' },
-        { id: 'donnees-personnelles', label: 'Données personnelles' },
-        { id: 'contacts-moe', label: 'Mise en œuvre' },
-        { id: 'cgu', label: 'Modalités d’utilisation' },
-      ]}
-      contactInformation={[
-        {
-          email: 'support.usagers@franceconnect.gouv.fr',
-          label: 'Particuliers, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-        {
-          email: 'support.partenaires@franceconnect.gouv.fr',
-          label: 'Entreprises, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-        {
-          email: 'support.partenaires@franceconnect.gouv.fr',
-          label: 'Administrations, nous contacter',
-          subject: 'Contact%20via%20datapass.api.gouv.fr',
-        },
-      ]}
+  <Form
+    enrollmentId={enrollmentId}
+    target_api="francerelance_fc"
+    title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
+    DemarcheDescription={DemarcheDescription}
+    demarches={demarches}
+    logoLinkUrl="https://france-relance.transformation.gouv.fr/e13a-deployer-franceconnect-et-utiliser-les-api-na/"
+    contactInformation={[
+      {
+        email: 'support.usagers@franceconnect.gouv.fr',
+        label: 'Particuliers, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+      {
+        email: 'support.partenaires@franceconnect.gouv.fr',
+        label: 'Entreprises, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+      {
+        email: 'support.partenaires@franceconnect.gouv.fr',
+        label: 'Administrations, nous contacter',
+        subject: 'Contact%20via%20datapass.api.gouv.fr',
+      },
+    ]}
+  >
+    <UniquenessWarningNotification />
+    <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
+    <OrganisationSection />
+    <DescriptionSection
+      intitulePlaceholder="« Se connecter au portail famille de ma ville »"
+      descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
     />
-    <div className="main">
-      <Form
-        enrollmentId={enrollmentId}
-        target_api="francerelance_fc"
-        title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
-        DemarcheDescription={DemarcheDescription}
-        demarches={demarches}
-      >
-        <UniquenessWarningNotification />
-        <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
-        <OrganisationSection />
-        <DescriptionSection
-          intitulePlaceholder="« Se connecter au portail famille de ma ville »"
-          descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
-        />
-        <DonneesSection availableScopes={franceConnectAvailableScopes} />
-        <CadreJuridiqueSection
-          CadreJuridiqueDescription={CadreJuridiqueDescription}
-        />
-        <DonneesPersonnellesSection dataRetentionPeriodHelper="À compter de la cessation de la relation contractuelle" />
-        <MiseEnOeuvreSection
-          initialContacts={contacts}
-          MiseEnOeuvreDescription={() => null}
-          AdditionalMiseEnOeuvreContent={AdditionalMiseEnOeuvreContent}
-        />
-        <CguSection
-          cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
-          AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
-        />
-      </Form>
-    </div>
-  </div>
+    <DonneesSection availableScopes={franceConnectAvailableScopes} />
+    <CadreJuridiqueSection
+      CadreJuridiqueDescription={CadreJuridiqueDescription}
+    />
+    <DonneesPersonnellesSection dataRetentionPeriodHelper="À compter de la cessation de la relation contractuelle" />
+    <MiseEnOeuvreSection
+      initialContacts={contacts}
+      MiseEnOeuvreDescription={() => null}
+    />
+    <AboutSection />
+    <CguSection
+      cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
+      AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
+    />
+  </Form>
 );
 
 FranceRelanceFc.propTypes = {

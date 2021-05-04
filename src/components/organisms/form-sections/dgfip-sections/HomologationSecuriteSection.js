@@ -23,7 +23,7 @@ const HomologationSecuriteSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="homologation-securite">
+    <ScrollablePanel scrollableId="HomologationSecuriteSection">
       <h2>Homologation de sécurité</h2>
       <Quote>
         <p>

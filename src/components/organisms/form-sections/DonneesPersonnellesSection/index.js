@@ -23,7 +23,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="donnees-personnelles">
+    <ScrollablePanel scrollableId="DonneesPersonnellesSection">
       <h2>Le traitement de données à caractère personnel</h2>
       <TextInput
         label="Destinataires des données"

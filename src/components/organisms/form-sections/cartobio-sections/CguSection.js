@@ -3,7 +3,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
-const CartoBioAdditionalAgreements = () => {
+const CguSection = () => {
   const {
     disabled,
     onChange,
@@ -19,7 +19,7 @@ const CartoBioAdditionalAgreements = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="cgu">
+    <ScrollablePanel scrollableId="CguSection">
       <h2>Modalités d’utilisation</h2>
       <CheckboxInput
         label={
@@ -88,4 +88,4 @@ const CartoBioAdditionalAgreements = () => {
   );
 };
 
-export default CartoBioAdditionalAgreements;
+export default CguSection;
