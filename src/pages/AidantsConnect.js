@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
@@ -67,11 +65,7 @@ const AidantsConnect = ({
     enrollmentId={enrollmentId}
     target_api="aidants_connect"
     title="Demande d’habilitation à Aidants Connect"
-    logo={{
-      src: `/images/${API_ICONS.aidants_connect}`,
-      alt: `Logo ${TARGET_API_LABELS.aidants_connect}`,
-      url: 'https://aidantsconnect.beta.gouv.fr/',
-    }}
+    logoLinkUrl="https://aidantsconnect.beta.gouv.fr/"
     contactInformation={[
       {
         email: 'contact@aidantsconnect.beta.gouv.fr',

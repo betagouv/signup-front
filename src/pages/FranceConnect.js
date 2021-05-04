@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
 import Form from '../components/templates/Form';
 import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
@@ -166,11 +164,6 @@ const FranceConnect = ({
     target_api="franceconnect"
     title="Demande d’habilitation juridique à FranceConnect"
     DemarcheDescription={DemarcheDescription}
-    logo={{
-      src: `/images/${API_ICONS.franceconnect}`,
-      alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
-      url: 'https://franceconnect.gouv.fr/',
-    }}
     contactInformation={[
       {
         email: 'support.usagers@franceconnect.gouv.fr',

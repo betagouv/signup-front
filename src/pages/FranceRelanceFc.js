@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
-
 import Form from '../components/templates/Form';
 import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
@@ -118,11 +116,7 @@ const FranceRelanceFc = ({
     title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logo={{
-      src: `/images/${API_ICONS.franceconnect}`,
-      alt: `Logo ${TARGET_API_LABELS.franceconnect}`,
-      url: 'https://franceconnect.gouv.fr/',
-    }}
+    logoLinkUrl="https://france-relance.transformation.gouv.fr/e13a-deployer-franceconnect-et-utiliser-les-api-na/"
     contactInformation={[
       {
         email: 'support.usagers@franceconnect.gouv.fr',

@@ -12,7 +12,6 @@ import DonneesPersonnellesSection from '../../components/organisms/form-sections
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
-import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -122,7 +121,7 @@ const DonneesDescription = () => (
     <p>
       Nous vous remercions de sélectionner uniquement les données strictement
       nécessaires à votre téléservice. Le non-respect du principe de
-      proportionnalité vous expose vis-à-vis de la CNIL.
+      proportionnalité vous expose vis à vis de la CNIL.
     </p>
   </Quote>
 );
@@ -164,14 +163,8 @@ const ApiParticulier = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logo={{
-      src: `/images/${API_ICONS[target_api]}`,
-      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-      url: 'https://api.gouv.fr/les-api/api-particulier',
-    }}
     contactInformation={[
       {
         email: 'contact@particulier.api.gouv.fr',

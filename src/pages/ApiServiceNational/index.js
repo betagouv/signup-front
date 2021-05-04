@@ -19,16 +19,7 @@ const ApiServiceNational = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="api_service_national"
-    title="Demande d’accès à l’API Service National"
     demarches={demarches}
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject:
-          'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Service%20National',
-      },
-    ]}
   >
     <OrganisationSection />
     <DemarcheSection />

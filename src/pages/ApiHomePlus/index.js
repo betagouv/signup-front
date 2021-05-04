@@ -11,7 +11,6 @@ import DonneesPersonnellesSection from '../../components/organisms/form-sections
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
-import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import CguSection from '../../components/organisms/form-sections/api-home-plus-sections/CguSection';
 import ContratDeLicenceSection from '../../components/organisms/form-sections/api-home-plus-sections/ContratDeLicenceSection';
 
@@ -78,23 +77,9 @@ const ApiHomePlus = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logo={{
-      src: `/images/${API_ICONS[target_api]}`,
-      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-      url: 'https://api.gouv.fr/producteurs/urssaf',
-    }}
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-          TARGET_API_LABELS[target_api]
-        )}`,
-      },
-    ]}
+    logoLinkUrl="https://api.gouv.fr/producteurs/urssaf"
   >
     <OrganisationSection />
     <DemarcheSection />

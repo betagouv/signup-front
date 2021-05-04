@@ -279,7 +279,6 @@ const ApiEntreprise = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="api_entreprise"
-    title="Demande d’accès à l’API Entreprise"
     demarches={demarches}
     contactInformation={[
       {

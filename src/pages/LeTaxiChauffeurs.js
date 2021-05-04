@@ -8,7 +8,6 @@ import DonneesPersonnellesSection from '../components/organisms/form-sections/Do
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -42,13 +41,8 @@ const LeTaxiChauffeurs = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="le_taxi_chauffeurs"
-    title="Demande d’accès à l’API le.Taxi - applicatifs chauffeurs"
     DemarcheDescription={DemarcheDescription}
-    logo={{
-      src: `/images/${API_ICONS.le_taxi_chauffeurs}`,
-      alt: `Logo ${TARGET_API_LABELS.le_taxi_chauffeurs}`,
-      url: 'https://le.taxi/',
-    }}
+    logoLinkUrl="https://api.gouv.fr/les-api/le-taxi"
     contactInformation={[
       {
         email: 'equipe@le.taxi',

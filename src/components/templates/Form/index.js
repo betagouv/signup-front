@@ -70,7 +70,7 @@ export const Form = ({
   history,
   demarches = null,
   children,
-  logo,
+  logoLinkUrl,
   contactInformation,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -159,14 +159,15 @@ export const Form = ({
   return (
     <div className="dashboard">
       <Nav
-        logo={logo}
+        target_api={target_api}
+        logoLinkUrl={logoLinkUrl}
         contactInformation={contactInformation}
         sectionNames={sectionNames}
       />
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>
           <h1 style={{ fontSize: '1.75em' }}>
-            {title}
+            {title || `Demande d’accès ${TARGET_API_LABELS[target_api]}`}
             {enrollment.id ? ` n°${enrollment.id}` : ''}
           </h1>
           {get(location, 'state.fromFranceConnectedAPI') ===
@@ -273,13 +274,13 @@ export const Form = ({
 };
 
 Form.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   DemarcheDescription: PropTypes.func,
   enrollmentId: PropTypes.string,
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
   demarches: PropTypes.any,
-  logo: PropTypes.any,
+  logoLinkUrl: PropTypes.string,
   contactInformation: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

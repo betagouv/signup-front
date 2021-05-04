@@ -10,7 +10,6 @@ import CguSection from '../components/organisms/form-sections/CguSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import Quote from '../components/atoms/inputs/Quote';
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 
 const CadreJuridiqueDescription = () => (
   <Quote>
@@ -44,25 +43,7 @@ const ApiProSanteConnect = ({
     params: { enrollmentId },
   },
 }) => (
-  <Form
-    enrollmentId={enrollmentId}
-    target_api={target_api}
-    title={`Demande d’accès ${TARGET_API_LABELS[target_api]}`}
-    logo={{
-      src: `/images/${API_ICONS[target_api]}`,
-      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-      url: 'https://api.gouv.fr/les-api/api-pro-sante-connect',
-    }}
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-          TARGET_API_LABELS[target_api]
-        )}`,
-      },
-    ]}
-  >
+  <Form enrollmentId={enrollmentId} target_api={target_api}>
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />

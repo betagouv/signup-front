@@ -6,6 +6,8 @@ import ArrowBackIcon from '../atoms/icons/arrow-back';
 import { ScrollableLink } from './Scrollable';
 import LocalPhoneIcon from '../atoms/icons/local-phone';
 import { goBack } from '../../lib';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
+import { isEmpty } from 'lodash';
 
 const sectionNameToLabel = {
   OrganisationSection: 'Organisation',
@@ -29,7 +31,13 @@ const sectionNameToLabel = {
   SolutionLogicielleSection: 'Solution logicielle',
 };
 
-const Nav = ({ logo, sectionNames = [], contactInformation, history }) => {
+const Nav = ({
+  target_api,
+  logoLinkUrl,
+  sectionNames = [],
+  contactInformation = [],
+  history,
+}) => {
   const navElements = useMemo(
     () =>
       sectionNames
@@ -39,6 +47,30 @@ const Nav = ({ logo, sectionNames = [], contactInformation, history }) => {
           label: sectionNameToLabel[sectionName],
         })),
     [sectionNames]
+  );
+
+  const contactElements = useMemo(
+    () =>
+      isEmpty(contactInformation)
+        ? [
+            {
+              email: 'contact@api.gouv.fr',
+              label: 'Nous contacter',
+              subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
+                TARGET_API_LABELS[target_api]
+              )}`,
+            },
+          ]
+        : contactInformation,
+    [contactInformation, target_api]
+  );
+
+  const defaultedLogoLinkUrl = useMemo(
+    () =>
+      logoLinkUrl
+        ? logoLinkUrl
+        : `https://api.gouv.fr/les-api/${target_api.replace(/_/g, '-')}`,
+    [logoLinkUrl, target_api]
   );
 
   return (
@@ -60,12 +92,12 @@ const Nav = ({ logo, sectionNames = [], contactInformation, history }) => {
             </li>
           </ul>
           <ul className="form-nav">
-            {logo && (
+            {!!API_ICONS[target_api] && (
               <li>
-                <a href={logo.url}>
+                <a href={defaultedLogoLinkUrl}>
                   <img
-                    alt={logo.alt}
-                    src={logo.src}
+                    alt={`Logo ${TARGET_API_LABELS[target_api]}`}
+                    src={`/images/${API_ICONS[target_api]}`}
                     className="form-nav-logo"
                     height="90"
                   />
@@ -83,36 +115,34 @@ const Nav = ({ logo, sectionNames = [], contactInformation, history }) => {
           </ul>
         </nav>
 
-        {contactInformation && (
-          <div className="section section-grey">
-            <div className="container">
-              <div className="help-links-header">Une question&nbsp;?</div>
+        <div className="section section-grey">
+          <div className="container">
+            <div className="help-links-header">Une question&nbsp;?</div>
 
-              <div className="contact-button-list">
-                {contactInformation.map(({ tel, email, label, subject }) =>
-                  tel ? (
-                    <a
-                      key={tel}
-                      className="button-outline primary"
-                      href={`tel:${tel}`}
-                    >
-                      <LocalPhoneIcon color="var(--blue)" />
-                      {tel}
-                    </a>
-                  ) : (
-                    <a
-                      key={label}
-                      className="button-outline primary"
-                      href={`mailto:${email}?subject=${subject}`}
-                    >
-                      {label}
-                    </a>
-                  )
-                )}
-              </div>
+            <div className="contact-button-list">
+              {contactElements.map(({ tel, email, label, subject }) =>
+                tel ? (
+                  <a
+                    key={tel}
+                    className="button-outline primary"
+                    href={`tel:${tel}`}
+                  >
+                    <LocalPhoneIcon color="var(--blue)" />
+                    {tel}
+                  </a>
+                ) : (
+                  <a
+                    key={label}
+                    className="button-outline primary"
+                    href={`mailto:${email}?subject=${subject}`}
+                  >
+                    {label}
+                  </a>
+                )
+              )}
             </div>
           </div>
-        )}
+        </div>
       </div>
     </aside>
   );
@@ -121,11 +151,7 @@ const Nav = ({ logo, sectionNames = [], contactInformation, history }) => {
 Nav.propTypes = {
   sectionNames: PropTypes.array.isRequired,
   contactInformation: PropTypes.array,
-  logo: PropTypes.shape({
-    src: PropTypes.string.isRequired,
-    alt: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  }),
+  logoLinkUrl: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

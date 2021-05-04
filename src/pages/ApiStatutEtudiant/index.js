@@ -110,17 +110,8 @@ const ApiStatutEtudiant = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="api_statut_etudiant"
-    title="Demande d’accès à l’API Statut étudiant"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject:
-          'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Statut%20étudiant',
-      },
-    ]}
   >
     <OrganisationSection />
     <DemarcheSection />

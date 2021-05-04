@@ -14,25 +14,13 @@ const AgenceBio = ({
     params: { enrollmentId },
   },
 }) => (
-  <Form
-    enrollmentId={enrollmentId}
-    target_api="agence_bio"
-    title="Demande d’accès à l’API Agence Bio"
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject:
-          'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Agence%20Bio',
-      },
-    ]}
-  >
+  <Form enrollmentId={enrollmentId} target_api="agence_bio">
     <OrganisationSection />
     <DescriptionSection />
     <CadreJuridiqueSection />
     <IpSection />
     <MiseEnOeuvreSection />
-    <CguSection cguLink="https://entreprise.api.gouv.fr/cgu/" />
+    <CguSection cguLink="" />
   </Form>
 );
 

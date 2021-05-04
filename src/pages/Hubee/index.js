@@ -11,7 +11,6 @@ import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEn
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 import Helper from '../../components/atoms/Helper';
-import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import { SolutionLogicielleSection } from '../../components/organisms/form-sections/hubee-sections/SolutionLogicielleSection';
 
 const DemarcheDescription = () => (
@@ -114,20 +113,7 @@ const Hubee = ({
     title="Demande d’abonnement à une démarche en ligne"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logo={{
-      src: `/images/${API_ICONS[target_api]}`,
-      alt: `Logo ${TARGET_API_LABELS[target_api]}`,
-      url: 'https://www.numerique.gouv.fr/dinum',
-    }}
-    contactInformation={[
-      {
-        email: 'contact@api.gouv.fr',
-        label: 'Nous contacter',
-        subject: `Contact%20via%20datapass.api.gouv.fr%20-%20${encodeURIComponent(
-          TARGET_API_LABELS[target_api]
-        )}`,
-      },
-    ]}
+    logoLinkUrl="https://www.numerique.gouv.fr/dinum/"
   >
     <OrganisationSection />
     <DemarcheSection

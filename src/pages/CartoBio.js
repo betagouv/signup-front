@@ -5,7 +5,6 @@ import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import { API_ICONS, TARGET_API_LABELS } from '../lib/api';
 import DonneesSection from '../components/organisms/form-sections/cartobio-sections/DonneesSection';
 import CguSection from '../components/organisms/form-sections/cartobio-sections/CguSection';
 
@@ -17,12 +16,7 @@ const CartoBio = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="cartobio"
-    title="Demande d’accès à l’API CartoBio - Territoires"
-    logo={{
-      src: `/images/${API_ICONS.cartobio}`,
-      alt: `Logo ${TARGET_API_LABELS.cartobio}`,
-      url: 'https://cartobio.org/',
-    }}
+    logoLinkUrl="https://api.gouv.fr/les-api/api_cartobio_territoires"
     contactInformation={[
       {
         email: 'cartobio@beta.gouv.fr',
