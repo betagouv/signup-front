@@ -59,13 +59,15 @@ const contacts = {
   },
   technique: {
     heading: 'Délégué(e) technique',
+    // set a key to avoid « each key should have a unique key property »
+    // error when including 2 p elements
     description: (
       <>
-        <p>
+        <p key="p1">
           Ce rôle n’est à définir que si vous optez pour un mode d’accès aux
           démarches via les API.
         </p>
-        <p>
+        <p key="p2">
           Cette personne disposera des droits d’accès à la gestion des
           abonnements au sein du Hub d’Échange de l’État. Elle pourra également
           être contactée en cas de problème technique.

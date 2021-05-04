@@ -39,13 +39,15 @@ const contacts = {
     ),
     family_name: '',
     given_name: '',
+    // set a key to avoid « each key should have a unique key property »
+    // error when including WarningEmoji alongside text
     emailDescription: (
       <p>
-        <WarningEmoji /> Vos jetons d’accès expireront tous les 18 mois. Afin de
-        garantir que votre service ne soit pas interrompu, merci de renseigner
-        une adresse email générique afin que nous puissions vous transmettre les
-        nouveaux jetons malgré des aléas de changement de poste, congés ou
-        autre.
+        <WarningEmoji key="warning-emoji" /> Vos jetons d’accès expireront tous
+        les 18 mois. Afin de garantir que votre service ne soit pas interrompu,
+        merci de renseigner une adresse email générique afin que nous puissions
+        vous transmettre les nouveaux jetons malgré des aléas de changement de
+        poste, congés ou autre.
       </p>
     ),
     email: '',
