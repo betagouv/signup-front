@@ -265,6 +265,13 @@ export const Stats = ({
                         />
                       ))}
                     </Pie>
+                    <Tooltip
+                      formatter={(value, name, props) => [
+                        value,
+                        TARGET_API_LABELS[name],
+                        props,
+                      ]}
+                    />
                     <Legend
                       layout={'vertical'}
                       align={'right'}
