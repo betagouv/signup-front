@@ -9,44 +9,20 @@ import { goBack } from '../../lib';
 import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import { isEmpty } from 'lodash';
 
-const sectionNameToLabel = {
-  OrganisationSection: 'Organisation',
-  DemarcheSection: 'Modèles pré-remplis',
-  DescriptionSection: 'Description',
-  DonneesSection: 'Données',
-  CadreJuridiqueSection: 'Cadre juridique',
-  DonneesPersonnellesSection: 'Données personnelles',
-  MiseEnOeuvreSection: 'Contacts',
-  CguSection: 'Modalités d’utilisation',
-  ContratDeLicenceSection: 'Licence',
-  RecetteFonctionnelleSection: 'Recette fonctionnelle',
-  HomologationSecuriteSection: 'Homologation de sécurité',
-  VolumetrieSection: 'Volumétrie',
-  IpSection: 'Adresses IP',
-  StructureSection: 'Structure',
-  LabelsSection: 'Labels',
-  AidantsSection: 'Les aidants',
-  FranceConnectPlusSection: 'Niveau de garantie',
-  AboutSection: 'À propos',
-  SolutionLogicielleSection: 'Solution logicielle',
-};
-
 const Nav = ({
   target_api,
   logoLinkUrl,
-  sectionNames = [],
+  sectionLabels = [],
   contactInformation = [],
   history,
 }) => {
   const navElements = useMemo(
     () =>
-      sectionNames
-        .filter(sectionName => !!sectionNameToLabel[sectionName])
-        .map(sectionName => ({
-          id: sectionName,
-          label: sectionNameToLabel[sectionName],
-        })),
-    [sectionNames]
+      sectionLabels.map(sectionName => ({
+        id: encodeURIComponent(sectionName),
+        label: sectionName,
+      })),
+    [sectionLabels]
   );
 
   const contactElements = useMemo(
@@ -107,8 +83,8 @@ const Nav = ({
             <ScrollableLink scrollableId="head" style={{ fontWeight: 'bold' }}>
               Formulaire
             </ScrollableLink>
-            {navElements.map(({ id, label, style = {} }) => (
-              <ScrollableLink key={id} scrollableId={id} style={style}>
+            {navElements.map(({ id, label }) => (
+              <ScrollableLink key={id} scrollableId={id}>
                 {label}
               </ScrollableLink>
             ))}
@@ -149,7 +125,7 @@ const Nav = ({
 };
 
 Nav.propTypes = {
-  sectionNames: PropTypes.array.isRequired,
+  sectionLabels: PropTypes.array.isRequired,
   contactInformation: PropTypes.array,
   logoLinkUrl: PropTypes.string,
   history: PropTypes.shape({

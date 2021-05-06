@@ -5,7 +5,10 @@ import FileInput from '../../../molecules/FileInput';
 import OrWrapper from '../../../atoms/inputs/OrWrapper';
 import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
 
-const DonneesSection = () => {
+const SECTION_LABEL = 'Données';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
+export const DonneesSection = () => {
   const {
     disabled,
     onChange,
@@ -17,7 +20,7 @@ const DonneesSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="DonneesSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les périmètres de données dont vous avez besoin</h2>
       <OrWrapper>
         <TextAreaInput
@@ -53,5 +56,7 @@ const DonneesSection = () => {
     </ScrollablePanel>
   );
 };
+
+DonneesSection.sectionLabel = SECTION_LABEL;
 
 export default DonneesSection;

@@ -5,6 +5,9 @@ import YesNoRadioInput from '../../../atoms/inputs/YesNoRadioInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 import FileInput from '../../../molecules/FileInput';
 
+const SECTION_LABEL = 'Les aidants';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const AidantsSection = () => {
   const {
     disabled,
@@ -21,7 +24,7 @@ export const AidantsSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="AidantsSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les aidants</h2>
       <FileInput
         label={
@@ -74,5 +77,7 @@ export const AidantsSection = () => {
     </ScrollablePanel>
   );
 };
+
+AidantsSection.sectionLabel = SECTION_LABEL;
 
 export default AidantsSection;

@@ -6,6 +6,9 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Quote from '../../../atoms/inputs/Quote';
 
+const SECTION_LABEL = 'Contacts';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const MiseEnOeuvreSection = ({
   initialContacts = {},
   title = 'Coordonnées des référents du service',
@@ -55,7 +58,7 @@ const MiseEnOeuvreSection = ({
   }
 
   return (
-    <ScrollablePanel scrollableId="MiseEnOeuvreSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>{title}</h2>
       <MiseEnOeuvreDescription />
       <div className="form__group">
@@ -85,6 +88,8 @@ const MiseEnOeuvreSection = ({
     </ScrollablePanel>
   );
 };
+
+MiseEnOeuvreSection.sectionLabel = SECTION_LABEL;
 
 const contactPropTypesShape = {
   technique: PropTypes.shape({

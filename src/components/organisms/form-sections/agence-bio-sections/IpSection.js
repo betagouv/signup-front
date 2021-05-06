@@ -4,6 +4,9 @@ import { ScrollablePanel } from '../../Scrollable';
 import Quote from '../../../atoms/inputs/Quote';
 import TextInput from '../../../atoms/inputs/TextInput';
 
+const SECTION_LABEL = 'Adresses IP';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const IpSection = () => {
   const {
     disabled,
@@ -14,7 +17,7 @@ export const IpSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="IpSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Adresses IP</h2>
       <Quote>
         <p>
@@ -39,5 +42,7 @@ export const IpSection = () => {
     </ScrollablePanel>
   );
 };
+
+IpSection.sectionLabel = SECTION_LABEL;
 
 export default IpSection;

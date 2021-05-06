@@ -7,6 +7,9 @@ import FileInput from '../../molecules/FileInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 import TextInput from '../../atoms/inputs/TextInput';
 
+const SECTION_LABEL = 'Cadre juridique';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const Label = ({ fondement_juridique_url }) => (
   <>
     Si possible, joindre l’URL du texte relatif au traitement{' '}
@@ -39,7 +42,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="CadreJuridiqueSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
       <CadreJuridiqueDescription />
       <TextAreaInput
@@ -76,6 +79,8 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
     </ScrollablePanel>
   );
 };
+
+CadreJuridiqueSection.sectionLabel = SECTION_LABEL;
 
 CadreJuridiqueSection.propTypes = {
   CadreJuridiqueDescription: PropTypes.func,

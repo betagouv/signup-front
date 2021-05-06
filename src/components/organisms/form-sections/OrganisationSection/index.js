@@ -14,6 +14,8 @@ import OpenInNewIcon from '../../../atoms/icons/open-in-new';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
+const SECTION_LABEL = 'Organisation';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const OrganisationSection = () => {
   const {
@@ -173,7 +175,7 @@ const OrganisationSection = () => {
   };
 
   return (
-    <ScrollablePanel scrollableId="OrganisationSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>L’organisation</h2>
       <div className="row">
         <div className="card">
@@ -282,5 +284,7 @@ const OrganisationSection = () => {
     </ScrollablePanel>
   );
 };
+
+OrganisationSection.sectionLabel = SECTION_LABEL;
 
 export default OrganisationSection;

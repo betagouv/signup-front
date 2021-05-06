@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
 
+const SECTION_LABEL = 'Description';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const DescriptionSection = ({
   title,
   intituleLabel,
@@ -19,7 +22,7 @@ const DescriptionSection = ({
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="DescriptionSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>{title || 'Description de votre service'}</h2>
       <TextInput
         label={intituleLabel || 'Nom du service'}
@@ -50,6 +53,8 @@ const DescriptionSection = ({
     </ScrollablePanel>
   );
 };
+
+DescriptionSection.sectionLabel = SECTION_LABEL;
 
 DescriptionSection.propTypes = {
   intitulePlaceholder: PropTypes.string,

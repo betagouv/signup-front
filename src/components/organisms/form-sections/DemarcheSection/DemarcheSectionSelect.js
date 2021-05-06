@@ -8,7 +8,7 @@ import { findModifiedFields } from '../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
 import Select from '../../../atoms/inputs/Select';
 
-export const DemarcheSectionSelect = ({ title, body }) => {
+export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
@@ -55,7 +55,7 @@ export const DemarcheSectionSelect = ({ title, body }) => {
 
   return (
     <>
-      <ScrollablePanel scrollableId="DemarcheSection">
+      <ScrollablePanel scrollableId={scrollableId}>
         {confirmNewDemarcheId && (
           <ConfirmationModal
             title="Attention, vous allez écraser certains de vos changements"

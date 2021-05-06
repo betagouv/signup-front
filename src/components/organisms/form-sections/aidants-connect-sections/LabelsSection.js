@@ -3,6 +3,9 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
+const SECTION_LABEL = 'Labels';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const LabelsSection = () => {
   const {
     disabled,
@@ -18,7 +21,7 @@ export const LabelsSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="LabelsSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Votre structure a obtenu</h2>
       <CheckboxInput
         label="Le label Pass Numérique"
@@ -51,5 +54,7 @@ export const LabelsSection = () => {
     </ScrollablePanel>
   );
 };
+
+LabelsSection.sectionLabel = SECTION_LABEL;
 
 export default LabelsSection;

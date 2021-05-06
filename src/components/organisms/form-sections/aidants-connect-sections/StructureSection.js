@@ -11,6 +11,9 @@ import YesNoRadioInput from '../../../atoms/inputs/YesNoRadioInput';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
 
+const SECTION_LABEL = 'Structure';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const StructureSection = () => {
   const {
     disabled,
@@ -84,7 +87,7 @@ export const StructureSection = () => {
   ]);
 
   return (
-    <ScrollablePanel scrollableId="StructureSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Description de votre structure</h2>
       <Quote>
         <p>
@@ -218,5 +221,7 @@ export const StructureSection = () => {
     </ScrollablePanel>
   );
 };
+
+StructureSection.sectionLabel = SECTION_LABEL;
 
 export default StructureSection;

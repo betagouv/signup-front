@@ -4,6 +4,9 @@ import { ScrollablePanel } from '../../Scrollable';
 import Quote from '../../../atoms/inputs/Quote';
 import FileInput from '../../../molecules/FileInput';
 
+const SECTION_LABEL = 'Modalités d’utilisation';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const CguSection = () => {
   const {
     disabled,
@@ -12,7 +15,7 @@ export const CguSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="CguSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Modalités d’utilisation</h2>
       <Quote>
         <p>
@@ -53,5 +56,7 @@ export const CguSection = () => {
     </ScrollablePanel>
   );
 };
+
+CguSection.sectionLabel = SECTION_LABEL;
 
 export default CguSection;

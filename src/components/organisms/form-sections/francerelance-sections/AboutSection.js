@@ -5,6 +5,9 @@ import TextInput from '../../../atoms/inputs/TextInput';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 
+const SECTION_LABEL = 'À propos';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const AboutSection = () => {
   const {
     disabled,
@@ -20,7 +23,7 @@ export const AboutSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="AboutSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>À propos</h2>
       <YesNoRadioInput
         label="Votre collectivité utilise-t-elle déjà FranceConnect pour d’autres de ses services en ligne ?"
@@ -55,5 +58,7 @@ export const AboutSection = () => {
     </ScrollablePanel>
   );
 };
+
+AboutSection.sectionLabel = SECTION_LABEL;
 
 export default AboutSection;

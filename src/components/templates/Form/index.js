@@ -76,10 +76,12 @@ export const Form = ({
   const [errorMessages, setErrorMessages] = useState([]);
   const [successMessages, setSuccessMessages] = useState([]);
   const [isUserEnrollmentLoading, setIsUserEnrollmentLoading] = useState(true);
-  const sectionNames = useMemo(
-    () => React.Children.map(children, ({ type: { name } }) => name),
-    [children]
-  );
+  const sectionLabels = useMemo(() => {
+    return React.Children.map(
+      children,
+      ({ type: { sectionLabel } }) => sectionLabel
+    );
+  }, [children]);
 
   const [enrollment, dispatchSetEnrollment] = useReducer(
     enrollmentReducer(demarches),
@@ -162,7 +164,7 @@ export const Form = ({
         target_api={target_api}
         logoLinkUrl={logoLinkUrl}
         contactInformation={contactInformation}
-        sectionNames={sectionNames}
+        sectionLabels={sectionLabels}
       />
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>

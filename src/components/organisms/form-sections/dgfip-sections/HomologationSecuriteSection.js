@@ -6,6 +6,9 @@ import Quote from '../../../atoms/inputs/Quote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import DateInput from '../../../atoms/inputs/DateInput';
 
+const SECTION_LABEL = 'Homologation de sécurité';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const HomologationSecuriteSection = () => {
   const {
     disabled,
@@ -23,7 +26,7 @@ const HomologationSecuriteSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="HomologationSecuriteSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Homologation de sécurité</h2>
       <Quote>
         <p>
@@ -77,5 +80,7 @@ const HomologationSecuriteSection = () => {
     </ScrollablePanel>
   );
 };
+
+HomologationSecuriteSection.sectionLabel = SECTION_LABEL;
 
 export default HomologationSecuriteSection;

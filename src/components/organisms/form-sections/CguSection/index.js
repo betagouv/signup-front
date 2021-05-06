@@ -4,7 +4,10 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
-const CguSection = ({
+const SECTION_LABEL = 'Modalités d’utilisation';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
+export const CguSection = ({
   CguDescription = () => null,
   cguLink,
   AdditionalCguContent = () => null,
@@ -16,7 +19,7 @@ const CguSection = ({
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="CguSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Modalités d’utilisation</h2>
       <CguDescription />
       <CheckboxInput
@@ -43,6 +46,8 @@ const CguSection = ({
     </ScrollablePanel>
   );
 };
+
+CguSection.sectionLabel = SECTION_LABEL;
 
 CguSection.propTypes = {
   CguDescription: PropTypes.func,

@@ -5,6 +5,9 @@ import { FormContext } from '../../templates/Form';
 import OpenInNewIcon from '../../atoms/icons/open-in-new';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
 
+const SECTION_LABEL = 'Niveau de garantie';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const FranceConnectPlusSection = () => {
   const {
     isUserEnrollmentLoading,
@@ -27,7 +30,7 @@ export const FranceConnectPlusSection = () => {
   }, [isUserEnrollmentLoading, disabled, onChange, eidas_1]);
 
   return (
-    <ScrollablePanel scrollableId="FranceConnectPlusSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le niveau de garantie attendu par votre service</h2>
       <CheckboxInput
         label="FranceConnect : niveau de garantie eIDAS 1"
@@ -62,5 +65,7 @@ export const FranceConnectPlusSection = () => {
     </ScrollablePanel>
   );
 };
+
+FranceConnectPlusSection.sectionLabel = SECTION_LABEL;
 
 export default FranceConnectPlusSection;

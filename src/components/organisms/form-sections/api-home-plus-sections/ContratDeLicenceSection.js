@@ -4,6 +4,9 @@ import { ScrollablePanel } from '../../Scrollable';
 import Quote from '../../../atoms/inputs/Quote';
 import FileInput from '../../../molecules/FileInput';
 
+const SECTION_LABEL = 'Licence';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const ContratDeLicenceSection = () => {
   const {
     disabled,
@@ -12,7 +15,7 @@ export const ContratDeLicenceSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="ContratDeLicenceSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Contrat de Licence</h2>
       <Quote>
         <p>
@@ -51,5 +54,7 @@ export const ContratDeLicenceSection = () => {
     </ScrollablePanel>
   );
 };
+
+ContratDeLicenceSection.sectionLabel = SECTION_LABEL;
 
 export default ContratDeLicenceSection;

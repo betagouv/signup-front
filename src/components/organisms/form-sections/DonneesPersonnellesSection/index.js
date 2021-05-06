@@ -5,6 +5,9 @@ import { FormContext } from '../../../templates/Form';
 import TextInput from '../../../atoms/inputs/TextInput';
 import NumberInput from '../../../atoms/inputs/NumberInput';
 
+const SECTION_LABEL = 'Données personnelles';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   const {
     disabled,
@@ -23,7 +26,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="DonneesPersonnellesSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le traitement de données à caractère personnel</h2>
       <TextInput
         label="Destinataires des données"
@@ -97,5 +100,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
     </ScrollablePanel>
   );
 };
+
+DonneesPersonnellesSection.sectionLabel = SECTION_LABEL;
 
 export default DonneesPersonnellesSection;

@@ -6,6 +6,9 @@ import Scopes from './Scopes';
 import { FormContext } from '../../../templates/Form';
 import UseCase from './UseCases';
 
+const SECTION_LABEL = 'Données';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const DonneesSection = ({
   DonneesDescription = () => null,
   AdditionalRgpdAgreement = () => null,
@@ -57,7 +60,7 @@ const DonneesSection = ({
   const outdatedScopes = difference(scopesAsArray, availableScopesAsArray);
 
   return (
-    <ScrollablePanel scrollableId="DonneesSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les données dont vous avez besoin</h2>
       <DonneesDescription />
       <AdditionalRgpdAgreement
@@ -102,6 +105,8 @@ const DonneesSection = ({
     </ScrollablePanel>
   );
 };
+
+DonneesSection.sectionLabel = SECTION_LABEL;
 
 DonneesSection.propTypes = {
   DonneesDescription: PropTypes.func,

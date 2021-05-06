@@ -4,6 +4,9 @@ import { FormContext } from '../../../templates/Form';
 import Quote from '../../../atoms/inputs/Quote';
 import Select from '../../../atoms/inputs/Select';
 
+const SECTION_LABEL = 'Volumétrie';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   const {
     disabled,
@@ -37,7 +40,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
   ]);
 
   return (
-    <ScrollablePanel scrollableId="VolumetrieSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Volumétrie</h2>
       <Quote>
         <p>
@@ -65,5 +68,7 @@ const VolumetrieSection = ({ options = [50, 200, 1000] }) => {
     </ScrollablePanel>
   );
 };
+
+VolumetrieSection.sectionLabel = SECTION_LABEL;
 
 export default VolumetrieSection;

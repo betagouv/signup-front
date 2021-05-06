@@ -4,6 +4,9 @@ import { FormContext } from '../../../templates/Form';
 import Quote from '../../../atoms/inputs/Quote';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
+const SECTION_LABEL = 'Recette fonctionnelle';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 const RecetteFonctionnelleSection = () => {
   const {
     disabled,
@@ -14,7 +17,7 @@ const RecetteFonctionnelleSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="RecetteFonctionnelleSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Recette fonctionnelle</h2>
       <Quote>
         <p>
@@ -52,5 +55,7 @@ const RecetteFonctionnelleSection = () => {
     </ScrollablePanel>
   );
 };
+
+RecetteFonctionnelleSection.sectionLabel = SECTION_LABEL;
 
 export default RecetteFonctionnelleSection;

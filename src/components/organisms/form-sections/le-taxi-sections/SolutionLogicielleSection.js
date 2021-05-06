@@ -4,6 +4,9 @@ import { ScrollablePanel } from '../../Scrollable';
 import Quote from '../../../atoms/inputs/Quote';
 import RadioInput from '../../../atoms/inputs/RadioInput';
 
+const SECTION_LABEL = 'Solution logicielle';
+const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
 export const SolutionLogicielleSection = () => {
   const {
     disabled,
@@ -14,7 +17,7 @@ export const SolutionLogicielleSection = () => {
   } = useContext(FormContext);
 
   return (
-    <ScrollablePanel scrollableId="SolutionLogicielleSection">
+    <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Quelle solution logicielle utilisez-vous ?</h2>
       <Quote>
         <p>
@@ -41,5 +44,7 @@ export const SolutionLogicielleSection = () => {
     </ScrollablePanel>
   );
 };
+
+SolutionLogicielleSection.sectionLabel = SECTION_LABEL;
 
 export default SolutionLogicielleSection;
