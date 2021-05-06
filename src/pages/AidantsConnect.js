@@ -15,10 +15,10 @@ const contacts = {
     heading: 'Responsable Aidants Connect',
     description: (
       <p>
-        Un responsable Aidants Connect doit être désigné. Il est en charge de la mise en place et du suivi d’Aidants
-        Connect au sein du lieu d’accueil. Il tient également à jour la liste
-        des aidants habilités Aidants Connect sur son espace administrateur (à
-        venir).
+        Un responsable Aidants Connect doit être désigné. Il est en charge de la
+        mise en place et du suivi d’Aidants Connect au sein du lieu d’accueil.
+        Il tient également à jour la liste des aidants habilités Aidants Connect
+        sur son espace administrateur (à venir).
       </p>
     ),
     family_name: '',
