@@ -12,10 +12,10 @@ import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 
 const contacts = {
   metier: {
-    heading: 'Responsable de structure',
+    heading: 'Responsable Aidants Connect',
     description: (
       <p>
-        Le responsable est en charge de la mise en place et du suivi d’Aidants
+        Un responsable Aidants Connect doit être désigné. Il est en charge de la mise en place et du suivi d’Aidants
         Connect au sein du lieu d’accueil. Il tient également à jour la liste
         des aidants habilités Aidants Connect sur son espace administrateur (à
         venir).
