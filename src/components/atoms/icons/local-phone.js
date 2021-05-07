@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // https://material.io/resources/icons/?icon=local_phone&style=baseline
-const LocalPhoneIcon = ({ color }) => (
+const LocalPhoneIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
     style={{ verticalAlign: 'bottom' }}
   >
@@ -17,13 +16,5 @@ const LocalPhoneIcon = ({ color }) => (
     />
   </svg>
 );
-
-LocalPhoneIcon.propTypes = {
-  color: PropTypes.string,
-};
-
-LocalPhoneIcon.defaultProps = {
-  color: 'none',
-};
 
 export default LocalPhoneIcon;

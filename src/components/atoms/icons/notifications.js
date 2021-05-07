@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=notifications&style=baseline
-const NotificationsIcon = ({ color }) => (
+const NotificationsIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
     xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
   >
     <path d="M0 0h24v24H0z" fill="none" />
     <path
@@ -16,13 +15,5 @@ const NotificationsIcon = ({ color }) => (
     />
   </svg>
 );
-
-NotificationsIcon.propTypes = {
-  color: PropTypes.string,
-};
-
-NotificationsIcon.defaultProps = {
-  color: 'none',
-};
 
 export default NotificationsIcon;

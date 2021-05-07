@@ -8,6 +8,7 @@ import DonneesPersonnellesSection from '../components/organisms/form-sections/Do
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
+import Quote from '../components/atoms/inputs/Quote';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -22,12 +23,14 @@ const contact = {
   metier: {
     heading: 'Personne en charge du suivi',
     description: (
-      <p>
-        Cette personne sera notre point d’entrée dans votre entreprise. Si la
-        solution logicielle que votre groupement ou centrale utilise est
-        développée en interne, les codes d’accès à l’API seront envoyées à cette
-        personne.
-      </p>
+      <Quote>
+        <p>
+          Cette personne sera notre point d’entrée dans votre entreprise. Si la
+          solution logicielle que votre groupement ou centrale utilise est
+          développée en interne, les codes d’accès à l’API seront envoyées à
+          cette personne.
+        </p>
+      </Quote>
     ),
     email: '',
   },

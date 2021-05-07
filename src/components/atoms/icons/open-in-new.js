@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/resources/icons/?icon=open_in_new&style=baseline
-const OpenInNewIcon = ({ color, size }) => (
+const OpenInNewIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}
@@ -16,15 +15,5 @@ const OpenInNewIcon = ({ color, size }) => (
     />
   </svg>
 );
-
-OpenInNewIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-OpenInNewIcon.defaultProps = {
-  color: 'black',
-  size: 24,
-};
 
 export default OpenInNewIcon;

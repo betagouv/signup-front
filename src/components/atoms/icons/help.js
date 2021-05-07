@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=help&style=baseline
-const HelpIcon = ({ color }) => (
+const HelpIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -16,13 +15,5 @@ const HelpIcon = ({ color }) => (
     />
   </svg>
 );
-
-HelpIcon.propTypes = {
-  color: PropTypes.string,
-};
-
-HelpIcon.defaultProps = {
-  color: 'none',
-};
 
 export default HelpIcon;

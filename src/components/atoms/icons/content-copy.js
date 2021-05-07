@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://fonts.google.com/icons?selected=Material+Icons&icon.query=content+copy
-const ContentCopyIcon = ({ color, size }) => (
+const ContentCopyIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}
@@ -16,15 +15,5 @@ const ContentCopyIcon = ({ color, size }) => (
     />
   </svg>
 );
-
-ContentCopyIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-ContentCopyIcon.defaultProps = {
-  color: 'black',
-  size: 24,
-};
 
 export default ContentCopyIcon;

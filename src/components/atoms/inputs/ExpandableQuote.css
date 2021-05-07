@@ -1,0 +1,49 @@
+.expandable-quote {
+  border: 1px solid var(--theme-border-lighter);
+  border-radius: 3px;
+}
+
+.expandable-quote.expanded {
+  border-color: var(--theme-border-active);
+}
+
+.expandable-quote-header {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 0.5em;
+  cursor: pointer;
+}
+
+.expandable-quote-header:hover {
+  background-color: var(--lightest-grey);
+}
+.expandable-quote-header svg {
+  flex-grow: 0;
+}
+
+.expandable-quote-header div {
+  color: var(--blue);
+  padding: 0 0.5em;
+  font-size: 1.25em;
+  flex-grow: 10;
+}
+
+.expandable-quote-content {
+  background-color: var(--theme-background-grey);
+  padding: 0 25px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.15s ease-out;
+}
+
+.expandable-quote.expanded .expandable-quote-content {
+  max-height: 400px;
+  transition: max-height 0.25s ease-in;
+}
+
+.expandable-quote.expanded.large .expandable-quote-content {
+  max-height: 1200px;
+}

@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=autorenew&style=baseline
-const AutorenewIcon = ({ color, size }) => (
+const AutorenewIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -16,15 +15,5 @@ const AutorenewIcon = ({ color, size }) => (
     <path d="M0 0h24v24H0z" fill="none" />
   </svg>
 );
-
-AutorenewIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-AutorenewIcon.defaultProps = {
-  color: 'black',
-  size: 24,
-};
 
 export default AutorenewIcon;

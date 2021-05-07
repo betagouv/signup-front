@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // https://material.io/tools/icons/?icon=edit&style=baseline
-const EditIcon = ({ color, size }) => (
+const EditIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -15,15 +14,5 @@ const EditIcon = ({ color, size }) => (
     />
   </svg>
 );
-
-EditIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-EditIcon.defaultProps = {
-  color: 'none',
-  size: 24,
-};
 
 export default EditIcon;

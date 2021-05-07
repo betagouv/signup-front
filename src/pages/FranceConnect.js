@@ -55,13 +55,15 @@ const contacts = {
   technique: {
     heading: 'Responsable technique',
     description: (
-      <p>
-        Cette personne recevra les accès techniques par mail. Le numéro de
-        téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
-        envoyer un code d’accès. Le responsable technique peut être le contact
-        technique de votre prestataire. Attention, ce courrier peut parfois
-        passer en «&nbsp;courriers indésirables&nbsp;».
-      </p>
+      <Quote>
+        <p>
+          Cette personne recevra les accès techniques par mail. Le numéro de
+          téléphone doit être un numéro de téléphone mobile. Il sera utilisé
+          pour envoyer un code d’accès. Le responsable technique peut être le
+          contact technique de votre prestataire. Attention, ce courrier peut
+          parfois passer en «&nbsp;courriers indésirables&nbsp;».
+        </p>
+      </Quote>
     ),
     email: '',
     phone_number: '',
