@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const demandeIcon = ({ color }) => (
+const DemandeIcon = ({ color = '#0048b3', size = 56 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    width="24"
+    height={size}
+    width={size}
     viewBox="0 0 56 56"
   >
     <rect fill="#fff" width="56" height="56" />
@@ -14,7 +13,7 @@ const demandeIcon = ({ color }) => (
       d="M14.8,41.6V14.4a10,10,0,0,1,10-10H18.7a10,10,0,0,0-10,10V41.6a10,10,0,0,0,10,10h6.07a10,10,0,0,1-10-10Z"
     />
     <path
-      fill={`${color || '#0048b3'}`}
+      fill={color}
       d="M37.2,53.6H18.8a12,12,0,0,1-12-12V14.4a12,12,0,0,1,12-12H37.2a12,12,0,0,1,12,12V41.6A12,12,0,0,1,37.2,53.6ZM18.8,6.4a8,8,0,0,0-8,8V41.6a8,8,0,0,0,8,8H37.2a8,8,0,0,0,8-8V14.4a8,8,0,0,0-8-8Zm20,5.8a2,2,0,0,0-4,0,3,3,0,0,1-3,3H24.2a3,3,0,0,1-3-3,2,2,0,0,0-4,0,7,7,0,0,0,7,7h7.6A7,7,0,0,0,38.8,12.2Z"
     />
     <path
@@ -24,12 +23,4 @@ const demandeIcon = ({ color }) => (
   </svg>
 );
 
-demandeIcon.propTypes = {
-  color: PropTypes.string,
-};
-
-demandeIcon.defaultProps = {
-  color: undefined,
-};
-
-export default demandeIcon;
+export default DemandeIcon;

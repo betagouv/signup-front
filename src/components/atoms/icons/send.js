@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/resources/icons/?icon=send&style=baseline
-const SendIcon = ({ color, size }) => (
+const SendIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -15,15 +14,5 @@ const SendIcon = ({ color, size }) => (
     />
   </svg>
 );
-
-SendIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-SendIcon.defaultProps = {
-  color: 'none',
-  size: 24,
-};
 
 export default SendIcon;

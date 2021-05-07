@@ -32,11 +32,11 @@ const eventNameToDisplayableContent = {
     label: 'a écrit',
   },
   created: {
-    icon: <InfoIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
     label: 'a créé la demande',
   },
   submitted: {
-    icon: <InfoIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
     label: 'a soumis la demande',
   },
   validated: {
@@ -46,11 +46,11 @@ const eventNameToDisplayableContent = {
   // This action is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   updated_contacts: {
-    icon: <InfoIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
     label: 'a mis à jour les contacts',
   },
   updated: {
-    icon: <InfoIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
     label: 'a mis à jour la demande',
   },
   refused: {
@@ -62,7 +62,7 @@ const eventNameToDisplayableContent = {
     label: 'a copié la demande',
   },
   imported: {
-    icon: <InfoIcon color={'var(--blue)'} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
     label: 'a importé la demande',
   },
 };

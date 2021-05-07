@@ -1,8 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=arrow_back&style=baseline https://material.io/tools/icons/static/icons/baseline-arrow_back-24px.svg
-const ArrowBackIcon = ({ color, size }) => (
+const ArrowBackIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={size}
@@ -16,15 +15,5 @@ const ArrowBackIcon = ({ color, size }) => (
     />
   </svg>
 );
-
-ArrowBackIcon.propTypes = {
-  color: PropTypes.string,
-  size: PropTypes.number,
-};
-
-ArrowBackIcon.defaultProps = {
-  color: 'none',
-  size: 24,
-};
 
 export default ArrowBackIcon;

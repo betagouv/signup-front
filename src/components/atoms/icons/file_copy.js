@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/resources/icons/?icon=file_copy&style=outline
-const FileCopyIcon = ({ color }) => (
+const FileCopyIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    height="24"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
-    width="24"
   >
     <path d="M0 0h24v24H0V0z" fill="none" />
     <path
@@ -16,13 +15,5 @@ const FileCopyIcon = ({ color }) => (
     />
   </svg>
 );
-
-FileCopyIcon.propTypes = {
-  color: PropTypes.string,
-};
-
-FileCopyIcon.defaultProps = {
-  color: 'none',
-};
 
 export default FileCopyIcon;

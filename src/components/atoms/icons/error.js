@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=error&style=baseline
-const ErrorIcon = ({ color }) => (
+const ErrorIcon = ({ color = 'var(--theme-dark-text)', size = 24 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width={size}
+    height={size}
     viewBox="0 0 24 24"
   >
     <path d="M0 0h24v24H0z" fill="none" />
@@ -16,13 +15,5 @@ const ErrorIcon = ({ color }) => (
     />
   </svg>
 );
-
-ErrorIcon.propTypes = {
-  title: PropTypes.string,
-};
-
-ErrorIcon.defaultProps = {
-  title: 'none',
-};
 
 export default ErrorIcon;

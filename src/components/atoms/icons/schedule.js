@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 // Source: https://material.io/tools/icons/?icon=schedule&style=baseline
 const ScheduleIcon = ({ title }) => (
@@ -15,13 +14,5 @@ const ScheduleIcon = ({ title }) => (
     <path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
   </svg>
 );
-
-ScheduleIcon.propTypes = {
-  title: PropTypes.string,
-};
-
-ScheduleIcon.defaultProps = {
-  title: null,
-};
 
 export default ScheduleIcon;
