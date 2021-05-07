@@ -213,16 +213,16 @@ describe('utils', () => {
     };
 
     const changelog = [
-      'Changement de la durée de conservation des données de "12" en "11".',
-      'Changement de la référence du cadre juridique de "Convention d\'accès à "Mon compte ' +
+      'Changement de la durée de conservation des données de "12" en "11"',
+      'Changement de la référence du cadre juridique de \n\nConvention d\'accès à "Mon compte ' +
         'partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la ' +
         'convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai ' +
-        '2017." en "Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - ' +
+        '2017.\n\n en \n\nConvention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - ' +
         'Contrat de service pris en application de la convention d\'accès à "Mon Compte ' +
-        'Partenaire" (mode gestion déléguée) signés le 11 mai 2017".',
-      'Changement du nom du contact 1 de "Raphaël Dubigny2" en "Raphaël Dubigny".',
-      'Changement du champ scopes.birthcountry de "coché" en "décoché".',
-      'Changement du champ scopes.birthdate de "décoché" en "coché".',
+        'Partenaire" (mode gestion déléguée) signés le 11 mai 2017\n\n',
+      'Changement du nom du contact 1 de "Raphaël Dubigny2" en "Raphaël Dubigny"',
+      'Changement du champ scopes.birthcountry de "coché" en "décoché"',
+      'Changement du champ scopes.birthdate de "décoché" en "coché"',
     ];
 
     it('should return changelog for simple string field', () => {

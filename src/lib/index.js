@@ -147,8 +147,10 @@ function changelogFormatTransformer(
       : 'décoché'
     : valueAfter;
 
+  const separator = displayedValueBefore.toString().length < 120 ? '"' : '\n\n';
+
   accumulatorArray.push(
-    `Changement ${label} de "${displayedValueBefore}" en "${displayedValueAfter}".`
+    `Changement ${label} de ${separator}${displayedValueBefore}${separator} en ${separator}${displayedValueAfter}${separator}`
   );
 
   return accumulatorArray;
