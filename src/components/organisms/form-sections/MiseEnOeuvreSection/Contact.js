@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 import './Contact.css';
 import TextInput from '../../../atoms/inputs/TextInput';
-import Quote from '../../../atoms/inputs/Quote';
 import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
@@ -71,7 +70,7 @@ export const Contact = ({
     <div className="card">
       <div className="card__content">
         <h3>{heading}</h3>
-        {description && <Quote>{description}</Quote>}
+        {description}
         {(typeof given_name === 'undefined' ||
           typeof family_name === 'undefined' ||
           (!given_name && !family_name)) &&
@@ -118,7 +117,7 @@ export const Contact = ({
               </div>
             </div>
           )}
-        {emailDescription && <Quote>{emailDescription}</Quote>}
+        {emailDescription}
         <EmailInput
           label="Email"
           placeholder={emailPlaceholder}

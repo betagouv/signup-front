@@ -34,11 +34,13 @@ const MiseEnOeuvreSection = ({
         technique: {
           heading: 'Responsable technique',
           description: (
-            <p>
-              Cette personne recevra les accès techniques par mail. Le
-              responsable technique peut être le contact technique de votre
-              prestataire.
-            </p>
+            <Quote>
+              <p>
+                Cette personne recevra les accès techniques par mail. Le
+                responsable technique peut être le contact technique de votre
+                prestataire.
+              </p>
+            </Quote>
           ),
           email: '',
         },

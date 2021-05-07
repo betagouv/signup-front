@@ -19,10 +19,12 @@ const contacts = {
   metier: {
     heading: 'Contact métier',
     description: (
-      <p>
-        Nous contacterons cette personne pour vous avertir de nouvelles
-        fonctionnalités ou d’incidents majeurs sur nos API.
-      </p>
+      <Quote>
+        <p>
+          Nous contacterons cette personne pour vous avertir de nouvelles
+          fonctionnalités ou d’incidents majeurs sur nos API.
+        </p>
+      </Quote>
     ),
     family_name: '',
     given_name: '',
@@ -32,23 +34,27 @@ const contacts = {
   technique: {
     heading: 'Contact technique',
     description: (
-      <p>
-        Nous contacterons cette personne pour vous avertir des évolutions
-        techniques, des incidents et de l’expiration des jetons.
-      </p>
+      <Quote>
+        <p>
+          Nous contacterons cette personne pour vous avertir des évolutions
+          techniques, des incidents et de l’expiration des jetons.
+        </p>
+      </Quote>
     ),
     family_name: '',
     given_name: '',
     // set a key to avoid « each key should have a unique key property »
     // error when including WarningEmoji alongside text
     emailDescription: (
-      <p>
-        <WarningEmoji key="warning-emoji" /> Vos jetons d’accès expireront tous
-        les 18 mois. Afin de garantir que votre service ne soit pas interrompu,
-        merci de renseigner une adresse email générique afin que nous puissions
-        vous transmettre les nouveaux jetons malgré des aléas de changement de
-        poste, congés ou autre.
-      </p>
+      <Quote>
+        <p>
+          <WarningEmoji key="warning-emoji" /> Vos jetons d’accès expireront
+          tous les 18 mois. Afin de garantir que votre service ne soit pas
+          interrompu, merci de renseigner une adresse email générique afin que
+          nous puissions vous transmettre les nouveaux jetons malgré des aléas
+          de changement de poste, congés ou autre.
+        </p>
+      </Quote>
     ),
     email: '',
     emailPlaceholder: 'contact@nom-organisation.fr',

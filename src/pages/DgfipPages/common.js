@@ -5,12 +5,14 @@ export const contacts = {
   technique: {
     heading: 'Responsable technique',
     description: (
-      <p>
-        Cette personne recevra les accès techniques par mail. Elle pourra
-        également être contactée par téléphone pour faciliter le raccordement à
-        l’API. Le responsable technique peut être le contact technique de votre
-        prestataire.
-      </p>
+      <Quote>
+        <p>
+          Cette personne recevra les accès techniques par mail. Elle pourra
+          également être contactée par téléphone pour faciliter le raccordement
+          à l’API. Le responsable technique peut être le contact technique de
+          votre prestataire.
+        </p>
+      </Quote>
     ),
     family_name: '',
     given_name: '',

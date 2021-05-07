@@ -50,10 +50,12 @@ const contacts = {
   metier: {
     heading: 'Porteur de projet',
     description: (
-      <p>
-        Cette personne sera le contact privilégié par la DINUM pour faciliter la
-        mise en place du projet.
-      </p>
+      <Quote>
+        <p>
+          Cette personne sera le contact privilégié par la DINUM pour faciliter
+          la mise en place du projet.
+        </p>
+      </Quote>
     ),
     family_name: '',
     given_name: '',
@@ -63,13 +65,15 @@ const contacts = {
   technique: {
     heading: 'Responsable technique',
     description: (
-      <p>
-        Cette personne recevra les accès techniques par mail. Le numéro de
-        téléphone doit être un numéro de téléphone mobile. Il sera utilisé pour
-        envoyer un code d’accès. Le responsable technique peut être le contact
-        technique de votre prestataire. Attention, ce courrier peut parfois
-        passer en «&nbsp;courriers indésirables&nbsp;».
-      </p>
+      <Quote>
+        <p>
+          Cette personne recevra les accès techniques par mail. Le numéro de
+          téléphone doit être un numéro de téléphone mobile. Il sera utilisé
+          pour envoyer un code d’accès. Le responsable technique peut être le
+          contact technique de votre prestataire. Attention, ce courrier peut
+          parfois passer en «&nbsp;courriers indésirables&nbsp;».
+        </p>
+      </Quote>
     ),
     family_name: '',
     given_name: '',

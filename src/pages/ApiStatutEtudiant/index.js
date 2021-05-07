@@ -43,11 +43,14 @@ const contacts = {
   technique: {
     heading: 'Responsable technique',
     description: (
-      <p>
-        Cette personne recevra les accès techniques par mail. Elle sera
-        contactée en cas de problème technique sur votre service. Le responsable
-        technique peut être le contact technique de votre prestataire.
-      </p>
+      <Quote>
+        <p>
+          Cette personne recevra les accès techniques par mail. Elle sera
+          contactée en cas de problème technique sur votre service. Le
+          responsable technique peut être le contact technique de votre
+          prestataire.
+        </p>
+      </Quote>
     ),
     email: '',
     phone_number: '',
