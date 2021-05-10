@@ -79,7 +79,7 @@ Vous pouvez dés à présent commencer à remplir la deuxième partie du formula
       cartobio:
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
       aidants_connect:
-        'Votre demande d’habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d’Aidants Connect. Retrouvez dès maintenant tous les détails du processus d’habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation .',
+        'Votre demande d’habilitation a été validée. Les aidants professionnels au sein de votre structure seront contactés très prochainement par courriel afin de suivre une formation à la prise en main d’Aidants Connect. Il s'agit d'une formation gratuite d’une journée en présentiel et d’une demie journée à distance sur les sujets suivants : accompagnement de l’usager en difficulté avec le numérique, la protection des données personnelles, France Connect, prise en main d’Aidants Connect. Retrouvez dès maintenant tous les détails du processus d’habilitation sur notre page dédiée : https://aidantsconnect.beta.gouv.fr/habilitation.',
       hubee:
         'Votre demande d’abonnement a été validée et vous disposez désormais d’un compte d’Administrateur Local sur le Portail HubEE.',
     },
