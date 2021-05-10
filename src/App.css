@@ -28,6 +28,23 @@ main {
   margin: 0 auto;
 }
 
+/* fix main menu */
+.navbar {
+  position: fixed;
+  background: var(--white);
+  border-bottom: 0.5px solid grey;
+}
+
+.dashboard {
+  margin-top: 80px;
+}
+
+/* change background and update w/ fixed sidebar */
+.dashboard .main {
+  background: var(--white);
+  margin-left: 250px;
+}
+
 button.button,
 button.button:focus,
 button.button:active,
@@ -490,6 +507,10 @@ a.light {
 .nav-button:focus {
   outline: none;
 }
+/* fix space in the sidebar */
+.dashboard .side-menu ul {
+  margin: 0;
+}
 
 /* full width section */
 section.full-width-section {
@@ -532,4 +553,8 @@ section.full-width-section {
 .layout-column {
   display: flex;
   flex-direction: column;
+}
+
+.footer {
+  margin-left: 250px;
 }
