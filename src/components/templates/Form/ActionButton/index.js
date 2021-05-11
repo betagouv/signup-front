@@ -166,15 +166,20 @@ class ActionButton extends React.Component {
     }
   };
 
-  formSubmitHandlerFactory = action => {
+  formSubmitHandlerFactory = (
+    action,
+    triggerAction,
+    setState,
+    handleSubmit
+  ) => {
     return async event => {
       event.preventDefault();
-      this.setState({ isLoading: true });
+      setState({ isLoading: true });
 
-      const resultMessages = await this.triggerAction(action);
+      const resultMessages = await triggerAction(action);
 
-      this.setState({ isLoading: false });
-      this.props.handleSubmit(resultMessages);
+      setState({ isLoading: false });
+      handleSubmit(resultMessages);
     };
   };
 
@@ -196,6 +201,9 @@ class ActionButton extends React.Component {
       ownerEmailAddress,
       onPromptAccept: this.onPromptAccept,
       onPromptCancel: this.onPromptCancel,
+      setState: this.setState,
+      triggerAction: this.triggerAction,
+      handleSubmit: this.handleSubmit,
     });
   }
 }
@@ -211,10 +219,12 @@ const tempRender = ({
   onPromptAccept,
   onPromptCancel,
   formSubmitHandlerFactory,
+  triggerAction,
+  setState,
+  handleSubmit,
 }) => {
-  const buttonsParams = transformAclToButtonsParams(
-    enrollment.acl,
-    formSubmitHandlerFactory
+  const buttonsParams = transformAclToButtonsParams(enrollment.acl, action =>
+    formSubmitHandlerFactory(action, triggerAction, setState, handleSubmit)
   );
   return (
     <>
