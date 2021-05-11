@@ -11,6 +11,38 @@ import { getErrorMessages } from '../../../../lib';
 import DoneIcon from '../../../atoms/icons/done';
 import Loader from '../../../atoms/Loader';
 
+const actionToDisplayInfo = {
+  notify: {
+    label: 'Envoyer un message',
+    cssClass: 'secondary',
+  },
+  destroy: {
+    label: 'Supprimer la demande',
+    cssClass: 'warning',
+  },
+  update: {
+    label: 'Sauvegarder le brouillon',
+    cssClass: 'secondary',
+  },
+  send_application: {
+    label: 'Soumettre la demande',
+    icon: <DoneIcon color="white" />,
+    cssClass: 'primary',
+  },
+  refuse_application: {
+    label: 'Refuser',
+    cssClass: 'warning',
+  },
+  review_application: {
+    label: 'Demander une modification',
+    cssClass: 'secondary',
+  },
+  validate_application: {
+    label: 'Valider',
+    cssClass: 'primary',
+  },
+};
+
 class ActionButton extends React.Component {
   constructor(props) {
     super(props);
@@ -21,51 +53,19 @@ class ActionButton extends React.Component {
     };
   }
 
-  actionToDisplayInfo = {
-    notify: {
-      label: 'Envoyer un message',
-      cssClass: 'secondary',
-    },
-    destroy: {
-      label: 'Supprimer la demande',
-      cssClass: 'warning',
-    },
-    update: {
-      label: 'Sauvegarder le brouillon',
-      cssClass: 'secondary',
-    },
-    send_application: {
-      label: 'Soumettre la demande',
-      icon: <DoneIcon color="white" />,
-      cssClass: 'primary',
-    },
-    refuse_application: {
-      label: 'Refuser',
-      cssClass: 'warning',
-    },
-    review_application: {
-      label: 'Demander une modification',
-      cssClass: 'secondary',
-    },
-    validate_application: {
-      label: 'Valider',
-      cssClass: 'primary',
-    },
-  };
-
   transformAclToButtonsParams = acl =>
     // acl = {'send_application': true, 'review_application': false, 'create': true}
-    _(this.actionToDisplayInfo)
+    _(actionToDisplayInfo)
       .pickBy((value, key) => acl[key])
       // {'send_application': {label: ..., cssClass: ...}}
       .keys()
       // ['send_application']
       .map(action => ({
         id: action,
-        label: this.actionToDisplayInfo[action].label,
-        icon: this.actionToDisplayInfo[action].icon,
-        cssClass: this.actionToDisplayInfo[action].cssClass,
-        trigger: this.handleSubmitFactory(action),
+        label: actionToDisplayInfo[action].label,
+        icon: actionToDisplayInfo[action].icon,
+        cssClass: actionToDisplayInfo[action].cssClass,
+        trigger: this.formSubmitHandlerFactory(action),
       }))
       // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
       .value();
@@ -166,7 +166,7 @@ class ActionButton extends React.Component {
     }
   };
 
-  handleSubmitFactory = action => {
+  formSubmitHandlerFactory = action => {
     return async event => {
       event.preventDefault();
       this.setState({ isLoading: true });
@@ -210,8 +210,8 @@ class ActionButton extends React.Component {
           <Prompt
             onAccept={this.submitActionMessage}
             onCancel={this.cancelActionMessage}
-            acceptLabel={this.actionToDisplayInfo[selectedAction].label}
-            acceptCssClass={this.actionToDisplayInfo[selectedAction].cssClass}
+            acceptLabel={actionToDisplayInfo[selectedAction].label}
+            acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
             selectedAction={selectedAction}
             targetApi={target_api}
             ownerEmailAddress={ownerEmailAddress}
