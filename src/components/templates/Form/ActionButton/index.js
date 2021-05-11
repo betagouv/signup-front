@@ -61,13 +61,6 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     .value();
 
 class ActionButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedAction: '',
-    };
-  }
-
   waitForUserInteractionInPrompt = () => {
     return new Promise((resolve, reject) => {
       this.acceptPrompt = resolve;
@@ -77,17 +70,13 @@ class ActionButton extends React.Component {
 
   onPromptAccept = (message, fullEditMode) => {
     this.acceptPrompt({ message, fullEditMode });
-
-    this.setState({ selectedAction: '' });
   };
 
   onPromptCancel = () => {
     this.cancelPrompt();
-
-    this.setState({ selectedAction: '' });
   };
 
-  triggerAction = async (action, setShowPrompt) => {
+  triggerAction = async (action, setShowPrompt, setIntendedAction) => {
     const resultMessages = {
       errorMessages: [],
       successMessages: [],
@@ -108,7 +97,7 @@ class ActionButton extends React.Component {
       ) {
         try {
           setShowPrompt(true);
-          this.setState({ selectedAction: action });
+          setIntendedAction(action);
 
           const actionMessage = await this.waitForUserInteractionInPrompt();
           comment = actionMessage.message;
@@ -170,14 +159,12 @@ class ActionButton extends React.Component {
       target_api,
       user: { email: ownerEmailAddress } = { email: null },
     } = this.props.enrollment;
-    const { selectedAction } = this.state;
 
     return (
       <TempRender
         transformAclToButtonsParams={transformAclToButtonsParams}
         formSubmitHandlerFactory={this.formSubmitHandlerFactory}
         enrollment={this.props.enrollment}
-        selectedAction={selectedAction}
         target_api={target_api}
         ownerEmailAddress={ownerEmailAddress}
         onPromptAccept={this.onPromptAccept}
@@ -192,7 +179,6 @@ class ActionButton extends React.Component {
 const TempRender = ({
   transformAclToButtonsParams,
   enrollment,
-  selectedAction,
   target_api,
   ownerEmailAddress,
   onPromptAccept,
@@ -202,19 +188,25 @@ const TempRender = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
+  const [intendedAction, setIntendedAction] = useState('');
 
   const formSubmitHandlerFactory = (
     action,
     triggerAction,
     setLoading,
     setShowPrompt,
+    setIntendedAction,
     handleSubmit
   ) => {
     return async event => {
       event.preventDefault();
       setLoading(true);
 
-      const resultMessages = await triggerAction(action, setShowPrompt);
+      const resultMessages = await triggerAction(
+        action,
+        setShowPrompt,
+        setIntendedAction
+      );
 
       setLoading(false);
       handleSubmit(resultMessages);
@@ -226,6 +218,7 @@ const TempRender = ({
       triggerAction,
       setLoading,
       setShowPrompt,
+      setIntendedAction,
       handleSubmit
     )
   );
@@ -242,7 +235,7 @@ const TempRender = ({
             <div className="button-icon">{icon}</div>
             <div>
               {label}
-              {loading && selectedAction === id && <Loader small />}
+              {loading && intendedAction === id && <Loader small />}
             </div>
           </button>
         ))}
@@ -252,15 +245,17 @@ const TempRender = ({
         <Prompt
           onAccept={(message, fullEditMode) => {
             setShowPrompt(false);
+            setIntendedAction('');
             onPromptAccept(message, fullEditMode);
           }}
           onCancel={() => {
             setShowPrompt(false);
+            setIntendedAction('');
             onPromptCancel();
           }}
-          acceptLabel={actionToDisplayInfo[selectedAction].label}
-          acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
-          selectedAction={selectedAction}
+          acceptLabel={actionToDisplayInfo[intendedAction].label}
+          acceptCssClass={actionToDisplayInfo[intendedAction].cssClass}
+          selectedAction={intendedAction}
           targetApi={target_api}
           ownerEmailAddress={ownerEmailAddress}
         />
