@@ -35,7 +35,7 @@ export const triggerAction = async (
         setShowPrompt(true);
         setIntendedAction(action);
 
-        const actionMessage = await waitForUserInteractionInPrompt();
+        const actionMessage = await waitForUserInteractionInPrompt;
         comment = actionMessage.message;
         commentFullEditMode = actionMessage.fullEditMode;
       } catch (e) {

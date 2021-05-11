@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Prompt from './Prompt';
@@ -55,59 +55,18 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
     .value();
 
-class ActionButton extends React.Component {
-  waitForUserInteractionInPrompt = () => {
-    return new Promise((resolve, reject) => {
-      this.acceptPrompt = resolve;
-      this.cancelPrompt = reject;
-    });
-  };
+const ActionButton = ({ enrollment, handleSubmit, updateEnrollment }) => {
+  const {
+    target_api,
+    user: { email: ownerEmailAddress } = { email: null },
+  } = enrollment;
 
-  onPromptAccept = (message, fullEditMode) => {
-    this.acceptPrompt({ message, fullEditMode });
-  };
-
-  onPromptCancel = () => {
-    this.cancelPrompt();
-  };
-
-  render() {
-    const {
-      target_api,
-      user: { email: ownerEmailAddress } = { email: null },
-    } = this.props.enrollment;
-
-    return (
-      <TempRender
-        transformAclToButtonsParams={transformAclToButtonsParams}
-        formSubmitHandlerFactory={this.formSubmitHandlerFactory}
-        enrollment={this.props.enrollment}
-        target_api={target_api}
-        ownerEmailAddress={ownerEmailAddress}
-        onPromptAccept={this.onPromptAccept}
-        onPromptCancel={this.onPromptCancel}
-        handleSubmit={this.props.handleSubmit}
-        waitForUserInteractionInPrompt={this.waitForUserInteractionInPrompt}
-        updateEnrollment={this.props.updateEnrollment}
-      />
-    );
-  }
-}
-
-const TempRender = ({
-  transformAclToButtonsParams,
-  enrollment,
-  target_api,
-  ownerEmailAddress,
-  onPromptAccept,
-  onPromptCancel,
-  handleSubmit,
-  waitForUserInteractionInPrompt,
-  updateEnrollment,
-}) => {
   const [loading, setLoading] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const [intendedAction, setIntendedAction] = useState('');
+
+  const confirmPrompt = useRef();
+  const cancelPrompt = useRef();
 
   const formSubmitHandlerFactory = (
     action,
@@ -116,19 +75,22 @@ const TempRender = ({
     setIntendedAction,
     handleSubmit,
     enrollment,
-    waitForUserInteractionInPrompt,
     updateEnrollment
   ) => {
     return async event => {
       event.preventDefault();
       setLoading(true);
 
+      const userInteractionPromise = new Promise((resolve, reject) => {
+        confirmPrompt.current = resolve;
+        cancelPrompt.current = reject;
+      });
       const resultMessages = await triggerAction(
         action,
         setShowPrompt,
         setIntendedAction,
         enrollment,
-        waitForUserInteractionInPrompt,
+        userInteractionPromise,
         updateEnrollment
       );
 
@@ -144,10 +106,19 @@ const TempRender = ({
       setIntendedAction,
       handleSubmit,
       enrollment,
-      waitForUserInteractionInPrompt,
       updateEnrollment
     )
   );
+  const onPromptConfirm = (message, fullEditMode) => {
+    setShowPrompt(false);
+    setIntendedAction('');
+    confirmPrompt.current({ message, fullEditMode });
+  };
+  const onPromptCancel = () => {
+    setShowPrompt(false);
+    setIntendedAction('');
+    cancelPrompt.current();
+  };
   return (
     <>
       <div className="button-list action">
@@ -169,16 +140,8 @@ const TempRender = ({
 
       {showPrompt && (
         <Prompt
-          onAccept={(message, fullEditMode) => {
-            setShowPrompt(false);
-            setIntendedAction('');
-            onPromptAccept(message, fullEditMode);
-          }}
-          onCancel={() => {
-            setShowPrompt(false);
-            setIntendedAction('');
-            onPromptCancel();
-          }}
+          onAccept={onPromptConfirm}
+          onCancel={onPromptCancel}
           acceptLabel={actionToDisplayInfo[intendedAction].label}
           acceptCssClass={actionToDisplayInfo[intendedAction].cssClass}
           selectedAction={intendedAction}
