@@ -70,7 +70,7 @@ class ActionButton extends React.Component {
     };
   }
 
-  getActionMessage = action => {
+  waitForUserInteractionInPrompt = () => {
     return new Promise((resolve, reject) => {
       this.resolveActionMessagePromise = resolve;
       this.rejectActionMessagePromise = reject;
@@ -111,7 +111,7 @@ class ActionButton extends React.Component {
         try {
           this.setState({ showPrompt: true, selectedAction: action });
 
-          const actionMessage = await this.getActionMessage(action);
+          const actionMessage = await this.waitForUserInteractionInPrompt();
           comment = actionMessage.message;
           commentFullEditMode = actionMessage.fullEditMode;
         } catch (e) {
