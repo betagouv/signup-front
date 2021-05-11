@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import {
@@ -64,8 +64,6 @@ class ActionButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false,
-      showPrompt: false,
       selectedAction: '',
     };
   }
@@ -80,16 +78,16 @@ class ActionButton extends React.Component {
   onPromptAccept = (message, fullEditMode) => {
     this.acceptPrompt({ message, fullEditMode });
 
-    this.setState({ showPrompt: false, selectedAction: '' });
+    this.setState({ selectedAction: '' });
   };
 
   onPromptCancel = () => {
     this.cancelPrompt();
 
-    this.setState({ showPrompt: false, selectedAction: '' });
+    this.setState({ selectedAction: '' });
   };
 
-  triggerAction = async action => {
+  triggerAction = async (action, setShowPrompt) => {
     const resultMessages = {
       errorMessages: [],
       successMessages: [],
@@ -109,7 +107,8 @@ class ActionButton extends React.Component {
         ].includes(action)
       ) {
         try {
-          this.setState({ showPrompt: true, selectedAction: action });
+          setShowPrompt(true);
+          this.setState({ selectedAction: action });
 
           const actionMessage = await this.waitForUserInteractionInPrompt();
           comment = actionMessage.message;
@@ -171,23 +170,20 @@ class ActionButton extends React.Component {
       target_api,
       user: { email: ownerEmailAddress } = { email: null },
     } = this.props.enrollment;
-    const { isLoading, showPrompt, selectedAction } = this.state;
+    const { selectedAction } = this.state;
 
     return (
       <TempRender
         transformAclToButtonsParams={transformAclToButtonsParams}
         formSubmitHandlerFactory={this.formSubmitHandlerFactory}
         enrollment={this.props.enrollment}
-        isLoading={isLoading}
         selectedAction={selectedAction}
-        showPrompt={showPrompt}
         target_api={target_api}
         ownerEmailAddress={ownerEmailAddress}
         onPromptAccept={this.onPromptAccept}
         onPromptCancel={this.onPromptCancel}
-        setState={this.setState}
         triggerAction={this.triggerAction}
-        handleSubmit={this.handleSubmit}
+        handleSubmit={this.props.handleSubmit}
       />
     );
   }
@@ -196,35 +192,42 @@ class ActionButton extends React.Component {
 const TempRender = ({
   transformAclToButtonsParams,
   enrollment,
-  isLoading,
   selectedAction,
-  showPrompt,
   target_api,
   ownerEmailAddress,
   onPromptAccept,
   onPromptCancel,
   triggerAction,
-  setState,
   handleSubmit,
 }) => {
+  const [loading, setLoading] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+
   const formSubmitHandlerFactory = (
     action,
     triggerAction,
-    setState,
+    setLoading,
+    setShowPrompt,
     handleSubmit
   ) => {
     return async event => {
       event.preventDefault();
-      setState({ isLoading: true });
+      setLoading(true);
 
-      const resultMessages = await triggerAction(action);
+      const resultMessages = await triggerAction(action, setShowPrompt);
 
-      setState({ isLoading: false });
+      setLoading(false);
       handleSubmit(resultMessages);
     };
   };
   const buttonsParams = transformAclToButtonsParams(enrollment.acl, action =>
-    formSubmitHandlerFactory(action, triggerAction, setState, handleSubmit)
+    formSubmitHandlerFactory(
+      action,
+      triggerAction,
+      setLoading,
+      setShowPrompt,
+      handleSubmit
+    )
   );
   return (
     <>
@@ -234,12 +237,12 @@ const TempRender = ({
             key={id}
             className={`button large enrollment ${cssClass}`}
             onClick={trigger}
-            disabled={isLoading}
+            disabled={loading}
           >
             <div className="button-icon">{icon}</div>
             <div>
               {label}
-              {isLoading && selectedAction === id && <Loader small />}
+              {loading && selectedAction === id && <Loader small />}
             </div>
           </button>
         ))}
@@ -247,8 +250,14 @@ const TempRender = ({
 
       {showPrompt && (
         <Prompt
-          onAccept={onPromptAccept}
-          onCancel={onPromptCancel}
+          onAccept={(message, fullEditMode) => {
+            setShowPrompt(false);
+            onPromptAccept(message, fullEditMode);
+          }}
+          onCancel={() => {
+            setShowPrompt(false);
+            onPromptCancel();
+          }}
           acceptLabel={actionToDisplayInfo[selectedAction].label}
           acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
           selectedAction={selectedAction}
