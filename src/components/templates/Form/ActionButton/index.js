@@ -72,19 +72,19 @@ class ActionButton extends React.Component {
 
   waitForUserInteractionInPrompt = () => {
     return new Promise((resolve, reject) => {
-      this.resolveActionMessagePromise = resolve;
-      this.rejectActionMessagePromise = reject;
+      this.acceptPrompt = resolve;
+      this.cancelPrompt = reject;
     });
   };
 
-  submitActionMessage = (message, fullEditMode) => {
-    this.resolveActionMessagePromise({ message, fullEditMode });
+  onPromptAccept = (message, fullEditMode) => {
+    this.acceptPrompt({ message, fullEditMode });
 
     this.setState({ showPrompt: false, selectedAction: '' });
   };
 
-  cancelActionMessage = () => {
-    this.rejectActionMessagePromise();
+  onPromptCancel = () => {
+    this.cancelPrompt();
 
     this.setState({ showPrompt: false, selectedAction: '' });
   };
@@ -197,8 +197,8 @@ class ActionButton extends React.Component {
       showPrompt,
       target_api,
       ownerEmailAddress,
-      submitActionMessage: this.submitActionMessage,
-      cancelActionMessage: this.cancelActionMessage,
+      onPromptAccept: this.onPromptAccept,
+      onPromptCancel: this.onPromptCancel,
     });
   }
 }
@@ -210,8 +210,8 @@ const tempRender = ({
   showPrompt,
   target_api,
   ownerEmailAddress,
-  submitActionMessage,
-  cancelActionMessage,
+  onPromptAccept,
+  onPromptCancel,
 }) => {
   return (
     <>
@@ -234,8 +234,8 @@ const tempRender = ({
 
       {showPrompt && (
         <Prompt
-          onAccept={submitActionMessage}
-          onCancel={cancelActionMessage}
+          onAccept={onPromptAccept}
+          onCancel={onPromptCancel}
           acceptLabel={actionToDisplayInfo[selectedAction].label}
           acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
           selectedAction={selectedAction}
