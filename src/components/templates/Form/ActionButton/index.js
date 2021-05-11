@@ -43,6 +43,23 @@ const actionToDisplayInfo = {
   },
 };
 
+const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
+  // acl = {'send_application': true, 'review_application': false, 'create': true}
+  _(actionToDisplayInfo)
+    .pickBy((value, key) => acl[key])
+    // {'send_application': {label: ..., cssClass: ...}}
+    .keys()
+    // ['send_application']
+    .map(action => ({
+      id: action,
+      label: actionToDisplayInfo[action].label,
+      icon: actionToDisplayInfo[action].icon,
+      cssClass: actionToDisplayInfo[action].cssClass,
+      trigger: formSubmitHandlerFactory(action),
+    }))
+    // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
+    .value();
+
 class ActionButton extends React.Component {
   constructor(props) {
     super(props);
@@ -52,23 +69,6 @@ class ActionButton extends React.Component {
       selectedAction: '',
     };
   }
-
-  transformAclToButtonsParams = acl =>
-    // acl = {'send_application': true, 'review_application': false, 'create': true}
-    _(actionToDisplayInfo)
-      .pickBy((value, key) => acl[key])
-      // {'send_application': {label: ..., cssClass: ...}}
-      .keys()
-      // ['send_application']
-      .map(action => ({
-        id: action,
-        label: actionToDisplayInfo[action].label,
-        icon: actionToDisplayInfo[action].icon,
-        cssClass: actionToDisplayInfo[action].cssClass,
-        trigger: this.formSubmitHandlerFactory(action),
-      }))
-      // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
-      .value();
 
   getActionMessage = action => {
     this.setState({ showPrompt: true, selectedAction: action });
@@ -184,7 +184,10 @@ class ActionButton extends React.Component {
       target_api,
       user: { email: ownerEmailAddress } = { email: null },
     } = this.props.enrollment;
-    const buttonsParams = this.transformAclToButtonsParams(acl);
+    const buttonsParams = transformAclToButtonsParams(
+      acl,
+      this.formSubmitHandlerFactory
+    );
     const { isLoading, showPrompt, selectedAction } = this.state;
 
     return (
