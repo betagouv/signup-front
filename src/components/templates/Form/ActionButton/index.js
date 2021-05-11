@@ -190,40 +190,62 @@ class ActionButton extends React.Component {
     );
     const { isLoading, showPrompt, selectedAction } = this.state;
 
-    return (
-      <>
-        <div className="button-list action">
-          {buttonsParams.map(({ cssClass, icon, id, label, trigger }) => (
-            <button
-              key={id}
-              className={`button large enrollment ${cssClass}`}
-              onClick={trigger}
-              disabled={isLoading}
-            >
-              <div className="button-icon">{icon}</div>
-              <div>
-                {label}
-                {isLoading && selectedAction === id && <Loader small />}
-              </div>
-            </button>
-          ))}
-        </div>
-
-        {showPrompt && (
-          <Prompt
-            onAccept={this.submitActionMessage}
-            onCancel={this.cancelActionMessage}
-            acceptLabel={actionToDisplayInfo[selectedAction].label}
-            acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
-            selectedAction={selectedAction}
-            targetApi={target_api}
-            ownerEmailAddress={ownerEmailAddress}
-          />
-        )}
-      </>
-    );
+    return tempRender({
+      buttonsParams,
+      isLoading,
+      selectedAction,
+      showPrompt,
+      target_api,
+      ownerEmailAddress,
+      submitActionMessage: this.submitActionMessage,
+      cancelActionMessage: this.cancelActionMessage,
+    });
   }
 }
+
+const tempRender = ({
+  buttonsParams,
+  isLoading,
+  selectedAction,
+  showPrompt,
+  target_api,
+  ownerEmailAddress,
+  submitActionMessage,
+  cancelActionMessage,
+}) => {
+  return (
+    <>
+      <div className="button-list action">
+        {buttonsParams.map(({ cssClass, icon, id, label, trigger }) => (
+          <button
+            key={id}
+            className={`button large enrollment ${cssClass}`}
+            onClick={trigger}
+            disabled={isLoading}
+          >
+            <div className="button-icon">{icon}</div>
+            <div>
+              {label}
+              {isLoading && selectedAction === id && <Loader small />}
+            </div>
+          </button>
+        ))}
+      </div>
+
+      {showPrompt && (
+        <Prompt
+          onAccept={submitActionMessage}
+          onCancel={cancelActionMessage}
+          acceptLabel={actionToDisplayInfo[selectedAction].label}
+          acceptCssClass={actionToDisplayInfo[selectedAction].cssClass}
+          selectedAction={selectedAction}
+          targetApi={target_api}
+          ownerEmailAddress={ownerEmailAddress}
+        />
+      )}
+    </>
+  );
+};
 
 ActionButton.propTypes = {
   enrollment: PropTypes.object.isRequired,
