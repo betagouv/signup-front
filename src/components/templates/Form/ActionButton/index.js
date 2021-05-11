@@ -71,8 +71,6 @@ class ActionButton extends React.Component {
   }
 
   getActionMessage = action => {
-    this.setState({ showPrompt: true, selectedAction: action });
-
     return new Promise((resolve, reject) => {
       this.resolveActionMessagePromise = resolve;
       this.rejectActionMessagePromise = reject;
@@ -111,6 +109,8 @@ class ActionButton extends React.Component {
         ].includes(action)
       ) {
         try {
+          this.setState({ showPrompt: true, selectedAction: action });
+
           const actionMessage = await this.getActionMessage(action);
           comment = actionMessage.message;
           commentFullEditMode = actionMessage.fullEditMode;
