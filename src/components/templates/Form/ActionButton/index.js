@@ -1,15 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import {
-  createOrUpdateEnrollment,
-  deleteEnrollment,
-  triggerEnrollment,
-} from '../../../../services/enrollments';
 import Prompt from './Prompt';
-import { getErrorMessages } from '../../../../lib';
 import DoneIcon from '../../../atoms/icons/done';
 import Loader from '../../../atoms/Loader';
+import { triggerAction } from './trigger-action';
 
 const actionToDisplayInfo = {
   notify: {
@@ -76,91 +71,6 @@ class ActionButton extends React.Component {
     this.cancelPrompt();
   };
 
-  triggerAction = async (
-    action,
-    setShowPrompt,
-    setIntendedAction,
-    enrollment,
-    waitForUserInteractionInPrompt,
-    updateEnrollment
-  ) => {
-    const resultMessages = {
-      errorMessages: [],
-      successMessages: [],
-      redirectToHome: false,
-    };
-
-    try {
-      let comment = null;
-      let commentFullEditMode = null;
-
-      if (
-        [
-          'notify',
-          'review_application',
-          'refuse_application',
-          'validate_application',
-        ].includes(action)
-      ) {
-        try {
-          setShowPrompt(true);
-          setIntendedAction(action);
-
-          const actionMessage = await waitForUserInteractionInPrompt();
-          comment = actionMessage.message;
-          commentFullEditMode = actionMessage.fullEditMode;
-        } catch (e) {
-          return resultMessages;
-        }
-      }
-
-      let enrollmentId = enrollment.id;
-
-      if (enrollment.acl.update) {
-        const newEnrollment = await createOrUpdateEnrollment({
-          enrollment,
-        });
-        updateEnrollment(newEnrollment);
-        enrollmentId = newEnrollment.id;
-
-        resultMessages.successMessages.push('Votre demande a été sauvegardée.');
-      }
-
-      if (action === 'update') {
-        return resultMessages;
-      }
-
-      if (action === 'destroy') {
-        await deleteEnrollment({ id: enrollmentId });
-      }
-
-      if (
-        [
-          'notify',
-          'review_application',
-          'refuse_application',
-          'validate_application',
-          'send_application',
-        ].includes(action)
-      ) {
-        await triggerEnrollment({
-          action,
-          id: enrollmentId,
-          comment,
-          commentFullEditMode,
-        });
-      }
-
-      resultMessages.redirectToHome = true;
-
-      return resultMessages;
-    } catch (error) {
-      resultMessages.errorMessages.push(...getErrorMessages(error));
-
-      return resultMessages;
-    }
-  };
-
   render() {
     const {
       target_api,
@@ -176,7 +86,6 @@ class ActionButton extends React.Component {
         ownerEmailAddress={ownerEmailAddress}
         onPromptAccept={this.onPromptAccept}
         onPromptCancel={this.onPromptCancel}
-        triggerAction={this.triggerAction}
         handleSubmit={this.props.handleSubmit}
         waitForUserInteractionInPrompt={this.waitForUserInteractionInPrompt}
         updateEnrollment={this.props.updateEnrollment}
@@ -192,7 +101,6 @@ const TempRender = ({
   ownerEmailAddress,
   onPromptAccept,
   onPromptCancel,
-  triggerAction,
   handleSubmit,
   waitForUserInteractionInPrompt,
   updateEnrollment,
@@ -203,7 +111,6 @@ const TempRender = ({
 
   const formSubmitHandlerFactory = (
     action,
-    triggerAction,
     setLoading,
     setShowPrompt,
     setIntendedAction,
@@ -232,7 +139,6 @@ const TempRender = ({
   const buttonsParams = transformAclToButtonsParams(enrollment.acl, action =>
     formSubmitHandlerFactory(
       action,
-      triggerAction,
       setLoading,
       setShowPrompt,
       setIntendedAction,
