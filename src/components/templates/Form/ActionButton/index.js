@@ -173,25 +173,27 @@ class ActionButton extends React.Component {
     } = this.props.enrollment;
     const { isLoading, showPrompt, selectedAction } = this.state;
 
-    return tempRender({
-      transformAclToButtonsParams,
-      formSubmitHandlerFactory: this.formSubmitHandlerFactory,
-      enrollment: this.props.enrollment,
-      isLoading,
-      selectedAction,
-      showPrompt,
-      target_api,
-      ownerEmailAddress,
-      onPromptAccept: this.onPromptAccept,
-      onPromptCancel: this.onPromptCancel,
-      setState: this.setState,
-      triggerAction: this.triggerAction,
-      handleSubmit: this.handleSubmit,
-    });
+    return (
+      <TempRender
+        transformAclToButtonsParams={transformAclToButtonsParams}
+        formSubmitHandlerFactory={this.formSubmitHandlerFactory}
+        enrollment={this.props.enrollment}
+        isLoading={isLoading}
+        selectedAction={selectedAction}
+        showPrompt={showPrompt}
+        target_api={target_api}
+        ownerEmailAddress={ownerEmailAddress}
+        onPromptAccept={this.onPromptAccept}
+        onPromptCancel={this.onPromptCancel}
+        setState={this.setState}
+        triggerAction={this.triggerAction}
+        handleSubmit={this.handleSubmit}
+      />
+    );
   }
 }
 
-const tempRender = ({
+const TempRender = ({
   transformAclToButtonsParams,
   enrollment,
   isLoading,
