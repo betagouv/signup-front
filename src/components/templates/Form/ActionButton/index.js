@@ -180,18 +180,15 @@ class ActionButton extends React.Component {
 
   render() {
     const {
-      acl,
       target_api,
       user: { email: ownerEmailAddress } = { email: null },
     } = this.props.enrollment;
-    const buttonsParams = transformAclToButtonsParams(
-      acl,
-      this.formSubmitHandlerFactory
-    );
     const { isLoading, showPrompt, selectedAction } = this.state;
 
     return tempRender({
-      buttonsParams,
+      transformAclToButtonsParams,
+      formSubmitHandlerFactory: this.formSubmitHandlerFactory,
+      enrollment: this.props.enrollment,
       isLoading,
       selectedAction,
       showPrompt,
@@ -204,7 +201,8 @@ class ActionButton extends React.Component {
 }
 
 const tempRender = ({
-  buttonsParams,
+  transformAclToButtonsParams,
+  enrollment,
   isLoading,
   selectedAction,
   showPrompt,
@@ -212,7 +210,12 @@ const tempRender = ({
   ownerEmailAddress,
   onPromptAccept,
   onPromptCancel,
+  formSubmitHandlerFactory,
 }) => {
+  const buttonsParams = transformAclToButtonsParams(
+    enrollment.acl,
+    formSubmitHandlerFactory
+  );
   return (
     <>
       <div className="button-list action">
