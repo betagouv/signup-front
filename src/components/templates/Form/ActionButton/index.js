@@ -76,7 +76,14 @@ class ActionButton extends React.Component {
     this.cancelPrompt();
   };
 
-  triggerAction = async (action, setShowPrompt, setIntendedAction) => {
+  triggerAction = async (
+    action,
+    setShowPrompt,
+    setIntendedAction,
+    enrollment,
+    waitForUserInteractionInPrompt,
+    updateEnrollment
+  ) => {
     const resultMessages = {
       errorMessages: [],
       successMessages: [],
@@ -99,7 +106,7 @@ class ActionButton extends React.Component {
           setShowPrompt(true);
           setIntendedAction(action);
 
-          const actionMessage = await this.waitForUserInteractionInPrompt();
+          const actionMessage = await waitForUserInteractionInPrompt();
           comment = actionMessage.message;
           commentFullEditMode = actionMessage.fullEditMode;
         } catch (e) {
@@ -107,13 +114,13 @@ class ActionButton extends React.Component {
         }
       }
 
-      let enrollmentId = this.props.enrollment.id;
+      let enrollmentId = enrollment.id;
 
-      if (this.props.enrollment.acl.update) {
+      if (enrollment.acl.update) {
         const newEnrollment = await createOrUpdateEnrollment({
-          enrollment: this.props.enrollment,
+          enrollment,
         });
-        this.props.updateEnrollment(newEnrollment);
+        updateEnrollment(newEnrollment);
         enrollmentId = newEnrollment.id;
 
         resultMessages.successMessages.push('Votre demande a été sauvegardée.');
@@ -171,6 +178,8 @@ class ActionButton extends React.Component {
         onPromptCancel={this.onPromptCancel}
         triggerAction={this.triggerAction}
         handleSubmit={this.props.handleSubmit}
+        waitForUserInteractionInPrompt={this.waitForUserInteractionInPrompt}
+        updateEnrollment={this.props.updateEnrollment}
       />
     );
   }
@@ -185,6 +194,8 @@ const TempRender = ({
   onPromptCancel,
   triggerAction,
   handleSubmit,
+  waitForUserInteractionInPrompt,
+  updateEnrollment,
 }) => {
   const [loading, setLoading] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
@@ -196,7 +207,10 @@ const TempRender = ({
     setLoading,
     setShowPrompt,
     setIntendedAction,
-    handleSubmit
+    handleSubmit,
+    enrollment,
+    waitForUserInteractionInPrompt,
+    updateEnrollment
   ) => {
     return async event => {
       event.preventDefault();
@@ -205,7 +219,10 @@ const TempRender = ({
       const resultMessages = await triggerAction(
         action,
         setShowPrompt,
-        setIntendedAction
+        setIntendedAction,
+        enrollment,
+        waitForUserInteractionInPrompt,
+        updateEnrollment
       );
 
       setLoading(false);
@@ -219,7 +236,10 @@ const TempRender = ({
       setLoading,
       setShowPrompt,
       setIntendedAction,
-      handleSubmit
+      handleSubmit,
+      enrollment,
+      waitForUserInteractionInPrompt,
+      updateEnrollment
     )
   );
   return (
