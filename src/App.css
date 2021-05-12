@@ -28,21 +28,30 @@ main {
   margin: 0 auto;
 }
 
-/* fix main menu */
+/* UI details */
 .navbar {
-  position: fixed;
   background: var(--white);
   border-bottom: 0.5px solid grey;
 }
 
-.dashboard {
-  margin-top: 80px;
+/* fix main menu and sidebar for big screens */
+@media (min-width: 750px) {
+  .dashboard {
+    margin-top: 80px;
+  }
+
+  .dashboard .main {
+    margin-left: 250px;
+  }
+
+  .navbar {
+    position: fixed;
+  }
 }
 
 /* change background and update w/ fixed sidebar */
 .dashboard .main {
   background: var(--white);
-  margin-left: 250px;
 }
 
 button.button,
