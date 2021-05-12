@@ -54,6 +54,126 @@ main {
   background: var(--white);
 }
 
+/* adds Marianne for titles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Marianne', arial, sans-serif;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  margin: 0 0 1rem;
+}
+
+h5 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  margin: 0 0 1rem;
+}
+
+h4 {
+  font-weight: 700;
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  margin: 0 0 1rem;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  margin: 0 0 1rem;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  margin: 0 0 1rem;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  margin: 0 0 1rem;
+}
+
+/**
+ * Déclaration des fontes
+ */
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Light.woff2') format('woff2'),
+    url('fonts/Marianne-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Light_Italic.woff2') format('woff2'),
+    url('fonts/Marianne-Light_Italic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Regular.woff2') format('woff2'),
+    url('fonts/Marianne-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Regular_Italic.woff2') format('woff2'),
+    url('fonts/Marianne-Regular_Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Bold.woff2') format('woff2'),
+    url('fonts/Marianne-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Marianne;
+  src: url('fonts/Marianne-Bold_Italic.woff2') format('woff2'),
+    url('fonts/Marianne-Bold_Italic.woff') format('woff');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: Spectral;
+  src: url('fonts/Spectral-Regular.woff2') format('woff2'),
+    url('fonts/Spectral-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Spectral;
+  src: url('fonts/Spectral-ExtraBold.woff2') format('woff2'),
+    url('fonts/Spectral-ExtraBold.woff') format('woff');
+  font-weight: 900;
+  font-style: normal;
+}
+
 button.button,
 button.button:focus,
 button.button:active,
@@ -139,9 +259,13 @@ input[type='tel']::placeholder {
   background-color: #e8e8e8;
 }
 
+/* comment that to look like the DSFR 
+
 .panel h2 {
   font-weight: normal;
 }
+
+*/
 
 .card > .card__content > h3 {
   font-weight: normal;
