@@ -5,6 +5,13 @@
   height: 100%;
 }
 
+/* adds margin top for fixed menu */
+@media (min-width: 750px) {
+  .user-enrollments-page {
+    margin-top: 80px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
