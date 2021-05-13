@@ -35,6 +35,9 @@ const contacts = {
         <p>
 <b>Seule une adresse email individuelle, professionnelle et nominative sera acceptée. Les adresses de type contact@, ccas.ville@, mairie@, direction@, franceservices@ ne sont donc pas acceptées.</b>
         </p>
+        <p>
+         Nous acceptons au besoin des adresses mails nominatives venant de fournisseurs comme La Poste, Protonmail ou autres.
+        </p>
       </Quote>
     ),
     email: '',
