@@ -44,9 +44,9 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   } = enrollment;
 
   const [loading, setLoading] = useState(false);
-  const [intendedAction, setIntendedAction] = useState(null);
+  const [pendingAction, setPendingAction] = useState(null);
 
-  const showPrompt = intendedAction !== null;
+  const showPrompt = pendingAction !== null;
 
   const confirmPrompt = useRef();
   const cancelPrompt = useRef();
@@ -55,7 +55,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     action,
     actionConfiguration,
     setLoading,
-    setIntendedAction,
+    setPendingAction,
     handleSubmit,
     enrollment,
     updateEnrollment
@@ -71,7 +71,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
       const resultMessages = await triggerAction(
         action,
         actionConfiguration,
-        setIntendedAction,
+        setPendingAction,
         enrollment,
         userInteractionPromise,
         updateEnrollment
@@ -82,22 +82,22 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     };
   };
   const onPromptConfirm = (message, fullEditMode) => {
-    setIntendedAction(null);
+    setPendingAction(null);
     confirmPrompt.current({ message, fullEditMode });
   };
   const onPromptCancel = () => {
-    setIntendedAction(null);
+    setPendingAction(null);
     cancelPrompt.current();
   };
   return (
     <>
       <FormActionButtonList
         loading={loading}
-        intendedAction={intendedAction}
+        pendingAction={pendingAction}
         formSubmitHandlerFactory={formSubmitHandlerFactory}
         enrollment={enrollment}
         setLoading={setLoading}
-        setIntendedAction={setIntendedAction}
+        setPendingAction={setPendingAction}
         handleSubmit={handleSubmit}
         updateEnrollment={updateEnrollment}
       />
@@ -106,9 +106,9 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
         <Prompt
           onAccept={onPromptConfirm}
           onCancel={onPromptCancel}
-          acceptLabel={actionToDisplayInfo[intendedAction].label}
-          acceptCssClass={actionToDisplayInfo[intendedAction].cssClass}
-          selectedAction={intendedAction}
+          acceptLabel={actionToDisplayInfo[pendingAction].label}
+          acceptCssClass={actionToDisplayInfo[pendingAction].cssClass}
+          selectedAction={pendingAction}
           targetApi={target_api}
           ownerEmailAddress={ownerEmailAddress}
         />

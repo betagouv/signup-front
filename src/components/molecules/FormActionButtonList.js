@@ -64,9 +64,9 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
 const FormActionButtonList = ({
   formSubmitHandlerFactory,
   loading,
-  intendedAction,
+  pendingAction,
   setLoading,
-  setIntendedAction,
+  setPendingAction,
   handleSubmit,
   enrollment,
   updateEnrollment,
@@ -78,7 +78,7 @@ const FormActionButtonList = ({
         action,
         actionConfiguration,
         setLoading,
-        setIntendedAction,
+        setPendingAction,
         handleSubmit,
         enrollment,
         updateEnrollment
@@ -91,7 +91,7 @@ const FormActionButtonList = ({
           {...props}
           key={props.id}
           loading={loading}
-          intendedAction={intendedAction}
+          pendingAction={pendingAction}
         />
       ))}
     </div>

@@ -7,7 +7,7 @@ const FormActionButton = ({
   loading,
   icon,
   label,
-  intendedAction,
+  pendingAction,
 }) => (
   <button
     key={id}
@@ -18,7 +18,7 @@ const FormActionButton = ({
     <div className="button-icon">{icon}</div>
     <div>
       {label}
-      {loading && intendedAction === id && <Loader small />}
+      {loading && pendingAction === id && <Loader small />}
     </div>
   </button>
 );
