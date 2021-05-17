@@ -38,23 +38,6 @@ const actionToDisplayInfo = {
   },
 };
 
-const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
-  // acl = {'send_application': true, 'review_application': false, 'create': true}
-  _(actionToDisplayInfo)
-    .pickBy((value, key) => acl[key])
-    // {'send_application': {label: ..., cssClass: ...}}
-    .keys()
-    // ['send_application']
-    .map(action => ({
-      id: action,
-      label: actionToDisplayInfo[action].label,
-      icon: actionToDisplayInfo[action].icon,
-      cssClass: actionToDisplayInfo[action].cssClass,
-      trigger: formSubmitHandlerFactory(action),
-    }))
-    // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
-    .value();
-
 const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   const {
     target_api,
@@ -98,17 +81,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
       handleSubmit(resultMessages);
     };
   };
-  const buttonsParams = transformAclToButtonsParams(enrollment.acl, action =>
-    formSubmitHandlerFactory(
-      action,
-      setLoading,
-      setShowPrompt,
-      setIntendedAction,
-      handleSubmit,
-      enrollment,
-      updateEnrollment
-    )
-  );
   const onPromptConfirm = (message, fullEditMode) => {
     setShowPrompt(false);
     setIntendedAction('');
@@ -122,9 +94,15 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   return (
     <>
       <FormActionButtonList
-        buttonsParams={buttonsParams}
         loading={loading}
         intendedAction={intendedAction}
+        formSubmitHandlerFactory={formSubmitHandlerFactory}
+        enrollment={enrollment}
+        setLoading={setLoading}
+        setShowPrompt={setShowPrompt}
+        setIntendedAction={setIntendedAction}
+        handleSubmit={handleSubmit}
+        updateEnrollment={updateEnrollment}
       />
 
       {showPrompt && (
