@@ -1,10 +1,14 @@
-import Button from '../templates/Form/ActionButton/Button';
+import FormActionButton from '../atoms/FormActionButton';
 
 const FormActionButtonList = ({ buttonsParams, loading, intendedAction }) => {
   return (
     <div className="button-list action">
       {buttonsParams.map(props => (
-        <Button {...props} loading={loading} intendedAction={intendedAction} />
+        <FormActionButton
+          {...props}
+          loading={loading}
+          intendedAction={intendedAction}
+        />
       ))}
     </div>
   );

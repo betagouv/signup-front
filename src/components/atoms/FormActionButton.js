@@ -1,6 +1,6 @@
-import Loader from '../../../atoms/Loader';
+import Loader from './Loader';
 
-const Button = ({
+const FormActionButton = ({
   id,
   cssClass,
   trigger,
@@ -23,4 +23,4 @@ const Button = ({
   </button>
 );
 
-export default Button;
+export default FormActionButton;
