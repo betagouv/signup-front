@@ -78,6 +78,7 @@ const FormActionButtonList = ({
       {buttonsParams.map(props => (
         <FormActionButton
           {...props}
+          key={props.id}
           loading={loading}
           intendedAction={intendedAction}
         />
