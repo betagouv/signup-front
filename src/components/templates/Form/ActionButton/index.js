@@ -26,7 +26,7 @@ class ActionButton extends React.Component {
       label: 'Envoyer un message',
       cssClass: 'secondary',
     },
-    delete: {
+    destroy: {
       label: 'Supprimer la demande',
       cssClass: 'warning',
     },
@@ -135,7 +135,7 @@ class ActionButton extends React.Component {
         return resultMessages;
       }
 
-      if (action === 'delete') {
+      if (action === 'destroy') {
         await deleteEnrollment({ id: enrollmentId });
       }
 
