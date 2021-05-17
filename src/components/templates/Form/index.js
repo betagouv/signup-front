@@ -5,7 +5,7 @@ import { get, isObject, omitBy, merge, zipObjectDeep } from 'lodash';
 import Linkify from 'linkifyjs/react';
 
 import { getUserEnrollment } from '../../../services/enrollments';
-import ActionButton from './ActionButton';
+import SubmissionPanel from './SubmissionPanel';
 import ActivityFeed from './ActivityFeed';
 import { ScrollablePanel } from '../../organisms/Scrollable';
 import EnrollmentHasCopiesNotification from './EnrollmentHasCopiesNotification';
@@ -265,7 +265,7 @@ export const Form = ({
           </div>
         ))}
 
-        <ActionButton
+        <SubmissionPanel
           enrollment={enrollment}
           updateEnrollment={dispatchSetEnrollment}
           handleSubmit={handleSubmit}

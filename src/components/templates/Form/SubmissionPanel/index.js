@@ -55,7 +55,7 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
     .value();
 
-const ActionButton = ({ enrollment, handleSubmit, updateEnrollment }) => {
+const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   const {
     target_api,
     user: { email: ownerEmailAddress } = { email: null },
@@ -142,10 +142,10 @@ const ActionButton = ({ enrollment, handleSubmit, updateEnrollment }) => {
   );
 };
 
-ActionButton.propTypes = {
+SubmissionPanel.propTypes = {
   enrollment: PropTypes.object.isRequired,
   updateEnrollment: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired,
 };
 
-export default ActionButton;
+export default SubmissionPanel;
