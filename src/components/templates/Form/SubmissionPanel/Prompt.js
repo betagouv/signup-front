@@ -15,9 +15,13 @@ const Prompt = ({
   acceptCssClass,
   acceptLabel,
   selectedAction,
-  targetApi,
-  ownerEmailAddress,
+  enrollment,
 }) => {
+  const {
+    target_api: targetApi,
+    user: { email: ownerEmailAddress } = { email: null },
+  } = enrollment;
+
   const [input, setInput] = useState('');
   const [selectedTemplateIndex, setSelectedTemplateIndex] = useState('');
   const [fullEditMode, setFullEditMode] = useState(false);
@@ -142,8 +146,6 @@ Prompt.propTypes = {
   acceptCssClass: PropTypes.string.isRequired,
   acceptLabel: PropTypes.string.isRequired,
   selectedAction: PropTypes.string.isRequired,
-  targetApi: PropTypes.string.isRequired,
-  ownerEmailAddress: PropTypes.string.isRequired,
 };
 
 export default Prompt;

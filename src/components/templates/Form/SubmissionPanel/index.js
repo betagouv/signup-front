@@ -37,11 +37,6 @@ const actionToDisplayInfo = {
 };
 
 const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
-  const {
-    target_api,
-    user: { email: ownerEmailAddress } = { email: null },
-  } = enrollment;
-
   const [pendingAction, setPendingAction] = useState(null);
 
   const showPrompt = pendingAction !== null;
@@ -76,8 +71,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
           acceptLabel={actionToDisplayInfo[pendingAction].label}
           acceptCssClass={actionToDisplayInfo[pendingAction].cssClass}
           selectedAction={pendingAction}
-          targetApi={target_api}
-          ownerEmailAddress={ownerEmailAddress}
+          enrollment={enrollment}
         />
       )}
     </>
