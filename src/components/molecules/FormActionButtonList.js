@@ -1,30 +1,32 @@
-import _ from 'lodash';
 import { useState } from 'react';
 import { userInteractionsConfiguration } from '../../lib/enrollment-buttons-configuration';
 import FormActionButton from '../atoms/FormActionButton';
 
-export const transformAclToButtonsParams = acl =>
-  Object.keys(acl)
-    .filter(key => acl[key])
-    .filter(key => Object.keys(userInteractionsConfiguration).includes(key))
-    .map(key => ({ id: key, ...userInteractionsConfiguration[key] }));
+export const listAuthorizedActions = acl =>
+  Object.keys(userInteractionsConfiguration).filter(key => acl[key]);
 
 const FormActionButtonList = props => {
   const { enrollment } = props;
   const [loading, setLoading] = useState(false);
 
-  const buttonsParams = transformAclToButtonsParams(enrollment.acl);
+  const authorizedActions = listAuthorizedActions(enrollment.acl);
   return (
     <div className="button-list action">
-      {buttonsParams.map(actionConfiguration => (
-        <FormActionButton
-          key={actionConfiguration.id}
-          actionConfiguration={actionConfiguration}
-          loading={loading}
-          setLoading={setLoading}
-          {...props}
-        />
-      ))}
+      {authorizedActions.map(action => {
+        const actionConfiguration = {
+          id: action,
+          ...userInteractionsConfiguration[action],
+        };
+        return (
+          <FormActionButton
+            key={actionConfiguration.id}
+            actionConfiguration={actionConfiguration}
+            loading={loading}
+            setLoading={setLoading}
+            {...props}
+          />
+        );
+      })}
     </div>
   );
 };

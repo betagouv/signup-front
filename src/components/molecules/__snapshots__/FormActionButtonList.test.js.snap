@@ -2,38 +2,10 @@
 
 exports[`FormActionButtonList lists button to display from enrollment acl 1`] = `
 Array [
-  Object {
-    "cssClass": "warning",
-    "id": "delete",
-    "label": "Supprimer la demande",
-  },
-  Object {
-    "cssClass": "secondary",
-    "id": "notify",
-    "label": "Envoyer un message",
-    "needsToComputeNextEnrollmentState": true,
-    "promptForComment": true,
-  },
-  Object {
-    "cssClass": "warning",
-    "id": "refuse_application",
-    "label": "Refuser",
-    "needsToComputeNextEnrollmentState": true,
-    "promptForComment": true,
-  },
-  Object {
-    "cssClass": "primary",
-    "icon": <DoneIcon
-      color="white"
-    />,
-    "id": "send_application",
-    "label": "Soumettre la demande",
-    "needsToComputeNextEnrollmentState": true,
-  },
-  Object {
-    "cssClass": "secondary",
-    "id": "update",
-    "label": "Sauvegarder le brouillon",
-  },
+  "notify",
+  "delete",
+  "update",
+  "send_application",
+  "refuse_application",
 ]
 `;

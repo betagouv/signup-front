@@ -1,4 +1,4 @@
-import { transformAclToButtonsParams } from './FormActionButtonList';
+import { listAuthorizedActions } from './FormActionButtonList';
 
 describe('FormActionButtonList', () => {
   it('lists button to display from enrollment acl', () => {
@@ -20,6 +20,6 @@ describe('FormActionButtonList', () => {
       validate_application: false,
     };
 
-    expect(transformAclToButtonsParams(acl)).toMatchSnapshot();
+    expect(listAuthorizedActions(acl)).toMatchSnapshot();
   });
 });
