@@ -1,9 +1,9 @@
-import { getErrorMessages } from '../../../../lib';
+import { getErrorMessages } from '../../../lib';
 import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   computeNextEnrollmentState,
-} from '../../../../services/enrollments';
+} from '../../../services/enrollments';
 
 export const triggerAction = async (
   actionConfiguration,
