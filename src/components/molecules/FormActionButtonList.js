@@ -7,6 +7,7 @@ const userInteractionsConfiguration = {
     label: 'Envoyer un message',
     cssClass: 'secondary',
     needsToComputeNextEnrollmentState: true,
+    promptForComment: true,
   },
   delete: {
     label: 'Supprimer la demande',
@@ -26,16 +27,19 @@ const userInteractionsConfiguration = {
     label: 'Refuser',
     cssClass: 'warning',
     needsToComputeNextEnrollmentState: true,
+    promptForComment: true,
   },
   review_application: {
     label: 'Demander une modification',
     cssClass: 'secondary',
     needsToComputeNextEnrollmentState: true,
+    promptForComment: true,
   },
   validate_application: {
     label: 'Valider',
     cssClass: 'primary',
     needsToComputeNextEnrollmentState: true,
+    promptForComment: true,
   },
 };
 

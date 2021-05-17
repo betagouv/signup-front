@@ -24,14 +24,7 @@ export const triggerAction = async (
     let comment = null;
     let commentFullEditMode = null;
 
-    if (
-      [
-        'notify',
-        'review_application',
-        'refuse_application',
-        'validate_application',
-      ].includes(action)
-    ) {
+    if (actionConfiguration.promptForComment) {
       try {
         setShowPrompt(true);
         setIntendedAction(action);
