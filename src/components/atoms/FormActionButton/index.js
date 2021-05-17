@@ -1,5 +1,5 @@
-import { triggerAction } from '../templates/Form/SubmissionPanel/trigger-action';
-import Loader from './Loader';
+import { triggerAction } from '../../templates/Form/SubmissionPanel/trigger-action';
+import Loader from '../Loader';
 
 const FormActionButton = ({
   actionConfiguration,
