@@ -15,7 +15,7 @@ const FormActionButton = ({
 }) => {
   const { label, icon, cssClass } = actionConfiguration;
 
-  const trigger = async event => {
+  const onClick = async event => {
     event.preventDefault();
     setLoading(true);
 
@@ -39,7 +39,7 @@ const FormActionButton = ({
     <button
       key={actionConfiguration.id}
       className={`button large enrollment ${cssClass}`}
-      onClick={trigger}
+      onClick={onClick}
       disabled={loading}
     >
       <div className="button-icon">{icon}</div>
