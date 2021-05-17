@@ -171,7 +171,7 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerEnrollment({
+export function computeNextEnrollmentState({
   action,
   id,
   comment,

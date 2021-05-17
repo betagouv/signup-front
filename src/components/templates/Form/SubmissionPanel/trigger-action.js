@@ -2,7 +2,7 @@ import { getErrorMessages } from '../../../../lib';
 import {
   createOrUpdateEnrollment,
   deleteEnrollment,
-  triggerEnrollment,
+  computeNextEnrollmentState,
 } from '../../../../services/enrollments';
 
 export const triggerAction = async (
@@ -72,7 +72,7 @@ export const triggerAction = async (
         'send_application',
       ].includes(action)
     ) {
-      await triggerEnrollment({
+      await computeNextEnrollmentState({
         action,
         id: enrollmentId,
         comment,
