@@ -1,5 +1,5 @@
-import { triggerAction } from './trigger-action';
-import Loader from '../Loader';
+import Loader from './Loader';
+import { handleEnrollmentSubmission } from '../../lib/enrollment-submission-handler';
 
 const FormActionButton = ({
   actionConfiguration,
@@ -23,7 +23,7 @@ const FormActionButton = ({
       confirmPrompt.current = resolve;
       cancelPrompt.current = reject;
     });
-    const resultMessages = await triggerAction(
+    const resultMessages = await handleEnrollmentSubmission(
       actionConfiguration,
       setPendingAction,
       enrollment,

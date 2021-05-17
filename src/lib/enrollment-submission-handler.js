@@ -1,11 +1,11 @@
-import { getErrorMessages } from '../../../lib';
+import { getErrorMessages } from '.';
 import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   computeNextEnrollmentState,
-} from '../../../services/enrollments';
+} from '../services/enrollments';
 
-export const triggerAction = async (
+export const handleEnrollmentSubmission = async (
   actionConfiguration,
   setIntendedAction,
   enrollment,
