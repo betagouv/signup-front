@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import FormActionButton from '../atoms/FormActionButton';
 import DoneIcon from '../atoms/icons/done';
+import { triggerAction } from '../templates/Form/SubmissionPanel/trigger-action';
 
 const userInteractionsConfiguration = {
   notify: {
@@ -62,7 +63,6 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     .value();
 
 const FormActionButtonList = ({
-  formSubmitHandlerFactory,
   loading,
   pendingAction,
   setLoading,
@@ -70,7 +70,39 @@ const FormActionButtonList = ({
   handleSubmit,
   enrollment,
   updateEnrollment,
+  confirmPrompt,
+  cancelPrompt,
 }) => {
+  const formSubmitHandlerFactory = (
+    action,
+    actionConfiguration,
+    setLoading,
+    setPendingAction,
+    handleSubmit,
+    enrollment,
+    updateEnrollment
+  ) => {
+    return async event => {
+      event.preventDefault();
+      setLoading(true);
+
+      const userInteractionPromise = new Promise((resolve, reject) => {
+        confirmPrompt.current = resolve;
+        cancelPrompt.current = reject;
+      });
+      const resultMessages = await triggerAction(
+        action,
+        actionConfiguration,
+        setPendingAction,
+        enrollment,
+        userInteractionPromise,
+        updateEnrollment
+      );
+
+      setLoading(false);
+      handleSubmit(resultMessages);
+    };
+  };
   const buttonsParams = transformAclToButtonsParams(
     enrollment.acl,
     (action, actionConfiguration) =>

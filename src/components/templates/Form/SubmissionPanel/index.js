@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt';
 import DoneIcon from '../../../atoms/icons/done';
-import { triggerAction } from './trigger-action';
 import FormActionButtonList from '../../../molecules/FormActionButtonList';
 
 const actionToDisplayInfo = {
@@ -51,36 +50,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   const confirmPrompt = useRef();
   const cancelPrompt = useRef();
 
-  const formSubmitHandlerFactory = (
-    action,
-    actionConfiguration,
-    setLoading,
-    setPendingAction,
-    handleSubmit,
-    enrollment,
-    updateEnrollment
-  ) => {
-    return async event => {
-      event.preventDefault();
-      setLoading(true);
-
-      const userInteractionPromise = new Promise((resolve, reject) => {
-        confirmPrompt.current = resolve;
-        cancelPrompt.current = reject;
-      });
-      const resultMessages = await triggerAction(
-        action,
-        actionConfiguration,
-        setPendingAction,
-        enrollment,
-        userInteractionPromise,
-        updateEnrollment
-      );
-
-      setLoading(false);
-      handleSubmit(resultMessages);
-    };
-  };
   const onPromptConfirm = (message, fullEditMode) => {
     setPendingAction(null);
     confirmPrompt.current({ message, fullEditMode });
@@ -94,12 +63,13 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
       <FormActionButtonList
         loading={loading}
         pendingAction={pendingAction}
-        formSubmitHandlerFactory={formSubmitHandlerFactory}
         enrollment={enrollment}
         setLoading={setLoading}
         setPendingAction={setPendingAction}
         handleSubmit={handleSubmit}
         updateEnrollment={updateEnrollment}
+        confirmPrompt={confirmPrompt}
+        cancelPrompt={cancelPrompt}
       />
 
       {showPrompt && (
