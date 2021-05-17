@@ -68,7 +68,6 @@ const FormActionButtonList = ({
   setLoading,
   setIntendedAction,
   handleSubmit,
-  setShowPrompt,
   enrollment,
   updateEnrollment,
 }) => {
@@ -79,7 +78,6 @@ const FormActionButtonList = ({
         action,
         actionConfiguration,
         setLoading,
-        setShowPrompt,
         setIntendedAction,
         handleSubmit,
         enrollment,

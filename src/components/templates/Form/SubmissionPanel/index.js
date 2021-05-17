@@ -44,8 +44,9 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   } = enrollment;
 
   const [loading, setLoading] = useState(false);
-  const [showPrompt, setShowPrompt] = useState(false);
-  const [intendedAction, setIntendedAction] = useState('');
+  const [intendedAction, setIntendedAction] = useState(null);
+
+  const showPrompt = intendedAction !== null;
 
   const confirmPrompt = useRef();
   const cancelPrompt = useRef();
@@ -54,7 +55,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     action,
     actionConfiguration,
     setLoading,
-    setShowPrompt,
     setIntendedAction,
     handleSubmit,
     enrollment,
@@ -71,7 +71,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
       const resultMessages = await triggerAction(
         action,
         actionConfiguration,
-        setShowPrompt,
         setIntendedAction,
         enrollment,
         userInteractionPromise,
@@ -83,13 +82,11 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     };
   };
   const onPromptConfirm = (message, fullEditMode) => {
-    setShowPrompt(false);
-    setIntendedAction('');
+    setIntendedAction(null);
     confirmPrompt.current({ message, fullEditMode });
   };
   const onPromptCancel = () => {
-    setShowPrompt(false);
-    setIntendedAction('');
+    setIntendedAction(null);
     cancelPrompt.current();
   };
   return (
@@ -100,7 +97,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
         formSubmitHandlerFactory={formSubmitHandlerFactory}
         enrollment={enrollment}
         setLoading={setLoading}
-        setShowPrompt={setShowPrompt}
         setIntendedAction={setIntendedAction}
         handleSubmit={handleSubmit}
         updateEnrollment={updateEnrollment}

@@ -8,7 +8,6 @@ import {
 export const triggerAction = async (
   action,
   actionConfiguration,
-  setShowPrompt,
   setIntendedAction,
   enrollment,
   waitForUserInteractionInPrompt,
@@ -26,7 +25,6 @@ export const triggerAction = async (
 
     if (actionConfiguration.promptForComment) {
       try {
-        setShowPrompt(true);
         setIntendedAction(action);
 
         const actionMessage = await waitForUserInteractionInPrompt;
