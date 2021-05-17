@@ -3,19 +3,11 @@ import { useState } from 'react';
 import { userInteractionsConfiguration } from '../../lib/enrollment-buttons-configuration';
 import FormActionButton from '../atoms/FormActionButton';
 
-const transformAclToButtonsParams = acl =>
-  // acl = {'send_application': true, 'review_application': false, 'create': true}
-  _(userInteractionsConfiguration)
-    .pickBy((value, key) => acl[key])
-    // {'send_application': {label: ..., cssClass: ...}}
-    .keys()
-    // ['send_application']
-    .map(action => ({
-      id: action,
-      ...userInteractionsConfiguration[action],
-    }))
-    // [{id: 'send_application', label: 'Envoyer'}]
-    .value();
+export const transformAclToButtonsParams = acl =>
+  Object.keys(acl)
+    .filter(key => acl[key])
+    .filter(key => Object.keys(userInteractionsConfiguration).includes(key))
+    .map(key => ({ id: key, ...userInteractionsConfiguration[key] }));
 
 const FormActionButtonList = props => {
   const { enrollment } = props;
