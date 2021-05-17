@@ -42,7 +42,6 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     user: { email: ownerEmailAddress } = { email: null },
   } = enrollment;
 
-  const [loading, setLoading] = useState(false);
   const [pendingAction, setPendingAction] = useState(null);
 
   const showPrompt = pendingAction !== null;
@@ -61,10 +60,8 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   return (
     <>
       <FormActionButtonList
-        loading={loading}
         pendingAction={pendingAction}
         enrollment={enrollment}
-        setLoading={setLoading}
         setPendingAction={setPendingAction}
         handleSubmit={handleSubmit}
         updateEnrollment={updateEnrollment}

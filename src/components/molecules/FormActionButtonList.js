@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { useState } from 'react';
 import FormActionButton from '../atoms/FormActionButton';
 import DoneIcon from '../atoms/icons/done';
 import { triggerAction } from '../templates/Form/SubmissionPanel/trigger-action';
@@ -63,9 +64,7 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     .value();
 
 const FormActionButtonList = ({
-  loading,
   pendingAction,
-  setLoading,
   setPendingAction,
   handleSubmit,
   enrollment,
@@ -73,6 +72,8 @@ const FormActionButtonList = ({
   confirmPrompt,
   cancelPrompt,
 }) => {
+  const [loading, setLoading] = useState(false);
+
   const formSubmitHandlerFactory = (
     action,
     actionConfiguration,
