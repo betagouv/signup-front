@@ -6,6 +6,7 @@ const actionToDisplayInfo = {
   notify: {
     label: 'Envoyer un message',
     cssClass: 'secondary',
+    needsToComputeNextEnrollmentState: true,
   },
   delete: {
     label: 'Supprimer la demande',
@@ -19,18 +20,22 @@ const actionToDisplayInfo = {
     label: 'Soumettre la demande',
     icon: <DoneIcon color="white" />,
     cssClass: 'primary',
+    needsToComputeNextEnrollmentState: true,
   },
   refuse_application: {
     label: 'Refuser',
     cssClass: 'warning',
+    needsToComputeNextEnrollmentState: true,
   },
   review_application: {
     label: 'Demander une modification',
     cssClass: 'secondary',
+    needsToComputeNextEnrollmentState: true,
   },
   validate_application: {
     label: 'Valider',
     cssClass: 'primary',
+    needsToComputeNextEnrollmentState: true,
   },
 };
 
@@ -43,9 +48,7 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     // ['send_application']
     .map(action => ({
       id: action,
-      label: actionToDisplayInfo[action].label,
-      icon: actionToDisplayInfo[action].icon,
-      cssClass: actionToDisplayInfo[action].cssClass,
+      ...actionToDisplayInfo[action],
       trigger: formSubmitHandlerFactory(action),
     }))
     // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
