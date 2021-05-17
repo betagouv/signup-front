@@ -7,6 +7,7 @@ import {
 
 export const triggerAction = async (
   action,
+  actionConfiguration,
   setShowPrompt,
   setIntendedAction,
   enrollment,
@@ -63,15 +64,7 @@ export const triggerAction = async (
       await deleteEnrollment({ id: enrollmentId });
     }
 
-    if (
-      [
-        'notify',
-        'review_application',
-        'refuse_application',
-        'validate_application',
-        'send_application',
-      ].includes(action)
-    ) {
+    if (actionConfiguration.needsToComputeNextEnrollmentState) {
       await computeNextEnrollmentState({
         action,
         id: enrollmentId,

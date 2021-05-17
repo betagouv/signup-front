@@ -52,6 +52,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
 
   const formSubmitHandlerFactory = (
     action,
+    actionConfiguration,
     setLoading,
     setShowPrompt,
     setIntendedAction,
@@ -69,6 +70,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
       });
       const resultMessages = await triggerAction(
         action,
+        actionConfiguration,
         setShowPrompt,
         setIntendedAction,
         enrollment,

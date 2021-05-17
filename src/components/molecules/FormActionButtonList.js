@@ -2,7 +2,7 @@ import _ from 'lodash';
 import FormActionButton from '../atoms/FormActionButton';
 import DoneIcon from '../atoms/icons/done';
 
-const actionToDisplayInfo = {
+const userInteractionsConfiguration = {
   notify: {
     label: 'Envoyer un message',
     cssClass: 'secondary',
@@ -41,15 +41,18 @@ const actionToDisplayInfo = {
 
 const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
   // acl = {'send_application': true, 'review_application': false, 'create': true}
-  _(actionToDisplayInfo)
+  _(userInteractionsConfiguration)
     .pickBy((value, key) => acl[key])
     // {'send_application': {label: ..., cssClass: ...}}
     .keys()
     // ['send_application']
     .map(action => ({
       id: action,
-      ...actionToDisplayInfo[action],
-      trigger: formSubmitHandlerFactory(action),
+      ...userInteractionsConfiguration[action],
+      trigger: formSubmitHandlerFactory(
+        action,
+        userInteractionsConfiguration[action]
+      ),
     }))
     // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
     .value();
@@ -65,16 +68,19 @@ const FormActionButtonList = ({
   enrollment,
   updateEnrollment,
 }) => {
-  const buttonsParams = transformAclToButtonsParams(enrollment.acl, action =>
-    formSubmitHandlerFactory(
-      action,
-      setLoading,
-      setShowPrompt,
-      setIntendedAction,
-      handleSubmit,
-      enrollment,
-      updateEnrollment
-    )
+  const buttonsParams = transformAclToButtonsParams(
+    enrollment.acl,
+    (action, actionConfiguration) =>
+      formSubmitHandlerFactory(
+        action,
+        actionConfiguration,
+        setLoading,
+        setShowPrompt,
+        setIntendedAction,
+        handleSubmit,
+        enrollment,
+        updateEnrollment
+      )
   );
   return (
     <div className="button-list action">
