@@ -20,6 +20,7 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
     setPendingAction(null);
     cancelPrompt.current();
   };
+
   return (
     <>
       <FormActionButtonList

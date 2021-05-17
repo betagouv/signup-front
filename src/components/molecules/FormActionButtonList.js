@@ -2,9 +2,8 @@ import _ from 'lodash';
 import { useState } from 'react';
 import { userInteractionsConfiguration } from '../../lib/enrollment-buttons-configuration';
 import FormActionButton from '../atoms/FormActionButton';
-import { triggerAction } from '../templates/Form/SubmissionPanel/trigger-action';
 
-const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
+const transformAclToButtonsParams = acl =>
   // acl = {'send_application': true, 'review_application': false, 'create': true}
   _(userInteractionsConfiguration)
     .pickBy((value, key) => acl[key])
@@ -14,76 +13,24 @@ const transformAclToButtonsParams = (acl, formSubmitHandlerFactory) =>
     .map(action => ({
       id: action,
       ...userInteractionsConfiguration[action],
-      trigger: formSubmitHandlerFactory(
-        action,
-        userInteractionsConfiguration[action]
-      ),
     }))
-    // [{id: 'send_application', trigger: ..., label: 'Envoyer'}]
+    // [{id: 'send_application', label: 'Envoyer'}]
     .value();
 
-const FormActionButtonList = ({
-  pendingAction,
-  setPendingAction,
-  handleSubmit,
-  enrollment,
-  updateEnrollment,
-  confirmPrompt,
-  cancelPrompt,
-}) => {
+const FormActionButtonList = props => {
+  const { enrollment } = props;
   const [loading, setLoading] = useState(false);
 
-  const formSubmitHandlerFactory = (
-    action,
-    actionConfiguration,
-    setLoading,
-    setPendingAction,
-    handleSubmit,
-    enrollment,
-    updateEnrollment
-  ) => {
-    return async event => {
-      event.preventDefault();
-      setLoading(true);
-
-      const userInteractionPromise = new Promise((resolve, reject) => {
-        confirmPrompt.current = resolve;
-        cancelPrompt.current = reject;
-      });
-      const resultMessages = await triggerAction(
-        action,
-        actionConfiguration,
-        setPendingAction,
-        enrollment,
-        userInteractionPromise,
-        updateEnrollment
-      );
-
-      setLoading(false);
-      handleSubmit(resultMessages);
-    };
-  };
-  const buttonsParams = transformAclToButtonsParams(
-    enrollment.acl,
-    (action, actionConfiguration) =>
-      formSubmitHandlerFactory(
-        action,
-        actionConfiguration,
-        setLoading,
-        setPendingAction,
-        handleSubmit,
-        enrollment,
-        updateEnrollment
-      )
-  );
+  const buttonsParams = transformAclToButtonsParams(enrollment.acl);
   return (
     <div className="button-list action">
-      {buttonsParams.map(props => (
+      {buttonsParams.map(actionConfiguration => (
         <FormActionButton
-          {...props}
-          key={props.id}
+          key={actionConfiguration.id}
+          actionConfiguration={actionConfiguration}
           loading={loading}
-          pendingAction={pendingAction}
+          setLoading={setLoading}
+          {...props}
         />
       ))}
     </div>

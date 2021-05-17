@@ -6,7 +6,6 @@ import {
 } from '../../../../services/enrollments';
 
 export const triggerAction = async (
-  action,
   actionConfiguration,
   setIntendedAction,
   enrollment,
@@ -18,6 +17,8 @@ export const triggerAction = async (
     successMessages: [],
     redirectToHome: false,
   };
+
+  const action = actionConfiguration.id;
 
   try {
     let comment = null;
