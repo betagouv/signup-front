@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Prompt from './Prompt';
 import DoneIcon from '../../../atoms/icons/done';
-import Loader from '../../../atoms/Loader';
+import Button from './Button';
 import { triggerAction } from './trigger-action';
 
 const actionToDisplayInfo = {
@@ -122,19 +122,12 @@ const ActionButton = ({ enrollment, handleSubmit, updateEnrollment }) => {
   return (
     <>
       <div className="button-list action">
-        {buttonsParams.map(({ cssClass, icon, id, label, trigger }) => (
-          <button
-            key={id}
-            className={`button large enrollment ${cssClass}`}
-            onClick={trigger}
-            disabled={loading}
-          >
-            <div className="button-icon">{icon}</div>
-            <div>
-              {label}
-              {loading && intendedAction === id && <Loader small />}
-            </div>
-          </button>
+        {buttonsParams.map(props => (
+          <Button
+            {...props}
+            loading={loading}
+            intendedAction={intendedAction}
+          />
         ))}
       </div>
 
