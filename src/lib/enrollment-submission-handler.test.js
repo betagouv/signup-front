@@ -6,6 +6,7 @@ import { handleEnrollmentSubmission } from './enrollment-submission-handler';
 import {
   computeNextEnrollmentState,
   deleteEnrollment,
+  createOrUpdateEnrollment,
 } from '../services/enrollments';
 
 describe('When submitting the enrollment form', () => {
@@ -86,6 +87,45 @@ describe('When submitting the enrollment form', () => {
       expect(deleteEnrollment).toHaveBeenCalledWith({
         id: enrollment.id,
       });
+      expect(output).toMatchSnapshot();
+    });
+  });
+
+  describe('with the update action', () => {
+    const actionConfiguration = {
+      id: 'update',
+      ...userInteractionsConfiguration.update,
+    };
+    const enrollmentToUpdate = { ...enrollment, acl: { update: true } };
+
+    it('calls the update endpoint', async () => {
+      createOrUpdateEnrollment.mockResolvedValue(enrollmentToUpdate);
+
+      const output = await handleEnrollmentSubmission(
+        actionConfiguration,
+        setIntendedAction,
+        enrollmentToUpdate,
+        waitForUserInteractionInPrompt,
+        updateEnrollment
+      );
+
+      expect(createOrUpdateEnrollment).toHaveBeenCalledWith({
+        enrollment: enrollmentToUpdate,
+      });
+      expect(output).toMatchSnapshot();
+    });
+
+    it('displays an error if update fails', async () => {
+      createOrUpdateEnrollment.mockRejectedValue("Pas d'update désolé");
+
+      const output = await handleEnrollmentSubmission(
+        actionConfiguration,
+        setIntendedAction,
+        enrollmentToUpdate,
+        waitForUserInteractionInPrompt,
+        updateEnrollment
+      );
+
       expect(output).toMatchSnapshot();
     });
   });
