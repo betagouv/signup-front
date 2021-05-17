@@ -1,40 +1,8 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt';
-import DoneIcon from '../../../atoms/icons/done';
 import FormActionButtonList from '../../../molecules/FormActionButtonList';
-
-const actionToDisplayInfo = {
-  notify: {
-    label: 'Envoyer un message',
-    cssClass: 'secondary',
-  },
-  destroy: {
-    label: 'Supprimer la demande',
-    cssClass: 'warning',
-  },
-  update: {
-    label: 'Sauvegarder le brouillon',
-    cssClass: 'secondary',
-  },
-  send_application: {
-    label: 'Soumettre la demande',
-    icon: <DoneIcon color="white" />,
-    cssClass: 'primary',
-  },
-  refuse_application: {
-    label: 'Refuser',
-    cssClass: 'warning',
-  },
-  review_application: {
-    label: 'Demander une modification',
-    cssClass: 'secondary',
-  },
-  validate_application: {
-    label: 'Valider',
-    cssClass: 'primary',
-  },
-};
+import { userInteractionsConfiguration } from '../../../../lib/enrollment-buttons-configuration';
 
 const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   const [pendingAction, setPendingAction] = useState(null);
@@ -68,8 +36,8 @@ const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
         <Prompt
           onAccept={onPromptConfirm}
           onCancel={onPromptCancel}
-          acceptLabel={actionToDisplayInfo[pendingAction].label}
-          acceptCssClass={actionToDisplayInfo[pendingAction].cssClass}
+          acceptLabel={userInteractionsConfiguration[pendingAction].label}
+          acceptCssClass={userInteractionsConfiguration[pendingAction].cssClass}
           selectedAction={pendingAction}
           enrollment={enrollment}
         />
