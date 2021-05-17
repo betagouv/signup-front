@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Prompt.css';
 import EditIcon from '../../../atoms/icons/edit';
-import useMostUsedComments from './use-most-used-comments';
+import useMostUsedComments from './hooks/use-most-used-comments';
 import {
   getMailAttributes,
   getMailFooter,
