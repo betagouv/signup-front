@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import Prompt from './Prompt';
 import DoneIcon from '../../../atoms/icons/done';
-import Button from './Button';
 import { triggerAction } from './trigger-action';
+import FormActionButtonList from '../../../molecules/FormActionButtonList';
 
 const actionToDisplayInfo = {
   notify: {
@@ -121,15 +121,11 @@ const ActionButton = ({ enrollment, handleSubmit, updateEnrollment }) => {
   };
   return (
     <>
-      <div className="button-list action">
-        {buttonsParams.map(props => (
-          <Button
-            {...props}
-            loading={loading}
-            intendedAction={intendedAction}
-          />
-        ))}
-      </div>
+      <FormActionButtonList
+        buttonsParams={buttonsParams}
+        loading={loading}
+        intendedAction={intendedAction}
+      />
 
       {showPrompt && (
         <Prompt
