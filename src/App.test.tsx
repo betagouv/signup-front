@@ -6,7 +6,8 @@ import nock from 'nock';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-let container = null;
+let container: HTMLDivElement;
+
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement('div');
@@ -17,7 +18,6 @@ afterEach(() => {
   // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
-  container = null;
 });
 
 it('renders without crashing', () => {
