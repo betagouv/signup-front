@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import App from './App';
@@ -21,7 +20,7 @@ afterEach(() => {
 });
 
 it('renders without crashing', () => {
-  nock(BACK_HOST)
+  nock(BACK_HOST as string)
     .get('/api/users/me')
     .reply(200, {
       id: 1,
