@@ -16,7 +16,7 @@
     "test": "npm run lint && CI=true react-scripts test",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
-    "lint": "prettier --list-different src/**/*.{js,ts,tsx}"
+    "lint": "eslint src/**/*.{js,ts,tsx}"
   },
   "keywords": [],
   "author": "",

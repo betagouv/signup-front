@@ -13,7 +13,7 @@ const UseCase = ({ availableScopes, useCases = [] }) => {
 
   const [selectedUseCase, selectUseCase] = useState(null);
 
-  const handleUseCaseChange = useCaseToBeSelected => {
+  const handleUseCaseChange = (useCaseToBeSelected) => {
     if (
       isString(useCaseToBeSelected) &&
       useCaseToBeSelected !== CUSTOM_USE_CASE_LABEL
@@ -23,7 +23,7 @@ const UseCase = ({ availableScopes, useCases = [] }) => {
           target: {
             type: 'checkbox',
             checked: useCases
-              .find(e => e.label === useCaseToBeSelected)
+              .find((e) => e.label === useCaseToBeSelected)
               .scopes.includes(scopeValue),
             name: `scopes.${scopeValue}`,
           },
@@ -47,7 +47,7 @@ const UseCase = ({ availableScopes, useCases = [] }) => {
   useEffect(() => {
     // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
     const selectedScopesAsArray = _(scopes)
-      .omitBy(e => !e)
+      .omitBy((e) => !e)
       .keys()
       .value();
 

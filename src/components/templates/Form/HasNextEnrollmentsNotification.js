@@ -3,7 +3,7 @@ import { isEmpty } from 'lodash';
 import { TARGET_API_LABELS } from '../../../lib/api';
 import { getNextEnrollments } from '../../../services/enrollments';
 
-const formatNextEnrollment = enrollment =>
+const formatNextEnrollment = (enrollment) =>
   `${TARGET_API_LABELS[enrollment.target_api] || enrollment.target_api} : #${
     enrollment.id
   }`;
@@ -33,7 +33,7 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
     <div className="notification info">
       Cette demande est liée{' '}
       {severalNexts ? 'aux demandes suivantes' : 'à la demande suivante'} :
-      {nextEnrollments.map(enrollment => (
+      {nextEnrollments.map((enrollment) => (
         <ul>
           <li>
             <a href={`/authorization-request/${enrollment.id}`}>

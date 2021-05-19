@@ -16,7 +16,7 @@ const PrivateRoute = ({
 }) => (
   <Route
     {...rest}
-    render={props => (user ? <Component {...props} /> : <Login {...props} />)}
+    render={(props) => (user ? <Component {...props} /> : <Login {...props} />)}
   />
 );
 

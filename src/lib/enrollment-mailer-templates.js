@@ -57,25 +57,17 @@ export const getMailHeader = (selectedAction, targetApi) => {
       api_impot_particulier_fc_production:
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_impot_particulier_fc_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
-Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
-        window.location.host
-      }/api-impot-particulier-fc-production`,
+Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${window.location.host}/api-impot-particulier-fc-production`,
       api_impot_particulier_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
-Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
-        window.location.host
-      }/api-impot-particulier-production`,
+Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${window.location.host}/api-impot-particulier-production`,
       api_r2p_production:
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_r2p_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
-Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
-        window.location.host
-      }/api-r2p-production`,
+Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${window.location.host}/api-r2p-production`,
       api_ficoba_production:
         'Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès dans l’environnement de production.',
       api_ficoba_sandbox: `Votre demande a été validée. Votre responsable technique sera contacté très prochainement par e-mail pour obtenir ses accès à l’API de test.
-Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${
-        window.location.host
-      }/api-ficoba-production`,
+Vous pouvez dés à présent commencer à remplir la deuxième partie du formulaire dont la validation vous donnera accès à l’API de production : https://${window.location.host}/api-ficoba-production`,
       cartobio:
         'Merci pour votre demande, vous trouverez les données en suivant ce(s) lien(s) :',
       aidants_connect:

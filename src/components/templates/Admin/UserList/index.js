@@ -29,14 +29,14 @@ const UserList = () => {
         Filter: TextFilter,
         filter: 'text',
       },
-      ...Object.keys(TARGET_API_LABELS).map(targetApi => ({
+      ...Object.keys(TARGET_API_LABELS).map((targetApi) => ({
         Header: () => (
           <span style={{ writingMode: 'vertical-rl' }}>
             {`${TARGET_API_LABELS[targetApi]}`}
           </span>
         ),
         id: targetApi,
-        columns: ['reporter', 'instructor', 'subscriber'].map(roleType => ({
+        columns: ['reporter', 'instructor', 'subscriber'].map((roleType) => ({
           Header: `${roleType[0]}`,
           id: `${targetApi}:${roleType}`,
           accessor: ({ roles }) => roles.includes(`${targetApi}:${roleType}`),
@@ -50,12 +50,12 @@ const UserList = () => {
 
   const updateRole = (rowIndex, columnId, value) => {
     setSkipReset(true);
-    setUsers(old =>
+    setUsers((old) =>
       old.map((row, index) => {
         if (index === rowIndex) {
           const newRoles = value
             ? [...row.roles, columnId]
-            : row.roles.filter(e => e !== columnId);
+            : row.roles.filter((e) => e !== columnId);
           return {
             ...old[rowIndex],
             roles: newRoles,

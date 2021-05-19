@@ -133,15 +133,13 @@ const availableScopes = [
     value: 'entreprises_artisanales',
     label: 'Données de référence d’une entreprise artisanale - CMA France',
     groupTitle: 'Informations générales :',
-    link:
-      'https://api-entreprise-sandbox.netlify.app/catalogue/#a-entreprises_artisanales_cma',
+    link: 'https://api-entreprise-sandbox.netlify.app/catalogue/#a-entreprises_artisanales_cma',
   },
   {
     value: 'effectifs_acoss',
     label: 'Effectifs d’une entreprise - ACOSS',
     groupTitle: 'Informations générales :',
-    link:
-      'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
   },
   {
     value: 'eori_douanes',
@@ -177,15 +175,13 @@ const availableScopes = [
     value: 'attestations_fiscales',
     label: 'Attestation fiscale - DGFIP',
     groupTitle: 'Attestations sociales et fiscales :',
-    link:
-      'https://entreprise.api.gouv.fr/catalogue/#attestations_fiscales_dgfip',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#attestations_fiscales_dgfip',
   },
   {
     value: 'attestations_sociales',
     label: 'Attestation de vigilance - ACOSS',
     groupTitle: 'Attestations sociales et fiscales :',
-    link:
-      'https://entreprise.api.gouv.fr/catalogue/#attestations_sociales_acoss',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#attestations_sociales_acoss',
   },
   {
     value: 'attestations_agefiph',
@@ -203,15 +199,13 @@ const availableScopes = [
     value: 'probtp',
     label: 'Cotisations retraite bâtiment - ProBTP',
     groupTitle: 'Attestations sociales et fiscales :',
-    link:
-      'https://entreprise.api.gouv.fr/catalogue/#cotisation_retraite_probtp',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#cotisation_retraite_probtp',
   },
   {
     value: 'fntp_carte_pro',
     label: 'Carte professionnelle travaux publics - FNTP',
     groupTitle: 'Attestations sociales et fiscales :',
-    link:
-      'https://entreprise.api.gouv.fr/catalogue/#cartes_professionnelles_fntp',
+    link: 'https://entreprise.api.gouv.fr/catalogue/#cartes_professionnelles_fntp',
   },
   {
     value: 'certificat_cnetp',

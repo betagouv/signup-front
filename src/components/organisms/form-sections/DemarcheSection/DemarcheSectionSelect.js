@@ -17,13 +17,13 @@ export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
 
   // reducer expects onChange events from HTML Element
   const selectNewDemarche = useCallback(
-    newDemarcheId => {
+    (newDemarcheId) => {
       onChange({ target: { value: newDemarcheId, name: 'demarche' } });
     },
     [onChange]
   );
 
-  const onSelectDemarche = event => {
+  const onSelectDemarche = (event) => {
     let newDemarcheId = event.target.value || 'default';
 
     const preFilledEnrollment = merge(
@@ -84,7 +84,7 @@ export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
             )
           }
           name="demarche"
-          options={Object.keys(demarches).map(demarcheId => ({
+          options={Object.keys(demarches).map((demarcheId) => ({
             id: demarcheId,
             label: get(demarches, demarcheId, {}).label,
           }))}

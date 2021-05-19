@@ -31,7 +31,7 @@ class PublicEnrollmentList extends React.Component {
     );
 
     this.setState({
-      enrollments: enrollments.map(enrollment => {
+      enrollments: enrollments.map((enrollment) => {
         return enrollment;
       }),
       loading: false,
@@ -53,7 +53,7 @@ class PublicEnrollmentList extends React.Component {
       );
 
       this.setState({
-        enrollments: enrollments.map(enrollment => {
+        enrollments: enrollments.map((enrollment) => {
           return enrollment;
         }),
         loading: false,
@@ -146,7 +146,7 @@ class PublicEnrollmentList extends React.Component {
                   </NavLink>
                 </li>
                 {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
-                  targetApi => (
+                  (targetApi) => (
                     <li key={targetApi} className="nav__item">
                       <NavLink
                         activeClassName={'active_link'}
@@ -163,7 +163,7 @@ class PublicEnrollmentList extends React.Component {
           </div>
           <div className="panel">
             <div className="enrollment-table">
-              {errors.map(error => (
+              {errors.map((error) => (
                 <div key={error} className="notification error">
                   {error}
                 </div>

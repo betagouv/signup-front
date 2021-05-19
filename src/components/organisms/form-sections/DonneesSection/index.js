@@ -46,14 +46,14 @@ const DonneesSection = ({
 
   const groupTitleScopesGroup = groupBy(
     availableScopes,
-    e => e.groupTitle || 'default'
+    (e) => e.groupTitle || 'default'
   );
 
-  const hasDefaultGroup = availableScopes.some(e => !e.groupTitle);
+  const hasDefaultGroup = availableScopes.some((e) => !e.groupTitle);
 
   // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
   const scopesAsArray = _(scopes)
-    .omitBy(e => !e)
+    .omitBy((e) => !e)
     .keys()
     .value();
   const availableScopesAsArray = availableScopes.map(({ value }) => value);
@@ -78,7 +78,7 @@ const DonneesSection = ({
           ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
           : 'Liste des données correspondantes :'}
       </p>
-      {Object.keys(groupTitleScopesGroup).map(group => (
+      {Object.keys(groupTitleScopesGroup).map((group) => (
         <Scopes
           key={group}
           title={group === 'default' ? null : group}
@@ -92,7 +92,7 @@ const DonneesSection = ({
       {disabled && !isEmpty(outdatedScopes) && (
         <Scopes
           title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
-          scopes={outdatedScopes.map(value => ({ value, label: value }))}
+          scopes={outdatedScopes.map((value) => ({ value, label: value }))}
           selectedScopes={zipObject(
             outdatedScopes,
             Array(outdatedScopes.length).fill(true)

@@ -18,7 +18,7 @@ const Nav = ({
 }) => {
   const navElements = useMemo(
     () =>
-      sectionLabels.map(sectionName => ({
+      sectionLabels.map((sectionName) => ({
         id: encodeURIComponent(sectionName),
         label: sectionName,
       })),

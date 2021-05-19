@@ -17,47 +17,46 @@ import Nav from '../../organisms/Nav';
 
 export const FormContext = React.createContext();
 
-const enrollmentReducer = (demarches = null) => (
-  previousEnrollment,
-  action
-) => {
-  if (!isObject(action)) {
-    return previousEnrollment;
-  }
+const enrollmentReducer =
+  (demarches = null) =>
+  (previousEnrollment, action) => {
+    if (!isObject(action)) {
+      return previousEnrollment;
+    }
 
-  // if no action.target, this is a direct state update (network for instance)
-  // a direct state update DOES NOT trigger a pre-filled demarche update
-  if (!action.target) {
-    const newEnrollment = action;
+    // if no action.target, this is a direct state update (network for instance)
+    // a direct state update DOES NOT trigger a pre-filled demarche update
+    if (!action.target) {
+      const newEnrollment = action;
 
-    return merge(
-      {},
-      previousEnrollment,
-      omitBy(newEnrollment, e => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
-    );
-  }
+      return merge(
+        {},
+        previousEnrollment,
+        omitBy(newEnrollment, (e) => e === null) // do not merge null properties, keep empty string instead to avoid controlled input to switch to uncontrolled input
+      );
+    }
 
-  // if action.target, it means reducer was trigger by an html element (input, select etc.)
-  const {
-    target: { type = null, checked = null, value: inputValue, name },
-  } = action;
+    // if action.target, it means reducer was trigger by an html element (input, select etc.)
+    const {
+      target: { type = null, checked = null, value: inputValue, name },
+    } = action;
 
-  // checkbox elements must be handled specifically as we look for checked and not target
-  const value = type === 'checkbox' ? checked : inputValue;
+    // checkbox elements must be handled specifically as we look for checked and not target
+    const value = type === 'checkbox' ? checked : inputValue;
 
-  let futureEnrollment = zipObjectDeep([`${name}`], [value]);
+    let futureEnrollment = zipObjectDeep([`${name}`], [value]);
 
-  if (demarches && name === 'demarche') {
-    futureEnrollment = merge(
-      {},
-      futureEnrollment,
-      get(demarches, 'default', {}).state,
-      get(demarches, value, {}).state
-    );
-  }
+    if (demarches && name === 'demarche') {
+      futureEnrollment = merge(
+        {},
+        futureEnrollment,
+        get(demarches, 'default', {}).state,
+        get(demarches, value, {}).state
+      );
+    }
 
-  return merge({}, previousEnrollment, futureEnrollment);
-};
+    return merge({}, previousEnrollment, futureEnrollment);
+  };
 
 export const Form = ({
   title,
@@ -130,8 +129,9 @@ export const Form = ({
     document.title = targetApiLabel;
 
     if (enrollment.id)
-      document.title = `${enrollment.id} - ${enrollment.intitule ||
-        targetApiLabel}`;
+      document.title = `${enrollment.id} - ${
+        enrollment.intitule || targetApiLabel
+      }`;
   }, [enrollment.id, enrollment.intitule, target_api]);
 
   useEffect(() => {
@@ -250,12 +250,12 @@ export const Form = ({
         >
           {children}
         </FormContext.Provider>
-        {successMessages.map(successMessage => (
+        {successMessages.map((successMessage) => (
           <div key={successMessage} className="notification success">
             <Linkify>{successMessage}</Linkify>
           </div>
         ))}
-        {errorMessages.map(errorMessage => (
+        {errorMessages.map((errorMessage) => (
           <div
             key={errorMessage}
             className="notification error"

@@ -9,11 +9,11 @@ export const AddUser = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(null);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setNewUserEmail(event.target.value);
   };
 
-  const onSubmit = async event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     setSuccess(false);
     setError(false);

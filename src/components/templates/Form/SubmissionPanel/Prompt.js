@@ -27,7 +27,7 @@ const Prompt = ({
   const [fullEditMode, setFullEditMode] = useState(false);
   const templates = useMostUsedComments(selectedAction, targetApi);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setInput(event.target.value);
   };
 
@@ -35,7 +35,7 @@ const Prompt = ({
     onAccept(input, fullEditMode);
   };
 
-  const handleTemplateChange = event => {
+  const handleTemplateChange = (event) => {
     const newTemplateIndex = event.target.value;
 
     if (newTemplateIndex !== '') {

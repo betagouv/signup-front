@@ -15,7 +15,7 @@ const FormActionButton = ({
 }) => {
   const { label, icon, cssClass } = actionConfiguration;
 
-  const onClick = async event => {
+  const onClick = async (event) => {
     event.preventDefault();
     setLoading(true);
 

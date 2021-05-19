@@ -96,7 +96,7 @@ export const Stats = ({
                 Toutes les APIs
               </NavLink>
             </li>
-            {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(targetApi => (
+            {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
               <li key={targetApi} className="nav__item">
                 <NavLink
                   activeClassName={'active_link'}
@@ -167,7 +167,7 @@ export const Stats = ({
                   <BarChart data={stats.monthly_enrollment_count}>
                     <XAxis
                       dataKey="month"
-                      tickFormatter={value => moment(value).format('MMM YY')}
+                      tickFormatter={(value) => moment(value).format('MMM YY')}
                     />
                     <YAxis />
                     <Tooltip
@@ -176,11 +176,11 @@ export const Stats = ({
                         USER_STATUS_LABELS[name],
                         props,
                       ]}
-                      labelFormatter={value =>
+                      labelFormatter={(value) =>
                         moment(value).format('MMMM YYYY')
                       }
                     />
-                    <Legend formatter={value => USER_STATUS_LABELS[value]} />
+                    <Legend formatter={(value) => USER_STATUS_LABELS[value]} />
                     <CartesianGrid vertical={false} />
                     <Bar
                       stackId="count"
@@ -238,7 +238,7 @@ export const Stats = ({
                       layout={'vertical'}
                       align={'right'}
                       verticalAlign={'middle'}
-                      formatter={value => USER_STATUS_LABELS[value]}
+                      formatter={(value) => USER_STATUS_LABELS[value]}
                     />
                   </PieChart>
                 </ResponsiveContainer>
@@ -276,7 +276,7 @@ export const Stats = ({
                       layout={'vertical'}
                       align={'right'}
                       verticalAlign={'middle'}
-                      formatter={value =>
+                      formatter={(value) =>
                         TARGET_API_LABELS[value].substring(0, 25)
                       }
                     />

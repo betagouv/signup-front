@@ -38,13 +38,10 @@ export const StructureSection = () => {
   } = useContext(FormContext);
 
   useEffect(() => {
-    const fetchOrganizationInfo = async siret => {
+    const fetchOrganizationInfo = async (siret) => {
       try {
-        const {
-          adresse,
-          code_postal,
-          ville,
-        } = await getCachedOrganizationInformation(siret);
+        const { adresse, code_postal, ville } =
+          await getCachedOrganizationInformation(siret);
         onChange({
           target: {
             value: adresse,

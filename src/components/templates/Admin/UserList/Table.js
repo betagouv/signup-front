@@ -52,9 +52,9 @@ const Table = ({
         <div className="admin-table">
           <table {...getTableProps()}>
             <thead>
-              {headerGroups.map(headerGroup => (
+              {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map(column => (
+                  {headerGroup.headers.map((column) => (
                     <th {...column.getHeaderProps()}>
                       {column.render('Header')}
                       {column.canFilter && column.render('Filter')}
@@ -68,7 +68,7 @@ const Table = ({
                 prepareRow(row);
                 return (
                   <tr {...row.getRowProps()}>
-                    {row.cells.map(cell => (
+                    {row.cells.map((cell) => (
                       <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     ))}
                   </tr>
@@ -102,7 +102,7 @@ const Table = ({
           <input
             type="number"
             defaultValue={pageIndex + 1}
-            onChange={e => {
+            onChange={(e) => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0;
               gotoPage(page);
             }}
