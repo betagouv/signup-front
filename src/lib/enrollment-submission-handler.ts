@@ -1,20 +1,29 @@
 import { getErrorMessages } from '.';
 import {
+  ActionConfiguration,
+  EnrollmentAction,
+} from './enrollment-actions-configuration';
+import {
   createOrUpdateEnrollment,
   deleteEnrollment,
   computeNextEnrollmentState,
 } from '../services/enrollments';
 
+export const croute = async (action: EnrollmentAction, enrollment: any) => {};
+
 export const handleEnrollmentSubmission = async (
-  actionConfiguration,
-  setIntendedAction,
-  enrollment,
-  waitForUserInteractionInPrompt,
-  updateEnrollment
+  actionConfiguration: ActionConfiguration & { id: EnrollmentAction },
+  setIntendedAction: Function,
+  enrollment: any,
+  waitForUserInteractionInPrompt: Promise<{
+    message: string;
+    fullEditMode: boolean;
+  }>,
+  updateEnrollment: Function
 ) => {
   const resultMessages = {
-    errorMessages: [],
-    successMessages: [],
+    errorMessages: [] as string[],
+    successMessages: [] as string[],
     redirectToHome: false,
   };
 
