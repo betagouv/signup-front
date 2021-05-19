@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import App from './App';
@@ -6,7 +5,8 @@ import nock from 'nock';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
-let container = null;
+let container: HTMLDivElement;
+
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement('div');
@@ -17,11 +17,10 @@ afterEach(() => {
   // cleanup on exiting
   unmountComponentAtNode(container);
   container.remove();
-  container = null;
 });
 
 it('renders without crashing', () => {
-  nock(BACK_HOST)
+  nock(BACK_HOST as string)
     .get('/api/users/me')
     .reply(200, {
       id: 1,
