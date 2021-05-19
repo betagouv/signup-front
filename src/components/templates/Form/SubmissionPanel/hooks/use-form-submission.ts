@@ -7,7 +7,8 @@ import {
 export const useFormSubmission = (
   handleSubmit: Function,
   enrollment: any,
-  updateEnrollment: Function
+  updateEnrollment: Function,
+  doAction: Function
 ) => {
   const [loading, setLoading] = useState(false);
   const [pendingAction, setPendingAction] = useState<EnrollmentAction>();
@@ -24,6 +25,40 @@ export const useFormSubmission = (
   const onActionButtonClick = async (action: EnrollmentAction) => {
     setLoading(true);
     setPendingAction(action);
+
+    const actionConfiguration = userInteractionsConfiguration[action];
+    if (!actionConfiguration.promptForComment) {
+      handleSubmit(
+        await doAction(
+          pendingAction!,
+          pendingActionConfiguration!,
+          enrollment,
+          updateEnrollment
+        )
+      );
+
+      setLoading(false);
+      setPendingAction(undefined);
+    }
+  };
+
+  const onPromptConfirmation = async (
+    message: string,
+    fullEditMode: boolean
+  ) => {
+    handleSubmit(
+      await doAction(
+        pendingAction!,
+        pendingActionConfiguration!,
+        enrollment,
+        updateEnrollment,
+        message,
+        fullEditMode
+      )
+    );
+
+    setLoading(false);
+    setPendingAction(undefined);
   };
 
   return {
@@ -32,5 +67,6 @@ export const useFormSubmission = (
     pendingAction,
     pendingActionConfiguration,
     onActionButtonClick,
+    onPromptConfirmation,
   };
 };

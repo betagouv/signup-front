@@ -10,10 +10,11 @@ describe('The form submission hook', () => {
   const handleSubmit = jest.fn();
   const enrollment = jest.fn();
   const updateEnrollment = jest.fn();
+  const doAction = jest.fn();
 
   it('sets default state when mounted for the first time', () => {
     const { result } = renderHook(() =>
-      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
     );
 
     expect(result.current.loading).toBeFalsy();
@@ -22,7 +23,7 @@ describe('The form submission hook', () => {
 
   it('waits for user input when an action needing user input is pending', () => {
     const { result } = renderHook(() =>
-      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
     );
 
     expect(result.current.waitingForUserInput).toBeFalsy();
@@ -32,17 +33,11 @@ describe('The form submission hook', () => {
     });
 
     expect(result.current.waitingForUserInput).toBeTruthy();
-
-    act(() => {
-      result.current.onActionButtonClick(EnrollmentAction.update);
-    });
-
-    expect(result.current.waitingForUserInput).toBeFalsy();
   });
 
   it('provides action configuration when an action is pending', () => {
     const { result } = renderHook(() =>
-      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
     );
 
     act(() => {
@@ -56,7 +51,7 @@ describe('The form submission hook', () => {
 
   it('provides a button click handler', () => {
     const { result } = renderHook(() =>
-      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
     );
 
     act(() => {
@@ -65,5 +60,25 @@ describe('The form submission hook', () => {
 
     expect(result.current.loading).toBeTruthy();
     expect(result.current.pendingAction).toBe(EnrollmentAction.notify);
+  });
+
+  it('provides a prompt confirmation handler', async () => {
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
+    );
+
+    act(() => {
+      result.current.onActionButtonClick(EnrollmentAction.notify);
+    });
+
+    expect(result.current.loading).toBeTruthy();
+    expect(result.current.pendingAction).toBe(EnrollmentAction.notify);
+
+    await act(async () => {
+      await result.current.onPromptConfirmation('croute', false);
+    });
+
+    expect(result.current.loading).toBeFalsy();
+    expect(result.current.pendingAction).toBeUndefined();
   });
 });
