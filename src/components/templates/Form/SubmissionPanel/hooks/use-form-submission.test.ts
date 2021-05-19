@@ -1,6 +1,7 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { MouseEvent } from 'react';
 import { act } from 'react-dom/test-utils';
+import { mock } from 'jest-mock-extended';
 import {
   EnrollmentAction,
   userInteractionsConfiguration,
@@ -47,9 +48,7 @@ describe('The form submission hook', () => {
 
   it('provides a button click handler', () => {
     const { result } = renderHook(() => useFormSubmission());
-    const event = {
-      preventDefault: jest.fn(),
-    } as unknown as MouseEvent<HTMLElement>;
+    const event = mock<MouseEvent<HTMLElement>>();
 
     act(() => {
       result.current.setPendingAction(EnrollmentAction.notify);
