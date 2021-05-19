@@ -1,10 +1,14 @@
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 import {
   EnrollmentAction,
   userInteractionsConfiguration,
 } from '../../../../../lib/enrollment-actions-configuration';
 
-export const useFormSubmission = () => {
+export const useFormSubmission = (
+  handleSubmit: Function,
+  enrollment: any,
+  updateEnrollment: Function
+) => {
   const [loading, setLoading] = useState(false);
   const [pendingAction, setPendingAction] = useState<EnrollmentAction>();
 
@@ -17,16 +21,15 @@ export const useFormSubmission = () => {
       ? userInteractionsConfiguration[pendingAction]
       : undefined;
 
-  const onActionButtonClick = (event: MouseEvent<HTMLElement>) => {
-    event.preventDefault();
+  const onActionButtonClick = async (action: EnrollmentAction) => {
     setLoading(true);
+    setPendingAction(action);
   };
 
   return {
     loading,
     waitingForUserInput,
     pendingAction,
-    setPendingAction,
     pendingActionConfiguration,
     onActionButtonClick,
   };

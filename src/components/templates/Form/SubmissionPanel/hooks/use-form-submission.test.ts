@@ -1,7 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
-import { MouseEvent } from 'react';
 import { act } from 'react-dom/test-utils';
-import { mock } from 'jest-mock-extended';
 import {
   EnrollmentAction,
   userInteractionsConfiguration,
@@ -9,36 +7,46 @@ import {
 import { useFormSubmission } from './use-form-submission';
 
 describe('The form submission hook', () => {
+  const handleSubmit = jest.fn();
+  const enrollment = jest.fn();
+  const updateEnrollment = jest.fn();
+
   it('sets default state when mounted for the first time', () => {
-    const { result } = renderHook(() => useFormSubmission());
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+    );
 
     expect(result.current.loading).toBeFalsy();
     expect(result.current.pendingAction).toBeUndefined();
   });
 
   it('waits for user input when an action needing user input is pending', () => {
-    const { result } = renderHook(() => useFormSubmission());
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+    );
 
     expect(result.current.waitingForUserInput).toBeFalsy();
 
     act(() => {
-      result.current.setPendingAction(EnrollmentAction.notify);
+      result.current.onActionButtonClick(EnrollmentAction.notify);
     });
 
     expect(result.current.waitingForUserInput).toBeTruthy();
 
     act(() => {
-      result.current.setPendingAction(EnrollmentAction.update);
+      result.current.onActionButtonClick(EnrollmentAction.update);
     });
 
     expect(result.current.waitingForUserInput).toBeFalsy();
   });
 
   it('provides action configuration when an action is pending', () => {
-    const { result } = renderHook(() => useFormSubmission());
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+    );
 
     act(() => {
-      result.current.setPendingAction(EnrollmentAction.notify);
+      result.current.onActionButtonClick(EnrollmentAction.notify);
     });
 
     expect(result.current.pendingActionConfiguration).toBe(
@@ -47,15 +55,15 @@ describe('The form submission hook', () => {
   });
 
   it('provides a button click handler', () => {
-    const { result } = renderHook(() => useFormSubmission());
-    const event = mock<MouseEvent<HTMLElement>>();
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment)
+    );
 
     act(() => {
-      result.current.setPendingAction(EnrollmentAction.notify);
-      result.current.onActionButtonClick(event);
+      result.current.onActionButtonClick(EnrollmentAction.notify);
     });
 
     expect(result.current.loading).toBeTruthy();
-    expect(event.preventDefault).toHaveBeenCalled();
+    expect(result.current.pendingAction).toBe(EnrollmentAction.notify);
   });
 });
