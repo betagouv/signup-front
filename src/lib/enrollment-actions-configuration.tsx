@@ -2,13 +2,13 @@ import { ReactElement } from 'react';
 import DoneIcon from '../components/atoms/icons/done';
 
 export enum EnrollmentAction {
-  notify,
-  destroy,
-  update,
-  send_application,
-  refuse_application,
-  review_application,
-  validate_application,
+  notify = 'notify',
+  destroy = 'destroy',
+  update = 'update',
+  send_application = 'send_application',
+  refuse_application = 'refuse_application',
+  review_application = 'review_application',
+  validate_application = 'validate_application',
 }
 
 export type ActionConfiguration = {
@@ -20,7 +20,7 @@ export type ActionConfiguration = {
 };
 
 export const userInteractionsConfiguration: {
-  [key in keyof typeof EnrollmentAction]: ActionConfiguration
+  [key in EnrollmentAction]: ActionConfiguration;
 } = {
   notify: {
     label: 'Envoyer un message',

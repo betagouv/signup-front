@@ -1,6 +1,9 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { act } from 'react-dom/test-utils';
-import { EnrollmentAction } from '../../../../../lib/enrollment-actions-configuration';
+import {
+  EnrollmentAction,
+  userInteractionsConfiguration,
+} from '../../../../../lib/enrollment-actions-configuration';
 import { useFormSubmission } from './use-form-submission';
 
 describe('The form submission hook', () => {
@@ -11,7 +14,7 @@ describe('The form submission hook', () => {
     expect(result.current.pendingAction).toBeUndefined();
   });
 
-  it('waits for user input when pending action is set', () => {
+  it('waits for user input when an action needing user input is pending', () => {
     const { result } = renderHook(() => useFormSubmission());
 
     expect(result.current.waitingForUserInput).toBeFalsy();
@@ -21,5 +24,23 @@ describe('The form submission hook', () => {
     });
 
     expect(result.current.waitingForUserInput).toBeTruthy();
+
+    act(() => {
+      result.current.setPendingAction(EnrollmentAction.update);
+    });
+
+    expect(result.current.waitingForUserInput).toBeFalsy();
+  });
+
+  it('provides action configuration when an action is pending', () => {
+    const { result } = renderHook(() => useFormSubmission());
+
+    act(() => {
+      result.current.setPendingAction(EnrollmentAction.notify);
+    });
+
+    expect(result.current.pendingActionConfiguration).toBe(
+      userInteractionsConfiguration.notify
+    );
   });
 });
