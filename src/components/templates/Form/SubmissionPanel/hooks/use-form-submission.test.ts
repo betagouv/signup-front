@@ -1,4 +1,5 @@
 import { renderHook } from '@testing-library/react-hooks';
+import { MouseEvent } from 'react';
 import { act } from 'react-dom/test-utils';
 import {
   EnrollmentAction,
@@ -42,5 +43,20 @@ describe('The form submission hook', () => {
     expect(result.current.pendingActionConfiguration).toBe(
       userInteractionsConfiguration.notify
     );
+  });
+
+  it('provides a button click handler', () => {
+    const { result } = renderHook(() => useFormSubmission());
+    const event = {
+      preventDefault: jest.fn(),
+    } as unknown as MouseEvent<HTMLElement>;
+
+    act(() => {
+      result.current.setPendingAction(EnrollmentAction.notify);
+      result.current.onActionButtonClick(event);
+    });
+
+    expect(result.current.loading).toBeTruthy();
+    expect(event.preventDefault).toHaveBeenCalled();
   });
 });
