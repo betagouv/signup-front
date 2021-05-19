@@ -1,4 +1,4 @@
-import { userInteractionsConfiguration } from './enrollment-buttons-configuration';
+import { userInteractionsConfiguration } from './enrollment-actions-configuration';
 jest.mock('../services/enrollments');
 // eslint-disable-next-line import/first
 import { handleEnrollmentSubmission } from './enrollment-submission-handler';

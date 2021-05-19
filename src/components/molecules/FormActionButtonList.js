@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { userInteractionsConfiguration } from '../../lib/enrollment-buttons-configuration';
+import { userInteractionsConfiguration } from '../../lib/enrollment-actions-configuration';
 import FormActionButton from '../atoms/FormActionButton';
 
 export const listAuthorizedActions = acl =>

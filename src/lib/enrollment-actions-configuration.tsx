@@ -1,6 +1,27 @@
+import { ReactElement } from 'react';
 import DoneIcon from '../components/atoms/icons/done';
 
-export const userInteractionsConfiguration = {
+export enum EnrollmentAction {
+  notify,
+  destroy,
+  update,
+  send_application,
+  refuse_application,
+  review_application,
+  validate_application,
+}
+
+export type ActionConfiguration = {
+  label: string;
+  cssClass: string;
+  icon?: ReactElement;
+  needsToComputeNextEnrollmentState?: boolean;
+  promptForComment?: boolean;
+};
+
+export const userInteractionsConfiguration: {
+  [key in keyof typeof EnrollmentAction]: ActionConfiguration
+} = {
   notify: {
     label: 'Envoyer un message',
     cssClass: 'secondary',

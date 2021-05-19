@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt';
 import FormActionButtonList from '../../../molecules/FormActionButtonList';
-import { userInteractionsConfiguration } from '../../../../lib/enrollment-buttons-configuration';
+import { userInteractionsConfiguration } from '../../../../lib/enrollment-actions-configuration';
 
 const SubmissionPanel = ({ enrollment, handleSubmit, updateEnrollment }) => {
   const [pendingAction, setPendingAction] = useState(null);
