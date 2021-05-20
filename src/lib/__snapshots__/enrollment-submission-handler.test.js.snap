@@ -8,18 +8,10 @@ Object {
 }
 `;
 
-exports[`When submitting the enrollment form with the notify action calls for the enrollment state update after user validates prompt 1`] = `
+exports[`When submitting the enrollment form with the notify action calls for the enrollment state update 1`] = `
 Object {
   "errorMessages": Array [],
   "redirectToHome": true,
-  "successMessages": Array [],
-}
-`;
-
-exports[`When submitting the enrollment form with the notify action waits for user prompt 1`] = `
-Object {
-  "errorMessages": Array [],
-  "redirectToHome": false,
   "successMessages": Array [],
 }
 `;
