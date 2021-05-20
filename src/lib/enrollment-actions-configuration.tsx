@@ -12,9 +12,11 @@ export enum EnrollmentAction {
 }
 
 export type ActionConfiguration = {
-  label: string;
-  cssClass: string;
-  icon?: ReactElement;
+  displayProps: {
+    label: string;
+    cssClass: string;
+    icon?: ReactElement;
+  };
   needsToComputeNextEnrollmentState?: boolean;
   promptForComment?: boolean;
 };
@@ -23,40 +25,54 @@ export const userInteractionsConfiguration: {
   [key in EnrollmentAction]: ActionConfiguration;
 } = {
   notify: {
-    label: 'Envoyer un message',
-    cssClass: 'secondary',
+    displayProps: {
+      label: 'Envoyer un message',
+      cssClass: 'secondary',
+    },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
   },
   destroy: {
-    label: 'Supprimer la demande',
-    cssClass: 'warning',
+    displayProps: {
+      label: 'Supprimer la demande',
+      cssClass: 'warning',
+    },
   },
   update: {
-    label: 'Sauvegarder le brouillon',
-    cssClass: 'secondary',
+    displayProps: {
+      label: 'Sauvegarder le brouillon',
+      cssClass: 'secondary',
+    },
   },
   send_application: {
-    label: 'Soumettre la demande',
-    icon: <DoneIcon color="white" />,
-    cssClass: 'primary',
+    displayProps: {
+      label: 'Soumettre la demande',
+      icon: <DoneIcon color="white" />,
+      cssClass: 'primary',
+    },
     needsToComputeNextEnrollmentState: true,
   },
   refuse_application: {
-    label: 'Refuser',
-    cssClass: 'warning',
+    displayProps: {
+      label: 'Refuser',
+      cssClass: 'warning',
+    },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
   },
   review_application: {
-    label: 'Demander une modification',
-    cssClass: 'secondary',
+    displayProps: {
+      label: 'Demander une modification',
+      cssClass: 'secondary',
+    },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
   },
   validate_application: {
-    label: 'Valider',
-    cssClass: 'primary',
+    displayProps: {
+      label: 'Valider',
+      cssClass: 'primary',
+    },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
   },
