@@ -102,4 +102,22 @@ describe('The form submission hook', () => {
     expect(handleSubmit).toHaveBeenCalledWith(actionResult);
     expect(result.current.loading).toBeFalsy();
   });
+
+  it('provides a prompt cancellation handler', () => {
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
+    );
+
+    act(() => {
+      result.current.onActionButtonClick(EnrollmentAction.notify);
+    });
+
+    expect(result.current.waitingForUserInput).toBeTruthy();
+
+    act(() => {
+      result.current.onPromptCancellation();
+    });
+
+    expect(result.current.waitingForUserInput).toBeFalsy();
+  });
 });
