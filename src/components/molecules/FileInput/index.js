@@ -23,13 +23,12 @@ const FileInput = ({
 }) => {
   const [id] = useState(uniqueId(documentType));
   const [documentsTooLargeError, setDocumentsTooLargeError] = useState(false);
-  const [showDocumentDownloadLink, setShowDocumentDownloadLink] = useState(
-    false
-  );
+  const [showDocumentDownloadLink, setShowDocumentDownloadLink] =
+    useState(false);
   const [uploadedDocument, setUploadedDocument] = useState(null);
   const [showWarningModal, setShowWarningModal] = useState(false);
 
-  const areDocumentsTooLarge = documentsToUpload => {
+  const areDocumentsTooLarge = (documentsToUpload) => {
     const documentsSizeInMB = documentsToUpload.reduce(
       (accumulator, { attachment: { size } }) =>
         accumulator + size / 1024 / 1024, // in MB
@@ -89,7 +88,7 @@ const FileInput = ({
       .get(`${BACK_HOST}${uploadedDocument.attachment.url}`, {
         responseType: 'blob',
       })
-      .then(response => {
+      .then((response) => {
         fileDownload(response.data, uploadedDocument.filename);
       });
   };

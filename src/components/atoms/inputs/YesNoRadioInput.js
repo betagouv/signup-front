@@ -12,7 +12,7 @@ export const YesNoRadioInput = ({
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
-  const onYesNoChange = onChangeEvent => {
+  const onYesNoChange = (onChangeEvent) => {
     const {
       target: { type = null, checked = null, value: inputValue, name },
     } = onChangeEvent;

@@ -7,7 +7,7 @@ export const CopyToCliboardButton = ({ textToCopy }) => {
   const [id] = useState(uniqueId());
   const clipboard = new ClipboardJS(`#clipboard-${id}`);
 
-  clipboard.on('success', function(e) {
+  clipboard.on('success', function (e) {
     e.trigger.classList.add('tooltip-opened');
     e.clearSelection();
     setTimeout(() => e.trigger.classList.remove('tooltip-opened'), 3000);

@@ -13,7 +13,7 @@ export const UpdateRgpdContact = () => {
   const [success, setSuccess] = useState();
   const [error, setError] = useState(null);
 
-  const onSubmit = async event => {
+  const onSubmit = async (event) => {
     event.preventDefault();
     try {
       setSuccess(false);

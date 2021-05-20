@@ -18,7 +18,7 @@ export const MultiSelect = ({
     setIsContentOpen(false);
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     const {
       target: { name, checked },
     } = event;

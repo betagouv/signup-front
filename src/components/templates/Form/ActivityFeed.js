@@ -18,7 +18,7 @@ import { getChangelog } from '../../../lib';
 ticketPlugin(linkify);
 const linkifyOptions = {
   formatHref: {
-    ticket: href => '/authorization-request/' + href.substring(1),
+    ticket: (href) => '/authorization-request/' + href.substring(1),
   },
 };
 
@@ -101,7 +101,7 @@ export const EventItem = ({ comment, name, updated_at, email, diff }) => {
         )}
         {!isEmpty(changelog) && showDiff && (
           <div className="event-comment">
-            {changelog.map(log => (
+            {changelog.map((log) => (
               <p key={log.slice(20)}>{log}</p>
             ))}
           </div>

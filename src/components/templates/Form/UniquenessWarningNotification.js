@@ -41,7 +41,7 @@ const UniquenessWarningNotification = () => {
     <div className="notification warning">
       Votre organisation à déjà obtenu une subvention dans le cadre de{' '}
       {TARGET_API_LABELS[target_api]} :
-      {enrollments.map(enrollment => (
+      {enrollments.map((enrollment) => (
         <span key={enrollment.id}>
           {' '}
           <a href={`/authorization-request/${enrollment.id}`}>

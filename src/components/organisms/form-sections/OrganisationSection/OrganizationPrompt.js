@@ -19,17 +19,17 @@ const OrganizationPrompt = ({
     collectionWithKeyToObject(organizations.map(({ siret }) => ({ id: siret })))
   );
   useEffect(() => {
-    const fetchCachedOrganizationInformationPool = async organizations => {
+    const fetchCachedOrganizationInformationPool = async (organizations) => {
       try {
-        const organizationInformationPool = await getCachedOrganizationInformationPool(
-          organizations.map(({ siret }) => siret)
-        );
-        const organizationInformationPoolWithKey = organizationInformationPool.map(
-          ({ title, siret }) => ({
+        const organizationInformationPool =
+          await getCachedOrganizationInformationPool(
+            organizations.map(({ siret }) => siret)
+          );
+        const organizationInformationPoolWithKey =
+          organizationInformationPool.map(({ title, siret }) => ({
             id: siret,
             title,
-          })
-        );
+          }));
         setSiretToNomRaisonSociale(
           collectionWithKeyToObject(organizationInformationPoolWithKey)
         );
@@ -58,7 +58,7 @@ const OrganizationPrompt = ({
         // we use this no op function to close the modal
         onClick={() => onClose()}
       >
-        <div className="modal" onClick={e => e.stopPropagation()}>
+        <div className="modal" onClick={(e) => e.stopPropagation()}>
           <div className="form__group">
             <fieldset>
               <legend>

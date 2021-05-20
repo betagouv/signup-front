@@ -153,7 +153,7 @@ export function getUserValidatedEnrollments(targetApi) {
       // format contact to a more usable structure
       // the backend should be able to use this structure too in the future
       .then(({ enrollments }) =>
-        enrollments.map(e => ({
+        enrollments.map((e) => ({
           ...e,
           contacts: collectionWithKeyToObject(e.contacts),
         }))
@@ -171,7 +171,7 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerEnrollment({
+export function computeNextEnrollmentState({
   action,
   id,
   comment,

@@ -37,16 +37,12 @@ const OrganisationSection = () => {
   const [ville, setVille] = useState('');
   const [activite, setActivite] = useState('');
   const [activiteLabel, setActiviteLabel] = useState('');
-  const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] = useState(
-    false
-  );
-  const [
-    showOrganizationInfoNotFound,
-    setShowOrganizationInfoNotFound,
-  ] = useState(false);
-  const [showOrganizationInfoError, setShowOrganizationInfoError] = useState(
-    false
-  );
+  const [isOrganizationInfoLoading, setIsOrganizationInfoLoading] =
+    useState(false);
+  const [showOrganizationInfoNotFound, setShowOrganizationInfoNotFound] =
+    useState(false);
+  const [showOrganizationInfoError, setShowOrganizationInfoError] =
+    useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
 
   const { user, isLoading } = useContext(UserContext);
@@ -97,7 +93,7 @@ const OrganisationSection = () => {
   ]);
 
   useEffect(() => {
-    const fetchOrganizationInfo = async siret => {
+    const fetchOrganizationInfo = async (siret) => {
       try {
         setIsOrganizationInfoLoading(true);
         const {
@@ -148,7 +144,7 @@ const OrganisationSection = () => {
   }, [siret]);
 
   useEffect(() => {
-    const fetchOrganizationActivityLabel = async activite => {
+    const fetchOrganizationActivityLabel = async (activite) => {
       try {
         const { message } = await getCachedOrganizationActivityDetails(
           activite
@@ -163,13 +159,14 @@ const OrganisationSection = () => {
     }
   }, [activite]);
 
-  const onOrganizationChange = new_organization_id => {
+  const onOrganizationChange = (new_organization_id) => {
     setShowPrompt(false);
 
     if (!isEmpty(user.organizations)) {
       updateOrganizationInfo({
         organization_id: new_organization_id,
-        siret: user.organizations.find(o => o.id === new_organization_id).siret,
+        siret: user.organizations.find((o) => o.id === new_organization_id)
+          .siret,
       });
     }
   };

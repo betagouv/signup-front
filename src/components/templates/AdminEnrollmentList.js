@@ -24,7 +24,7 @@ import MultiSelect from '../molecules/MultiSelect';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
-const getInboxes = user => ({
+const getInboxes = (user) => ({
   primary: {
     label: 'Demandes en cours',
     sorted: [
@@ -182,8 +182,8 @@ class AdminEnrollmentList extends React.Component {
       Filter: ({ filter, onChange }) => {
         // Note that users own enrollments might not be available through this filter
         const options = this.props.user.roles
-          .filter(role => role.endsWith(':reporter'))
-          .map(role => {
+          .filter((role) => role.endsWith(':reporter'))
+          .map((role) => {
             const targetApiKey = role.split(':')[0];
 
             return {
@@ -269,19 +269,19 @@ class AdminEnrollmentList extends React.Component {
     return cellValue;
   };
 
-  onPageChange = newPage => {
+  onPageChange = (newPage) => {
     this.setState({ page: newPage });
   };
 
-  onSortedChange = newSorted => {
+  onSortedChange = (newSorted) => {
     this.setState({ sorted: newSorted });
   };
 
-  onFilteredChange = newFiltered => {
+  onFilteredChange = (newFiltered) => {
     this.setState({ filtered: newFiltered, page: 0 });
   };
 
-  onSelectInbox = newInbox => {
+  onSelectInbox = (newInbox) => {
     // If the user clicks once, we change the inbox (primary or archive) without clearing filters.
     // If the user clicks twice, we stay on the inbox and we clear the filter.
     // That provides a way to clear all filter without reloading the page.
@@ -302,7 +302,7 @@ class AdminEnrollmentList extends React.Component {
     });
   };
 
-  savePreviouslySelectedEnrollmentId = id => {
+  savePreviouslySelectedEnrollmentId = (id) => {
     setUrlParamsFromState({ previouslySelectedEnrollmentId: id });
   };
 
@@ -357,24 +357,26 @@ class AdminEnrollmentList extends React.Component {
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h2>Liste des demandes</h2>
               <ul className="nav__links">
-                {Object.keys(getInboxes(this.props.user)).map(currentInbox => (
-                  <li key={currentInbox} className="nav__item">
-                    <button
-                      className={`nav-button ${
-                        inbox === currentInbox ? 'active_link' : ''
-                      }`}
-                      onClick={() => this.onSelectInbox(currentInbox)}
-                    >
-                      {getInboxes(this.props.user)[currentInbox].label}
-                    </button>
-                  </li>
-                ))}
+                {Object.keys(getInboxes(this.props.user)).map(
+                  (currentInbox) => (
+                    <li key={currentInbox} className="nav__item">
+                      <button
+                        className={`nav-button ${
+                          inbox === currentInbox ? 'active_link' : ''
+                        }`}
+                        onClick={() => this.onSelectInbox(currentInbox)}
+                      >
+                        {getInboxes(this.props.user)[currentInbox].label}
+                      </button>
+                    </li>
+                  )
+                )}
               </ul>
             </div>
           </div>
           <div className="panel">
             <div className="enrollment-table">
-              {errors.map(error => (
+              {errors.map((error) => (
                 <div key={error} className="notification error">
                   {error}
                 </div>

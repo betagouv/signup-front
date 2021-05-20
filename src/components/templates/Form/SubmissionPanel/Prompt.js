@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Prompt.css';
 import EditIcon from '../../../atoms/icons/edit';
-import useMostUsedComments from './useMostUsedComments';
+import useMostUsedComments from './hooks/use-most-used-comments';
 import {
   getMailAttributes,
   getMailFooter,
@@ -15,15 +15,19 @@ const Prompt = ({
   acceptCssClass,
   acceptLabel,
   selectedAction,
-  targetApi,
-  ownerEmailAddress,
+  enrollment,
 }) => {
+  const {
+    target_api: targetApi,
+    user: { email: ownerEmailAddress } = { email: null },
+  } = enrollment;
+
   const [input, setInput] = useState('');
   const [selectedTemplateIndex, setSelectedTemplateIndex] = useState('');
   const [fullEditMode, setFullEditMode] = useState(false);
   const templates = useMostUsedComments(selectedAction, targetApi);
 
-  const handleInputChange = event => {
+  const handleInputChange = (event) => {
     setInput(event.target.value);
   };
 
@@ -31,7 +35,7 @@ const Prompt = ({
     onAccept(input, fullEditMode);
   };
 
-  const handleTemplateChange = event => {
+  const handleTemplateChange = (event) => {
     const newTemplateIndex = event.target.value;
 
     if (newTemplateIndex !== '') {
@@ -142,8 +146,6 @@ Prompt.propTypes = {
   acceptCssClass: PropTypes.string.isRequired,
   acceptLabel: PropTypes.string.isRequired,
   selectedAction: PropTypes.string.isRequired,
-  targetApi: PropTypes.string.isRequired,
-  ownerEmailAddress: PropTypes.string.isRequired,
 };
 
 export default Prompt;

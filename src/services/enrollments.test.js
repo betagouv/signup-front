@@ -23,7 +23,7 @@ describe('getEnrollments', () => {
     UserContext.resetUserContext = jest.fn();
 
     it('should return the data', () => {
-      return getEnrollments({}).then(response => {
+      return getEnrollments({}).then((response) => {
         expect(response).toEqual(ENROLLMENTS);
       });
     });
@@ -42,7 +42,7 @@ describe('getUserEnrollment', () => {
     UserContext.resetUserContext = jest.fn();
 
     it('should return a 200 status', () => {
-      return getUserEnrollment(1).then(response => {
+      return getUserEnrollment(1).then((response) => {
         expect(response).toEqual(SENT_ENROLLMENT);
       });
     });
