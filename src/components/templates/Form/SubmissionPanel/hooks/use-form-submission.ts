@@ -58,6 +58,10 @@ export const useFormSubmission = (
     setPendingAction(undefined);
   };
 
+  const onPromptCancellation = () => {
+    setPendingAction(undefined);
+  };
+
   return {
     loading,
     waitingForUserInput,
@@ -65,5 +69,6 @@ export const useFormSubmission = (
     pendingActionConfiguration,
     onActionButtonClick,
     onPromptConfirmation,
+    onPromptCancellation,
   };
 };
