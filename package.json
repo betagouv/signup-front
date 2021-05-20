@@ -13,7 +13,7 @@
     "dev-in-vm": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && BROWSER=none CHOKIDAR_USEPOLLING=true PORT=3002 react-scripts start",
     "build": "export $(cat /etc/signup-front.conf | sed 's/^/REACT_APP_/') && react-scripts build",
     "test-dev": "react-scripts test",
-    "test": "npm run lint && CI=true react-scripts test",
+    "test": "CI=true react-scripts test",
     "eject": "react-scripts eject",
     "precommit": "pretty-quick --staged",
     "lint": "eslint src/**/*.{js,ts,tsx}"
