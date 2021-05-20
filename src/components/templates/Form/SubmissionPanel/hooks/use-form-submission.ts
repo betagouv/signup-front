@@ -29,8 +29,8 @@ export const useFormSubmission = (
     if (!actionConfiguration.promptForComment) {
       handleSubmit(
         await doAction(
-          pendingAction!,
-          pendingActionConfiguration!,
+          action,
+          actionConfiguration,
           enrollment,
           updateEnrollment
         )

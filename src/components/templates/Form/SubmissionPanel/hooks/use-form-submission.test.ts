@@ -75,10 +75,31 @@ describe('The form submission hook', () => {
     expect(result.current.pendingAction).toBe(EnrollmentAction.notify);
 
     await act(async () => {
-      await result.current.onPromptConfirmation('croute', false);
+      result.current.onPromptConfirmation('croute', false);
     });
 
     expect(result.current.loading).toBeFalsy();
     expect(result.current.pendingAction).toBeUndefined();
+  });
+
+  it('triggers the pending action if no user input is required', async () => {
+    const { result } = renderHook(() =>
+      useFormSubmission(handleSubmit, enrollment, updateEnrollment, doAction)
+    );
+    const actionResult = Symbol('action result');
+    doAction.mockResolvedValue(actionResult);
+
+    await act(async () => {
+      result.current.onActionButtonClick(EnrollmentAction.update);
+    });
+
+    expect(doAction).toHaveBeenCalledWith(
+      EnrollmentAction.update,
+      userInteractionsConfiguration.update,
+      enrollment,
+      updateEnrollment
+    );
+    expect(handleSubmit).toHaveBeenCalledWith(actionResult);
+    expect(result.current.loading).toBeFalsy();
   });
 });
