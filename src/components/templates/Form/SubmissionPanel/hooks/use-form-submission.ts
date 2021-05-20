@@ -10,8 +10,8 @@ export const useFormSubmission = (
   updateEnrollment: Function,
   doAction: Function
 ) => {
-  const [loading, setLoading] = useState(false);
   const [pendingAction, setPendingAction] = useState<EnrollmentAction>();
+  const loading = pendingAction !== undefined;
 
   const waitingForUserInput =
     pendingAction !== undefined &&
@@ -23,7 +23,6 @@ export const useFormSubmission = (
       : undefined;
 
   const onActionButtonClick = async (action: EnrollmentAction) => {
-    setLoading(true);
     setPendingAction(action);
 
     const actionConfiguration = userInteractionsConfiguration[action];
@@ -37,7 +36,6 @@ export const useFormSubmission = (
         )
       );
 
-      setLoading(false);
       setPendingAction(undefined);
     }
   };
@@ -57,7 +55,6 @@ export const useFormSubmission = (
       )
     );
 
-    setLoading(false);
     setPendingAction(undefined);
   };
 
