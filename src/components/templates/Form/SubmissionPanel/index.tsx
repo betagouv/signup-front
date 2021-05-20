@@ -3,7 +3,7 @@ import Prompt from './Prompt';
 import FormActionButtonList from '../../../molecules/FormActionButtonList';
 import { userInteractionsConfiguration } from '../../../../lib/enrollment-actions-configuration';
 import { useFormSubmission } from './hooks/use-form-submission';
-import { croute } from '../../../../lib/enrollment-submission-handler';
+import { handleSubmissionAction } from '../../../../lib/enrollment-submission-handler';
 
 type Props = {
   enrollment: any;
@@ -23,7 +23,12 @@ const SubmissionPanel: FunctionComponent<Props> = ({
     waitingForUserInput,
     onPromptConfirmation,
     onPromptCancellation,
-  } = useFormSubmission(handleSubmit, enrollment, updateEnrollment, croute);
+  } = useFormSubmission(
+    handleSubmit,
+    enrollment,
+    updateEnrollment,
+    handleSubmissionAction
+  );
 
   return (
     <>

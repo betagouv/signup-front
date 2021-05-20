@@ -4,7 +4,7 @@ import {
 } from './enrollment-actions-configuration';
 jest.mock('../services/enrollments');
 // eslint-disable-next-line import/first
-import { croute } from './enrollment-submission-handler';
+import { handleSubmissionAction } from './enrollment-submission-handler';
 // eslint-disable-next-line import/first
 import {
   computeNextEnrollmentState,
@@ -27,7 +27,7 @@ describe('When submitting the enrollment form', () => {
     it('calls for the enrollment state update', async () => {
       const userMessage = 'La barbe de la femme à Georges Moustaki';
 
-      const output = await croute(
+      const output = await handleSubmissionAction(
         action,
         actionConfiguration,
         enrollment,
@@ -51,7 +51,7 @@ describe('When submitting the enrollment form', () => {
     const actionConfiguration = userInteractionsConfiguration.destroy;
 
     it('calls the delete endpoint', async () => {
-      const output = await croute(
+      const output = await handleSubmissionAction(
         action,
         actionConfiguration,
         enrollment,
@@ -74,7 +74,7 @@ describe('When submitting the enrollment form', () => {
     it('calls the update endpoint', async () => {
       createOrUpdateEnrollment.mockResolvedValue(enrollmentToUpdate);
 
-      const output = await croute(
+      const output = await handleSubmissionAction(
         action,
         actionConfiguration,
         enrollmentToUpdate,
@@ -90,7 +90,7 @@ describe('When submitting the enrollment form', () => {
     it('displays an error if update fails', async () => {
       createOrUpdateEnrollment.mockRejectedValue("Pas d'update désolé");
 
-      const output = await croute(
+      const output = await handleSubmissionAction(
         action,
         actionConfiguration,
         enrollmentToUpdate,
