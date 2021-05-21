@@ -14,8 +14,7 @@ export const handleSubmissionAction = async (
   actionConfiguration: ActionConfiguration,
   enrollment: any,
   updateEnrollment: Function,
-  message?: string,
-  fullEditMode?: boolean
+  message?: string
 ): Promise<{
   redirectToHome: boolean;
   successMessages: string[];
@@ -29,12 +28,10 @@ export const handleSubmissionAction = async (
 
   try {
     let comment = null;
-    let commentFullEditMode = null;
 
     if (actionConfiguration.promptForComment) {
       try {
         comment = message;
-        commentFullEditMode = fullEditMode;
       } catch (e) {
         return resultMessages;
       }
@@ -65,7 +62,6 @@ export const handleSubmissionAction = async (
         action,
         id: enrollmentId,
         comment,
-        commentFullEditMode,
       });
     }
 

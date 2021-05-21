@@ -39,7 +39,6 @@ describe('When submitting the enrollment form', () => {
       expect(computeNextEnrollmentState).toHaveBeenCalledWith({
         action: 'notify',
         comment: userMessage,
-        commentFullEditMode: false,
         id: enrollment.id,
       });
       expect(output).toMatchSnapshot();

@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import './Prompt.css';
-import EditIcon from '../../../atoms/icons/edit';
 import useMostUsedComments from './hooks/use-most-used-comments';
-import {
-  getMailAttributes,
-  getMailFooter,
-  getMailHeader,
-} from '../../../../lib/enrollment-mailer-templates';
+import useEmailTemplate from './hooks/use-email-template';
+import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 
 const Prompt = ({
   onAccept,
@@ -17,50 +13,27 @@ const Prompt = ({
   selectedAction,
   enrollment,
 }) => {
-  const {
-    target_api: targetApi,
-    user: { email: ownerEmailAddress } = { email: null },
-  } = enrollment;
+  const { target_api: targetApi, id } = enrollment;
 
   const [input, setInput] = useState('');
-  const [selectedTemplateIndex, setSelectedTemplateIndex] = useState('');
-  const [fullEditMode, setFullEditMode] = useState(false);
   const templates = useMostUsedComments(selectedAction, targetApi);
+  const { plain_text_content } = useEmailTemplate(id, selectedAction);
+
+  useEffect(() => {
+    if (!input) {
+      setInput(plain_text_content);
+    }
+  }, [input, plain_text_content]);
 
   const handleInputChange = (event) => {
     setInput(event.target.value);
   };
 
   const handleAccept = () => {
-    onAccept(input, fullEditMode);
+    onAccept(input.trim());
   };
 
-  const handleTemplateChange = (event) => {
-    const newTemplateIndex = event.target.value;
-
-    if (newTemplateIndex !== '') {
-      setSelectedTemplateIndex(newTemplateIndex);
-      setInput(templates[newTemplateIndex]);
-    }
-  };
-
-  const { senderAddress, subject } = getMailAttributes(
-    selectedAction,
-    targetApi
-  );
-  const mailHeader = getMailHeader(selectedAction, targetApi);
-  const mailFooter = getMailFooter(selectedAction, targetApi);
-
-  const switchToFullEditMode = () => {
-    setInput(`${mailHeader}
-
-${input}
-
-${mailFooter}`);
-    setFullEditMode(true);
-  };
-
-  const promptMessage = {
+  const promptLabel = {
     notify: 'Votre message :',
     review_application:
       'Précisez au demandeur les modifications à apporter à sa demande :',
@@ -69,61 +42,28 @@ ${mailFooter}`);
   }[selectedAction];
 
   return (
-    <div className="panel comment-section-prompt">
-      <label htmlFor="comment">{promptMessage}</label>
-      {templates.length > 0 && (
-        <select
-          value={selectedTemplateIndex}
-          onChange={handleTemplateChange}
-          disabled={fullEditMode}
-        >
-          <option value="">Choisir un template</option>
-          {templates.map((template, index) => (
-            <option key={index} value={index}>
-              {template.substring(0, 100)}
-            </option>
-          ))}
-        </select>
-      )}
-      <div className={`mail-section`}>
-        <div className="mail-section-head">
-          <div className="mail-section-attributes">
-            <b>DE :</b> {senderAddress}
-          </div>
-          <div className="mail-section-attributes">
-            <b>À :</b> {ownerEmailAddress}
-          </div>
-          <div className="mail-section-attributes">
-            <b>SUJET :</b> {subject}
-          </div>
-        </div>
-        {!fullEditMode && (
-          <div className="mail-section-content">
-            <button
-              title="Éditer les sections d’entête et de pied de l’email"
-              aria-label="Éditer les sections d’entête et de pied de l’email"
-              className="light inline-icon-button toggle-comment-button"
-              onClick={switchToFullEditMode}
-            >
-              Editer <EditIcon color="var(--grey)" size={17} />
-            </button>
-            {mailHeader}
-          </div>
-        )}
-      </div>
-      <div className="text-area-wrapper">
-        <textarea
-          id="comment"
-          cols="80"
-          rows={fullEditMode ? '15' : '5'}
-          value={input}
+    <div className="panel">
+      {typeof input !== 'undefined' && (
+        <TextAreaInput
+          label={promptLabel}
           onChange={handleInputChange}
+          name="comment"
+          rows="15"
+          value={input}
         />
-      </div>
-      {!fullEditMode && (
-        <div className={`mail-section mail-section-opened`}>
-          <div className="mail-section-content">{mailFooter}</div>
-        </div>
+      )}
+      {templates.length > 0 && (
+        <ExpandableQuote
+          title="Voir les réponses que vous avez apportés précédemment"
+          large={true}
+        >
+          {templates.map((template) => (
+            <div key={template}>
+              <p>-----------</p>
+              <p style={{ whiteSpace: 'pre-line' }}>{template}</p>
+            </div>
+          ))}
+        </ExpandableQuote>
       )}
       <div className="button-list action">
         <button className="button-outline large secondary" onClick={onCancel}>

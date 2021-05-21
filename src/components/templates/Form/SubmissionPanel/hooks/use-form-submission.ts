@@ -40,18 +40,14 @@ export const useFormSubmission = (
     }
   };
 
-  const onPromptConfirmation = async (
-    message: string,
-    fullEditMode: boolean
-  ) => {
+  const onPromptConfirmation = async (message: string) => {
     handleSubmit(
       await doAction(
         pendingAction!,
         pendingActionConfiguration!,
         enrollment,
         updateEnrollment,
-        message,
-        fullEditMode
+        message
       )
     );
 
