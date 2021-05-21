@@ -19,7 +19,7 @@ const DemarcheDescription = () => (
     <p>
       Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
       une habilitation. L’accès à ce service n’est pour l’instant disponible que
-      si vous êtes:
+      si vous êtes :
     </p>
     <ul>
       <li>une administration</li>
