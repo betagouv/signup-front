@@ -303,7 +303,7 @@ const ApiEntreprise = ({
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <DonneesPersonnellesSection />
+    <DonneesPersonnellesSection dataRetentionPeriodHelper="durée d'archivage légale liée à la démarche administrative" />
     <MiseEnOeuvreSection
       initialContacts={contacts}
       MiseEnOeuvreDescription={MiseEnOeuvreDescription}
