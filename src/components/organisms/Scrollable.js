@@ -88,7 +88,9 @@ export class ScrollableLink extends Component {
       const hash = getWindowHash();
       if (!this.state.selected && this.props.scrollableId === hash) {
         document
-          .querySelector(`.side-menu a[href="#${this.props.scrollableId}"]`)
+          .querySelector(
+            `.fr-sidemenu__item a[href="#${this.props.scrollableId}"]`
+          )
           .click();
       }
     }, 500);
@@ -105,11 +107,15 @@ export class ScrollableLink extends Component {
     const { scrollableId, children, style } = this.props;
 
     return (
-      <li>
+      <li className="fr-sidemenu__item">
         <a
-          className={`side-pane__link${this.state.selected ? ' active' : ''}`}
+          className={`fr-sidemenu__link${
+            this.state.selected ? ' fr-sidemenu__item--active' : ''
+          }`}
           href={`#${scrollableId}`}
           style={style}
+          target="_self"
+          aria-current={scrollableId}
         >
           {children}
         </a>

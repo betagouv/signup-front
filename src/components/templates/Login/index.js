@@ -59,35 +59,35 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
   }
 };
 
-const LoginButtons = ({ isOnNewEnrollmentPage }) => {
-  const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
-    prompt: 'login',
-  })}`;
-  const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams(
-    {
-      prompt: 'create_account',
-    }
-  )}`;
-  return (
-    <div className="login-buttons">
-      <ButtonLink
-        className="button-outline primary"
-        href={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
-        referrerPolicy="no-referrer-when-downgrade"
-      >
-        {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
-      </ButtonLink>
-      <span className="login-buttons-or">ou</span>
-      <ButtonLink
-        className="button primary"
-        href={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
-        referrerPolicy="no-referrer-when-downgrade"
-      >
-        {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
-      </ButtonLink>
-    </div>
-  );
-};
+export const loginUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams({
+  prompt: 'login',
+})}`;
+
+export const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryParams(
+  {
+    prompt: 'create_account',
+  }
+)}`;
+
+const LoginButtons = ({ isOnNewEnrollmentPage }) => (
+  <div className="login-buttons">
+    <ButtonLink
+      className="button-outline primary"
+      href={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
+      referrerPolicy="no-referrer-when-downgrade"
+    >
+      {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
+    </ButtonLink>
+    <span className="login-buttons-or">ou</span>
+    <ButtonLink
+      className="button primary"
+      href={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
+      referrerPolicy="no-referrer-when-downgrade"
+    >
+      {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
+    </ButtonLink>
+  </div>
+);
 
 export const Login = () => {
   const targetApi = (window.location.pathname.split('/')[1] || '').replace(
