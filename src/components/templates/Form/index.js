@@ -14,6 +14,7 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 import { TARGET_API_LABELS } from '../../../lib/api';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
+import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 
 export const FormContext = React.createContext();
 
@@ -89,6 +90,7 @@ export const Form = ({
         update: true,
         send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
       },
+      status: 'pending',
       events: [],
       target_api,
       additional_content: {},
@@ -169,9 +171,10 @@ export const Form = ({
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>
           <h1 style={{ fontSize: '1.75em' }}>
-            {title || `Demande d’accès ${TARGET_API_LABELS[target_api]}`}
-            {enrollment.id ? ` n°${enrollment.id}` : ''}
+            {title || TARGET_API_LABELS[target_api]}
           </h1>
+          {enrollment.id && <span>n°{enrollment.id}</span>}
+          <span>{USER_STATUS_LABELS[enrollment.status]}</span>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
             <>
