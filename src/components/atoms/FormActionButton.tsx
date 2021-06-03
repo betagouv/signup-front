@@ -17,7 +17,7 @@ const FormActionButton: FunctionComponent<Props> = ({
   onClick,
 }) => (
   <button
-    className={`button large enrollment ${cssClass}`}
+    className={`button enrollment ${cssClass}`}
     onClick={onClick}
     disabled={loading}
   >

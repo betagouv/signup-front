@@ -1,6 +1,5 @@
 .enrollment {
   width: 100%;
-  box-shadow: 0 1px 4px 0 #c9d3df;
   background-color: var(--white);
 }
 
@@ -57,30 +56,32 @@
   margin-top: 2em;
 }
 
-.status {
-  padding: 0.5em 1em;
-  text-align: center;
-  border-radius: 8px;
-  color: var(--white);
-}
-
-.status.pending {
+.pending {
   background-color: var(--light-grey);
   color: var(--black);
 }
 
-.status.sent {
-  background-color: var(--light-blue);
+.sent {
+  background: #0762c8;
+  color: var(--white);
 }
 
-.status.validated {
-  background-color: var(--green);
+.validated {
+  background: #008941;
+  color: var(--white);
 }
 
-.status.modification_pending {
-  background-color: var(--orange);
+.modification_pending {
+  background: #ff6f4c;
+  color: var(--white);
 }
 
-.status.refused {
-  background-color: var(--red);
+.refused {
+  background: #e10600;
+  color: var(--white);
+}
+
+/* new block of action button */
+.enrollmentaction {
+  display: inline-block;
 }

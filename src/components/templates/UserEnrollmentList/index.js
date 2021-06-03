@@ -40,23 +40,16 @@ const UserEnrollmentList = ({ history }) => {
   return (
     <div className="user-enrollments-page">
       <div className="container header">
-        <h2>Mes demandes</h2>
-        <a href={`${API_GOUV_HOST}/datapass/api`}>
-          <button className="button large">
-            Nouvelle demande API
-            <div className="button-icon">
-              <AddIcon color="white" />
-            </div>
-          </button>
-        </a>
-        <a href="https://aidantsconnect.beta.gouv.fr/habilitation">
-          <button className="button large">
-            Nouvelle demande Aidants Connect
-            <div className="button-icon">
-              <AddIcon color="white" />
-            </div>
-          </button>
-        </a>
+        <h1>Toutes mes demandes</h1>
+        <div className="enrollmentaction">
+          <p className="rf-text--sm">Faire une nouvelle demande pour :</p>
+          <a href={`${API_GOUV_HOST}/datapass/api`}>
+            <button className="fr-btn">une API</button>
+          </a>
+          <a href="https://aidantsconnect.beta.gouv.fr/habilitation">
+            <button className="fr-btn">Aidants Connect</button>
+          </a>
+        </div>
       </div>
 
       <section className="section-grey enrollments-section">
