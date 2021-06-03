@@ -8,9 +8,9 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 export const UserContext = React.createContext();
 
 export function withUser(Component) {
-  return props => (
+  return (props) => (
     <UserContext.Consumer>
-      {userProps => <Component {...props} {...userProps} />}
+      {(userProps) => <Component {...props} {...userProps} />}
     </UserContext.Consumer>
   );
 }
@@ -62,12 +62,12 @@ export class UserStore extends React.Component {
     this.setState({ isLoading: true });
     return httpClient
       .get(`${BACK_HOST}/api/users/me`)
-      .then(response => {
+      .then((response) => {
         if (this._isMounted) {
           this.setState({ user: response.data, isLoading: false });
         }
       })
-      .catch(e => {
+      .catch((e) => {
         if (this._isMounted && !(e.response && e.response.status === 401)) {
           this.setState({
             user: null,

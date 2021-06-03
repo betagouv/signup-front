@@ -27,7 +27,7 @@ function asyncRemoveTokens(count, rateLimiter) {
   });
 }
 
-const getOrganizationInformation = async siret => {
+const getOrganizationInformation = async (siret) => {
   await asyncRemoveTokens(1, limiter);
   const {
     data: {
@@ -56,11 +56,11 @@ const getOrganizationInformation = async siret => {
   );
 
   const adresse = [numero_voie, indice_repetition, type_voie, libelle_voie]
-    .filter(e => e)
+    .filter((e) => e)
     .join(' ');
 
   const prenom_nom = [prenom_1, prenom_2, prenom_3, prenom_4, nom]
-    .filter(e => e)
+    .filter((e) => e)
     .join(' ');
 
   return {
@@ -78,8 +78,10 @@ export const getCachedOrganizationInformation = memoize(
   getOrganizationInformation
 );
 
-export const getCachedOrganizationInformationPool = async sirets => {
-  const promises = sirets.map(siret => getCachedOrganizationInformation(siret));
+export const getCachedOrganizationInformationPool = async (sirets) => {
+  const promises = sirets.map((siret) =>
+    getCachedOrganizationInformation(siret)
+  );
 
   return await Promise.all(promises);
 };

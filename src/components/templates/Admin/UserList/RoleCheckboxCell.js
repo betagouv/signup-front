@@ -9,11 +9,11 @@ const RoleCheckboxCell = ({
 }) => {
   const [value, setValue] = useState(initialValue);
 
-  const onChange = async e => {
+  const onChange = async (e) => {
     const newValue = e.target.checked;
     const newRoles = newValue
       ? [...original.roles, id]
-      : original.roles.filter(e => e !== id);
+      : original.roles.filter((e) => e !== id);
 
     try {
       await updateUser({ id: original.id, roles: newRoles });

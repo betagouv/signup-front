@@ -14,10 +14,7 @@ import flatten from 'flat';
 
 export function getErrorMessages(error) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
-    return _(error.response.data)
-      .values()
-      .flatten()
-      .value();
+    return _(error.response.data).values().flatten().value();
   }
 
   const errorMessageEnd =
@@ -26,9 +23,7 @@ export function getErrorMessages(error) {
 
   if (!isEmpty(error.response)) {
     return [
-      `Une erreur est survenue. Le code de l’erreur est ${
-        error.response.status
-      } (${error.response.statusText}). ${errorMessageEnd}`,
+      `Une erreur est survenue. Le code de l’erreur est ${error.response.status} (${error.response.statusText}). ${errorMessageEnd}`,
     ];
   }
 
@@ -68,7 +63,7 @@ export function isValidNAFCode(provider, NAFcode) {
     return true;
   }
 
-  if (!validNAFCode[provider].some(code => NAFcode.startsWith(code))) {
+  if (!validNAFCode[provider].some((code) => NAFcode.startsWith(code))) {
     return false;
   }
 
@@ -117,7 +112,7 @@ function flattenDiffTransformer(accumulatorObject, fullObjectDiff, objectKey) {
   // {0.name: ['c', 'e'], 0.email: ['d', 'd']}
   const objectDiffNoUnchanged = omitBy(
     objectDiff,
-    value => value[0] === value[1]
+    (value) => value[0] === value[1]
   );
   // {0.name: ['c', 'e']}
   const objectDiffPrefixedKey = mapKeys(
@@ -147,7 +142,8 @@ function changelogFormatTransformer(
       : 'décoché'
     : valueAfter;
 
-  const separator = displayedValueBefore.toString().length < 120 ? '"' : '\n\n';
+  const separator =
+    (displayedValueBefore || '').toString().length < 120 ? '"' : '\n\n';
 
   accumulatorArray.push(
     `Changement ${label} de ${separator}${displayedValueBefore}${separator} en ${separator}${displayedValueAfter}${separator}`
@@ -177,7 +173,7 @@ export function getChangelog(diff) {
 }
 
 export function hashToQueryParams(hash, initialSearchParams) {
-  const hashWithoutNullValue = omitBy(hash, e =>
+  const hashWithoutNullValue = omitBy(hash, (e) =>
     isObject(e) ? isEmpty(e) : !e
   );
 
@@ -278,7 +274,7 @@ export const findModifiedFields = (
   enrollmentState = {}
 ) => {
   const modified = [];
-  Object.keys(demarcheState).forEach(key => {
+  Object.keys(demarcheState).forEach((key) => {
     const initialValue = demarcheState[key];
     const value = enrollmentState[key];
     if (

@@ -6,7 +6,7 @@ const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
 axios.defaults.adapter = httpAdapter;
 
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use((config) => {
   if (
     new URL(config.url).origin === BACK_HOST &&
     !new URL(config.url).pathname.startsWith('/api/stats')
@@ -18,8 +18,8 @@ axios.interceptors.request.use(config => {
 });
 
 axios.interceptors.response.use(
-  response => response,
-  error => {
+  (response) => response,
+  (error) => {
     if (
       error.response &&
       error.response.status === 401 &&

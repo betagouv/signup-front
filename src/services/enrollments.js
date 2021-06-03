@@ -153,7 +153,7 @@ export function getUserValidatedEnrollments(targetApi) {
       // format contact to a more usable structure
       // the backend should be able to use this structure too in the future
       .then(({ enrollments }) =>
-        enrollments.map(e => ({
+        enrollments.map((e) => ({
           ...e,
           contacts: collectionWithKeyToObject(e.contacts),
         }))
@@ -171,22 +171,13 @@ export function getUserEnrollments() {
     .then(({ data }) => data);
 }
 
-export function triggerEnrollment({
-  action,
-  id,
-  comment,
-  commentFullEditMode,
-}) {
+export function computeNextEnrollmentState({ action, id, comment }) {
   const options = {
     event: action,
   };
 
   if (comment) {
     options.comment = comment;
-  }
-
-  if (commentFullEditMode) {
-    options.commentFullEditMode = commentFullEditMode;
   }
 
   return httpClient.patch(
@@ -261,6 +252,14 @@ export function getMostUsedComments({ eventName, targetApi } = {}) {
       headers: { 'Content-type': 'application/json' },
     })
     .then(({ data }) => data.map(({ comment }) => comment));
+}
+
+export function getEmailTemplates({ id }) {
+  return httpClient
+    .get(`${BACK_HOST}/api/enrollments/${id}/email_templates`, {
+      headers: { 'Content-type': 'application/json' },
+    })
+    .then(({ data: { email_templates } }) => email_templates);
 }
 
 export function copyEnrollment({ id }) {

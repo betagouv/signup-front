@@ -14,8 +14,7 @@ describe('utils', () => {
     it('should return proper error message for error from nginx', () => {
       const errorObject = {
         response: {
-          data:
-            '<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body bgcolor="white">\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.10.3 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n',
+          data: '<html>\r\n<head><title>502 Bad Gateway</title></head>\r\n<body bgcolor="white">\r\n<center><h1>502 Bad Gateway</h1></center>\r\n<hr><center>nginx/1.10.3 (Ubuntu)</center>\r\n</body>\r\n</html>\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n<!-- a padding to disable MSIE and Chrome friendly error page -->\r\n',
           status: 502,
           statusText: 'Bad Gateway',
         },
@@ -135,6 +134,10 @@ describe('utils', () => {
   describe('getChangelog', () => {
     const diff = {
       data_retention_period: [12, 11],
+      fondement_juridique_url: [
+        null,
+        'https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479/',
+      ],
       fondement_juridique_title: [
         'Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai 2017.',
         'Convention d\'accès à "Mon compte partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai 2017',
@@ -214,6 +217,7 @@ describe('utils', () => {
 
     const changelog = [
       'Changement de la durée de conservation des données de "12" en "11"',
+      'Changement de l’url du cadre juridique de "null" en "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000037611479/"',
       'Changement de la référence du cadre juridique de \n\nConvention d\'accès à "Mon compte ' +
         'partenaire" - Ville de Hem / CAF du Nord - Contrat de service pris en application de la ' +
         'convention d\'accès à "Mon Compte Partenaire" (mode gestion déléguée) signés le 11 mai ' +
@@ -228,11 +232,14 @@ describe('utils', () => {
     it('should return changelog for simple string field', () => {
       expect(getChangelog(diff)[0]).toEqual(changelog[0]);
     });
-    it('should return changelog for several simple field', () => {
+    it('should return changelog for simple string field with initial null value', () => {
       expect(getChangelog(diff)[1]).toEqual(changelog[1]);
     });
-    it('should return changelog for contact field', () => {
+    it('should return changelog for several simple field', () => {
       expect(getChangelog(diff)[2]).toEqual(changelog[2]);
+    });
+    it('should return changelog for contact field', () => {
+      expect(getChangelog(diff)[3]).toEqual(changelog[3]);
     });
     it('should return changelog for scopes', () => {
       expect(getChangelog(diff)).toEqual(changelog);

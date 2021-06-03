@@ -9,8 +9,9 @@ const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
 const Header = ({ user, logout }) => {
   // Form page already has contact button, no need to display this one.
-  const displayContactLink = !Object.keys(TARGET_API_LABELS).some(target_api =>
-    window.location.pathname.startsWith(`/${target_api.replace(/_/g, '-')}`)
+  const displayContactLink = !Object.keys(TARGET_API_LABELS).some(
+    (target_api) =>
+      window.location.pathname.startsWith(`/${target_api.replace(/_/g, '-')}`)
   );
 
   return (

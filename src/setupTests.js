@@ -5,3 +5,5 @@ const localStorageMock = {
 };
 
 global.localStorage = localStorageMock;
+
+process.env.REACT_APP_BACK_HOST = 'http://localhost';

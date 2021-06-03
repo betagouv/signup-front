@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getMostUsedComments } from '../../../../services/enrollments';
+import { getMostUsedComments } from '../../../../../services/enrollments';
 
 const actionToEventName = {
   notify: 'notified',

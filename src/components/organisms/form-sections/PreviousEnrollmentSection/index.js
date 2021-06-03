@@ -35,18 +35,15 @@ const PreviousEnrollmentSection = ({
   );
 
   const [validatedEnrollments, setValidatedEnrollments] = useState([]);
-  const [
-    isValidatedEnrollmentsLoading,
-    setIsValidatedEnrollmentsLoading,
-  ] = useState(false);
-  const [validatedEnrollmentsError, setValidatedEnrollmentsError] = useState(
-    false
-  );
+  const [isValidatedEnrollmentsLoading, setIsValidatedEnrollmentsLoading] =
+    useState(false);
+  const [validatedEnrollmentsError, setValidatedEnrollmentsError] =
+    useState(false);
   const [previousTargetApi, setPreviousTargetApi] = useState(null);
 
   useEffect(() => {
     setPreviousTargetApi(
-      steps[steps.findIndex(e => e === target_api) - 1] || null
+      steps[steps.findIndex((e) => e === target_api) - 1] || null
     );
   }, [steps, target_api]);
 

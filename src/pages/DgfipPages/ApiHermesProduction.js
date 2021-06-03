@@ -33,7 +33,7 @@ const ApiHermesProduction = ({
     <DonneesPersonnellesSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
-    <VolumetrieSection options={[1000]} />
+    <VolumetrieSection options={[200, 1000]} />
     <CguSection cguLink="/docs/cgu_api_hermes_production_v1_3_05-05-2021_cdc.pdf" />
   </Form>
 );

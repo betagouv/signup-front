@@ -46,4 +46,5 @@
 
 .expandable-quote.expanded.large .expandable-quote-content {
   max-height: 1200px;
+  overflow-y: auto;
 }

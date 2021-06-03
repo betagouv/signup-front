@@ -21,7 +21,7 @@ const Enrollment = ({
   onSelect,
 }) => {
   const handleClick = useCallback(
-    e => {
+    (e) => {
       onSelect(e, id, target_api);
     },
     [id, target_api, onSelect]

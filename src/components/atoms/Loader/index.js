@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const Loader = ({ message, small = false }) => {
+const Loader = ({ message = null, small = false }) => {
   return (
     <div className="loader-container layout-center layout-column">
       {!!message && <div className="message">{message}</div>}
