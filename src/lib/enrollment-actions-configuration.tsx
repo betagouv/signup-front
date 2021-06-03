@@ -35,20 +35,22 @@ export const userInteractionsConfiguration: {
   destroy: {
     displayProps: {
       label: 'Supprimer la demande',
-      cssClass: 'warning',
+      cssClass:
+        'fr-btn fr-btn--sm fr-fi-trash-line fr-btn--icon-right fr-btn--secondary',
     },
   },
   update: {
     displayProps: {
       label: 'Sauvegarder le brouillon',
-      cssClass: 'secondary',
+      cssClass:
+        'fr-btn fr-btn--sm fr-fi-save-line fr-btn--icon-right fr-btn--primary',
     },
   },
   send_application: {
     displayProps: {
       label: 'Soumettre la demande',
-      icon: <DoneIcon color="white" />,
-      cssClass: 'primary',
+      cssClass:
+        'fr-btn fr-btn--sm fr-fi-send-line fr-btn--icon-right fr-btn--primary',
     },
     needsToComputeNextEnrollmentState: true,
   },

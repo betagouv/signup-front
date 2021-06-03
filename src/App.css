@@ -17,6 +17,11 @@ body {
   height: 100%;
 }
 
+/*add color for tags */
+.brouillon {
+  background: #fdcf41;
+}
+
 main {
   flex-grow: 1;
 }
@@ -177,7 +182,7 @@ li.panel .button-list {
   display: flex;
   justify-content: flex-end;
 }
-
+/*
 .button .button-icon,
 .button-outline .button-icon {
   display: flex;
@@ -202,7 +207,7 @@ li.panel .button-list {
 .button-outline.wide:focus {
   width: 100%;
 }
-
+*/
 @media (max-width: 550px) {
   .main-pane {
     padding: 5%;

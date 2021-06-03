@@ -41,7 +41,7 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <div className={`status ${status}`}>{USER_STATUS_LABELS[status]}</div>
+        <div className={`fr-tag ${status}`}>{USER_STATUS_LABELS[status]}</div>
       </div>
 
       <div className="enrollment-body">
@@ -65,7 +65,7 @@ const Enrollment = ({
           <div>
             <b>N° {id}</b>
           </div>
-          <button className="button large" onClick={handleClick}>
+          <button className="fr-btn" onClick={handleClick}>
             Consulter
           </button>
         </div>
