@@ -38,7 +38,7 @@ const Prompt = ({
     review_application:
       'Précisez au demandeur les modifications à apporter à sa demande :',
     refuse_application: 'Précisez au demandeur le motif de votre refus :',
-    validate_application: 'Vous pouvez ajouter un commentaire (optionnel) :',
+    validate_application: 'Votre message :',
   }[selectedAction];
 
   return (
