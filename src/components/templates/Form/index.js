@@ -170,11 +170,9 @@ export const Form = ({
       />
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>
-          <h1 style={{ fontSize: '1.75em' }}>
-            {title || TARGET_API_LABELS[target_api]}
-          </h1>
+          <h1>{title || TARGET_API_LABELS[target_api]}</h1>
           {enrollment.id && <p className="fr-tag">Demande n°{enrollment.id}</p>}
-          <p className="fr-tag">{USER_STATUS_LABELS[enrollment.status]}</p>
+          <p className={'fr-tag'}>{USER_STATUS_LABELS[enrollment.status]}</p>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
             <>
