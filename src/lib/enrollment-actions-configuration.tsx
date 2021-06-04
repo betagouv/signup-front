@@ -1,5 +1,4 @@
 import { ReactElement } from 'react';
-import DoneIcon from '../components/atoms/icons/done';
 
 export enum EnrollmentAction {
   notify = 'notify',
@@ -35,29 +34,26 @@ export const userInteractionsConfiguration: {
   destroy: {
     displayProps: {
       label: 'Supprimer la demande',
-      cssClass:
-        'fr-btn fr-btn--sm fr-fi-trash-line fr-btn--icon-right fr-btn--secondary',
+      cssClass: 'fr-fi-delete-line fr-btn--secondary',
     },
   },
   update: {
     displayProps: {
       label: 'Sauvegarder le brouillon',
-      cssClass:
-        'fr-btn fr-btn--sm fr-fi-save-line fr-btn--icon-right fr-btn--primary',
+      cssClass: 'fr-fi-save-line fr-btn--primary',
     },
   },
   send_application: {
     displayProps: {
       label: 'Soumettre la demande',
-      cssClass:
-        'fr-btn fr-btn--sm fr-fi-send-line fr-btn--icon-right fr-btn--primary',
+      cssClass: 'fr-fi-checkbox-line fr-btn--primary',
     },
     needsToComputeNextEnrollmentState: true,
   },
   refuse_application: {
     displayProps: {
       label: 'Refuser',
-      cssClass: 'warning',
+      cssClass: 'fr-fi-alert-line fr-btn--primary',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
@@ -65,7 +61,7 @@ export const userInteractionsConfiguration: {
   review_application: {
     displayProps: {
       label: 'Demander une modification',
-      cssClass: 'secondary',
+      cssClass: 'fr-fi-edit-line fr-btn--secondary',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
@@ -73,7 +69,7 @@ export const userInteractionsConfiguration: {
   validate_application: {
     displayProps: {
       label: 'Valider',
-      cssClass: 'primary',
+      cssClass: 'fr-fi-checkbox-line fr-btn--primary',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
