@@ -54,10 +54,10 @@ const Nav = ({
       <div className="fr-sidemenu__inner">
         <div className="fr-collapse" id="fr-sidemenu-wrapper">
           <button
-            className="fr-btn fr-btn--secondary fr-fi-arrow-line fr-btn--icon-left"
+            className="fr-btn fr-btn--sm fr-btn--icon-left fr-fi-arrow-left-line demandes"
             onClick={() => goBack(history)}
           >
-            Mes demandes
+            Toutes mes demandes
           </button>
           <div className="fr-sidemenu__title">
             <a href="#head">Formulaire</a>
@@ -79,12 +79,10 @@ const Nav = ({
                 {tel}
               </a>
             ) : (
-              <a
-                key={label}
-                className="fr-btn fr-btn--secondary"
-                href={`mailto:${email}?subject=${subject}`}
-              >
-                {label}
+              <a key={label} href={`mailto:${email}?subject=${subject}`}>
+                <button className="fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-right fr-fi-mail-line">
+                  {label}
+                </button>
               </a>
             )
           )}
