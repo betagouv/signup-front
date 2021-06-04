@@ -20,7 +20,7 @@
 }
 
 .event-item + .event-item > .event-content {
-  border-top: 1px solid var(--light-grey);
+  border-top: 1px solid var(--g400);
 }
 
 .event-head {
@@ -29,7 +29,7 @@
 }
 
 .event-date {
-  color: var(--dark-grey);
+  color: var(--g600);
 }
 
 .event-comment {
