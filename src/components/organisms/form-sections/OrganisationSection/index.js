@@ -6,11 +6,9 @@ import { getCachedOrganizationInformation } from '../../../../services/external'
 import { isValidNAFCode } from '../../../../lib';
 import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';
-import EditIcon from '../../../atoms/icons/edit';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
-import OpenInNewIcon from '../../../atoms/icons/open-in-new';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
@@ -184,14 +182,15 @@ const OrganisationSection = () => {
                 {personalInformation.family_name}
               </span>
               {!disabled && (
-                <a
-                  className="light inline-icon-button"
-                  href={`${BACK_HOST}/api/users/personal-information`}
-                  title="
-                  Éditer mes informations personnelles"
-                >
-                  <EditIcon size={20} color="var(--grey)" />
-                </a>
+                <button>
+                  <a
+                    className="fr-btn fr-btn--secondary fr-btn--sm fr-fi-edit-line"
+                    href={`${BACK_HOST}/api/users/personal-information`}
+                    aria-label={`modifier mes informations`}
+                  >
+                    éditer
+                  </a>
+                </button>
               )}
             </div>
             <div className="organization-subtitle">
@@ -237,23 +236,22 @@ const OrganisationSection = () => {
               <div className="organization-title">
                 <span>
                   {title || (disabled && nom_raison_sociale)}{' '}
-                  <a
-                    href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Plus d’information sur la donnée`}
-                  >
-                    <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
-                  </a>
+                  <button>
+                    <a
+                      className="fr-btn fr-btn--sm fr-btn--secondary fr-fi-eye-line"
+                      href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Plus d’information sur la donnée`}
+                    ></a>
+                  </button>
                 </span>
                 {!disabled && (
                   <button
                     title="faire une demande pour une autre organisation"
-                    className="light inline-icon-button"
+                    className="fr-btn fr-btn--sm fr-btn--secondary fr-fi-edit-line"
                     onClick={() => setShowPrompt(true)}
-                  >
-                    <EditIcon size={20} color="var(--grey)" />
-                  </button>
+                  ></button>
                 )}
               </div>
               <div className="organization-subtitle">{adresse}</div>
