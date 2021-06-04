@@ -1,5 +1,4 @@
 import React from 'react';
-import './Footer.css';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
