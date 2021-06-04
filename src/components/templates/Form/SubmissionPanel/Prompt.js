@@ -54,7 +54,7 @@ const Prompt = ({
       )}
       {templates.length > 0 && (
         <ExpandableQuote
-          title="Voir les réponses que vous avez apportés précédemment"
+          title="Voir les réponses que vous avez apportés précédemment pour des demandes similaires"
           large={true}
         >
           {templates.map((template) => (
