@@ -600,3 +600,25 @@ h5,
 h6 {
   font-family: Marianne;
 }
+
+.dashboard .main {
+  background: var(--w);
+}
+
+.panel {
+  padding: 0;
+  border: 0;
+}
+
+.button a:focus {
+  text-decoration: none;
+}
+
+/* fix DSFR spacing */
+.fr-tag {
+  margin-right: 1em;
+}
+
+.head {
+  margin-bottom: 2em;
+}
