@@ -5,30 +5,15 @@ import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../components/organisms/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import Quote from '../components/atoms/inputs/Quote';
-
-const CadreJuridiqueDescription = () => (
-  <Quote>
-    <p>
-      Seules les administrations et les éditeurs de logiciels français qui
-      s’adressent aux professionnels de la santé peuvent avoir accès à l’API Pro
-      Santé Connect.
-    </p>
-  </Quote>
-);
+import TextSection from '../components/organisms/form-sections/TextSection';
 
 const availableScopes = [
   {
     value: 'idnat',
     label: 'identifiant unique (idNat)',
-  },
-  {
-    value: 'etat_civil',
-    label: 'État Civil',
   },
   {
     value: 'donnees_sectorielles',
@@ -47,10 +32,15 @@ const ApiProSanteConnect = ({
     <OrganisationSection />
     <DescriptionSection />
     <DonneesSection availableScopes={availableScopes} />
-    <CadreJuridiqueSection
-      CadreJuridiqueDescription={CadreJuridiqueDescription}
-    />
-    <DonneesPersonnellesSection />
+    <TextSection title="Le cadre juridique vous autorisant à traiter les données">
+      <Quote>
+        <p>
+          Seules les administrations et les éditeurs de logiciels français qui
+          s’adressent aux professionnels de la santé peuvent avoir accès à l’API
+          Pro Santé Connect.
+        </p>
+      </Quote>
+    </TextSection>
     <MiseEnOeuvreSection
       title="Coordonnées du référent de votre structure"
       MiseEnOeuvreDescription={() => null}
