@@ -269,14 +269,14 @@ li.panel .button-list {
 /* add warning in steps-form */
 .steps-form li.warning::before {
   border-color: var(--orange);
-  color: var(--white);
+  color: var(--w);
   background-color: var(--orange);
 }
 
 .steps-form li.warning.active::before {
   border-color: var(--orange);
   color: var(--orange);
-  background-color: var(--white);
+  background-color: var(--w);
 }
 
 .steps-form li.warning::after {
@@ -306,12 +306,12 @@ input[type='button']:visited {
 
 /* fix: contrast accessibility */
 .steps-form li::before {
-  color: var(--dark-grey);
-  border-color: var(--dark-grey);
+  color: var(--g600);
+  border-color: var(--g600);
 }
 
 .steps-form li::after {
-  background-color: var(--dark-grey);
+  background-color: var(--g600);
 }
 
 /* fix: steps form style */
@@ -354,19 +354,19 @@ input[type='button']:visited {
 
 /* fix: missing style for disabled inputs */
 input[type='checkbox'][disabled]:checked {
-  background-color: var(--darker-grey);
-  border-color: var(--darker-grey);
+  background-color: var(--g700);
+  border-color: var(--g700);
   cursor: not-allowed;
 }
 
 input[type='radio'][disabled]:checked {
   background-color: var(--theme-background-grey);
-  border-color: var(--darker-grey);
+  border-color: var(--g700);
   cursor: not-allowed;
 }
 
 input[type='radio'][disabled]:checked::before {
-  background-color: var(--darker-grey);
+  background-color: var(--g700);
 }
 
 input[type='checkbox'][disabled],
@@ -459,7 +459,7 @@ a.light {
   padding: 0.4em 0.8em;
   border: none;
   color: var(--theme-dark-text);
-  background: var(--white);
+  background: var(--w);
   border-radius: 3px;
 }
 

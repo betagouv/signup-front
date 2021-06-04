@@ -8,7 +8,7 @@
 }
 
 .expandable-quote-header {
-  background-color: var(--white);
+  background-color: var(--w);
   display: flex;
   flex-direction: row;
   justify-content: space-between;

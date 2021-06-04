@@ -79,7 +79,7 @@ export const Contact = ({
           (typeof job === 'undefined' || !job) && (
             <div className="form__group">
               <button
-                className="button-outline primary wide"
+                className="fr-btn fr-btn--sm fr-btn--secondary"
                 onClick={fillWithUserInformation}
               >
                 <div className="button-icon">
