@@ -81,7 +81,16 @@
   color: var(--white);
 }
 
-/* new block of action button */
+/* custom section for new form */
 .enrollmentaction {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+}
+.actionlist {
+  display: flex;
+  flex-direction: row;
+}
+
+.actionlist a {
+  box-shadow: none;
 }
