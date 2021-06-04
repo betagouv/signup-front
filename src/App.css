@@ -115,17 +115,12 @@ input[type='tel']::placeholder {
   margin: 1em;
 }
 
-*/
+
 
 .panel .panel__footer {
   margin-top: 2em;
-  background-color: #e8e8e8;
 }
-
-.panel h2 {
-  font-weight: normal;
-}
-
+*/
 .card > .card__content > h3 {
   font-weight: normal;
 }
@@ -219,10 +214,6 @@ li.panel .button-list {
 
   .container {
     width: 95%;
-    padding: 0;
-  }
-
-  .panel {
     padding: 0;
   }
 
@@ -605,11 +596,6 @@ h6 {
   background: var(--w);
 }
 
-.panel {
-  padding: 0;
-  border: 0;
-}
-
 .button a {
   text-decoration: none;
 }
@@ -621,6 +607,11 @@ a:visited {
 }
 fr-sidemenu__link fr-sidemenu__item--active {
   color: var(--bf500);
+}
+
+.panel {
+  margin-bottom: 3em;
+  border: none;
 }
 
 /* fix DSFR spacing */
