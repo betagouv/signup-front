@@ -10,18 +10,16 @@ type Props = ActionConfiguration['displayProps'] & {
 
 const FormActionButton: FunctionComponent<Props> = ({
   label,
-  icon,
   cssClass,
   loading,
   isPendingAction,
   onClick,
 }) => (
   <button
-    className={`button enrollment ${cssClass}`}
+    className={`fr-btn fr-btn--icon-right ${cssClass}`}
     onClick={onClick}
     disabled={loading}
   >
-    <div className="button-icon">{icon}</div>
     <div>
       {label}
       {isPendingAction && <Loader small />}
