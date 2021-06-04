@@ -175,7 +175,9 @@ export const Form = ({
             {enrollment.id && (
               <p className="fr-tag">Demande n°{enrollment.id}</p>
             )}
-            <p className={'fr-tag'}>{USER_STATUS_LABELS[enrollment.status]}</p>
+            <p className={`fr-tag ${enrollment.status}`}>
+              {USER_STATUS_LABELS[enrollment.status]}
+            </p>
           </div>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
