@@ -12,7 +12,6 @@ export const LabelsSection = () => {
     onChange,
     enrollment: {
       additional_content: {
-        label_pass_numerique = false,
         label_france_services = false,
         label_fabrique_territoires = false,
         recrutement_conseiller_numerique = false,
