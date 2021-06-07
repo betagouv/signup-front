@@ -61,6 +61,24 @@ const AdditionalCguContent = ({
   />
 );
 
+const AdditionalCguContent = ({
+  disabled,
+  onChange,
+  additional_content: { has_non_elected_contact_only = false },
+}) => (
+  <CheckboxInput
+    label={
+      <>
+        Je confirme qu'aucun élu n'est impliqué dans l'habilitation Aidants Connect. Le responsable Aidants Connect ainsi que les aidants à habiliter ne sont pas des élus.
+      </>
+    }
+    name="additional_content.has_non_elected_contact_only"
+    value={has_non_elected_contact_only}
+    disabled={disabled}
+    onChange={onChange}
+  />
+);
+
 const AidantsConnect = ({
   match: {
     params: { enrollmentId },
