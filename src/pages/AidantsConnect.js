@@ -29,14 +29,22 @@ const contacts = {
     emailDescription: (
       <Quote>
         <p>
-          Pour des raisons de sécurité, nous n’acceptons que les adresses e-mails nominatives et individuelles. 
-    Etant un outil homologué par l’Agence Nationale de la Cohésion des Territoires, cela est un prérequis pour garantir la sécurité de l’outil et la fiabilité des traces de connexion.
+          Pour des raisons de sécurité, nous n’acceptons que les adresses emails
+          nominatives et individuelles. Étant un outil homologué par l’Agence
+          Nationale de la Cohésion des Territoires, cela est un prérequis pour
+          garantir la sécurité de l’outil et la fiabilité des traces de
+          connexion.
         </p>
         <p>
-<b>Seule une adresse email individuelle, professionnelle et nominative sera acceptée. Les adresses de type contact@, ccas.ville@, mairie@, direction@, franceservices@ ne sont donc pas acceptées.</b>
+          <b>
+            Seule une adresse email individuelle, professionnelle et nominative
+            sera acceptée. Les adresses de type contact@, ccas.ville@, mairie@,
+            direction@, franceservices@ ne sont donc pas acceptées.
+          </b>
         </p>
         <p>
-         Nous acceptons au besoin des adresses mails nominatives venant de fournisseurs comme La Poste, Protonmail ou autres.
+          Nous acceptons au besoin des adresses emails nominatives venant de
+          fournisseurs comme La Poste, Protonmail ou autres.
         </p>
       </Quote>
     ),
@@ -49,39 +57,39 @@ const contacts = {
 const AdditionalCguContent = ({
   disabled,
   onChange,
-  additional_content: { has_professional_contact_only = false },
+  additional_content: {
+    has_professional_contact_only = false,
+    has_non_elected_contact_only = false,
+  },
 }) => (
-  <CheckboxInput
-    label={
-      <>
-        Je confirme que la liste des aidants à habiliter contient exclusivement
-        des aidants professionnels. Elle ne contient donc ni service civique, ni
-        bénévole, ni apprenti, ni stagiaire.
-      </>
-    }
-    name="additional_content.has_professional_contact_only"
-    value={has_professional_contact_only}
-    disabled={disabled}
-    onChange={onChange}
-  />
-);
-
-const AdditionalCguContent = ({
-  disabled,
-  onChange,
-  additional_content: { has_non_elected_contact_only = false },
-}) => (
-  <CheckboxInput
-    label={
-      <>
-        Je confirme qu'aucun élu n'est impliqué dans l'habilitation Aidants Connect. Le responsable Aidants Connect ainsi que les aidants à habiliter ne sont pas des élus.
-      </>
-    }
-    name="additional_content.has_non_elected_contact_only"
-    value={has_non_elected_contact_only}
-    disabled={disabled}
-    onChange={onChange}
-  />
+  <>
+    <CheckboxInput
+      label={
+        <>
+          Je confirme que la liste des aidants à habiliter contient
+          exclusivement des aidants professionnels. Elle ne contient donc ni
+          service civique, ni bénévole, ni apprenti, ni stagiaire.
+        </>
+      }
+      name="additional_content.has_professional_contact_only"
+      value={has_professional_contact_only}
+      disabled={disabled}
+      onChange={onChange}
+    />
+    <CheckboxInput
+      label={
+        <>
+          Je confirme qu’aucun élu n’est impliqué dans l’habilitation Aidants
+          Connect. Le responsable Aidants Connect ainsi que les aidants à
+          habiliter ne sont pas des élus.
+        </>
+      }
+      name="additional_content.has_non_elected_contact_only"
+      value={has_non_elected_contact_only}
+      disabled={disabled}
+      onChange={onChange}
+    />
+  </>
 );
 
 const AidantsConnect = ({
