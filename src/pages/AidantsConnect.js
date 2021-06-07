@@ -29,9 +29,14 @@ const contacts = {
     emailDescription: (
       <Quote>
         <p>
-          Seule une adresse email individuelle, professionnelle et nominative
-          sera acceptée. Les adresses de type contact@anct.gouv.fr ou
-          ccas.ville@hotmail.com ne sont donc pas acceptées.
+          Pour des raisons de sécurité, nous n’acceptons que les adresses e-mails nominatives et individuelles. 
+    Etant un outil homologué par l’Agence Nationale de la Cohésion des Territoires, cela est un prérequis pour garantir la sécurité de l’outil et la fiabilité des traces de connexion.
+        </p>
+        <p>
+<b>Seule une adresse email individuelle, professionnelle et nominative sera acceptée. Les adresses de type contact@, ccas.ville@, mairie@, direction@, franceservices@ ne sont donc pas acceptées.</b>
+        </p>
+        <p>
+         Nous acceptons au besoin des adresses mails nominatives venant de fournisseurs comme La Poste, Protonmail ou autres.
         </p>
       </Quote>
     ),

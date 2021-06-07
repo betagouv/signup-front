@@ -24,13 +24,6 @@ export const LabelsSection = () => {
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Votre structure a obtenu</h2>
       <CheckboxInput
-        label="Le label Pass Numérique"
-        name="additional_content.label_pass_numerique"
-        value={label_pass_numerique}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <CheckboxInput
         label="Le label France Services"
         name="additional_content.label_france_services"
         value={label_france_services}
