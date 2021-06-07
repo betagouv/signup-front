@@ -13,7 +13,7 @@ import TextSection from '../components/organisms/form-sections/TextSection';
 const availableScopes = [
   {
     value: 'idnat',
-    label: 'identifiant unique (idNat)',
+    label: 'Identifiant national',
   },
   {
     value: 'donnees_sectorielles',
