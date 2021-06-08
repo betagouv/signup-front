@@ -109,6 +109,30 @@
       }
     }
   },
+  "cantine-de-france": {
+    "label": "Quotient familial pour la cantine et garderie avec Cantine de France",
+    "about": "https://api.gouv.fr/guides/portail-famille-petite-enfance",
+    "state": {
+      "intitule": "Récupération du Quotient Familial ainsi que les informations administratives (CAF et Impôts) pour les services Cantine et Garderie",
+      "description": "La mairie souhaite bénéficier du service API Particulier pour les besoins suivants :\n- Le tarif des prestations de la collectivité est indexé sur le QF de chaque famille\n- Les nouvelles familles arrivant sur la commune peuvent lors de la création de leurs comptes remonter l'ensemble des informations administratives grâce à API particulier\n- Avoir la mise à jour des QF afin de mettre à jour les facturations des familles\n- Dématérialiser les mises à jours de ces informations et de limiter les déplacements en mairie ou échange de courriers\n\nLa consommation se fait le cadre de l'utilisation du logiciel Cantine de France de la société Jdéalise.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": true,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      },
+      "contacts": {
+        "technique": {
+          "email": "contact@jdealise.fr",
+          "phone_number": "0972473612"
+        }
+      }
+    }
+  },
   "ccas": {
     "label": "Dématérialisation de l'instruction des dossiers dans un CCAS",
     "about": "https://api.gouv.fr/guides/ccas",
