@@ -205,6 +205,25 @@
       }
     }
   },
+  "jvs-parascol": {
+    "label": "Facturation des familles pour les services périscolaires et loisirs JVS-MAIRISTEM",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-restauration-scolaire",
+    "state": {
+      "intitule": "Facturation des familles pour les services périscolaires et loisirs",
+      "description": "La commune/la structure intercommunale est chargée de la gestion de la facturation des services liés à l'Enfance.\nDans ce cadre, elle a besoin de récupérer des informations concernant la famille et ses éléments de revenus et de quotient familial.\nAfin d'avoir des informations fiables sur ces points et pour éviter de réclamer certains justificatifs, l'utilisation d'API Particulier semble adaptée.\nLe logiciel utilisé est Parascol, édité par JVS-MAIRISTEM.\nL'Espace Famille, proposé en complément de Parascol, permet aux familles (entre autres mises à jour de leur dossier ou inscription) de déclarer leurs ressources et calculer leur quotient familial, sans avoir à se déplacer en mairie. Là encore, l'utilisation d'API Particulier représente un véritable plus pour les familles.",
+      "data_recipients": "Agents instructeurs des dossiers d’inscription (périscolaire, multi-accueil, guichet unique)",
+      "data_retention_period": 24,
+      "fondement_juridique_title": "Déposer en pièce jointe votre délibération ou document justifiant de la finalité des données demandées",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": true,
+        "cnaf_enfants": true,
+        "cnaf_adresse": true
+      }
+    }
+  },
   "pass-famille": {
     "label": "Pass Famille",
     "about": "https://api.gouv.fr/guides/portail-famille-pass-famille",
