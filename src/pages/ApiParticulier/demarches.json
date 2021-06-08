@@ -318,5 +318,30 @@
         "cnaf_adresse": false
       }
     }
+  },
+  "waigeo": {
+    "label": "Tarification des services liés à l'enfance avec la solution MyPérischool de l'éditeur Waigéo",
+    "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
+    "state": {
+      "intitule": "Calcul de la tarification pour la facturation des services périscolaires, restauration scolaire et des accueils de loisirs.",
+      "description": "Ce service permet aux familles de déclarer leurs ressources et de bénéficier d'une tarification en fonction de leur situation.\nMypérischool permet la facturation des prestations liées à la restauration scolaire, les activités périscolaires, les garderies et les centres de loisirsLa tarification se base sur le quotient familial récupéré auprès de la CNAF ou sur les revenus des familles récupérés directement auprès des services fiscaux à travers l'avis d'imposition.",
+      "data_recipients": "Agents de la collectivité en charge des services enfance et jeunesse de la ville.",
+      "data_retention_period": 36,
+      "fondement_juridique_title": "Indiquez le texte de la délibération de votre collectivité vous autorisant à traiter les données. Vous pouvez aussi joindre au format numérique le texte de la délibération de votre collectivité.",
+      "scopes": {
+        "dgfip_avis_imposition": true,
+        "dgfip_adresse": false,
+        "cnaf_quotient_familial": true,
+        "cnaf_allocataires": false,
+        "cnaf_enfants": false,
+        "cnaf_adresse": false
+      },
+      "contacts": {
+        "technique": {
+          "email": "technique@waigeo.fr",
+          "phone_number": "0970805210"
+        }
+      }
+    }
   }
 }
