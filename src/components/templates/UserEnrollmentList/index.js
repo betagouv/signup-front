@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { groupBy } from 'lodash';
-
 import './UserEnrollments.css';
-
 import { openLink } from '../../../lib';
 import { getUserEnrollments } from '../../../services/enrollments';
-
-import AddIcon from '../../atoms/icons/add';
 import Loader from '../../atoms/Loader';
-
 import Enrollment from './Enrollment';
+import Button from '../../atoms/Button';
+import ButtonGroup from '../../molecules/ButtonGroup';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -41,16 +38,21 @@ const UserEnrollmentList = ({ history }) => {
     <div className="user-enrollments-page">
       <div className="container header">
         <h1>Toutes mes demandes</h1>
-        <div className="enrollmentaction">
-          <p className="rf-text--sm">Faire une nouvelle demande pour :</p>
-          <div className="actionlist">
-            <a href={`${API_GOUV_HOST}/datapass/api`}>
-              <button className="fr-btn">une API</button>
-            </a>
-            <a href="https://aidantsconnect.beta.gouv.fr/habilitation">
-              <button className="fr-btn">Aidants Connect</button>
-            </a>
-          </div>
+        <div>
+          <p style={{ marginBottom: '0.5rem' }} className="rf-text--sm">
+            Faire une nouvelle demande pour :
+          </p>
+          <ButtonGroup>
+            <Button large href={`${API_GOUV_HOST}/datapass/api`}>
+              une API
+            </Button>
+            <Button
+              large
+              href="https://aidantsconnect.beta.gouv.fr/habilitation"
+            >
+              Aidants Connect
+            </Button>
+          </ButtonGroup>
         </div>
       </div>
 

@@ -107,11 +107,13 @@ export class ScrollableLink extends Component {
     const { scrollableId, children, style } = this.props;
 
     return (
-      <li className="fr-sidemenu__item">
+      <li
+        className={`fr-sidemenu__item${
+          this.state.selected ? ' fr-sidemenu__item--active' : ''
+        }`}
+      >
         <a
-          className={`fr-sidemenu__link${
-            this.state.selected ? ' fr-sidemenu__item--active' : ''
-          }`}
+          className="fr-sidemenu__link"
           href={`#${scrollableId}`}
           style={style}
           target="_self"

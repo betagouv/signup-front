@@ -17,10 +17,13 @@ import { TARGET_API_LABELS } from '../../lib/api';
 import { ADMIN_STATUS_LABELS, enrollmentListStyle } from '../../lib/enrollment';
 
 import ScheduleIcon from '../atoms/icons/schedule';
-import AddIcon from '../atoms/icons/add';
 import AutorenewIcon from '../atoms/icons/autorenew';
 import { withUser } from '../organisms/UserContext';
 import MultiSelect from '../molecules/MultiSelect';
+import Tag from '../atoms/Tag';
+import ListHeader from '../molecules/ListHeader';
+import Button from '../atoms/Button';
+import ButtonGroup from '../molecules/ButtonGroup';
 
 const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
 
@@ -214,12 +217,12 @@ class AdminEnrollmentList extends React.Component {
         ...enrollmentListStyle.cell,
         ...enrollmentListStyle.centeredCell,
       },
-      width: 100,
+      width: 115,
       filterable: true,
       Cell: ({ value: { statusLabel, acl, isRenewal } }) => {
         if (!this.hasTriggerableActions({ acl })) {
           return (
-            <span className="status-label">
+            <span>
               {statusLabel}
               {isRenewal ? <AutorenewIcon size={16} /> : ''}
             </span>
@@ -227,10 +230,10 @@ class AdminEnrollmentList extends React.Component {
         }
 
         return (
-          <button className="button warning small">
+          <Tag type="warning">
             {statusLabel}
             {isRenewal ? <AutorenewIcon color="white" size={14} /> : ''}
-          </button>
+          </Tag>
         );
       },
       Filter: ({ filter, onChange }) => {
@@ -351,108 +354,93 @@ class AdminEnrollmentList extends React.Component {
       totalPages,
     } = this.state;
     return (
-      <section className="section-grey full-width-section enrollment-page">
-        <div className="container">
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h2>Liste des demandes</h2>
-              <ul className="nav__links">
-                {Object.keys(getInboxes(this.props.user)).map(
-                  (currentInbox) => (
-                    <li key={currentInbox} className="nav__item">
-                      <button
-                        className={`nav-button ${
-                          inbox === currentInbox ? 'active_link' : ''
-                        }`}
-                        onClick={() => this.onSelectInbox(currentInbox)}
-                      >
-                        {getInboxes(this.props.user)[currentInbox].label}
-                      </button>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
+      <section className="section-grey full-width-container">
+        <ListHeader title="Liste des demandes">
+          {Object.keys(getInboxes(this.props.user)).map((currentInbox) => (
+            <Tag
+              key={currentInbox}
+              type={inbox === currentInbox ? 'info' : 'secondary'}
+              onClick={() => this.onSelectInbox(currentInbox)}
+            >
+              {getInboxes(this.props.user)[currentInbox].label}
+            </Tag>
+          ))}
+        </ListHeader>
+        <div className="panel">
+          <div className="enrollment-table">
+            {errors.map((error) => (
+              <div key={error} className="notification error">
+                {error}
+              </div>
+            ))}
+            <ReactTable
+              manual
+              data={enrollments}
+              pages={totalPages}
+              columns={this.getColumnConfiguration()}
+              getTdProps={(state, rowInfo, column) => ({
+                onClick: (e, handleOriginal) => {
+                  if (rowInfo) {
+                    const {
+                      original: { id, target_api },
+                    } = rowInfo;
+                    const targetUrl = `/${target_api.replace(/_/g, '-')}/${id}`;
+
+                    this.savePreviouslySelectedEnrollmentId(id);
+
+                    openLink(e, history, targetUrl);
+                  }
+
+                  if (handleOriginal) {
+                    handleOriginal();
+                  }
+                },
+                title: this.getTitle({ column, rowInfo }),
+                className:
+                  rowInfo &&
+                  rowInfo.original.id === previouslySelectedEnrollmentId
+                    ? 'selected'
+                    : null,
+              })}
+              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+              getTheadFilterThProps={() => ({
+                style: enrollmentListStyle.filterThead,
+              })}
+              getPaginationProps={() => ({
+                style: enrollmentListStyle.pagination,
+              })}
+              style={enrollmentListStyle.table}
+              className="-highlight"
+              loading={loading}
+              showPageSizeOptions={false}
+              pageSize={10}
+              page={page}
+              onPageChange={this.onPageChange}
+              sortable={false}
+              sorted={sorted}
+              onSortedChange={this.onSortedChange}
+              filtered={filtered}
+              onFilteredChange={this.onFilteredChange}
+              onFetchData={this.debouncedFetchData}
+              resizable={false}
+              previousText="Précédent"
+              nextText="Suivant"
+              loadingText="Chargement..."
+              noDataText={
+                inbox === 'primary'
+                  ? 'Toute les demandes ont été traitées'
+                  : 'Aucune demande'
+              }
+              pageText="Page"
+              ofText="sur"
+              rowsText="lignes"
+            />
           </div>
-          <div className="panel">
-            <div className="enrollment-table">
-              {errors.map((error) => (
-                <div key={error} className="notification error">
-                  {error}
-                </div>
-              ))}
-              <ReactTable
-                manual
-                data={enrollments}
-                pages={totalPages}
-                columns={this.getColumnConfiguration()}
-                getTdProps={(state, rowInfo, column) => ({
-                  onClick: (e, handleOriginal) => {
-                    if (rowInfo) {
-                      const {
-                        original: { id, target_api },
-                      } = rowInfo;
-                      const targetUrl = `/${target_api.replace(
-                        /_/g,
-                        '-'
-                      )}/${id}`;
-
-                      this.savePreviouslySelectedEnrollmentId(id);
-
-                      openLink(e, history, targetUrl);
-                    }
-
-                    if (handleOriginal) {
-                      handleOriginal();
-                    }
-                  },
-                  title: this.getTitle({ column, rowInfo }),
-                  className:
-                    rowInfo &&
-                    rowInfo.original.id === previouslySelectedEnrollmentId
-                      ? 'selected'
-                      : null,
-                })}
-                getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-                getTheadFilterThProps={() => ({
-                  style: enrollmentListStyle.filterThead,
-                })}
-                getPaginationProps={() => ({
-                  style: enrollmentListStyle.pagination,
-                })}
-                style={enrollmentListStyle.table}
-                className="-highlight"
-                loading={loading}
-                showPageSizeOptions={false}
-                pageSize={10}
-                page={page}
-                onPageChange={this.onPageChange}
-                sortable={false}
-                sorted={sorted}
-                onSortedChange={this.onSortedChange}
-                filtered={filtered}
-                onFilteredChange={this.onFilteredChange}
-                onFetchData={this.debouncedFetchData}
-                resizable={false}
-                previousText="Précédent"
-                nextText="Suivant"
-                loadingText="Chargement..."
-                noDataText={
-                  inbox === 'primary'
-                    ? 'Toute les demandes ont été traitées'
-                    : 'Aucune demande'
-                }
-                pageText="Page"
-                ofText="sur"
-                rowsText="lignes"
-              />
-            </div>
-            <p className="align-right">
-              <a href={`${API_GOUV_HOST}/datapass/api`}>
-                <button className="fr-btn">Nouvelle Demande</button>
-              </a>
-            </p>
-          </div>
+          <ButtonGroup alignRight>
+            <Button href={`${API_GOUV_HOST}/datapass/api`}>
+              Nouvelle Demande
+            </Button>
+          </ButtonGroup>
         </div>
       </section>
     );

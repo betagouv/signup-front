@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { TARGET_API_LABELS } from '../../lib/api';
-
+import { useLocation } from 'react-router-dom';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import { withUser } from './UserContext';
 import { loginUrl } from '../templates/Login';
 
 const Header = ({ user, logout }) => {
-  // Form page already has contact button, no need to display this one.
-  // TODO fix this
-  const displayContactLink = !Object.keys(TARGET_API_LABELS).some(
-    (target_api) =>
-      window.location.pathname.startsWith(`/${target_api.replace(/_/g, '-')}`)
-  );
+  const [displayContactLink, setDisplayContactLink] = useState();
+  const [targetApi, setTargetApi] = useState();
+  let location = useLocation();
+
+  useEffect(() => {
+    const targetApiInUrl = Object.keys(TARGET_API_LABELS).find((target_api) => {
+      return window.location.pathname.startsWith(
+        `/${target_api.replace(/_/g, '-')}`
+      );
+    });
+
+    setTargetApi(targetApiInUrl);
+    setDisplayContactLink(!targetApiInUrl);
+  }, [location]);
 
   return (
     <header role="banner" className="fr-header">
@@ -28,21 +35,20 @@ const Header = ({ user, logout }) => {
                     Française
                   </p>
                 </div>
-                {/*TODO add https://gouvfr.atlassian.net/wiki/spaces/DB/pages/222789846/En-t+te+-+Header*/}
-                {/*
-  //         <ul className="form-nav">
-  //           {!!API_ICONS[target_api] && (
-  //             <li>
-  //               <a href={defaultedLogoLinkUrl}>
-  //                 <img
-  //                   alt={`Logo ${TARGET_API_LABELS[target_api]}`}
-  //                   src={`/images/${API_ICONS[target_api]}`}
-  //                   className="form-nav-logo"
-  //                   height="90"
-  //                 />
-  //               </a>
-  //             </li>
-  //           )}*/}
+                {targetApi && !!API_ICONS[targetApi] && (
+                  <div className="fr-header__operator">
+                    <img
+                      src={`/images/${API_ICONS[targetApi]}`}
+                      className="fr-responsive-img"
+                      style={{
+                        maxHeight: '67px',
+                        width: 'auto',
+                        maxWidth: '6em',
+                      }}
+                      alt={`Logo ${TARGET_API_LABELS[targetApi]}`}
+                    />
+                  </div>
+                )}
                 <div className="fr-header__navbar">
                   <button
                     className="fr-btn--menu fr-btn"
@@ -79,7 +85,7 @@ const Header = ({ user, logout }) => {
                   )}
                   {user && user.roles.includes('administrator') && (
                     <li>
-                      <a className="fr-link fr-fi-user-line" href="/admin">
+                      <a className="fr-link fr-fi-calendar-line" href="/admin">
                         Administration
                       </a>
                     </li>
@@ -87,7 +93,7 @@ const Header = ({ user, logout }) => {
                   {user ? (
                     <li>
                       <div className="dropdown">
-                        <a className="fr-link fr-fi-user-line" href="#">
+                        <a className="fr-link fr-fi-user-line" href="#logout">
                           {user.given_name} {user.family_name}
                         </a>
                         <div className="dropdown-content">
@@ -96,7 +102,7 @@ const Header = ({ user, logout }) => {
                             href="#logout"
                             style={{ fontSize: '0.85em' }}
                           >
-                            Se déconnecter
+                            Se déconnecter
                           </a>
                         </div>
                       </div>

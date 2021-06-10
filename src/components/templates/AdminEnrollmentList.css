@@ -1,14 +1,3 @@
-.enrollment-page .status-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.align-right {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .rt-tr .selected {
   background: rgba(0, 0, 0, 0.08);
 }

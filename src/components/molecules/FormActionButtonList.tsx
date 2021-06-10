@@ -4,6 +4,7 @@ import {
   userInteractionsConfiguration,
 } from '../../lib/enrollment-actions-configuration';
 import FormActionButton from '../atoms/FormActionButton';
+import ButtonGroup from './ButtonGroup';
 
 export const listAuthorizedActions = (acl: Record<string, boolean>) =>
   (Object.keys(userInteractionsConfiguration) as EnrollmentAction[]).filter(
@@ -26,7 +27,7 @@ const FormActionButtonList: FunctionComponent<Props> = ({
   const authorizedActions = listAuthorizedActions(enrollment.acl);
 
   return (
-    <div className="button-list action">
+    <ButtonGroup alignRight>
       {authorizedActions.map((action) => {
         const actionConfiguration = userInteractionsConfiguration[action];
         const onClick = (event: MouseEvent<HTMLElement>) => {
@@ -44,7 +45,7 @@ const FormActionButtonList: FunctionComponent<Props> = ({
           />
         );
       })}
-    </div>
+    </ButtonGroup>
   );
 };
 

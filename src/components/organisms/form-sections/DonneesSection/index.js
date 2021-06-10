@@ -97,7 +97,7 @@ const DonneesSection = ({
             outdatedScopes,
             Array(outdatedScopes.length).fill(true)
           )}
-          disabledApplication={true}
+          disabledApplication
           handleChange={() => null}
         />
       )}

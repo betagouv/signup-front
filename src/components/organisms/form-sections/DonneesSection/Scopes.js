@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import './Scopes.css';
 import ConfirmationModal from '../../ConfirmationModal';
 import Helper from '../../../atoms/Helper';
-import OpenInNewIcon from '../../../atoms/icons/open-in-new';
 
 const ModalContent = {
   rgpd: {
@@ -100,10 +99,7 @@ const Scopes = ({
                         rel="noopener noreferrer"
                         aria-label={`Plus d’information sur la donnée ${label}`}
                       >
-                        <OpenInNewIcon
-                          color={'var(--theme-primary)'}
-                          size={14}
-                        />
+                        {''}
                       </a>
                     </>
                   )}
@@ -125,7 +121,7 @@ const Scopes = ({
             scopes.find(({ value }) => value === warningModalScope).label
           } »`}
           title={ModalContent[warningType].title}
-          theme="warning"
+          type="danger"
         >
           <p>{ModalContent[warningType].body} </p>
         </ConfirmationModal>

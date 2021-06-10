@@ -40,7 +40,7 @@ const DemarcheDescription = () => (
         le bon agent de votre administration et informer correctement l’usager.
       </p>
     </div>
-    <ExpandableQuote title="Plus d’info" large={true}>
+    <ExpandableQuote title="Plus d’info" large>
       <p>
         La direction interministérielle du numérique (DINUM) est en charge de la
         transformation numérique de l’État au bénéfice du citoyen comme de
@@ -115,7 +115,7 @@ const contacts = {
     // set a key to avoid « each key should have a unique key property »
     // error when including multiple elements
     description: (
-      <ExpandableQuote title="À quoi servent ces informations ?" large={true}>
+      <ExpandableQuote title="À quoi servent ces informations ?" large>
         <p key="p1">
           Cette personne disposera des droits d’accès à la gestion des
           abonnements au sein du Hub d’Échange de l’État. Elle sera contactée en
@@ -163,7 +163,7 @@ const contacts = {
     // set a key to avoid « each key should have a unique key property »
     // error when including multiple elements
     description: (
-      <ExpandableQuote title="À quoi servent ces informations ?" large={true}>
+      <ExpandableQuote title="À quoi servent ces informations ?" large>
         <p key="p1">
           Ce rôle n’est à définir que si vous optez pour un mode d’accès aux
           démarches via les API.
@@ -232,7 +232,7 @@ const Hubee = ({
     title="Demande d’abonnement à une démarche en ligne"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logoLinkUrl="https://www.numerique.gouv.fr/dinum/"
+    documentationUrl="https://www.numerique.gouv.fr/dinum/"
   >
     <OrganisationSection />
     <DemarcheSection

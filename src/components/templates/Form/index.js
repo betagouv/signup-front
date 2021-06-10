@@ -15,6 +15,8 @@ import { TARGET_API_LABELS } from '../../../lib/api';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
+import Tag from '../../atoms/Tag';
+import statusToButtonType from '../../../lib/status-to-button-type';
 
 export const FormContext = React.createContext();
 
@@ -70,7 +72,7 @@ export const Form = ({
   history,
   demarches = null,
   children,
-  logoLinkUrl,
+  documentationUrl,
   contactInformation,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -164,20 +166,22 @@ export const Form = ({
     <div className="dashboard">
       <Nav
         target_api={target_api}
-        logoLinkUrl={logoLinkUrl}
+        documentationUrl={documentationUrl}
         contactInformation={contactInformation}
         sectionLabels={sectionLabels}
       />
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>
-          <div className="head">
+          <div
+            style={{
+              marginBottom: '2em',
+            }}
+          >
             <h1>{title || TARGET_API_LABELS[target_api]}</h1>
-            {enrollment.id && (
-              <p className="fr-tag">Demande n°{enrollment.id}</p>
-            )}
-            <p className={`fr-tag ${enrollment.status}`}>
+            {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
+            <Tag type={statusToButtonType[enrollment.status]}>
               {USER_STATUS_LABELS[enrollment.status]}
-            </p>
+            </Tag>
           </div>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (

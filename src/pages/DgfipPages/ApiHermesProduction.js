@@ -27,7 +27,7 @@ const ApiHermesProduction = ({
     steps={steps}
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/producteurs/dgfip"
+    documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection />

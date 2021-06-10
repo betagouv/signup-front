@@ -27,7 +27,7 @@ const ApiR2PProduction = ({
     steps={steps}
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/api_r2p"
+    documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection />

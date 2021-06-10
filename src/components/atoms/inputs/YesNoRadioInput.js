@@ -30,7 +30,7 @@ export const YesNoRadioInput = ({
             type="radio"
             name={name}
             id={`${id}_true`}
-            value={true}
+            value
             checked={value === true}
             onChange={onYesNoChange}
             disabled={disabled ? 'disabled' : false}

@@ -1,7 +1,8 @@
 import React from 'react';
+import Button from '../atoms/Button';
 
 const Accessibilite = () => (
-  <section className="section-white" style={{ padding: '5em 0' }}>
+  <section className="section-white">
     <div className="container">
       <h1>Déclaration d’accessibilité</h1>
       <h2>Périmètre d’accessibilité visé</h2>
@@ -90,11 +91,12 @@ const Accessibilite = () => (
         via notre adresse email de contact.
       </p>
 
-      <a href="mailto:datapass@api.gouv.fr?subject=Probl%C3%A8me%20d%27accessibilit%C3%A9">
-        <button className="button large">
-          Signaler un problème d’accessibilité par email
-        </button>
-      </a>
+      <Button
+        large
+        href="mailto:datapass@api.gouv.fr?subject=Probl%C3%A8me%20d%27accessibilit%C3%A9"
+      >
+        Signaler un problème d’accessibilité par email
+      </Button>
     </div>
   </section>
 );

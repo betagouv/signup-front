@@ -105,7 +105,7 @@ const ApiImpotParticulierSandbox = ({
     target_api={target_api}
     steps={steps}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/impot-particulier"
+    documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
     demarches={demarches}
   >
     <OrganisationSection />

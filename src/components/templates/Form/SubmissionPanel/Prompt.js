@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import useMostUsedComments from './hooks/use-most-used-comments';
 import useEmailTemplate from './hooks/use-email-template';
 import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import Button from '../../../atoms/Button';
+import ButtonGroup from '../../../molecules/ButtonGroup';
 
 const Prompt = ({
   onAccept,
   onCancel,
-  acceptCssClass,
-  acceptLabel,
+  displayProps,
   selectedAction,
   enrollment,
 }) => {
@@ -55,7 +55,7 @@ const Prompt = ({
       {templates.length > 0 && (
         <ExpandableQuote
           title="Voir les réponses que vous avez apportés précédemment"
-          large={true}
+          large
         >
           {templates.map((template) => (
             <div key={template}>
@@ -65,27 +65,20 @@ const Prompt = ({
           ))}
         </ExpandableQuote>
       )}
-      <div className="button-list action">
-        <button className="button-outline large secondary" onClick={onCancel}>
+      <ButtonGroup alignRight>
+        <Button outline onClick={onCancel}>
           Annuler
-        </button>
-        <button
-          className={`button large ${acceptCssClass}`}
+        </Button>
+        <Button
+          type={displayProps.type}
+          icon={displayProps.icon}
           onClick={handleAccept}
         >
-          {acceptLabel}
-        </button>
-      </div>
+          {displayProps.label}
+        </Button>
+      </ButtonGroup>
     </div>
   );
-};
-
-Prompt.propTypes = {
-  onAccept: PropTypes.func.isRequired,
-  onCancel: PropTypes.func.isRequired,
-  acceptCssClass: PropTypes.string.isRequired,
-  acceptLabel: PropTypes.string.isRequired,
-  selectedAction: PropTypes.string.isRequired,
 };
 
 export default Prompt;

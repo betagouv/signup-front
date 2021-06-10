@@ -84,7 +84,7 @@ const ApiHomePlus = ({
     target_api={target_api}
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logoLinkUrl="https://api.gouv.fr/producteurs/urssaf"
+    documentationUrl="https://api.gouv.fr/producteurs/urssaf"
   >
     <OrganisationSection />
     <DemarcheSection />

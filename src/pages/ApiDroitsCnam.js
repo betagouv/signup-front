@@ -97,7 +97,7 @@ const ApiDroitsCnam = ({
     target_api="api_droits_cnam"
     steps={steps}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
+    documentationUrl="https://api.gouv.fr/les-api/api_ameli_droits_cnam"
   >
     <OrganisationSection />
     <DescriptionSection />

@@ -43,11 +43,8 @@ const SubmissionPanel: FunctionComponent<Props> = ({
         <Prompt
           onAccept={onPromptConfirmation}
           onCancel={onPromptCancellation}
-          acceptLabel={
-            userInteractionsConfiguration[pendingAction!].displayProps.label
-          }
-          acceptCssClass={
-            userInteractionsConfiguration[pendingAction!].displayProps.cssClass
+          displayProps={
+            userInteractionsConfiguration[pendingAction!].displayProps
           }
           selectedAction={pendingAction as string}
           enrollment={enrollment}

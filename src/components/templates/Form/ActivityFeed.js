@@ -14,6 +14,7 @@ import WarningIcon from '../../atoms/icons/warning';
 import NotificationsIcon from '../../atoms/icons/notifications';
 import './ActivityFeed.css';
 import { getChangelog } from '../../../lib';
+import Button from '../../atoms/Button';
 
 ticketPlugin(linkify);
 const linkifyOptions = {
@@ -32,11 +33,11 @@ const eventNameToDisplayableContent = {
     label: 'a écrit',
   },
   created: {
-    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a créé la demande',
   },
   submitted: {
-    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a soumis la demande',
   },
   validated: {
@@ -46,11 +47,11 @@ const eventNameToDisplayableContent = {
   // This action is not available anymore but we keep this to display remaining
   // updated_contacts events in the activity feed
   updated_contacts: {
-    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a mis à jour les contacts',
   },
   updated: {
-    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a mis à jour la demande',
   },
   refused: {
@@ -62,7 +63,7 @@ const eventNameToDisplayableContent = {
     label: 'a copié la demande',
   },
   imported: {
-    icon: <InfoIcon color={'var(--blue)'} outlined={true} />,
+    icon: <InfoIcon color={'var(--blue)'} outlined />,
     label: 'a importé la demande',
   },
 };
@@ -147,12 +148,13 @@ class ActivityFeed extends React.Component {
     return (
       <>
         <div className="activity-head">
-          <button
-            className="fr-btn fr-btn--sm fr-btn--secondary fr-fi-eye-line fr-btn--icon-left"
+          <Button
+            outline
+            icon="eye"
             onClick={() => this.setState({ showDetails: !showDetails })}
           >
             {showDetails ? 'Cacher l’historique' : 'Voir l’historique'}
-          </button>
+          </Button>
         </div>
         {eventsToDisplay.map(
           ({ id, comment, name, updated_at, user: { email }, diff }) => (

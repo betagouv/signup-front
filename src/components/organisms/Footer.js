@@ -10,7 +10,8 @@ const Footer = () => (
           <a href="/" title="Retour à l’accueil">
             <p className="fr-logo" title="république française">
               république
-              <br></br>française
+              <br />
+              française
             </p>
           </a>
         </div>
@@ -89,6 +90,7 @@ const Footer = () => (
             <a
               href="https://github.com/etalab/licence-ouverte/blob/master/LO.md"
               target="_blank"
+              rel="noreferrer"
             >
               licence etalab-2.0
             </a>
