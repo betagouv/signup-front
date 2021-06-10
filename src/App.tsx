@@ -4,6 +4,9 @@ import { createBrowserHistory } from 'history';
 import PiwikReactRouter from 'piwik-react-router';
 
 import './App.css';
+import './template-data-gouv-fixes.css';
+import './template-data-gouv-overrides.css';
+import './dsfr-fixes.css';
 
 import Footer from './components/organisms/Footer';
 import Header from './components/organisms/Header';
@@ -68,7 +71,7 @@ const App = () => (
                 </section>
               )}
               {!isLoading && connectionError && (
-                <section className="section-grey layout-full-page layout-center">
+                <section className="section-grey layout-full-page">
                   <div className="notification error">{connectionError}</div>
                 </section>
               )}

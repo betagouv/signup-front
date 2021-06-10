@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import fileDownload from 'js-file-download';
 import { uniqueId } from 'lodash';
-import DescriptionIcon from '../../atoms/icons/description';
-import './index.css';
-import ConfirmationModal from '../../organisms/ConfirmationModal';
-import httpClient from '../../../lib/http-client';
+import ConfirmationModal from '../organisms/ConfirmationModal';
+import httpClient from '../../lib/http-client';
+import Button from '../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -98,29 +97,34 @@ const FileInput = ({
       {showDocumentDownloadLink ? (
         <>
           <div>{label}</div>
-          <div className="file-input">
-            <button
-              className="button download-button"
+          <div>
+            <Button
+              style={{
+                maxWidth: '300px',
+              }}
               onClick={() => setShowWarningModal(true)}
+              icon="download"
               title="Télécharger le document"
               aria-label="Télécharger le document"
             >
-              <div className="download-button-icon">
-                <DescriptionIcon color="var(--theme-primary)" />
-              </div>
-              <div className="download-button-label">
+              <div
+                style={{
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap',
+                }}
+              >
                 {uploadedDocument.filename}
               </div>
-            </button>
+            </Button>
             {!disabled && (
-              <button
-                className="button replace-file-button"
+              <Button
+                outline
+                icon="close"
                 onClick={onReplaceFile}
                 title="Remplacer le document"
                 aria-label="Remplacer le document"
-              >
-                ×
-              </button>
+              />
             )}
           </div>
         </>

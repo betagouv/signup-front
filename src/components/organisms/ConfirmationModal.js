@@ -1,5 +1,7 @@
 import React from 'react';
 import AriaModal from '@justfixnyc/react-aria-modal';
+import Button from '../atoms/Button';
+import ButtonGroup from '../molecules/ButtonGroup';
 
 const ConfirmationModal = ({
   handleConfirm,
@@ -8,43 +10,40 @@ const ConfirmationModal = ({
   cancelLabel = 'Annuler',
   title,
   children,
-  theme = 'primary',
+  type = '',
 }) => (
   <AriaModal
     titleText={title}
     onExit={handleCancel}
-    focusDialog={true}
+    focusDialog
     getApplicationNode={() => document.getElementById('root')}
     scrollDisabled={false}
-    alert={true}
+    alert
   >
-    <div
-      className="modal__backdrop"
-      id="modal"
-      style={{ display: 'flex' }}
-      onClick={handleCancel}
-    >
-      <div className="modal">
-        <h3>{title}</h3>
-        {children}
-        <button
-          id="close-warning-modal"
-          className="closing_cross"
-          onClick={handleCancel}
-          aria-label={cancelLabel}
-        >
-          ×
-        </button>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+    <div className="modal__backdrop" onClick={handleCancel}>
+      <div className="fr-modal__body">
+        <div className="fr-modal__header">
           <button
-            className={`button-outline large ${theme}`}
+            className="fr-link--close fr-link"
             onClick={handleCancel}
+            aria-label={cancelLabel}
           >
-            {cancelLabel}
+            Fermer
           </button>
-          <button className={`button large ${theme}`} onClick={handleConfirm}>
-            {confirmLabel}
-          </button>
+        </div>
+        <div className="fr-modal__content">
+          <h1 className="fr-modal__title">{title}</h1>
+          {children}
+        </div>
+        <div className="fr-modal__footer">
+          <ButtonGroup alignRight>
+            <Button outline large onClick={handleCancel}>
+              {cancelLabel}
+            </Button>
+            <Button large type={type} onClick={handleConfirm}>
+              {confirmLabel}
+            </Button>
+          </ButtonGroup>
         </div>
       </div>
     </div>

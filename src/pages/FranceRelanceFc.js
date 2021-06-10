@@ -120,7 +120,7 @@ const FranceRelanceFc = ({
     title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logoLinkUrl="https://france-relance.transformation.gouv.fr/e13a-deployer-franceconnect-et-utiliser-les-api-na/"
+    documentationUrl="https://france-relance.transformation.gouv.fr/e13a-deployer-franceconnect-et-utiliser-les-api-na/"
     contactInformation={[
       {
         email: 'support.usagers@franceconnect.gouv.fr',

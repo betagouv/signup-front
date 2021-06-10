@@ -29,7 +29,7 @@ const ApiImpotParticulierProduction = ({
     steps={steps}
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/impot-particulier"
+    documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection />

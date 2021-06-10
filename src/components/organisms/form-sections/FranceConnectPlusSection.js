@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 
 import { ScrollablePanel } from '../Scrollable';
 import { FormContext } from '../../templates/Form';
-import OpenInNewIcon from '../../atoms/icons/open-in-new';
 import CheckboxInput from '../../atoms/inputs/CheckboxInput';
 
 const SECTION_LABEL = 'Niveau de garantie';
@@ -52,7 +51,7 @@ export const FranceConnectPlusSection = () => {
                 'https://eur-lex.europa.eu/legal-content/FR/TXT/HTML/?uri=CELEX:32015R1502&from=FR'
               }
             >
-              <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
+              {''}
             </a>
           </>
         }

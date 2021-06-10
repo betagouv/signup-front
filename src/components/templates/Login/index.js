@@ -5,7 +5,7 @@ import { API_ICONS, TARGET_API_LABELS } from '../../../lib/api';
 import WelcomeMessage from './WelcomeMessage';
 import ApiImpotParticulierFcSandboxWelcomeMessage from './ApiImpotParticulierFcSandboxWelcomeMessage';
 import ApiImpotParticulierSandboxWelcomeMessage from './ApiImpotParticulierSandboxWelcomeMessage';
-import ButtonLink from '../../atoms/ButtonLink';
+import Button from '../../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -36,7 +36,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService={true}
+          isService
           newEnrollmentPageMessage="Vous souhaitez habiliter des aidants de votre structure à Aidants Connect"
         />
       );
@@ -45,7 +45,7 @@ const WelcomeMessageRouter = ({ targetApi, isOnNewEnrollmentPage }) => {
         <WelcomeMessage
           isOnNewEnrollmentPage={isOnNewEnrollmentPage}
           targetApi={targetApi}
-          isService={true}
+          isService
           newEnrollmentPageMessage="Vous souhaitez abonner votre structure à une démarche en ligne sur HubEE"
         />
       );
@@ -71,21 +71,22 @@ export const createAccountUrl = `${BACK_HOST}/users/auth/api_gouv${hashToQueryPa
 
 const LoginButtons = ({ isOnNewEnrollmentPage }) => (
   <div className="login-buttons">
-    <ButtonLink
-      className="button-outline primary"
+    <Button
+      outline
+      large
       href={isOnNewEnrollmentPage ? loginUrl : createAccountUrl}
       referrerPolicy="no-referrer-when-downgrade"
     >
       {isOnNewEnrollmentPage ? 'Se connecter' : 'Créer un compte'}
-    </ButtonLink>
+    </Button>
     <span className="login-buttons-or">ou</span>
-    <ButtonLink
-      className="button primary"
+    <Button
+      large
       href={isOnNewEnrollmentPage ? createAccountUrl : loginUrl}
       referrerPolicy="no-referrer-when-downgrade"
     >
       {isOnNewEnrollmentPage ? 'Créer un compte' : 'Se connecter'}
-    </ButtonLink>
+    </Button>
   </div>
 );
 
@@ -99,8 +100,8 @@ export const Login = () => {
     !!TARGET_API_LABELS[targetApi] && !window.location.pathname.split('/')[2];
 
   return (
-    <section className="section-grey layout-full-page layout-center">
-      <div className="container container-large">
+    <section className="section-grey layout-full-page">
+      <div className="container">
         <div className="panel" style={{ textAlign: 'center' }}>
           {API_ICONS[targetApi] && (
             <img

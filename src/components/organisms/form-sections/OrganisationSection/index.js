@@ -10,6 +10,7 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
+import Button from '../../../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'Organisation';
@@ -182,15 +183,12 @@ const OrganisationSection = () => {
                 {personalInformation.family_name}
               </span>
               {!disabled && (
-                <button>
-                  <a
-                    className="fr-btn fr-btn--secondary fr-btn--sm fr-fi-edit-line"
-                    href={`${BACK_HOST}/api/users/personal-information`}
-                    aria-label={`modifier mes informations`}
-                  >
-                    éditer
-                  </a>
-                </button>
+                <Button
+                  title="Modifier mes informations"
+                  outline
+                  icon="edit"
+                  href={`${BACK_HOST}/api/users/personal-information`}
+                />
               )}
             </div>
             <div className="organization-subtitle">
@@ -236,22 +234,22 @@ const OrganisationSection = () => {
               <div className="organization-title">
                 <span>
                   {title || (disabled && nom_raison_sociale)}{' '}
-                  <button>
-                    <a
-                      className="fr-btn fr-btn--sm fr-btn--secondary fr-fi-eye-line"
-                      href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`Plus d’information sur la donnée`}
-                    ></a>
-                  </button>
+                  <Button
+                    title="Plus d’information sur la donnée"
+                    outline
+                    icon="eye"
+                    href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
                 </span>
                 {!disabled && (
-                  <button
+                  <Button
                     title="faire une demande pour une autre organisation"
-                    className="fr-btn fr-btn--sm fr-btn--secondary fr-fi-edit-line"
+                    outline
+                    icon="edit"
                     onClick={() => setShowPrompt(true)}
-                  ></button>
+                  />
                 )}
               </div>
               <div className="organization-subtitle">{adresse}</div>

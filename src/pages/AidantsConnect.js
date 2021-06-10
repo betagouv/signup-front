@@ -101,7 +101,7 @@ const AidantsConnect = ({
     enrollmentId={enrollmentId}
     target_api="aidants_connect"
     title="Demande d’habilitation à Aidants Connect"
-    logoLinkUrl="https://aidantsconnect.beta.gouv.fr/"
+    documentationUrl="https://aidantsconnect.beta.gouv.fr/"
     contactInformation={[
       {
         email: 'contact@aidantsconnect.beta.gouv.fr',

@@ -95,7 +95,7 @@ const ApiR2PSandbox = ({
     target_api={target_api}
     steps={steps}
     demarches={demarches}
-    logoLinkUrl="https://api.gouv.fr/les-api/api_r2p"
+    documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <OrganisationSection />
     <DemarcheSection />
