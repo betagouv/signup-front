@@ -75,7 +75,7 @@ describe('The form submission hook', () => {
     expect(result.current.pendingAction).toBe(EnrollmentAction.notify);
 
     await act(async () => {
-      result.current.onPromptConfirmation('croute', false);
+      result.current.onPromptConfirmation('croute');
     });
 
     expect(result.current.loading).toBeFalsy();

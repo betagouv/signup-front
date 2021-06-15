@@ -39,7 +39,7 @@ const ApiImpotParticulierFcSandbox = ({
     steps={steps}
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
-    logoLinkUrl="https://api.gouv.fr/les-api/impot-particulier"
+    documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <OrganisationSection />
     <DemarcheSection />

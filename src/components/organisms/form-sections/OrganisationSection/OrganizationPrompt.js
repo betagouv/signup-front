@@ -4,6 +4,7 @@ import AriaModal from '@justfixnyc/react-aria-modal';
 import { collectionWithKeyToObject } from '../../../../lib';
 import { isEmpty } from 'lodash';
 import { getCachedOrganizationInformationPool } from '../../../../services/external';
+import Button from '../../../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -47,57 +48,65 @@ const OrganizationPrompt = ({
       titleText="Sélectionnez l’organisation à associer à cette demande :"
       // we use this no op function to close the modal
       onExit={() => onClose()}
-      focusDialog={true}
+      focusDialog
       getApplicationNode={() => document.getElementById('root')}
       scrollDisabled={false}
     >
       <div
         className="modal__backdrop"
-        id="modal"
-        style={{ display: 'flex' }}
         // we use this no op function to close the modal
         onClick={() => onClose()}
       >
-        <div className="modal" onClick={(e) => e.stopPropagation()}>
-          <div className="form__group">
-            <fieldset>
-              <legend>
-                Sélectionnez l’organisation à associer à cette demande&nbsp;:
-              </legend>
-              {organizations.map(({ id, siret }) => (
-                <div key={id}>
-                  <input
-                    type="radio"
-                    id={id}
-                    value={id}
-                    checked={id === selectedOrganizationId}
-                    // Use onClick in addition of onChange because it allows to
-                    // handle clicks on the already selected value.
-                    onClick={handleChange}
-                    onChange={handleChange}
-                  />
-                  <label htmlFor={id} className="label-inline">
-                    {(siretToNomRaisonSociale[siret] &&
-                      siretToNomRaisonSociale[siret].title) ||
-                      siret}
-                  </label>
-                </div>
-              ))}
-            </fieldset>
-            <div>
-              <a href={`${BACK_HOST}/api/users/join-organization`}>
-                Faire une demande pour une autre organisation
-              </a>
+        <div className="fr-modal__body" onClick={(e) => e.stopPropagation()}>
+          <div className="fr-modal__header">
+            <button
+              className="fr-link--close fr-link"
+              onClick={() => onClose()}
+              aria-label="Conserver l’organisation actuelle"
+            >
+              Fermer
+            </button>
+          </div>
+          <div className="fr-modal__content">
+            <h1 className="fr-modal__title">
+              Faire une demande pour une autre organisation
+            </h1>
+            <div className="form__group">
+              <fieldset>
+                <legend>
+                  Sélectionnez l’organisation à associer à cette demande&nbsp;:
+                </legend>
+                {organizations.map(({ id, siret }) => (
+                  <div key={id}>
+                    <input
+                      type="radio"
+                      id={id}
+                      value={id}
+                      checked={id === selectedOrganizationId}
+                      // Use onClick in addition of onChange because it allows to
+                      // handle clicks on the already selected value.
+                      onClick={handleChange}
+                      onChange={handleChange}
+                    />
+                    <label htmlFor={id} className="label-inline">
+                      {(siretToNomRaisonSociale[siret] &&
+                        siretToNomRaisonSociale[siret].title) ||
+                        siret}
+                    </label>
+                  </div>
+                ))}
+              </fieldset>
             </div>
           </div>
-          <button
-            id="close-warning-modal"
-            className="closing_cross"
-            onClick={() => onClose()}
-            aria-label="Conserver l’organisation actuelle"
-          >
-            ×
-          </button>
+          <div className="fr-modal__footer">
+            <Button
+              large
+              outline
+              href={`${BACK_HOST}/api/users/join-organization`}
+            >
+              Faire une demande pour une autre organisation
+            </Button>
+          </div>
         </div>
       </div>
     </AriaModal>

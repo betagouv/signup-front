@@ -82,7 +82,7 @@ export const DonneesFootnote = () => {
         </small>
       </div>
       <Quote>
-        <div style={{ margin: '1em 0.5em 1em 0' }}>
+        <div style={{ margin: '0 0.5em 2.5rem 0' }}>
           <b>Expression de besoin spécifique</b>
           <p>
             Les partenaires ayant convenu avec la DGFiP un périmètre de données

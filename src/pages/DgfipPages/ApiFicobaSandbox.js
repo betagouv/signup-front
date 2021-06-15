@@ -153,7 +153,7 @@ const ApiFicobaSandbox = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    logoLinkUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
+    documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <OrganisationSection />
     <DescriptionSection />

@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-
 import './Enrollment.css';
-
+import ActivityFeedWrapper from './ActivityFeedWrapper';
+import Button from '../../atoms/Button';
+import Tag from '../../atoms/Tag';
+import statusToButtonType from '../../../lib/status-to-button-type';
 import { TARGET_API_LABELS, API_ICONS } from '../../../lib/api';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
-
-import ActivityFeedWrapper from './ActivityFeedWrapper';
 
 const Enrollment = ({
   id,
@@ -41,7 +41,9 @@ const Enrollment = ({
             </div>
           )}
         </div>
-        <div className={`status ${status}`}>{USER_STATUS_LABELS[status]}</div>
+        <Tag type={statusToButtonType[status]}>
+          {USER_STATUS_LABELS[status]}
+        </Tag>
       </div>
 
       <div className="enrollment-body">
@@ -65,9 +67,9 @@ const Enrollment = ({
           <div>
             <b>N° {id}</b>
           </div>
-          <button className="button large" onClick={handleClick}>
+          <Button large onClick={handleClick}>
             Consulter
-          </button>
+          </Button>
         </div>
       </div>
     </div>

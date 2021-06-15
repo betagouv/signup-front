@@ -30,7 +30,7 @@ const ApiHermesSandbox = ({
     enrollmentId={enrollmentId}
     target_api={target_api}
     steps={steps}
-    logoLinkUrl="https://api.gouv.fr/producteurs/dgfip"
+    documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <OrganisationSection />
     <DescriptionSection />

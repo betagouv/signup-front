@@ -26,7 +26,7 @@ const LeTaxiClients = ({
     enrollmentId={enrollmentId}
     target_api="le_taxi_clients"
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/le-taxi"
+    documentationUrl="https://api.gouv.fr/les-api/le-taxi"
     contactInformation={[
       {
         email: 'equipe@le.taxi',

@@ -61,7 +61,7 @@ const CopyEnrollment = ({
 
   if (copyError) {
     return (
-      <section className="section-grey layout-full-page layout-center">
+      <section className="section-grey layout-full-page">
         <div className="notification error">
           Erreur inconnue lors de la copie de la demande d’habilitation.
         </div>
@@ -71,7 +71,7 @@ const CopyEnrollment = ({
 
   if (alreadyCopiedError) {
     return (
-      <section className="section-grey layout-full-page layout-center">
+      <section className="section-grey layout-full-page">
         <div className="notification error">
           Copie impossible : une copie de cette demande d’habilitation existe
           déjà.

@@ -1,6 +1,3 @@
-import { ReactElement } from 'react';
-import DoneIcon from '../components/atoms/icons/done';
-
 export enum EnrollmentAction {
   notify = 'notify',
   destroy = 'destroy',
@@ -14,8 +11,9 @@ export enum EnrollmentAction {
 export type ActionConfiguration = {
   displayProps: {
     label: string;
-    cssClass: string;
-    icon?: ReactElement;
+    type?: string;
+    icon?: string;
+    outline?: boolean;
   };
   needsToComputeNextEnrollmentState?: boolean;
   promptForComment?: boolean;
@@ -27,7 +25,8 @@ export const userInteractionsConfiguration: {
   notify: {
     displayProps: {
       label: 'Envoyer un message',
-      cssClass: 'secondary',
+      icon: 'mail',
+      type: 'secondary',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
@@ -35,27 +34,30 @@ export const userInteractionsConfiguration: {
   destroy: {
     displayProps: {
       label: 'Supprimer la demande',
-      cssClass: 'warning',
+      icon: 'delete',
+      type: 'danger',
     },
   },
   update: {
     displayProps: {
       label: 'Sauvegarder le brouillon',
-      cssClass: 'secondary',
+      icon: 'save',
+      type: 'secondary',
     },
   },
   send_application: {
     displayProps: {
       label: 'Soumettre la demande',
-      icon: <DoneIcon color="white" />,
-      cssClass: 'primary',
+      icon: 'checkbox',
+      type: 'info',
     },
     needsToComputeNextEnrollmentState: true,
   },
   refuse_application: {
     displayProps: {
       label: 'Refuser',
-      cssClass: 'warning',
+      icon: 'alert',
+      type: 'danger',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
@@ -63,7 +65,8 @@ export const userInteractionsConfiguration: {
   review_application: {
     displayProps: {
       label: 'Demander une modification',
-      cssClass: 'secondary',
+      icon: 'edit',
+      type: 'secondary',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,
@@ -71,7 +74,8 @@ export const userInteractionsConfiguration: {
   validate_application: {
     displayProps: {
       label: 'Valider',
-      cssClass: 'primary',
+      icon: 'checkbox',
+      type: 'info',
     },
     needsToComputeNextEnrollmentState: true,
     promptForComment: true,

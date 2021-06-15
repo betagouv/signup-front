@@ -1,7 +1,9 @@
+/* page is full screen when loading */
 html,
 body {
   height: 100%;
   margin: 0;
+  background: #fff;
 }
 
 #root {
@@ -19,233 +21,6 @@ body {
 
 main {
   flex-grow: 1;
-}
-
-.container {
-  padding-left: 16px;
-  padding-right: 16px;
-  max-width: 1072px;
-  margin: 0 auto;
-}
-
-button.button,
-button.button:focus,
-button.button:active,
-button.button:visited,
-button.button-outline,
-button.button-outline:focus,
-button.button-outline:active,
-button.button-outline:visited,
-a.button,
-a.button:focus,
-a.button:active,
-a.button:visited {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button.button-secondary,
-a.button.button-secondary,
-.button.button-secondary:focus,
-a.button.button-secondary:focus {
-  background: #e8e8e8;
-  color: #3f454a;
-  border-bottom-color: #bdbdbd;
-}
-
-.button.button-secondary:hover,
-a.button.button-secondary:hover {
-  background-color: #bdbdbd;
-}
-
-.form {
-  max-width: 520px;
-  margin: 0 auto;
-}
-
-.main-pane .form {
-  max-width: 100%;
-}
-
-fieldset div {
-  margin: 0.5em 0 0.5em 1em;
-}
-
-.form label {
-  font-weight: bold;
-}
-
-input:read-only {
-  background-color: var(--theme-background-grey);
-}
-
-textarea:read-only {
-  background-color: var(--theme-background-grey);
-}
-
-textarea:disabled {
-  background-color: #ebeff3;
-}
-
-input[type='tel']::placeholder {
-  color: #c9d3df;
-}
-
-.button-list {
-  margin: 3em 0;
-  text-align: center;
-}
-
-.button + .button,
-.button + .button:focus,
-.button + .button:active,
-.button + .button:visited,
-.button-outline + .button,
-.button-outline + .button:focus,
-.button-outline + .button:active,
-.button-outline + .button:visited {
-  margin-left: 1em;
-}
-
-.panel .panel__footer {
-  margin-top: 2em;
-  background-color: #e8e8e8;
-}
-
-.panel h2 {
-  font-weight: normal;
-}
-
-.card > .card__content > h3 {
-  font-weight: normal;
-}
-
-.card > .card__content > h4 {
-  font-weight: normal;
-}
-
-section + section {
-  padding-top: 0;
-}
-
-ul.panel-list {
-  padding: 0;
-}
-
-li.panel {
-  list-style: none;
-  padding: 1em;
-}
-
-li.panel .button-list {
-  margin: 0.5em 0;
-}
-
-.date_input_row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -5px;
-  justify-content: space-between;
-}
-
-.date_input_col {
-  min-width: 75px;
-  max-width: calc(100% / 6 - 10px);
-  margin: 0 5px;
-}
-
-.side-pane__menu a {
-  text-decoration: none;
-}
-
-.active_link {
-  background: #c9d3df;
-  color: #1c1c1c;
-}
-
-.nav__item .active_link:hover {
-  background: #c9d3df;
-  color: #1c1c1c;
-}
-
-.nav__links .nav__item {
-  line-height: 2em;
-}
-
-.action.button-list {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.button .button-icon,
-.button-outline .button-icon {
-  display: flex;
-  margin: 0 0.2em;
-}
-
-.button-list .button,
-.button-list .button-outline,
-.button-list .button:focus,
-.button-list .button-outline:focus,
-.button-list .button:active,
-.button-list .button-outline:active,
-.button-list .button:visited,
-.button-list .button-outline:visited {
-  flex-flow: nowrap;
-  width: 40%;
-}
-
-.button.wide,
-.button.wide:focus,
-.button-outline.wide,
-.button-outline.wide:focus {
-  width: 100%;
-}
-
-@media (max-width: 550px) {
-  .main-pane {
-    padding: 5%;
-  }
-
-  .container {
-    width: 95%;
-    padding: 0;
-  }
-
-  .panel {
-    padding: 0;
-  }
-
-  .nav__item {
-    text-align: center;
-    display: flex;
-  }
-
-  .card {
-    -webkit-box-shadow: none;
-  }
-
-  .card__content {
-    padding: 0;
-  }
-
-  .action.button-list {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .action .button,
-  .action .button-outline,
-  .action .button:focus,
-  .action .button-outline:focus,
-  .action .button:active,
-  .action .button-outline:active,
-  .action .button:visited,
-  .action .button-outline:visited {
-    width: 90%;
-    margin: 0.5em 0;
-  }
 }
 
 /* add grey notification */
@@ -269,66 +44,19 @@ li.panel .button-list {
 /* add warning in steps-form */
 .steps-form li.warning::before {
   border-color: var(--orange);
-  color: var(--white);
+  color: var(--w);
   background-color: var(--orange);
 }
 
 .steps-form li.warning.active::before {
   border-color: var(--orange);
   color: var(--orange);
-  background-color: var(--white);
+  background-color: var(--w);
 }
 
 .steps-form li.warning::after {
   background-color: var(--orange);
 }
-
-/* fixes on template.beta.gouv stylesheet */
-/* fix: strange margins on buttons */
-a.button,
-a.button:focus,
-a.button:active,
-a.button:visited,
-button.button,
-button.button:focus,
-button.button:active,
-button.button:visited,
-input[type='submit'],
-input[type='submit']:focus,
-input[type='submit']:active,
-input[type='submit']:visited,
-input[type='button'],
-input[type='button']:focus,
-input[type='button']:active,
-input[type='button']:visited {
-  margin: initial;
-}
-
-/* fix: contrast accessibility */
-.steps-form li::before {
-  color: var(--dark-grey);
-  border-color: var(--dark-grey);
-}
-
-.steps-form li::after {
-  background-color: var(--dark-grey);
-}
-
-/* fix: steps form style */
-.steps-form li::after {
-  top: 24px;
-  height: 7px;
-}
-
-/* fix: steps form spacing */
-.steps-form {
-  padding-left: 0;
-}
-
-.steps-form > li > div {
-  padding: 0 1em;
-}
-
 @media (max-width: 749px) {
   .steps-form > li > div {
     justify-content: flex-end;
@@ -343,193 +71,32 @@ input[type='button']:visited {
   }
 }
 
-/* fix: missing selector for done step-form */
-.steps-form li.done::before {
-  border-color: var(--blue);
+/* full width container */
+.full-width-container {
+  padding: 1rem;
+  margin: 0 auto;
 }
 
-.steps-form li.done::after {
-  background-color: var(--blue);
+.container {
+  padding: 1rem 0;
+  margin: 0 auto;
 }
 
-/* fix: missing style for disabled inputs */
-input[type='checkbox'][disabled]:checked {
-  background-color: var(--darker-grey);
-  border-color: var(--darker-grey);
-  cursor: not-allowed;
-}
-
-input[type='radio'][disabled]:checked {
-  background-color: var(--theme-background-grey);
-  border-color: var(--darker-grey);
-  cursor: not-allowed;
-}
-
-input[type='radio'][disabled]:checked::before {
-  background-color: var(--darker-grey);
-}
-
-input[type='checkbox'][disabled],
-input[type='radio'][disabled] {
-  cursor: not-allowed;
-}
-
-/* fix: tooltip is being cropped */
-.card {
-  overflow: inherit;
-}
-
-/* fix: panel spacing */
-.panel + .panel {
-  margin-top: var(--space-m);
-}
-
-.panel + .notification {
-  margin-top: var(--space-m);
-}
-
-/* fix: panel spacing on small screens */
-@media (max-width: 550px) {
-  .dashboard .main {
-    padding: 0;
-  }
-
-  .panel {
-    padding: var(--space-l);
-  }
-}
-
-/*
-* Fix: select makes container to grow
-* Fix 2: and remove background that hides down arrow
-*/
-select {
-  width: 100%;
-  appearance: auto !important;
-  background: #fff !important;
-}
-input,
-select {
-  height: 43px;
-}
-
-/*
-fix: rules on '.card__content :last-child' propagates within children instead of
-targeting the last_child like so '.card__content > :last-child'
-*/
-.card__content p:last-child {
-  margin-bottom: 1em;
-}
-
-/* fix: margin behave coherently with h2 margin rules */
-.card__content h3 {
-  margin-bottom: 1em;
-}
-
-/* fix: modal overflow */
-.modal {
-  max-width: 50em;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-/* fix: add modal closing cross */
-.modal__backdrop {
-  margin: 0;
-}
-
-.modal {
-  position: relative;
-}
-
-.modal button.closing_cross {
-  font-size: 1.5em;
-  position: absolute;
-  right: 10px;
-  top: 5px;
-  border: none;
-  background-color: transparent;
-}
-
-/* light button & link */
-button.light,
-a.light {
-  display: inline-block;
-  margin: 0;
-  padding: 0.4em 0.8em;
-  border: none;
-  color: var(--theme-dark-text);
-  background: var(--white);
-  border-radius: 3px;
-}
-
-button.light:hover,
-a.light:hover {
-  background: var(--lighter-grey);
-}
-
-button.light:focus {
-  outline: 0;
-}
-
-a.light {
-  text-decoration: none;
-}
-
-/* nav-button */
-/* it is an equivalent of <a> within a .nav_link but with a <button> element */
-.nav-button {
-  border: none;
-  color: var(--black);
-  padding: 0.4em 0.8em;
-  border-radius: 3px;
-  font-size: inherit;
-  font-family: inherit;
-}
-
-.nav-button:focus {
-  outline: none;
-}
-
-/* full width section */
-section.full-width-section {
-  padding: 2em 0 1em 0;
-}
-
-.full-width-section .container {
-  max-width: inherit;
-}
-
-@media (min-width: 550px) {
-  .full-width-section .container {
-    width: inherit;
-  }
-}
-
-@media (min-width: 400px) {
-  .full-width-section .container {
-    width: inherit;
-  }
-}
-
-/* generic flex declarative class */
+/* layout full page */
 .layout-full-page {
   display: flex;
   height: 100%;
-}
-
-.layout-center {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.layout-row {
+/* handle modal layout */
+.modal__backdrop {
   display: flex;
-  flex-direction: row;
 }
 
-.layout-column {
-  display: flex;
-  flex-direction: column;
+.fr-modal__body {
+  max-width: 50em;
+  max-height: 90vh;
+  overflow-y: auto;
 }

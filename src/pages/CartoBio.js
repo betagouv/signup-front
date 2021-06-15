@@ -16,7 +16,7 @@ const CartoBio = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="cartobio"
-    logoLinkUrl="https://api.gouv.fr/les-api/api_cartobio_territoires"
+    documentationUrl="https://api.gouv.fr/les-api/api_cartobio_territoires"
     contactInformation={[
       {
         email: 'cartobio@beta.gouv.fr',

@@ -1,63 +1,128 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-
-import { TARGET_API_LABELS } from '../../lib/api';
-
+import { useLocation } from 'react-router-dom';
+import { API_ICONS, TARGET_API_LABELS } from '../../lib/api';
 import { withUser } from './UserContext';
-
-const { REACT_APP_API_GOUV_HOST: API_GOUV_HOST } = process.env;
+import { loginUrl } from '../templates/Login';
 
 const Header = ({ user, logout }) => {
-  // Form page already has contact button, no need to display this one.
-  const displayContactLink = !Object.keys(TARGET_API_LABELS).some(
-    (target_api) =>
-      window.location.pathname.startsWith(`/${target_api.replace(/_/g, '-')}`)
-  );
+  const [displayContactLink, setDisplayContactLink] = useState();
+  const [targetApi, setTargetApi] = useState();
+  let location = useLocation();
+
+  useEffect(() => {
+    const targetApiInUrl = Object.keys(TARGET_API_LABELS).find((target_api) => {
+      return window.location.pathname.startsWith(
+        `/${target_api.replace(/_/g, '-')}`
+      );
+    });
+
+    setTargetApi(targetApiInUrl);
+    setDisplayContactLink(!targetApiInUrl);
+  }, [location]);
 
   return (
-    <header className="navbar">
-      <div className="navbar__container">
-        <a className="navbar__home" href="/">
-          <img
-            className="navbar__logo"
-            src="/images/logo_api.svg"
-            alt="Accueil de datapass.api.gouv.fr"
-          />
-        </a>
-
-        <nav>
-          <ul className="nav__links">
-            <li className="nav__item">
-              <a href={`${API_GOUV_HOST}/apropos`}>À propos</a>
-            </li>
-            {displayContactLink && (
-              <li className="nav__item">
-                <a href="mailto:contact@api.gouv.fr?subject=Contact%20via%20datapass.api.gouv.fr">
-                  Nous contacter
-                </a>
-              </li>
-            )}
-            {user && user.roles.includes('administrator') && (
-              <>
-                <li className="nav__item">
-                  <a href="/admin">Administration</a>
-                </li>
-              </>
-            )}
-            {user && (
-              <li className="nav__item">
-                <div className="dropdown">
-                  {user.email}
-                  <div className="dropdown-content" style={{ top: '2.8em' }}>
-                    <a onClick={logout} href="#logout">
-                      Se déconnecter
-                    </a>
-                  </div>
+    <header role="banner" className="fr-header">
+      <div className="fr-header__body">
+        <div className="fr-container">
+          <div className="fr-header__body-row">
+            <div className="fr-header__brand fr-enlarge-link">
+              <div className="fr-header__brand-top">
+                <div className="fr-header__logo">
+                  <p className="fr-logo">
+                    République
+                    <br />
+                    Française
+                  </p>
                 </div>
-              </li>
-            )}
-          </ul>
-        </nav>
+                {targetApi && !!API_ICONS[targetApi] && (
+                  <div className="fr-header__operator">
+                    <img
+                      src={`/images/${API_ICONS[targetApi]}`}
+                      className="fr-responsive-img"
+                      style={{
+                        maxHeight: '67px',
+                        width: 'auto',
+                        maxWidth: '6em',
+                      }}
+                      alt={`Logo ${TARGET_API_LABELS[targetApi]}`}
+                    />
+                  </div>
+                )}
+                <div className="fr-header__navbar">
+                  <button
+                    className="fr-btn--menu fr-btn"
+                    data-fr-opened="false"
+                    aria-controls="modal-833"
+                    aria-haspopup="menu"
+                    title="Menu"
+                  >
+                    Menu
+                  </button>
+                </div>
+              </div>
+              <div className="fr-header__service">
+                <a href="/" title="Accueil - api.gouv.fr - DINUM">
+                  <p className="fr-header__service-title">api.gouv.fr</p>
+                </a>
+                <p className="fr-header__service-tagline">
+                  habilitations juridiques
+                </p>
+              </div>
+            </div>
+            <div className="fr-header__tools">
+              <div className="fr-header__tools-links">
+                <ul className="fr-links-group">
+                  {displayContactLink && (
+                    <li>
+                      <a
+                        className="fr-link fr-fi-mail-line"
+                        href="mailto:contact@api.gouv.fr?subject=Contact%20via%20datapass.api.gouv.fr"
+                      >
+                        Nous contacter
+                      </a>
+                    </li>
+                  )}
+                  {user && user.roles.includes('administrator') && (
+                    <li>
+                      <a className="fr-link fr-fi-calendar-line" href="/admin">
+                        Administration
+                      </a>
+                    </li>
+                  )}
+                  {user ? (
+                    <li>
+                      <div className="dropdown">
+                        <a className="fr-link fr-fi-user-line" href="#logout">
+                          {user.given_name} {user.family_name}
+                        </a>
+                        <div className="dropdown-content">
+                          <a
+                            onClick={logout}
+                            href="#logout"
+                            style={{ fontSize: '0.85em' }}
+                          >
+                            Se déconnecter
+                          </a>
+                        </div>
+                      </div>
+                    </li>
+                  ) : (
+                    <li>
+                      <a
+                        className="fr-link fr-fi-lock-line"
+                        href={loginUrl}
+                        referrerPolicy="no-referrer-when-downgrade"
+                      >
+                        Se connecter
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </header>
   );

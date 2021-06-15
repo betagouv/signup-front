@@ -1,6 +1,14 @@
-.loader-container {
+.loader-container:not(.small) {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin: 20px auto;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader-container.small {
+  display: inline-flex;
 }
 
 .loader-container > .message {
@@ -17,7 +25,7 @@
   animation: spin 750ms linear infinite;
 }
 
-.loader-container .loader.small {
+.loader-container.small .loader {
   border-width: 3px;
   width: 20px;
   height: 20px;

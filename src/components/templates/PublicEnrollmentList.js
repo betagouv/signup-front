@@ -13,6 +13,7 @@ import {
 } from '../../lib/api';
 
 import ScheduleIcon from '../atoms/icons/schedule';
+import ListHeader from '../molecules/ListHeader';
 
 class PublicEnrollmentList extends React.Component {
   constructor(props) {
@@ -134,71 +135,65 @@ class PublicEnrollmentList extends React.Component {
     const { enrollments, errors, loading } = this.state;
 
     return (
-      <section className="section-grey full-width-section enrollment-page">
-        <div className="container">
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h2>Liste des demandes validées</h2>
-              <ul className="nav__links">
-                <li className="nav__item">
-                  <NavLink activeClassName={'active_link'} exact to="/public">
-                    Toutes les demandes
-                  </NavLink>
-                </li>
-                {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map(
-                  (targetApi) => (
-                    <li key={targetApi} className="nav__item">
-                      <NavLink
-                        activeClassName={'active_link'}
-                        exact
-                        to={`/public/${targetApi}`}
-                      >
-                        {TARGET_API_LABELS[targetApi]}
-                      </NavLink>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-          </div>
-          <div className="panel">
-            <div className="enrollment-table">
-              {errors.map((error) => (
-                <div key={error} className="notification error">
-                  {error}
-                </div>
-              ))}
-              <ReactTable
-                data={enrollments}
-                columns={this.getColumnConfiguration()}
-                defaultSorted={[
-                  {
-                    id: 'updated_at',
-                    desc: true,
-                  },
-                ]}
-                getTdProps={(state, rowInfo, column) => ({
-                  title: this.getTitle({ column, rowInfo }),
-                })}
-                getTheadProps={() => ({ style: enrollmentListStyle.thead })}
-                getPaginationProps={() => ({
-                  style: enrollmentListStyle.pagination,
-                })}
-                style={enrollmentListStyle.table}
-                className="-highlight"
-                loading={loading}
-                showPageSizeOptions={false}
-                pageSize={10}
-                resizable={false}
-                previousText="Précédent"
-                nextText="Suivant"
-                loadingText="Chargement..."
-                noDataText={'Aucune demande'}
-                pageText="Page"
-                ofText="sur"
-                rowsText="lignes"
-              />
-            </div>
+      <section className="section-grey full-width-container">
+        <ListHeader title="Liste des demandes validées">
+          <NavLink
+            className="fr-tag secondary"
+            activeClassName={'info'}
+            exact
+            to="/public"
+          >
+            Toutes les demandes
+          </NavLink>
+          {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+            <NavLink
+              key={targetApi}
+              className="fr-tag secondary"
+              activeClassName={'info'}
+              exact
+              to={`/public/${targetApi}`}
+            >
+              {TARGET_API_LABELS[targetApi]}
+            </NavLink>
+          ))}
+        </ListHeader>
+        <div className="panel">
+          <div className="enrollment-table">
+            {errors.map((error) => (
+              <div key={error} className="notification error">
+                {error}
+              </div>
+            ))}
+            <ReactTable
+              data={enrollments}
+              columns={this.getColumnConfiguration()}
+              defaultSorted={[
+                {
+                  id: 'updated_at',
+                  desc: true,
+                },
+              ]}
+              getTdProps={(state, rowInfo, column) => ({
+                title: this.getTitle({ column, rowInfo }),
+              })}
+              getTheadProps={() => ({ style: enrollmentListStyle.thead })}
+              getPaginationProps={() => ({
+                style: enrollmentListStyle.pagination,
+              })}
+              style={enrollmentListStyle.table}
+              className="-highlight"
+              loading={loading}
+              showPageSizeOptions={false}
+              pageSize={10}
+              resizable={false}
+              previousText="Précédent"
+              nextText="Suivant"
+              loadingText="Chargement..."
+              noDataText={'Aucune demande'}
+              pageText="Page"
+              ofText="sur"
+              rowsText="lignes"
+            />
           </div>
         </div>
       </section>

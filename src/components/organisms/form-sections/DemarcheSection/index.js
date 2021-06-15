@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import './index.css';
 import DemarcheSectionReadOnly from './DemarcheSectionReadOnly';
 import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../../templates/Form';

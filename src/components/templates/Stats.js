@@ -27,6 +27,7 @@ import {
 
 import Helper from '../atoms/Helper';
 import Loader from '../atoms/Loader';
+import ListHeader from '../molecules/ListHeader';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -89,26 +90,27 @@ export const Stats = ({
   return (
     <section className="section-grey stats-page">
       <div className="container">
-        <div className="tab-container">
-          <ul className="nav__links">
-            <li className="nav__item">
-              <NavLink activeClassName={'active_link'} exact to="/stats">
-                Toutes les APIs
-              </NavLink>
-            </li>
-            {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
-              <li key={targetApi} className="nav__item">
-                <NavLink
-                  activeClassName={'active_link'}
-                  exact
-                  to={`/stats/${targetApi}`}
-                >
-                  {TARGET_API_LABELS[targetApi]}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ListHeader>
+          <NavLink
+            className="fr-tag secondary"
+            activeClassName={'info'}
+            exact
+            to="/stats"
+          >
+            Toutes les APIs
+          </NavLink>
+          {TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV.map((targetApi) => (
+            <NavLink
+              key={targetApi}
+              className="fr-tag secondary"
+              activeClassName={'info'}
+              exact
+              to={`/stats/${targetApi}`}
+            >
+              {TARGET_API_LABELS[targetApi]}
+            </NavLink>
+          ))}
+        </ListHeader>
         <div className="column-grid">
           <div className="row-grid">
             <div className="card">
@@ -123,7 +125,7 @@ export const Stats = ({
               <div className="card__content">
                 <h3>Demandes d’habilitation validées</h3>
                 <div className="card__meta">
-                  (<a href="/public">voir la liste détaillée</a>)
+                  <a href="/public">voir la liste détaillée</a>
                 </div>
               </div>
               <div className="card__content card_number">

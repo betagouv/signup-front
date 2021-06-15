@@ -1,7 +1,6 @@
 import React from 'react';
 import Loader from '../../../atoms/Loader';
 import { get, has, isEmpty } from 'lodash';
-import OpenInNewIcon from '../../../atoms/icons/open-in-new';
 
 const DemarcheSectionNotification = ({
   isLoading = false,
@@ -16,10 +15,7 @@ const DemarcheSectionNotification = ({
       {displayNotification && (
         <div className="notification info">
           {isLoading ? (
-            <Loader
-              small
-              message="pré-remplissage du formulaire en cours ..."
-            />
+            <Loader message="pré-remplissage du formulaire en cours ..." />
           ) : (
             <div>
               <b>
@@ -48,7 +44,6 @@ const DemarcheSectionNotification = ({
                       href={get(demarches, selectedDemarcheId, {}).about}
                     >
                       fiche explicative
-                      <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
                     </a>
                   </>
                 )}

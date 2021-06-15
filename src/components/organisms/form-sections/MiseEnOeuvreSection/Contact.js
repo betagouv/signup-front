@@ -7,6 +7,7 @@ import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
 import FrontHandIcon from '../../../atoms/icons/front-hand';
+import Button from '../../../atoms/Button';
 
 export const Contact = ({
   id,
@@ -78,18 +79,19 @@ export const Contact = ({
           (typeof phone_number === 'undefined' || !phone_number) &&
           (typeof job === 'undefined' || !job) && (
             <div className="form__group">
-              <button
-                className="button-outline primary wide"
+              <Button
+                outline
                 onClick={fillWithUserInformation}
+                style={{ justifyContent: 'center', width: '100%' }}
               >
-                <div className="button-icon">
-                  <FrontHandIcon color="var(--blue)" size={28} />
+                <div style={{ margin: '0 0.2em' }}>
+                  <FrontHandIcon color="var(--bf500)" size={28} />
                 </div>
                 <div style={{ textAlign: 'left' }}>
                   Je suis {(heading || '').toLowerCase()}.<br />
                   Remplir avec mes informations.
                 </div>
-              </button>
+              </Button>
             </div>
           )}
         {typeof given_name !== 'undefined' &&

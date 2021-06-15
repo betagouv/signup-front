@@ -168,18 +168,8 @@ const FranceConnect = ({
     DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {
-        email: 'support.usagers@franceconnect.gouv.fr',
-        label: 'Particuliers, nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-      {
         email: 'support.partenaires@franceconnect.gouv.fr',
-        label: 'Entreprises, nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-      {
-        email: 'support.partenaires@franceconnect.gouv.fr',
-        label: 'Administrations, nous contacter',
+        label: 'Nous contacter',
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
     ]}

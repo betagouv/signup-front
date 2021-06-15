@@ -7,6 +7,8 @@ import RoleCheckboxCell from './RoleCheckboxCell';
 import { TextFilter, textFilter } from './TextFilter';
 import Loader from '../../../atoms/Loader';
 import AutorenewIcon from '../../../atoms/icons/autorenew';
+import ListHeader from '../../../molecules/ListHeader';
+import Tag from '../../../atoms/Tag';
 
 const UserList = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -89,34 +91,25 @@ const UserList = () => {
 
   return (
     <div className="panel">
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <h2>Liste des utilisateurs</h2>
-        <ul className="nav__links">
-          <li className="nav__item">
-            <button
-              className={`nav-button ${!showAllUsers ? 'active_link' : ''}`}
-              onClick={() => setShowAllUsers(false)}
-            >
-              Utilisateurs avec droits
-            </button>
-          </li>
-          <li className="nav__item">
-            <button
-              className={`nav-button ${showAllUsers ? 'active_link' : ''}`}
-              onClick={() => setShowAllUsers(true)}
-            >
-              Tous les utilisateurs
-            </button>
-          </li>
-          <li className="nav__item">
-            <button className={`nav-button`} onClick={handleRefreshData}>
-              <AutorenewIcon size={16} />
-            </button>
-          </li>
-        </ul>
-      </div>
+      <ListHeader title="Liste des utilisateurs">
+        <Tag
+          type={!showAllUsers ? 'info' : 'secondary'}
+          onClick={() => setShowAllUsers(false)}
+        >
+          Utilisateurs avec droits
+        </Tag>
+        <Tag
+          type={showAllUsers ? 'info' : 'secondary'}
+          onClick={() => setShowAllUsers(true)}
+        >
+          Tous les utilisateurs
+        </Tag>
+        <Tag onClick={handleRefreshData}>
+          <AutorenewIcon size={16} />
+        </Tag>
+      </ListHeader>
       {isLoading ? (
-        <div className="layout-full-page" style={{ minHeight: '800px' }}>
+        <div className="layout-full-page " style={{ minHeight: '800px' }}>
           <Loader />
         </div>
       ) : (

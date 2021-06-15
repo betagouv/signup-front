@@ -6,12 +6,11 @@ import { getCachedOrganizationInformation } from '../../../../services/external'
 import { isValidNAFCode } from '../../../../lib';
 import './index.css';
 import OrganizationPrompt from './OrganizationPrompt';
-import EditIcon from '../../../atoms/icons/edit';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import Loader from '../../../atoms/Loader';
-import OpenInNewIcon from '../../../atoms/icons/open-in-new';
 import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
+import Button from '../../../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 const SECTION_LABEL = 'Organisation';
@@ -184,26 +183,20 @@ const OrganisationSection = () => {
                 {personalInformation.family_name}
               </span>
               {!disabled && (
-                <a
-                  className="light inline-icon-button"
+                <Button
+                  title="Modifier mes informations"
+                  outline
+                  icon="edit"
                   href={`${BACK_HOST}/api/users/personal-information`}
-                  title="
-                  Éditer mes informations personnelles"
-                >
-                  <EditIcon size={20} color="var(--grey)" />
-                </a>
+                />
               )}
             </div>
-            <div className="organization-subtitle">
+            <div>
               {personalInformation.email}
               <CopyToCliboardButton textToCopy={personalInformation.email} />
             </div>
-            <div className="organization-subtitle">
-              {personalInformation.phone_number}
-            </div>
-            <div className="organization-subtitle">
-              {personalInformation.job}
-            </div>
+            <div>{personalInformation.phone_number}</div>
+            <div>{personalInformation.job}</div>
           </div>
         </div>
         <div className="card">
@@ -237,31 +230,30 @@ const OrganisationSection = () => {
               <div className="organization-title">
                 <span>
                   {title || (disabled && nom_raison_sociale)}{' '}
-                  <a
+                  <Button
+                    title="Plus d’information sur la donnée"
+                    outline
+                    icon="eye"
                     href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label={`Plus d’information sur la donnée`}
-                  >
-                    <OpenInNewIcon color={'var(--theme-primary)'} size={14} />
-                  </a>
+                  />
                 </span>
                 {!disabled && (
-                  <button
+                  <Button
                     title="faire une demande pour une autre organisation"
-                    className="light inline-icon-button"
+                    outline
+                    icon="edit"
                     onClick={() => setShowPrompt(true)}
-                  >
-                    <EditIcon size={20} color="var(--grey)" />
-                  </button>
+                  />
                 )}
               </div>
-              <div className="organization-subtitle">{adresse}</div>
-              <div className="organization-subtitle">
+              <div>{adresse}</div>
+              <div>
                 {codePostal} {ville}
               </div>
-              <div className="organization-subtitle">SIRET : {siret}</div>
-              <div className="organization-subtitle">
+              <div>SIRET : {siret}</div>
+              <div>
                 Code NAF : {activite}{' '}
                 {activiteLabel ? '- ' + activiteLabel : null}
               </div>

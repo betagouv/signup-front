@@ -1,7 +1,3 @@
-section.stats-page {
-  padding-bottom: 2em;
-}
-
 .card .card_graph {
   min-height: 200px;
   margin: auto;
@@ -26,10 +22,4 @@ section.stats-page {
 .row-grid {
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   justify-items: stretch;
-}
-
-/* tab-container */
-.tab-container {
-  display: flex;
-  justify-content: space-between;
 }

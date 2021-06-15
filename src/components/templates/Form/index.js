@@ -14,6 +14,9 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 import { TARGET_API_LABELS } from '../../../lib/api';
 import { getStateFromUrlParams, goBack } from '../../../lib';
 import Nav from '../../organisms/Nav';
+import { USER_STATUS_LABELS } from '../../../lib/enrollment';
+import Tag from '../../atoms/Tag';
+import statusToButtonType from '../../../lib/status-to-button-type';
 
 export const FormContext = React.createContext();
 
@@ -69,7 +72,7 @@ export const Form = ({
   history,
   demarches = null,
   children,
-  logoLinkUrl,
+  documentationUrl,
   contactInformation,
 }) => {
   const [errorMessages, setErrorMessages] = useState([]);
@@ -89,6 +92,7 @@ export const Form = ({
         update: true,
         send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
       },
+      status: 'pending',
       events: [],
       target_api,
       additional_content: {},
@@ -162,16 +166,23 @@ export const Form = ({
     <div className="dashboard">
       <Nav
         target_api={target_api}
-        logoLinkUrl={logoLinkUrl}
+        documentationUrl={documentationUrl}
         contactInformation={contactInformation}
         sectionLabels={sectionLabels}
       />
       <div className="main">
         <ScrollablePanel scrollableId="head" className={null}>
-          <h1 style={{ fontSize: '1.75em' }}>
-            {title || `Demande d’accès ${TARGET_API_LABELS[target_api]}`}
-            {enrollment.id ? ` n°${enrollment.id}` : ''}
-          </h1>
+          <div
+            style={{
+              marginBottom: '2em',
+            }}
+          >
+            <h1>{title || TARGET_API_LABELS[target_api]}</h1>
+            {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
+            <Tag type={statusToButtonType[enrollment.status]}>
+              {USER_STATUS_LABELS[enrollment.status]}
+            </Tag>
+          </div>
           {get(location, 'state.fromFranceConnectedAPI') ===
             'api_droits_cnam' && (
             <>
@@ -282,7 +293,6 @@ Form.propTypes = {
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
   demarches: PropTypes.any,
-  logoLinkUrl: PropTypes.string,
   contactInformation: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

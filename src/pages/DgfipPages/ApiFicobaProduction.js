@@ -28,7 +28,7 @@ const ApiFicobaProduction = ({
     steps={steps}
     PreviousEnrollmentDescription={PreviousEnrollmentDescription}
     DemarcheDescription={DemarcheDescription}
-    logoLinkUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
+    documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <RecetteFonctionnelleSection />
     <DonneesPersonnellesSection />

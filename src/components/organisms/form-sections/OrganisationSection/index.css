@@ -3,13 +3,3 @@
   justify-content: space-between;
   font-weight: bold;
 }
-
-.organization-subtitle {
-  color: var(--darker-grey);
-}
-
-button.light.inline-icon-button,
-a.light.inline-icon-button {
-  padding: 0 0.8em;
-  vertical-align: bottom;
-}
