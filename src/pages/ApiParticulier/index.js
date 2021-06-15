@@ -156,6 +156,22 @@ const availableScopes = [
     value: 'cnaf_adresse',
     label: 'CNAF - Adresse',
   },
+  {
+    value: 'pole_emploi_identite',
+    label: 'Pôle Emploi - Identité',
+  },
+  {
+    value: 'pole_emploi_contact',
+    label: 'Pôle Emploi - Données de contact',
+  },
+  {
+    value: 'pole_emploi_adresse',
+    label: 'Pôle Emploi - Adresse',
+  },
+  {
+    value: 'pole_emploi_inscription',
+    label: 'Pôle Emploi - Inscription',
+  },
 ];
 
 const target_api = 'api_particulier';
