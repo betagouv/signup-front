@@ -104,6 +104,8 @@ const Nav = ({
                 outline
                 icon="file"
                 iconRight
+                target="_blank"
+                rel="noreferrer noopener"
               >
                 Documentation
               </Button>
