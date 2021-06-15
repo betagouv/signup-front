@@ -293,7 +293,6 @@ Form.propTypes = {
   target_api: PropTypes.string.isRequired,
   steps: PropTypes.array,
   demarches: PropTypes.any,
-  logoLinkUrl: PropTypes.string,
   contactInformation: PropTypes.array,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

@@ -49,6 +49,12 @@ p {
   margin: 0 0 2.5rem;
 }
 
+/* fix: rules on '.card__content :last-child' propagates within children instead of
+targeting the last_child like so '.card__content > :last-child' */
+.card__content p:last-child {
+  margin: 0 0 2.5rem;
+}
+
 h1,
 h2,
 h3,
@@ -69,6 +75,10 @@ h6 {
 /* a templates rules conflict with .fr-btn dsfr rules */
 a.fr-btn:hover {
   border-radius: inherit;
+}
+
+a.fr-btn:focus {
+  text-decoration: none;
 }
 
 a.fr-btn {

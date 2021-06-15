@@ -2,7 +2,6 @@ import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { isEmpty, merge, get } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
-import './index.css';
 import ConfirmationModal from '../../ConfirmationModal';
 import { findModifiedFields } from '../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';

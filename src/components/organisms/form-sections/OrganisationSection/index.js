@@ -191,16 +191,12 @@ const OrganisationSection = () => {
                 />
               )}
             </div>
-            <div className="organization-subtitle">
+            <div>
               {personalInformation.email}
               <CopyToCliboardButton textToCopy={personalInformation.email} />
             </div>
-            <div className="organization-subtitle">
-              {personalInformation.phone_number}
-            </div>
-            <div className="organization-subtitle">
-              {personalInformation.job}
-            </div>
+            <div>{personalInformation.phone_number}</div>
+            <div>{personalInformation.job}</div>
           </div>
         </div>
         <div className="card">
@@ -252,12 +248,12 @@ const OrganisationSection = () => {
                   />
                 )}
               </div>
-              <div className="organization-subtitle">{adresse}</div>
-              <div className="organization-subtitle">
+              <div>{adresse}</div>
+              <div>
                 {codePostal} {ville}
               </div>
-              <div className="organization-subtitle">SIRET : {siret}</div>
-              <div className="organization-subtitle">
+              <div>SIRET : {siret}</div>
+              <div>
                 Code NAF : {activite}{' '}
                 {activiteLabel ? '- ' + activiteLabel : null}
               </div>

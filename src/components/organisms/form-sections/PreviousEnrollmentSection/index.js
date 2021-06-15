@@ -184,21 +184,20 @@ const PreviousEnrollmentSection = ({
               </>
             )}
           {disabled && !isUserEnrollmentLoading && (
-            <div className="button-list enrollment">
+            <>
               {hasAccessToPreviousEnrollment ? (
                 <a
                   href={`/${previousTargetApi.replace(
                     /_/g,
                     '-'
                   )}/${previous_enrollment_id}`}
-                  className="light"
                 >
                   Numéro de la demande associée : {previous_enrollment_id}
                 </a>
               ) : (
                 <>Numéro de la demande associée : {previous_enrollment_id}</>
               )}
-            </div>
+            </>
           )}
         </div>
       )}

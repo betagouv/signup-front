@@ -67,7 +67,7 @@ const Footer = () => (
               className="fr-footer__bottom-link"
               href={`${API_GOUV_HOST}/apropos`}
             >
-              A propos
+              À propos
             </a>
           </li>
           <li className="fr-footer__bottom-item">

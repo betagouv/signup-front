@@ -118,7 +118,6 @@ const Nav = ({
 Nav.propTypes = {
   sectionLabels: PropTypes.array.isRequired,
   contactInformation: PropTypes.array,
-  logoLinkUrl: PropTypes.string,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     goBack: PropTypes.func.isRequired,

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { get, has, isEmpty } from 'lodash';
 import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
-import './index.css';
 import { UserContext } from '../../UserContext';
 import { findModifiedFields } from '../../../../lib';
 
