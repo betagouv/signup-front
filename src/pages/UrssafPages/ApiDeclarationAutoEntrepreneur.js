@@ -13,7 +13,13 @@ import { contacts, DemarcheDescriptionCommon } from './common';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
-    <p>À COMPLÉTER</p>
+    <p>
+      L'API de Tierce Déclaration Auto-Entrepreneur (TDAE) permet à une
+      plateforme collaborative d’intervenir en tant que tiers déclarant pour le
+      compte de ses utilisateurs autoentrepreneurs et ainsi de réaliser la
+      déclaration et d’ordonnancer le paiement (uniquement via télépaiement) des
+      cotisations pour le compte de ces derniers.
+    </p>
     <DemarcheDescriptionCommon />
   </div>
 );
