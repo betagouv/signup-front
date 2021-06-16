@@ -33,10 +33,11 @@ import UserEnrollmentList from './components/templates/UserEnrollmentList';
 import ApiEntreprise from './pages/ApiEntreprise';
 import ApiServiceNational from './pages/ApiServiceNational';
 import ApiStatutEtudiant from './pages/ApiStatutEtudiant';
-import ApiHomePlus from './pages/ApiHomePlus';
+import ApiTiersDePrestation from './pages/UrssafPages/ApiTiersDePrestation';
 import Hubee from './pages/Hubee';
 import Admin from './components/templates/Admin';
 import { withUser } from './components/organisms/UserContext';
+import ApiDeclarationAutoEntrepreneur from './pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -171,8 +172,13 @@ export const Routes = ({ user }) => {
       />
 
       <PrivateRoute
-        path="/api-home-plus/:enrollmentId?"
-        component={ApiHomePlus}
+        path="/api-tiers-de-prestation/:enrollmentId?"
+        component={ApiTiersDePrestation}
+      />
+
+      <PrivateRoute
+        path="/api-declaration-auto-entrepreneur/:enrollmentId?"
+        component={ApiDeclarationAutoEntrepreneur}
       />
 
       <PrivateRoute path="/hubee/:enrollmentId?" component={Hubee} />

@@ -22,9 +22,10 @@ export const TARGET_API_LABELS = {
   francerelance_fc: 'FranceRelance - Guichet FranceConnect',
   api_service_national: 'API Service National',
   api_statut_etudiant: 'API Statut étudiant',
-  api_home_plus: 'API Home +',
+  api_tiers_de_prestation: 'API Tiers de prestation',
   hubee: 'HubEE',
   api_pro_sante_connect: 'API Pro Santé Connect',
+  api_declaration_auto_entrepreneur: 'API Tierce Déclaration auto-entrepreneur',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
@@ -50,9 +51,10 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'api_statut_etudiant',
   // 'api_hermes_sandbox',
   // 'api_hermes_production',
-  // 'api_home_plus',
+  // 'api_tiers_de_prestation',
   // 'hubee',
   // 'api_pro_sante_connect',
+  // 'api_declaration_auto_entrepreneur',
 ];
 
 export const API_ICONS = {
@@ -74,7 +76,8 @@ export const API_ICONS = {
   cartobio: 'logo-cartobio-text.svg',
   aidants_connect: 'aidants-connect_logo.png',
   francerelance_fc: 'logo-fc-with-label.png',
-  api_home_plus: 'logo-urssaf.jpg',
+  api_tiers_de_prestation: 'logo-urssaf.png',
   hubee: 'logo-dinum.png',
   api_pro_sante_connect: 'logo-ans.png',
+  api_declaration_auto_entrepreneur: 'logo-urssaf.png',
 };
