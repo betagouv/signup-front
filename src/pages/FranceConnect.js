@@ -164,7 +164,6 @@ const FranceConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="franceconnect"
-    title="Demande d’habilitation juridique à FranceConnect"
     DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {

@@ -44,7 +44,6 @@ const PreuveCovoiturage = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="preuve_covoiturage"
-    title="Demande d’accès au Registre de preuve de covoiturage"
     DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {

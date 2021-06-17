@@ -177,7 +177,14 @@ export const Form = ({
               marginBottom: '2em',
             }}
           >
-            <h1>{title || TARGET_API_LABELS[target_api]}</h1>
+            {title ? (
+              <h1>{title}</h1>
+            ) : (
+              <>
+                <>Vous demandez l’accès à</>
+                <h1>{title || TARGET_API_LABELS[target_api]}</h1>
+              </>
+            )}
             {enrollment.id && <Tag>Demande n°{enrollment.id}</Tag>}
             <Tag type={statusToButtonType[enrollment.status]}>
               {USER_STATUS_LABELS[enrollment.status]}

@@ -117,7 +117,6 @@ const FranceRelanceFc = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="francerelance_fc"
-    title="Demande d’habilitation juridique à FranceRelance - Guichet FranceConnect"
     DemarcheDescription={DemarcheDescription}
     demarches={demarches}
     documentationUrl="https://france-relance.transformation.gouv.fr/e13a-deployer-franceconnect-et-utiliser-les-api-na/"

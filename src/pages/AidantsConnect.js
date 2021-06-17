@@ -100,7 +100,6 @@ const AidantsConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="aidants_connect"
-    title="Demande d’habilitation à Aidants Connect"
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"
     contactInformation={[
       {
