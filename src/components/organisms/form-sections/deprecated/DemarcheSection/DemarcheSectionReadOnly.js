@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { get, has, isEmpty } from 'lodash';
-import { FormContext } from '../../../templates/Form';
-import { ScrollablePanel } from '../../Scrollable';
-import { UserContext } from '../../UserContext';
-import { findModifiedFields } from '../../../../lib';
+import { FormContext } from '../../../../templates/Form';
+import { ScrollablePanel } from '../../../Scrollable';
+import { UserContext } from '../../../UserContext';
+import { findModifiedFields } from '../../../../../lib';
 
-export const DemarcheSectionReadOnly = ({ scrollableId }) => {
+export const DemarcheSectionReadOnly = ({ title, scrollableId }) => {
   const { enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
   const {
@@ -35,7 +35,7 @@ export const DemarcheSectionReadOnly = ({ scrollableId }) => {
   return (
     <>
       <ScrollablePanel scrollableId={scrollableId}>
-        <h2>Les modèles pré-remplis</h2>
+        <h2>{title || 'Modèles préremplis'}</h2>
         <div>
           {hasSelectedDemarche ? (
             <>

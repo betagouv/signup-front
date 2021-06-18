@@ -19,7 +19,7 @@ import {
 } from './api-impot-particulier-common';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
 import Quote from '../../components/atoms/inputs/Quote';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 
 export const CadreJuridiqueDescription = () => (
   <Quote>

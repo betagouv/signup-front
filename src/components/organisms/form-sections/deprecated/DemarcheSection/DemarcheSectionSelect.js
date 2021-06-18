@@ -1,19 +1,13 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
-import { isEmpty, merge, get, has } from 'lodash';
-import { FormContext } from '../../../templates/Form';
-import { ScrollablePanel } from '../../Scrollable';
-import ConfirmationModal from '../../ConfirmationModal';
-import { findModifiedFields } from '../../../../lib';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { isEmpty, merge, get } from 'lodash';
+import { FormContext } from '../../../../templates/Form';
+import { ScrollablePanel } from '../../../Scrollable';
+import ConfirmationModal from '../../../ConfirmationModal';
+import { findModifiedFields } from '../../../../../lib';
 import DemarcheSectionSelectNotification from './DemarcheSectionSelectNotification';
-import Select from '../../../atoms/inputs/Select';
+import Select from '../../../../atoms/inputs/Select';
 
-export const DemarcheSectionSelect = ({ body, scrollableId }) => {
+export const DemarcheSectionSelect = ({ title, body, scrollableId }) => {
   const { disabled, onChange, enrollment, demarches } = useContext(FormContext);
   const { demarche: selectedDemarcheId } = enrollment;
 
@@ -58,34 +52,9 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
     }
   }, [selectedDemarcheId]);
 
-  const displayNotification = useMemo(
-    () =>
-      has(demarches, selectedDemarcheId) && selectedDemarcheId !== 'default',
-    [demarches, selectedDemarcheId]
-  );
-
   return (
     <>
       <ScrollablePanel scrollableId={scrollableId}>
-        <h2>Les modèles pré-remplis</h2>
-        {body || (
-          <p>
-            Nous avons identifié plusieurs cas d’usage de cette API. Si votre
-            demande s’inscrit dans un des cas ci-dessous, sélectionnez-le pour
-            gagner du temps.
-          </p>
-        )}
-        <Select
-          label="Sélectionnez le modèle correspondant à votre projet"
-          name="demarche"
-          options={Object.keys(demarches).map((demarcheId) => ({
-            id: demarcheId,
-            label: get(demarches, demarcheId, {}).label,
-          }))}
-          value={selectedDemarcheId}
-          disabled={disabled}
-          onChange={onSelectDemarche}
-        />
         {confirmNewDemarcheId && (
           <ConfirmationModal
             title="Attention, vous allez écraser certains de vos changements"
@@ -102,14 +71,32 @@ export const DemarcheSectionSelect = ({ body, scrollableId }) => {
             </p>
           </ConfirmationModal>
         )}
-        {displayNotification && (
-          <DemarcheSectionSelectNotification
-            isLoading={isLoading}
-            selectedDemarcheId={selectedDemarcheId}
-            demarches={demarches}
-          />
-        )}
+        <h2>{title || 'Modèles préremplis'}</h2>
+        <Select
+          label={
+            body || (
+              <>
+                Nous avons identifié plusieurs cas d’usage de cette API. Si
+                votre demande s’inscrit dans un des cas ci-dessous,
+                sélectionnez-le pour gagner du temps.
+              </>
+            )
+          }
+          name="demarche"
+          options={Object.keys(demarches).map((demarcheId) => ({
+            id: demarcheId,
+            label: get(demarches, demarcheId, {}).label,
+          }))}
+          value={selectedDemarcheId}
+          disabled={disabled}
+          onChange={onSelectDemarche}
+        />
       </ScrollablePanel>
+      <DemarcheSectionSelectNotification
+        isLoading={isLoading}
+        selectedDemarcheId={selectedDemarcheId}
+        demarches={demarches}
+      />
     </>
   );
 };

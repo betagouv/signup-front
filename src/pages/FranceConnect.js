@@ -61,7 +61,7 @@ const contacts = {
           téléphone doit être un numéro de téléphone mobile. Il sera utilisé
           pour envoyer un code d’accès. Le responsable technique peut être le
           contact technique de votre prestataire. Attention, ce courrier peut
-          parfois passer en «&nbsp;courriers indésirables&nbsp;».
+          parfois passer en « courriers indésirables ».
         </p>
       </Quote>
     ),

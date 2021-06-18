@@ -10,7 +10,7 @@ import DonneesSection from '../../components/organisms/form-sections/DonneesSect
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
 
 DgfipRgpdAgreement.propTypes = {

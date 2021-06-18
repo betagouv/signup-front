@@ -6,7 +6,7 @@ import Stepper from '../../organisms/form-sections/PreviousEnrollmentSection/Ste
 const ApiImpotParticulierFcSandboxWelcomeMessage = () => (
   <>
     <h3>Demande d’accès à « API Impôt particulier »</h3>
-    <p>La procédure consiste en 3 demandes d’accès distinctes&nbsp;:</p>
+    <p>La procédure consiste en 3 demandes d’accès distinctes :</p>
     <Stepper
       steps={[
         'franceconnect',

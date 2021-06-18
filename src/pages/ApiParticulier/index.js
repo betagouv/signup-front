@@ -18,7 +18,7 @@ const DemarcheDescription = () => (
     <p>
       Pour avoir accès à l’API Particulier, diffusant des données personnelles,
       vous devez obtenir un agrément. L’accès à cette API n’est pour l’instant
-      disponible que si vous êtes&nbsp;:
+      disponible que si vous êtes :
     </p>
     <ul>
       <li>une administration</li>

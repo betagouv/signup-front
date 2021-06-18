@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';

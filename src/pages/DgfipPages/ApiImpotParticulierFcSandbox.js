@@ -19,7 +19,7 @@ import {
   DonneesFootnote,
 } from './api-impot-particulier-common';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 
 const target_api = 'api_impot_particulier_fc_sandbox';
 const steps = [

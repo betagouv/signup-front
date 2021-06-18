@@ -57,6 +57,7 @@ main {
 .steps-form li.warning::after {
   background-color: var(--orange);
 }
+
 @media (max-width: 749px) {
   .steps-form > li > div {
     justify-content: flex-end;
@@ -99,4 +100,9 @@ main {
   max-width: 50em;
   max-height: 90vh;
   overflow-y: auto;
+}
+
+/* define datapass blue */
+:root {
+  --datapass-blue: #0959b6;
 }
