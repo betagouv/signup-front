@@ -111,7 +111,7 @@ export const DonneesFootnote = () => {
                 uploadedDocuments={documents}
                 documentsToUpload={documents_attributes}
                 documentType={'Document::ExpressionBesoinSpecifique'}
-                handleChange={onChange}
+                onChange={onChange}
               />
             </>
           )}

@@ -40,7 +40,7 @@ export const AidantsSection = () => {
         documentType={'Document::ListeAidants'}
         mimeTypes=".ods, .xls, .xlsx, .csv"
         uploadedDocuments={documents}
-        handleChange={onChange}
+        onChange={onChange}
         documentsToUpload={documents_attributes}
       />
       <YesNoRadioInput

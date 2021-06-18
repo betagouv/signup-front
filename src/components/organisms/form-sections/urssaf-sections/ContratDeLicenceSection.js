@@ -48,7 +48,7 @@ export const ContratDeLicenceSection = () => {
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::DecisionHomologation'}
-        handleChange={onChange}
+        onChange={onChange}
         label={'Contrat de licence signé'}
       />
     </ScrollablePanel>

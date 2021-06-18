@@ -13,7 +13,7 @@ import CopyToCliboardButton from '../../../molecules/CopyToCliboardButton';
 import Button from '../../../atoms/Button';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
-const SECTION_LABEL = 'Organisation';
+const SECTION_LABEL = 'L’organisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const OrganisationSection = () => {

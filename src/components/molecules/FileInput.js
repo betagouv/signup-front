@@ -18,7 +18,7 @@ const FileInput = ({
   uploadedDocuments,
   documentsToUpload,
   documentType,
-  handleChange,
+  onChange,
 }) => {
   const [id] = useState(uniqueId(documentType));
   const [documentsTooLargeError, setDocumentsTooLargeError] = useState(false);
@@ -54,7 +54,7 @@ const FileInput = ({
     );
   }, [uploadedDocuments, documentType, documentsToUpload]);
 
-  const onChange = ({ target: { files, name } }) => {
+  const handleChange = ({ target: { files, name } }) => {
     const documentsWithoutThisDocument = documentsToUpload.filter(
       ({ type }) => type !== documentType
     );
@@ -69,7 +69,7 @@ const FileInput = ({
 
     // note that if files is an empty array (ie. file selection as been canceled)
     // this will result in unchanged documents_attributes
-    return handleChange({
+    return onChange({
       target: {
         name: 'documents_attributes',
         value: updatedDocumentsToUpload,
@@ -134,7 +134,7 @@ const FileInput = ({
           <input
             type="file"
             accept={mimeTypes}
-            onChange={onChange}
+            onChange={handleChange}
             disabled={disabled}
             name={documentType}
             id={id}
@@ -179,7 +179,7 @@ FileInput.propTypes = {
     })
   ).isRequired,
   documentType: PropTypes.string.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   label: PropTypes.node.isRequired,
   mimeTypes: PropTypes.string,
 };

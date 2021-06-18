@@ -13,28 +13,6 @@ import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEn
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
 
-const DemarcheDescription = () => (
-  <div className="notification grey">
-    <p>
-      Pour avoir accès à l’API Particulier, diffusant des données personnelles,
-      vous devez obtenir un agrément. L’accès à cette API n’est pour l’instant
-      disponible que si vous êtes :
-    </p>
-    <ul>
-      <li>une administration</li>
-      <li>
-        une entreprise prestataire d’une administration ou ayant une délégation
-        de service public
-      </li>
-    </ul>
-    <p>
-      Pour utiliser API Particulier, vous devez vous engager à traiter la bonne
-      donnée par le bon agent de votre administration et informer correctement
-      l’usager.
-    </p>
-  </div>
-);
-
 const contacts = {
   metier: {
     heading: 'Contact métier',
@@ -310,7 +288,6 @@ const ApiParticulier = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    DemarcheDescription={DemarcheDescription}
     demarches={demarches}
     contactInformation={[
       {
@@ -322,11 +299,7 @@ const ApiParticulier = ({
   >
     <OrganisationSection />
     <DemarcheSection />
-    <DescriptionSection
-      intitulePlaceholder={
-        '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
-      }
-    />
+    <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
       DonneesDescription={DonneesDescription}
