@@ -120,3 +120,9 @@ select {
 .text-quote {
   padding-top: 2.5rem;
 }
+
+/* fix: h2 & form__group spacing */
+.form__group + h3 {
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-l);
+}

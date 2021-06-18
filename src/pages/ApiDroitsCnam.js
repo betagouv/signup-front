@@ -8,7 +8,7 @@ import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJu
 import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">

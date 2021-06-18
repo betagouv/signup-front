@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import DgfipRgpdAgreement from '../../components/organisms/form-sections/DonneesSection/DgfipRgpdAgreement';
+import DgfipRgpdAgreement from '../../components/organisms/form-sections/deprecated/DonneesSection/DgfipRgpdAgreement';
 import TextSection from '../../components/organisms/form-sections/TextSection';
 import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
+import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';

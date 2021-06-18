@@ -5,7 +5,7 @@ import Form from '../components/templates/Form';
 import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
