@@ -5,7 +5,7 @@ import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import IpSection from '../components/organisms/form-sections/agence-bio-sections/IpSection';
 

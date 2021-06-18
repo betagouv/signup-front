@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
-import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
+import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/deprecated/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
@@ -10,7 +10,7 @@ import FranceConnectPlusSection from '../components/organisms/form-sections/Fran
 import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
 import Quote from '../components/atoms/inputs/Quote';
 

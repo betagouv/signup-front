@@ -6,7 +6,7 @@ import DgfipRgpdAgreement from '../../components/organisms/form-sections/depreca
 import TextSection from '../../components/organisms/form-sections/TextSection';
 import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
+import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import { contacts, SuiteDescription } from './common';

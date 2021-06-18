@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import LabelsSection from '../components/organisms/form-sections/aidants-connect-sections/LabelsSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';

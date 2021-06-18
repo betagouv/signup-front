@@ -6,7 +6,7 @@ import OrganisationSection from '../components/organisms/form-sections/Organisat
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import SolutionLogicielleSection from '../components/organisms/form-sections/le-taxi-sections/SolutionLogicielleSection';
 import Quote from '../components/atoms/inputs/Quote';
 

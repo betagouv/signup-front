@@ -9,7 +9,7 @@ import DonneesSection from '../../components/organisms/form-sections/deprecated/
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
+import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import { sample } from 'lodash';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';

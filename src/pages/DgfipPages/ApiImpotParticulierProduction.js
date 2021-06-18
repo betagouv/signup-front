@@ -7,7 +7,7 @@ import RecetteFonctionnelleSection from '../../components/organisms/form-section
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
+import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import { CguDescription } from './api-impot-particulier-common';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,

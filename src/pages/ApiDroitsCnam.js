@@ -7,7 +7,7 @@ import DescriptionSection from '../components/organisms/form-sections/deprecated
 import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 
 const DemarcheDescription = () => (
