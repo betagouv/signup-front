@@ -8,7 +8,7 @@ import DescriptionSection from '../../components/organisms/form-sections/depreca
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import { contacts, SuiteDescription } from './common';
 import Quote from '../../components/atoms/inputs/Quote';
 

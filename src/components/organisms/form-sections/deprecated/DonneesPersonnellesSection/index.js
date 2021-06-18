@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import RgpdContact from './RgpdContact';
-import { ScrollablePanel } from '../../Scrollable';
-import { FormContext } from '../../../templates/Form';
-import TextInput from '../../../atoms/inputs/TextInput';
-import NumberInput from '../../../atoms/inputs/NumberInput';
+import { ScrollablePanel } from '../../../Scrollable';
+import { FormContext } from '../../../../templates/Form';
+import TextInput from '../../../../atoms/inputs/TextInput';
+import NumberInput from '../../../../atoms/inputs/NumberInput';
 
 const SECTION_LABEL = 'Données personnelles';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

@@ -6,9 +6,9 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
+import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';

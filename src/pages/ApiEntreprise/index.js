@@ -6,8 +6,8 @@ import OrganisationSection from '../../components/organisms/form-sections/Organi
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
 import { sample } from 'lodash';

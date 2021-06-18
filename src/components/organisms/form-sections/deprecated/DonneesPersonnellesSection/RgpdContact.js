@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Quote from '../../../atoms/inputs/Quote';
-import TextInput from '../../../atoms/inputs/TextInput';
-import TelInput from '../../../atoms/inputs/TelInput';
+import Quote from '../../../../atoms/inputs/Quote';
+import TextInput from '../../../../atoms/inputs/TextInput';
+import TelInput from '../../../../atoms/inputs/TelInput';
 
 const descriptions = {
   responsable_traitement: {

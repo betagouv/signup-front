@@ -7,8 +7,8 @@ import OrganisationSection from '../components/organisms/form-sections/Organisat
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';

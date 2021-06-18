@@ -1,15 +1,33 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollablePanel } from '../Scrollable';
-import { FormContext } from '../../templates/Form';
-import OrWrapper from '../../atoms/inputs/OrWrapper';
-import FileInput from '../../molecules/FileInput';
-import TextAreaInput from '../../atoms/inputs/TextAreaInput';
-import TextInput from '../../atoms/inputs/TextInput';
-import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
+import { ScrollablePanel } from '../../Scrollable';
+import { FormContext } from '../../../templates/Form';
+import OrWrapper from '../../../atoms/inputs/OrWrapper';
+import FileInput from '../../../molecules/FileInput';
+import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
+import TextInput from '../../../atoms/inputs/TextInput';
 
-const SECTION_LABEL = 'Le cadre juridique';
+const SECTION_LABEL = 'Cadre juridique';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
+
+const Label = ({ fondement_juridique_url }) => (
+  <>
+    Si possible, joindre l’URL du texte relatif au traitement{' '}
+    {fondement_juridique_url && (
+      <span>
+        (
+        <a
+          href={fondement_juridique_url}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          accéder à cette URL
+        </a>
+        )
+      </span>
+    )}
+  </>
+);
 
 const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   const {
@@ -26,14 +44,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le cadre juridique vous autorisant à traiter les données</h2>
-      <ExpandableQuote title="Comment trouver le cadre juridique ?">
-        <CadreJuridiqueDescription />
-      </ExpandableQuote>
-      <h3>
-        Vous souhaitez accéder, traiter et conserver des données personnelles.
-        Quel est le cadre juridique qui autorise votre organisation à accéder à
-        ces données ?
-      </h3>
+      <CadreJuridiqueDescription />
       <TextAreaInput
         label={
           <>
@@ -50,23 +61,11 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
       />
       <OrWrapper>
         <TextInput
-          label="URL du texte relatif au traitement"
+          label={<Label fondement_juridique_url={fondement_juridique_url} />}
           name="fondement_juridique_url"
           value={fondement_juridique_url}
           disabled={disabled}
           onChange={onChange}
-          meta={
-            fondement_juridique_url && (
-              <a
-                href={fondement_juridique_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Accéder au texts relatif au traitement"
-              >
-                accéder à cette URL
-              </a>
-            )
-          }
         />
         <FileInput
           label="Joindre le document lui même"

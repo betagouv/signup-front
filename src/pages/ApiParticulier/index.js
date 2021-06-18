@@ -8,7 +8,6 @@ import DescriptionSection from '../../components/organisms/form-sections/Descrip
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
 import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 import Quote from '../../components/atoms/inputs/Quote';
@@ -45,7 +44,7 @@ const contacts = {
 };
 
 const CadreJuridiqueDescription = () => (
-  <Quote>
+  <>
     <p>
       Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
       légal et réglementaire des fournisseurs de service doit permettre à la
@@ -78,7 +77,7 @@ const CadreJuridiqueDescription = () => (
         l’inscription aux activités périscolaires."
       </li>
     </ul>
-  </Quote>
+  </>
 );
 
 const DonneesDescription = () => (
@@ -307,7 +306,6 @@ const ApiParticulier = ({
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <DonneesPersonnellesSection />
     <MiseEnOeuvreSection initialContacts={contacts} />
     <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
   </Form>
