@@ -175,12 +175,12 @@ const availableScopes = [
   {
     value: 'dgfip_date_recouvrement',
     label: 'Date de recouvrement',
-    groupTitle: "DGFIP - Échéances de l'avis d'imposition",
+    groupTitle: 'DGFIP - Échéances de l’avis d’imposition',
   },
   {
     value: 'dgfip_date_etablissement',
     label: "Date d'établissement",
-    groupTitle: "DGFIP - Échéances de l'avis d'imposition",
+    groupTitle: 'DGFIP - Échéances de l’avis d’imposition',
   },
   {
     value: 'dgfip_adresse_fiscale_taxation',
@@ -248,14 +248,14 @@ const availableScopes = [
     label: 'Erreur correctif',
     groupTitle: 'DGFIP - Compléments',
     helper:
-      "Indique si un correctif plus récent que l'avis recherché est disponible.",
+      'Indique si un correctif plus récent que l’avis recherché est disponible.',
   },
   {
     value: 'dgfip_situation_partielle',
     label: 'Situation partielle',
     groupTitle: 'DGFIP - Compléments',
     helper:
-      "Dans un foyer marié ou pacsé, quand décès d'un des contribuable, affiche les données de l'avis avec l’indication « situation partielle ». Donc, il faut les références de l'autre avis pour le consulter.",
+      'Dans un foyer marié ou pacsé, quand décès d’un des contribuable, affiche les données de l’avis avec l’indication « situation partielle ». Donc, il faut les références de l’autre avis pour le consulter.',
   },
   {
     value: 'cnaf_quotient_familial',
@@ -296,7 +296,7 @@ const availableScopes = [
     value: 'pole_emploi_inscription',
     label: 'Inscription',
     groupTitle: 'Pôle Emploi',
-    helper: "Données concernant l'inscription de la personne à Pôle Emploi",
+    helper: 'Données concernant l’inscription de la personne à Pôle Emploi',
   },
 ];
 
