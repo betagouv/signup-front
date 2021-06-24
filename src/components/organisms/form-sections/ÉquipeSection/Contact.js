@@ -71,47 +71,51 @@ export const Contact = ({
         <div className="form-row">
           <div className="form-col">
             <TextInput
-              label="Prénom"
+              label="Prénom *"
               name={`${namePrefix}given_name`}
               value={given_name}
               disabled={disabled}
               onChange={onChange}
               ariaLabel={`Prénom du ${heading}`}
+              required
             />
           </div>
           <div className="form-col">
             <TextInput
-              label="Nom"
+              label="Nom *"
               name={`${namePrefix}family_name`}
               value={family_name}
               disabled={disabled}
               onChange={onChange}
               ariaLabel={`Nom du ${heading}`}
+              required
             />
           </div>
         </div>
         <TextInput
-          label="Poste occupé"
+          label="Poste occupé *"
           name={`${namePrefix}job`}
           value={job}
           disabled={disabled}
           onChange={onChange}
           ariaLabel={`Poste occupé par le ${heading}`}
+          required
         />
         <h4>Pour joindre cette personne</h4>
         <EmailInput
-          label="Email"
+          label="Email *"
           name={`${namePrefix}email`}
           value={email}
           disabled={disabled}
           onChange={onChange}
           ariaLabel={`Email du ${heading}`}
+          required
         />
         <TelInput
           label={
             display_mobile_phone_label
-              ? 'Numéro de téléphone mobile'
-              : 'Numéro de téléphone'
+              ? 'Numéro de téléphone mobile *'
+              : 'Numéro de téléphone *'
           }
           name={`${namePrefix}phone_number`}
           value={phone_number}
@@ -120,6 +124,7 @@ export const Contact = ({
           ariaLabel={`Numéro de téléphone ${
             display_mobile_phone_label ? 'mobile ' : ''
           }du ${heading}`}
+          required
         />
       </div>
     </div>

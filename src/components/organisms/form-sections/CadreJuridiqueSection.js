@@ -38,7 +38,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
         label={
           <>
             Précisez la nature et les références du texte vous autorisant à
-            traiter les données
+            traiter les données *
           </>
         }
         name="fondement_juridique_title"
@@ -47,6 +47,7 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
         disabled={disabled}
         onChange={onChange}
         rows={1}
+        required
       />
       <OrWrapper>
         <TextInput

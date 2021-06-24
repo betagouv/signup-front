@@ -31,12 +31,13 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
       <h2>Le projet</h2>
       <h3>Quel projet êtes vous en train de construire ?</h3>
       <TextInput
-        label="Nom du projet"
+        label="Nom du projet *"
         meta="Cette information peut être rendue publique"
         name="intitule"
         value={intitule}
         disabled={disabled}
         onChange={onChange}
+        required
       />
       <RadioInput
         label="Type de projet"
@@ -50,12 +51,13 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
         onChange={onChange}
       />
       <TextAreaInput
-        label="Description du projet (à quoi va-t-il servir ? qui l’utilisera ?)"
+        label="Description du projet (à quoi va-t-il servir ? qui l’utilisera ?) *"
         name="description"
         placeholder={descriptionPlaceholder}
         value={description}
         disabled={disabled}
         onChange={onChange}
+        required
       />
       <FileInput
         label="Maquette ou schéma du projet"
