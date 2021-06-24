@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import DonneesSection from '../components/organisms/form-sections/cartobio-sections/DonneesSection';
 import CguSection from '../components/organisms/form-sections/cartobio-sections/CguSection';
 

@@ -9,7 +9,7 @@ import DonneesSection from '../components/organisms/form-sections/deprecated/Don
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
 import Quote from '../components/atoms/inputs/Quote';

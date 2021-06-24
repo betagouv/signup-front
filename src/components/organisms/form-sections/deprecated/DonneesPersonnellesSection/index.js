@@ -16,10 +16,10 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
       data_recipients = '',
       data_retention_period = '',
       data_retention_comment = '',
-      responsable_traitement_label = '',
+      responsable_traitement_family_name = '',
       responsable_traitement_email = '',
       responsable_traitement_phone_number = '',
-      dpo_label = '',
+      dpo_family_name = '',
       dpo_email = '',
       dpo_phone_number = '',
     },
@@ -81,7 +81,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
         <div className="row">
           <RgpdContact
             type={'responsable_traitement'}
-            label={responsable_traitement_label}
+            family_name={responsable_traitement_family_name}
             email={responsable_traitement_email}
             phone_number={responsable_traitement_phone_number}
             disabled={disabled}
@@ -89,7 +89,7 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
           />
           <RgpdContact
             type={'dpo'}
-            label={dpo_label}
+            family_name={dpo_family_name}
             email={dpo_email}
             phone_number={dpo_phone_number}
             disabled={disabled}

@@ -8,40 +8,8 @@ import DescriptionSection from '../../components/organisms/form-sections/Descrip
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
-import Quote from '../../components/atoms/inputs/Quote';
-
-const contacts = {
-  metier: {
-    heading: 'Contact métier',
-    description: (
-      <Quote>
-        <p>
-          Cette personne sera contactée en cas de problème fonctionnel sur votre
-          service.
-        </p>
-      </Quote>
-    ),
-    email: '',
-    phone_number: '',
-  },
-  technique: {
-    heading: 'Responsable technique',
-    description: (
-      <Quote>
-        <p>
-          Cette personne recevra les accès techniques par mail. Elle sera
-          contactée en cas de problème technique sur votre service. Le
-          responsable technique peut être le contact technique de votre
-          prestataire.
-        </p>
-      </Quote>
-    ),
-    email: '',
-    phone_number: '',
-  },
-};
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 
 const CadreJuridiqueDescription = () => (
   <>
@@ -306,7 +274,7 @@ const ApiParticulier = ({
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <MiseEnOeuvreSection initialContacts={contacts} />
+    <ÉquipeSection />
     <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
   </Form>
 );

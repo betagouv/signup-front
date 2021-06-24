@@ -6,7 +6,7 @@ import OrganisationSection from '../components/organisms/form-sections/Organisat
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import Quote from '../components/atoms/inputs/Quote';
 import TextSection from '../components/organisms/form-sections/TextSection';
 

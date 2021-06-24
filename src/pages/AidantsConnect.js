@@ -7,7 +7,7 @@ import CguSection from '../components/organisms/form-sections/deprecated/CguSect
 import LabelsSection from '../components/organisms/form-sections/aidants-connect-sections/LabelsSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 import Quote from '../components/atoms/inputs/Quote';
 

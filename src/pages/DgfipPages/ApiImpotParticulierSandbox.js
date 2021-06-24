@@ -8,7 +8,7 @@ import DescriptionSection from '../../components/organisms/form-sections/depreca
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
 import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
 import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import {
   demarches as fcAvailableDemarches,

@@ -121,8 +121,13 @@ select {
   padding-top: 2.5rem;
 }
 
-/* fix: h2 & form__group spacing */
+/* fix: header & form__group spacing */
 .form__group + h3 {
+  margin-top: var(--space-l);
+  margin-bottom: var(--space-l);
+}
+
+.form__group + h4 {
   margin-top: var(--space-l);
   margin-bottom: var(--space-l);
 }

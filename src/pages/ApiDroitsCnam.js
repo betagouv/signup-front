@@ -6,7 +6,7 @@ import OrganisationSection from '../components/organisms/form-sections/Organisat
 import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
 import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 

@@ -6,9 +6,11 @@ import RadioInput from '../../atoms/inputs/RadioInput';
 
 export const UpdateRgpdContact = () => {
   const [enrollmentId, setEnrollmentId] = useState('');
-  const [label, setLabel] = useState('');
+  const [nom, setNom] = useState('');
+  const [prenom, setPrenom] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
+  const [job, setJob] = useState('');
   const [role, setRole] = useState('');
   const [success, setSuccess] = useState();
   const [error, setError] = useState(null);
@@ -19,15 +21,19 @@ export const UpdateRgpdContact = () => {
       setSuccess(false);
       await updateRgpdContact({
         enrollmentId,
-        label: label.trim(),
+        nom: nom.trim(),
+        prenom: prenom.trim(),
         email: email.trim(),
         phoneNumber: phoneNumber.trim(),
+        job: job.trim(),
         role,
       });
       setEnrollmentId('');
-      setLabel('');
+      setNom('');
+      setPrenom('');
       setEmail('');
       setPhoneNumber('');
+      setJob('');
       setRole('');
       setError(null);
       setSuccess(true);
@@ -53,10 +59,22 @@ export const UpdateRgpdContact = () => {
           required
         />
         <TextInput
-          label="Nouveaux Nom et Prénom"
+          label="Nouveau nom"
           helper="vide = pas de modification"
-          onChange={({ target: { value } }) => setLabel(value)}
-          value={label}
+          onChange={({ target: { value } }) => setNom(value)}
+          value={nom}
+        />
+        <TextInput
+          label="Nouveau prénom"
+          helper="vide = pas de modification"
+          onChange={({ target: { value } }) => setPrenom(value)}
+          value={prenom}
+        />
+        <TextInput
+          label="Nouveau poste occupé"
+          helper="vide = pas de modification"
+          onChange={({ target: { value } }) => setJob(value)}
+          value={job}
         />
         <TextInput
           label="Nouvel email"

@@ -8,7 +8,7 @@ import DescriptionSection from '../../components/organisms/form-sections/depreca
 import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
 import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import demarches from './demarches.json';
 
 const ApiServiceNational = ({

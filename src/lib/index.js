@@ -80,10 +80,10 @@ const diffFieldLabels = {
   fondement_juridique_title: 'de la référence du cadre juridique',
   fondement_juridique_url: 'de l’url du cadre juridique',
   intitule: 'de l’intitulé',
-  dpo_label: 'du nom du DPD',
+  dpo_family_name: 'du nom du DPD',
   dpo_id: 'de l’identifiant du DPD',
   dpo_phone_number: 'du numéro de téléphone du DPD',
-  responsable_traitement_label: 'du nom du responsable de traitement',
+  responsable_traitement_family_name: 'du nom du responsable de traitement',
   responsable_traitement_id: 'de l’identifiant du responsable de traitement',
   responsable_traitement_phone_number:
     'du numéro de téléphone du responsable de traitement',

@@ -49,7 +49,7 @@ const descriptions = {
 
 const RgpdContact = ({
   type,
-  label,
+  family_name,
   email,
   phone_number,
   disabled,
@@ -65,8 +65,8 @@ const RgpdContact = ({
           type === 'responsable_traitement' &&
           'Cette information peut être rendue publique.'
         }
-        name={`${type}_label`}
-        value={label}
+        name={`${type}_family_name`}
+        value={family_name}
         disabled={disabled}
         onChange={onChange}
         ariaLabel={`Nom et Prénom du ${descriptions[type].heading}`}

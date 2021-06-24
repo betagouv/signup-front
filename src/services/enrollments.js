@@ -193,15 +193,19 @@ export function computeNextEnrollmentState({ action, id, comment }) {
 
 export function updateRgpdContact({
   enrollmentId,
-  label,
+  nom,
+  prenom,
   email,
   phoneNumber,
+  job,
   role,
 }) {
   const enrollment = {};
-  if (label) enrollment[`${role}_label`] = label;
+  if (nom) enrollment[`${role}_family_name`] = nom;
+  if (prenom) enrollment[`${role}_given_name`] = prenom;
   if (email) enrollment[`${role}_email`] = email;
   if (phoneNumber) enrollment[`${role}_phone_number`] = phoneNumber;
+  if (job) enrollment[`${role}_job`] = job;
   const serializedEnrollment = serializeEnrollment(enrollment);
   return httpClient
     .patch(
