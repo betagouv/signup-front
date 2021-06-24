@@ -48,15 +48,6 @@ const ÉquipeSection = ({
     if (isEmpty(contacts)) {
       // initialize contacts
       const defaultContacts = {
-        metier: {
-          heading: 'Contact métier',
-          description: (
-            <>
-              <b>Le contact métier</b> sera contacté en cas de problème
-              fonctionnel sur votre service.
-            </>
-          ),
-        },
         technique: {
           heading: 'Responsable technique',
           description: (
@@ -87,6 +78,10 @@ const ÉquipeSection = ({
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>{title}</h2>
       <ExpandableQuote title="Comment renseigner la liste des contacts ?" large>
+        <p>
+          <b>Le demandeur</b>, c'est vous, dépose la demande et sera contacté en
+          cas de problème fonctionnel sur votre service.
+        </p>
         <p>
           <b>Le responsable du traitement des données</b> est la personne
           physique ou morale qui, seule ou conjointement avec d’autres,

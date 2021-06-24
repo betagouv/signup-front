@@ -4,7 +4,6 @@ import { FormContext } from '../../templates/Form';
 import PropTypes from 'prop-types';
 import TextInput from '../../atoms/inputs/TextInput';
 import TextAreaInput from '../../atoms/inputs/TextAreaInput';
-import RadioInput from '../../atoms/inputs/RadioInput';
 import FileInput from '../../molecules/FileInput';
 import Input from '../../atoms/inputs/input';
 
@@ -18,7 +17,6 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
     enrollment: {
       intitule = '',
       description = '',
-      type_projet = '',
       date_mise_en_production = '',
       volumetrie_approximative = '',
       documents = [],
@@ -29,7 +27,7 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Le projet</h2>
-      <h3>Quel projet êtes vous en train de construire ?</h3>
+      <h3>Quel projet êtes vous en train de réaliser ?</h3>
       <TextInput
         label="Nom du projet *"
         meta="Cette information peut être rendue publique"
@@ -38,17 +36,6 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
         disabled={disabled}
         onChange={onChange}
         required
-      />
-      <RadioInput
-        label="Type de projet"
-        options={[
-          { id: 'logiciel_metier', label: 'Un logiciel métier' },
-          { id: 'demarche_en_ligne', label: 'Une démarche en ligne' },
-        ]}
-        name="type_projet"
-        value={type_projet}
-        disabled={disabled}
-        onChange={onChange}
       />
       <TextAreaInput
         label="Description du projet (à quoi va-t-il servir ? qui l’utilisera ?) *"
@@ -60,7 +47,7 @@ const DescriptionSection = ({ descriptionPlaceholder = '' }) => {
         required
       />
       <FileInput
-        label="Maquette ou schéma du projet"
+        label="Maquette du projet"
         mimeTypes="*"
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
