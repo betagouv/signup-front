@@ -176,7 +176,7 @@ const OrganisationSection = () => {
       <div className="row">
         <div className="card">
           <div className="card__content">
-            <h4>Vous êtes :</h4>
+            <h3>Vous êtes :</h3>
             <div className="organization-title">
               <span>
                 {personalInformation.given_name}{' '}
@@ -204,7 +204,7 @@ const OrganisationSection = () => {
             <Loader />
           ) : (
             <div className="card__content">
-              <h4>Vous faites cette demande pour :</h4>
+              <h3>Vous faites cette demande pour :</h3>
               {activite && !isValidNAFCode(target_api, activite) && (
                 <div className="form__group">
                   <div className="notification warning">
