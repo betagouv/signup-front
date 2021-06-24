@@ -74,7 +74,7 @@ const PreviousEnrollmentSection = ({
         <>
           <p>
             La procédure consiste en {steps.length} demandes d’accès
-            distinctes&nbsp;:
+            distinctes :
           </p>
           <Stepper
             steps={steps}

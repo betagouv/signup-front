@@ -3,22 +3,18 @@ import DemarcheSectionReadOnly from './DemarcheSectionReadOnly';
 import DemarcheSectionSelect from './DemarcheSectionSelect';
 import { FormContext } from '../../../templates/Form';
 
-const SECTION_LABEL = 'Modèles préremplis';
+const SECTION_LABEL = 'Les modèles préremplis';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const DemarcheSection = ({ title, body }) => {
+export const DemarcheSection = ({ body }) => {
   const { disabled } = useContext(FormContext);
 
   return (
     <>
       {disabled ? (
-        <DemarcheSectionReadOnly title={title} scrollableId={SECTION_ID} />
+        <DemarcheSectionReadOnly scrollableId={SECTION_ID} />
       ) : (
-        <DemarcheSectionSelect
-          title={title}
-          body={body}
-          scrollableId={SECTION_ID}
-        />
+        <DemarcheSectionSelect body={body} scrollableId={SECTION_ID} />
       )}
     </>
   );

@@ -74,7 +74,7 @@ const HomologationSecuriteSection = () => {
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
         documentType={'Document::DecisionHomologation'}
-        handleChange={onChange}
+        onChange={onChange}
         label={'Décision d’homologation'}
       />
     </ScrollablePanel>

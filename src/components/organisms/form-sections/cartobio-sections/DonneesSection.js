@@ -50,7 +50,7 @@ export const DonneesSection = () => {
           uploadedDocuments={documents}
           documentsToUpload={documents_attributes}
           documentType={'Document::GeoShape'}
-          handleChange={onChange}
+          onChange={onChange}
         />
       </OrWrapper>
     </ScrollablePanel>

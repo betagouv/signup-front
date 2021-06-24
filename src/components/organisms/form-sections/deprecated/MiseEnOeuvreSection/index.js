@@ -2,9 +2,9 @@ import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 import Contact from './Contact';
-import { ScrollablePanel } from '../../Scrollable';
-import { FormContext } from '../../../templates/Form';
-import Quote from '../../../atoms/inputs/Quote';
+import { ScrollablePanel } from '../../../Scrollable';
+import { FormContext } from '../../../../templates/Form';
+import Quote from '../../../../atoms/inputs/Quote';
 
 const SECTION_LABEL = 'Contacts';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);

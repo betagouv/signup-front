@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../../components/templates/Form';
-import DgfipRgpdAgreement from '../../components/organisms/form-sections/DonneesSection/DgfipRgpdAgreement';
+import DgfipRgpdAgreement from '../../components/organisms/form-sections/deprecated/DonneesSection/DgfipRgpdAgreement';
 import TextSection from '../../components/organisms/form-sections/TextSection';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
+import DescriptionSection from '../../components/organisms/form-sections/deprecated/DescriptionSection';
 import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
+import DonneesSection from '../../components/organisms/form-sections/deprecated/DonneesSection';
+import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
+import MiseEnOeuvreSection from '../../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
 import {
   demarches,
   availableScopes,
@@ -19,7 +19,7 @@ import {
   DonneesFootnote,
 } from './api-impot-particulier-common';
 import { contacts, DonneesDescription, SuiteDescription } from './common';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
+import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 
 const target_api = 'api_impot_particulier_fc_sandbox';
 const steps = [

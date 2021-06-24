@@ -8,66 +8,11 @@ import DescriptionSection from '../../components/organisms/form-sections/Descrip
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../../components/organisms/form-sections/MiseEnOeuvreSection';
 import demarches from './demarches.json';
-import Quote from '../../components/atoms/inputs/Quote';
-
-const DemarcheDescription = () => (
-  <div className="notification grey">
-    <p>
-      Pour avoir accès à l’API Particulier, diffusant des données personnelles,
-      vous devez obtenir un agrément. L’accès à cette API n’est pour l’instant
-      disponible que si vous êtes&nbsp;:
-    </p>
-    <ul>
-      <li>une administration</li>
-      <li>
-        une entreprise prestataire d’une administration ou ayant une délégation
-        de service public
-      </li>
-    </ul>
-    <p>
-      Pour utiliser API Particulier, vous devez vous engager à traiter la bonne
-      donnée par le bon agent de votre administration et informer correctement
-      l’usager.
-    </p>
-  </div>
-);
-
-const contacts = {
-  metier: {
-    heading: 'Contact métier',
-    description: (
-      <Quote>
-        <p>
-          Cette personne sera contactée en cas de problème fonctionnel sur votre
-          service.
-        </p>
-      </Quote>
-    ),
-    email: '',
-    phone_number: '',
-  },
-  technique: {
-    heading: 'Responsable technique',
-    description: (
-      <Quote>
-        <p>
-          Cette personne recevra les accès techniques par mail. Elle sera
-          contactée en cas de problème technique sur votre service. Le
-          responsable technique peut être le contact technique de votre
-          prestataire.
-        </p>
-      </Quote>
-    ),
-    email: '',
-    phone_number: '',
-  },
-};
+import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 
 const CadreJuridiqueDescription = () => (
-  <Quote>
+  <>
     <p>
       Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
       légal et réglementaire des fournisseurs de service doit permettre à la
@@ -100,11 +45,11 @@ const CadreJuridiqueDescription = () => (
         l’inscription aux activités périscolaires."
       </li>
     </ul>
-  </Quote>
+  </>
 );
 
 const DonneesDescription = () => (
-  <Quote>
+  <>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -128,7 +73,7 @@ const DonneesDescription = () => (
       nécessaires à votre téléservice. Le non-respect du principe de
       proportionnalité vous expose vis-à-vis de la CNIL.
     </p>
-  </Quote>
+  </>
 );
 
 const availableScopes = [
@@ -310,7 +255,6 @@ const ApiParticulier = ({
   <Form
     enrollmentId={enrollmentId}
     target_api={target_api}
-    DemarcheDescription={DemarcheDescription}
     demarches={demarches}
     contactInformation={[
       {
@@ -322,11 +266,7 @@ const ApiParticulier = ({
   >
     <OrganisationSection />
     <DemarcheSection />
-    <DescriptionSection
-      intitulePlaceholder={
-        '« Calcul du quotient familial pour la facturation scolaire et périscolaire »'
-      }
-    />
+    <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
       DonneesDescription={DonneesDescription}
@@ -334,8 +274,7 @@ const ApiParticulier = ({
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <DonneesPersonnellesSection />
-    <MiseEnOeuvreSection initialContacts={contacts} />
+    <ÉquipeSection />
     <CguSection cguLink="https://api.gouv.fr/resources/CGU%20API%20Particulier.pdf" />
   </Form>
 );

@@ -5,6 +5,7 @@
 
 .scope_item {
   flex: 0 0 300px;
+  margin-bottom: 1rem;
 }
 
 .scope_comment {

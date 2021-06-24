@@ -39,7 +39,7 @@ const Stepper = ({
         </li>
       ))}
       <li className="check-mark">
-        <div>Vous pouvez ouvrir votre service&nbsp;!</div>
+        <div>Vous pouvez ouvrir votre service !</div>
       </li>
     </ul>
   );

@@ -16,7 +16,7 @@ const WelcomeMessage = ({
         <div className="call-to-action">
           {newEnrollmentPageMessage ||
             `Vous souhaitez connecter votre service en ligne à « ${TARGET_API_LABELS[targetApi]} »`}
-          , l’obtention de votre habilitation va se dérouler en 4 étapes :
+          , l’obtention de votre habilitation va se dérouler en 4 étapes :
           <NextSteps targetApi={targetApi} isService={isService} />
           <p>
             Merci de <b>créer un compte</b> pour déposer votre demande

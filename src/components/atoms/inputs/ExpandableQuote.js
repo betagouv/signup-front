@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './ExpandableQuote.css';
-import InfoIcon from '../icons/info';
-import UnfoldLessIcon from '../icons/unfold-less';
-import UnfoldMoreIcon from '../icons/unfold-more';
+import AlertIcon from '../icons/alert';
+import { ArrowDownIcon, ArrowUpIcon } from '../icons/fr-fi-icons';
 
 export const ExpandableQuote = ({ title, large, children }) => {
   const [expanded, setExpanded] = useState(false);
@@ -18,9 +17,9 @@ export const ExpandableQuote = ({ title, large, children }) => {
           className="expandable-quote-header"
           onClick={() => setExpanded(!expanded)}
         >
-          <InfoIcon color={'var(--blue)'} />
+          <AlertIcon />
           <div>{title}</div>
-          {expanded ? <UnfoldLessIcon /> : <UnfoldMoreIcon />}
+          {expanded ? <ArrowUpIcon /> : <ArrowDownIcon />}
         </div>
         <div className={`expandable-quote-content`}>{children}</div>
       </div>

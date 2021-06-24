@@ -6,6 +6,7 @@ export const NumberInput = ({
   label,
   helper,
   name,
+  meta,
   value = null,
   disabled,
   onChange,
@@ -30,6 +31,11 @@ export const NumberInput = ({
         disabled={disabled}
         value={value}
       />
+      {meta && (
+        <small className="card__meta">
+          <i>{meta}</i>
+        </small>
+      )}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TokenIcon = ({ color = '#0048b3', size = 56 }) => (
+const TokenIcon = ({ color = 'var(--datapass-blue)', size = 56 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}
@@ -13,7 +13,7 @@ const TokenIcon = ({ color = '#0048b3', size = 56 }) => (
       d="M10.6,32.2V15.8a10,10,0,0,1,10-10H14.5a10,10,0,0,0-10,10V32.2a10,10,0,0,0,10,10h6.07a10,10,0,0,1-10-10Z"
     />
     <path
-      fill={`${color || '#0048b3'}`}
+      fill={color}
       d="M41.6,44.2H14.4a12,12,0,0,1-12-12V15.8a12,12,0,0,1,12-12H41.6a12,12,0,0,1,12,12V32.2A12,12,0,0,1,41.6,44.2ZM14.4,7.8a8,8,0,0,0-8,8V32.2a8,8,0,0,0,8,8H41.6a8,8,0,0,0,8-8V15.8a8,8,0,0,0-8-8ZM39.6,50.2a2,2,0,0,0-2-2H18.4a2,2,0,1,0,0,4H37.6A2,2,0,0,0,39.6,50.2Z"
     />
     <path

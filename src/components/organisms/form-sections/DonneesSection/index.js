@@ -4,23 +4,26 @@ import _, { difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../../templates/Form';
-import UseCase from './UseCases';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import TextInput from '../../../atoms/inputs/TextInput';
+import NumberInput from '../../../atoms/inputs/NumberInput';
 
-const SECTION_LABEL = 'Données';
+const SECTION_LABEL = 'Les données nécessaires';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const DonneesSection = ({
   DonneesDescription = () => null,
-  AdditionalRgpdAgreement = () => null,
-  DonneesFootnote = () => null,
-  scopesLabel,
   availableScopes,
-  useCases = [],
 }) => {
   const {
     disabled,
     onChange,
-    enrollment: { additional_content = {}, scopes = {} },
+    enrollment: {
+      scopes = {},
+      data_recipients = '',
+      data_retention_period = '',
+      data_retention_comment = '',
+    },
   } = useContext(FormContext);
 
   useEffect(() => {
@@ -61,23 +64,11 @@ const DonneesSection = ({
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Les données dont vous avez besoin</h2>
-      <DonneesDescription />
-      <AdditionalRgpdAgreement
-        disabled={disabled}
-        onChange={onChange}
-        additional_content={additional_content}
-      />
-      {!isEmpty(useCases) && (
-        <UseCase availableScopes={availableScopes} useCases={useCases} />
-      )}
-      <p>
-        {scopesLabel
-          ? scopesLabel
-          : isEmpty(useCases)
-          ? 'Sélectionnez les données nécessaires à votre cas d’usage :'
-          : 'Liste des données correspondantes :'}
-      </p>
+      <h2>Les données nécessaires</h2>
+      <ExpandableQuote title="Comment choisir les données ?">
+        <DonneesDescription />
+      </ExpandableQuote>
+      <h3>À quelles données souhaitez-vous avoir accès ?</h3>
       {Object.keys(groupTitleScopesGroup).map((group) => (
         <Scopes
           key={group}
@@ -101,7 +92,63 @@ const DonneesSection = ({
           handleChange={() => null}
         />
       )}
-      <DonneesFootnote />
+      <h3>Comment seront traitées ces données personnelles ?</h3>
+      <TextInput
+        label="Destinataires des données *"
+        placeholder={
+          '« agents instructeurs des demandes d’aides », « usagers des ' +
+          'services publics de la ville », etc.'
+        }
+        meta={
+          <a
+            href="https://www.cnil.fr/fr/definition/destinataire"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Voir la définition CNIL du destinataire des données"
+          >
+            Plus d’infos
+          </a>
+        }
+        name="data_recipients"
+        value={data_recipients}
+        disabled={disabled}
+        onChange={onChange}
+        required
+      />
+      <NumberInput
+        label="Durée de conservation des données en mois *"
+        meta={
+          <a
+            href="https://www.cnil.fr/fr/les-durees-de-conservation-des-donnees"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Voir l’explication CNIL sur les durées de conservation des données"
+          >
+            Plus d’infos
+          </a>
+        }
+        name="data_retention_period"
+        value={data_retention_period}
+        disabled={disabled}
+        onChange={onChange}
+        required
+      />
+      {data_retention_period > 36 && (
+        <>
+          <div className="form__group">
+            <div className="notification warning">
+              Cette durée excède la durée communément constatée (36 mois).
+            </div>
+          </div>
+          <TextInput
+            label="Veuillez justifier cette durée dans le champ ci-après :"
+            name="data_retention_comment"
+            value={data_retention_comment}
+            disabled={disabled}
+            onChange={onChange}
+          />
+        </>
+      )}
     </ScrollablePanel>
   );
 };

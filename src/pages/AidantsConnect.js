@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import LabelsSection from '../components/organisms/form-sections/aidants-connect-sections/LabelsSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
 import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 import Quote from '../components/atoms/inputs/Quote';
 
@@ -100,7 +100,6 @@ const AidantsConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="aidants_connect"
-    title="Demande d’habilitation à Aidants Connect"
     documentationUrl="https://aidantsconnect.beta.gouv.fr/"
     contactInformation={[
       {

@@ -74,7 +74,7 @@ const OrganizationPrompt = ({
             <div className="form__group">
               <fieldset>
                 <legend>
-                  Sélectionnez l’organisation à associer à cette demande&nbsp;:
+                  Sélectionnez l’organisation à associer à cette demande :
                 </legend>
                 {organizations.map(({ id, siret }) => (
                   <div key={id}>

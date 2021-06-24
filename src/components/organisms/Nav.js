@@ -73,7 +73,7 @@ const Nav = ({
           <ul>
             {contactElements.map(({ tel, email, label, subject }) =>
               tel ? (
-                <li style={{ marginTop: '1em' }}>
+                <li key={label} style={{ marginTop: '1em' }}>
                   <Button
                     key={tel}
                     outline
@@ -85,7 +85,7 @@ const Nav = ({
                   </Button>
                 </li>
               ) : (
-                <li style={{ marginTop: '1em' }}>
+                <li key={label} style={{ marginTop: '1em' }}>
                   <Button
                     key={label}
                     outline

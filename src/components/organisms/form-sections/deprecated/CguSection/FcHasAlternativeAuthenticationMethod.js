@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
+import CheckboxInput from '../../../../atoms/inputs/CheckboxInput';
 
 const FcHasAlternativeAuthenticationMethod = ({
   disabled,

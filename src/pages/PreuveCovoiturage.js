@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 
 const DemarcheDescription = () => (
   <div className="notification grey">
@@ -44,7 +44,6 @@ const PreuveCovoiturage = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="preuve_covoiturage"
-    title="Demande d’accès au Registre de preuve de covoiturage"
     DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {

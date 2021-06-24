@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import _, { isEmpty, isString, xor } from 'lodash';
-import { FormContext } from '../../../templates/Form';
+import { FormContext } from '../../../../templates/Form';
 
 const CUSTOM_USE_CASE_LABEL = 'Autre';
 

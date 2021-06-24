@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AuthIcon = ({ color = '#0048b3', size = 56 }) => (
+const AuthIcon = ({ color = 'var(--datapass-blue)', size = 56 }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     height={size}

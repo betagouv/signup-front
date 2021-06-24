@@ -4,24 +4,19 @@ import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
-const SECTION_LABEL = 'Modalités d’utilisation';
+const SECTION_LABEL = 'Les modalités d’utilisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const CguSection = ({
-  CguDescription = () => null,
-  cguLink,
-  AdditionalCguContent = () => null,
-}) => {
+export const CguSection = ({ cguLink }) => {
   const {
     disabled,
     onChange,
-    enrollment: { cgu_approved = false, additional_content = {} },
+    enrollment: { cgu_approved = false, dpo_is_informed = false },
   } = useContext(FormContext);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Modalités d’utilisation</h2>
-      <CguDescription />
+      <h2>Les modalités d’utilisation</h2>
       <CheckboxInput
         label={
           <>
@@ -29,8 +24,7 @@ export const CguSection = ({
             <a href={cguLink} target="_blank" rel="noreferrer noopener">
               conditions générales d’utilisation
             </a>{' '}
-            et je les valide. Je confirme que le délégué à la protection des
-            données de mon organisation est informé de ma demande.
+            et je les valide.
           </>
         }
         name="cgu_approved"
@@ -38,10 +32,12 @@ export const CguSection = ({
         disabled={disabled}
         onChange={onChange}
       />
-      <AdditionalCguContent
-        additional_content={additional_content}
-        onChange={onChange}
+      <CheckboxInput
+        label="Je confirme que le délégué à la protection des données de mon organisation est informé de ma demande."
+        name="dpo_is_informed"
+        value={dpo_is_informed}
         disabled={disabled}
+        onChange={onChange}
       />
     </ScrollablePanel>
   );

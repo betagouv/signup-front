@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
-import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/CguSection/FcHasAlternativeAuthenticationMethod';
+import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/deprecated/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/CguSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
+import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
+import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
+import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
 import Quote from '../components/atoms/inputs/Quote';
 
@@ -61,7 +61,7 @@ const contacts = {
           téléphone doit être un numéro de téléphone mobile. Il sera utilisé
           pour envoyer un code d’accès. Le responsable technique peut être le
           contact technique de votre prestataire. Attention, ce courrier peut
-          parfois passer en «&nbsp;courriers indésirables&nbsp;».
+          parfois passer en « courriers indésirables ».
         </p>
       </Quote>
     ),
@@ -164,7 +164,6 @@ const FranceConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="franceconnect"
-    title="Demande d’habilitation juridique à FranceConnect"
     DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {
