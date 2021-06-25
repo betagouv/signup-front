@@ -21,9 +21,12 @@ export const RadioInput = ({
     <>
       <div className="form__group">
         <fieldset>
-          <legend>{label}</legend>
+          <legend style={{ marginBottom: 'var(--space-s)' }}>{label}</legend>
           {options.map(({ id: optionId, label: optionLabel }) => (
-            <div key={`${id}-${optionId}`}>
+            <div
+              key={`${id}-${optionId}`}
+              style={{ marginBottom: 'var(--space-s)' }}
+            >
               <input
                 type="radio"
                 name={name}
@@ -39,7 +42,7 @@ export const RadioInput = ({
             </div>
           ))}
           {useOtherOption && (
-            <div key={`${id}-other`}>
+            <div key={`${id}-other`} style={{ marginBottom: 'var(--space-s)' }}>
               <input
                 type="radio"
                 name={name}
