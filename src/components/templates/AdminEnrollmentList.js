@@ -155,7 +155,7 @@ class AdminEnrollmentList extends React.Component {
         ...enrollmentListStyle.cell,
         ...enrollmentListStyle.centeredCell,
       },
-      width: 60,
+      width: 65,
       filterable: true,
     },
     {
