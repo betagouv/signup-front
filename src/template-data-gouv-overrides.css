@@ -106,6 +106,13 @@ a.fr-link:focus {
   text-decoration: none;
 }
 
+/* a templates rules conflict with .fr-link a rules */
+a:focus,
+a:visited,
+a:active {
+  text-decoration: none;
+}
+
 /* a templates rules conflict with .fr-sidemenu__link dsfr rules */
 .fr-sidemenu__title a:visited {
   color: var(--g800);
