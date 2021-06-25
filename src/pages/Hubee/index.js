@@ -252,7 +252,7 @@ const Hubee = ({
       initialContacts={contacts}
     />
     <SolutionLogicielleSection />
-    <CguSection cguLink="" />
+    <CguSection cguLink="/docs/20210212_dinum_hubee_cgu_v2_1_0_version_site.pdf" />
   </Form>
 );
 
