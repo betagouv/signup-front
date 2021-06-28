@@ -26,6 +26,7 @@ export const TARGET_API_LABELS = {
   hubee: 'HubEE',
   api_pro_sante_connect: 'API Pro Santé Connect',
   api_declaration_auto_entrepreneur: 'API Tierce Déclaration auto-entrepreneur',
+  api_indemnites_journalieres_cnam: 'API Indemnités Journalières (CNAM)',
 };
 
 export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [

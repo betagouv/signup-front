@@ -38,6 +38,7 @@ import Hubee from './pages/Hubee';
 import Admin from './components/templates/Admin';
 import { withUser } from './components/organisms/UserContext';
 import ApiDeclarationAutoEntrepreneur from './pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
+import ApiIndemnitesJournalieresCnam from './pages/ApiIndemnitesJournalieresCnam';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -186,6 +187,11 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-pro-sante-connect/:enrollmentId?"
         component={ApiProSanteConnect}
+      />
+
+      <PrivateRoute
+        path="/api-indemnites-journalieres-cnam/:enrollmentId?"
+        component={ApiIndemnitesJournalieresCnam}
       />
 
       <PrivateRoute
