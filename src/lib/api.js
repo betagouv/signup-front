@@ -56,6 +56,7 @@ export const TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV = [
   // 'hubee',
   // 'api_pro_sante_connect',
   // 'api_declaration_auto_entrepreneur',
+  // 'api_indemnites_journalieres_cnam',
 ];
 
 export const API_ICONS = {
@@ -81,4 +82,5 @@ export const API_ICONS = {
   hubee: 'logo-dinum.png',
   api_pro_sante_connect: 'logo-ans.png',
   api_declaration_auto_entrepreneur: 'logo-urssaf.png',
+  api_indemnites_journalieres_cnam: 'logo-cnam.jpg',
 };
