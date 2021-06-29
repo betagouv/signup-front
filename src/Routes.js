@@ -39,6 +39,20 @@ import Admin from './components/templates/Admin';
 import { withUser } from './components/organisms/UserContext';
 import ApiDeclarationAutoEntrepreneur from './pages/UrssafPages/ApiDeclarationAutoEntrepreneur';
 import ApiIndemnitesJournalieresCnam from './pages/ApiIndemnitesJournalieresCnam';
+import ApiEContactsSandbox from './pages/DgfipPages/ApiEContactsSandbox';
+import ApiEContactsProduction from './pages/DgfipPages/ApiEContactsProduction';
+import ApiOpaleSandbox from './pages/DgfipPages/ApiOpaleSandbox';
+import ApiOpaleProduction from './pages/DgfipPages/ApiOpaleProduction';
+import ApiMireSandbox from './pages/DgfipPages/ApiMireSandbox';
+import ApiMireProduction from './pages/DgfipPages/ApiMireProduction';
+import ApiOcfiSandbox from './pages/DgfipPages/ApiOcfiSandbox';
+import ApiOcfiProduction from './pages/DgfipPages/ApiOcfiProduction';
+import ApiEProSandbox from './pages/DgfipPages/ApiEProSandbox';
+import ApiEProProduction from './pages/DgfipPages/ApiEProProduction';
+import ApiRobfSandbox from './pages/DgfipPages/ApiRobfSandbox';
+import ApiRobfProduction from './pages/DgfipPages/ApiRobfProduction';
+import ApiCprProSandbox from './pages/DgfipPages/ApiCprProSandbox';
+import ApiCprProProduction from './pages/DgfipPages/ApiCprProProduction';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -170,6 +184,76 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-hermes-production/:enrollmentId?"
         component={ApiHermesProduction}
+      />
+
+      <PrivateRoute
+        path="/api-e-contacts-sandbox/:enrollmentId?"
+        component={ApiEContactsSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-e-contacts-production/:enrollmentId?"
+        component={ApiEContactsProduction}
+      />
+
+      <PrivateRoute
+        path="/api-opale-sandbox/:enrollmentId?"
+        component={ApiOpaleSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-opale-production/:enrollmentId?"
+        component={ApiOpaleProduction}
+      />
+
+      <PrivateRoute
+        path="/api-mire-sandbox/:enrollmentId?"
+        component={ApiMireSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-mire-production/:enrollmentId?"
+        component={ApiMireProduction}
+      />
+
+      <PrivateRoute
+        path="/api-ocfi-sandbox/:enrollmentId?"
+        component={ApiOcfiSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-ocfi-production/:enrollmentId?"
+        component={ApiOcfiProduction}
+      />
+
+      <PrivateRoute
+        path="/api-e-pro-sandbox/:enrollmentId?"
+        component={ApiEProSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-e-pro-production/:enrollmentId?"
+        component={ApiEProProduction}
+      />
+
+      <PrivateRoute
+        path="/api-robf-sandbox/:enrollmentId?"
+        component={ApiRobfSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-robf-production/:enrollmentId?"
+        component={ApiRobfProduction}
+      />
+
+      <PrivateRoute
+        path="/api-cpr-pro-sandbox/:enrollmentId?"
+        component={ApiCprProSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-cpr-pro-production/:enrollmentId?"
+        component={ApiCprProProduction}
       />
 
       <PrivateRoute
