@@ -3,7 +3,10 @@
     "label": "Demande libre",
     "about": "https://entreprise.api.gouv.fr/use_cases/autres/",
     "state": {
+      "intitule": "",
       "description": "",
+      "fondement_juridique_title": "",
+      "data_recipients": "",
       "scopes": {
         "entreprises": false,
         "etablissements": false,
@@ -124,6 +127,16 @@
         "attestations_fiscales": true,
         "attestations_sociales": true
       }
+    }
+  },
+  "editeur": {
+    "label": "Spécifique aux éditeurs",
+    "about": "https://entreprise.api.gouv.fr/use_cases/editeurs/",
+    "state": {
+      "fondement_juridique_title": "Loi ou décret ou arrêté ...",
+      "intitule": "Nom de votre solution et cas d’usage (marchés publics, aides publiques ...)",
+      "description": "Dans l’objectif de traiter votre demande plus rapidement, nous vous remercions d’indiquer : à quel type d’acteur public s’adresse votre solution logicielle ; le nombre d’acteurs publics que vous avez déjà comme clients ; le cadre d’usage de votre outil (marchés publics, aides publiques ...), ce qu’il permet précisément de faire pour les utilisateurs ; et qui consommera la donnée. N’hésitez pas à nous transmettre une URL de votre solution ou tout lien vers un page explicative.",
+      "data_recipients": "Agents publics, usagers (entreprise ou association) ; service spécifique d’une administration ..."
     }
   }
 }
