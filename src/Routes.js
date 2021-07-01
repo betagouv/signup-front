@@ -53,6 +53,8 @@ import ApiRobfSandbox from './pages/DgfipPages/ApiRobfSandbox';
 import ApiRobfProduction from './pages/DgfipPages/ApiRobfProduction';
 import ApiCprProSandbox from './pages/DgfipPages/ApiCprProSandbox';
 import ApiCprProProduction from './pages/DgfipPages/ApiCprProProduction';
+import ApiInfinoeSandbox from './pages/DgfipPages/ApiInfinoeSandbox';
+import ApiInfinoeProduction from './pages/DgfipPages/ApiInfinoeProduction';
 
 export const Routes = ({ user }) => {
   const location = useLocation();
@@ -254,6 +256,16 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/api-cpr-pro-production/:enrollmentId?"
         component={ApiCprProProduction}
+      />
+
+      <PrivateRoute
+        path="/api-infinoe-sandbox/:enrollmentId?"
+        component={ApiInfinoeSandbox}
+      />
+
+      <PrivateRoute
+        path="/api-infinoe-production/:enrollmentId?"
+        component={ApiInfinoeProduction}
       />
 
       <PrivateRoute
