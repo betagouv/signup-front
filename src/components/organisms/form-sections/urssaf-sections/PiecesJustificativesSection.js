@@ -32,7 +32,7 @@ export const PiecesJustificativesSection = ({
         disabled={disabled}
         uploadedDocuments={documents}
         documentsToUpload={documents_attributes}
-        documentType={'Document::DecisionHomologation'}
+        documentType={'Document::AttestationFiscale'}
         onChange={onChange}
         label={'Attestation fiscale'}
       />
@@ -54,7 +54,7 @@ export const PiecesJustificativesSection = ({
             disabled={disabled}
             uploadedDocuments={documents}
             documentsToUpload={documents_attributes}
-            documentType={'Document::DecisionHomologation'}
+            documentType={'Document::HabilitationServiceDomicile'}
             onChange={onChange}
             label={'Habilitation service à domicile'}
           />
