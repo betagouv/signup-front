@@ -68,7 +68,7 @@
     "about": "https://api.gouv.fr/guides/portail-famille-tarif-activite-periscolaire",
     "state": {
       "intitule": "Dématérialisation du calcul du quotient/taux d'effort pour les structures gérés par les administrations/collectivités (petite enfance, enfance, jeunesse et adultes)",
-      "description": "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Les allocataires\n  - Les revenus déclarés aux différents organisme\n  - Adresse du foyer",
+      "description": "Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Cette démarche auprès des administrés nous permettra de récupérer les éléments nécessaires à appliquer pour le calcul des tarifs des différentes prestations.\n  - Les allocataires\n  - Les revenus déclarés aux différents organisme\n  - Adresse du foyer\n Nous sommes accompagnés par Agora.",
       "data_recipients": "Adresse du foyer",
       "data_retention_period": 12,
       "fondement_juridique_title": "En pièce jointe la délibération du conseil municipal ou la nature du texte qui justifie l'accès aux données",
@@ -115,9 +115,9 @@
       "fondement_juridique_title": "En pièce jointe la délibération ou la nature du texte qui justifie l'accès aux données",
       "scopes": {
         "cnaf_quotient_familial": true,
-        "cnaf_allocataires": false,
+        "cnaf_allocataires": true,
         "cnaf_enfants": false,
-        "cnaf_adresse": false
+        "cnaf_adresse": true
       },
       "contacts": {
         "technique": {
