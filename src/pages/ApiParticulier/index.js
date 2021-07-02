@@ -24,9 +24,11 @@ const CadreJuridiqueDescription = () => (
       délibération du conseil municipal explicitant l’usage des données
       demandées.
     </p>
-   <p>
-      Important : à priori, vous n’avez pas de nouvelle délibération à réaliser. 
-Il vous suffit de déposer la dernière délibération tarifaire qui détaille les barèmes de facturation des services, ou le règlement qui décrit les données nécessaires à une instruction.
+    <p>
+      Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
+      Il vous suffit de déposer la dernière délibération tarifaire qui détaille
+      les barèmes de facturation des services, ou le règlement qui décrit les
+      données nécessaires à une instruction.
     </p>
   </>
 );
