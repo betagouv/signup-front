@@ -25,26 +25,11 @@ const CadreJuridiqueDescription = () => (
       demandées.
     </p>
     <p>
-      Voici quelques exemples de formulations que vous pouvez faire apparaitre
-      dans la délibération :
+      Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
+      Il vous suffit de déposer la dernière délibération tarifaire qui détaille
+      les barèmes de facturation des services, ou le règlement qui décrit les
+      données nécessaires à une instruction.
     </p>
-    <ul>
-      <li>
-        "Le quotient familial se base sur la valeur transmise par la CNAF."
-      </li>
-      <li>
-        "Le quotient familial est calculé par division du revenu fiscal de
-        référence par le nombre de parts du foyer."
-      </li>
-      <li>
-        "L’adresse fiscale est collectée afin de vérifier que le demandeur
-        réside bien sur la commune de XXX."
-      </li>
-      <li>
-        "La liste des enfants fournie par la CNAF est nécessaire à pré-remplir
-        l’inscription aux activités périscolaires."
-      </li>
-    </ul>
   </>
 );
 
