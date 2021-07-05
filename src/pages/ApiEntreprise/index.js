@@ -292,6 +292,7 @@ const ApiEntreprise = ({
         tel: '07 49 88 96 01',
       },
     ]}
+    documentationUrl="https://entreprise.api.gouv.fr/doc/"
   >
     <OrganisationSection />
     <DemarcheSection />
