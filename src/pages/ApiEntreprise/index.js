@@ -289,7 +289,7 @@ const ApiEntreprise = ({
         subject: 'Contact%20via%20datapass.api.gouv.fr%20-%20API%20Entreprise',
       },
       {
-        tel: '+33622814166',
+        tel: '07 49 88 96 01',
       },
     ]}
   >
@@ -301,6 +301,7 @@ const ApiEntreprise = ({
       DonneesDescription={DonneesDescription}
     />
     <CadreJuridiqueSection
+      fondementJuridiqueTitlePlaceholder="« loi », « décret », « arrêté », etc."
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
     <DonneesPersonnellesSection dataRetentionPeriodHelper="durée d'archivage légale liée à la démarche administrative" />

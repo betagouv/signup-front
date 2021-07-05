@@ -29,7 +29,10 @@ const Label = ({ fondement_juridique_url }) => (
   </>
 );
 
-const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
+const CadreJuridiqueSection = ({
+  CadreJuridiqueDescription = () => null,
+  fondementJuridiqueTitlePlaceholder,
+}) => {
   const {
     disabled,
     onChange,
@@ -53,7 +56,10 @@ const CadreJuridiqueSection = ({ CadreJuridiqueDescription = () => null }) => {
           </>
         }
         name="fondement_juridique_title"
-        placeholder="« loi », « décret », « délibération », etc."
+        placeholder={
+          fondementJuridiqueTitlePlaceholder ||
+          '« loi », « décret », « délibération », etc.'
+        }
         value={fondement_juridique_title}
         disabled={disabled}
         onChange={onChange}
