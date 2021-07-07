@@ -36,7 +36,7 @@ export const DonneesSection = () => {
           value={location_scopes}
           disabled={disabled}
           onChange={onChange}
-          rows={1}
+          rows={5}
         />
         <FileInput
           label={
