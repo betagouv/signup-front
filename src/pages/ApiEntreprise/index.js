@@ -137,7 +137,7 @@ const availableScopes = [
   },
   {
     value: 'effectifs_acoss',
-    label: 'Effectifs d’une entreprise - ACOSS',
+    label: 'Effectifs d’une entreprise - ACOSS 🔐',
     groupTitle: 'Informations générales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-effectifs_..._acoss_covid',
   },
@@ -149,7 +149,7 @@ const availableScopes = [
   },
   {
     value: 'exercices',
-    label: 'Chiffre d’affaires - DGFIP',
+    label: 'Chiffre d’affaires - DGFIP 🔐',
     groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-exercices',
   },
@@ -161,25 +161,25 @@ const availableScopes = [
   },
   {
     value: 'bilans_entreprise_bdf',
-    label: '3 derniers bilans annuels - Banque de France',
+    label: '3 derniers bilans annuels - Banque de France 🔐',
     groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-bilans_entreprises_bdf',
   },
   {
     value: 'liasse_fiscale',
-    label: 'Déclarations de résultat - DGFIP',
+    label: 'Déclarations de résultat - DGFIP 🔐',
     groupTitle: 'Informations financières :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-liasses_fiscales_dgfip',
   },
   {
     value: 'attestations_fiscales',
-    label: 'Attestation fiscale - DGFIP',
+    label: 'Attestation fiscale - DGFIP 🔐',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-attestations_fiscales_dgfip',
   },
   {
     value: 'attestations_sociales',
-    label: 'Attestation de vigilance - ACOSS',
+    label: 'Attestation de vigilance - ACOSS 🔐',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-attestations_sociales_acoss',
   },
@@ -191,13 +191,13 @@ const availableScopes = [
   },
   {
     value: 'msa_cotisations',
-    label: 'Cotisations de sécurité sociale agricole - MSA',
+    label: 'Cotisations de sécurité sociale agricole - MSA 🔐',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-cotisations_msa',
   },
   {
     value: 'probtp',
-    label: 'Cotisations retraite bâtiment - ProBTP',
+    label: 'Cotisations retraite bâtiment - ProBTP 🔐',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-cotisation_retraite_probtp',
   },
@@ -209,7 +209,7 @@ const availableScopes = [
   },
   {
     value: 'certificat_cnetp',
-    label: 'Cotisations congés payés & chômage intempéries - CNETP',
+    label: 'Cotisations congés payés & chômage intempéries - CNETP 🔐',
     groupTitle: 'Attestations sociales et fiscales :',
     link: 'https://entreprise.api.gouv.fr/catalogue/#a-certificats_cnetp',
   },
