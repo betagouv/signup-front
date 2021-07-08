@@ -11,28 +11,6 @@ import CguSection from '../../components/organisms/form-sections/CguSection';
 import demarches from './demarches.json';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 
-const CadreJuridiqueDescription = () => (
-  <>
-    <p>
-      Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
-      légal et réglementaire des fournisseurs de service doit permettre à la
-      DINUM de transmettre des données personnelles à votre entité
-      administrative.
-    </p>
-    <p>
-      Dans le cas où vous représentez une collectivité, veuillez joindre la
-      délibération du conseil municipal explicitant l’usage des données
-      demandées.
-    </p>
-    <p>
-      Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
-      Il vous suffit de déposer la dernière délibération tarifaire qui détaille
-      les barèmes de facturation des services, ou le règlement qui décrit les
-      données nécessaires à une instruction.
-    </p>
-  </>
-);
-
 const DonneesDescription = () => (
   <>
     <p>
@@ -57,6 +35,28 @@ const DonneesDescription = () => (
       Nous vous remercions de sélectionner uniquement les données strictement
       nécessaires à votre téléservice. Le non-respect du principe de
       proportionnalité vous expose vis-à-vis de la CNIL.
+    </p>
+  </>
+);
+
+const CadreJuridiqueDescription = () => (
+  <>
+    <p>
+      Pour pouvoir bénéficier du raccordement à l’API Particulier, le cadre
+      légal et réglementaire des fournisseurs de service doit permettre à la
+      DINUM de transmettre des données personnelles à votre entité
+      administrative.
+    </p>
+    <p>
+      Dans le cas où vous représentez une collectivité, veuillez joindre la
+      délibération du conseil municipal explicitant l’usage des données
+      demandées.
+    </p>
+    <p>
+      Important : à priori, vous n’avez pas de nouvelle délibération à réaliser.
+      Il vous suffit de déposer la dernière délibération tarifaire qui détaille
+      les barèmes de facturation des services, ou le règlement qui décrit les
+      données nécessaires à une instruction.
     </p>
   </>
 );

@@ -2,77 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
-import FcHasAlternativeAuthenticationMethod from '../components/organisms/form-sections/deprecated/CguSection/FcHasAlternativeAuthenticationMethod';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import DescriptionSection from '../components/organisms/form-sections/deprecated/DescriptionSection';
-import DonneesSection from '../components/organisms/form-sections/deprecated/DonneesSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
 import FranceConnectPlusSection from '../components/organisms/form-sections/FranceConnectPlusSection';
-import CadreJuridiqueSection from '../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
-import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import ÉquipeSection, {
+  getDefaultResponsableTechniqueDescription,
+} from '../components/organisms/form-sections/ÉquipeSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
 import HasNextEnrollmentsNotification from '../components/templates/Form/HasNextEnrollmentsNotification';
-import Quote from '../components/atoms/inputs/Quote';
 
-const DemarcheDescription = () => (
-  <div className="notification grey">
+const DonneesDescription = () => (
+  <>
     <p>
-      Pour implémenter FranceConnect sur votre site en ligne, vous devez obtenir
-      une habilitation. L’accès à ce service n’est pour l’instant disponible que
-      si vous êtes :
+      Nous vous remercions de sélectionner uniquement les données strictement
+      nécessaires à votre téléservice. Le non-respect du principe de
+      proportionnalité vous expose vis-à-vis de la CNIL.
     </p>
-    <ul>
-      <li>une administration</li>
-      <li>
-        une entreprise prestataire d’une administration ou ayant une délégation
-        de service public
-      </li>
-      <li>
-        un partenaire privé du service public de changement d’adresse en ligne :
-        fournisseurs d’énergie, d’eau, opérateurs de communications
-        électroniques et services postaux
-      </li>
-      <li>
-        un organisme délivrant des prestations répondant à des obligations
-        légales (assurances, banques)
-      </li>
-      <li>
-        une entreprise proposant des services dont l’usage impose la
-        vérification de l’identité ou d’un de ses attributs (majorité légale par
-        exemple)
-      </li>
-    </ul>
     <p>
-      À la clé ? La garantie de transactions sécurisées grâce au dispositif
-      FranceConnect. Les utilisateurs quant à eux, gagneront en facilité d’accès
-      à ces nouveaux services auxquels ils pourront se connecter via
-      FranceConnect, sans avoir à créer un compte et un mot de passe.
+      Le nom d‘usage n’existant pas toujours, vous devez obligatoirement
+      sélectionner le nom de naissance si vous sélectionnez le nom d’usage.
     </p>
-  </div>
+  </>
 );
 
-const contacts = {
-  technique: {
-    heading: 'Responsable technique',
-    description: (
-      <Quote>
-        <p>
-          Cette personne recevra les accès techniques par mail. Le numéro de
-          téléphone doit être un numéro de téléphone mobile. Il sera utilisé
-          pour envoyer un code d’accès. Le responsable technique peut être le
-          contact technique de votre prestataire. Attention, ce courrier peut
-          parfois passer en « courriers indésirables ».
-        </p>
-      </Quote>
-    ),
-    email: '',
-    phone_number: '',
-    display_mobile_phone_label: true,
-  },
-};
-
 const CadreJuridiqueDescription = () => (
-  <Quote>
+  <>
     <p>
       Pour pouvoir bénéficier du raccordement à FranceConnect, le cadre légal et
       réglementaire qui s’applique à votre entité (administration ou entreprise)
@@ -96,8 +52,16 @@ const CadreJuridiqueDescription = () => (
         réglementaire qui s’applique à votre entité.
       </li>
     </ul>
-  </Quote>
+  </>
 );
+
+const contacts = {
+  technique: {
+    heading: 'Responsable technique',
+    description: getDefaultResponsableTechniqueDescription(true),
+    display_mobile_phone_label: true,
+  },
+};
 
 export const availableScopes = [
   {
@@ -164,7 +128,6 @@ const FranceConnect = ({
   <Form
     enrollmentId={enrollmentId}
     target_api="franceconnect"
-    DemarcheDescription={DemarcheDescription}
     contactInformation={[
       {
         email: 'support.partenaires@franceconnect.gouv.fr',
@@ -172,23 +135,34 @@ const FranceConnect = ({
         subject: 'Contact%20via%20datapass.api.gouv.fr',
       },
     ]}
+    documentationUrl="https://partenaires.franceconnect.gouv.fr/monprojet/cadrage"
   >
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
-    <DescriptionSection
-      intitulePlaceholder="« Se connecter au portail famille de ma ville »"
-      descriptionPlaceholder="« Permettre de faciliter la connexion au portail famille de ma ville sans demander de document papier aux usagers »"
+    <DescriptionSection />
+    <DonneesSection
+      availableScopes={availableScopes}
+      DonneesDescription={DonneesDescription}
     />
-    <DonneesSection availableScopes={availableScopes} />
     <FranceConnectPlusSection />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
-    <DonneesPersonnellesSection dataRetentionPeriodHelper="À compter de la cessation de la relation contractuelle" />
-    <MiseEnOeuvreSection initialContacts={contacts} />
+    <ÉquipeSection initialContacts={contacts} />
     <CguSection
       cguLink="https://partenaires.franceconnect.gouv.fr/cgu"
-      AdditionalCguContent={FcHasAlternativeAuthenticationMethod}
+      additionalTermsOfUse={[
+        {
+          id: 'has_alternative_authentication_methods',
+          label: (
+            <>
+              J’atteste que mon service propose une alternative à la connexion
+              avec FranceConnect, et que cette alternative permet l’accès, dans
+              des conditions analogues, à la même prestation de service public.
+            </>
+          ),
+        },
+      ]}
     />
   </Form>
 );
