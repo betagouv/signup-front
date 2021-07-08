@@ -286,3 +286,23 @@ export const findModifiedFields = (
   });
   return modified;
 };
+
+export const isValidPhoneNumber = (phoneNumber) => {
+  if (!isString(phoneNumber)) {
+    return false;
+  }
+
+  // loose homemade regexp to match large amount of phone number
+  const phone_number_regex = /^\+?(?:[0-9][ -]?){6,14}[0-9]$/;
+
+  return !!phoneNumber.match(phone_number_regex);
+};
+
+export const isValidMobilePhoneNumber = (phoneNumber) => {
+  if (!isValidPhoneNumber(phoneNumber)) {
+    return false;
+  }
+
+  const mobile_phone_prefix_regexp = /^(\+33|0)\s*[6-7].*/;
+  return !!phoneNumber.match(mobile_phone_prefix_regexp);
+};

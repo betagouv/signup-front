@@ -7,6 +7,7 @@ import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
 import Button from '../../../atoms/Button';
+import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
 
 export const Contact = ({
   id,
@@ -126,6 +127,13 @@ export const Contact = ({
           }du ${heading}`}
           required
         />
+        {display_mobile_phone_label &&
+          isValidPhoneNumber(phone_number) &&
+          !isValidMobilePhoneNumber(phone_number) && (
+            <div className="notification error">
+              Ce numéro ne correspond pas à un numéro de téléphone mobile
+            </div>
+          )}
       </div>
     </div>
   );
