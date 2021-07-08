@@ -10,6 +10,24 @@ import { UserContext } from '../../UserContext';
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
+export const getDefaultResponsableTechniqueDescription = (
+  useMobilePhone = false
+) => (
+  <>
+    <b>Le responsable technique</b> recevra les accès techniques par mail
+    (attention, ce courrier peut parfois passer en « courriers indésirables »).{' '}
+    {useMobilePhone && (
+      <>
+        Le numéro de téléphone doit être un numéro de téléphone mobile. Il sera
+        utilisé pour envoyer un code d’accès.
+      </>
+    )}{' '}
+    Cette personne sera contactée en cas de problème technique sur votre
+    service. Le responsable technique peut être le contact technique de votre
+    prestataire.
+  </>
+);
+
 const ÉquipeSection = ({
   initialContacts = {},
   title = 'Les personnes impliquées',
@@ -50,14 +68,7 @@ const ÉquipeSection = ({
       const defaultContacts = {
         technique: {
           heading: 'Responsable technique',
-          description: (
-            <>
-              <b>Le responsable technique</b> recevra les accès techniques par
-              mail. Il sera contacté en cas de problème technique sur votre
-              service. Le responsable technique peut être le contact technique
-              de votre prestataire.
-            </>
-          ),
+          description: getDefaultResponsableTechniqueDescription(),
         },
       };
 

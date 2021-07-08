@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { isEmpty } from 'lodash';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
@@ -7,11 +8,15 @@ import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 const SECTION_LABEL = 'Les modalités d’utilisation';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-export const CguSection = ({ cguLink }) => {
+export const CguSection = ({ cguLink, additionalTermsOfUse = [] }) => {
   const {
     disabled,
     onChange,
-    enrollment: { cgu_approved = false, dpo_is_informed = false },
+    enrollment: {
+      cgu_approved = false,
+      dpo_is_informed = false,
+      additional_content,
+    },
   } = useContext(FormContext);
 
   return (
@@ -39,6 +44,17 @@ export const CguSection = ({ cguLink }) => {
         disabled={disabled}
         onChange={onChange}
       />
+      {!isEmpty(additionalTermsOfUse) &&
+        additionalTermsOfUse.map(({ id, label }) => (
+          <CheckboxInput
+            key={id}
+            label={label}
+            name={`additional_content.${id}`}
+            value={additional_content[id] || false}
+            disabled={disabled}
+            onChange={onChange}
+          />
+        ))}
     </ScrollablePanel>
   );
 };

@@ -5,7 +5,7 @@ import { FormContext } from '../../templates/Form';
 import RadioInput from '../../atoms/inputs/RadioInput';
 import ExpandableQuote from '../../atoms/inputs/ExpandableQuote';
 
-const SECTION_LABEL = 'Niveau de garantie';
+const SECTION_LABEL = 'Le niveau de garantie';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const FranceConnectPlusSection = () => {
