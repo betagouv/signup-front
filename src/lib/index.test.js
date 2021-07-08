@@ -5,7 +5,9 @@ import {
   getErrorMessages,
   getStateFromUrlParams,
   hashToQueryParams,
+  isValidMobilePhoneNumber,
   isValidNAFCode,
+  isValidPhoneNumber,
   objectToCollectionWithKey,
 } from './index';
 
@@ -522,6 +524,56 @@ describe('utils', () => {
           }
         )
       ).toStrictEqual(['intitule']);
+    });
+  });
+
+  describe('isValidPhoneNumber', () => {
+    it('should return false for empty phone number', () => {
+      expect(isValidPhoneNumber()).toStrictEqual(false);
+    });
+    it('should return false for non string value', () => {
+      expect(isValidPhoneNumber([])).toStrictEqual(false);
+    });
+    it('should return true for valid phone number no spaces', () => {
+      expect(isValidPhoneNumber('0123456789')).toStrictEqual(true);
+    });
+    it('should return true for valid phone number with spaces', () => {
+      expect(isValidPhoneNumber('01 23 45 67 89')).toStrictEqual(true);
+    });
+    it('should return true for valid phone number with country indicator', () => {
+      expect(isValidPhoneNumber('+33 1 23 45 67 89')).toStrictEqual(true);
+    });
+  });
+
+  describe('isValidMobilePhoneNumber', () => {
+    it('should return false for empty phone number', () => {
+      expect(isValidMobilePhoneNumber()).toStrictEqual(false);
+    });
+    it('should return false for non string value', () => {
+      expect(isValidMobilePhoneNumber([])).toStrictEqual(false);
+    });
+    it('should return false for valid phone number no spaces', () => {
+      expect(isValidMobilePhoneNumber('0123456789')).toStrictEqual(false);
+    });
+    it('should return false for valid phone number with spaces', () => {
+      expect(isValidMobilePhoneNumber('01 23 45 67 89')).toStrictEqual(false);
+    });
+    it('should return false for valid phone number with country indicator', () => {
+      expect(isValidMobilePhoneNumber('+33 1 73 45 67 89')).toStrictEqual(
+        false
+      );
+    });
+    it('should return true for valid mobile phone number no spaces 06', () => {
+      expect(isValidMobilePhoneNumber('0623456789')).toStrictEqual(true);
+    });
+    it('should return true for valid mobile phone number no spaces 07', () => {
+      expect(isValidMobilePhoneNumber('0623456789')).toStrictEqual(true);
+    });
+    it('should return true for valid mobile phone number with spaces 06', () => {
+      expect(isValidMobilePhoneNumber('06 23 45 67 89')).toStrictEqual(true);
+    });
+    it('should return true for valid mobile phone number with country indicator 07', () => {
+      expect(isValidMobilePhoneNumber('+33 7 23 45 67 89')).toStrictEqual(true);
     });
   });
 });
