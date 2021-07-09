@@ -61,13 +61,18 @@ export const Contact = ({
     <div className="card contact-item">
       <div className="card__content">
         <h3>{heading}</h3>
-        {!given_name && !family_name && !email && !phone_number && !job && (
-          <div className="form__group">
-            <Button outline onClick={fillWithUserInformation}>
-              🖐️ c’est moi : remplir avec mes info
-            </Button>
-          </div>
-        )}
+        {!disabled &&
+          !given_name &&
+          !family_name &&
+          !email &&
+          !phone_number &&
+          !job && (
+            <div className="form__group">
+              <Button outline onClick={fillWithUserInformation}>
+                🖐️ c’est moi : remplir avec mes info
+              </Button>
+            </div>
+          )}
 
         <div className="form-row">
           <div className="form-col">

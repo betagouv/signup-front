@@ -9,6 +9,7 @@ import _, {
   mergeWith,
   omitBy,
   forOwn,
+  slice,
 } from 'lodash';
 import flatten from 'flat';
 
@@ -305,4 +306,35 @@ export const isValidMobilePhoneNumber = (phoneNumber) => {
 
   const mobile_phone_prefix_regexp = /^(\+33|0)\s*[6-7].*/;
   return !!phoneNumber.match(mobile_phone_prefix_regexp);
+};
+
+export const stackLowUseAndUnpublishedApi = (
+  publishedApis,
+  enrollmentByTargetApi,
+  maxApiToDisplay = 13
+) => {
+  const publishedEnrollmentByTargetApi = enrollmentByTargetApi.filter(
+    ({ name }) => publishedApis.includes(name)
+  );
+
+  const filteredEnrollmentByTargetApi = slice(
+    publishedEnrollmentByTargetApi,
+    0,
+    maxApiToDisplay
+  );
+
+  let otherCount = enrollmentByTargetApi
+    .filter(({ name }) => !publishedApis.includes(name))
+    .reduce((accumulator, { count }) => accumulator + count, 0);
+
+  otherCount = slice(publishedEnrollmentByTargetApi, maxApiToDisplay).reduce(
+    (accumulator, { count }) => accumulator + count,
+    otherCount
+  );
+
+  if (otherCount > 0) {
+    filteredEnrollmentByTargetApi.push({ name: 'others', count: otherCount });
+  }
+
+  return filteredEnrollmentByTargetApi;
 };

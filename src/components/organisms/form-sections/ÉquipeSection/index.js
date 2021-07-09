@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { isEmpty } from 'lodash';
+import { isEmpty, merge, omitBy } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
@@ -58,7 +58,21 @@ const ÉquipeSection = ({
     if (isEmpty(owner)) {
       setOwnerInformation(user);
     } else {
-      setOwnerInformation(owner);
+      // `value` prop on `input` should not be null
+      // Set null fields to empty string to ensure component is not turned into
+      // uncontrolled input by React.
+      setOwnerInformation(
+        merge(
+          {
+            given_name: '',
+            family_name: '',
+            email: '',
+            phone_number: '',
+            job: '',
+          },
+          omitBy(owner, (e) => e === null)
+        )
+      );
     }
   }, [owner, user]);
 
