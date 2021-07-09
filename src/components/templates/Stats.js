@@ -28,6 +28,7 @@ import {
 import Helper from '../atoms/Helper';
 import Loader from '../atoms/Loader';
 import ListHeader from '../molecules/ListHeader';
+import { stackLowUseAndUnpublishedApi } from '../../lib';
 
 // inspired from http://colrd.com/palette/19308/
 const COLORS = [
@@ -73,7 +74,15 @@ export const Stats = ({
   useEffect(() => {
     async function fetchStats() {
       const result = await getAPIStats(targetApi);
-      setStats(result.data);
+
+      setStats({
+        ...result.data,
+        enrollment_by_target_api: stackLowUseAndUnpublishedApi(
+          TARGET_API_WITH_ENROLLMENTS_IN_PRODUCTION_ENV,
+          result.data.enrollment_by_target_api,
+          10
+        ),
+      });
     }
 
     fetchStats();
@@ -270,7 +279,9 @@ export const Stats = ({
                     <Tooltip
                       formatter={(value, name, props) => [
                         value,
-                        TARGET_API_LABELS[name],
+                        value === 'others'
+                          ? 'Autres'
+                          : TARGET_API_LABELS[value],
                         props,
                       ]}
                     />
@@ -279,7 +290,10 @@ export const Stats = ({
                       align={'right'}
                       verticalAlign={'middle'}
                       formatter={(value) =>
-                        TARGET_API_LABELS[value].substring(0, 25)
+                        (value === 'others'
+                          ? 'Autres'
+                          : TARGET_API_LABELS[value]
+                        ).substring(0, 25)
                       }
                     />
                   </PieChart>

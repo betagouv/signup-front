@@ -1,4 +1,5 @@
 import {
+  stackLowUseAndUnpublishedApi,
   collectionWithKeyToObject,
   findModifiedFields,
   getChangelog,
@@ -574,6 +575,65 @@ describe('utils', () => {
     });
     it('should return true for valid mobile phone number with country indicator 07', () => {
       expect(isValidMobilePhoneNumber('+33 7 23 45 67 89')).toStrictEqual(true);
+    });
+  });
+
+  describe('stackLowUseAndUnpublishedApi', () => {
+    it('should return anonymised count by api collection', () => {
+      const enrollment_by_target_api = [
+        {
+          name: 'published_1',
+          count: 5,
+        },
+        {
+          name: 'not_published',
+          count: 4,
+        },
+        {
+          name: 'published_2',
+          count: 3,
+        },
+        {
+          name: 'published_3',
+          count: 2,
+        },
+        {
+          name: 'not_published',
+          count: 1,
+        },
+        {
+          name: 'published_4',
+          count: 1,
+        },
+      ];
+
+      const publishedApis = [
+        'published_1',
+        'published_2',
+        'published_3',
+        'published_4',
+      ];
+
+      expect(
+        stackLowUseAndUnpublishedApi(publishedApis, enrollment_by_target_api, 3)
+      ).toStrictEqual([
+        {
+          name: 'published_1',
+          count: 5,
+        },
+        {
+          name: 'published_2',
+          count: 3,
+        },
+        {
+          name: 'published_3',
+          count: 2,
+        },
+        {
+          name: 'others',
+          count: 6,
+        },
+      ]);
     });
   });
 });
