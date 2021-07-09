@@ -166,7 +166,7 @@
         "entreprises": true,
         "etablissements": true,
         "extraits_rcs": true,
-        "associations": false,
+        "associations": true,
         "documents_association": true,
         "actes_inpi": false,
         "conventions_collectives": true,
