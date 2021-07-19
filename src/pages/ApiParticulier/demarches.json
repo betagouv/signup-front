@@ -318,7 +318,7 @@
         "dgfip_annee_revenus": true,
         "dgfip_erreur_correctif": true,
         "dgfip_situation_partielle": true,
-        "cnaf_quotient_familial": true,
+        "cnaf_quotient_familial": true
       }
     }
   },
