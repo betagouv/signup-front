@@ -58,6 +58,9 @@ const CadreJuridiqueDescription = () => (
       les barèmes de facturation des services, ou le règlement qui décrit les
       données nécessaires à une instruction.
     </p>
+    <p>
+      Pour en savoir plus, consultez <a href="https://api.gouv.fr/guides/deliberation-api-part"> notre guide sur ce qu’est une bonne délibération</a>.
+    </p>
   </>
 );
 
