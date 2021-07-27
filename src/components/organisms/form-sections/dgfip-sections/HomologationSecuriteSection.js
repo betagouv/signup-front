@@ -2,11 +2,11 @@ import React, { useContext } from 'react';
 import FileInput from '../../../molecules/FileInput';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
-import Quote from '../../../atoms/inputs/Quote';
 import TextInput from '../../../atoms/inputs/TextInput';
 import DateInput from '../../../atoms/inputs/DateInput';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 
-const SECTION_LABEL = 'Homologation de sécurité';
+const SECTION_LABEL = 'L’homologation de sécurité';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const HomologationSecuriteSection = () => {
@@ -27,8 +27,8 @@ const HomologationSecuriteSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Homologation de sécurité</h2>
-      <Quote>
+      <h2>L’homologation de sécurité</h2>
+      <ExpandableQuote title="Pourquoi effectuer une homologation de sécurité ?">
         <p>
           Le Référentiel Général de Sécurité (RGS 2.0) rend la démarche
           d’homologation obligatoire pour les SI relatifs aux échanges entre une
@@ -40,7 +40,7 @@ const HomologationSecuriteSection = () => {
           décision formelle d’homologation (également appelée attestation
           formelle).
         </p>
-      </Quote>
+      </ExpandableQuote>
       <TextInput
         label="Nom de l’autorité d’homologation"
         name="additional_content.autorite_homologation_nom"

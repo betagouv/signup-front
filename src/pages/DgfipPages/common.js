@@ -22,7 +22,7 @@ export const contacts = {
 };
 
 export const DonneesDescription = () => (
-  <Quote>
+  <>
     <p>
       La loi informatique et libertés définit les principes à respecter lors de
       la collecte, du traitement et de la conservation de données personnelles.
@@ -49,7 +49,7 @@ export const DonneesDescription = () => (
       Le non-respect du principe de proportionnalité vous expose vis à vis de la
       CNIL.
     </p>
-  </Quote>
+  </>
 );
 
 export const SuiteDescription = () => (

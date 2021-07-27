@@ -4,14 +4,13 @@ import PropTypes from 'prop-types';
 import Form from '../../components/templates/Form';
 import HomologationSecuriteSection from '../../components/organisms/form-sections/dgfip-sections/HomologationSecuriteSection';
 import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/deprecated/CadreJuridiqueSection';
-import DonneesPersonnellesSection from '../../components/organisms/form-sections/deprecated/DonneesPersonnellesSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
-import CguSection from '../../components/organisms/form-sections/deprecated/CguSection';
+import CguSection from '../../components/organisms/form-sections/CguSection';
 import {
   DemarcheDescriptionProduction as DemarcheDescription,
   PreviousEnrollmentDescription,
 } from './common';
+import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 
 const target_api = 'api_r2p_production';
 const steps = ['api_r2p_sandbox', target_api];
@@ -30,7 +29,6 @@ const ApiR2PProduction = ({
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[50, 200, 1000]} />
