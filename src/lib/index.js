@@ -199,18 +199,6 @@ export function collectionWithKeyToObject(collection) {
   );
 }
 
-export function objectToCollectionWithKey(object) {
-  return (
-    _(object)
-      // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
-      .toPairs()
-      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
-      .map(([id, attributes]) => ({ id, ...attributes }))
-      // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
-      .value()
-  );
-}
-
 export function openLink(e, history, targetUrl) {
   if (e.ctrlKey || e.metaKey) {
     // metaKey is cmd on mac

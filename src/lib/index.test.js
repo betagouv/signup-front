@@ -9,7 +9,6 @@ import {
   isValidMobilePhoneNumber,
   isValidNAFCode,
   isValidPhoneNumber,
-  objectToCollectionWithKey,
 } from './index';
 
 describe('utils', () => {
@@ -299,49 +298,6 @@ describe('utils', () => {
         a: { attr1: 'a1', attr2: 'a2' },
         b: { attr1: 'b1', attr2: 'b2' },
       });
-    });
-  });
-
-  describe('collectionWithKeyToObject', () => {
-    it('should return empty object for empty array', () => {
-      expect(objectToCollectionWithKey({})).toStrictEqual([]);
-    });
-
-    it('should return empty object for undefined', () => {
-      expect(objectToCollectionWithKey(undefined)).toStrictEqual([]);
-    });
-
-    it('should turn collection with key into object', () => {
-      const object = {
-        a: { attr1: 'a1', attr2: 'a2' },
-        b: { attr1: 'b1', attr2: 'b2' },
-      };
-      expect(objectToCollectionWithKey(object)).toStrictEqual([
-        { id: 'a', attr1: 'a1', attr2: 'a2' },
-        { id: 'b', attr1: 'b1', attr2: 'b2' },
-      ]);
-    });
-
-    it('should be inverse of collectionWithKeyToObject', () => {
-      expect(
-        objectToCollectionWithKey(collectionWithKeyToObject([]))
-      ).toStrictEqual([]);
-    });
-
-    it('should return array even for unexpected undefined in input', () => {
-      expect(
-        objectToCollectionWithKey(collectionWithKeyToObject(undefined))
-      ).toStrictEqual([]);
-    });
-
-    it('should be inverse of collectionWithKeyToObject', () => {
-      const collectionWithKey = [
-        { id: 'a', attr1: 'a1', attr2: 'a2' },
-        { id: 'b', attr1: 'b1', attr2: 'b2' },
-      ];
-      expect(
-        objectToCollectionWithKey(collectionWithKeyToObject(collectionWithKey))
-      ).toStrictEqual(collectionWithKey);
     });
   });
 

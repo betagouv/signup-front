@@ -1,10 +1,6 @@
 import jsonToFormData from '../lib/json-form-data';
 import httpClient from '../lib/http-client';
-import {
-  collectionWithKeyToObject,
-  hashToQueryParams,
-  objectToCollectionWithKey,
-} from '../lib';
+import { hashToQueryParams } from '../lib';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -13,11 +9,7 @@ export function serializeEnrollment(enrollment) {
 }
 
 export function createOrUpdateEnrollment({ enrollment }) {
-  const formatedEnrollment = {
-    ...enrollment,
-    contacts: objectToCollectionWithKey(enrollment.contacts),
-  };
-  const serializedEnrollment = serializeEnrollment(formatedEnrollment);
+  const serializedEnrollment = serializeEnrollment(enrollment);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -25,20 +17,13 @@ export function createOrUpdateEnrollment({ enrollment }) {
   };
 
   if (enrollment.id) {
-    return (
-      httpClient
-        .patch(
-          `${BACK_HOST}/api/enrollments/${enrollment.id}`,
-          serializedEnrollment,
-          config
-        )
-        // format contact to a more usable structure
-        // the backend should be able to use this structure to in the future
-        .then(({ data: enrollment }) => ({
-          ...enrollment,
-          contacts: collectionWithKeyToObject(enrollment.contacts),
-        }))
-    );
+    return httpClient
+      .patch(
+        `${BACK_HOST}/api/enrollments/${enrollment.id}`,
+        serializedEnrollment,
+        config
+      )
+      .then(({ data: enrollment }) => enrollment);
   }
 
   return (
@@ -46,10 +31,7 @@ export function createOrUpdateEnrollment({ enrollment }) {
       .post(`${BACK_HOST}/api/enrollments/`, serializedEnrollment, config)
       // format contact to a more usable structure
       // the backend should be able to use this structure to in the future
-      .then(({ data: enrollment }) => ({
-        ...enrollment,
-        contacts: collectionWithKeyToObject(enrollment.contacts),
-      }))
+      .then(({ data: enrollment }) => enrollment)
   );
 }
 
@@ -63,10 +45,7 @@ export function getUserEnrollment(id) {
       })
       // format contact to a more usable structure
       // the backend should be able to use this structure to in the future
-      .then(({ data: enrollment }) => ({
-        ...enrollment,
-        contacts: collectionWithKeyToObject(enrollment.contacts),
-      }))
+      .then(({ data: enrollment }) => enrollment)
   );
 }
 
@@ -141,24 +120,14 @@ export function getEnrollments({
 export function getUserValidatedEnrollments(targetApi) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won’t be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
-  return (
-    getEnrollments({
-      filter: [
-        { id: 'status', value: 'validated' },
-        { id: 'target_api', value: targetApi },
-      ],
-      detailed: true,
-      size: 100,
-    })
-      // format contact to a more usable structure
-      // the backend should be able to use this structure too in the future
-      .then(({ enrollments }) =>
-        enrollments.map((e) => ({
-          ...e,
-          contacts: collectionWithKeyToObject(e.contacts),
-        }))
-      )
-  );
+  return getEnrollments({
+    filter: [
+      { id: 'status', value: 'validated' },
+      { id: 'target_api', value: targetApi },
+    ],
+    detailed: true,
+    size: 100,
+  }).then(({ enrollments }) => enrollments);
 }
 
 export function getUserEnrollments() {

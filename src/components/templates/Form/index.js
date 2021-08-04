@@ -17,6 +17,7 @@ import Nav from '../../organisms/Nav';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 import Tag from '../../atoms/Tag';
 import statusToButtonType from '../../../lib/status-to-button-type';
+import { withUser } from '../../organisms/UserContext';
 
 export const FormContext = React.createContext();
 
@@ -70,6 +71,7 @@ export const Form = ({
   target_api,
   enrollmentId = null,
   history,
+  user,
   demarches = null,
   children,
   documentationUrl,
@@ -93,6 +95,16 @@ export const Form = ({
         send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
       },
       status: 'pending',
+      team_members: [
+        {
+          type: 'demandeur',
+          email: user.email,
+          family_name: user.family_name,
+          given_name: user.given_name,
+          job: user.job,
+          phone_number: user.phone_number,
+        },
+      ],
       events: [],
       target_api,
       additional_content: {},
@@ -308,4 +320,4 @@ Form.propTypes = {
   }),
 };
 
-export default withRouter(Form);
+export default withRouter(withUser(Form));
