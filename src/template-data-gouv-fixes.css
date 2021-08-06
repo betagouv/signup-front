@@ -122,12 +122,11 @@ select {
 }
 
 /* fix: header & form__group spacing */
-.form__group + h3 {
+.form__group + h2,
+h2 + .form__group,
+.form__group + h3,
+h3 + .form__group,
+.form__group + h4,
+h4 + .form__group {
   margin-top: var(--space-l);
-  margin-bottom: var(--space-l);
-}
-
-.form__group + h4 {
-  margin-top: var(--space-l);
-  margin-bottom: var(--space-l);
 }
