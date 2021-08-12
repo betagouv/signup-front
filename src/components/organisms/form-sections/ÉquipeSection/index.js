@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
-import { findIndex, isEmpty, uniqueId } from 'lodash';
+import React, { useContext, useEffect, useMemo } from 'react';
+import _, { findIndex, isEmpty, uniqueId } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import { UserContext } from '../../UserContext';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -82,9 +83,9 @@ const ÉquipeSection = ({
     onChange,
     enrollment: { team_members = [] },
   } = useContext(FormContext);
-
-  const contactConfiguration = {
-    ...{
+  const { user } = useContext(UserContext);
+  const contactConfiguration = useMemo(
+    () => ({
       demandeur: {
         header: 'Demandeur',
         description: getDefaultDemandeurDescription(),
@@ -103,30 +104,51 @@ const ÉquipeSection = ({
         description: getDefaultResponsableTechniqueDescription(),
       },
       ...initialContacts,
-    },
-  };
+    }),
+    [initialContacts]
+  );
 
   useEffect(() => {
-    Object.entries(contactConfiguration).forEach(([type]) => {
-      if (
-        !isUserEnrollmentLoading &&
-        !disabled &&
-        !team_members.some(({ type: t }) => t === type)
-      ) {
-        const id = uniqueId(`tmp_`);
-        onChange({
-          target: {
-            name: 'team_members',
-            value: [...team_members, { type, id }],
-          },
-        });
-      }
-    });
-  });
+    const newTeamMembers = _(contactConfiguration)
+      .keys()
+      .map((type) => {
+        if (team_members.some(({ type: t }) => t === type)) {
+          return null;
+        }
 
-  if (isEmpty(team_members)) {
-    return null;
-  }
+        const id = uniqueId(`tmp_`);
+        let newTeamMember = { type, tmp_id: id };
+        if (type === 'demandeur') {
+          newTeamMember = {
+            ...newTeamMember,
+            email: user.email,
+            family_name: user.family_name,
+            given_name: user.given_name,
+            job: user.job,
+            phone_number: user.phone_number,
+          };
+        }
+        return newTeamMember;
+      })
+      .compact()
+      .value();
+
+    if (!isUserEnrollmentLoading && !disabled && !isEmpty(newTeamMembers)) {
+      onChange({
+        target: {
+          name: 'team_members',
+          value: [...team_members, ...newTeamMembers],
+        },
+      });
+    }
+  }, [
+    isUserEnrollmentLoading,
+    disabled,
+    user,
+    onChange,
+    team_members,
+    contactConfiguration,
+  ]);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -142,11 +164,15 @@ const ÉquipeSection = ({
             ([type, { header, forceDisable, displayMobilePhoneLabel }]) =>
               team_members
                 .filter(({ type: t }) => t === type)
-                .map((team_member) => (
+                .map(({ id, tmp_id, ...team_member }) => (
                   <Contact
                     heading={header}
-                    key={type}
-                    index={findIndex(team_members, ['id', team_member.id])}
+                    key={id || tmp_id}
+                    index={findIndex(
+                      team_members,
+                      ({ id: i, tmp_id: _i }) =>
+                        (i && i === id) || (_i && _i === tmp_id)
+                    )}
                     {...team_member}
                     displayMobilePhoneLabel={displayMobilePhoneLabel}
                     disabled={forceDisable || disabled}

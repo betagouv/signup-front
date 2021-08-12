@@ -10,7 +10,6 @@ import Button from '../../../atoms/Button';
 import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
 
 export const Contact = ({
-  type,
   heading,
   index,
   given_name = '',

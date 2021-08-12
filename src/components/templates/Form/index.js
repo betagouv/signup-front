@@ -95,16 +95,6 @@ export const Form = ({
         send_application: true, // Enable edition for new enrollment (ie. enrollment has no id)
       },
       status: 'pending',
-      team_members: [
-        {
-          type: 'demandeur',
-          email: user.email,
-          family_name: user.family_name,
-          given_name: user.given_name,
-          job: user.job,
-          phone_number: user.phone_number,
-        },
-      ],
       events: [],
       target_api,
       additional_content: {},

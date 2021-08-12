@@ -8,21 +8,35 @@ export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });
 }
 
-export function createOrUpdateEnrollment({ enrollment }) {
-  const serializedEnrollment = serializeEnrollment(enrollment);
+export function createOrUpdateEnrollment({
+  enrollment: {
+    status,
+    updated_at,
+    created_at,
+    id,
+    siret,
+    nom_raison_sociale,
+    acl,
+    events,
+    team_members,
+    documents,
+    ...enrollment
+  },
+}) {
+  const formattedEnrollment = {
+    ...enrollment,
+    team_members_attributes: team_members,
+  };
+  const serializedEnrollment = serializeEnrollment(formattedEnrollment);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   };
 
-  if (enrollment.id) {
+  if (id) {
     return httpClient
-      .patch(
-        `${BACK_HOST}/api/enrollments/${enrollment.id}`,
-        serializedEnrollment,
-        config
-      )
+      .patch(`${BACK_HOST}/api/enrollments/${id}`, serializedEnrollment, config)
       .then(({ data: enrollment }) => enrollment);
   }
 
