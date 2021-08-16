@@ -69,7 +69,7 @@ export const DonneesFootnote = () => {
         <small className="card__meta">
           <i>
             <a
-              href="/docs/presentation_de_l_api_impot_particulier_v1.8.pdf"
+              href="/docs/presentation_de_l_api_impot_particulier_v1_9.pdf"
               target="_blank"
               rel="noreferrer noopener"
               aria-label="Document pdf précisant les données proposées"
