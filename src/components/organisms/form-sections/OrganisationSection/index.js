@@ -192,7 +192,7 @@ const OrganisationSection = () => {
                   title="Modifier mes informations"
                   outline
                   icon="edit"
-                  href={`${BACK_HOST}/api/users/personal-information`}
+                  href={`${BACK_HOST}/api/users/personal_information`}
                 />
               )}
             </div>

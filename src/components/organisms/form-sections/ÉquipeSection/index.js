@@ -168,6 +168,7 @@ const ÉquipeSection = ({
                   <Contact
                     heading={header}
                     key={id || tmp_id}
+                    id={id}
                     index={findIndex(
                       team_members,
                       ({ id: i, tmp_id: _i }) =>

@@ -174,43 +174,25 @@ export function computeNextEnrollmentState({ action, id, comment }) {
   );
 }
 
-export function updateRgpdContact({
-  enrollmentId,
+export function updateTeamMember({
+  teamMemberId,
   nom,
   prenom,
   email,
   phoneNumber,
   job,
-  role,
 }) {
-  const enrollment = {};
-  if (nom) enrollment[`${role}_family_name`] = nom;
-  if (prenom) enrollment[`${role}_given_name`] = prenom;
-  if (email) enrollment[`${role}_email`] = email;
-  if (phoneNumber) enrollment[`${role}_phone_number`] = phoneNumber;
-  if (job) enrollment[`${role}_job`] = job;
-  const serializedEnrollment = serializeEnrollment(enrollment);
+  const team_member = {};
+  if (nom) team_member[`family_name`] = nom;
+  if (prenom) team_member[`given_name`] = prenom;
+  if (email) team_member[`email`] = email;
+  if (phoneNumber) team_member[`phone_number`] = phoneNumber;
+  if (job) team_member[`job`] = job;
+  const serializedTeamMember = jsonToFormData({ team_member });
   return httpClient
     .patch(
-      `${BACK_HOST}/api/enrollments/${enrollmentId}/update_rgpd_contact`,
-      serializedEnrollment,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    )
-    .then(({ data }) => data);
-}
-
-export function updateOwner({ enrollmentId, email }) {
-  const enrollment = {};
-  enrollment[`user_email`] = email;
-  const serializedEnrollment = serializeEnrollment(enrollment);
-  return httpClient
-    .patch(
-      `${BACK_HOST}/api/enrollments/${enrollmentId}/update_owner`,
-      serializedEnrollment,
+      `${BACK_HOST}/api/team_members/${teamMemberId}`,
+      serializedTeamMember,
       {
         headers: {
           'Content-Type': 'multipart/form-data',

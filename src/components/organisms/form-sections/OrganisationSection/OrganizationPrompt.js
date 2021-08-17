@@ -102,7 +102,7 @@ const OrganizationPrompt = ({
             <Button
               large
               outline
-              href={`${BACK_HOST}/api/users/join-organization`}
+              href={`${BACK_HOST}/api/users/join_organization`}
             >
               Faire une demande pour une autre organisation
             </Button>

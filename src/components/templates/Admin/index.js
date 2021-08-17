@@ -1,8 +1,7 @@
 import React from 'react';
-import UpdateRgpdContact from './UpdateRgpdContact';
+import UpdateTeamMember from './UpdateTeamMember';
 import UserList from './UserList';
 import AddUser from './AddUser';
-import UpdateOwner from './UpdateOwner';
 
 export const Admin = () => (
   <section className="section-grey full-width-container">
@@ -13,8 +12,7 @@ export const Admin = () => (
     </div>
     <UserList />
     <AddUser />
-    <UpdateRgpdContact />
-    <UpdateOwner />
+    <UpdateTeamMember />
   </section>
 );
 

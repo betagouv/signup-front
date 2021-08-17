@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { updateRgpdContact } from '../../../services/enrollments';
+import { updateTeamMember } from '../../../services/enrollments';
 import { getErrorMessages } from '../../../lib';
 import TextInput from '../../atoms/inputs/TextInput';
-import RadioInput from '../../atoms/inputs/RadioInput';
 
-export const UpdateRgpdContact = () => {
-  const [enrollmentId, setEnrollmentId] = useState('');
+export const UpdateTeamMember = () => {
+  const [teamMemberId, setTeamMemberId] = useState('');
   const [nom, setNom] = useState('');
   const [prenom, setPrenom] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [job, setJob] = useState('');
-  const [role, setRole] = useState('');
   const [success, setSuccess] = useState();
   const [error, setError] = useState(null);
 
@@ -19,22 +17,20 @@ export const UpdateRgpdContact = () => {
     event.preventDefault();
     try {
       setSuccess(false);
-      await updateRgpdContact({
-        enrollmentId,
+      await updateTeamMember({
+        teamMemberId,
         nom: nom.trim(),
         prenom: prenom.trim(),
         email: email.trim(),
         phoneNumber: phoneNumber.trim(),
         job: job.trim(),
-        role,
       });
-      setEnrollmentId('');
+      setTeamMemberId('');
       setNom('');
       setPrenom('');
       setEmail('');
       setPhoneNumber('');
       setJob('');
-      setRole('');
       setError(null);
       setSuccess(true);
     } catch (e) {
@@ -44,7 +40,7 @@ export const UpdateRgpdContact = () => {
 
   return (
     <div className="panel">
-      <h2>Modification des contacts RGPD</h2>
+      <h2>Modification d’un membre de l’équipe</h2>
       {success && (
         <div className="notification success">
           Contact mis à jour et mail envoyé avec succès !
@@ -53,9 +49,9 @@ export const UpdateRgpdContact = () => {
       {error && <div className="notification error">{error}</div>}
       <form onSubmit={onSubmit}>
         <TextInput
-          label="Identifiant de la demande"
-          onChange={({ target: { value } }) => setEnrollmentId(value)}
-          value={enrollmentId}
+          label="Identifiant du contact"
+          onChange={({ target: { value } }) => setTeamMemberId(value)}
+          value={teamMemberId}
           required
         />
         <TextInput
@@ -88,25 +84,13 @@ export const UpdateRgpdContact = () => {
           onChange={({ target: { value } }) => setPhoneNumber(value)}
           value={phoneNumber}
         />
-        <RadioInput
-          label="Type de contact"
-          options={[
-            {
-              id: 'responsable_traitement',
-              label: 'Responsable de traitement',
-            },
-            { id: 'dpo', label: 'Délégué à la protection de données' },
-          ]}
-          onChange={({ target: { value } }) => setRole(value)}
-          value={role}
-          useOtherOption={false}
-        />
         <button type="submit">
-          Mettre à jour le contact et lui envoyer le mail RGPD
+          Mettre à jour le contact et lui envoyer un mail (si il est
+          correspondant RGPD)
         </button>
       </form>
     </div>
   );
 };
 
-export default UpdateRgpdContact;
+export default UpdateTeamMember;

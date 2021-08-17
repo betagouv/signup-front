@@ -33,15 +33,15 @@ const HasNextEnrollmentsNotification = ({ enrollmentId }) => {
     <div className="notification info">
       Cette demande est liée{' '}
       {severalNexts ? 'aux demandes suivantes' : 'à la demande suivante'} :
-      {nextEnrollments.map((enrollment) => (
-        <ul>
-          <li>
+      <ul>
+        {nextEnrollments.map((enrollment) => (
+          <li key={enrollment.id}>
             <a href={`/authorization-request/${enrollment.id}`}>
               Demande {formatNextEnrollment(enrollment)}
             </a>
           </li>
-        </ul>
-      ))}
+        ))}
+      </ul>
     </div>
   );
 };

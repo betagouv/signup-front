@@ -11,6 +11,7 @@ import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
 
 export const Contact = ({
   heading,
+  id,
   index,
   given_name = '',
   family_name = '',
@@ -60,7 +61,10 @@ export const Contact = ({
   return (
     <div className="card contact-item">
       <div className="card__content">
-        <h3>{heading}</h3>
+        <h3>
+          {heading}
+          {user && user.roles.includes('administrator') && <> (id: {id})</>}
+        </h3>
         {!disabled &&
           !given_name &&
           !family_name &&
