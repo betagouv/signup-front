@@ -43,7 +43,14 @@
         "pole_emploi_adresse": false,
         "pole_emploi_inscription": false
       },
-      "contacts": {}
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
+          "email": "",
+          "phone_number": ""
+        }
+      ]
     }
   },
   "abelium": {
@@ -78,12 +85,14 @@
         "cnaf_enfants": true,
         "cnaf_adresse": true
       },
-      "contacts": {
-        "technique": {
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
           "email": "projet@agoraplus.fr",
           "phone_number": "0184160095"
         }
-      }
+      ]
     }
   },
   "arpege-concerto": {
@@ -119,12 +128,14 @@
         "cnaf_enfants": false,
         "cnaf_adresse": true
       },
-      "contacts": {
-        "technique": {
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
           "email": "enfance.mes@berger-levrault.com",
           "phone_number": "0561395284"
         }
-      }
+      ]
     }
   },
   "cantine-de-france": {
@@ -141,12 +152,14 @@
         "cnaf_enfants": true,
         "cnaf_adresse": true
       },
-      "contacts": {
-        "technique": {
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
           "email": "contact@jdealise.fr",
           "phone_number": "0972473612"
         }
-      }
+      ]
     }
   },
   "ccas": {
@@ -211,12 +224,14 @@
         "cnaf_enfants": false,
         "cnaf_adresse": false
       },
-      "contacts": {
-        "technique": {
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
           "email": "technique@mushroom-software.com",
           "phone_number": "0674577622"
         }
-      }
+      ]
     }
   },
   "entrouvert-publik": {
@@ -371,12 +386,14 @@
         "cnaf_enfants": false,
         "cnaf_adresse": false
       },
-      "contacts": {
-        "technique": {
+      "team_members": [
+        {
+          "type": "technique",
+          "tmp_id": "tmp_technique",
           "email": "technique@waigeo.fr",
           "phone_number": "0970805210"
         }
-      }
+      ]
     }
   }
 }
