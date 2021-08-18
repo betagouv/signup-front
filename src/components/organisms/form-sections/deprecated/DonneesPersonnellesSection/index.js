@@ -1,29 +1,52 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RgpdContact from './RgpdContact';
 import { ScrollablePanel } from '../../../Scrollable';
 import { FormContext } from '../../../../templates/Form';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import NumberInput from '../../../../atoms/inputs/NumberInput';
+import _, { findIndex, isEmpty, uniqueId } from 'lodash';
 
 const SECTION_LABEL = 'Données personnelles';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
   const {
+    isUserEnrollmentLoading,
     disabled,
     onChange,
     enrollment: {
       data_recipients = '',
       data_retention_period = '',
       data_retention_comment = '',
-      responsable_traitement_family_name = '',
-      responsable_traitement_email = '',
-      responsable_traitement_phone_number = '',
-      dpo_family_name = '',
-      dpo_email = '',
-      dpo_phone_number = '',
+      team_members = [],
     },
   } = useContext(FormContext);
+
+  useEffect(() => {
+    const newTeamMembers = _([
+      'responsable_traitement',
+      'delegue_protection_donnees',
+    ])
+      .map((type) => {
+        if (team_members.some(({ type: t }) => t === type)) {
+          return null;
+        }
+
+        const id = uniqueId(`tmp_`);
+        return { type, tmp_id: id };
+      })
+      .compact()
+      .value();
+
+    if (!isUserEnrollmentLoading && !disabled && !isEmpty(newTeamMembers)) {
+      onChange({
+        target: {
+          name: 'team_members',
+          value: [...team_members, ...newTeamMembers],
+        },
+      });
+    }
+  }, [isUserEnrollmentLoading, disabled, onChange, team_members]);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -79,22 +102,27 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
       )}
       <div className="form__group">
         <div className="row">
-          <RgpdContact
-            type={'responsable_traitement'}
-            family_name={responsable_traitement_family_name}
-            email={responsable_traitement_email}
-            phone_number={responsable_traitement_phone_number}
-            disabled={disabled}
-            onChange={onChange}
-          />
-          <RgpdContact
-            type={'dpo'}
-            family_name={dpo_family_name}
-            email={dpo_email}
-            phone_number={dpo_phone_number}
-            disabled={disabled}
-            onChange={onChange}
-          />
+          {['responsable_traitement', 'delegue_protection_donnees'].map(
+            (type) =>
+              team_members
+                .filter(({ type: t }) => t === type)
+                .map(({ id, tmp_id, family_name, email, phone_number }) => (
+                  <RgpdContact
+                    key={id || tmp_id}
+                    index={findIndex(
+                      team_members,
+                      ({ id: i, tmp_id: _i }) =>
+                        (i && i === id) || (_i && _i === tmp_id)
+                    )}
+                    type={type}
+                    family_name={family_name || ''}
+                    email={email || ''}
+                    phone_number={phone_number || ''}
+                    disabled={disabled}
+                    onChange={onChange}
+                  />
+                ))
+          )}
         </div>
       </div>
     </ScrollablePanel>
