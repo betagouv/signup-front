@@ -5,11 +5,17 @@ import { FormContext } from '../../../../templates/Form';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import NumberInput from '../../../../atoms/inputs/NumberInput';
 import _, { findIndex, isEmpty, uniqueId } from 'lodash';
+import { UserContext } from '../../../UserContext';
 
 const SECTION_LABEL = 'Données personnelles';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
+// doInitializeDemandeur should be set to true if MiseEnOeuvreSection is not used in the form.
+// MiseEnOeuvreSection usually get the responsibility to initialize demandeur team_member.
+const DonneesPersonnellesSection = ({
+  dataRetentionPeriodHelper = '',
+  doInitializeDemandeur = false,
+}) => {
   const {
     isUserEnrollmentLoading,
     disabled,
@@ -22,18 +28,39 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
     },
   } = useContext(FormContext);
 
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
-    const newTeamMembers = _([
+    let teamMembersTypeToInitialize = [
       'responsable_traitement',
       'delegue_protection_donnees',
-    ])
+    ];
+    if (doInitializeDemandeur) {
+      teamMembersTypeToInitialize = [
+        'demandeur',
+        ...teamMembersTypeToInitialize,
+      ];
+    }
+
+    const newTeamMembers = _(teamMembersTypeToInitialize)
       .map((type) => {
         if (team_members.some(({ type: t }) => t === type)) {
           return null;
         }
 
         const id = uniqueId(`tmp_`);
-        return { type, tmp_id: id };
+        let newTeamMember = { type, tmp_id: id };
+        if (type === 'demandeur') {
+          newTeamMember = {
+            ...newTeamMember,
+            email: user.email,
+            family_name: user.family_name,
+            given_name: user.given_name,
+            job: user.job,
+            phone_number: user.phone_number,
+          };
+        }
+        return newTeamMember;
       })
       .compact()
       .value();
@@ -46,7 +73,14 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
         },
       });
     }
-  }, [isUserEnrollmentLoading, disabled, onChange, team_members]);
+  }, [
+    isUserEnrollmentLoading,
+    disabled,
+    onChange,
+    team_members,
+    user,
+    doInitializeDemandeur,
+  ]);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>

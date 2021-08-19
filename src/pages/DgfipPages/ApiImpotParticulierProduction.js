@@ -32,7 +32,7 @@ const ApiImpotParticulierProduction = ({
     documentationUrl="https://api.gouv.fr/les-api/impot-particulier"
   >
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection />
+    <DonneesPersonnellesSection doInitializeDemandeur={true} />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />
