@@ -12,7 +12,7 @@ import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 import Quote from '../components/atoms/inputs/Quote';
 
 const contacts = {
-  metier: {
+  contact_metier: {
     heading: 'Responsable Aidants Connect',
     description: (
       <Quote>

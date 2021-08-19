@@ -16,7 +16,7 @@ import Quote from '../../components/atoms/inputs/Quote';
 import WarningEmoji from '../../components/atoms/icons/WarningEmoji';
 
 const contacts = {
-  metier: {
+  contact_metier: {
     heading: 'Contact métier',
     description: (
       <Quote>
@@ -31,7 +31,7 @@ const contacts = {
     email: '',
     phone_number: '',
   },
-  technique: {
+  responsable_technique: {
     heading: 'Contact technique',
     description: (
       <Quote>

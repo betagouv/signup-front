@@ -2,7 +2,7 @@ import React from 'react';
 import Quote from '../../components/atoms/inputs/Quote';
 
 export const contacts = {
-  metier: {
+  contact_metier: {
     heading: 'Contact métier',
     description: (
       <Quote>
@@ -17,7 +17,7 @@ export const contacts = {
     email: '',
     phone_number: '',
   },
-  technique: {
+  responsable_technique: {
     heading: 'Responsable technique',
     description: (
       <Quote>

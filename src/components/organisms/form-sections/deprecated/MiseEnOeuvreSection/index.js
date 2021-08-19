@@ -34,7 +34,7 @@ const MiseEnOeuvreSection = ({
   const contactConfiguration = useMemo(() => {
     let res = { demandeur: {} };
     if (isEmpty(initialContacts)) {
-      res['technique'] = {
+      res['responsable_technique'] = {
         heading: 'Responsable technique',
         description: (
           <Quote>
@@ -105,7 +105,7 @@ const MiseEnOeuvreSection = ({
       <MiseEnOeuvreDescription />
       <div className="form__group">
         <div className="row">
-          {['metier', 'technique'].map(
+          {['contact_metier', 'responsable_technique'].map(
             (type) =>
               !isEmpty(contactConfiguration[type]) &&
               team_members
@@ -178,12 +178,12 @@ const MiseEnOeuvreSection = ({
 MiseEnOeuvreSection.sectionLabel = SECTION_LABEL;
 
 const contactPropTypesShape = {
-  technique: PropTypes.shape({
+  responsable_technique: PropTypes.shape({
     heading: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,
   }),
-  metier: PropTypes.shape({
+  contact_metier: PropTypes.shape({
     heading: PropTypes.string,
     email: PropTypes.string,
     phone_number: PropTypes.string,

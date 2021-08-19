@@ -56,7 +56,7 @@ const CadreJuridiqueDescription = () => (
 );
 
 const contacts = {
-  technique: {
+  responsable_technique: {
     header: 'Responsable technique',
     description: getDefaultResponsableTechniqueDescription(true),
     displayMobilePhoneLabel: true,

@@ -164,7 +164,7 @@ describe('utils', () => {
           {
             email: 'raphael.dubigny@beta.gouv.fr',
             heading: 'Responsable technique',
-            id: 'technique',
+            id: 'responsable_technique',
             nom: 'Raphaël Dubigny',
             phone_number: '0123456789',
           },
@@ -187,7 +187,7 @@ describe('utils', () => {
           {
             email: 'raphael.dubigny@beta.gouv.fr',
             heading: 'Responsable technique',
-            id: 'technique',
+            id: 'responsable_technique',
             nom: 'Raphaël Dubigny',
             phone_number: '0123456789',
           },
@@ -448,12 +448,12 @@ describe('utils', () => {
               additional_content: {},
             },
             contacts: {
-              metier: {
+              contact_metier: {
                 heading: 'Contact métier',
                 email: '',
                 phone_number: '',
               },
-              technique: {
+              responsable_technique: {
                 heading: 'Responsable technique',
                 email: '',
                 phone_number: '',

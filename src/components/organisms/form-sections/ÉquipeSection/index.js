@@ -99,7 +99,7 @@ const ÉquipeSection = ({
         header: 'Délégué à la protection des données',
         description: getDefaultDelegueProtectionDonneesDescription(),
       },
-      technique: {
+      responsable_technique: {
         header: 'Responsable technique',
         description: getDefaultResponsableTechniqueDescription(),
       },
