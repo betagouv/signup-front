@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import _, { findIndex, isEmpty, uniqueId } from 'lodash';
+import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../../Scrollable';
 import { FormContext } from '../../../../templates/Form';
@@ -54,7 +54,7 @@ const MiseEnOeuvreSection = ({
   }, [initialContacts]);
 
   useEffect(() => {
-    const newTeamMembers = _(contactConfiguration)
+    const newTeamMembers = chain(contactConfiguration)
       .keys()
       .map((type) => {
         if (team_members.some(({ type: t }) => t === type)) {
@@ -124,8 +124,18 @@ const MiseEnOeuvreSection = ({
                       key={id || tmp_id}
                       index={findIndex(
                         team_members,
-                        ({ id: i, tmp_id: _i }) =>
-                          (i && i === id) || (_i && _i === tmp_id)
+                        ({ id: i, tmp_id: t_i }) => {
+                          if (id) {
+                            // if id is defined match on id field
+                            return i === id;
+                          }
+                          if (tmp_id) {
+                            // if id is not defined and tmp_id is defined
+                            // match on tmp_id
+                            return t_i === tmp_id;
+                          }
+                          return false;
+                        }
                       )}
                       heading={contactConfiguration[type].heading}
                       description={contactConfiguration[type].description}

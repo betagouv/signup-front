@@ -4,7 +4,7 @@ import { ScrollablePanel } from '../../../Scrollable';
 import { FormContext } from '../../../../templates/Form';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import NumberInput from '../../../../atoms/inputs/NumberInput';
-import _, { findIndex, isEmpty, uniqueId } from 'lodash';
+import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
 import { UserContext } from '../../../UserContext';
 
 const SECTION_LABEL = 'Données personnelles';
@@ -42,9 +42,12 @@ const DonneesPersonnellesSection = ({
       ];
     }
 
-    const newTeamMembers = _(teamMembersTypeToInitialize)
+    const newTeamMembers = chain(teamMembersTypeToInitialize)
       .map((type) => {
-        if (team_members.some(({ type: t }) => t === type)) {
+        const isMemberAlreadyInitialized = team_members.some(
+          ({ type: t }) => t === type
+        );
+        if (isMemberAlreadyInitialized) {
           return null;
         }
 
@@ -143,11 +146,18 @@ const DonneesPersonnellesSection = ({
                 .map(({ id, tmp_id, family_name, email, phone_number }) => (
                   <RgpdContact
                     key={id || tmp_id}
-                    index={findIndex(
-                      team_members,
-                      ({ id: i, tmp_id: _i }) =>
-                        (i && i === id) || (_i && _i === tmp_id)
-                    )}
+                    index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
+                      if (id) {
+                        // if id is defined match on id field
+                        return i === id;
+                      }
+                      if (tmp_id) {
+                        // if id is not defined and tmp_id is defined
+                        // match on tmp_id
+                        return t_i === tmp_id;
+                      }
+                      return false;
+                    })}
                     type={type}
                     family_name={family_name || ''}
                     email={email || ''}

@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
-import _ from 'lodash';
+import { chain } from 'lodash';
 import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/Button';
@@ -27,10 +27,11 @@ const Enrollment = ({
   );
 
   const lastUpdateEvent = useMemo(() => {
-    return _(events)
+    return chain(events)
       .sortBy('updated_at')
       .filter(({ name }) => ['created', 'updated'].includes(name))
-      .last();
+      .last()
+      .value();
   }, [events]);
 
   return (

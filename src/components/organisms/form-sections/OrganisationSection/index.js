@@ -48,15 +48,13 @@ const OrganisationSection = () => {
   const [personalInformation, setPersonalInformation] = useState({});
 
   useEffect(() => {
-    if (
+    const firstDemandeur =
       !isEmpty(team_members) &&
-      team_members.some(({ type }) => type === 'demandeur')
-    ) {
+      team_members.find(({ type }) => type === 'demandeur');
+    if (firstDemandeur) {
       // note that they might be more than one demandeur
       // for now we just display the first demandeur found
-      setPersonalInformation(
-        team_members.find(({ type }) => type === 'demandeur')
-      );
+      setPersonalInformation(firstDemandeur);
     }
   }, [team_members]);
 

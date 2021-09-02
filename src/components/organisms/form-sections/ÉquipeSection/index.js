@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useMemo } from 'react';
-import _, { findIndex, isEmpty, uniqueId } from 'lodash';
+import { findIndex, isEmpty } from 'lodash';
 import Contact from './Contact';
 import { ScrollablePanel } from '../../Scrollable';
 import { FormContext } from '../../../templates/Form';
 import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
 import { UserContext } from '../../UserContext';
+import useNewTeamMembers from './useNewTeamMembers';
 
 const SECTION_LABEL = 'Les personnes impliquées';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
@@ -108,31 +109,13 @@ const ÉquipeSection = ({
     [initialContacts]
   );
 
+  const newTeamMembers = useNewTeamMembers({
+    user,
+    team_members,
+    contactConfiguration,
+  });
+
   useEffect(() => {
-    const newTeamMembers = _(contactConfiguration)
-      .keys()
-      .map((type) => {
-        if (team_members.some(({ type: t }) => t === type)) {
-          return null;
-        }
-
-        const id = uniqueId(`tmp_`);
-        let newTeamMember = { type, tmp_id: id };
-        if (type === 'demandeur') {
-          newTeamMember = {
-            ...newTeamMember,
-            email: user.email,
-            family_name: user.family_name,
-            given_name: user.given_name,
-            job: user.job,
-            phone_number: user.phone_number,
-          };
-        }
-        return newTeamMember;
-      })
-      .compact()
-      .value();
-
     if (!isUserEnrollmentLoading && !disabled && !isEmpty(newTeamMembers)) {
       onChange({
         target: {
@@ -144,10 +127,9 @@ const ÉquipeSection = ({
   }, [
     isUserEnrollmentLoading,
     disabled,
-    user,
     onChange,
     team_members,
-    contactConfiguration,
+    newTeamMembers,
   ]);
 
   return (
@@ -169,11 +151,18 @@ const ÉquipeSection = ({
                     heading={header}
                     key={id || tmp_id}
                     id={id}
-                    index={findIndex(
-                      team_members,
-                      ({ id: i, tmp_id: _i }) =>
-                        (i && i === id) || (_i && _i === tmp_id)
-                    )}
+                    index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
+                      if (id) {
+                        // if id is defined match on id field
+                        return i === id;
+                      }
+                      if (tmp_id) {
+                        // if id is not defined and tmp_id is defined
+                        // match on tmp_id
+                        return t_i === tmp_id;
+                      }
+                      return false;
+                    })}
                     {...team_member}
                     displayMobilePhoneLabel={displayMobilePhoneLabel}
                     disabled={forceDisable || disabled}
