@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import _, { difference, groupBy, isEmpty, zipObject } from 'lodash';
+import { chain, difference, groupBy, isEmpty, zipObject } from 'lodash';
 import { ScrollablePanel } from '../../../Scrollable';
 import Scopes from './Scopes';
 import { FormContext } from '../../../../templates/Form';
@@ -52,7 +52,7 @@ const DonneesSection = ({
   const hasDefaultGroup = availableScopes.some((e) => !e.groupTitle);
 
   // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
-  const scopesAsArray = _(scopes)
+  const scopesAsArray = chain(scopes)
     .omitBy((e) => !e)
     .keys()
     .value();

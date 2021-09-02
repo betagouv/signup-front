@@ -30,7 +30,7 @@ const ApiR2PProduction = ({
     documentationUrl="https://api.gouv.fr/les-api/api_r2p"
   >
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection />
+    <DonneesPersonnellesSection doInitializeDemandeur={true} />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[50, 200, 1000]} />

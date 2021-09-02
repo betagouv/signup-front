@@ -17,6 +17,7 @@ import Nav from '../../organisms/Nav';
 import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 import Tag from '../../atoms/Tag';
 import statusToButtonType from '../../../lib/status-to-button-type';
+import { withUser } from '../../organisms/UserContext';
 
 export const FormContext = React.createContext();
 
@@ -70,6 +71,7 @@ export const Form = ({
   target_api,
   enrollmentId = null,
   history,
+  user,
   demarches = null,
   children,
   documentationUrl,
@@ -308,4 +310,4 @@ Form.propTypes = {
   }),
 };
 
-export default withRouter(Form);
+export default withRouter(withUser(Form));

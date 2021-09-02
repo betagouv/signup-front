@@ -47,7 +47,7 @@ const demarches = {
 };
 
 const contacts = {
-  metier: {
+  contact_metier: {
     heading: 'Porteur de projet',
     description: (
       <Quote>
@@ -62,7 +62,7 @@ const contacts = {
     email: '',
     phone_number: '',
   },
-  technique: {
+  responsable_technique: {
     heading: 'Responsable technique',
     description: (
       <Quote>

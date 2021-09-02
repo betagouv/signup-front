@@ -110,7 +110,7 @@ const DemarcheDescription = () => (
 );
 
 const contacts = {
-  metier: {
+  contact_metier: {
     heading: 'Responsable abonnement',
     // set a key to avoid « each key should have a unique key property »
     // error when including multiple elements
@@ -158,7 +158,7 @@ const contacts = {
     phone_number: '',
     job: '',
   },
-  technique: {
+  responsable_technique: {
     heading: 'Délégué(e) technique',
     // set a key to avoid « each key should have a unique key property »
     // error when including multiple elements

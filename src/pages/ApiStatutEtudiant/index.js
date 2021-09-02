@@ -40,7 +40,7 @@ const CadreJuridiqueDescription = () => (
 );
 
 const contacts = {
-  technique: {
+  responsable_technique: {
     heading: 'Responsable technique',
     description: (
       <Quote>

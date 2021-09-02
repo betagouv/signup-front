@@ -30,7 +30,7 @@ const ApiHermesProduction = ({
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection />
+    <DonneesPersonnellesSection doInitializeDemandeur={true} />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
     <VolumetrieSection options={[200, 1000]} />

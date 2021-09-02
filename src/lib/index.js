@@ -1,4 +1,5 @@
-import _, {
+import {
+  chain,
   isBoolean,
   isEmpty,
   isInteger,
@@ -15,7 +16,7 @@ import flatten from 'flat';
 
 export function getErrorMessages(error) {
   if (!isEmpty(error.response) && isObject(error.response.data)) {
-    return _(error.response.data).values().flatten().value();
+    return chain(error.response.data).values().flatten().value();
   }
 
   const errorMessageEnd =
@@ -156,7 +157,7 @@ function changelogFormatTransformer(
 export function getChangelog(diff) {
   try {
     return (
-      _(diff)
+      chain(diff)
         // { intitule: ['a', 'b'], contacts: [[{'name': 'c', email: 'd'}], [{'name': 'e', email: 'd'}]] }
         .omit(['updated_at'])
         .transform(flattenDiffTransformer, {})
@@ -189,24 +190,12 @@ export function hashToQueryParams(hash, initialSearchParams) {
 
 export function collectionWithKeyToObject(collection) {
   return (
-    _(collection)
+    chain(collection)
       // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
       .map(({ id, ...attributes }) => [id, attributes])
       // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
       .fromPairs()
       // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
-      .value()
-  );
-}
-
-export function objectToCollectionWithKey(object) {
-  return (
-    _(object)
-      // { a: { attr1: 'a1', attr2: 'a2' },  b: { attr1: 'b1', attr2: 'b2' }}
-      .toPairs()
-      // [[ 'a', { attr1: 'a1', attr2: 'a2' }], ['b', { attr1: 'b1', attr2: 'b2' }]]
-      .map(([id, attributes]) => ({ id, ...attributes }))
-      // [{ id: 'a', attr1: 'a1', attr2: 'a2' }, { id: 'b', attr1: 'b1', attr2: 'b2' }]
       .value()
   );
 }

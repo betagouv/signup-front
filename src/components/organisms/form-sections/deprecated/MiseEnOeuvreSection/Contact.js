@@ -10,7 +10,7 @@ import FrontHandIcon from '../../../../atoms/icons/front-hand';
 import Button from '../../../../atoms/Button';
 
 export const Contact = ({
-  id,
+  index,
   heading,
   description,
   given_name,
@@ -27,36 +27,42 @@ export const Contact = ({
 }) => {
   const fillWithUserInformation = useCallback(() => {
     onChange({
-      target: { name: `contacts.${id}.email`, value: user.email },
+      target: { name: `team_members[${index}].email`, value: user.email },
     });
     if (
       typeof given_name !== 'undefined' &&
       typeof family_name !== 'undefined'
     ) {
       onChange({
-        target: { name: `contacts.${id}.given_name`, value: user.given_name },
+        target: {
+          name: `team_members[${index}].given_name`,
+          value: user.given_name,
+        },
       });
       onChange({
-        target: { name: `contacts.${id}.family_name`, value: user.family_name },
+        target: {
+          name: `team_members[${index}].family_name`,
+          value: user.family_name,
+        },
       });
     }
     if (typeof phone_number !== 'undefined') {
       onChange({
         target: {
-          name: `contacts.${id}.phone_number`,
+          name: `team_members[${index}].phone_number`,
           value: user.phone_number,
         },
       });
     }
     if (typeof job !== 'undefined') {
       onChange({
-        target: { name: `contacts.${id}.job`, value: user.job },
+        target: { name: `team_members[${index}].job`, value: user.job },
       });
     }
   }, [
     family_name,
     given_name,
-    id,
+    index,
     job,
     onChange,
     phone_number,
@@ -100,7 +106,7 @@ export const Contact = ({
               <div className="form-col">
                 <TextInput
                   label="Prénom"
-                  name={`contacts.${id}.given_name`}
+                  name={`team_members[${index}].given_name`}
                   value={given_name}
                   disabled={disabled}
                   onChange={onChange}
@@ -110,7 +116,7 @@ export const Contact = ({
               <div className="form-col">
                 <TextInput
                   label="Nom"
-                  name={`contacts.${id}.family_name`}
+                  name={`team_members[${index}].family_name`}
                   value={family_name}
                   disabled={disabled}
                   onChange={onChange}
@@ -123,7 +129,7 @@ export const Contact = ({
         <EmailInput
           label="Email"
           placeholder={emailPlaceholder}
-          name={`contacts.${id}.email`}
+          name={`team_members[${index}].email`}
           value={email}
           disabled={disabled}
           onChange={onChange}
@@ -136,7 +142,7 @@ export const Contact = ({
                 ? 'Numéro de téléphone mobile'
                 : 'Numéro de téléphone'
             }
-            name={`contacts.${id}.phone_number`}
+            name={`team_members[${index}].phone_number`}
             value={phone_number}
             disabled={disabled}
             onChange={onChange}
@@ -148,7 +154,7 @@ export const Contact = ({
         {typeof job !== 'undefined' && (
           <TextInput
             label="Intitulé de poste"
-            name={`contacts.${id}.job`}
+            name={`team_members[${index}].job`}
             value={job}
             disabled={disabled}
             onChange={onChange}
@@ -161,7 +167,7 @@ export const Contact = ({
 };
 
 Contact.propTypes = {
-  id: PropTypes.string,
+  index: PropTypes.number,
   heading: PropTypes.string,
   link: PropTypes.string,
   nom: PropTypes.string,

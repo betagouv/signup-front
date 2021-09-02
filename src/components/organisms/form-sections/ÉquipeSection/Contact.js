@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
 import './Contact.css';
@@ -10,57 +10,61 @@ import Button from '../../../atoms/Button';
 import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
 
 export const Contact = ({
-  id,
   heading,
+  id,
+  index,
   given_name = '',
   family_name = '',
   email = '',
   phone_number = '',
   job = '',
-  display_mobile_phone_label = false,
+  displayMobilePhoneLabel = false,
   disabled,
   onChange,
   user = {},
 }) => {
-  const namePrefix = useMemo(() => {
-    return ['dpo', 'responsable_traitement'].includes(id)
-      ? `${id}_`
-      : `contacts.${id}.`;
-  }, [id]);
-
   const fillWithUserInformation = useCallback(() => {
     onChange({
-      target: { name: `${namePrefix}email`, value: user.email },
-    });
-    onChange({
-      target: { name: `${namePrefix}given_name`, value: user.given_name },
-    });
-    onChange({
-      target: { name: `${namePrefix}family_name`, value: user.family_name },
+      target: { name: `team_members[${index}].email`, value: user.email },
     });
     onChange({
       target: {
-        name: `${namePrefix}phone_number`,
+        name: `team_members[${index}].given_name`,
+        value: user.given_name,
+      },
+    });
+    onChange({
+      target: {
+        name: `team_members[${index}].family_name`,
+        value: user.family_name,
+      },
+    });
+    onChange({
+      target: {
+        name: `team_members[${index}].phone_number`,
         value: user.phone_number,
       },
     });
     onChange({
-      target: { name: `${namePrefix}job`, value: user.job },
+      target: { name: `team_members[${index}].job`, value: user.job },
     });
   }, [
     onChange,
+    index,
     user.email,
     user.family_name,
     user.given_name,
     user.job,
     user.phone_number,
-    namePrefix,
   ]);
 
   return (
     <div className="card contact-item">
       <div className="card__content">
-        <h3>{heading}</h3>
+        <h3>
+          {heading}
+          {user && user.roles.includes('administrator') && <> (id: {id})</>}
+        </h3>
         {!disabled &&
           !given_name &&
           !family_name &&
@@ -78,7 +82,7 @@ export const Contact = ({
           <div className="form-col">
             <TextInput
               label="Prénom *"
-              name={`${namePrefix}given_name`}
+              name={`team_members[${index}].given_name`}
               value={given_name}
               disabled={disabled}
               onChange={onChange}
@@ -89,7 +93,7 @@ export const Contact = ({
           <div className="form-col">
             <TextInput
               label="Nom *"
-              name={`${namePrefix}family_name`}
+              name={`team_members[${index}].family_name`}
               value={family_name}
               disabled={disabled}
               onChange={onChange}
@@ -100,7 +104,7 @@ export const Contact = ({
         </div>
         <TextInput
           label="Poste occupé *"
-          name={`${namePrefix}job`}
+          name={`team_members[${index}].job`}
           value={job}
           disabled={disabled}
           onChange={onChange}
@@ -110,7 +114,7 @@ export const Contact = ({
         <h4>Pour joindre cette personne</h4>
         <EmailInput
           label="Email *"
-          name={`${namePrefix}email`}
+          name={`team_members[${index}].email`}
           value={email}
           disabled={disabled}
           onChange={onChange}
@@ -119,20 +123,20 @@ export const Contact = ({
         />
         <TelInput
           label={
-            display_mobile_phone_label
+            displayMobilePhoneLabel
               ? 'Numéro de téléphone mobile *'
               : 'Numéro de téléphone *'
           }
-          name={`${namePrefix}phone_number`}
+          name={`team_members[${index}].phone_number`}
           value={phone_number}
           disabled={disabled}
           onChange={onChange}
           ariaLabel={`Numéro de téléphone ${
-            display_mobile_phone_label ? 'mobile ' : ''
+            displayMobilePhoneLabel ? 'mobile ' : ''
           }du ${heading}`}
           required
         />
-        {display_mobile_phone_label &&
+        {displayMobilePhoneLabel &&
           isValidPhoneNumber(phone_number) &&
           !isValidMobilePhoneNumber(phone_number) && (
             <div className="notification error">
@@ -145,7 +149,7 @@ export const Contact = ({
 };
 
 Contact.propTypes = {
-  id: PropTypes.string,
+  type: PropTypes.string,
   heading: PropTypes.string,
   link: PropTypes.string,
   nom: PropTypes.string,

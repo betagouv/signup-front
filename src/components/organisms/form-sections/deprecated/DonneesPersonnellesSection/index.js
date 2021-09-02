@@ -1,29 +1,89 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import RgpdContact from './RgpdContact';
 import { ScrollablePanel } from '../../../Scrollable';
 import { FormContext } from '../../../../templates/Form';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import NumberInput from '../../../../atoms/inputs/NumberInput';
+import { chain, findIndex, isEmpty, uniqueId } from 'lodash';
+import { UserContext } from '../../../UserContext';
 
 const SECTION_LABEL = 'Données personnelles';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
-const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
+// doInitializeDemandeur should be set to true if MiseEnOeuvreSection is not used in the form.
+// MiseEnOeuvreSection usually get the responsibility to initialize demandeur team_member.
+const DonneesPersonnellesSection = ({
+  dataRetentionPeriodHelper = '',
+  doInitializeDemandeur = false,
+}) => {
   const {
+    isUserEnrollmentLoading,
     disabled,
     onChange,
     enrollment: {
       data_recipients = '',
       data_retention_period = '',
       data_retention_comment = '',
-      responsable_traitement_family_name = '',
-      responsable_traitement_email = '',
-      responsable_traitement_phone_number = '',
-      dpo_family_name = '',
-      dpo_email = '',
-      dpo_phone_number = '',
+      team_members = [],
     },
   } = useContext(FormContext);
+
+  const { user } = useContext(UserContext);
+
+  useEffect(() => {
+    let teamMembersTypeToInitialize = [
+      'responsable_traitement',
+      'delegue_protection_donnees',
+    ];
+    if (doInitializeDemandeur) {
+      teamMembersTypeToInitialize = [
+        'demandeur',
+        ...teamMembersTypeToInitialize,
+      ];
+    }
+
+    const newTeamMembers = chain(teamMembersTypeToInitialize)
+      .map((type) => {
+        const isMemberAlreadyInitialized = team_members.some(
+          ({ type: t }) => t === type
+        );
+        if (isMemberAlreadyInitialized) {
+          return null;
+        }
+
+        const id = uniqueId(`tmp_`);
+        let newTeamMember = { type, tmp_id: id };
+        if (type === 'demandeur') {
+          newTeamMember = {
+            ...newTeamMember,
+            email: user.email,
+            family_name: user.family_name,
+            given_name: user.given_name,
+            job: user.job,
+            phone_number: user.phone_number,
+          };
+        }
+        return newTeamMember;
+      })
+      .compact()
+      .value();
+
+    if (!isUserEnrollmentLoading && !disabled && !isEmpty(newTeamMembers)) {
+      onChange({
+        target: {
+          name: 'team_members',
+          value: [...team_members, ...newTeamMembers],
+        },
+      });
+    }
+  }, [
+    isUserEnrollmentLoading,
+    disabled,
+    onChange,
+    team_members,
+    user,
+    doInitializeDemandeur,
+  ]);
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
@@ -79,22 +139,34 @@ const DonneesPersonnellesSection = ({ dataRetentionPeriodHelper = '' }) => {
       )}
       <div className="form__group">
         <div className="row">
-          <RgpdContact
-            type={'responsable_traitement'}
-            family_name={responsable_traitement_family_name}
-            email={responsable_traitement_email}
-            phone_number={responsable_traitement_phone_number}
-            disabled={disabled}
-            onChange={onChange}
-          />
-          <RgpdContact
-            type={'dpo'}
-            family_name={dpo_family_name}
-            email={dpo_email}
-            phone_number={dpo_phone_number}
-            disabled={disabled}
-            onChange={onChange}
-          />
+          {['responsable_traitement', 'delegue_protection_donnees'].map(
+            (type) =>
+              team_members
+                .filter(({ type: t }) => t === type)
+                .map(({ id, tmp_id, family_name, email, phone_number }) => (
+                  <RgpdContact
+                    key={id || tmp_id}
+                    index={findIndex(team_members, ({ id: i, tmp_id: t_i }) => {
+                      if (id) {
+                        // if id is defined match on id field
+                        return i === id;
+                      }
+                      if (tmp_id) {
+                        // if id is not defined and tmp_id is defined
+                        // match on tmp_id
+                        return t_i === tmp_id;
+                      }
+                      return false;
+                    })}
+                    type={type}
+                    family_name={family_name || ''}
+                    email={email || ''}
+                    phone_number={phone_number || ''}
+                    disabled={disabled}
+                    onChange={onChange}
+                  />
+                ))
+          )}
         </div>
       </div>
     </ScrollablePanel>

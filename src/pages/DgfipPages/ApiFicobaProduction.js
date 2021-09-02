@@ -31,7 +31,7 @@ const ApiFicobaProduction = ({
     documentationUrl="https://api.gouv.fr/les-api/api_comptes_bancaires_ficoba"
   >
     <RecetteFonctionnelleSection />
-    <DonneesPersonnellesSection />
+    <DonneesPersonnellesSection doInitializeDemandeur={true} />
     <CadreJuridiqueSection
       CadreJuridiqueDescription={CadreJuridiqueDescription}
     />

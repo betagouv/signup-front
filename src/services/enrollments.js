@@ -1,10 +1,6 @@
 import jsonToFormData from '../lib/json-form-data';
 import httpClient from '../lib/http-client';
-import {
-  collectionWithKeyToObject,
-  hashToQueryParams,
-  objectToCollectionWithKey,
-} from '../lib';
+import { hashToQueryParams } from '../lib';
 
 const { REACT_APP_BACK_HOST: BACK_HOST } = process.env;
 
@@ -12,33 +8,36 @@ export function serializeEnrollment(enrollment) {
   return jsonToFormData({ enrollment });
 }
 
-export function createOrUpdateEnrollment({ enrollment }) {
-  const formatedEnrollment = {
+export function createOrUpdateEnrollment({
+  enrollment: {
+    status,
+    updated_at,
+    created_at,
+    id,
+    siret,
+    nom_raison_sociale,
+    acl,
+    events,
+    team_members,
+    documents,
+    ...enrollment
+  },
+}) {
+  const formattedEnrollment = {
     ...enrollment,
-    contacts: objectToCollectionWithKey(enrollment.contacts),
+    team_members_attributes: team_members,
   };
-  const serializedEnrollment = serializeEnrollment(formatedEnrollment);
+  const serializedEnrollment = serializeEnrollment(formattedEnrollment);
   const config = {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
   };
 
-  if (enrollment.id) {
-    return (
-      httpClient
-        .patch(
-          `${BACK_HOST}/api/enrollments/${enrollment.id}`,
-          serializedEnrollment,
-          config
-        )
-        // format contact to a more usable structure
-        // the backend should be able to use this structure to in the future
-        .then(({ data: enrollment }) => ({
-          ...enrollment,
-          contacts: collectionWithKeyToObject(enrollment.contacts),
-        }))
-    );
+  if (id) {
+    return httpClient
+      .patch(`${BACK_HOST}/api/enrollments/${id}`, serializedEnrollment, config)
+      .then(({ data: enrollment }) => enrollment);
   }
 
   return (
@@ -46,10 +45,7 @@ export function createOrUpdateEnrollment({ enrollment }) {
       .post(`${BACK_HOST}/api/enrollments/`, serializedEnrollment, config)
       // format contact to a more usable structure
       // the backend should be able to use this structure to in the future
-      .then(({ data: enrollment }) => ({
-        ...enrollment,
-        contacts: collectionWithKeyToObject(enrollment.contacts),
-      }))
+      .then(({ data: enrollment }) => enrollment)
   );
 }
 
@@ -63,10 +59,7 @@ export function getUserEnrollment(id) {
       })
       // format contact to a more usable structure
       // the backend should be able to use this structure to in the future
-      .then(({ data: enrollment }) => ({
-        ...enrollment,
-        contacts: collectionWithKeyToObject(enrollment.contacts),
-      }))
+      .then(({ data: enrollment }) => enrollment)
   );
 }
 
@@ -141,24 +134,14 @@ export function getEnrollments({
 export function getUserValidatedEnrollments(targetApi) {
   // NB. if the user has more than 100 validated franceconnect enrollments, he won’t be able to choose amongst them all
   // since we arbitrary limit the max size of the result to 100.
-  return (
-    getEnrollments({
-      filter: [
-        { id: 'status', value: 'validated' },
-        { id: 'target_api', value: targetApi },
-      ],
-      detailed: true,
-      size: 100,
-    })
-      // format contact to a more usable structure
-      // the backend should be able to use this structure too in the future
-      .then(({ enrollments }) =>
-        enrollments.map((e) => ({
-          ...e,
-          contacts: collectionWithKeyToObject(e.contacts),
-        }))
-      )
-  );
+  return getEnrollments({
+    filter: [
+      { id: 'status', value: 'validated' },
+      { id: 'target_api', value: targetApi },
+    ],
+    detailed: true,
+    size: 100,
+  }).then(({ enrollments }) => enrollments);
 }
 
 export function getUserEnrollments() {
@@ -191,43 +174,25 @@ export function computeNextEnrollmentState({ action, id, comment }) {
   );
 }
 
-export function updateRgpdContact({
-  enrollmentId,
+export function updateTeamMember({
+  teamMemberId,
   nom,
   prenom,
   email,
   phoneNumber,
   job,
-  role,
 }) {
-  const enrollment = {};
-  if (nom) enrollment[`${role}_family_name`] = nom;
-  if (prenom) enrollment[`${role}_given_name`] = prenom;
-  if (email) enrollment[`${role}_email`] = email;
-  if (phoneNumber) enrollment[`${role}_phone_number`] = phoneNumber;
-  if (job) enrollment[`${role}_job`] = job;
-  const serializedEnrollment = serializeEnrollment(enrollment);
+  const team_member = {};
+  if (nom) team_member[`family_name`] = nom;
+  if (prenom) team_member[`given_name`] = prenom;
+  if (email) team_member[`email`] = email;
+  if (phoneNumber) team_member[`phone_number`] = phoneNumber;
+  if (job) team_member[`job`] = job;
+  const serializedTeamMember = jsonToFormData({ team_member });
   return httpClient
     .patch(
-      `${BACK_HOST}/api/enrollments/${enrollmentId}/update_rgpd_contact`,
-      serializedEnrollment,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
-    )
-    .then(({ data }) => data);
-}
-
-export function updateOwner({ enrollmentId, email }) {
-  const enrollment = {};
-  enrollment[`user_email`] = email;
-  const serializedEnrollment = serializeEnrollment(enrollment);
-  return httpClient
-    .patch(
-      `${BACK_HOST}/api/enrollments/${enrollmentId}/update_owner`,
-      serializedEnrollment,
+      `${BACK_HOST}/api/team_members/${teamMemberId}`,
+      serializedTeamMember,
       {
         headers: {
           'Content-Type': 'multipart/form-data',

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import _, { isEmpty, isString, xor } from 'lodash';
+import { chain, isEmpty, isString, xor } from 'lodash';
 import { FormContext } from '../../../../templates/Form';
 
 const CUSTOM_USE_CASE_LABEL = 'Autre';
@@ -46,7 +46,7 @@ const UseCase = ({ availableScopes, useCases = [] }) => {
 
   useEffect(() => {
     // {'a': true, 'b': false, 'c': true} becomes ['a', 'c']
-    const selectedScopesAsArray = _(scopes)
+    const selectedScopesAsArray = chain(scopes)
       .omitBy((e) => !e)
       .keys()
       .value();

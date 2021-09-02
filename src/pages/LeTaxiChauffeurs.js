@@ -20,7 +20,7 @@ const DemarcheDescription = () => (
 );
 
 const contact = {
-  metier: {
+  contact_metier: {
     heading: 'Personne en charge du suivi',
     description: (
       <Quote>

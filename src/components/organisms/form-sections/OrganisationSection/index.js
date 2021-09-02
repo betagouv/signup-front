@@ -26,7 +26,7 @@ const OrganisationSection = () => {
       nom_raison_sociale,
       siret = '',
       target_api,
-      user: owner,
+      team_members,
     },
   } = useContext(FormContext);
 
@@ -48,12 +48,15 @@ const OrganisationSection = () => {
   const [personalInformation, setPersonalInformation] = useState({});
 
   useEffect(() => {
-    if (isEmpty(owner)) {
-      setPersonalInformation(user);
-    } else {
-      setPersonalInformation(owner);
+    const firstDemandeur =
+      !isEmpty(team_members) &&
+      team_members.find(({ type }) => type === 'demandeur');
+    if (firstDemandeur) {
+      // note that they might be more than one demandeur
+      // for now we just display the first demandeur found
+      setPersonalInformation(firstDemandeur);
     }
-  }, [owner, user]);
+  }, [team_members]);
 
   const updateOrganizationInfo = useCallback(
     ({ organization_id, siret }) => {
@@ -187,7 +190,7 @@ const OrganisationSection = () => {
                   title="Modifier mes informations"
                   outline
                   icon="edit"
-                  href={`${BACK_HOST}/api/users/personal-information`}
+                  href={`${BACK_HOST}/api/users/personal_information`}
                 />
               )}
             </div>

@@ -167,8 +167,10 @@ class AdminEnrollmentList extends React.Component {
       Placeholder: 'Filtrer par raison sociale',
     },
     {
-      Header: 'Demandeur',
-      accessor: 'user.email',
+      Header: 'Email',
+      id: 'team_members.email',
+      accessor: ({ demandeurs }) =>
+        demandeurs.map(({ email }) => email).join(', '),
       headerStyle: enrollmentListStyle.header,
       style: enrollmentListStyle.cell,
       filterable: true,

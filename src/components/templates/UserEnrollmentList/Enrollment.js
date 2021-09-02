@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import { chain } from 'lodash';
 import './Enrollment.css';
 import ActivityFeedWrapper from './ActivityFeedWrapper';
 import Button from '../../atoms/Button';
@@ -11,13 +12,11 @@ import { USER_STATUS_LABELS } from '../../../lib/enrollment';
 
 const Enrollment = ({
   id,
-  user,
   events,
   target_api,
   intitule,
   description,
   status,
-  updated_at,
   onSelect,
 }) => {
   const handleClick = useCallback(
@@ -26,6 +25,14 @@ const Enrollment = ({
     },
     [id, target_api, onSelect]
   );
+
+  const lastUpdateEvent = useMemo(() => {
+    return chain(events)
+      .sortBy('updated_at')
+      .filter(({ name }) => ['created', 'updated'].includes(name))
+      .last()
+      .value();
+  }, [events]);
 
   return (
     <div className="enrollment">
@@ -49,10 +56,13 @@ const Enrollment = ({
       <div className="enrollment-body">
         <div className="title">
           <div className="intitule">{intitule || 'Aucun intitulé'}</div>
-          <div className="creation">
-            Demande effectuée le <b>{moment(updated_at).format('L')}</b> par{' '}
-            <b>{user.email}</b>
-          </div>
+          {lastUpdateEvent && (
+            <div className="creation">
+              Dernière modification le{' '}
+              <b>{moment(lastUpdateEvent.created_at).format('L')}</b> par{' '}
+              <b>{lastUpdateEvent.user.email}</b>
+            </div>
+          )}
         </div>
 
         <p className="description">{description || 'Aucune description'}</p>
@@ -78,12 +88,8 @@ const Enrollment = ({
 
 Enrollment.propTypes = {
   id: PropTypes.number.isRequired,
-  user: PropTypes.shape({
-    email: PropTypes.string.isRequired,
-  }).isRequired,
   target_api: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  updated_at: PropTypes.string.isRequired,
   description: PropTypes.string,
   intitule: PropTypes.string,
   onSelect: PropTypes.func.isRequired,

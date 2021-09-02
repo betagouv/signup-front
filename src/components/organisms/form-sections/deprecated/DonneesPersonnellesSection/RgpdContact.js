@@ -25,7 +25,7 @@ const descriptions = {
       </p>
     ),
   },
-  dpo: {
+  delegue_protection_donnees: {
     heading: 'Délégué à la protection des données',
     hint: (
       <p>
@@ -48,6 +48,7 @@ const descriptions = {
 };
 
 const RgpdContact = ({
+  index,
   type,
   family_name,
   email,
@@ -65,7 +66,7 @@ const RgpdContact = ({
           type === 'responsable_traitement' &&
           'Cette information peut être rendue publique.'
         }
-        name={`${type}_family_name`}
+        name={`team_members[${index}].family_name`}
         value={family_name}
         disabled={disabled}
         onChange={onChange}
@@ -79,7 +80,7 @@ const RgpdContact = ({
             demande.
           </>
         }
-        name={`${type}_email`}
+        name={`team_members[${index}].email`}
         value={email}
         disabled={disabled}
         onChange={onChange}
@@ -91,7 +92,7 @@ const RgpdContact = ({
           'Ce numéro peut être le numéro du secrétariat ou le numéro direct de la personne concernée. Ce numéro nous ' +
           'permettra de vous contacter lors d’incidents ou difficultés.'
         }
-        name={`${type}_phone_number`}
+        name={`team_members[${index}].phone_number`}
         value={phone_number}
         disabled={disabled}
         onChange={onChange}
