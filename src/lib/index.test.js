@@ -375,13 +375,13 @@ describe('utils', () => {
 
     it('should process nested array value', () => {
       global.window.location.search =
-        '?filtered=%5B%7B%22id%22%3A%22target_api%22%2C%22value%22%3A%5B%22francerelance_fc%22%2C%22api_particulier%22%2C%22api_entreprise%22%5D%7D%2C%7B%22id%22%3A%22nom_raison_sociale%22%2C%22value%22%3A%22a%22%7D%5D';
+        '?filtered=%5B%7B%22id%22%3A%22target_api%22%2C%22value%22%3A%5B%22api_particulier%22%2C%22api_entreprise%22%5D%7D%2C%7B%22id%22%3A%22nom_raison_sociale%22%2C%22value%22%3A%22a%22%7D%5D';
 
       const expectedResult = {
         filtered: [
           {
             id: 'target_api',
-            value: ['francerelance_fc', 'api_particulier', 'api_entreprise'],
+            value: ['api_particulier', 'api_entreprise'],
           },
           { id: 'nom_raison_sociale', value: 'a' },
         ],
@@ -395,7 +395,7 @@ describe('utils', () => {
         filtered: [
           {
             id: 'target_api',
-            value: ['francerelance_fc', 'api_particulier', 'api_entreprise'],
+            value: ['api_particulier', 'api_entreprise'],
           },
           { id: 'nom_raison_sociale', value: 'a' },
         ],
