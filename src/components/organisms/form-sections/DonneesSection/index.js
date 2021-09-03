@@ -13,7 +13,7 @@ const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 const DonneesSection = ({
   DonneesDescription = () => null,
-  availableScopes,
+  availableScopes = [],
 }) => {
   const {
     disabled,
@@ -27,7 +27,7 @@ const DonneesSection = ({
   } = useContext(FormContext);
 
   useEffect(() => {
-    if (isEmpty(scopes)) {
+    if (!isEmpty(availableScopes) && isEmpty(scopes)) {
       onChange({
         target: {
           name: 'scopes',
@@ -42,10 +42,6 @@ const DonneesSection = ({
       });
     }
   });
-
-  if (isEmpty(scopes)) {
-    return null;
-  }
 
   const groupTitleScopesGroup = groupBy(
     availableScopes,
@@ -68,29 +64,33 @@ const DonneesSection = ({
       <ExpandableQuote title="Comment choisir les données ?">
         <DonneesDescription />
       </ExpandableQuote>
-      <h3>À quelles données souhaitez-vous avoir accès ?</h3>
-      {Object.keys(groupTitleScopesGroup).map((group) => (
-        <Scopes
-          key={group}
-          title={group === 'default' ? null : group}
-          scopes={groupTitleScopesGroup[group]}
-          selectedScopes={scopes}
-          disabledApplication={disabled}
-          handleChange={onChange}
-          useCategoryStyle={!hasDefaultGroup}
-        />
-      ))}
-      {disabled && !isEmpty(outdatedScopes) && (
-        <Scopes
-          title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
-          scopes={outdatedScopes.map((value) => ({ value, label: value }))}
-          selectedScopes={zipObject(
-            outdatedScopes,
-            Array(outdatedScopes.length).fill(true)
+      {!isEmpty(availableScopes) && (
+        <>
+          <h3>À quelles données souhaitez-vous avoir accès ?</h3>
+          {Object.keys(groupTitleScopesGroup).map((group) => (
+            <Scopes
+              key={group}
+              title={group === 'default' ? null : group}
+              scopes={groupTitleScopesGroup[group]}
+              selectedScopes={scopes}
+              disabledApplication={disabled}
+              handleChange={onChange}
+              useCategoryStyle={!hasDefaultGroup}
+            />
+          ))}
+          {disabled && !isEmpty(outdatedScopes) && (
+            <Scopes
+              title="Les données suivantes ont été sélectionnées mais ne sont plus disponibles :"
+              scopes={outdatedScopes.map((value) => ({ value, label: value }))}
+              selectedScopes={zipObject(
+                outdatedScopes,
+                Array(outdatedScopes.length).fill(true)
+              )}
+              disabledApplication
+              handleChange={() => null}
+            />
           )}
-          disabledApplication
-          handleChange={() => null}
-        />
+        </>
       )}
       <h3>Comment seront traitées ces données personnelles ?</h3>
       <TextInput
@@ -160,7 +160,7 @@ DonneesSection.propTypes = {
   AdditionalRgpdAgreement: PropTypes.func,
   DonneesFootnote: PropTypes.func,
   scopesLabel: PropTypes.string,
-  availableScopes: PropTypes.array.isRequired,
+  availableScopes: PropTypes.array,
 };
 
 export default DonneesSection;
