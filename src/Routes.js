@@ -15,7 +15,6 @@ import ApiR2PProduction from './pages/DgfipPages/ApiR2PProduction';
 import ApiFicobaSandbox from './pages/DgfipPages/ApiFicobaSandbox';
 import ApiFicobaProduction from './pages/DgfipPages/ApiFicobaProduction';
 import FranceConnect from './pages/FranceConnect';
-import FranceRelanceFc from './pages/FranceRelanceFc';
 import AidantsConnect from './pages/AidantsConnect';
 import ApiDroitsCnam from './pages/ApiDroitsCnam';
 import LeTaxiClients from './pages/LeTaxiClients';
@@ -127,11 +126,6 @@ export const Routes = ({ user }) => {
       <PrivateRoute
         path="/franceconnect/:enrollmentId?"
         component={FranceConnect}
-      />
-
-      <PrivateRoute
-        path="/francerelance-fc/:enrollmentId?"
-        component={FranceRelanceFc}
       />
 
       <PrivateRoute
