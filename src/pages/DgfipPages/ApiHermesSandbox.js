@@ -28,7 +28,7 @@ const ApiHermesSandbox = ({
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection DonneesDescription={DonneesDescription} />
+    <DonneesSection DonneesDescription={DataAreInTermsOfUseDescription} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection
