@@ -8,7 +8,7 @@ import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
-import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
+import { DataAreInTermsOfUseDescription } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 
 const target_api = 'api_hermes_sandbox';
@@ -31,10 +31,7 @@ const ApiHermesSandbox = ({
     <DonneesSection DonneesDescription={DataAreInTermsOfUseDescription} />
     <CadreJuridiqueSection />
     <ÉquipeSection />
-    <CguSection
-      cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_4_05-05-2021_cdc.pdf"
-      additionalTermsOfUse={additionalTermsOfUse}
-    />
+    <CguSection cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_4_05-05-2021_cdc.pdf" />
   </Form>
 );
 
