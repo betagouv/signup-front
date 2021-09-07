@@ -62,9 +62,16 @@ const DonneesSection = ({
     <ScrollablePanel scrollableId={SECTION_ID}>
       <h2>Les données nécessaires</h2>
       <ExpandableQuote title="Comment choisir les données ?">
-        <DonneesDescription />
+        {!isEmpty(availableScopes) ? (
+          <DonneesDescription />
+        ) : (
+          <p>
+            Par défaut, vous aurez accès à toutes les données proposées par
+            cette API.
+          </p>
+        )}
       </ExpandableQuote>
-      {!isEmpty(availableScopes) && (
+      {!isEmpty(availableScopes) ? (
         <>
           <h3>À quelles données souhaitez-vous avoir accès ?</h3>
           {Object.keys(groupTitleScopesGroup).map((group) => (
@@ -91,6 +98,10 @@ const DonneesSection = ({
             />
           )}
         </>
+      ) : (
+        <div className="form__group">
+          <DonneesDescription />
+        </div>
       )}
       <h3>Comment seront traitées ces données personnelles ?</h3>
       <TextInput
