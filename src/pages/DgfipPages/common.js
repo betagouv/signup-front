@@ -1,5 +1,4 @@
 import React from 'react';
-import Quote from '../../components/atoms/inputs/Quote';
 
 export const additionalTermsOfUse = [
   {
@@ -14,12 +13,3 @@ export const additionalTermsOfUse = [
     ),
   },
 ];
-
-export const PreviousEnrollmentDescription = () => (
-  <Quote>
-    <p>
-      Vous devez tout d’abord sélectionner la démarche que vous souhaitez
-      poursuivre.
-    </p>
-  </Quote>
-);

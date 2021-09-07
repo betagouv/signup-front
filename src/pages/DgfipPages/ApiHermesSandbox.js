@@ -8,20 +8,11 @@ import CguSection from '../../components/organisms/form-sections/CguSection';
 import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
 import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
 import HasNextEnrollmentsNotification from '../../components/templates/Form/HasNextEnrollmentsNotification';
-import { additionalTermsOfUse } from './common';
+import { additionalTermsOfUse, DataAreInTermsOfUseDescription } from './common';
 import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
 
 const target_api = 'api_hermes_sandbox';
 const steps = [target_api, 'api_hermes_production'];
-
-const DonneesDescription = () => (
-  <>
-    <p>
-      Les données échangées par l’API sont décrites dans les CGU attachées à
-      cette demande.
-    </p>
-  </>
-);
 
 const ApiHermesSandbox = ({
   match: {
