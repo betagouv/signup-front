@@ -7,6 +7,7 @@ import HomologationSecuriteSection from '../../components/organisms/form-section
 import RecetteFonctionnelleSection from '../../components/organisms/form-sections/dgfip-sections/RecetteFonctionnelleSection';
 import VolumetrieSection from '../../components/organisms/form-sections/dgfip-sections/VolumetrieSection';
 import CguSection from '../../components/organisms/form-sections/CguSection';
+import ÉquipeInitializerSection from '../../components/organisms/form-sections/ÉquipeSection/ÉquipeInitializerSection';
 
 const target_api = 'api_hermes_production';
 const steps = ['api_hermes_sandbox', target_api];
@@ -23,6 +24,7 @@ const ApiHermesProduction = ({
     PreviousEnrollmentDescription={() => null}
     documentationUrl="https://api.gouv.fr/producteurs/dgfip"
   >
+    <ÉquipeInitializerSection />
     <RecetteFonctionnelleSection />
     <CadreJuridiqueSection />
     <HomologationSecuriteSection />
