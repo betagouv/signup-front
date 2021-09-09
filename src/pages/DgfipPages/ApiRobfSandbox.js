@@ -28,7 +28,9 @@ const ApiRobfSandbox = ({
     <HasNextEnrollmentsNotification enrollmentId={enrollmentId} />
     <OrganisationSection />
     <DescriptionSection />
-    <DonneesSection DonneesDescription={DataAreInTermsOfUseDescription} />
+    <DonneesSection
+      AvailableScopesDescription={DataAreInTermsOfUseDescription}
+    />
     <CadreJuridiqueSection />
     <ÉquipeSection />
     <CguSection cguLink="/docs/cgu_api_hermes_bac_a_sable_v1_4_05-05-2021_cdc.pdf" />
