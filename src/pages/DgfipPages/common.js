@@ -3,7 +3,7 @@ import React from 'react';
 export const DataAreInTermsOfUseDescription = () => (
   <>
     <p>
-      Les données échangées par l’API sont décrites dans les CGU attachées à
+      Les données restituées par l’API sont décrites dans les CGU attachées à
       cette demande.
     </p>
   </>
