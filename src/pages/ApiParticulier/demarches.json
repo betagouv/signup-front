@@ -45,7 +45,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "",
           "phone_number": ""
@@ -87,7 +87,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "projet@agoraplus.fr",
           "phone_number": "0184160095"
@@ -130,7 +130,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "enfance.mes@berger-levrault.com",
           "phone_number": "0561395284"
@@ -154,7 +154,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "contact@jdealise.fr",
           "phone_number": "0972473612"
@@ -226,7 +226,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "technique@mushroom-software.com",
           "phone_number": "0674577622"
@@ -388,7 +388,7 @@
       },
       "team_members": [
         {
-          "type": "technique",
+          "type": "responsable_technique",
           "tmp_id": "tmp_technique",
           "email": "technique@waigeo.fr",
           "phone_number": "0970805210"
