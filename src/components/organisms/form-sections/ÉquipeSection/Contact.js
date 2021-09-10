@@ -8,6 +8,7 @@ import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
 import Button from '../../../atoms/Button';
 import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
+import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 
 export const Contact = ({
   heading,
@@ -78,30 +79,26 @@ export const Contact = ({
             </div>
           )}
 
-        <div className="form-row">
-          <div className="form-col">
-            <TextInput
-              label="Prénom *"
-              name={`team_members[${index}].given_name`}
-              value={given_name}
-              disabled={disabled}
-              onChange={onChange}
-              ariaLabel={`Prénom du ${heading}`}
-              required
-            />
-          </div>
-          <div className="form-col">
-            <TextInput
-              label="Nom *"
-              name={`team_members[${index}].family_name`}
-              value={family_name}
-              disabled={disabled}
-              onChange={onChange}
-              ariaLabel={`Nom du ${heading}`}
-              required
-            />
-          </div>
-        </div>
+        <SideBySideWrapper>
+          <TextInput
+            label="Prénom"
+            name={`team_members[${index}].given_name`}
+            value={given_name}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Prénom du ${heading}`}
+            required
+          />
+          <TextInput
+            label="Nom"
+            name={`team_members[${index}].family_name`}
+            value={family_name}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Nom du ${heading}`}
+            required
+          />
+        </SideBySideWrapper>
         <TextInput
           label="Poste occupé"
           name={`team_members[${index}].job`}
