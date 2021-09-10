@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { uniqueId } from 'lodash';
 
 export const RadioInput = ({
@@ -15,8 +15,10 @@ export const RadioInput = ({
   // we generate an unique id prefixed by the field name
   const [id] = useState(uniqueId(name));
 
-  const isOtherSelected =
-    useOtherOption && !options.map(({ id: i }) => i).includes(value);
+  const isOtherSelected = useMemo(
+    () => useOtherOption && !options.map(({ id: i }) => i).includes(value),
+    [useOtherOption, options, value]
+  );
 
   return (
     <>
