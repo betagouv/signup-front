@@ -103,7 +103,7 @@ export const Contact = ({
           </div>
         </div>
         <TextInput
-          label="Poste occupé *"
+          label="Poste occupé"
           name={`team_members[${index}].job`}
           value={job}
           disabled={disabled}
@@ -113,7 +113,7 @@ export const Contact = ({
         />
         <h4>Pour joindre cette personne</h4>
         <EmailInput
-          label="Email *"
+          label="Email"
           name={`team_members[${index}].email`}
           value={email}
           disabled={disabled}
@@ -124,8 +124,8 @@ export const Contact = ({
         <TelInput
           label={
             displayMobilePhoneLabel
-              ? 'Numéro de téléphone mobile *'
-              : 'Numéro de téléphone *'
+              ? 'Numéro de téléphone mobile'
+              : 'Numéro de téléphone'
           }
           name={`team_members[${index}].phone_number`}
           value={phone_number}

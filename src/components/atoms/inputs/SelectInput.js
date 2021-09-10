@@ -9,6 +9,7 @@ export const Select = ({
   value,
   disabled,
   onChange,
+  useOtherOption = false,
 }) => (
   <div className="form__group">
     <label htmlFor={name}>

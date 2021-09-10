@@ -8,6 +8,7 @@ export const RadioInput = ({
   value = null,
   disabled,
   onChange,
+  required,
   useOtherOption = true,
 }) => {
   // id will be set once when the component initially renders, but never again
@@ -21,7 +22,10 @@ export const RadioInput = ({
     <>
       <div className="form__group">
         <fieldset>
-          <legend style={{ marginBottom: 'var(--space-s)' }}>{label}</legend>
+          <legend style={{ marginBottom: 'var(--space-s)' }}>
+            {label}
+            {required && ' *'}
+          </legend>
           {options.map(({ id: optionId, label: optionLabel }) => (
             <div
               key={`${id}-${optionId}`}
@@ -35,6 +39,7 @@ export const RadioInput = ({
                 checked={value === optionId}
                 onChange={onChange}
                 disabled={disabled ? 'disabled' : false}
+                required={required}
               />
               <label htmlFor={`${id}-${optionId}`} className="label-inline">
                 {optionLabel}
