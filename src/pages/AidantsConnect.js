@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import Form from '../components/templates/Form';
 import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
-import CguSection from '../components/organisms/form-sections/deprecated/CguSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
 import LabelsSection from '../components/organisms/form-sections/aidants-connect-sections/LabelsSection';
 import AidantsSection from '../components/organisms/form-sections/aidants-connect-sections/AidantsSection';
 import StructureSection from '../components/organisms/form-sections/aidants-connect-sections/StructureSection';
 import MiseEnOeuvreSection from '../components/organisms/form-sections/deprecated/MiseEnOeuvreSection';
-import CheckboxInput from '../components/atoms/inputs/CheckboxInput';
 import Quote from '../components/atoms/inputs/Quote';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 
 const contacts = {
   contact_metier: {
@@ -54,43 +54,52 @@ const contacts = {
   },
 };
 
-const AdditionalCguContent = ({
-  disabled,
-  onChange,
-  additional_content: {
-    has_professional_contact_only = false,
-    has_non_elected_contact_only = false,
+const initialContacts = {
+  demandeur: {
+    header: 'Demandeur',
+    description: (
+      <>
+        <b>Le demandeur</b>, c'est vous, dépose la demande et sera contacté en
+        cas de problème fonctionnel sur votre service.
+      </>
+    ),
+    forceDisable: true,
   },
-}) => (
-  <>
-    <CheckboxInput
-      label={
-        <>
-          Je confirme que la liste des aidants à habiliter contient
-          exclusivement des aidants professionnels. Elle ne contient donc ni
-          service civique, ni bénévole, ni apprenti, ni stagiaire.
-        </>
-      }
-      name="additional_content.has_professional_contact_only"
-      value={has_professional_contact_only}
-      disabled={disabled}
-      onChange={onChange}
-    />
-    <CheckboxInput
-      label={
-        <>
-          Je confirme qu’aucun élu n’est impliqué dans l’habilitation Aidants
-          Connect. Le responsable Aidants Connect ainsi que les aidants à
-          habiliter ne sont pas des élus.
-        </>
-      }
-      name="additional_content.has_non_elected_contact_only"
-      value={has_non_elected_contact_only}
-      disabled={disabled}
-      onChange={onChange}
-    />
-  </>
-);
+  responsable_metier: {
+    header: 'Responsable Aidants Connect',
+    description: (
+      <>
+        <b>Un responsable Aidants Connect</b> doit être désigné. Il est en
+        charge de la mise en place et du suivi d’Aidants Connect au sein du lieu
+        d’accueil. Il tient également à jour la liste des aidants habilités
+        Aidants Connect sur son espace administrateur (à venir).
+      </>
+    ),
+  },
+};
+
+const additionalTermsOfUse = [
+  {
+    id: 'has_professional_contact_only',
+    label: (
+      <>
+        Je confirme que la liste des aidants à habiliter contient exclusivement
+        des aidants professionnels. Elle ne contient donc ni service civique, ni
+        bénévole, ni apprenti, ni stagiaire.
+      </>
+    ),
+  },
+  {
+    id: 'has_non_elected_contact_only',
+    label: (
+      <>
+        Je confirme qu’aucun élu n’est impliqué dans l’habilitation Aidants
+        Connect. Le responsable Aidants Connect ainsi que les aidants à
+        habiliter ne sont pas des élus.
+      </>
+    ),
+  },
+];
 
 const AidantsConnect = ({
   match: {
@@ -112,6 +121,7 @@ const AidantsConnect = ({
     <OrganisationSection />
     <StructureSection />
     <LabelsSection />
+    <ÉquipeSection initialContacts={initialContacts} />
     <MiseEnOeuvreSection
       title="Coordonnées du référent de votre structure"
       initialContacts={contacts}
@@ -120,7 +130,7 @@ const AidantsConnect = ({
     <AidantsSection />
     <CguSection
       cguLink="https://aidantsconnect.beta.gouv.fr/cgu/"
-      AdditionalCguContent={AdditionalCguContent}
+      additionalTermsOfUse={additionalTermsOfUse}
     />
   </Form>
 );

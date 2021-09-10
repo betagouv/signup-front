@@ -3,7 +3,7 @@ import { FormContext } from '../../../templates/Form';
 import { ScrollablePanel } from '../../Scrollable';
 import CheckboxInput from '../../../atoms/inputs/CheckboxInput';
 
-const SECTION_LABEL = 'Labels';
+const SECTION_LABEL = 'Les labels';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const LabelsSection = () => {
@@ -21,7 +21,8 @@ export const LabelsSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Votre structure a obtenu</h2>
+      <h2>Les labels</h2>
+      <h3>Quels labels ou financements votre structure a-t-elle reçus ?</h3>
       <CheckboxInput
         label="Le label France Services"
         name="additional_content.label_france_services"

@@ -6,12 +6,14 @@ import TextAreaInput from '../../../atoms/inputs/TextAreaInput';
 import Quote from '../../../atoms/inputs/Quote';
 import OrWrapper from '../../../atoms/inputs/OrWrapper';
 import FileInput from '../../../molecules/FileInput';
-import RadioInput from '../../../atoms/inputs/RadioInput';
 import YesNoRadioInput from '../../../atoms/inputs/YesNoRadioInput';
 import { getCachedOrganizationInformation } from '../../../../services/external';
 import WarningEmoji from '../../../atoms/icons/WarningEmoji';
+import ExpandableQuote from '../../../atoms/inputs/ExpandableQuote';
+import SelectInput from '../../../atoms/inputs/SelectInput';
+import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 
-const SECTION_LABEL = 'Structure';
+const SECTION_LABEL = 'La structure';
 const SECTION_ID = encodeURIComponent(SECTION_LABEL);
 
 export const StructureSection = () => {
@@ -85,23 +87,15 @@ export const StructureSection = () => {
 
   return (
     <ScrollablePanel scrollableId={SECTION_ID}>
-      <h2>Description de votre structure</h2>
-      <Quote>
+      <h2>La description de la structure qui servira de lieu d’accueil</h2>
+      <ExpandableQuote title="Qu’est ce que nous entendons par « structure » ?">
         <p>
           <WarningEmoji /> Attention : 1 structure = 1 lieu d’accueil. Merci de
           remplir une demande d’habilitation par lieu d’accueil.
         </p>
-      </Quote>
-      <TextInput
-        label="Nom de la structure"
-        meta="Cette information peut être rendue publique."
-        name="intitule"
-        value={intitule}
-        disabled={disabled}
-        onChange={onChange}
-      />
-      <RadioInput
-        label="Type de structure"
+      </ExpandableQuote>
+      <SelectInput
+        label="Type de la structure"
         options={[
           { id: 'ccas', label: 'CCAS' },
           { id: 'centre-social', label: 'Centre social' },
@@ -135,29 +129,45 @@ export const StructureSection = () => {
         value={organization_type}
         disabled={disabled}
         onChange={onChange}
+        useOtherOption={true}
+        required
       />
       <TextInput
-        label="Adresse de la structure"
+        label="Nom de la structure"
+        meta="Cette information peut être rendue publique."
+        name="intitule"
+        value={intitule}
+        disabled={disabled}
+        onChange={onChange}
+        required
+      />
+      <TextInput
+        label="Adresse"
         name="additional_content.organization_address"
         value={organization_address}
         disabled={disabled}
         onChange={onChange}
+        required
       />
-      <TextInput
-        label="Code postal de la structure"
-        name="additional_content.organization_postal_code"
-        value={organization_postal_code}
-        disabled={disabled}
-        onChange={onChange}
-        maxLength={5}
-      />
-      <TextInput
-        label="Ville de la structure"
-        name="additional_content.organization_city"
-        value={organization_city}
-        disabled={disabled}
-        onChange={onChange}
-      />
+      <SideBySideWrapper>
+        <TextInput
+          label="Code postal"
+          name="additional_content.organization_postal_code"
+          value={organization_postal_code}
+          disabled={disabled}
+          onChange={onChange}
+          maxLength={5}
+          required
+        />
+        <TextInput
+          label="Ville"
+          name="additional_content.organization_city"
+          value={organization_city}
+          disabled={disabled}
+          onChange={onChange}
+          required
+        />
+      </SideBySideWrapper>
       <YesNoRadioInput
         label={
           <>
@@ -169,6 +179,7 @@ export const StructureSection = () => {
         value={participation_reseau}
         disabled={disabled}
         onChange={onChange}
+        required
       />
       <TextInput
         label="Si oui, lequel ?"
@@ -183,6 +194,7 @@ export const StructureSection = () => {
         value={description}
         disabled={disabled}
         onChange={onChange}
+        required
       />
       <TextInput
         label="Site web de votre structure"
