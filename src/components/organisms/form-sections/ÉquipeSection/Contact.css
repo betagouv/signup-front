@@ -20,7 +20,25 @@
   .contact-list {
     flex-direction: column;
   }
+
   .contact-item {
     flex-basis: 50%;
   }
+}
+
+.contact-item.add-card {
+  border: 2px dashed var(--g600);
+  min-height: 500px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 18px;
+  line-height: 25px;
+  color: var(--g600);
+}
+
+.add-card:hover {
+  background-color: var(--g100);
 }

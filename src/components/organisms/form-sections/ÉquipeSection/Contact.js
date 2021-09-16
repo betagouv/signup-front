@@ -7,7 +7,12 @@ import EmailInput from '../../../atoms/inputs/EmailInput';
 import TelInput from '../../../atoms/inputs/TelInput';
 import { withUser } from '../../UserContext';
 import Button from '../../../atoms/Button';
-import { isValidMobilePhoneNumber, isValidPhoneNumber } from '../../../../lib';
+import {
+  isEmailValid,
+  isIndividualEmailAddress,
+  isValidMobilePhoneNumber,
+  isValidPhoneNumber,
+} from '../../../../lib';
 import SideBySideWrapper from '../../../atoms/inputs/SideBySideWrapper';
 
 export const Contact = ({
@@ -19,7 +24,9 @@ export const Contact = ({
   email = '',
   phone_number = '',
   job = '',
+  displayIndividualEmailLabel = false,
   displayMobilePhoneLabel = false,
+  contactByEmailOnly = false,
   disabled,
   onChange,
   user = {},
@@ -110,7 +117,11 @@ export const Contact = ({
         />
         <h4>Pour joindre cette personne</h4>
         <EmailInput
-          label="Email"
+          label={
+            displayIndividualEmailLabel
+              ? 'Email individuel et nominatif'
+              : 'Email'
+          }
           name={`team_members[${index}].email`}
           value={email}
           disabled={disabled}
@@ -118,21 +129,30 @@ export const Contact = ({
           ariaLabel={`Email du ${heading}`}
           required
         />
-        <TelInput
-          label={
-            displayMobilePhoneLabel
-              ? 'Numéro de téléphone mobile'
-              : 'Numéro de téléphone'
-          }
-          name={`team_members[${index}].phone_number`}
-          value={phone_number}
-          disabled={disabled}
-          onChange={onChange}
-          ariaLabel={`Numéro de téléphone ${
-            displayMobilePhoneLabel ? 'mobile ' : ''
-          }du ${heading}`}
-          required
-        />
+        {displayIndividualEmailLabel &&
+          isEmailValid(email) &&
+          !isIndividualEmailAddress(email) && (
+            <div className="notification error">
+              Merci d’utiliser un email nominatif.
+            </div>
+          )}
+        {!contactByEmailOnly && (
+          <TelInput
+            label={
+              displayMobilePhoneLabel
+                ? 'Numéro de téléphone mobile'
+                : 'Numéro de téléphone'
+            }
+            name={`team_members[${index}].phone_number`}
+            value={phone_number}
+            disabled={disabled}
+            onChange={onChange}
+            ariaLabel={`Numéro de téléphone ${
+              displayMobilePhoneLabel ? 'mobile ' : ''
+            }du ${heading}`}
+            required
+          />
+        )}
         {displayMobilePhoneLabel &&
           isValidPhoneNumber(phone_number) &&
           !isValidMobilePhoneNumber(phone_number) && (

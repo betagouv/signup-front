@@ -59,6 +59,7 @@ export const SelectInput = ({
           value={value}
           disabled={disabled}
           onChange={onChange}
+          required={required}
           ariaLabel={`Précisez le ${label}`}
         ></TextInput>
       )}
