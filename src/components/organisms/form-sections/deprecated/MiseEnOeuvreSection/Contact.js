@@ -1,7 +1,6 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import './Contact.css';
 import TextInput from '../../../../atoms/inputs/TextInput';
 import EmailInput from '../../../../atoms/inputs/EmailInput';
 import TelInput from '../../../../atoms/inputs/TelInput';

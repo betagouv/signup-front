@@ -1,4 +1,5 @@
 import React from 'react';
+import './SideBySideWrapper.css';
 
 export const SideBySideWrapper = ({ children = [] }) => (
   <div className="form-row">
