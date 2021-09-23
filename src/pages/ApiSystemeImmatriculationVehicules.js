@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Form from '../../components/templates/Form';
-import OrganisationSection from '../../components/organisms/form-sections/OrganisationSection';
-import DemarcheSection from '../../components/organisms/form-sections/DemarcheSection';
-import DescriptionSection from '../../components/organisms/form-sections/DescriptionSection';
-import DonneesSection from '../../components/organisms/form-sections/DonneesSection';
-import CadreJuridiqueSection from '../../components/organisms/form-sections/CadreJuridiqueSection';
-import CguSection from '../../components/organisms/form-sections/CguSection';
-import demarches from './demarches.json';
-import ÉquipeSection from '../../components/organisms/form-sections/ÉquipeSection';
+import Form from '../components/templates/Form';
+import OrganisationSection from '../components/organisms/form-sections/OrganisationSection';
+import DescriptionSection from '../components/organisms/form-sections/DescriptionSection';
+import DonneesSection from '../components/organisms/form-sections/DonneesSection';
+import CadreJuridiqueSection from '../components/organisms/form-sections/CadreJuridiqueSection';
+import CguSection from '../components/organisms/form-sections/CguSection';
+import ÉquipeSection from '../components/organisms/form-sections/ÉquipeSection';
 
 const DonneesDescription = () => (
   <>
@@ -63,33 +61,28 @@ const CadreJuridiqueDescription = () => (
 
 const availableScopes = [
   {
-    value: 'a_completer',
-    label: 'à compléter',
-    mandatory: true,
+    value: 'informations_titulaires',
+    label: 'Informations relatives aux titulaires des véhicules',
+    checkedByDefault: true,
+  },
+  {
+    value: 'informations_vehicules',
+    label: 'Informations relatives aux véhicules',
+    checkedByDefault: true,
   },
 ];
 
-const target_api = 'api_particulier';
+const target_api = 'api_systeme_immatriculation_vehicules';
 
-const ApiParticulier = ({
+const steps = ['franceconnect', target_api];
+
+const ApiSystemeImmatriculationVehicules = ({
   match: {
     params: { enrollmentId },
   },
 }) => (
-  <Form
-    enrollmentId={enrollmentId}
-    target_api={target_api}
-    demarches={demarches}
-    contactInformation={[
-      {
-        email: 'contact@particulier.api.gouv.fr',
-        label: 'Nous contacter',
-        subject: 'Contact%20via%20datapass.api.gouv.fr',
-      },
-    ]}
-  >
+  <Form enrollmentId={enrollmentId} target_api={target_api} steps={steps}>
     <OrganisationSection />
-    <DemarcheSection />
     <DescriptionSection />
     <DonneesSection
       availableScopes={availableScopes}
@@ -103,7 +96,7 @@ const ApiParticulier = ({
   </Form>
 );
 
-ApiParticulier.propTypes = {
+ApiSystemeImmatriculationVehicules.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       enrollmentId: PropTypes.string,
@@ -111,7 +104,7 @@ ApiParticulier.propTypes = {
   }),
 };
 
-ApiParticulier.defaultProps = {
+ApiSystemeImmatriculationVehicules.defaultProps = {
   match: {
     params: {
       enrollmentId: null,
@@ -119,4 +112,4 @@ ApiParticulier.defaultProps = {
   },
 };
 
-export default ApiParticulier;
+export default ApiSystemeImmatriculationVehicules;
