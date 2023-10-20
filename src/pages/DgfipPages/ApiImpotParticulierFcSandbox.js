@@ -18,7 +18,11 @@ import {
   DemarcheDescription,
   DonneesFootnote,
 } from './api-impot-particulier-common';
-import { contacts, DonneesDescription, SuiteDescription } from './common';
+import {
+  contacts,
+  DonneesDescription,
+  SuiteDescription,
+} from '../../components/organisms/form-sections/deprecated/dgfip-sections/common';
 import DemarcheSection from '../../components/organisms/form-sections/deprecated/DemarcheSection';
 
 const target_api = 'api_impot_particulier_fc_sandbox';
