@@ -162,7 +162,8 @@ const PreviousEnrollmentSection = ({
                   label={
                     <>
                       Nom de la démarche{' '}
-                      <b>{TARGET_API_LABELS[previousTargetApi]}</b>
+                      <b>{TARGET_API_LABELS[previousTargetApi]}</b> que vous
+                      souhaitez poursuivre
                     </>
                   }
                   helper={
